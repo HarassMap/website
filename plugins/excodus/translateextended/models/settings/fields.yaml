@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  browser_language_detection:
+    label: excodus.translateextended::lang.strings.browser_language_detection
+    comment: excodus.translateextended::lang.strings.browser_language_detection_comment
+    type: switch
+    default: true
+  prefer_user_session:
+    label: excodus.translateextended::lang.strings.prefer_user_session
+    comment: excodus.translateextended::lang.strings.prefer_user_session_comment
+    type: switch
+    default: true
+  route_prefixing:
+    label: excodus.translateextended::lang.strings.route_prefixing
+    comment: excodus.translateextended::lang.strings.route_prefixing_comment
+    type: switch
+    default: true
+  homepage_redirect:
+    label: excodus.translateextended::lang.strings.homepage_redirect
+    comment: excodus.translateextended::lang.strings.homepage_redirect_comment
+    type: switch
+    default: true

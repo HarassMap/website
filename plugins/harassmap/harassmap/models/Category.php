@@ -1,13 +1,14 @@
 <?php namespace Harassmap\Harassmap\Models;
 
-use Model;
+use October\Rain\Database\Model;
+use October\Rain\Database\Traits\Validation;
 
 /**
  * Model
  */
 class Category extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use Validation;
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 

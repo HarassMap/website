@@ -1,6 +1,6 @@
 name: Categories
-form: $/harassmap/harassmap/models/category/fields.yaml
 modelClass: Harassmap\Harassmap\Models\Category
+form: $/harassmap/harassmap/models/category/fields.yaml
 defaultRedirect: harassmap/harassmap/categories
 create:
     redirect: 'harassmap/harassmap/categories/update/:id'
