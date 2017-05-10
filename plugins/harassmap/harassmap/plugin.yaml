@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.harassmap::lang.plugin.name'
+    description: 'harassmap.harassmap::lang.plugin.description'
+    author: harassmap
+    icon: oc-icon-map-marker
+    homepage: ''
