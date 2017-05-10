@@ -1,2 +1,11 @@
 1.0.1:
-    - Initialize plugin.
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table harassmap_harassmap_category'
+    - builder_table_create_harassmap_harassmap_category.php
+1.0.3:
+    - 'Updated table harassmap_harassmap_category'
+    - builder_table_update_harassmap_harassmap_category.php
+1.0.4:
+    - 'Updated table harassmap_harassmap_category'
+    - builder_table_update_harassmap_harassmap_category_2.php

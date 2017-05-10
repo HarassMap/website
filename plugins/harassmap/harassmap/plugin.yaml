@@ -4,3 +4,13 @@ plugin:
     author: harassmap
     icon: oc-icon-map-marker
     homepage: ''
+navigation:
+    main-menu-item:
+        label: HarassMap
+        url: harassmap/harassmap/categories
+        icon: icon-map-marker
+        sideMenu:
+            side-menu-item:
+                label: Categories
+                url: harassmap/harassmap/categories
+                icon: icon-tags

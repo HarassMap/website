@@ -1,0 +1,11 @@
+list: $/harassmap/harassmap/models/category/columns.yaml
+modelClass: Harassmap\Harassmap\Models\Category
+title: Categories
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'harassmap/harassmap/categories/update/:id'
