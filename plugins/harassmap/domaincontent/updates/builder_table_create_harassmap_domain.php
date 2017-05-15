@@ -7,7 +7,7 @@ class BuilderTableCreateHarassmapDomaincontentDomain extends Migration
 {
     public function up()
     {
-        Schema::create('harassmap_domaincontent_domain', function($table)
+        Schema::create('harassmap_domain', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
@@ -19,6 +19,6 @@ class BuilderTableCreateHarassmapDomaincontentDomain extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('harassmap_domaincontent_domain');
+        Schema::dropIfExists('harassmap_domain');
     }
 }
