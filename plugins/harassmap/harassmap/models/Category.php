@@ -1,6 +1,6 @@
 <?php namespace Harassmap\Harassmap\Models;
 
-use October\Rain\Database\Model;
+use Model;
 use October\Rain\Database\Traits\Validation;
 
 /**

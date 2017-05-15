@@ -31,7 +31,8 @@
         "october/cms": "~1.0",
         "laravel/framework": "5.1.*",
         "wikimedia/composer-merge-plugin": "dev-master",
-        "owen-it/laravel-auditing": "2.4"
+        "owen-it/laravel-auditing": "2.4",
+        "barryvdh/laravel-ide-helper": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -1,0 +1,30 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: indikator.news::lang.form.name
+        span: auto
+
+    email:
+        label: indikator.news::lang.form.email
+        required: true
+        span: auto
+
+    common:
+        label: indikator.news::lang.form.common
+        type: textarea
+        size: small
+        span: auto
+
+    status:
+        label: indikator.news::lang.form.status
+        required: true
+        type: radio
+        options:
+            1: indikator.news::lang.form.status_active
+            2: indikator.news::lang.form.status_unsubscribed
+        default: 1
+        span: auto
