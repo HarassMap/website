@@ -1,4 +1,4 @@
-<?php namespace Harassmap\DomainContent\Controllers;
+<?php namespace Harassmap\Domain\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -13,6 +13,6 @@ class Domain extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Harassmap.DomainContent', 'harassmap.domain');
+        BackendMenu::setContext('Harassmap.Domain', 'harassmap.domain', 'harassmap.domain.domain');
     }
 }

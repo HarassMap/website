@@ -1,15 +1,14 @@
-<?php namespace Harassmap\DomainContent\Models;
+<?php namespace Harassmap\Domain\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
 
 /**
  * Model
  */
 class Domain extends Model
 {
-    use Validation;
-
+    use \October\Rain\Database\Traits\Validation;
+    
     /*
      * Validation
      */
@@ -26,5 +25,5 @@ class Domain extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'harassmap_domaincontent_domain';
+    public $table = 'harassmap_domain_domain';
 }

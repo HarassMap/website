@@ -1,0 +1,7 @@
+fields:
+    content:
+        label: Content
+        size: giant
+        oc.commentPosition: ''
+        span: full
+        type: richeditor

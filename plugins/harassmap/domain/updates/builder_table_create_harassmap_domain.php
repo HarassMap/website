@@ -1,13 +1,13 @@
-<?php namespace Harassmap\DomainContent\Updates;
+<?php namespace Harassmap\Domain\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateHarassmapDomaincontentDomain extends Migration
+class BuilderTableCreateHarassmapDomainDomain extends Migration
 {
     public function up()
     {
-        Schema::create('harassmap_domain', function($table)
+        Schema::create('harassmap_domain_domain', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
@@ -19,6 +19,6 @@ class BuilderTableCreateHarassmapDomaincontentDomain extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('harassmap_domain');
+        Schema::dropIfExists('harassmap_domain_domain');
     }
 }

@@ -1,0 +1,20 @@
+plugin:
+    name: 'harassmap.domain::lang.plugin.name'
+    description: 'harassmap.domain::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-square
+    homepage: ''
+navigation:
+    harassmap.domain:
+        label: Domain
+        url: harassmap/domain/domain
+        icon: icon-edit
+        sideMenu:
+            harassmap.domain.domain:
+                label: Domains
+                url: harassmap/domain/domain
+                icon: icon-square-o
+            harassmap.domain.content:
+                label: 'Content Blocks'
+                url: harassmap/domain/content
+                icon: icon-edit

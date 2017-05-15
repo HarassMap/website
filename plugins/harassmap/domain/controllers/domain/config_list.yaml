@@ -1,5 +1,5 @@
-list: $/harassmap/domaincontent/models/domain/columns.yaml
-modelClass: Harassmap\DomainContent\Models\Domain
+list: $/harassmap/domain/models/domain/columns.yaml
+modelClass: Harassmap\Domain\Models\Domain
 title: Domain
 noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
@@ -8,4 +8,4 @@ toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
-recordUrl: 'harassmap/domaincontent/domain/update/:id'
+recordUrl: 'harassmap/domain/domain/update/:id'

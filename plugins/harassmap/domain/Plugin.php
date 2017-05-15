@@ -1,4 +1,4 @@
-<?php namespace Harassmap\DomainContent;
+<?php namespace Harassmap\Domain;
 
 use System\Classes\PluginBase;
 

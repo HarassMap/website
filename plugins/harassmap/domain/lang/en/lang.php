@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'Domain Content',
+        'name' => 'Domain',
         'description' => ''
     ]
 ];
