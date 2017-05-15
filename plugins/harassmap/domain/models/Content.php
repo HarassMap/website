@@ -11,7 +11,7 @@ class Content extends Model
     use Validation;
 
     const CONTENT_IDS = [
-        'homepage' => 'homepage'
+        'homepage' => 'Homepage'
     ];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
