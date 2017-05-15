@@ -1,0 +1,4 @@
+columns:
+    host:
+        label: host
+        type: text

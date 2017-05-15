@@ -1,0 +1,16 @@
+fields:
+    host:
+        label: Host
+        oc.commentPosition: ''
+        span: full
+        type: text
+    logo:
+        label: 'File upload'
+        oc.commentPosition: ''
+        mode: file
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload

@@ -1,0 +1,10 @@
+name: Category
+form: $/harassmap/incidents/models/category/fields.yaml
+modelClass: Harassmap\Incidents\Models\Category
+defaultRedirect: harassmap/incidents/category
+create:
+    redirect: 'harassmap/incidents/category/update/:id'
+    redirectClose: harassmap/incidents/category
+update:
+    redirect: harassmap/incidents/category
+    redirectClose: harassmap/incidents/category

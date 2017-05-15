@@ -1,0 +1,5 @@
+title: Category
+modelClass: Harassmap\Incidents\Models\Category
+nameFrom: sort_order
+toolbar:
+    buttons: reorder_toolbar

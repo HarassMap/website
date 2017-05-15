@@ -1,0 +1,16 @@
+plugin:
+    name: 'harassmap.incidents::lang.plugin.name'
+    description: 'harassmap.incidents::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-map-marker
+    homepage: ''
+navigation:
+    harassmap.incidents:
+        label: Incidents
+        url: harassmap/incidents/category
+        icon: icon-map-marker
+        sideMenu:
+            harassmap.incidents.categories:
+                label: Categories
+                url: harassmap/incidents/category
+                icon: icon-tags

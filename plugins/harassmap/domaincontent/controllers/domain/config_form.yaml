@@ -1,0 +1,10 @@
+name: Domain
+form: $/harassmap/domaincontent/models/domain/fields.yaml
+modelClass: Harassmap\DomainContent\Models\Domain
+defaultRedirect: harassmap/domaincontent/domain
+create:
+    redirect: 'harassmap/domaincontent/domain/update/:id'
+    redirectClose: harassmap/domaincontent/domain
+update:
+    redirect: harassmap/domaincontent/domain
+    redirectClose: harassmap/domaincontent/domain

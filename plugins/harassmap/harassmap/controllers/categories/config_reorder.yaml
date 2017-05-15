@@ -1,4 +1,0 @@
-title: Categories
-modelClass: Harassmap\Harassmap\Models\Category
-toolbar:
-    buttons: reorder_toolbar

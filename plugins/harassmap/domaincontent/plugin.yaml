@@ -1,0 +1,11 @@
+plugin:
+    name: 'harassmap.domaincontent::lang.plugin.name'
+    description: 'harassmap.domaincontent::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-square
+    homepage: ''
+navigation:
+    harassmap.domain:
+        label: Domain
+        url: harassmap/domaincontent/domain
+        icon: icon-edit
