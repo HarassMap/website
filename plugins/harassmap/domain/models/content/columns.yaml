@@ -1,4 +1,8 @@
 columns:
-    id:
-        label: id
-        type: number
+    domain:
+        label: Domain
+        relation: domain
+        select: host
+    content_id:
+        label: Content ID
+        type: text

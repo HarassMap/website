@@ -3,6 +3,7 @@
 namespace Harassmap\Domain\Components;
 
 use Cms\Classes\ComponentBase;
+use Harassmap\Domain\Models\Content;
 
 class ContentBlock extends ComponentBase
 {
@@ -21,10 +22,17 @@ class ContentBlock extends ComponentBase
             'id' => [
                 'description' => 'The ID of the content block to display',
                 'title' => 'Content ID',
-                'default' => '',
-                'type' => 'string'
+                'type' => 'dropdown',
+                'placeholder' => 'Select Content Id',
+                'options' => Content::CONTENT_IDS,
+                'required' => true
             ]
         ];
+    }
+
+    public function onRun()
+    {
+        // TODO: get the current domain/language etc and then find the content block for this component
     }
 
 }

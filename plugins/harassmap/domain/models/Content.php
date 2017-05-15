@@ -10,6 +10,10 @@ class Content extends Model
 {
     use Validation;
 
+    const CONTENT_IDS = [
+        'homepage' => 'homepage'
+    ];
+
     /*
      * Validation
      */
@@ -27,4 +31,8 @@ class Content extends Model
      * @var string The database table used by the model.
      */
     public $table = 'harassmap_domain_content';
+
+    public function getContentIdOptions() {
+        return self::CONTENT_IDS;
+    }
 }
