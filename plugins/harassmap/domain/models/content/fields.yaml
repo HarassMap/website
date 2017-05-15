@@ -1,4 +1,11 @@
 fields:
+    domain:
+        label: Relation
+        oc.commentPosition: ''
+        nameFrom: host
+        descriptionFrom: description
+        span: full
+        type: relation
     content:
         label: Content
         size: giant

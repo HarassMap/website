@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
         'name' => 'Domain',
-        'description' => ''
+        'description' => 'Adds support for different content on different domains.'
     ]
 ];

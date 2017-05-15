@@ -1,4 +1,6 @@
-<?php namespace Harassmap\Domain\Updates;
+<?php
+
+namespace Harassmap\Domain\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
@@ -11,9 +13,13 @@ class BuilderTableCreateHarassmapDomainContent extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
+            $table->integer('domain_id')->unsigned();
+            $table->string('content_id');
             $table->text('content');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+
+            $table->foreign('domain_id')->references('id')->on('harassmap_domain_domain');
         });
     }
     

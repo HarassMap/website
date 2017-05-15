@@ -1,4 +1,6 @@
-<?php namespace Harassmap\Domain\Updates;
+<?php
+
+namespace Harassmap\Domain\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;

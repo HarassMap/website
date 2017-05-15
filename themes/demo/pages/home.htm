@@ -1,13 +1,17 @@
-title = "Demonstration"
+title = "Home Page"
 url = "/"
 layout = "default"
 is_hidden = 0
 
 [newsPosts]
+pageNumber = "{{ :page }}"
 postsPerPage = 4
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 postPage = "news"
 postFeatured = 0
+
+[viewBag]
+localeUrl[ar] = "/home-page"
 ==
 {% component 'newsPosts' %}
