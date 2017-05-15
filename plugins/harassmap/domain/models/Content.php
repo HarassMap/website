@@ -14,6 +14,10 @@ class Content extends Model
         'homepage' => 'homepage'
     ];
 
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['content'];
+
     /*
      * Validation
      */
