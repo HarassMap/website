@@ -2,10 +2,10 @@
 
 namespace Harassmap\Domain\Components;
 
+use ApplicationException;
 use Cms\Classes\ComponentBase;
 use Harassmap\Domain\Models\Content;
-use ApplicationException;
-use Request;
+use Harassmap\Domain\Models\Domain;
 
 class ContentBlock extends ComponentBase
 {
@@ -34,16 +34,32 @@ class ContentBlock extends ComponentBase
 
     public function onRun()
     {
-        if (empty($this->property('id'))) {
+        $content_id = $this->property('id');
+
+        if (empty($content_id)) {
             throw new ApplicationException('You need to set a content id.');
         }
 
-        // getting the host
-        $host = Request::getHost();
+        // get the list of matching domains
+        $domains = Domain::getMatchingDomains();
+        $found = false;
 
-        $content = Content::where('content_id', '=', $this->property('id'))->get()->first();
+        foreach ($domains as $domain) {
+            $content = Content
+                ::where('content_id', '=', $content_id)
+                ->where('domain_id', '=', $domain->id)
+                ->get()->first();
 
-        $this->page['content'] = $content->content;
+            if ($content) {
+                $found = $content;
+                break;
+            }
+        }
+
+        if ($found) {
+            $this->page['content_id'] = $content_id;
+            $this->page['content'] = $found->content;
+        }
     }
 
 }

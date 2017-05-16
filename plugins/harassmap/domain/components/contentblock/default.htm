@@ -1,3 +1,7 @@
-<div>
+<div data-content-block="{{ content_id }}">
+    {% if content %}
     {{ content | raw }}
+    {% else %}
+    <!-- No content -->
+    {% endif %}
 </div>

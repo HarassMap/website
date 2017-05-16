@@ -2,6 +2,7 @@
 
 use Model;
 use October\Rain\Database\Traits\Validation;
+use Request;
 
 /**
  * Model
@@ -19,7 +20,7 @@ use October\Rain\Database\Traits\Validation;
 class Domain extends Model
 {
     use Validation;
-    
+
     /*
      * Validation
      */
@@ -44,4 +45,24 @@ class Domain extends Model
      * @var string The database table used by the model.
      */
     public $table = 'harassmap_domain_domain';
+
+    /**
+     *
+     */
+    static function getMatchingDomains()
+    {
+        $requestHost = Request::getHost();
+        $domains = self::orderBy('default')->get();
+        $matches = [];
+
+        foreach ($domains as $domain) {
+            $host = $domain->host;
+
+            if (fnmatch($host, $requestHost)) {
+                array_push($matches, $domain);
+            }
+        }
+
+        return $matches;
+    }
 }
