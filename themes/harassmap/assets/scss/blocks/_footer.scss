@@ -1,0 +1,38 @@
+@import '../variables';
+
+.footer {
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);
+    background-color: $gray;
+
+    @include rem(( padding: 30px 0 40px ));
+}
+
+.footer-contact {
+    color: $white;
+}
+
+.footer-contact__header {
+    display: inline;
+}
+
+.footer-contact__links {
+    display: inline;
+
+    list-style: none;
+
+    font-family: $merriweather;
+
+    @include rem(( font-size: 14px, padding-left: 10px));
+
+    li {
+        display: inline;
+
+        @include rem((margin-left: 20px));
+
+        a {
+            text-decoration: underline;
+
+            color: $gray-light;
+        }
+    }
+}

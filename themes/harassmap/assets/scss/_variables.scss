@@ -1,0 +1,39 @@
+// fonts
+$oswald: 'Oswald', sans-serif;
+$merriweather: 'Merriweather', serif;
+$roboto: 'Roboto Mono', monospace;
+$harmattan: 'Harmattan', sans-serif;
+$opensans: 'Open Sans', sans-serif;
+
+// font weights
+$normal: 400;
+$light: 300;
+$bold: 700;
+
+// colours
+$black: #000000;
+$white: #FFFFFF;
+$green: #00B8B0;
+$red: #BA1D4A;
+$green: #00B8B0;
+
+$gray: #4A4A4A;
+$gray-light: #9B9B9B;
+
+// rem setup
+$rem-baseline: 16px;
+
+// bootstrap override
+$link-color: $white;
+$link-hover-color: $white;
+$link-hover-decoration: none;
+
+$navbar-light-color: $black;
+$navbar-light-hover-color: $black;
+$navbar-light-active-color: $black;
+
+$btn-border-radius: 0;
+
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;

@@ -1,0 +1,44 @@
+@import "../variables";
+@import "rem";
+
+.btn {
+  background-color: $white;
+  border: 1px solid $green;
+
+  cursor: pointer;
+  color: $green;
+
+  display: block;
+  font-family: $oswald;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include rem((padding: 14px 50px));
+}
+
+.btn--large {
+  @include rem((font-size: 20px, margin: 0 0 50px, padding: 18px));
+}
+
+.btn--red {
+  background-color: $red;
+  border: none;
+  color: $white;
+}
+
+.btn--white {
+  background-color: $white;
+  border: 1px solid $gray;
+  color: $gray;
+
+  &:hover {
+    background-color: $red;
+    color: $white;
+  }
+}
+
+.btn--green {
+  background-color: $green;
+  border: none;
+  color: $white;
+}

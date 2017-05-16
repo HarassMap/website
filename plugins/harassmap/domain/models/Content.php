@@ -5,6 +5,20 @@ use October\Rain\Database\Traits\Validation;
 
 /**
  * Model
+ *
+ * @property int $id
+ * @property int $domain_id
+ * @property string $content_id
+ * @property string $content
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereContentId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereDomainId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Content extends Model
 {

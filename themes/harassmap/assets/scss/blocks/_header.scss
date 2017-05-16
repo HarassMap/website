@@ -1,0 +1,31 @@
+@import '../variables';
+@import "rem";
+
+.header {
+
+  .header__bar {
+    background-color: $green;
+
+    @include rem((padding: 8px 0));
+
+    .dropdown-menu {
+      padding: 0;
+
+      li {
+        @include rem((padding: 5px));
+
+        a {
+          color: $gray;
+          display: block;
+        }
+      }
+    }
+  }
+
+  .navbar {
+    .nav-item {
+      @include rem((padding: 0 15px));
+    }
+  }
+
+}

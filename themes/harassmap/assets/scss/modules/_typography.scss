@@ -1,0 +1,63 @@
+@import '../variables';
+@import "rem";
+
+p {
+  font-family: $merriweather;
+  font-weight: $light;
+
+  @include rem((font-size: 14px, padding: 30px 0, margin: 0));
+}
+
+// text styles
+.priority-2 {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: $white;
+
+  font-family: $oswald;
+  font-weight: $normal;
+
+  @include rem((font-size: 14px));
+}
+
+// Horizontal rule with text in the middle
+.hr {
+  color: $gray;
+  font-family: $oswald;
+  font-weight: $light;
+  text-transform: uppercase;
+  position: relative;
+
+  @include rem((font-size: 20px, margin: 15px 0 35px));
+
+  .hr__line {
+    background-color: $gray-light;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+
+    @include rem((height: 1px));
+  }
+
+  .hr__text {
+    background-color: $white;
+    z-index: 2;
+
+    @include rem((padding: 0 50px 0 0));
+  }
+}
+
+.hr--center {
+  text-align: center;
+
+  .hr__text {
+    @include rem((padding: 0 50px));
+  }
+}
+
+.hr--thin {
+  @include rem((margin: 15px 0));
+}

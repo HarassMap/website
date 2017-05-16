@@ -1,0 +1,15 @@
+@import '../variables';
+
+.map {
+  border-bottom: 1px solid $gray-light;
+  border-top: 1px solid $gray-light;
+  width: 100%;
+}
+
+.map--home {
+  height: 370px;
+}
+
+.map--report {
+  height: 370px;
+}
