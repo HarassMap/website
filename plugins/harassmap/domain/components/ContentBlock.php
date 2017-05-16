@@ -32,7 +32,7 @@ class ContentBlock extends ComponentBase
         ];
     }
 
-    public function onRun()
+    public function onRender()
     {
         $content_id = $this->property('id');
 

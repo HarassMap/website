@@ -4,6 +4,10 @@ description = "Default layout"
 
 [localePicker]
 forceUrl = 0
+
+[SeoCmsPage]
+
+[SeoStaticPage]
 ==
 <!DOCTYPE html>
 <html {% if activeLocale == 'ar' %}dir="rtl"{% endif %}>
@@ -12,11 +16,10 @@ forceUrl = 0
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="HarassMap">
-
-    <title>{{ this.page.title }}</title>
-    <meta name="description" content="{{ this.page.meta_description }}">
-    <meta name="title" content="{{ this.page.meta_title }}">
-
+    
+    {% component 'SeoCmsPage' %}
+    {% component 'SeoStaticPage' %}
+    
     <link href="https://fonts.googleapis.com/css?family=Harmattan|Merriweather:300,400,700|Open+Sans:600|Oswald:300,400,700|Roboto+Mono:300"
           rel="stylesheet">
     <link href="{{ 'assets/css/styles.css'|theme }}" rel="stylesheet">

@@ -2,13 +2,20 @@ title = "Home Page"
 url = "/"
 layout = "default"
 is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
 
 [viewBag]
 
-[domainContentBlock]
-id = "homepage"
-==
+[domainContentBlock homepageBasics]
+id = "homepage.basics"
 
+[domainContentBlock homepageShare]
+id = "homepage.share"
+
+[domainContentBlock homepageActive]
+id = "homepage.active"
+==
 <div id="map" class="map map--home" data-map="homepage"></div>
 
 <div class="container">
@@ -32,8 +39,22 @@ id = "homepage"
             </a>
         </div>
     </div>
+</div>
 
-    {% component 'domainContentBlock' %}
+<div class="highlight">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                {% component 'homepageBasics' %}
+            </div>
+            <div class="col-12 col-md-4">
+                {% component 'homepageShare' %}
+            </div>
+            <div class="col-12 col-md-4">
+                {% component 'homepageActive' %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% put scripts %}
