@@ -1,0 +1,68 @@
+[viewBag]
+
+[menu]
+start = "id-1"
+activeNode = 0
+listItemClasses = "item"
+primaryClasses = "nav nav-pills"
+secondaryClasses = "dropdown-menu"
+numberOfLevels = 2
+
+[extendedLocalePicker]
+==
+<header class="header">
+    <div class="header__bar">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="language">
+                        {% component 'extendedLocalePicker' %}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="priority-2 float-right">
+                        {% if app.user %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            {{ app.user.name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="#">
+                                    {{ 'Dashboard' | _ }}
+                                </a>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <a href="#" class="priority-2">
+                            {{ 'Login' | _ }}
+                        </a>
+                        /
+                        <a href="#" class="priority-2">
+                            {{ 'Register' | _ }}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-toggleable-sm navbar-light">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">
+                HarassMap Logo
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="main_nav">
+                {% component 'menu' %}
+            </div>
+        </div>
+    </nav>
+</header>

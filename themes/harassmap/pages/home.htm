@@ -1,0 +1,42 @@
+title = "Home Page"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+
+[domainContentBlock]
+id = "homepage"
+==
+
+<div id="map" class="map map--home" data-map="homepage"></div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3 class="hr hr--center">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Report' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <a href="#" class="btn btn--large btn--red">
+                {{ 'Report an Incident' | _ }}
+            </a>
+        </div>
+        <div class="col-6">
+            <a href="#" class="btn btn--large btn--green">
+                {{ 'Report an Intervention' | _ }}
+            </a>
+        </div>
+    </div>
+
+    {% component 'domainContentBlock' %}
+</div>
+
+{% put scripts %}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+{% endput %}

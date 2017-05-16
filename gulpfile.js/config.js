@@ -22,7 +22,7 @@ module.exports = {
     },
     js: {
         dist: 'themes/harassmap/assets/js',
-        src: 'themes/harassmap/assets/src/**'
+        src: 'themes/harassmap/assets/src'
     },
     css: {
         dist: 'themes/harassmap/assets/css',

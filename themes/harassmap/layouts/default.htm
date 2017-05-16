@@ -1,0 +1,48 @@
+description = "Default layout"
+
+[staticPage]
+==
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="HarassMap">
+
+    <title>{{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+
+    <link href="https://fonts.googleapis.com/css?family=Harmattan|Merriweather:300,400,700|Open+Sans:600|Oswald:300,400,700|Roboto+Mono:300"
+          rel="stylesheet">
+    <link href="{{ 'assets/css/styles.css'|theme }}" rel="stylesheet">
+    {% styles %}
+</head>
+<body>
+
+{% partial 'site/header' %}
+
+<!-- Content -->
+<div class="site-content">
+    {% page %}
+</div>
+
+{% partial 'site/footer' %}
+
+<!-- Scripts -->
+<script src="{{ [
+    'assets/vendor/jquery/jquery.js',
+    'assets/vendor/tether/tether.js',
+    'assets/vendor/bootstrap/bootstrap.js',
+    'assets/vendor/typeahead/typeahead.bundle.js',
+    'assets/vendor/jquery.timepicker.js'
+]|theme }}"></script>
+<script src="{{ 'assets/js/app.js'|theme }}"></script>
+
+
+{% framework extras %}
+
+{% scripts %}
+</body>
+</html>

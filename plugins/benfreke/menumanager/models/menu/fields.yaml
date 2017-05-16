@@ -1,0 +1,62 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: benfreke.menumanager::lang.modeldataform.title
+        span: left
+    description:
+        label: benfreke.menumanager::lang.modeldataform.description
+        span: right
+    enabled:
+        label: benfreke.menumanager::lang.modeldataform.enabled
+        type: radio
+        options:
+            0: benfreke.menumanager::lang.modeldataform.optdisabled
+            1: benfreke.menumanager::lang.modeldataform.optenabled
+        default: 1
+        span: left
+    is_external:
+        label: benfreke.menumanager::lang.modeldataform.external
+        type: dropdown
+        placeholder: benfreke.menumanager::lang.modeldataform.selectmenutype
+        options:
+            0: benfreke.menumanager::lang.modeldataform.optinternal
+            1: benfreke.menumanager::lang.modeldataform.optexternal
+        default: 0
+        cssClass: menumanager-type-controller
+        span: left
+    internal_url:
+        label: benfreke.menumanager::lang.modeldataform.internalurl
+        type: dropdown
+        placeholder: benfreke.menumanager::lang.modeldataform.internalurlplaceholder
+        options: getUrlOptions
+        cssClass: menumanager-type type-0
+        span: right
+    external_url:
+        label: Url
+        placeholder: benfreke.menumanager::lang.modeldataform.externalurl
+        cssClass: menumanager-type type-1
+        comment: benfreke.menumanager::lang.modeldataform.externalurlcomment
+        span: right
+    link_target:
+        label: benfreke.menumanager::lang.modeldataform.linktarget
+        type: radio
+        options:
+            _self: benfreke.menumanager::lang.modeldataform.self
+            _blank: benfreke.menumanager::lang.modeldataform.blank
+        default: _self
+    parameters:
+        label: benfreke.menumanager::lang.modeldataform.parameters
+        commentAbove: benfreke.menumanager::lang.modeldataform.parameterscomment
+        type: text
+        size: tiny
+    query_string:
+        label: benfreke.menumanager::lang.modeldataform.querystr
+        commentAbove: benfreke.menumanager::lang.modeldataform.querystrcomment
+        type: text
+        size: tiny
+    url:
+        label: benfreke.menumanager::lang.modeldataform.url
+        cssClass: hidden
