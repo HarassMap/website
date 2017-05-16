@@ -1,10 +1,20 @@
+[menu footermenu]
+start = "id-3"
+activeNode = 0
+listItemClasses = "item"
+primaryClasses = "nav nav-pills"
+secondaryClasses = "dropdown-menu"
+numberOfLevels = 2
+
+[viewBag]
+==
 <footer class="footer">
     <div class="container">
         <div class="row justify-content-center"></div>
         <div class="row justify-content-center footer-contact">
             <div class="col-6">
                 <h4 class="footer-contact__header priority-2">Contact Us</h4>
-
+                {% component 'footermenu' %}
             </div>
             <div class="col-6"></div>
         </div>
