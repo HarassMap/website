@@ -14,3 +14,13 @@ fields:
             extension: auto
         span: full
         type: fileupload
+    name:
+        label: Name
+        oc.commentPosition: ''
+        span: full
+        type: text
+    description:
+        label: Description
+        oc.commentPosition: ''
+        span: full
+        type: textarea

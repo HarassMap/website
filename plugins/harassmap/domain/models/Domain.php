@@ -5,7 +5,7 @@ use October\Rain\Database\Traits\Validation;
 use Request;
 
 /**
- * Model
+ * Domain
  *
  * @property int $id
  * @property string $host
@@ -20,6 +20,10 @@ use Request;
 class Domain extends Model
 {
     use Validation;
+
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['name', 'description'];
 
     /*
      * Validation

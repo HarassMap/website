@@ -4,7 +4,7 @@ use Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
- * Model
+ * Content
  *
  * @property int $id
  * @property int $domain_id
