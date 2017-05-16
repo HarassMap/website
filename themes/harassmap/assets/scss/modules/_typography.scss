@@ -23,7 +23,7 @@ p {
 
 // Horizontal rule with text in the middle
 .hr {
-  color: $gray;
+  color: $tundora;
   font-family: $oswald;
   font-weight: $light;
   text-transform: uppercase;
@@ -32,7 +32,7 @@ p {
   @include rem((font-size: 20px, margin: 15px 0 35px));
 
   .hr__line {
-    background-color: $gray-light;
+    background-color: $dusty-gray;
     position: absolute;
     width: 100%;
     top: 50%;

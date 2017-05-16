@@ -1,16 +1,16 @@
 fields:
     domain:
-        label: Relation
-        oc.commentPosition: ''
+        label: Domain
         nameFrom: host
         descriptionFrom: description
         span: auto
         type: relation
+        commentAbove: 'Which domain is this content block for?'
     content_id:
         label: 'Content Block ID'
-        oc.commentPosition: ''
         span: auto
         type: dropdown
+        commentAbove: 'Where should this be placed on the site?'
     content:
         label: Content
         size: giant

@@ -5,12 +5,13 @@ namespace Harassmap\Domain\Updates;
 use Harassmap\Domain\Models\Domain;
 use Seeder;
 
-class SeedHarassmapDomainTable extends Seeder
+class SeedHarassMapDomainTable extends Seeder
 {
     public function run()
     {
-        $domain = Domain::create([
+        Domain::create([
             'host' => '*',
+            'name' => 'Default',
             'default' => true
         ]);
     }

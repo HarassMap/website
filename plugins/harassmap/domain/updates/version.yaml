@@ -9,3 +9,4 @@
 1.0.4:
     - 'Seeding tables with initial content'
     - seed_harassmap_domain.php
+    - seed_harassmap_content.php

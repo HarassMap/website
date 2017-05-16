@@ -1,4 +1,7 @@
 columns:
     host:
-        label: host
+        label: Host
+        type: text
+    name:
+        label: Name
         type: text

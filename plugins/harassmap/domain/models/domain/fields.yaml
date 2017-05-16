@@ -1,11 +1,16 @@
 fields:
     host:
         label: Host
-        oc.commentPosition: ''
         span: full
         type: text
+        commentAbove: 'The full host name for this domain'
+    name:
+        label: Name
+        span: full
+        type: text
+        commentAbove: 'A human readable name for this site.'
     logo:
-        label: 'File upload'
+        label: Logo
         oc.commentPosition: ''
         mode: file
         useCaption: true
@@ -14,13 +19,3 @@ fields:
             extension: auto
         span: full
         type: fileupload
-    name:
-        label: Name
-        oc.commentPosition: ''
-        span: full
-        type: text
-    description:
-        label: Description
-        oc.commentPosition: ''
-        span: full
-        type: textarea
