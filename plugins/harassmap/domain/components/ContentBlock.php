@@ -56,6 +56,7 @@ class ContentBlock extends ComponentBase
             }
         }
 
+        // if we have found the content block then
         if ($found) {
             $this->page['content_id'] = $content_id;
             $this->page['content'] = $found->content;

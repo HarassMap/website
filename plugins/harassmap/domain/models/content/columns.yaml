@@ -6,3 +6,6 @@ columns:
     content_id:
         label: Content ID
         type: text
+    content:
+        label: Content
+        type: text

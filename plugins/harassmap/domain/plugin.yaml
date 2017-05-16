@@ -2,7 +2,7 @@ plugin:
     name: 'harassmap.domain::lang.plugin.name'
     description: 'harassmap.domain::lang.plugin.description'
     author: Harassmap
-    icon: oc-icon-square
+    icon: oc-icon-edit
     homepage: ''
 navigation:
     harassmap.domain:
