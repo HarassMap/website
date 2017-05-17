@@ -24,8 +24,12 @@
 
   .navbar {
 
-    .site-logo {
-      width: 300px;
+    .navbar-brand {
+      @include rem((padding: 20px 0));
+
+      .site-logo {
+        width: 400px;
+      }
     }
 
     .nav-item {
