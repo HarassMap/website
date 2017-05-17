@@ -23,6 +23,11 @@
   }
 
   .navbar {
+
+    .site-logo {
+      width: 300px;
+    }
+
     .nav-item {
       @include rem((padding: 0 15px));
     }
