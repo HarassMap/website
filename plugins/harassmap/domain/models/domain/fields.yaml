@@ -8,7 +8,7 @@ fields:
         label: Name
         span: full
         type: text
-        commentAbove: 'A human readable name for this site.'
+        commentAbove: 'The name of this site.'
     logo:
         label: Logo
         oc.commentPosition: ''

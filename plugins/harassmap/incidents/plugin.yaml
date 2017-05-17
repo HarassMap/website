@@ -9,8 +9,16 @@ navigation:
         label: Incidents
         url: harassmap/incidents/category
         icon: icon-map-marker
+        permissions:
+            - harassmap.incidents.access_categories
         sideMenu:
             harassmap.incidents.categories:
                 label: Categories
                 url: harassmap/incidents/category
                 icon: icon-tags
+                permissions:
+                    - harassmap.incidents.access_categories
+permissions:
+    harassmap.incidents.access_categories:
+        tab: HarassMap
+        label: 'Manage Categories'

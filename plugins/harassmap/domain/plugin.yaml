@@ -9,12 +9,26 @@ navigation:
         label: Domain
         url: harassmap/domain/domain
         icon: icon-edit
+        permissions:
+            - harassmap.domain.access_content
+            - harassmap.domain.access_domain
         sideMenu:
             harassmap.domain.domain:
                 label: Domains
                 url: harassmap/domain/domain
                 icon: icon-square-o
+                permissions:
+                    - harassmap.domain.access_domain
             harassmap.domain.content:
                 label: 'Content Blocks'
                 url: harassmap/domain/content
                 icon: icon-edit
+                permissions:
+                    - harassmap.domain.access_content
+permissions:
+    harassmap.domain.access_domain:
+        tab: HarassMap
+        label: 'Manage Domains'
+    harassmap.domain.access_content:
+        tab: HarassMap
+        label: 'Manage Domain Content Blocks'
