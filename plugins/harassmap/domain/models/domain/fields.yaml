@@ -26,6 +26,12 @@ tabs:
             span: full
             type: fileupload
             tab: Site
+        about:
+            label: About
+            span: full
+            type: textarea
+            commentAbove: 'A short description of the site.'
+            tab: Site
         facebook:
             label: Facebook
             commentAbove: ''
