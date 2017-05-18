@@ -1,5 +1,5 @@
 1.0.1:
-    - Initialize plugin.
+    - 'Initialize plugin.'
 1.0.2:
     - 'Created table harassmap_domain'
     - builder_table_create_harassmap_domain.php
@@ -10,3 +10,6 @@
     - 'Seeding tables with initial content'
     - seed_harassmap_domain.php
     - seed_harassmap_content.php
+1.0.5:
+    - 'Created table harassmap_domain_user'
+    - builder_table_create_harassmap_domain_user.php
