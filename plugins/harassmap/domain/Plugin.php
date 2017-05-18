@@ -2,10 +2,11 @@
 
 namespace Harassmap\Domain;
 
+use Backend\Controllers\Users as BackendUsersController;
+use Backend\Models\User as BackendUserModel;
 use Harassmap\Domain\Components\ContentBlock;
 use Harassmap\Domain\Components\Domain;
 use Harassmap\Domain\Models\Domain as DomainModel;
-use RainLab\User\Models\User;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -15,8 +16,23 @@ class Plugin extends PluginBase
     {
 
         // extend the user class to give it a list of domains
-        User::extend(function ($model) {
+        BackendUserModel::extend(function ($model) {
             $model->belongsToMany['domains'] = [DomainModel::class, 'table' => 'harassmap_domain_user'];
+        });
+
+        // extend the user edit form to allow domain allocation
+        BackendUsersController::extendFormFields(function ($form, $model, $context) {
+
+            $form->addTabFields([
+                'domains' => [
+                    'label'   => 'Domain',
+                    'commentAbove' => 'Allow this user to edit certain domains',
+                    'type' => 'relation',
+                    'select' => 'host',
+                    'tab' => 'Domain'
+                ]
+            ]);
+
         });
 
     }

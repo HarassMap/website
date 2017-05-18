@@ -2,7 +2,7 @@
 
 use Model;
 use October\Rain\Database\Traits\Validation;
-use RainLab\User\Models\User;
+use Backend\Models\User as BackendUserModel;
 use Request;
 
 /**
@@ -43,7 +43,7 @@ class Domain extends Model
      * A domain can have many users associated with it
      */
     public $belongsToMany = [
-        'users' => [User::class, 'table' => 'harassmap_domain_user']
+        'users' => [BackendUserModel::class, 'table' => 'harassmap_domain_user']
     ];
 
     /*
