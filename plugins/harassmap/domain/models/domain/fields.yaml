@@ -6,8 +6,18 @@ tabs:
             type: text
             commentAbove: 'The full host name for this domain'
             tab: Site
-        logo:
-            label: Logo
+        headerLogo:
+            label: Header Logo
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            tab: Site
+        footerLogo:
+            label: Footer Logo
             mode: file
             useCaption: true
             thumbOptions:

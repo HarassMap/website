@@ -50,7 +50,8 @@ class Domain extends Model
      * Attachments
      */
     public $attachOne = [
-        'logo' => 'System\Models\File'
+        'headerLogo' => 'System\Models\File',
+        'footerLogo' => 'System\Models\File'
     ];
 
     /**
