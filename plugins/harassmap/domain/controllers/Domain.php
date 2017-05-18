@@ -3,6 +3,8 @@
 use Backend\Classes\Controller;
 use BackendAuth;
 use BackendMenu;
+use Harassmap\Domain\Models\Domain as DomainModel;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Domain extends Controller
 {
@@ -34,5 +36,32 @@ class Domain extends Controller
             $query->orWhere('id', '=', $domain->id);
         }
 
+    }
+
+    public function update($recordId, $context = null)
+    {
+        $user = BackendAuth::getUser();
+
+        // if the user is a super use then stop here
+        if (!$user->isSuperUser()) {
+
+            $domain = DomainModel::find($recordId);
+            $id = $domain->id;
+            $domains = $user->domains;
+            $found = false;
+
+            foreach ($domains as $domain) {
+                if($domain->id === $id) {
+                    $found = true;
+                    break;
+                }
+            }
+
+            if(!$found) {
+                throw new AccessDeniedHttpException();
+            }
+        }
+
+        return $this->asExtension('FormController')->update($recordId, $context);
     }
 }
