@@ -14,8 +14,13 @@ class BuilderTableCreateHarassmapDomainDomain extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('host', 255);
-            $table->string('name', 255);
-            $table->boolean('default')->nullable();
+
+            $table->string('facebook', 255)->nullable();
+            $table->string('twitter', 255)->nullable();
+            $table->string('instagram', 255)->nullable();
+            $table->string('youtube', 255)->nullable();
+            $table->string('blogspot', 255)->nullable();
+
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

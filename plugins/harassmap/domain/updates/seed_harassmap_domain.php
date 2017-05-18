@@ -10,9 +10,7 @@ class SeedHarassMapDomainTable extends Seeder
     public function run()
     {
         Domain::create([
-            'host' => '*',
-            'name' => 'Default',
-            'default' => true
+            'host' => '*'
         ]);
     }
 }

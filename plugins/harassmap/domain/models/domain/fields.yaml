@@ -1,20 +1,48 @@
-fields:
-    host:
-        label: Host
-        span: full
-        type: text
-        commentAbove: 'The full host name for this domain'
-    name:
-        label: Name
-        span: full
-        type: text
-        commentAbove: 'The name of this site.'
-    logo:
-        label: Logo
-        mode: file
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: full
-        type: fileupload
+tabs:
+    fields:
+        host:
+            label: Host
+            span: full
+            type: text
+            commentAbove: 'The full host name for this domain'
+            tab: Site
+        logo:
+            label: Logo
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            tab: Site
+        facebook:
+            label: Facebook
+            commentAbove: ''
+            span: full
+            type: text
+            tab: Social
+        twitter:
+            label: Twitter
+            commentAbove: ''
+            span: full
+            type: text
+            tab: Social
+        instagram:
+            label: Instagram
+            commentAbove: ''
+            span: full
+            type: text
+            tab: Social
+        youtube:
+            label: Youtube
+            commentAbove: ''
+            span: full
+            type: text
+            tab: Social
+        blogspot:
+            label: Blogspot
+            commentAbove: ''
+            span: full
+            type: text
+            tab: Social

@@ -10,7 +10,7 @@ class SeedHarassMapContentTable extends Seeder
 {
     public function run()
     {
-        $domain = Domain::where('default', '=', true)->first();
+        $domain = Domain::where('host', '=', '*')->first();
 
         Content::create([
             'domain' => $domain,
