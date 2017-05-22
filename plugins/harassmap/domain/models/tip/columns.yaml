@@ -1,4 +1,8 @@
 columns:
+    domain:
+        label: Domain
+        relation: domain
+        select: host
     tip:
         label: tip
         type: text
