@@ -4,7 +4,19 @@ use Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
- * Model
+ * Tip
+ *
+ * @property int $id
+ * @property int $domain_id
+ * @property string $tip
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereDomainId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereTip($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Tip extends Model
 {

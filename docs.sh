@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+php artisan ide-helper:models --dir="plugins/harassmap/domain/models" --dir="plugins/harassmap/incidents/models"

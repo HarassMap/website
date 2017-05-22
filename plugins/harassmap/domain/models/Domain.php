@@ -10,12 +10,24 @@ use Request;
  *
  * @property int $id
  * @property string $host
+ * @property string $about
+ * @property string $facebook
+ * @property string $twitter
+ * @property string $instagram
+ * @property string $youtube
+ * @property string $blogspot
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereAbout($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereBlogspot($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereFacebook($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereHost($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereInstagram($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereTwitter($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereYoutube($value)
  * @mixin \Eloquent
  */
 class Domain extends Model
