@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Models;
 
 use Model;
 use October\Rain\Database\Traits\Validation;
+use October\Rain\Database\Traits\Sortable;
 
 /**
  * Category
@@ -27,6 +28,7 @@ use October\Rain\Database\Traits\Validation;
 class Category extends Model
 {
     use Validation;
+    use Sortable;
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
@@ -42,4 +44,13 @@ class Category extends Model
      * @var string The database table used by the model.
      */
     public $table = 'harassmap_incidents_category';
+
+    public function beforeSave()
+    {
+
+        // adding a default value for the sort order
+        if(!$this->sort_order) {
+            $this->sort_order = 0;
+        }
+    }
 }

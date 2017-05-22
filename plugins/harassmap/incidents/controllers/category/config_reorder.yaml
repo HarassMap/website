@@ -1,5 +1,5 @@
-title: Category
+title: Reorder Categories
 modelClass: Harassmap\Incidents\Models\Category
-nameFrom: sort_order
+nameFrom: title
 toolbar:
     buttons: reorder_toolbar

@@ -14,7 +14,7 @@ class BuilderTableCreateHarassmapIncidentsCategory extends Migration
             $table->string('title', 255);
             $table->text('description');
             $table->string('color', 20);
-            $table->integer('sort_order')->nullable();
+            $table->integer('sort_order');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

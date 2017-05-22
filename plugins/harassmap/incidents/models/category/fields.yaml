@@ -1,17 +1,14 @@
 fields:
     title:
         label: Text
-        oc.commentPosition: ''
         span: full
         type: text
     description:
         label: 'Text area'
         size: ''
-        oc.commentPosition: ''
         span: full
         type: textarea
     color:
         label: 'Color picker'
-        oc.commentPosition: ''
         span: full
         type: colorpicker

@@ -2,6 +2,8 @@ columns:
     title:
         label: title
         type: text
+        sortable: false
     description:
         label: description
         type: text
+        sortable: false
