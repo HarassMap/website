@@ -32,11 +32,9 @@ class Domain extends Model
     public $rules = [
     ];
 
-    /*
-     * A domain can be associated with many content blocks
-     */
     public $hasMany = [
-        'content' => [Content::class, 'delete' => true]
+        'content' => [Content::class, 'delete' => true],
+        'tips' => [Tip::class, 'delete' => true]
     ];
 
     /*

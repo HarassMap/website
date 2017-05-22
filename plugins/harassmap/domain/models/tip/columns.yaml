@@ -1,0 +1,7 @@
+columns:
+    tip:
+        label: tip
+        type: text
+    created_at:
+        label: created_at
+        type: datetime

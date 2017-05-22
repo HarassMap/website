@@ -25,6 +25,10 @@ navigation:
                 icon: icon-edit
                 permissions:
                     - harassmap.domain.access_content
+            harassmap.domain.tips:
+                label: 'Weekly Tips'
+                url: harassmap/domain/tip
+                icon: icon-quote-left
 permissions:
     harassmap.domain.access_domain:
         tab: HarassMap

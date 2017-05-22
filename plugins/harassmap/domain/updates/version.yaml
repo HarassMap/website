@@ -7,9 +7,12 @@
     - 'Created table harassmap_content'
     - builder_table_create_harassmap_content.php
 1.0.4:
+    - 'Created table harassmap_domain_user'
+    - builder_table_create_harassmap_domain_user.php
+1.0.5:
+    - 'Created table harassmap_domain_tip'
+    - builder_table_create_harassmap_domain_tip.php
+1.0.6:
     - 'Seeding tables with initial content'
     - seed_harassmap_domain.php
     - seed_harassmap_content.php
-1.0.5:
-    - 'Created table harassmap_domain_user'
-    - builder_table_create_harassmap_domain_user.php

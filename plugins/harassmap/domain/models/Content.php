@@ -40,9 +40,6 @@ class Content extends Model
     public $rules = [
     ];
 
-    /*
-     * A content block can belong to a domain
-     */
     public $belongsTo = [
         'domain' => Domain::class
     ];

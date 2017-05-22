@@ -1,0 +1,13 @@
+fields:
+    domain:
+        label: Domain
+        nameFrom: host
+        span: full
+        type: relation
+        commentAbove: 'Which domain is this tip for?'
+    tip:
+        label: Tip
+        size: large
+        oc.commentPosition: ''
+        span: full
+        type: textarea

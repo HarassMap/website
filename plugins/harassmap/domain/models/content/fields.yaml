@@ -2,7 +2,6 @@ fields:
     domain:
         label: Domain
         nameFrom: host
-        descriptionFrom: description
         span: auto
         type: relation
         commentAbove: 'Which domain is this content block for?'
