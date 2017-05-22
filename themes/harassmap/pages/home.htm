@@ -45,27 +45,38 @@ id = "homepage.active"
 
 <div class="bg--polar">
     <div class="container">
-        <div class="row pt-5 pb-5">
-            <div class="col-12 col-md-4">
+        <div class="row">
+            <a href="#" class="col-12 col-md-4 p-4">
+                <img src="{{ 'assets/img/icons/clipboard.svg' | theme }}" class="float-left pr-2">
                 {% component 'homepageBasics' %}
-            </div>
-            <div class="col-12 col-md-4">
+            </a>
+            <a href="#" class="col-12 col-md-4 p-4">
+                <img src="{{ 'assets/img/icons/quote.svg' | theme }}" class="float-left pr-2">
                 {% component 'homepageShare' %}
-            </div>
-            <div class="col-12 col-md-4">
+            </a>
+            <a href="#" class="col-12 col-md-4 p-4">
+                <img src="{{ 'assets/img/icons/droplet.svg' | theme }}" class="float-left pr-2">
                 {% component 'homepageActive' %}
-            </div>
+            </a>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12 col-md-6">
             {% component 'tip' %}
         </div>
         <div class="col-12 col-md-6">
 
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'News' | _ }}</span>
+            </h3>
         </div>
     </div>
 </div>

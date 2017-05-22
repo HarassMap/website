@@ -12,6 +12,8 @@
   }
 
   p {
+    color: $black;
+
     @include rem((padding: 16px 0 0, margin: 0));
   }
 
