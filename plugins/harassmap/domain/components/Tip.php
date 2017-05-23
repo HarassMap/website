@@ -4,8 +4,9 @@ namespace Harassmap\Domain\Components;
 
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
-use Harassmap\Domain\Models\Tip as TipModel;
+use Cms\Classes\Page;
 use Harassmap\Domain\Models\Domain;
+use Harassmap\Domain\Models\Tip as TipModel;
 
 class Tip extends ComponentBase
 {
@@ -16,6 +17,23 @@ class Tip extends ComponentBase
             'name' => 'Weekly Tip',
             'description' => 'Render the current weekly tip'
         ];
+    }
+
+    public function defineProperties()
+    {
+        return [
+            'listPage' => [
+                'title' => 'harassmap.domain::lang.tip.list.page_name',
+                'description' => 'harassmap.domain::lang.tip.list.page_help',
+                'type' => 'dropdown',
+                'group' => 'Links',
+            ],
+        ];
+    }
+
+    public function getListPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRender()
@@ -39,6 +57,7 @@ class Tip extends ComponentBase
         // if we have found the content block then
         if ($found) {
             $this->page['tip'] = $found->tip;
+            $this->page['listPage'] = $this->property('listPage');
         }
     }
 
