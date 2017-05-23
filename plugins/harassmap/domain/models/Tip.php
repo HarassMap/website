@@ -9,6 +9,7 @@ use October\Rain\Database\Traits\Validation;
  * @property int $id
  * @property int $domain_id
  * @property string $tip
+ * @property \Carbon\Carbon $featured_from
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereCreatedAt($value)
@@ -40,4 +41,11 @@ class Tip extends Model
      * @var string The database table used by the model.
      */
     public $table = 'harassmap_domain_tip';
+
+    public function beforeCreate()
+    {
+        if ($this->featured_from == '') {
+            $this->featured_from = date('Y-m-d H:i:00');
+        }
+    }
 }

@@ -4,8 +4,9 @@ columns:
         relation: domain
         select: host
     tip:
-        label: tip
+        label: Tip
         type: text
-    created_at:
-        label: created_at
+
+    featured_from:
+        label: From
         type: datetime

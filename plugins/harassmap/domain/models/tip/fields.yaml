@@ -11,3 +11,11 @@ fields:
         oc.commentPosition: ''
         span: full
         type: textarea
+
+secondaryTabs:
+    fields:
+        featured_from:
+            label: Featured From
+            type: datepicker
+            mode: datetime
+            required: true

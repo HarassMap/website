@@ -13,6 +13,7 @@ class BuilderTableCreateHarassmapDomainTip extends Migration
             $table->increments('id')->unsigned();
             $table->integer('domain_id')->unsigned();
             $table->string('tip', 255);
+            $table->timestamp('featured_from')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 

@@ -13,6 +13,8 @@ class Tip extends Controller
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
 
+    public $bodyClass = 'compact-container';
+
     public function __construct()
     {
         parent::__construct();
