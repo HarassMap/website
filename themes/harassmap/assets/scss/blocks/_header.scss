@@ -36,7 +36,15 @@
       @include rem((padding: 20px 0));
 
       .site-logo {
-        width: 400px;
+        @include rem((width: 200px));
+
+        @include media-breakpoint-up(md) {
+          @include rem((width: 300px));
+        }
+
+        @include media-breakpoint-up(lg) {
+          @include rem((width: 400px));
+        }
       }
     }
   }
