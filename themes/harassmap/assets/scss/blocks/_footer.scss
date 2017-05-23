@@ -5,6 +5,15 @@
     background-color: $tundora;
 
     @include rem(( padding: 30px 0 40px ));
+
+    a {
+        color: $dusty-gray;
+        text-decoration: underline;
+
+        &:hover {
+            color: $dusty-gray;
+        }
+    }
 }
 
 .footer-contact {

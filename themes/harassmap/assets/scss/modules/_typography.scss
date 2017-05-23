@@ -59,6 +59,10 @@ p {
 
   .hr__text {
     @include rem((padding: 0 50px));
+
+    .ar & {
+      @include rem((padding: 0 50px));
+    }
   }
 }
 

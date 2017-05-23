@@ -20,6 +20,14 @@
         }
       }
     }
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: $white;
+      }
+    }
   }
 
   .navbar {
@@ -31,9 +39,22 @@
         width: 400px;
       }
     }
+  }
+
+  .nav {
+    font-family: $oswald;
+    text-transform: uppercase;
 
     .nav-item {
       @include rem((padding: 0 15px));
+    }
+
+    a {
+      color: $black;
+
+      &:hover {
+        color: $green;
+      }
     }
   }
 
