@@ -3,4 +3,12 @@
         <span class="hr__line"></span>
         <span class="hr__text">{{ 'Weekly Tip' | _ }}</span>
     </h3>
+
+    {% if tip %}
+        <p>
+            {{ tip }}
+        </p>
+    {% else %}
+        <!-- No content -->
+    {% endif %}
 </div>

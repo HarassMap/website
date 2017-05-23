@@ -48,7 +48,7 @@ class ContentBlock extends ComponentBase
             $content = Content
                 ::where('content_id', '=', $content_id)
                 ->where('domain_id', '=', $domain->id)
-                ->get()->first();
+                ->first();
 
             if ($content) {
                 $found = $content;

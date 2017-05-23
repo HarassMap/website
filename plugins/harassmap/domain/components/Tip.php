@@ -2,9 +2,9 @@
 
 namespace Harassmap\Domain\Components;
 
-use ApplicationException;
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
-use Harassmap\Domain\Models\Content;
+use Harassmap\Domain\Models\Tip as TipModel;
 use Harassmap\Domain\Models\Domain;
 
 class Tip extends ComponentBase
@@ -20,7 +20,26 @@ class Tip extends ComponentBase
 
     public function onRender()
     {
+        $domains = Domain::getMatchingDomains();
+        $found = false;
 
+        foreach ($domains as $domain) {
+            $content = TipModel
+                ::where('domain_id', '=', $domain->id)
+                ->where('featured_from', '<', Carbon::now())
+                ->orderBy('featured_from')
+                ->first();
+
+            if ($content) {
+                $found = $content;
+                break;
+            }
+        }
+
+        // if we have found the content block then
+        if ($found) {
+            $this->page['tip'] = $found->tip;
+        }
     }
 
 }
