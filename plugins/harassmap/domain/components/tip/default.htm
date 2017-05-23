@@ -4,11 +4,9 @@
         <span class="hr__text">{{ 'Weekly Tip' | _ }}</span>
     </h3>
 
-    {% if tip %}
-        <p>
-            {{ tip }}
-        </p>
-    {% else %}
-        <!-- No content -->
-    {% endif %}
+    <p>{{ tip }}</p>
+
+    <a href="#" class="btn">
+        {{ 'Browse Tips' | _ }}
+    </a>
 </div>

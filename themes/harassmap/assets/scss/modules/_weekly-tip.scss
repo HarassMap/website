@@ -1,0 +1,14 @@
+@import "../variables";
+@import "rem";
+
+.weekly-tip {
+  font-family: $merriweather;
+
+  p {
+    color: $tundora;
+    margin: 0;
+
+    @include rem((font-size: 24px, padding: 0 0 24px));
+  }
+
+}
