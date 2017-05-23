@@ -1,0 +1,23 @@
+<div class="tips">
+    <h3 class="hr">
+        <span class="hr__line"></span>
+        <span class="hr__text">{{ 'Weekly Tips' | _ }}</span>
+    </h3>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="w-25">Date</th>
+            <th>Tip</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tip in tips %}
+            <tr>
+                <td>{{ tip.featured_from | date("Y-m-d") }}</td>
+                <td>{{ tip.tip }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

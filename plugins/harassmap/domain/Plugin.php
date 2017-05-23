@@ -7,6 +7,7 @@ use Backend\Models\User as BackendUserModel;
 use Harassmap\Domain\Components\ContentBlock;
 use Harassmap\Domain\Components\Domain;
 use Harassmap\Domain\Components\Tip;
+use Harassmap\Domain\Components\Tips;
 use Harassmap\Domain\Models\Domain as DomainModel;
 use System\Classes\PluginBase;
 
@@ -43,7 +44,8 @@ class Plugin extends PluginBase
         return [
             ContentBlock::class => 'domainContentBlock',
             Domain::class => 'domain',
-            Tip::class => 'tip'
+            Tip::class => 'tip',
+            Tips::class => 'tips'
         ];
     }
 

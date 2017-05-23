@@ -47,6 +47,10 @@ p {
     z-index: 2;
 
     @include rem((padding: 0 50px 0 0));
+    
+    .ar & {
+      @include rem((padding: 0 0 0 50px));
+    }
   }
 }
 
