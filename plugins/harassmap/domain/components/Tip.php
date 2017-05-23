@@ -27,7 +27,7 @@ class Tip extends ComponentBase
             $content = TipModel
                 ::where('domain_id', '=', $domain->id)
                 ->where('featured_from', '<', Carbon::now())
-                ->orderBy('featured_from')
+                ->orderBy('featured_from', 'desc')
                 ->first();
 
             if ($content) {
