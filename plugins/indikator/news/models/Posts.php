@@ -1,5 +1,6 @@
 <?php namespace Indikator\News\Models;
 
+use Indikator\News\Classes\NewsSender;
 use Model;
 use File;
 use App;
@@ -63,37 +64,14 @@ class Posts extends Model
     public function beforeSave()
     {
         if ($this->send && $this->send != '') {
-            $locale = App::getLocale();
+            $activeSubscribers = Subscribers::where('status', 1)->get();
 
-            if (!File::exists(base_path().'/plugins/indikator/news/views/mail/email_'.$locale.'.htm')) {
-                $locale = 'en';
+            $sender = new NewsSender($this);
+            $sender->sendNewsletter($activeSubscribers);
+
+            foreach ($activeSubscribers as $subscriber) {
+                Subscribers::whereId($subscriber->id)->increment('statistics');
             }
-
-            $users = Subscribers::where('status', 1)->get();
-
-            foreach ($users as $user) {
-                $params = [
-                    'name'         => $user->name,
-                    'email'        => $user->email,
-                    'title'        => $this->title,
-                    'slug'         => $this->slug,
-                    'introductory' => $this->introductory,
-                    'content'      => $this->content,
-                    'image'        => $this->image
-                ];
-
-                $this->email = $user->email;
-                $this->name = $user->name;
-
-                Mail::send('indikator.news::mail.email_'.$locale, $params, function($message)
-                {
-                    $message->to($this->email, $this->name)->subject($this->title);
-                });
-
-                Subscribers::whereId($user->id)->increment('statistics');
-            }
-
-            unset($this->email, $this->name);
         }
 
         if ($this->send) {
@@ -109,11 +87,11 @@ class Posts extends Model
     public function scopeListFrontEnd($query, $options)
     {
         extract(array_merge([
-            'page'    => 1,
-            'perPage' => 10,
-            'sort'    => 'created_at',
-            'search'  => '',
-            'status'  => 1,
+            'page'     => 1,
+            'perPage'  => 10,
+            'sort'     => 'created_at',
+            'search'   => '',
+            'status'   => 1,
             'featured' => 0
         ], $options));
 
@@ -131,7 +109,7 @@ class Posts extends Model
         if ($featured != 0) {
             $query->isFeatured($featured);
         }
-        
+
         if (!is_array($sort)) {
             $sort = [$sort];
         }
@@ -168,7 +146,7 @@ class Posts extends Model
     {
         return $query->where('featured', $value);
     }
-    
+
     public static function getMenuTypeInfo($type)
     {
         if ($type == 'post-page') {

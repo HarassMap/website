@@ -37,7 +37,7 @@ class Plugin extends PluginBase
                         'permissions' => ['indikator.news.posts']
                     ],
                     'subscribers' => [
-                        'label'       => 'indikator.news::lang.menu.subscribers',
+                        'label'        => 'indikator.news::lang.menu.subscribers',
                         'url'         => Backend::url('indikator/news/subscribers'),
                         'icon'        => 'icon-user',
                         'permissions' => ['indikator.news.subscribers']
@@ -70,10 +70,10 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Indikator\News\Components\Posts' => 'newsPosts',
-            'Indikator\News\Components\Post'  => 'newsPost',
-            'Indikator\News\Components\Form'  => 'newsForm',
-            'Indikator\News\Components\Stat'  => 'newsStat'
+            'Indikator\News\Components\Posts'       => 'newsPosts',
+            'Indikator\News\Components\Post'        => 'newsPost',
+            'Indikator\News\Components\Subscribe'   => 'newsSubscribe',
+            'Indikator\News\Components\Unsubscribe' => 'newsUnsubscribe'
         ];
     }
 
