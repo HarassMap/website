@@ -28,7 +28,7 @@ class Tips extends ComponentBase
                 ::where('domain_id', '=', $domain->id)
                 ->where('featured_from', '<', Carbon::now())
                 ->orderBy('featured_from', 'desc')
-                ->get();
+                ->paginate(10);
 
             if ($content) {
                 $found = $content;
