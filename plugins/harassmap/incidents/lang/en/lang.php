@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'Incidents',
+        'name' => 'HarassMap Incidents',
         'description' => ''
     ]
 ];

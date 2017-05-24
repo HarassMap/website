@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'Domain News',
+        'name' => 'HarassMap News',
         'description' => 'Plugin to allow domain specific News',
     ],
     'form' => [

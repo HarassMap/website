@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'Domain',
+        'name' => 'HarassMap Domains',
         'description' => 'Adds support for different content on different domains.',
         'permissions' => [
             'tab' => 'Harassmap',
