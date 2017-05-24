@@ -11,4 +11,9 @@
         'main' => 'Incidents',
         'categories' => 'Categories'
     ],
+    'form' => [
+        'title' => 'Title',
+        'description' => 'Description',
+        'color' => 'Color',
+    ]
 ];

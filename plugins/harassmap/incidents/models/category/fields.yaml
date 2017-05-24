@@ -1,14 +1,14 @@
 fields:
     title:
-        label: Text
+        label: 'harassmap.incidents::lang.form.title'
         span: full
         type: text
     description:
-        label: 'Text area'
+        label: 'harassmap.incidents::lang.form.description'
         size: ''
         span: full
         type: textarea
     color:
-        label: 'Color picker'
+        label: 'harassmap.incidents::lang.form.color'
         span: full
         type: colorpicker

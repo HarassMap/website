@@ -1,9 +1,9 @@
 columns:
     title:
-        label: title
+        label: 'harassmap.incidents::lang.form.title'
         type: text
         sortable: false
     description:
-        label: description
+        label: 'harassmap.incidents::lang.form.description'
         type: text
         sortable: false
