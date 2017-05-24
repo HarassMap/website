@@ -6,10 +6,13 @@ use Harassmap\Domain\Models\Content as ContentModel;
 use Backend\Classes\Controller;
 use BackendAuth;
 use BackendMenu;
+use Harassmap\Domain\Traits\FilterDomain;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Content extends Controller
 {
+    use FilterDomain;
+
     public $implement = ['Backend\Behaviors\ListController', 'Backend\Behaviors\FormController'];
 
     public $listConfig = 'config_list.yaml';
@@ -21,24 +24,7 @@ class Content extends Controller
         BackendMenu::setContext('Harassmap.Domain', 'harassmap.domain', 'harassmap.domain.content');
     }
 
-    public function listExtendQuery($query)
-    {
-        $user = BackendAuth::getUser();
-
-        // if the user is a super use then stop here
-        if ($user->isSuperUser()) {
-            return;
-        }
-
-        // TODO: Only do the domain check on certain user groups
-
-        $domains = $user->domains;
-
-        foreach ($domains as $domain) {
-            $query->orWhere('domain_id', '=', $domain->id);
-        }
-
-    }
+    protected $domain_id = 'domain_id';
 
     public function update($recordId, $context = null)
     {
