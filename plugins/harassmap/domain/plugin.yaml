@@ -31,8 +31,11 @@ navigation:
                 icon: icon-quote-left
 permissions:
     harassmap.domain.access_domain:
-        tab: HarassMap
-        label: 'Manage Domains'
+        tab: 'harassmap.domain::lang.plugin.permissions.tab'
+        label: 'harassmap.domain::lang.plugin.permissions.manage_domains'
     harassmap.domain.access_content:
-        tab: HarassMap
-        label: 'Manage Domain Content Blocks'
+        tab: 'harassmap.domain::lang.plugin.permissions.tab'
+        label: 'harassmap.domain::lang.plugin.permissions.manage_content_blocks'
+    harassmap.domain.manage_user_domains:
+        tab: 'harassmap.domain::lang.plugin.permissions.tab'
+        label: 'harassmap.domain::lang.plugin.permissions.manage_user_domains'

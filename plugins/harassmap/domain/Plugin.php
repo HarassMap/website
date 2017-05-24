@@ -10,6 +10,7 @@ use Harassmap\Domain\Components\Tip;
 use Harassmap\Domain\Components\Tips;
 use Harassmap\Domain\Models\Domain as DomainModel;
 use System\Classes\PluginBase;
+use BackendAuth;
 
 class Plugin extends PluginBase
 {
@@ -25,15 +26,19 @@ class Plugin extends PluginBase
         // extend the user edit form to allow domain allocation
         BackendUsersController::extendFormFields(function ($form, $model, $context) {
 
-            $form->addTabFields([
-                'domains' => [
-                    'label'   => 'Domain',
-                    'commentAbove' => 'Allow this user to edit certain domains',
-                    'type' => 'relation',
-                    'select' => 'host',
-                    'tab' => 'Domain'
-                ]
-            ]);
+            $user = BackendAuth::getUser();
+
+            if ($user->isSuperUser() || $user->hasPermission(['harassmap.domain.manage_user_domains'])) {
+                $form->addTabFields([
+                    'domains' => [
+                        'label' => 'Domain',
+                        'commentAbove' => 'Allow this user to edit certain domains',
+                        'type' => 'relation',
+                        'select' => 'host',
+                        'tab' => 'Domain'
+                    ]
+                ]);
+            }
 
         });
 
