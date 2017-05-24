@@ -14,6 +14,15 @@
             'page_name' => 'List Page',
             'page_help' => 'Page name to use for clicking on a browse.',
         ],
+        'form' => [
+            'domain_help' => 'Which domain is this tip for?'
+        ]
+    ],
+    'content' => [
+        'form' => [
+            'domain_help' => 'Which domain is this content block for?',
+            'content_id_help' => 'Where should this be placed on the site?'
+        ]
     ],
     'form' => [
         'domain' => 'Domain',
@@ -29,5 +38,9 @@
         'instagram' => 'Instagram',
         'youtube' => 'YouTube',
         'blogspot' => 'Blogspot',
+        'tip' => 'Tip',
+        'featured_from' => 'Featured From',
+        'content' => 'Content',
+        'content_id' => 'Content ID',
     ],
 ];

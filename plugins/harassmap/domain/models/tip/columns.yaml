@@ -1,12 +1,12 @@
 columns:
     domain:
-        label: Domain
+        label: 'harassmap.domain::lang.form.domain'
         relation: domain
         select: host
     tip:
-        label: Tip
+        label: 'harassmap.domain::lang.form.tip'
         type: text
 
     featured_from:
-        label: From
+        label: 'harassmap.domain::lang.form.featured_from'
         type: datetime
