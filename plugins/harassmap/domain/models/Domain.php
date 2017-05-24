@@ -1,8 +1,8 @@
 <?php namespace Harassmap\Domain\Models;
 
+use Backend\Models\User as BackendUserModel;
 use Model;
 use October\Rain\Database\Traits\Validation;
-use Backend\Models\User as BackendUserModel;
 use Request;
 
 /**
@@ -82,5 +82,10 @@ class Domain extends Model
         }
 
         return $matches;
+    }
+
+    static function getBestMatchingDomain()
+    {
+        return self::getMatchingDomains()[0];
     }
 }
