@@ -1,14 +1,19 @@
 <div class="news-posts">
     <div class="row">
         {% for post in posts %}
-            <a href="{{ postPage | page({slug: post.slug}) }}" class="col-12 col-sm-6 col-md-4">
+            <a href="{{ postPage | page({slug: post.slug}) }}" class="col-12 col-sm-6 col-md-3">
                 <div class="text-center">
                     <img class="img-fluid" src="{{ post.image.getPath() }}">
                 </div>
-                <h4>{{ post.title }}</h4>
-                <p>{{ post.published_at }}</p>
+                <h4 class="mt-4">{{ post.title }}</h4>
+                <time class="mt-2 mb-2" datetime="{{ post.published_at }}">{{ post.published_at | date('d/m/Y') }}</time>
                 {{ post.intro | raw }}
             </a>
         {% endfor %}
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="#" class="btn">{{ 'More News' | _ }}</a>
+        </div>
     </div>
 </div>

@@ -1,23 +1,19 @@
 @import "rem";
 @import "variables";
-
 // importing bootstrap styles
 @import "bootstrap";
 @import "pikaday";
 @import "float-labels";
-
 @import "plugins/timepicker";
 @import "plugins/typeahead";
-
 @import "modules/base";
 @import "modules/bg";
 @import "modules/buttons";
 @import "modules/typography";
-
 @import "blocks/header";
 @import "blocks/footer";
 @import "blocks/map";
 @import "blocks/content-block";
 @import "blocks/weekly-tip";
-
+@import "blocks/news";
 @import "pages/homepage";

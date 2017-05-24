@@ -1,0 +1,20 @@
+@import "../variables";
+@import "rem";
+
+.news-posts {
+
+  time {
+    display: block;
+    font-family: $oswald;
+
+    @include rem((font-size: 14px));
+  }
+
+  p {
+    padding: 10px 0;
+    font-family: $merriweather;
+
+    @include rem((font-size: 14px));
+  }
+
+}
