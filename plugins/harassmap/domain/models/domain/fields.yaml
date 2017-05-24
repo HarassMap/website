@@ -1,13 +1,13 @@
 tabs:
     fields:
         host:
-            label: Host
+            label: 'harassmap.domain::lang.form.host'
             span: full
             type: text
             commentAbove: 'The full host name for this domain'
             tab: Site
         headerLogo:
-            label: Header Logo
+            label: 'harassmap.domain::lang.form.logo.header'
             mode: file
             useCaption: true
             thumbOptions:
@@ -17,7 +17,7 @@ tabs:
             type: fileupload
             tab: Site
         footerLogo:
-            label: Footer Logo
+            label: 'harassmap.domain::lang.form.logo.footer'
             mode: file
             useCaption: true
             thumbOptions:
@@ -27,37 +27,37 @@ tabs:
             type: fileupload
             tab: Site
         about:
-            label: About
+            label: 'harassmap.domain::lang.form.about'
             span: full
             type: textarea
-            commentAbove: 'A short description of the site.'
+            commentAbove: 'harassmap.domain::lang.form.about_help'
             tab: Site
         facebook:
-            label: Facebook
+            label: 'harassmap.domain::lang.form.facebook'
             commentAbove: ''
             span: full
             type: text
             tab: Social
         twitter:
-            label: Twitter
+            label: 'harassmap.domain::lang.form.twitter'
             commentAbove: ''
             span: full
             type: text
             tab: Social
         instagram:
-            label: Instagram
+            label: 'harassmap.domain::lang.form.instagram'
             commentAbove: ''
             span: full
             type: text
             tab: Social
         youtube:
-            label: Youtube
+            label: 'harassmap.domain::lang.form.youtube'
             commentAbove: ''
             span: full
             type: text
             tab: Social
         blogspot:
-            label: Blogspot
+            label: 'harassmap.domain::lang.form.blogspot'
             commentAbove: ''
             span: full
             type: text

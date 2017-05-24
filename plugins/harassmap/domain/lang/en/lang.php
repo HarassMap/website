@@ -15,4 +15,19 @@
             'page_help' => 'Page name to use for clicking on a browse.',
         ],
     ],
+    'form' => [
+        'domain' => 'Domain',
+        'host' => 'Host',
+        'logo' => [
+            'header' => 'Header Logo',
+            'footer' => 'Footer Logo'
+        ],
+        'about' => 'About',
+        'about_help' => 'A short description of the site.',
+        'facebook' => 'Facebook',
+        'twitter' => 'Twitter',
+        'instagram' => 'Instagram',
+        'youtube' => 'YouTube',
+        'blogspot' => 'Blogspot',
+    ],
 ];
