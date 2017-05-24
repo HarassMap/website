@@ -14,11 +14,13 @@
                     </a>
                 {% endif %}
                 {% if primaryNav.getChildCount and numberOfLevels > 1 %}
+                    <div class="border-block"></div>
                     <ul class="{{ secondaryClasses }}">
                         {% for secondaryNav in primaryNav.getChildren %}
                             {% if secondaryNav.enabled %}
                                 <li class="nav-item {{ listItemClasses }} {{ secondaryNav.getListItemClasses(activeLeft, activeRight) }}">
-                                    <a href="{{ secondaryNav.getLinkHref }}" target="{{ secondaryNav.getLinkTarget }}">
+                                    <a href="{{ secondaryNav.getLinkHref }}"
+                                       target="{{ secondaryNav.getLinkTarget }}">
                                         {{ secondaryNav.title }}
                                     </a>
                                 </li>

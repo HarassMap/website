@@ -53,27 +53,46 @@
     font-family: $oswald;
     text-transform: uppercase;
 
-    .nav-item {
+    > .nav-item {
+      border: 2px solid $white;
       cursor: pointer;
+
+      @include rem((padding: 10px 0));
 
       a {
         @include rem((padding: 0 15px));
       }
 
       &:hover {
-        a  {
+        a {
           color: $green;
         }
       }
 
-      &.dropdown:hover .dropdown-menu {
-        display: block;
+      &.dropdown:hover {
+        border: 2px solid $green;
+        border-bottom: none;
+
+        .dropdown-menu {
+          display: block;
+        }
       }
+    }
+
+    .border-block {
+      background: $white;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      z-index: 1001;
     }
 
     .dropdown-menu {
       border: 2px solid $green;
-      margin: 0;
+      margin: 0 0 0 -2px;
+      z-index: 1000;
 
       @include rem((padding: 5px 20px 5px 10px));
 
@@ -91,7 +110,7 @@
       }
     }
 
-    a  {
+    a {
       color: $black;
 
       &:hover {
