@@ -8,5 +8,8 @@
         'content' => 'Content',
         'title' => 'Title',
         'slug' => 'Slug',
+        'domain' => 'Domain',
+        'image' => 'Image',
+        'published' => 'Published',
     ],
 ];

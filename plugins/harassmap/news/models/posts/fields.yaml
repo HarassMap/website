@@ -10,6 +10,11 @@ fields:
         span: auto
         type: text
         preset: title
+    domain:
+        label: 'harassmap.news::lang.form.domain'
+        nameFrom: host
+        span: full
+        type: relation
 
 tabs:
     fields:
@@ -23,3 +28,19 @@ tabs:
             span: full
             type: richeditor
             tab: 'harassmap.news::lang.form.content'
+
+secondaryTabs:
+    fields:
+        image:
+            label: 'harassmap.news::lang.form.image'
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            type: fileupload
+
+        published_at:
+            label: 'harassmap.news::lang.form.published'
+            type: datepicker
+            mode: datetime

@@ -56,9 +56,6 @@ class Domain extends Model
         'users' => [BackendUserModel::class, 'table' => 'harassmap_domain_user']
     ];
 
-    /*
-     * Attachments
-     */
     public $attachOne = [
         'headerLogo' => 'System\Models\File',
         'footerLogo' => 'System\Models\File'

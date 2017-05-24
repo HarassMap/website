@@ -12,9 +12,6 @@
 <div class="layout-row min-size">
     <?= $this->formRenderOutsideFields() ?>
 </div>
-<div class="layout-row">
-    <?= $this->formRenderPrimaryTabs() ?>
-</div>
 
 <div class="form-buttons">
     <div class="loading-indicator-container">
@@ -59,6 +56,6 @@
 </div>
 <div class="padded-container">
     <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-    <p><a href="<?= Backend::url('indikator/news/posts') ?>" class="btn btn-default"><?= e(trans('indikator.news::lang.button.return')) ?></a></p>
+    <p><a href="<?= Backend::url('harassmap/domain/tip') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
 </div>
 <?php endif ?>

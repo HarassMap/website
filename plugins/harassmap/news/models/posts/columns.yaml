@@ -1,7 +1,11 @@
 columns:
     title:
-        label: title
+        label: 'harassmap.news::lang.form.title'
         type: text
+    image:
+        label: 'harassmap.news::lang.form.image'
+        type: partial
+        path: ~/plugins/harassmap/news/models/posts/_image.htm
     published_at:
-        label: published_at
+        label: 'harassmap.news::lang.form.published'
         type: datetime
