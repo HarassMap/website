@@ -28,11 +28,9 @@ class Tip extends Model
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = ['tip'];
-    
-    /*
-     * Validation
-     */
+
     public $rules = [
+        'tip' => 'required'
     ];
 
     public $belongsTo = [

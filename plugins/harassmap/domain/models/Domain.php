@@ -38,10 +38,8 @@ class Domain extends Model
 
     public $translatable = ['about'];
 
-    /*
-     * Validation
-     */
     public $rules = [
+        'host' => 'required'
     ];
 
     public $hasMany = [

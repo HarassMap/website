@@ -38,10 +38,8 @@ class Content extends Model
 
     public $translatable = ['content'];
 
-    /*
-     * Validation
-     */
     public $rules = [
+        'content' => 'required'
     ];
 
     public $belongsTo = [
