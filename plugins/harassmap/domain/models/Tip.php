@@ -19,6 +19,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereTip($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Tip whereFeaturedFrom($value)
  */
 class Tip extends Model
 {
