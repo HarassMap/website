@@ -1,7 +1,7 @@
 <?php return [
     'plugin' => [
-        'name' => 'News',
-        'description' => '',
+        'name' => 'Domain News',
+        'description' => 'Plugin to allow domain specific News',
     ],
     'form' => [
         'intro' => 'Intro',
