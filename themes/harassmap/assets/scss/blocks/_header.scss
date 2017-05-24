@@ -54,10 +54,44 @@
     text-transform: uppercase;
 
     .nav-item {
-      @include rem((padding: 0 15px));
+      cursor: pointer;
+
+      a {
+        @include rem((padding: 0 15px));
+      }
+
+      &:hover {
+        a  {
+          color: $green;
+        }
+      }
+
+      &.dropdown:hover .dropdown-menu {
+        display: block;
+      }
     }
 
-    a {
+    .dropdown-menu {
+      border: 2px solid $green;
+      margin: 0;
+
+      @include rem((padding: 5px 20px 5px 10px));
+
+      a {
+        color: $green;
+        padding: 0;
+
+        &:hover {
+          color: $black;
+        }
+      }
+
+      .nav-item {
+        @include rem((padding: 5px 0));
+      }
+    }
+
+    a  {
       color: $black;
 
       &:hover {

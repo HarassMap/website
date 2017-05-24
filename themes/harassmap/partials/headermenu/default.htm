@@ -3,10 +3,9 @@
         {% for primaryNav in parentNode.getChildren %}
             {% if primaryNav.enabled %}
                 {% if primaryNav.getChildCount and numberOfLevels > 1 %}
-                <li class="dropdown {{ listItemClasses }} {{ primaryNav.getListItemClasses(activeLeft, activeRight) }}">
-                    <a href="{{ primaryNav.getLinkHref }}" target="{{ primaryNav.getLinkTarget }}"
-                       class="dropdown-toggle" data-toggle="dropdown">
-                        {{ primaryNav.title }} <span class="caret"></span>
+                <li class="nav-item dropdown {{ listItemClasses }} {{ primaryNav.getListItemClasses(activeLeft, activeRight) }}">
+                    <a href="{{ primaryNav.getLinkHref }}" target="{{ primaryNav.getLinkTarget }}">
+                        {{ primaryNav.title }}
                     </a>
                 {% else %}
                     <li class="nav-item {{ listItemClasses }} {{ primaryNav.getListItemClasses(activeLeft, activeRight) }}">
