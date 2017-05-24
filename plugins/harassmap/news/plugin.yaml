@@ -6,6 +6,6 @@ plugin:
     homepage: ''
 navigation:
     harassmap.news:
-        label: 'harassmap.news::lang.plugin.name'
+        label: 'harassmap.news::lang.menu.main'
         url: harassmap/news/posts
         icon: icon-newspaper-o

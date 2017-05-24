@@ -6,19 +6,19 @@ plugin:
     homepage: ''
 navigation:
     harassmap.incidents:
-        label: Incidents
+        label: 'harassmap.incidents::lang.menu.main'
         url: harassmap/incidents/category
         icon: icon-map-marker
         permissions:
             - harassmap.incidents.access_categories
         sideMenu:
             harassmap.incidents.categories:
-                label: Categories
+                label: 'harassmap.incidents::lang.menu.categories'
                 url: harassmap/incidents/category
                 icon: icon-tags
                 permissions:
                     - harassmap.incidents.access_categories
 permissions:
     harassmap.incidents.access_categories:
-        tab: HarassMap
-        label: 'Manage Categories'
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.incidents::lang.plugin.permissions.access_categories'
