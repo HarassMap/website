@@ -1,0 +1,10 @@
+name: Posts
+form: $/harassmap/news/models/posts/fields.yaml
+modelClass: Harassmap\News\Models\Posts
+defaultRedirect: harassmap/news/posts
+create:
+    redirect: 'harassmap/news/posts/update/:id'
+    redirectClose: harassmap/news/posts
+update:
+    redirect: harassmap/news/posts
+    redirectClose: harassmap/news/posts

@@ -1,0 +1,25 @@
+fields:
+    title:
+        label: 'harassmap.news::lang.form.title'
+        required: true
+        span: left
+        type: text
+    slug:
+        label: 'harassmap.news::lang.form.slug'
+        required: true
+        span: auto
+        type: text
+        preset: title
+
+tabs:
+    fields:
+        intro:
+            size: large
+            span: full
+            type: richeditor
+            tab: 'harassmap.news::lang.form.intro'
+        content:
+            size: giant
+            span: full
+            type: richeditor
+            tab: 'harassmap.news::lang.form.content'

@@ -1,0 +1,11 @@
+plugin:
+    name: 'harassmap.news::lang.plugin.name'
+    description: 'harassmap.news::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-newspaper-o
+    homepage: ''
+navigation:
+    harassmap.news:
+        label: 'harassmap.news::lang.plugin.name'
+        url: harassmap/news/posts
+        icon: icon-newspaper-o
