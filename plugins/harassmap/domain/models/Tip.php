@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Domain\Models;
 
+use Harassmap\Domain\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -22,6 +23,7 @@ use October\Rain\Database\Traits\Validation;
 class Tip extends Model
 {
     use Validation;
+    use DomainOptions;
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 

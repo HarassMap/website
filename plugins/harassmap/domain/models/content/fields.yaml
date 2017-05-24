@@ -1,9 +1,8 @@
 fields:
-    domain:
+    domain_id:
         label: Domain
-        nameFrom: host
         span: auto
-        type: relation
+        type: dropdown
         commentAbove: 'Which domain is this content block for?'
     content_id:
         label: 'Content Block ID'

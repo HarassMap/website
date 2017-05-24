@@ -3,6 +3,7 @@
 namespace Harassmap\News\Models;
 
 use Harassmap\Domain\Models\Domain;
+use Harassmap\Domain\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Sluggable;
 use October\Rain\Database\Traits\Validation;
@@ -14,6 +15,7 @@ class Posts extends Model
 {
     use Validation;
     use Sluggable;
+    use DomainOptions;
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 

@@ -1,21 +1,19 @@
 fields:
-    domain:
+    domain_id:
         label: Domain
-        nameFrom: host
         span: full
-        type: relation
+        type: dropdown
         commentAbove: 'Which domain is this tip for?'
     tip:
         label: Tip
         size: large
-        oc.commentPosition: ''
         span: full
         type: textarea
-
 secondaryTabs:
     fields:
         featured_from:
-            label: Featured From
+            label: 'Featured From'
             type: datepicker
             mode: datetime
             required: true
+            tab: Misc

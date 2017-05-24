@@ -10,11 +10,11 @@ fields:
         span: auto
         type: text
         preset: title
-    domain:
+    domain_id:
         label: 'harassmap.news::lang.form.domain'
-        nameFrom: host
         span: full
-        type: relation
+        type: dropdown
+        commentAbove: 'Which domain is this post for?'
 
 tabs:
     fields:

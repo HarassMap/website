@@ -2,6 +2,7 @@
 
 namespace Harassmap\Domain\Models;
 
+use Harassmap\Domain\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -25,6 +26,7 @@ use October\Rain\Database\Traits\Validation;
 class Content extends Model
 {
     use Validation;
+    use DomainOptions;
 
     const CONTENT_IDS = [
         'homepage.basics' => 'Homepage (Learn)',
@@ -51,7 +53,8 @@ class Content extends Model
      */
     public $table = 'harassmap_domain_content';
 
-    public function getContentIdOptions() {
+    public function getContentIdOptions()
+    {
         return self::CONTENT_IDS;
     }
 }
