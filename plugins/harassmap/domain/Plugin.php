@@ -47,10 +47,10 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            ContentBlock::class => 'domainContentBlock',
-            Domain::class => 'domain',
-            Tip::class => 'tip',
-            Tips::class => 'tips'
+            ContentBlock::class => 'harassmapDomainContentBlock',
+            Domain::class => 'harassmapDomain',
+            Tip::class => 'harassmapTip',
+            Tips::class => 'harassmapTips'
         ];
     }
 
