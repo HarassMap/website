@@ -1,4 +1,8 @@
 columns:
+    domain:
+        label: 'harassmap.news::lang.form.domain'
+        relation: domain
+        select: host
     title:
         label: 'harassmap.news::lang.form.title'
         type: text
