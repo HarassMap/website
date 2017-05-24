@@ -34,10 +34,6 @@ secondaryTabs:
         image:
             label: 'harassmap.news::lang.form.image'
             mode: file
-            useCaption: true
-            thumbOptions:
-                mode: crop
-                extension: auto
             type: fileupload
 
         published_at:
