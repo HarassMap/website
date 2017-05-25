@@ -25,8 +25,13 @@ class PostList extends ComponentBase
             'postPage' => [
                 'title' => 'harassmap.news::lang.post.page_name',
                 'description' => 'harassmap.news::lang.post.page_help',
-                'type' => 'dropdown',
-                'group' => 'Links',
+                'type' => 'dropdown'
+            ],
+            'postsPerPage' => [
+                'title' => 'harassmap.news::lang.component.post_list.posts_per_page.label',
+                'description' => 'harassmap.news::lang.component.post_list.posts_per_page.help',
+                'type' => 'string',
+                'default' => 8
             ],
         ];
     }
@@ -43,11 +48,13 @@ class PostList extends ComponentBase
         $this->page['postPage'] = $this->property('postPage');
 
         if ($domain) {
+            $limit = $this->property('postsPerPage');
+
             $this->page['posts'] = PostsModel
                 ::where('domain_id', '=', $domain->id)
                 ->where('published_at', '<', Carbon::now())
                 ->orderBy('published_at', 'desc')
-                ->paginate(8);
+                ->paginate(intval($limit));
         }
     }
 

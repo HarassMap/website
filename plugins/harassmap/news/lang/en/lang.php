@@ -6,6 +6,14 @@
     'menu' => [
         'main' => 'News'
     ],
+    'component' => [
+        'post_list' => [
+            'posts_per_page' => [
+                'label' => 'Posts per Page',
+                'help' => 'How many posts should we show per page?'
+            ]
+        ],
+    ],
     'post' => [
         'page_name' => 'Post Page',
         'page_help' => 'The page that displays the individual posts',
