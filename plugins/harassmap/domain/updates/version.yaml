@@ -2,10 +2,10 @@
     - 'Initialize plugin.'
 1.0.2:
     - 'Created table harassmap_domain'
-    - builder_table_create_harassmap_domain.php
+    - builder_table_create_harassmap_domain_domain.php
 1.0.3:
     - 'Created table harassmap_content'
-    - builder_table_create_harassmap_content.php
+    - builder_table_create_harassmap_domain_content.php
 1.0.4:
     - 'Created table harassmap_domain_user'
     - builder_table_create_harassmap_domain_user.php
