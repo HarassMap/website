@@ -1,0 +1,12 @@
+<div id="{{ __SELF__.id }}container">
+    <form data-request="{{ __SELF__ }}::onSignup"
+          data-request-update="'{{ __SELF__ }}::result': '#{{ __SELF__.id }}container'">
+
+        <div class="form-group">
+            <input name="email" type="text" class="form-control" placeholder="{{ 'Your Email' | _ }}"/>
+        </div>
+        <div class="form-group">
+            <button class="btn" type="submit">{{ 'Subscribe' | _ }}</button>
+        </div>
+    </form>
+</div>
