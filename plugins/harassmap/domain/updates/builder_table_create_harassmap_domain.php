@@ -20,7 +20,7 @@ class BuilderTableCreateHarassmapDomainDomain extends Migration
             $table->string('twitter', 255)->nullable();
             $table->string('instagram', 255)->nullable();
             $table->string('youtube', 255)->nullable();
-            $table->string('blogspot', 255)->nullable();
+            $table->string('blogger', 255)->nullable();
 
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

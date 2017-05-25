@@ -16,7 +16,7 @@ numberOfLevels = 2
             <div class="col-4">
                 <h4 class="priority-2">{{ 'About Us' | _ }}</h4>
                 <p>
-                    {{ domain_about }}
+                    {{ domain.about }}
                 </p>
             </div>
             <div class="col-8">
@@ -26,11 +26,44 @@ numberOfLevels = 2
     <div class="footer-contact">
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <h4 class="priority-2 d-inline">{{ 'Contact Us' | _ }}</h4>
                     {% component 'footermenu' %}
                 </div>
-                <div class="col-6"></div>
+                <div class="col-12 col-md-6">
+                    <div class="float-right">
+                        {% if domain.facebook %}
+                            <a href="{{ domain.facebook }}" class="social social--facebook" target="_blank">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/facebook.svg' | theme }}">
+                                <span class="sr-only">{{ 'Facebook' | _ }}</span>
+                            </a>
+                        {% endif %}
+                        {% if domain.twitter %}
+                            <a href="{{ domain.twitter }}" class="social social--twitter" target="_blank">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/twitter.svg' | theme }}">
+                                <span class="sr-only">{{ 'Twitter' | _ }}</span>
+                            </a>
+                        {% endif %}
+                        {% if domain.instagram %}
+                            <a href="{{ domain.instagram }}" class="social social--instagram" target="_blank">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/instagram.svg' | theme }}">
+                                <span class="sr-only">{{ 'Instagram' | _ }}</span>
+                            </a>
+                        {% endif %}
+                        {% if domain.youtube %}
+                            <a href="{{ domain.youtube }}" class="social social--youtube" target="_blank">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/youtube.svg' | theme }}">
+                                <span class="sr-only">{{ 'YouTube' | _ }}</span>
+                            </a>
+                        {% endif %}
+                        {% if domain.blogger %}
+                            <a href="{{ domain.blogger }}" class="social social--blogger" target="_blank">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/blogger.svg' | theme }}">
+                                <span class="sr-only">{{ 'Blogger' | _ }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

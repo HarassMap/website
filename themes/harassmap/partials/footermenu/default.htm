@@ -1,11 +1,10 @@
 {% if parentNode and parentNode.getChildCount %}
-    <ul class="{{ primaryClasses }}">
+    <ul class="footer-nav {{ primaryClasses }}">
         {% for primaryNav in parentNode.getChildren %}
             {% if primaryNav.enabled %}
                 <li class="nav-item {{ listItemClasses }} {{ primaryNav.getListItemClasses(activeLeft, activeRight) }}">
-                    <a href="{{ primaryNav.getLinkHref }}" target="{{ primaryNav.getLinkTarget }}">
-                        {{ primaryNav.title }}
-                    </a>
+                    <a href="{{ primaryNav.getLinkHref }}"
+                       target="{{ primaryNav.getLinkTarget }}">{{ primaryNav.title }}</a>
                 </li>
             {% endif %}
         {% endfor %}

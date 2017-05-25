@@ -15,11 +15,11 @@ use Request;
  * @property string $twitter
  * @property string $instagram
  * @property string $youtube
- * @property string $blogspot
+ * @property string $blogger
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereAbout($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereBlogspot($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereBlogger($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereFacebook($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereHost($value)

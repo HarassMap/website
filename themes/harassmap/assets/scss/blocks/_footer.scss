@@ -24,9 +24,8 @@
   @include rem((padding: 40px 0 0));
 }
 
-.footer-contact__links {
+.footer-nav {
   display: inline;
-
   list-style: none;
 
   font-family: $merriweather;
@@ -44,4 +43,12 @@
       color: $dusty-gray;
     }
   }
+}
+
+.social {
+  display: inline-block;
+  height: 31px;
+  width: 31px;
+
+  @include rem((margin-left: 10px));
 }

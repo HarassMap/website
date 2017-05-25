@@ -34,31 +34,26 @@ tabs:
             tab: Site
         facebook:
             label: 'harassmap.domain::lang.form.facebook'
-            commentAbove: ''
             span: full
             type: text
             tab: Social
         twitter:
             label: 'harassmap.domain::lang.form.twitter'
-            commentAbove: ''
             span: full
             type: text
             tab: Social
         instagram:
             label: 'harassmap.domain::lang.form.instagram'
-            commentAbove: ''
             span: full
             type: text
             tab: Social
         youtube:
             label: 'harassmap.domain::lang.form.youtube'
-            commentAbove: ''
             span: full
             type: text
             tab: Social
-        blogspot:
-            label: 'harassmap.domain::lang.form.blogspot'
-            commentAbove: ''
+        blogger:
+            label: 'harassmap.domain::lang.form.blogger'
             span: full
             type: text
             tab: Social

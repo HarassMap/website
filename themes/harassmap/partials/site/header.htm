@@ -60,7 +60,7 @@ numberOfLevels = 2
             </button>
 
             <a class="navbar-brand" href="/">
-                <img class="site-logo" src="{% if domain_logo %}{{ domain_logo }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}" />
+                <img class="site-logo" src="{% if domain.logo %}{{ domain.logo }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}" />
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="main_nav">
                 {% component 'headermenu' %}

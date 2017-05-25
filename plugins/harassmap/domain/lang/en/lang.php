@@ -43,7 +43,7 @@
         'twitter' => 'Twitter',
         'instagram' => 'Instagram',
         'youtube' => 'YouTube',
-        'blogspot' => 'Blogspot',
+        'blogger' => 'Blogger',
         'tip' => 'Tip',
         'featured_from' => 'Featured From',
         'content' => 'Content',
