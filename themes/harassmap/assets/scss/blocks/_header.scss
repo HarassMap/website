@@ -8,6 +8,14 @@
 
     @include rem((padding: 8px 0));
 
+    .user-menu {
+      float: right;
+
+      .ar & {
+        float: left;
+      }
+    }
+
     .dropdown-menu {
       padding: 0;
 
@@ -70,11 +78,13 @@
       }
 
       &.dropdown:hover {
-        border: 2px solid $green;
-        border-bottom: none;
+        @include media-breakpoint-up(md) {
+          border: 2px solid $green;
+          border-bottom: none;
 
-        .dropdown-menu {
-          display: block;
+          .dropdown-menu {
+            display: block;
+          }
         }
       }
     }
