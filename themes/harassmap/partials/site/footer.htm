@@ -1,3 +1,5 @@
+[viewBag]
+
 [menu footermenu]
 start = "id-3"
 activeNode = 0
@@ -6,14 +8,23 @@ primaryClasses = "nav nav-pills"
 secondaryClasses = "dropdown-menu"
 numberOfLevels = 2
 
-[viewBag]
+[harassmapDomain]
 ==
 <footer class="footer">
     <div class="container">
-        <div class="row justify-content-center"></div>
-        <div class="row justify-content-center footer-contact">
+        <div class="row">
+            <div class="col-4">
+                <h4 class="priority-2">{{ 'About Us' | _ }}</h4>
+                <p>
+                    {{ domain_about }}
+                </p>
+            </div>
+            <div class="col-8">
+            </div>
+        </div>
+        <div class="row footer-contact">
             <div class="col-6">
-                <h4 class="footer-contact__header priority-2">Contact Us</h4>
+                <h4 class="footer-contact__header priority-2">{{ 'Contact Us' | _ }}</h4>
                 {% component 'footermenu' %}
             </div>
             <div class="col-6"></div>

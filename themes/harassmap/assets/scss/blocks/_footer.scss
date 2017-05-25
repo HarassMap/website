@@ -3,6 +3,7 @@
 .footer {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
   background-color: $tundora;
+  color: $white;
 
   @include rem((padding: 30px 0 40px));
 

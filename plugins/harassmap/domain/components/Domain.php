@@ -30,8 +30,12 @@ class Domain extends ComponentBase
             foreach ($domains as $domain) {
                 $logo = $domain->logo;
 
-                if (empty($this->page['logo']) && $logo) {
-                    $this->page['logo'] = $logo->getPath();
+                if (empty($this->page['domain_logo']) && $logo) {
+                    $this->page['domain_logo'] = $logo->getPath();
+                }
+
+                if (empty($this->page['domain_about']) && !empty($domain->about)) {
+                    $this->page['domain_about'] = $domain->about;
                 }
 
             }
