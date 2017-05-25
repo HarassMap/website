@@ -45,6 +45,16 @@
   }
 }
 
+.social-links {
+  @include media-breakpoint-up(md) {
+    float: right;
+
+    .ar & {
+      float: left;
+    }
+  }
+}
+
 .social {
   display: inline-block;
   height: 31px;
