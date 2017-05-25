@@ -11,7 +11,7 @@
         {% for post in posts %}
             <a href="{{ postPage | page({slug: post.slug}) }}" class="col-12 col-sm-6 col-md-3">
                 <div class="text-center">
-                    <img class="img-fluid" src="{{ post.image.getPath() }}">
+                    <img class="img-fluid" src="{{ post.image.path }}">
                 </div>
                 <h4 class="mt-4">{{ post.title }}</h4>
                 <time class="mt-2 mb-2"

@@ -43,6 +43,7 @@ class PostList extends ComponentBase
 
     public function onRender()
     {
+
         $domain = Domain::getBestMatchingDomain();
 
         $this->page['postPage'] = $this->property('postPage');
@@ -56,6 +57,8 @@ class PostList extends ComponentBase
                 ->orderBy('published_at', 'desc')
                 ->paginate(intval($limit));
         }
+
+        if (true) ;
     }
 
 }

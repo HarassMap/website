@@ -53,10 +53,10 @@ p {
     background-color: $white;
     z-index: 2;
 
-    @include rem((padding: 0 50px 0 0));
+    @include rem((padding: 0 25px 0 0));
 
     .ar & {
-      @include rem((padding: 0 0 0 50px));
+      @include rem((padding: 0 0 0 25px));
     }
   }
 }
@@ -65,10 +65,10 @@ p {
   text-align: center;
 
   .hr__text {
-    @include rem((padding: 0 50px));
+    @include rem((padding: 0 25px));
 
     .ar & {
-      @include rem((padding: 0 50px));
+      @include rem((padding: 0 25px));
     }
   }
 }
