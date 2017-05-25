@@ -10,6 +10,10 @@
         'page_name' => 'Post Page',
         'page_help' => 'The page that displays the individual posts',
     ],
+    'post_list' => [
+        'page_name' => 'Post List Page',
+        'page_help' => 'The page that displays a list of all the posts',
+    ],
     'form' => [
         'intro' => 'Intro',
         'content' => 'Content',

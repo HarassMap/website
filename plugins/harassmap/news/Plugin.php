@@ -1,6 +1,7 @@
 <?php namespace Harassmap\News;
 
 use Harassmap\News\Components\Post;
+use Harassmap\News\Components\PostList;
 use Harassmap\News\Components\Posts;
 use System\Classes\PluginBase;
 
@@ -14,6 +15,7 @@ class Plugin extends PluginBase
         return [
             Posts::class => 'harassmapNewsPosts',
             Post::class => 'harassmapNewsPost',
+            PostList::class => 'harassmapNewsPostList',
         ];
     }
 

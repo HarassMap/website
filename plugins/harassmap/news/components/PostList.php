@@ -8,14 +8,14 @@ use Cms\Classes\Page;
 use Harassmap\Domain\Models\Domain;
 use Harassmap\News\Models\Posts as PostsModel;
 
-class Posts extends ComponentBase
+class PostList extends ComponentBase
 {
 
     public function componentDetails()
     {
         return [
-            'name' => 'Posts',
-            'description' => 'Gets a list of the most recent posts.'
+            'name' => 'Post List',
+            'description' => 'A paginated list of all the news.'
         ];
     }
 
@@ -28,13 +28,12 @@ class Posts extends ComponentBase
                 'type' => 'dropdown',
                 'group' => 'Links',
             ],
-            'listPage' => [
-                'title' => 'harassmap.news::lang.post_list.page_name',
-                'description' => 'harassmap.news::lang.post_list.page_help',
-                'type' => 'dropdown',
-                'group' => 'Links',
-            ],
         ];
+    }
+
+    public function getPostPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRender()
@@ -42,31 +41,14 @@ class Posts extends ComponentBase
         $domain = Domain::getBestMatchingDomain();
 
         $this->page['postPage'] = $this->property('postPage');
-        $this->page['listPage'] = $this->property('listPage');
 
         if ($domain) {
             $this->page['posts'] = PostsModel
                 ::where('domain_id', '=', $domain->id)
                 ->where('published_at', '<', Carbon::now())
                 ->orderBy('published_at', 'desc')
-                ->limit(4)
-                ->get();
+                ->paginate(8);
         }
-    }
-
-    public function getPostPageOptions()
-    {
-        return $this->getCMSPageList();
-    }
-
-    public function getListPageOptions()
-    {
-        return $this->getCMSPageList();
-    }
-
-    protected function getCMSPageList()
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
 }
