@@ -1,0 +1,18 @@
+<div class="news-post">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ post.title }}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="float-right pl-2 pb-2">
+                <img src="{{ post.image.getPath() }}">
+            </div>
+            {{ post.content | raw }}
+        </div>
+    </div>
+</div>
