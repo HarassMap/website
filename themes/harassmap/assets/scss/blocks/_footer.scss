@@ -18,11 +18,10 @@
 }
 
 .footer-contact {
+  border-top: 1px solid $green;
   color: $white;
-}
 
-.footer-contact__header {
-  display: inline;
+  @include rem((padding: 40px 0 0));
 }
 
 .footer-contact__links {
