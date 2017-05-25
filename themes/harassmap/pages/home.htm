@@ -16,6 +16,9 @@ id = "homepage.share"
 [harassmapDomainContentBlock homepageActive]
 id = "homepage.active"
 
+[harassmapDomainContentBlock homepageDroplet]
+id = "homepage.droplet"
+
 [harassmapTip]
 listPage = "tips/index"
 
@@ -110,10 +113,7 @@ listPage = "news/index"
 <div class="bg--green pt-5 pb-5">
     <div class="container bg--drop">
         <div class="col-12 col-lg-4">
-            <h2>{{ 'HOW WE CAN STOP SEXUAL HARASSMENT' | _ }}</h2>
-            <p>
-                {{ 'When enough people take action, harassers will find it harder and harder to harass. They will face consequences on the street, in their workplace, from friends and family and coworkers, and eventually they will choose to not harass at all. This is when we reach our goal - zero-tolerance will be the norm and sexual harassment will decrease in Egypt.' | _ }}
-            </p>
+            {% component 'homepageDroplet' %}
             <a href="#" class="btn">{{ 'Read More' | _ }}</a>
         </div>
     </div>

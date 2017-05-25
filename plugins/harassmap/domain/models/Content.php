@@ -31,7 +31,8 @@ class Content extends Model
     const CONTENT_IDS = [
         'homepage.basics' => 'Homepage (Learn)',
         'homepage.share' => 'Homepage (Share)',
-        'homepage.active' => 'Homepage (Active)'
+        'homepage.active' => 'Homepage (Active)',
+        'homepage.droplet' => 'Homepage (Droplet)',
     ];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
