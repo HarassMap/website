@@ -23,7 +23,7 @@
   float: right;
 
   @include rem((padding: 0 0 10px 10px));
-  
+
   .ar & {
     float: left;
 
