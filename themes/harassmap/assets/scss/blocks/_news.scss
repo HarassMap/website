@@ -18,3 +18,15 @@
   }
 
 }
+
+.news-post__image {
+  float: right;
+
+  @include rem((padding: 0 0 10px 10px));
+  
+  .ar & {
+    float: left;
+
+    @include rem((padding: 0 10px 10px 0));
+  }
+}
