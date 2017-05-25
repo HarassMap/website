@@ -1,0 +1,11 @@
+@import '../variables';
+@import "rem";
+
+.bg--drop {
+  p {
+    color: $white;
+    font-family: $merriweather;
+
+    @include rem((font-size: 14px, padding: 0 0 30px, margin: 0));
+  }
+}

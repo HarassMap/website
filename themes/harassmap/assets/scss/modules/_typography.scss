@@ -1,6 +1,14 @@
 @import '../variables';
 @import "rem";
 
+h2 {
+  color: $white;
+  font-family: $oswald;
+  font-weight: $light;
+
+  @include rem((font-size: 36px, padding: 0 0 30px, margin: 0));
+}
+
 h4 {
   color: $green;
   font-weight: $bold;
