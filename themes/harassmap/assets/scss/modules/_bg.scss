@@ -7,12 +7,3 @@
 .bg--green {
   background-color: $green;
 }
-
-.bg--drop {
-
-  @include media-breakpoint-up(lg) {
-    background: url('/themes/harassmap/assets/img/home/drop.png') no-repeat center right;
-    min-height: 300px;
-  }
-
-}
