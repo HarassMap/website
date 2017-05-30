@@ -2,11 +2,14 @@
     <div class="row">
         {% for post in posts %}
             <a href="{{ postPage | page({slug: post.slug}) }}" class="col-12 col-md-6 col-lg-3">
-                <div class="text-center">
-                    <img class="img-fluid" src="{{ post.image.path }}">
-                </div>
+                {% if post.image %}
+                    <div class="text-center">
+                        <img class="img-fluid" src="{{ post.image.path }}">
+                    </div>
+                {% endif %}
                 <h4 class="mt-4">{{ post.title }}</h4>
-                <time class="mt-2 mb-2" datetime="{{ post.published_at }}">{{ post.published_at | date('d/m/Y') }}</time>
+                <time class="mt-2 mb-2"
+                      datetime="{{ post.published_at }}">{{ post.published_at | date('d/m/Y') }}</time>
                 {{ post.intro | raw }}
             </a>
         {% endfor %}

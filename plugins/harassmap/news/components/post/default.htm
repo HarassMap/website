@@ -9,9 +9,11 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="news-post__image">
-                <img src="{{ post.image.path }}">
-            </div>
+            {% if post.image %}
+                <div class="news-post__image">
+                    <img src="{{ post.image.path }}">
+                </div>
+            {% endif %}
             {{ post.content | raw }}
         </div>
     </div>
