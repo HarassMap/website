@@ -2,8 +2,34 @@
 
     <div class="row">
         <div class="col-12">
-            <h3>Register</h3>
-            {% partial __SELF__ ~ '::register' %}
+
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Register' | _ }}</span>
+            </h3>
+
+            <form data-request="onRegister">
+                <div class="form-group">
+                    <label for="registerName">{{ 'Full Name' | _ }}</label>
+                    <input name="name" type="text" class="form-control" id="registerName"
+                           placeholder="Enter your full name"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">{{ 'Email' | _ }}</label>
+                    <input name="email" type="email" class="form-control" id="registerEmail"
+                           placeholder="Enter your email"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">{{ 'Password' | _ }}</label>
+                    <input name="password" type="password" class="form-control" id="registerPassword"
+                           placeholder="Choose a password"/>
+                </div>
+
+                <button type="submit" class="btn btn-default">{{ 'Register' | _ }}</button>
+            </form>
+
         </div>
     </div>
 

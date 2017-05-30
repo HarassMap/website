@@ -32,7 +32,8 @@ numberOfLevels = 2
 
 [extendedLocalePicker localepicker]
 
-[harassmapDomain]
+[session]
+security = "all"
 ==
 <!DOCTYPE html>
 <html {% if activeLocale == 'ar' %}dir="rtl"{% endif %}>
@@ -63,10 +64,10 @@ numberOfLevels = 2
                 </div>
                 <div class="col-6">
                     <div class="priority-2 user-menu">
-                        {% if app.user %}
+                        {% if user %}
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
-                                {{ app.user.name }} <span class="caret"></span>
+                                {{ user.name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right">
