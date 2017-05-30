@@ -5,12 +5,15 @@ import mapStyle from "./map.style.json";
 export class HomePageMap {
 
     constructor(element) {
-        let centre = new google.maps.LatLng(30.044420, 31.235712);
+        let lat = element.dataset.lat,
+            lng = element.dataset.lng,
+            zoom = element.dataset.zoom,
+            centre = new google.maps.LatLng(lat, lng);
 
         this._element = element;
 
         this.map = new google.maps.Map(element, {
-            zoom: 15,
+            zoom: parseInt(zoom),
             center: centre,
             styles: mapStyle,
             scrollwheel: false,

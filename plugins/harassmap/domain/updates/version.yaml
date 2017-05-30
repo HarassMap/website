@@ -16,3 +16,6 @@
     - 'Seeding tables with initial content'
     - seed_harassmap_domain.php
     - seed_harassmap_content.php
+1.0.7:
+    - 'Updated table harassmap_domain_domain'
+    - builder_table_update_harassmap_domain_domain.php

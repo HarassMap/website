@@ -57,3 +57,27 @@ tabs:
             span: full
             type: text
             tab: Social
+        lat:
+            label: Latitude
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Map
+        lng:
+            label: Longitude
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Map
+        zoom:
+            label: Zoom
+            oc.commentPosition: ''
+            options:
+                6: '6'
+                7: '7'
+                8: '8'
+                9: '9'
+                10: '10'
+            span: auto
+            type: dropdown
+            tab: Map
