@@ -10,15 +10,15 @@
 
             <form data-request="onSignin">
                 <div class="form-group">
-                    <label for="userSigninLogin">{{ loginAttributeLabel }}</label>
+                    <label for="userSigninLogin">{{ 'Email' | _ }}</label>
                     <input name="login" type="text" class="form-control" id="userSigninLogin"
-                           placeholder="Enter your {{ loginAttributeLabel|lower }}"/>
+                           placeholder="{{ 'Enter your email' | _ }}"/>
                 </div>
 
                 <div class="form-group">
                     <label for="userSigninPassword">{{ 'Password' | _ }}</label>
                     <input name="password" type="password" class="form-control" id="userSigninPassword"
-                           placeholder="Enter your password"/>
+                           placeholder="{{ 'Enter your password' | _ }}"/>
                 </div>
 
                 <button type="submit" class="btn btn-default">{{ 'Login' | _ }}</button>

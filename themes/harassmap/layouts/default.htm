@@ -42,10 +42,10 @@ security = "all"
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="HarassMap">
-    
+
     {% component 'SeoCmsPage' %}
     {% component 'SeoStaticPage' %}
-    
+
     <link href="https://fonts.googleapis.com/css?family=Harmattan|Merriweather:300,400,700|Open+Sans:600|Oswald:300,400,700|Roboto+Mono:300"
           rel="stylesheet">
     <link href="{{ 'assets/css/styles.css'|theme }}" rel="stylesheet">
@@ -75,6 +75,9 @@ security = "all"
                                     <a href="{{ 'user/dashboard' | page }}">
                                         {{ 'Dashboard' | _ }}
                                     </a>
+                                    <a href="#" data-request="onLogout" data-request-data="redirect: '/'">
+                                        {{ 'Sign out' | _ }}
+                                    </a>
                                 </li>
                             </ul>
                         {% else %}
@@ -101,7 +104,8 @@ security = "all"
             </button>
 
             <a class="navbar-brand" href="/">
-                <img class="site-logo" src="{% if domain.logo %}{{ domain.logo }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}" />
+                <img class="site-logo"
+                     src="{% if domain.logo %}{{ domain.logo }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}"/>
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="main_nav">
                 {% component 'headermenu' %}
@@ -109,6 +113,10 @@ security = "all"
         </div>
     </nav>
 </header>
+
+<div id="ajax-errors">
+
+</div>
 
 <!-- Content -->
 <div class="site-content">
@@ -148,31 +156,36 @@ security = "all"
                 <div class="col-12 col-md-6">
                     <div class="social-links pt-4 pt-md-0">
                         {% if domain.facebook %}
-                            <a href="{{ domain.facebook }}" class="social social--facebook" target="_blank" title="{{ 'Facebook' | _ }}">
+                            <a href="{{ domain.facebook }}" class="social social--facebook" target="_blank"
+                               title="{{ 'Facebook' | _ }}">
                                 <img class="img-fluid" src="{{ 'assets/img/icons/facebook.svg' | theme }}">
                                 <span class="sr-only">{{ 'Facebook' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.twitter %}
-                            <a href="{{ domain.twitter }}" class="social social--twitter" target="_blank" title="{{ 'Twitter' | _ }}">
+                            <a href="{{ domain.twitter }}" class="social social--twitter" target="_blank"
+                               title="{{ 'Twitter' | _ }}">
                                 <img class="img-fluid" src="{{ 'assets/img/icons/twitter.svg' | theme }}">
                                 <span class="sr-only">{{ 'Twitter' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.instagram %}
-                            <a href="{{ domain.instagram }}" class="social social--instagram" target="_blank" title="{{ 'Instagram' | _ }}">
+                            <a href="{{ domain.instagram }}" class="social social--instagram" target="_blank"
+                               title="{{ 'Instagram' | _ }}">
                                 <img class="img-fluid" src="{{ 'assets/img/icons/instagram.svg' | theme }}">
                                 <span class="sr-only">{{ 'Instagram' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.youtube %}
-                            <a href="{{ domain.youtube }}" class="social social--youtube" target="_blank" title="{{ 'YouTube' | _ }}">
+                            <a href="{{ domain.youtube }}" class="social social--youtube" target="_blank"
+                               title="{{ 'YouTube' | _ }}">
                                 <img class="img-fluid" src="{{ 'assets/img/icons/youtube.svg' | theme }}">
                                 <span class="sr-only">{{ 'YouTube' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.blogger %}
-                            <a href="{{ domain.blogger }}" class="social social--blogger" target="_blank" title="{{ 'Blogger' | _ }}">
+                            <a href="{{ domain.blogger }}" class="social social--blogger" target="_blank"
+                               title="{{ 'Blogger' | _ }}">
                                 <img class="img-fluid" src="{{ 'assets/img/icons/blogger.svg' | theme }}">
                                 <span class="sr-only">{{ 'Blogger' | _ }}</span>
                             </a>
@@ -186,11 +199,11 @@ security = "all"
 
 <!-- Scripts -->
 <script src="{{ [
-    'assets/vendor/jquery/jquery.js',
-    'assets/vendor/tether/tether.js',
-    'assets/vendor/bootstrap/bootstrap.js',
-    'assets/vendor/typeahead/typeahead.bundle.js',
-    'assets/vendor/jquery.timepicker.js'
+'assets/vendor/jquery/jquery.js',
+'assets/vendor/tether/tether.js',
+'assets/vendor/bootstrap/bootstrap.js',
+'assets/vendor/typeahead/typeahead.bundle.js',
+'assets/vendor/jquery.timepicker.js'
 ]|theme }}"></script>
 <script src="{{ 'assets/js/app.js'|theme }}"></script>
 
