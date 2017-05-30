@@ -5,12 +5,13 @@ is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
 
-[account login]
-paramCode = "code"
-forceSecure = 0
-
 [viewBag]
 localeUrl[ar] = "/login"
+
+[account login]
+redirect = "user/dashboard"
+paramCode = "code"
+forceSecure = 0
 ==
 <div class="container">
     {% component 'login' %}
