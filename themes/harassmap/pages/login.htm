@@ -1,0 +1,17 @@
+title = "Login"
+url = "/login"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[account login]
+paramCode = "code"
+forceSecure = 0
+
+[viewBag]
+localeUrl[ar] = "/login"
+==
+<div class="container">
+    {% component 'login' %}
+</div>
