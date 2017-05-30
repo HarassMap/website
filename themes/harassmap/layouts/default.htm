@@ -104,7 +104,7 @@ security = "all"
             </button>
 
             <a class="navbar-brand" href="/">
-                <img class="site-logo"
+                <img class="site-logo" alt="{{ domain.name }}" title="{{ domain.name }}"
                      src="{% if domain.logo %}{{ domain.logo }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}"/>
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="main_nav">
@@ -140,7 +140,8 @@ security = "all"
                         {% component 'mailchimpsignup' %}
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid" src="/themes/harassmap/assets/img/logo-footer.svg">
+                        <img class="img-fluid" src="/themes/harassmap/assets/img/logo-footer.svg"
+                             alt="{{ domain.name }}" title="{{ domain.name }}">
                     </div>
                 </div>
             </div>
@@ -158,35 +159,40 @@ security = "all"
                         {% if domain.facebook %}
                             <a href="{{ domain.facebook }}" class="social social--facebook" target="_blank"
                                title="{{ 'Facebook' | _ }}">
-                                <img class="img-fluid" src="{{ 'assets/img/icons/facebook.svg' | theme }}">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/facebook.svg' | theme }}"
+                                     alt="{{ 'Facebook' | _ }}">
                                 <span class="sr-only">{{ 'Facebook' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.twitter %}
                             <a href="{{ domain.twitter }}" class="social social--twitter" target="_blank"
                                title="{{ 'Twitter' | _ }}">
-                                <img class="img-fluid" src="{{ 'assets/img/icons/twitter.svg' | theme }}">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/twitter.svg' | theme }}"
+                                     alt="{{ 'Twitter' | _ }}">
                                 <span class="sr-only">{{ 'Twitter' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.instagram %}
                             <a href="{{ domain.instagram }}" class="social social--instagram" target="_blank"
                                title="{{ 'Instagram' | _ }}">
-                                <img class="img-fluid" src="{{ 'assets/img/icons/instagram.svg' | theme }}">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/instagram.svg' | theme }}"
+                                     alt="{{ 'Instagram' | _ }}">
                                 <span class="sr-only">{{ 'Instagram' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.youtube %}
                             <a href="{{ domain.youtube }}" class="social social--youtube" target="_blank"
                                title="{{ 'YouTube' | _ }}">
-                                <img class="img-fluid" src="{{ 'assets/img/icons/youtube.svg' | theme }}">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/youtube.svg' | theme }}"
+                                     alt="{{ 'YouTube' | _ }}">
                                 <span class="sr-only">{{ 'YouTube' | _ }}</span>
                             </a>
                         {% endif %}
                         {% if domain.blogger %}
                             <a href="{{ domain.blogger }}" class="social social--blogger" target="_blank"
                                title="{{ 'Blogger' | _ }}">
-                                <img class="img-fluid" src="{{ 'assets/img/icons/blogger.svg' | theme }}">
+                                <img class="img-fluid" src="{{ 'assets/img/icons/blogger.svg' | theme }}"
+                                     alt="{{ 'Blogger' | _ }}">
                                 <span class="sr-only">{{ 'Blogger' | _ }}</span>
                             </a>
                         {% endif %}

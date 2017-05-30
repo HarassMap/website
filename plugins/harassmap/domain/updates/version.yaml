@@ -19,3 +19,6 @@
 1.0.7:
     - 'Updated table harassmap_domain_domain'
     - builder_table_update_harassmap_domain_domain.php
+1.0.8:
+    - 'Updated table harassmap_domain_domain'
+    - builder_table_update_harassmap_domain_domain_2.php

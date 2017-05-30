@@ -36,10 +36,18 @@ class Domain extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['about'];
+    public $translatable = [
+        'name',
+        'about',
+    ];
 
     public $rules = [
-        'host' => 'required'
+        'name' => 'required',
+        'about' => 'required',
+        'host' => 'required',
+        'lat' => 'required',
+        'lng' => 'required',
+        'zoom' => 'required',
     ];
 
     public $hasMany = [

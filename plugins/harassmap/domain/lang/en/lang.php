@@ -31,14 +31,21 @@
         ]
     ],
     'form' => [
+        'tab' => [
+            'site' => 'Site',
+            'social' => 'Social',
+            'map' => 'Map',
+        ],
         'domain' => 'Domain',
         'host' => 'Host',
+        'host_help' => 'Pattern for matching the domain name.',
+        'name' => 'Name',
+        'about' => 'About',
+        'about_help' => 'A short description of the site.',
         'logo' => [
             'header' => 'Header Logo',
             'footer' => 'Footer Logo'
         ],
-        'about' => 'About',
-        'about_help' => 'A short description of the site.',
         'facebook' => 'Facebook',
         'twitter' => 'Twitter',
         'instagram' => 'Instagram',
