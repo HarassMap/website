@@ -43,6 +43,8 @@ class Posts extends Model
 
     public $rules = [
         'title' => 'required',
+        'intro' => 'required',
+        'content' => 'required',
         'slug' => ['required', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'unique:harassmap_news_posts']
     ];
 
@@ -52,7 +54,6 @@ class Posts extends Model
 
     public $translatable = [
         'title',
-        ['slug', 'index' => true],
         'intro',
         'content'
     ];
