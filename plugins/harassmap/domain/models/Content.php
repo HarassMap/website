@@ -47,6 +47,10 @@ class Content extends Model
         'domain' => Domain::class
     ];
 
+    public $attachOne = [
+        'image' => 'System\Models\File'
+    ];
+
     /**
      * @var string The database table used by the model.
      */

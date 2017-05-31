@@ -9,8 +9,22 @@ fields:
         span: auto
         type: dropdown
         commentAbove: 'harassmap.domain::lang.content.form.content_id_help'
-    content:
-        label: 'harassmap.domain::lang.form.content'
-        size: giant
-        span: full
-        type: richeditor
+
+tabs:
+    fields:
+        content:
+            label: 'harassmap.domain::lang.form.content'
+            size: giant
+            span: full
+            type: richeditor
+            tab: 'harassmap.domain::lang.form.tab.content'
+        image:
+            label: 'harassmap.domain::lang.form.image'
+            mode: file
+            span: full
+            type: fileupload
+            tab: 'harassmap.domain::lang.form.tab.extra'
+            trigger:
+                action: show
+                field: content_id
+                condition: value[homepage.basics] | value[homepage.share] | value[homepage.active]

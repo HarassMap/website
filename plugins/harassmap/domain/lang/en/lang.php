@@ -35,6 +35,8 @@
             'site' => 'Site',
             'social' => 'Social',
             'map' => 'Map',
+            'content' => 'Content',
+            'extra' => 'Extra',
         ],
         'domain' => 'Domain',
         'host' => 'Host',
@@ -55,5 +57,6 @@
         'featured_from' => 'Featured From',
         'content' => 'Content',
         'content_id' => 'Content ID',
+        'image' => 'Image',
     ],
 ];
