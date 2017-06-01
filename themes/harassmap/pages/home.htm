@@ -7,17 +7,26 @@ robot_follow = "follow"
 
 [viewBag]
 
-[harassmapDomainContentBlock homepageBasics]
+[harassmapDomainContentBlock basics]
 id = "homepage.basics"
 
-[harassmapDomainContentBlock homepageShare]
+[harassmapDomainContentBlock share]
 id = "homepage.share"
 
-[harassmapDomainContentBlock homepageActive]
+[harassmapDomainContentBlock active]
 id = "homepage.active"
 
-[harassmapDomainContentBlock homepageDroplet]
+[harassmapDomainContentBlock droplet]
 id = "homepage.droplet"
+
+[harassmapDomainContentBlock bottomLeft]
+id = "homepage.bottomLeft"
+
+[harassmapDomainContentBlock bottomCenter]
+id = "homepage.bottomCenter"
+
+[harassmapDomainContentBlock bottomRight]
+id = "homepage.bottomRight"
 
 [harassmapTip]
 listPage = "tips/index"
@@ -63,7 +72,7 @@ listPage = "news/index"
                         <img src="{{ 'assets/img/icons/clipboard.svg' | theme }}" alt="{{ 'clipboard' | _ }}">
                     </div>
                     <div class="col">
-                        {% component 'homepageBasics' %}
+                        {% component 'basics' %}
                     </div>
                 </div>
             </a>
@@ -73,7 +82,7 @@ listPage = "news/index"
                         <img src="{{ 'assets/img/icons/quote.svg' | theme }}" alt="{{ 'quote' | _ }}">
                     </div>
                     <div class="col">
-                        {% component 'homepageShare' %}
+                        {% component 'share' %}
                     </div>
                 </div>
             </a>
@@ -83,7 +92,7 @@ listPage = "news/index"
                         <img src="{{ 'assets/img/icons/droplet.svg' | theme }}" alt="{{ 'droplet' | _ }}">
                     </div>
                     <div class="col">
-                        {% component 'homepageActive' %}
+                        {% component 'active' %}
                     </div>
                 </div>
             </a>
@@ -116,7 +125,7 @@ listPage = "news/index"
 <div class="bg--green pt-5 pb-5">
     <div class="container bg--drop">
         <div class="col-12 col-lg-4">
-            {% component 'homepageDroplet' %}
+            {% component 'droplet' %}
             <a href="#" class="btn">{{ 'Read More' | _ }}</a>
         </div>
     </div>
@@ -124,9 +133,15 @@ listPage = "news/index"
 
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-12 col-sm-4"></div>
-        <div class="col-12 col-sm-4"></div>
-        <div class="col-12 col-sm-4"></div>
+        <div class="col-12 col-sm-4">
+            {% component 'bottomLeft' %}
+        </div>
+        <div class="col-12 col-sm-4">
+            {% component 'bottomCenter' %}
+        </div>
+        <div class="col-12 col-sm-4">
+            {% component 'bottomRight' %}
+        </div>
     </div>
 </div>
 

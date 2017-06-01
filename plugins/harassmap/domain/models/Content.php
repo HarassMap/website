@@ -33,6 +33,9 @@ class Content extends Model
         'homepage.share' => 'Homepage (Share)',
         'homepage.active' => 'Homepage (Active)',
         'homepage.droplet' => 'Homepage (Droplet)',
+        'homepage.bottomLeft' => 'Homepage (Bottom Left)',
+        'homepage.bottomCenter' => 'Homepage (Bottom Center)',
+        'homepage.bottomRight' => 'Homepage (Bottom Right)',
     ];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];

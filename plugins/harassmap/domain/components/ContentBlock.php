@@ -11,6 +11,7 @@ class ContentBlock extends ComponentBase
 {
 
     public $content = '';
+    public $partial = '';
 
     public function componentDetails()
     {
@@ -62,7 +63,31 @@ class ContentBlock extends ComponentBase
         if ($found) {
             $this->page['content_id'] = $content_id;
             $this->content = $found->content;
+            $this->partial = $this->getPartial($content_id);
         }
+    }
+
+    public function getPartial($content_id)
+    {
+        $partial = '';
+
+        switch ($content_id) {
+            case 'homepage.basics':
+            case 'homepage.share':
+            case 'homepage.active':
+                $partial = 'home/top';
+                break;
+            case 'homepage.droplet':
+                $partial = 'home/droplet';
+                break;
+            case 'homepage.bottomLeft':
+            case 'homepage.bottomCenter':
+            case 'homepage.bottomRight':
+                $partial = 'home/bottom';
+                break;
+        }
+
+        return $partial;
     }
 
 }

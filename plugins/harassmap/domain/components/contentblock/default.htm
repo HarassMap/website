@@ -1,7 +1,5 @@
 <div class="content-block" data-content-block="{{ content_id }}">
-    {% if __SELF__.content %}
-        {{ __SELF__.content | raw }}
-    {% else %}
-        <!-- No content -->
+    {% if __SELF__.partial %}
+        {% partial __SELF__ ~ '::' ~ __SELF__.partial %}
     {% endif %}
 </div>
