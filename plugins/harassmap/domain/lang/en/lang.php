@@ -58,5 +58,6 @@
         'content' => 'Content',
         'content_id' => 'Content ID',
         'image' => 'Image',
+        'link' => 'Link',
     ],
 ];
