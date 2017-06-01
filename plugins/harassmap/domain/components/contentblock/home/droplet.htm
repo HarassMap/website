@@ -1,5 +1,5 @@
-{% if __SELF__.content %}
-    {{ __SELF__.content | raw }}
+{% if __SELF__.block.content %}
+    {{ __SELF__.block.content | raw }}
 {% else %}
     <!-- No content -->
 {% endif %}

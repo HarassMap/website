@@ -10,7 +10,7 @@ use Harassmap\Domain\Models\Domain;
 class ContentBlock extends ComponentBase
 {
 
-    public $content = '';
+    public $block = '';
     public $partial = '';
 
     public function componentDetails()
@@ -62,7 +62,7 @@ class ContentBlock extends ComponentBase
         // if we have found the content block then
         if ($found) {
             $this->page['content_id'] = $content_id;
-            $this->content = $found->content;
+            $this->block = $found;
             $this->partial = $this->getPartial($content_id);
         }
     }
