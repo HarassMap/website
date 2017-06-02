@@ -26,7 +26,7 @@ tabs:
             trigger:
                 action: show
                 field: content_id
-                condition: 'value[homepage.basics] | value[homepage.share] | value[homepage.active]'
+                condition: 'value[homepage.basics] | value[homepage.share] | value[homepage.active] | value[homepage.bottomLeft] | value[homepage.bottomCenter] | value[homepage.bottomRight]'
         link:
             label: 'harassmap.domain::lang.form.link'
             span: full
@@ -35,4 +35,4 @@ tabs:
             trigger:
                 action: show
                 field: content_id
-                condition: 'value[homepage.basics] | value[homepage.share] | value[homepage.active]'
+                condition: 'value[homepage.basics] | value[homepage.share] | value[homepage.active] | value[homepage.bottomLeft] | value[homepage.bottomCenter] | value[homepage.bottomRight]'

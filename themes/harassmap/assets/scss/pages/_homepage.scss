@@ -18,3 +18,36 @@
     @include rem((font-size: 14px, padding: 0 0 30px, margin: 0));
   }
 }
+
+.bottom-links {
+  position: relative;
+
+  .img {
+    background: $dusty-gray;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .text {
+    text-align: center;
+    width: 100%;
+    z-index: 11;
+
+    @include rem((padding: 50px 20px));
+
+    p {
+      color: $white;
+      font-family: $oswald;
+      margin: 0;
+      padding: 0;
+
+      @include rem((font-size: 36px));
+    }
+
+  }
+
+}
