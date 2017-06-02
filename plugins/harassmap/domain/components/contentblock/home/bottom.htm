@@ -1,8 +1,10 @@
 <a href="{{ __SELF__.block.link }}">
-    <div class="row bottom-links">
+    <div class="bottom-links">
         <div class="img">
             {% if __SELF__.block.image %}
                 <img class="img-fluid" src="{{ __SELF__.block.image.path }}">
+            {% else %}
+                <span class="img-gray"></span>
             {% endif %}
         </div>
         <div class="text">

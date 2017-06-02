@@ -21,30 +21,40 @@
 
 .bottom-links {
   position: relative;
+  height: 220px;
+  width: 100%;
 
   .img {
-    background: $dusty-gray;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 10;
+
+    .img-gray {
+      background: $dusty-gray;
+    }
   }
 
   .text {
+    display: table;
+    height: 100%;
+    position: relative;
     text-align: center;
     width: 100%;
     z-index: 11;
 
-    @include rem((padding: 50px 20px));
+    @include rem((padding: 0 20px));
 
     p {
       color: $white;
+      display: table-cell;
       font-family: $oswald;
       font-weight: $normal;
       margin: 0;
       padding: 0;
+      vertical-align: middle;
 
       @include rem((font-size: 36px));
     }
