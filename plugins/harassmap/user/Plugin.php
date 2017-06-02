@@ -11,6 +11,10 @@ class Plugin extends PluginBase
         User::extend(function($model) {
             $model->rules['name'] = 'required';
             $model->rules['surname'] = 'required';
+
+            $model->addFillable([
+               'terms', 'marketing'
+            ]);
         });
     }
 
