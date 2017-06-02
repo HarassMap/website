@@ -25,16 +25,13 @@
   width: 100%;
 
   .img {
+    background: $dusty-gray;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 10;
-
-    .img-gray {
-      background: $dusty-gray;
-    }
   }
 
   .text {
