@@ -66,36 +66,15 @@ listPage = "news/index"
 <div class="bg--polar">
     <div class="container">
         <div class="row pb-5">
-            <a href="#" class="col-12 col-sm-4 pt-4">
-                <div class="row">
-                    <div class="col-auto col-sm-12 col-md-auto">
-                        <img src="{{ 'assets/img/icons/clipboard.svg' | theme }}" alt="{{ 'clipboard' | _ }}">
-                    </div>
-                    <div class="col">
-                        {% component 'basics' %}
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="col-12 col-sm-4 pt-4">
-                <div class="row">
-                    <div class="col-auto col-sm-12 col-md-auto">
-                        <img src="{{ 'assets/img/icons/quote.svg' | theme }}" alt="{{ 'quote' | _ }}">
-                    </div>
-                    <div class="col">
-                        {% component 'share' %}
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="col-12 col-sm-4 pt-4">
-                <div class="row">
-                    <div class="col-auto col-sm-12 col-md-auto">
-                        <img src="{{ 'assets/img/icons/droplet.svg' | theme }}" alt="{{ 'droplet' | _ }}">
-                    </div>
-                    <div class="col">
-                        {% component 'active' %}
-                    </div>
-                </div>
-            </a>
+            <div class="col-12 col-sm-4 pt-4">
+                {% component 'basics' %}
+            </div>
+            <div class="col-12 col-sm-4 pt-4">
+                {% component 'share' %}
+            </div>
+            <div class="col-12 col-sm-4 pt-4">
+                {% component 'active' %}
+            </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,16 @@
-{% if __SELF__.block.content %}
-    {{ __SELF__.block.content | raw }}
-{% else %}
-    <!-- No content -->
-{% endif %}
+<a href="{{ __SELF__.block.link }}">
+    <div class="row">
+        <div class="col-auto col-sm-12 col-md-auto">
+            {% if __SELF__.block.image %}
+                <img src="{{ __SELF__.block.image.path }}">
+            {% endif %}
+        </div>
+        <div class="col">
+            {% if __SELF__.block.content %}
+                {{ __SELF__.block.content | raw }}
+            {% else %}
+                <!-- No content -->
+            {% endif %}
+        </div>
+    </div>
+</a>
