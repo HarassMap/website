@@ -1,6 +1,6 @@
 {% if not user %}
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-12">
 
             <h3 class="hr">
@@ -9,22 +9,60 @@
             </h3>
 
             <form data-request="onRegister">
-                <div class="form-group">
-                    <label for="registerName">{{ 'Full Name' | _ }}</label>
-                    <input name="name" type="text" class="form-control" id="registerName"
-                           placeholder="Enter your full name"/>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="firstName">{{ 'First Name' | _ }}</label>
+                            <input required name="name" type="text" class="form-control" id="firstName"
+                                   placeholder="{{ 'Enter your first name' | _ }}"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="lastName">{{ 'Last Name' | _ }}</label>
+                            <input required name="surname" type="text" class="form-control" id="lastName"
+                                   placeholder="{{ 'Enter your last name' | _ }}"/>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="registerEmail">{{ 'Email' | _ }}</label>
-                    <input name="email" type="email" class="form-control" id="registerEmail"
-                           placeholder="Enter your email"/>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="registerEmail">{{ 'Email' | _ }}</label>
+                            <input name="email" type="email" class="form-control" id="registerEmail"
+                                   placeholder="{{ 'Enter your email' | _ }}"/>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="registerPassword">{{ 'Password' | _ }}</label>
-                    <input name="password" type="password" class="form-control" id="registerPassword"
-                           placeholder="Choose a password"/>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="registerPassword">{{ 'Password' | _ }}</label>
+                            <input name="password" type="password" class="form-control" id="registerPassword"
+                                   placeholder="{{ 'Choose a password' | _ }}"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox">
+                                <input name="terms" required type="checkbox" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Agree to terms</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox">
+                                <input name="marketing" required type="checkbox" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Agree to emails</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-default">{{ 'Register' | _ }}</button>

@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.user::lang.plugin.name'
+    description: 'harassmap.user::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-user
+    homepage: ''
