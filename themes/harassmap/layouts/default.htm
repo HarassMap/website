@@ -105,7 +105,7 @@ security = "all"
 
             <a class="navbar-brand" href="/">
                 <img class="site-logo" alt="{{ domain.name }}" title="{{ domain.name }}"
-                     src="{% if domain.logo %}{{ domain.logo }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}"/>
+                     src="{% if domain.headerLogo %}{{ domain.headerLogo.path }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}"/>
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="main_nav">
                 {% component 'headermenu' %}
@@ -140,8 +140,8 @@ security = "all"
                         {% component 'mailchimpsignup' %}
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid" src="/themes/harassmap/assets/img/logo-footer.svg"
-                             alt="{{ domain.name }}" title="{{ domain.name }}">
+                        <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"
+                             src="{% if domain.footerLogo %}{{ domain.footerLogo.path }}{% else %}{{ 'assets/img/logo-footer.svg' | theme }}{% endif %}">
                     </div>
                 </div>
             </div>
