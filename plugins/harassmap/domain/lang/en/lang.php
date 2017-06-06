@@ -9,7 +9,7 @@
             'manage_user_domains' => 'Manage User Domains',
         ],
         'menu' => [
-            'main' => 'Domain',
+            'main' => 'Domains',
             'domains' => 'Domains',
             'content' => 'Content Blocks',
             'tips' => 'Weekly Tips',
@@ -21,14 +21,14 @@
             'page_help' => 'Page name to use for clicking on a browse.',
         ],
         'form' => [
-            'domain_help' => 'Which domain is this tip for?'
-        ]
+            'domain_help' => 'Which domain is this tip for?',
+        ],
     ],
     'content' => [
         'form' => [
             'domain_help' => 'Which domain is this content block for?',
-            'content_id_help' => 'Where should this be placed on the site?'
-        ]
+            'content_id_help' => 'Where should this be placed on the site?',
+        ],
     ],
     'form' => [
         'tab' => [
@@ -46,7 +46,7 @@
         'about_help' => 'A short description of the site.',
         'logo' => [
             'header' => 'Header Logo',
-            'footer' => 'Footer Logo'
+            'footer' => 'Footer Logo',
         ],
         'facebook' => 'Facebook',
         'twitter' => 'Twitter',
