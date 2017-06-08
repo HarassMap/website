@@ -30,20 +30,21 @@ class Category extends Model
     use Validation;
     use Sortable;
 
+    public $table = 'harassmap_incidents_category';
+
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = ['title', 'description'];
 
-    /*
-     * Validation
-     */
-    public $rules = [
+    public $belongsToMany = [
+        'incidents' => [
+            Incident::class,
+            'table' => 'harassmap_incident_category'
+        ]
     ];
 
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'harassmap_incidents_category';
+    public $rules = [
+    ];
 
     public function beforeSave()
     {

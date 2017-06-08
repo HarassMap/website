@@ -3,3 +3,12 @@
 1.0.2:
     - 'Created table harassmap_incidents_category'
     - builder_table_create_harassmap_incidents_category.php
+1.0.3:
+    - 'Created table harassmap_incidents_location'
+    - builder_table_create_harassmap_incidents_location.php
+1.0.4:
+    - 'Created table harassmap_incidents_incident'
+    - builder_table_create_harassmap_incidents_incident.php
+1.0.5:
+    - 'Created table harassmap_incidents_incident_category'
+    - builder_table_create_harassmap_incidents_incident_category.php
