@@ -28,13 +28,13 @@
             <div class="row">
                 <div class="col-12 col-md-5">
                     <div class="form-group">
-                        <label for="city">{{ 'City' | _ }}</label>
+                        {{ form_label('city', 'City' | _) }}
                         {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off'}) }}
                     </div>
                 </div>
                 <div class="col-12 col-md-7">
                     <div class="form-group">
-                        <label for="region">{{ 'Region' | _ }}</label>
+                        {{ form_label('region', 'Region' | _) }}
                         {{ form_text('region', '', {'class': 'form-control'}) }}
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="address">{{ 'Address' | _ }}</label>
+                        {{ form_label('address', 'Address' | _) }}
                         {{ form_text('address', '', {'class': 'form-control'}) }}
                     </div>
                 </div>
@@ -50,11 +50,11 @@
         </div>
         <div class="col-12 col-lg-6">
             <div class="form-group">
-                <label for="date">{{ 'Date' | _ }}</label>
+                {{ form_label('date', 'Date' | _) }}
                 {{ form_text('date', '', {'class': 'form-control'}) }}
             </div>
             <div class="form-group">
-                <label for="time">{{ 'Time' | _ }}</label>
+                {{ form_label('time', 'Time' | _) }}
                 {{ form_text('time', '', {'class': 'form-control'}) }}
             </div>
         </div>
@@ -77,13 +77,13 @@
     <div class="row">
         <div class="col-12 col-lg-6">
             <div class="form-group">
-                <label for="lat">{{ 'Latitude' | _ }}</label>
+                {{ form_label('lat', 'Latitude' | _) }}
                 {{ form_text('lat', '', {'class': 'form-control'}) }}
             </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="form-group">
-                <label for="lng">{{ 'Longitude' | _ }}</label>
+                {{ form_label('lng', 'Longitude' | _) }}
                 {{ form_text('lng', '', {'class': 'form-control'}) }}
             </div>
         </div>
@@ -92,7 +92,7 @@
     <div class="row">
         <div class="col-12">
             <div class="form-group">
-                <label for="description">{{ 'Description' | _ }}</label>
+                {{ form_label('description', 'Description' | _) }}
                 {{ form_textarea('description', '', {'class': 'form-control'}) }}
             </div>
         </div>
@@ -100,7 +100,7 @@
 
     <div class="row mt-4">
         <div class="col-12">
-            <label for="categories">{{ 'Type of incident' | _ }}</label>
+            {{ form_label('categories', 'Type of incident' | _) }}
         </div>
     </div>
     <div class="row mt-4">
@@ -109,28 +109,28 @@
 
     <div class="row mt-4">
         <div class="col-5">
-            <label for="role">{{ 'Your role' | _ }}</label>
+            {{ form_label('role', 'Your role' | _) }}
             {# Role Selector #}
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-4">
-            <label for="intervention">{{ 'Did someone come to your assistance?' | _ }}</label>
+            {{ form_label('intervention', 'Did someone come to your assistance?' | _) }}
             {# Intervention Selector #}
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-12">
-            <label for="assistance">{{ 'What sort of assistance was offered?' | _ }}</label>
+            {{ form_label('assistance', 'What sort of assistance was offered?' | _) }}
             {# Assistance Selector #}
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-12">
-            <button class="btn" type="submit">{{ 'Submit' | _ }}</button>
+            {{ form_submit('Submit' | _, {'class': 'btn'}) }}
         </div>
     </div>
 </div>
