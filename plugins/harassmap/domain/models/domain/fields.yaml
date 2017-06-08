@@ -37,6 +37,16 @@ tabs:
             span: full
             type: fileupload
             tab: 'harassmap.domain::lang.form.tab.site'
+        incident:
+            label: 'Enable Incident'
+            span: auto
+            type: checkbox
+            tab: 'harassmap.domain::lang.form.tab.site'
+        intervention:
+            label: 'Enable Intervention'
+            span: auto
+            type: checkbox
+            tab: 'harassmap.domain::lang.form.tab.site'
         facebook:
             label: 'harassmap.domain::lang.form.facebook'
             span: full
