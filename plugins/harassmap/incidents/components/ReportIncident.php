@@ -18,4 +18,9 @@ class ReportIncident extends ComponentBase
         ];
     }
 
+    public function onSubmit()
+    {
+        if(true);
+    }
+
 }
