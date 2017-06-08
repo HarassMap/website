@@ -39,7 +39,7 @@ class Category extends Model
     public $belongsToMany = [
         'incidents' => [
             Incident::class,
-            'table' => 'harassmap_incident_category'
+            'table' => 'harassmap_incidents_incident_category'
         ]
     ];
 

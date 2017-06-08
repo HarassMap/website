@@ -12,3 +12,12 @@
 1.0.5:
     - 'Created table harassmap_incidents_incident_category'
     - builder_table_create_harassmap_incidents_incident_category.php
+1.0.6:
+    - 'Created table harassmap_incidents_intervention'
+    - builder_table_create_harassmap_incidents_intervention.php
+1.0.7:
+    - 'Created table harassmap_incidents_assistance'
+    - builder_table_create_harassmap_incidents_assistance.php
+1.0.8:
+    - 'Created table harassmap_intervention_assistance'
+    - builder_table_create_harassmap_incidents_intervention_assistance.php

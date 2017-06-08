@@ -6,19 +6,19 @@ use October\Rain\Database\Traits\Validation;
 /**
  * Model
  */
-class Incident extends Model
+class Intervention extends Model
 {
     use Validation;
 
-    public $table = 'harassmap_incidents_incident';
+    public $table = 'harassmap_incidents_intervention';
 
     public $rules = [
     ];
 
     public $belongsToMany = [
-        'categories' => [
-            Category::class,
-            'table' => 'harassmap_incidents_incident_category'
+        'assistance' => [
+            Assistance::class,
+            'table' => 'harassmap_incidents_intervention_assistance'
         ]
     ];
 }
