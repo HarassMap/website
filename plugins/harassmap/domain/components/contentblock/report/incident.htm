@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-7">
+        {% if __SELF__.block.content %}
+            {{ __SELF__.block.content | raw }}
+        {% else %}
+            <!-- No content -->
+        {% endif %}
+    </div>
+</div>
+
+{% if __SELF__.block.link %}
+    <div class="row mt-4">
+        <div class="col-7">
+            <a href="{{ __SELF__.block.link }}">
+                {{ 'Learn more' | _ }}
+            </a>
+        </div>
+    </div>
+{% endif %}

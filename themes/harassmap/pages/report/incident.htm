@@ -7,21 +7,13 @@ is_hidden = 0
 localeUrl[ar] = "/report-incident"
 
 [harassmapReportIncident]
+
+[harassmapDomainContentBlock]
+id = "report.incident"
 ==
 {% component 'harassmapReportIncident' %}
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-7">
-            Harassmap promises that your identity is confidential. If you’ve logged in, your username is used on the
-            website, never your real name or email address.
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-7">
-            <a href="#">
-                Learn more
-            </a>
-        </div>
-    </div>
+
+    {% component 'harassmapDomainContentBlock' %}
 </div>
