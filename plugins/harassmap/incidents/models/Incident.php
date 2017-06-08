@@ -2,6 +2,7 @@
 
 use Model;
 use October\Rain\Database\Traits\Validation;
+use RainLab\User\Models\User;
 
 /**
  * Model
@@ -13,6 +14,11 @@ class Incident extends Model
     public $table = 'harassmap_incidents_incident';
 
     public $rules = [
+    ];
+
+    public $hasOne = [
+        'user' => User::class,
+        'location' => Location::class,
     ];
 
     public $belongsToMany = [

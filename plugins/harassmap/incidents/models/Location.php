@@ -1,13 +1,16 @@
 <?php namespace Harassmap\Incidents\Models;
 
 use Model;
+use October\Rain\Database\Traits\Validation;
 
 /**
  * Model
  */
 class Location extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use Validation;
+
+    public $table = 'harassmap_incidents_location';
     
     /*
      * Disable timestamps by default.
@@ -15,14 +18,6 @@ class Location extends Model
      */
     public $timestamps = false;
 
-    /*
-     * Validation
-     */
     public $rules = [
     ];
-
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'harassmap_incidents_location';
 }
