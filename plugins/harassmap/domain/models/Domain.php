@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Domain\Models;
 
 use Backend\Models\User as BackendUserModel;
+use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use Request;
@@ -64,7 +65,8 @@ class Domain extends Model
 
     public $hasMany = [
         'content' => [Content::class, 'delete' => true],
-        'tips' => [Tip::class, 'delete' => true]
+        'tips' => [Tip::class, 'delete' => true],
+        'posts' => [Posts::class, 'delete' => true]
     ];
 
     /*
