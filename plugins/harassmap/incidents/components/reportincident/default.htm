@@ -29,7 +29,7 @@
                 <div class="col-12 col-md-5">
                     <div class="form-group">
                         {{ form_label('country', 'Country' | _) }}
-                        {{ form_select('country', [], '', {'class': 'form-control'}) }}
+                        {{ form_select('country', countries, default_country, {'class': 'form-control'}) }}
                     </div>
                 </div>
                 <div class="col-12 col-md-7">
