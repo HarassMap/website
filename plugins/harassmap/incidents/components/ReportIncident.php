@@ -2,10 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
-use ApplicationException;
 use Cms\Classes\ComponentBase;
-use Harassmap\Domain\Models\Content;
-use Harassmap\Domain\Models\Domain;
 
 class ReportIncident extends ComponentBase
 {
@@ -18,9 +15,14 @@ class ReportIncident extends ComponentBase
         ];
     }
 
+    public function onRender()
+    {
+
+    }
+
     public function onSubmit()
     {
-        if(true);
+        if (true) ;
     }
 
 }

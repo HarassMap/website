@@ -18,6 +18,19 @@ navigation:
                 icon: icon-tags
                 permissions:
                     - harassmap.incidents.access_categories
+    harassmap.incidents.countries:
+        label: Countries
+        url: harassmap/incidents/countries
+        icon: icon-globe
+        sideMenu:
+            harassmap.incidents.countries.country:
+                label: Countries
+                url: harassmap/incidents/countries
+                icon: icon-globe
+            harassmap.incidents.countries.city:
+                label: Cities
+                url: harassmap/incidents/cities
+                icon: icon-building-o
 permissions:
     harassmap.incidents.access_categories:
         tab: 'harassmap.incidents::lang.plugin.permissions.tab'

@@ -1,0 +1,1121 @@
+cities:
+    - country: EG
+      city: Cairo
+      city_lat: '30.06263'
+      city_lon: '31.24967'
+    - country: EG
+      city: Giza
+      city_lat: '30.00861'
+      city_lon: '31.21222'
+    - country: EG
+      city: Tanta
+      city_lat: '30.79111'
+      city_lon: '30.99806'
+    - country: EG
+      city: Port Said
+      city_lat: '31.28056'
+      city_lon: '32.3075'
+    - country: EG
+      city: Zagazig
+      city_lat: '30.59139'
+      city_lon: '31.51028'
+    - country: EG
+      city: Suez
+      city_lat: '29.96667'
+      city_lon: '32.55'
+    - country: EG
+      city: Ismaïlia
+      city_lat: '30.60528'
+      city_lon: '32.27722'
+    - country: EG
+      city: Al Fayyum
+      city_lat: '29.30778'
+      city_lon: '30.84'
+    - country: EG
+      city: Sūhāj
+      city_lat: '26.55'
+      city_lon: '31.7'
+    - country: EG
+      city: Qina
+      city_lat: '26.17'
+      city_lon: '32.72722'
+    - country: EG
+      city: Kafr ash Shaykh
+      city_lat: '31.11139'
+      city_lon: '30.93639'
+    - country: EG
+      city: Damanhur
+      city_lat: '31.03333'
+      city_lon: '30.46667'
+    - country: EG
+      city: Banī Suwayf
+      city_lat: '29.06389'
+      city_lon: '31.08889'
+    - country: EG
+      city: Banhā
+      city_lat: '30.46083'
+      city_lon: '31.1875'
+    - country: EG
+      city: Al ‘Arīsh
+      city_lat: '31.12611'
+      city_lon: '33.80194'
+    - country: EG
+      city: Alexandria
+      city_lat: '31.19806'
+      city_lon: '29.91917'
+    - country: EG
+      city: Hurghada
+      city_lat: '27.25738'
+      city_lon: '33.81291'
+    - country: EG
+      city: Aswan
+      city_lat: '24.0875'
+      city_lon: '32.89889'
+    - country: EG
+      city: Luxor
+      city_lat: '25.69893'
+      city_lon: '32.6421'
+    - country: EG
+      city: Marsa Matruh
+      city_lat: '31.35'
+      city_lon: '27.23333'
+    - country: EG
+      city: Aţ Ţūr
+      city_lat: '28.24167'
+      city_lon: '33.62361'
+    - country: EG
+      city: Al Mansurah
+      city_lat: '31.04306'
+      city_lon: '31.37667'
+    - country: EG
+      city: Al Khārijah
+      city_lat: '25.43333'
+      city_lon: '30.55'
+    - country: EG
+      city: Qalyub
+      city_lat: '30.18306'
+      city_lon: '31.20528'
+    - country: EG
+      city: Kafr ad Dawwār
+      city_lat: '31.13972'
+      city_lon: '30.12917'
+    - country: EG
+      city: Helwan
+      city_lat: '29.85'
+      city_lon: '31.33333'
+    - country: EG
+      city: Disūq
+      city_lat: '31.12944'
+      city_lon: '30.64639'
+    - country: EG
+      city: Bilbeis
+      city_lat: '30.41667'
+      city_lon: '31.56667'
+    - country: EG
+      city: Asyūţ
+      city_lat: '27.18278'
+      city_lon: '31.18278'
+    - country: EG
+      city: Minya
+      city_lat: '28.11944'
+      city_lon: '30.74444'
+    - country: EG
+      city: Al Maḩallah al Kubrá
+      city_lat: '30.97611'
+      city_lon: '31.16694'
+    - country: EG
+      city: Shibīn al Kawm
+      city_lat: '30.55861'
+      city_lon: '31.01'
+    - country: EG
+      city: Al Minyā
+      city_lat: '28.35'
+      city_lon: '28.86667'
+    - country: EG
+      city: Madīnat as-Sādis min Uktūbar
+      city_lat: '30.04158'
+      city_lon: '31.08156'
+    - country: EG
+      city: Ḩalwān
+      city_lat: '29.84286'
+      city_lon: '31.29599'
+    - country: EG
+      city: Ṭalkha
+      city_lat: '31.05306'
+      city_lon: '31.37389'
+    - country: EG
+      city: Rosetta
+      city_lat: '31.40444'
+      city_lon: '30.41639'
+    - country: EG
+      city: Nag Hammâdi
+      city_lat: '26.05139'
+      city_lon: '32.23861'
+    - country: EG
+      city: Mallawī
+      city_lat: '27.73194'
+      city_lon: '30.84111'
+    - country: EG
+      city: Kom Ombo
+      city_lat: '24.47917'
+      city_lon: '32.94361'
+    - country: EG
+      city: Jirja
+      city_lat: '26.34583'
+      city_lon: '31.88611'
+    - country: EG
+      city: Esna
+      city_lat: '25.29306'
+      city_lon: '32.55278'
+    - country: EG
+      city: Idkū
+      city_lat: '31.30556'
+      city_lon: '30.29917'
+    - country: EG
+      city: Damietta
+      city_lat: '31.41944'
+      city_lon: '31.815'
+    - country: EG
+      city: Dikirnis
+      city_lat: '31.08833'
+      city_lon: '31.59694'
+    - country: EG
+      city: Bilqās Qism Awwal
+      city_lat: '31.21306'
+      city_lon: '31.3575'
+    - country: EG
+      city: Al Ḩawāmidīyah
+      city_lat: '29.9'
+      city_lon: '31.25'
+    - country: EG
+      city: El Alamein
+      city_lat: '30.81667'
+      city_lon: '28.95'
+    - country: EG
+      city: Abū Kabīr
+      city_lat: '30.72528'
+      city_lon: '31.66833'
+    - country: EG
+      city: Sharm el Sheikh
+      city_lat: '27.86361'
+      city_lon: '34.28806'
+    - country: EG
+      city: Dahab
+      city_lat: '28.50098'
+      city_lon: '34.51338'
+    - country: EG
+      city: Saqqara
+      city_lat: '29.85'
+      city_lon: '31.21667'
+    - country: EG
+      city: Edfu
+      city_lat: '24.96667'
+      city_lon: '32.86667'
+    - country: EG
+      city: Ţūkh
+      city_lat: '30.34833'
+      city_lon: '31.15806'
+    - country: EG
+      city: Taba
+      city_lat: '29.49194'
+      city_lon: '34.89139'
+    - country: EG
+      city: Samannūd
+      city_lat: '30.96278'
+      city_lon: '31.24444'
+    - country: EG
+      city: Qūş
+      city_lat: '25.91667'
+      city_lon: '32.75'
+    - country: EG
+      city: Minūf
+      city_lat: '30.46667'
+      city_lon: '30.93333'
+    - country: EG
+      city: Kafr az Zayyāt
+      city_lat: '30.82056'
+      city_lon: '30.81583'
+    - country: EG
+      city: Dayrūţ
+      city_lat: '27.55861'
+      city_lon: '30.80778'
+    - country: EG
+      city: Būr Tawfīq
+      city_lat: '29.94167'
+      city_lon: '32.56583'
+    - country: EG
+      city: Port Safaga
+      city_lat: '26.73333'
+      city_lon: '33.93333'
+    - country: EG
+      city: Awsīm
+      city_lat: '30.1225'
+      city_lon: '31.13361'
+    - country: EG
+      city: At Tall al Kabīr
+      city_lat: '30.54556'
+      city_lon: '31.77806'
+    - country: EG
+      city: Al Quşayr
+      city_lat: '26.1'
+      city_lon: '34.28333'
+    - country: EG
+      city: Al Qanāţir al Khayrīyah
+      city_lat: '30.19806'
+      city_lon: '31.13417'
+    - country: EG
+      city: Akhmīm
+      city_lat: '26.56667'
+      city_lon: '31.73333'
+    - country: EG
+      city: Ad Dilinjāt
+      city_lat: '30.82806'
+      city_lon: '30.53417'
+    - country: EG
+      city: Abū Qurqāş
+      city_lat: '27.93083'
+      city_lon: '30.83639'
+    - country: EG
+      city: Idfu
+      city_lat: '24.98028'
+      city_lon: '32.87472'
+    - country: EG
+      city: Tanis
+      city_lat: '30.97139'
+      city_lon: '31.87278'
+    - country: EG
+      city: Sais
+      city_lat: '30.96472'
+      city_lon: '30.76667'
+    - country: EG
+      city: As Sallūm
+      city_lat: '31.56667'
+      city_lon: '25.15'
+    - country: EG
+      city: Al Bawīţī
+      city_lat: '28.35'
+      city_lon: '28.86667'
+    - country: EG
+      city: Abū Sunbul
+      city_lat: '22.36667'
+      city_lon: '31.63333'
+    - country: EG
+      city: Abu Qir
+      city_lat: '31.32194'
+      city_lon: '30.06083'
+    - country: EG
+      city: Ziftá
+      city_lat: '30.71361'
+      city_lon: '31.24389'
+    - country: EG
+      city: Ţāmiyah
+      city_lat: '29.48333'
+      city_lon: '30.96667'
+    - country: EG
+      city: Talā
+      city_lat: '30.68194'
+      city_lon: '30.9475'
+    - country: EG
+      city: Ţahţā
+      city_lat: '26.76806'
+      city_lon: '31.49389'
+    - country: EG
+      city: Shirbîn
+      city_lat: '31.19389'
+      city_lon: '31.52444'
+    - country: EG
+      city: Shibīn al Qanāţir
+      city_lat: '30.31278'
+      city_lon: '31.32111'
+    - country: EG
+      city: Quwaysinā
+      city_lat: '30.56667'
+      city_lon: '31.15'
+    - country: EG
+      city: Quţūr
+      city_lat: '30.98333'
+      city_lon: '30.95'
+    - country: EG
+      city: Nueiba
+      city_lat: '29.035'
+      city_lon: '34.66167'
+    - country: EG
+      city: Maţāy
+      city_lat: '28.42222'
+      city_lon: '30.75556'
+    - country: EG
+      city: Manfalūţ
+      city_lat: '27.31111'
+      city_lon: '30.96944'
+    - country: EG
+      city: Madīnat Sittah Uktūbar
+      city_lat: '29.81667'
+      city_lon: '31.05'
+    - country: EG
+      city: Juhaynah
+      city_lat: '26.67444'
+      city_lon: '31.49167'
+    - country: EG
+      city: Ezbet el-Burg
+      city_lat: '31.50833'
+      city_lon: '31.83472'
+    - country: EG
+      city: Hihyā
+      city_lat: '30.67'
+      city_lon: '31.58722'
+    - country: EG
+      city: Ḩawsh ‘Īsá
+      city_lat: '30.91278'
+      city_lon: '30.29056'
+    - country: EG
+      city: Fuwah
+      city_lat: '31.2025'
+      city_lon: '30.54722'
+    - country: EG
+      city: Fāriskūr
+      city_lat: '31.33083'
+      city_lon: '31.71611'
+    - country: EG
+      city: Fāqūs
+      city_lat: '30.72972'
+      city_lon: '31.79722'
+    - country: EG
+      city: Diyarb Najm
+      city_lat: '30.75417'
+      city_lon: '31.44056'
+    - country: EG
+      city: Dishnā
+      city_lat: '26.12111'
+      city_lon: '32.46528'
+    - country: EG
+      city: Dayr Mawās
+      city_lat: '27.64139'
+      city_lon: '30.84944'
+    - country: EG
+      city: Dahshur
+      city_lat: '29.75'
+      city_lon: '31.23333'
+    - country: EG
+      city: Banī Mazār
+      city_lat: '28.50361'
+      city_lon: '30.79917'
+    - country: EG
+      city: Abbassia - Abbassia St. (العباسية - ش العباسية)
+      city_lat: '30.070654'
+      city_lon: '31.282152'
+    - country: EG
+      city: Abbassia - Ahmed Said St. (العباسية - ش أحمد سعيد)
+      city_lat: '30.06642'
+      city_lon: '31.270695'
+    - country: EG
+      city: Abbassia - El Geish St. (لعباسية - ش الجيش)
+      city_lat: '30.061926'
+      city_lon: '31.26722'
+    - country: EG
+      city: Abbassia - Emtedad Ramses St. (ألعباسية - ش امتداد رمسيس)
+      city_lat: '30.070951'
+      city_lon: '31.288589'
+    - country: EG
+      city: Abbassia - Port Said St. (العباسية - ش بور سعيد)
+      city_lat: '30.067125'
+      city_lon: '31.26413'
+    - country: EG
+      city: Agouza - Midan Sphinx (العجوزة - ميدان سفنكس)
+      city_lat: '30.061871'
+      city_lon: '31.208361'
+    - country: EG
+      city: Ain Shams - Aziz El Masry St. (عين شمس - ش عزيز المصري)
+      city_lat: '30.134253'
+      city_lon: '31.320906'
+    - country: EG
+      city: Ain Shams - El Fairouz St. (عين شمس - ش الفيروز)
+      city_lat: '30.133957'
+      city_lon: '31.326014'
+    - country: EG
+      city: Ain Shams - El Toraa El Tawfikia (عين شمس - ش الترعة التوفيقية)
+      city_lat: '30.142159'
+      city_lon: '31.323137'
+    - country: EG
+      city: Cairo University (جامعة القاهرة)
+      city_lat: '30.021'
+      city_lon: '31.207'
+    - country: EG
+      city: Dokki - Cairo University St. (لدقي - ش جامعة القاهرة)
+      city_lat: '30.022602'
+      city_lon: '31.211193'
+    - country: EG
+      city: Dokki - El Dokki St. (الدقي - ش الدقي)
+      city_lat: '30.042944'
+      city_lon: '31.211643'
+    - country: EG
+      city: Dokki - El Sadd El Aali Sq. (الدقي - ميدان السد العالي)
+      city_lat: '30.042089'
+      city_lon: '31.216106'
+    - country: EG
+      city: Dokki - Hassan Mohamed El Razzaz St. (الدقي - ش حسن محمد الرزاز)
+      city_lat: '30.046362'
+      city_lon: '31.216515'
+    - country: EG
+      city: Dokki - Michel Bakhoum St. (الدقي - ش ميشيل باخوم)
+      city_lat: '30.035997'
+      city_lon: '31.2066'
+    - country: EG
+      city: Dokki - Soliman Gohar St. (الدقي - ش سليمان جوهر)
+      city_lat: '30.041048'
+      city_lon: '31.212694'
+    - country: EG
+      city: Dokki - Tahrir St. (Behous) (الدقي - ش التحرير (البحوث))
+      city_lat: '30.039154'
+      city_lon: '31.215464'
+    - country: EG
+      city: Downtown - 26 July St. (وسط البلد - ش 26 يوليو)
+      city_lat: '30.052418'
+      city_lon: '31.245203'
+    - country: EG
+      city: Downtown - AbdulAziz St. (وسط البلد - ش عبد العزيز)
+      city_lat: '30.047365'
+      city_lon: '31.248423'
+    - country: EG
+      city: Downtown - Addaher St. (وسط البلد - ش الظاهر)
+      city_lat: '30.06267'
+      city_lon: '31.258806'
+    - country: EG
+      city: Downtown - Qasr el Aini St. (وسط البلد - ش القصر العين)
+      city_lat: '30.032541'
+      city_lon: '31.233059'
+    - country: EG
+      city: Downtown - Ramses St. (وسط البلد - ش رمسيس)
+      city_lat: '30.071619'
+      city_lon: '31.277905'
+    - country: EG
+      city: Downtown - Talaat Harb (Soliman Pasha) St. (وسط البلد - ش طلعت حرب (سليمانباشا))
+      city_lat: '30.045099'
+      city_lon: '31.236963'
+    - country: EG
+      city: Giza - Abbas Bridge (الجيزة - كوبري عباس)
+      city_lat: '30.015858'
+      city_lon: '31.220119'
+    - country: EG
+      city: Giza - Abdel Aal Canal St. (الجيزة - ش ترعة عبد العال)
+      city_lat: '30.017605'
+      city_lon: '31.199005'
+    - country: EG
+      city: Giza - Ahmed Zuwail St. (الجيزة - ش أحمد زويل)
+      city_lat: '30.029959'
+      city_lon: '31.211021'
+    - country: EG
+      city: Giza - Charles de Gaulle (Giza) St. (الجيزة - ش شارل ديجول (الجيزة))
+      city_lat: '30.034939'
+      city_lon: '31.218039'
+    - country: EG
+      city: Giza - Mourad St. (الجيزة - ش مراد)
+      city_lat: '30.018997'
+      city_lon: '31.21529'
+    - country: EG
+      city: Giza - Nahdet Masr St. (الجيزة - ش نهضة مصر)
+      city_lat: '30.027803'
+      city_lon: '31.213745'
+    - country: EG
+      city: Giza - Sheikh Mohamad bin Hamad Aal Than St. (الجيزة - ش الشيخ محمد بن حمدآل ثان)
+      city_lat: '30.013926'
+      city_lon: '31.192867'
+    - country: EG
+      city: Giza Zoo (حديقة الحيوان)
+      city_lat: '30.024'
+      city_lon: '31.213'
+    - country: EG
+      city: Haram - El Haram St. (الهرم - ش الهرم)
+      city_lat: '30.00876'
+      city_lon: '31.199671'
+    - country: EG
+      city: Haram - Khatam El Morsaleen St. (الهرم - ش خاتم المرسلين)
+      city_lat: '30.002777'
+      city_lon: '31.196386'
+    - country: EG
+      city: Haram - King Faisal St. (الهرم - ش الملك فيصل)
+      city_lat: '30.012774'
+      city_lon: '31.197052'
+    - country: EG
+      city: Haram - Madkour Sq. (الهرم - ميدان مدكور)
+      city_lat: '30.003613'
+      city_lon: '31.18598'
+    - country: EG
+      city: Heliopolis - Abdel Aziz Fahmy St. (هليوبوليس - ش عبد العزيز فهمي)
+      city_lat: '30.101976'
+      city_lon: '31.348951'
+    - country: EG
+      city: Heliopolis - Ahram St. (هليوبوليس - ش الأهرام)
+      city_lat: '30.090057'
+      city_lon: '31.319059'
+    - country: EG
+      city: Heliopolis - Ammar bin Yasser St. (هليوبوليس - ش عمار بن ياسر)
+      city_lat: '30.111834'
+      city_lon: '31.355238'
+    - country: EG
+      city: Heliopolis - Elkhaleefa el Ma&#39;moun St. (هليوبوليس - ش الخليفة المأمون)
+      city_lat: '30.090576'
+      city_lon: '31.311979'
+    - country: EG
+      city: Heliopolis - Hegaz St. (هليوبوليس - ش الحجاز)
+      city_lat: '30.114412'
+      city_lon: '31.350088'
+    - country: EG
+      city: 'Heliopolis – Roxy (هليوبوليس - جسر السويس) '
+      city_lat: '30.097353'
+      city_lon: '31.312881'
+    - country: EG
+      city: Imbaba - Bashteel St. (إمبابة - ش بشتيل)
+      city_lat: '30.074682'
+      city_lon: '31.200571'
+    - country: EG
+      city: Imbaba - Courniche (Gamal Abdel Nasser St.) (إمبابة - الكورنيش (ش جمال عبدالناصر))
+      city_lat: '30.106487'
+      city_lon: '31.218145'
+    - country: EG
+      city: Imbaba - Dr. Mohamed Moheb Zaki St. (إمبابة - ش دكتور محمد محب زكي)
+      city_lat: '30.078861'
+      city_lon: '31.216213'
+    - country: EG
+      city: Imbaba - El Bouhi St. (إمبابة - ش البوهي)
+      city_lat: '30.09416'
+      city_lon: '31.214174'
+    - country: EG
+      city: Imbaba - El Kawmiya El Arabiya St. (إمبابة - ش القومية العربية)
+      city_lat: '30.094273'
+      city_lon: '31.20557'
+    - country: EG
+      city: Imbaba - El Masaabek St. (إمبابة - ش المسابك)
+      city_lat: '30.090837'
+      city_lon: '31.200378'
+    - country: EG
+      city: Imbaba - El Mataar St. (إمبابة - ش المطار)
+      city_lat: '30.077747'
+      city_lon: '31.210569'
+    - country: EG
+      city: Imbaba - El Sawahel Canal St. (إمبابة - ش ترعة السواحل)
+      city_lat: '30.101028'
+      city_lon: '31.216923'
+    - country: EG
+      city: Imbaba - Eltall St. (إمبابة - ش التل)
+      city_lat: '30.100397'
+      city_lon: '31.210314'
+    - country: EG
+      city: Imbaba - Geziret Mohamed St. (إمبابة - ش جزيرة محمد)
+      city_lat: '30.107229'
+      city_lon: '31.207331'
+    - country: EG
+      city: Imbaba - Imbaba Club St. (إمبابة - ش نادي إمبابة الرياضي)
+      city_lat: '30.084469'
+      city_lon: '31.216343'
+    - country: EG
+      city: Imbaba - Luxor St. (إمبابة - ش الأقصر)
+      city_lat: '30.083689'
+      city_lon: '31.208124'
+    - country: EG
+      city: Imbaba - Mamdouh Salem St. (إمبابة - ش ممدوح سالم)
+      city_lat: '30.087645'
+      city_lon: '31.21349'
+    - country: EG
+      city: Imbaba - Orouba St. (إمبابة - ش العروبة)
+      city_lat: '30.091003'
+      city_lon: '31.203232'
+    - country: EG
+      city: Imbaba (إمبابة)
+      city_lat: '30.074'
+      city_lon: '31.214'
+    - country: EG
+      city: Manial - Abdel Aziz Aal Seoud St. (المنيل - ش عبد العزيز آل سعود)
+      city_lat: '30.022064'
+      city_lon: '31.223059'
+    - country: EG
+      city: Manial - Abdel Rahman El Barquqi St. (المنيل - ش عبد الرحمن البرقوقي)
+      city_lat: '30.018385'
+      city_lon: '31.223724'
+    - country: EG
+      city: Manial - El Bahr El Aazam St. (المنيل - ش البحر الأعظم)
+      city_lat: '30.004023'
+      city_lon: '31.216663'
+    - country: EG
+      city: Manial - El Gamaa Bridge (المنيل - كوبري الجامعة)
+      city_lat: '30.028456'
+      city_lon: '31.219625'
+    - country: EG
+      city: Manial - El Manial Museum St. (المنيل - ش متحف المنيل)
+      city_lat: '30.023104'
+      city_lon: '31.229153'
+    - country: EG
+      city: Manial - El Manial St. (المنيل - منيل وسانت)
+      city_lat: '30.014223'
+      city_lon: '31.224775'
+    - country: EG
+      city: Manial - El Pasha Sq. (المنيل - ميدان الباشا)
+      city_lat: '30.020929'
+      city_lon: '31.225483'
+    - country: EG
+      city: Manial - Magra El Oyoun St. (المنيل - ش مجرى العيون)
+      city_lat: '30.02132'
+      city_lon: '31.235741'
+    - country: EG
+      city: Mohandessin - Abdel Moneim El Sawy St. (المهندسين - ش عبد المنعم الصاوي)
+      city_lat: '30.065956'
+      city_lon: '31.196365'
+    - country: EG
+      city: Mohandessin - Abdel Moneim Sanad St. (المهندسين - ش عبد المنعم سند)
+      city_lat: '30.067238'
+      city_lon: '31.203617'
+    - country: EG
+      city: Mohandessin - Abul Mahassen El Shazly St. (المهندسين - ش أبو المحاسن الشاذلي)
+      city_lat: '30.056948'
+      city_lon: '31.206751'
+    - country: EG
+      city: Mohandessin - Ahmed Orabi St. (المهندسين - ش أحمد عرابي)
+      city_lat: '30.065157'
+      city_lon: '31.202288'
+    - country: EG
+      city: Mohandessin - Atabra St. (المهندسين - ش عطبرة)
+      city_lat: '30.069168'
+      city_lon: '31.198833'
+    - country: EG
+      city: Mohandessin - El Alamein St. (المهندسين - ش العلمين)
+      city_lat: '30.069281'
+      city_lon: '31.204433'
+    - country: EG
+      city: Mohandessin - El Sheikh El Maraghy St. (المهندسين - ش الشيخ المراغي)
+      city_lat: '30.049408'
+      city_lon: '31.212029'
+    - country: EG
+      city: Mohandessin - Elbatal Ahmed Abdelaziz St. (المهندسين - ش البطل أحمد عبد العزيز)
+      city_lat: '30.052937'
+      city_lon: '31.206493'
+    - country: EG
+      city: Mohandessin - Farid Shawky St. (المهندسين - ش فريد شوقي)
+      city_lat: '30.054348'
+      city_lon: '31.210485'
+    - country: EG
+      city: Mohandessin - Gameat Eldowal St. (المهندسين - ش جامعة الدول العربية)
+      city_lat: '30.053865'
+      city_lon: '31.202501'
+    - country: EG
+      city: Mohandessin - Gol Gamal St. (المهندسين - ش جول جمال)
+      city_lat: '30.054775'
+      city_lon: '31.2057'
+    - country: EG
+      city: Mohandessin - Lebanon St. (المهندسين - ش لبنان)
+      city_lat: '30.057617'
+      city_lon: '31.195292'
+    - country: EG
+      city: Mohandessin - Mahmoud Khalil El Hossary St. (المهندسين - ش محمود خليل الحصري)
+      city_lat: '30.055983'
+      city_lon: '31.21278'
+    - country: EG
+      city: Mohandessin - Mohie Eddin Abul Ezz St. (المهندسين - ش محيي الدين أبو العز)
+      city_lat: '30.044653'
+      city_lon: '31.199778'
+    - country: EG
+      city: Mohandessin - Mosaddak St. (المهندسين - ش مصدق)
+      city_lat: '30.039043'
+      city_lon: '31.203445'
+    - country: EG
+      city: Mohandessin - Nadi El Seid St. (المهندسين - ش نادي الصيد)
+      city_lat: '30.043501'
+      city_lon: '31.207911'
+    - country: EG
+      city: Mohandessin - Naguib Mahfouz St. (المهندسين - ش نجيب محفوظ)
+      city_lat: '30.051395'
+      city_lon: '31.214582'
+    - country: EG
+      city: Mohandessin - Omar Toson St. (المهندسين - ش عمر طوسون)
+      city_lat: '30.066513'
+      city_lon: '31.210613'
+    - country: EG
+      city: Mohandessin - Shehab St. (المهندسين - ش شهاب)
+      city_lat: '30.049706'
+      city_lon: '31.196709'
+    - country: EG
+      city: Mohandessin - Sorya St. (المهندسين - ش سوريا)
+      city_lat: '30.053308'
+      city_lon: '31.198812'
+    - country: EG
+      city: Mohandessin - Sudan St. (المهندسين - ش السودان)
+      city_lat: '30.068575'
+      city_lon: '31.208681'
+    - country: EG
+      city: Mohandessin - Tanta (Sayyed Makkawi) St. (المهندسين - ش طنطا (سيد مكاوي))
+      city_lat: '30.054607'
+      city_lon: '31.208532'
+    - country: EG
+      city: Mohandessin - Wadi El Nil St. (المهندسين - ش وادي النيل)
+      city_lat: '30.058304'
+      city_lon: '31.201065'
+    - country: EG
+      city: Mohandessin – Nahya (المهندسين – ناهيا)
+      city_lat: '30.043242'
+      city_lon: '31.185379'
+    - country: EG
+      city: Mokattam - El Mokattam St. (المقطم - ش المقطم)
+      city_lat: '30.02199'
+      city_lon: '31.278934'
+    - country: EG
+      city: Nasr City (مدينة نصر)
+      city_lat: '30.068203'
+      city_lon: '31.33657'
+    - country: EG
+      city: Nasr City - Abbas el Aqqad St. (مدينة نصر - ش عباس العقاد)
+      city_lat: '30.066643'
+      city_lon: '31.336527'
+    - country: EG
+      city: Nasr City - Hassan Maamoun St. (مدينة نصر - ش حسن مأمون)
+      city_lat: '30.067087'
+      city_lon: '31.357342'
+    - country: EG
+      city: Nasr City - Makram Ebeid St. (مدينة نصر - ش مكرم عبيد)
+      city_lat: '30.061016'
+      city_lon: '31.345453'
+    - country: EG
+      city: Old Cairo - Ain El Seera Area (مصر القديمة - منطقة عين الصيرة)
+      city_lat: '30.009615'
+      city_lon: '31.251984'
+    - country: EG
+      city: Old Cairo - El Khayyala St. (مصر القديمة - ش الخيالة)
+      city_lat: '30.001217'
+      city_lon: '31.256618'
+    - country: EG
+      city: Old Cairo - El Kordy St. (مصر القديمة - ش الكردي)
+      city_lat: '29.998913'
+      city_lon: '31.265074'
+    - country: EG
+      city: Old Cairo - El Seyana St. (مصر القديمة - ش الصيانة)
+      city_lat: '29.997389'
+      city_lon: '31.270952'
+    - country: EG
+      city: Old Cairo - Masr El Kadeema St. (مصر القديمة - ش مصر القديمة)
+      city_lat: '30.004486'
+      city_lon: '31.245502'
+    - country: EG
+      city: Old Cairo - Salah Salem St. (مصر القديمة - ش صلاح سالم)
+      city_lat: '30.015411'
+      city_lon: '31.241341'
+    - country: EG
+      city: Qubba - El Matareya St. (القبة - ش المطرية)
+      city_lat: '30.094383'
+      city_lon: '31.295713'
+    - country: EG
+      city: Qubba - El Sawah Sq. (القبة - ميدان السواح)
+      city_lat: '30.102884'
+      city_lon: '31.30125'
+    - country: EG
+      city: Qubba - Masr and Sudan St. (القبة - ش مصر و السودان)
+      city_lat: '30.086622'
+      city_lon: '31.286446'
+    - country: EG
+      city: Qubba - Sekket el Waily St. (القبة - ش سكة الوايلي)
+      city_lat: '30.088795'
+      city_lon: '31.287195'
+    - country: EG
+      city: Shooting Club (نادي الصيد)
+      city_lat: '30.046'
+      city_lon: '31.202'
+    - country: EG
+      city: Shoubra - El Kablat St. (شبرا - ش الكابلات)
+      city_lat: '30.113615'
+      city_lon: '31.28816'
+    - country: EG
+      city: Shoubra - El Sekka El Hadeed St. (شبرا - ش السكة الحديد)
+      city_lat: '30.132805'
+      city_lon: '31.280823'
+    - country: EG
+      city: Shoubra - El Teraa El Boulakeya St. (شبرا - ش الترعة البولاقية)
+      city_lat: '30.143717'
+      city_lon: '31.270008'
+    - country: EG
+      city: Shoubra - Esko St. (شبرا - ش اسكو)
+      city_lat: '30.152327'
+      city_lon: '31.278763'
+    - country: EG
+      city: Shoubra - Metwally El Shaarawi St. (شبرا - ش متولي الشعراوي)
+      city_lat: '30.152475'
+      city_lon: '31.282667'
+    - country: EG
+      city: Shoubra - Mogamma&#39; El Masane&#39; St. (شبرا - ش مجمع المصانع)
+      city_lat: '30.105856'
+      city_lon: '31.271553'
+    - country: EG
+      city: Shoubra - Old Mostorod Road St. (شبرا - ش طريق مسطرد القديم)
+      city_lat: '30.128277'
+      city_lon: '31.298889'
+    - country: EG
+      city: Shoubra - Omar El Mokhtar St. (شبرا - ش عمر المختار)
+      city_lat: '30.121634'
+      city_lon: '31.297174'
+    - country: EG
+      city: Shoubra - Tereet El Ismailia St. (شبرا - ش ترعة الإسماعيلية)
+      city_lat: '30.153143'
+      city_lon: '31.298033'
+    - country: EG
+      city: Zamalek - Abul Feda St. (الزمالك - ش أبو الفدا)
+      city_lat: '30.070971'
+      city_lon: '31.219904'
+    - country: EG
+      city: Zamalek - Aziz Abaza St. (الزمالك - ش عزيز أباظة)
+      city_lat: '30.061275'
+      city_lon: '31.224154'
+    - country: EG
+      city: Zamalek - Brazil St. (الزمالك - ش البرازيل)
+      city_lat: '30.060757'
+      city_lon: '31.222458'
+    - country: EG
+      city: Zamalek - Cairo Opera House Area (الزمالك - منطقة دار الأوبرا)
+      city_lat: '30.041811'
+      city_lon: '31.223381'
+    - country: EG
+      city: Zamalek - Cairo Tower Area (الزمالك - منطقة برج القاهرة)
+      city_lat: '30.04664'
+      city_lon: '31.222265'
+    - country: EG
+      city: Zamalek - El Gezeera St. (الزمالك - ش الجزيرة)
+      city_lat: '30.056187'
+      city_lon: '31.221621'
+    - country: EG
+      city: Zamalek - El Maqreezy St. (الزمالك - ش المقريزي)
+      city_lat: '30.06146'
+      city_lon: '31.2169'
+    - country: EG
+      city: Zamalek - Hassan Assem St. (الزمالك - ش حسن عاصم)
+      city_lat: '30.062037'
+      city_lon: '31.221191'
+    - country: EG
+      city: Zamalek - Hassan Sabry St. (الزمالك - ش حسن صبري)
+      city_lat: '30.057562'
+      city_lon: '31.220697'
+    - country: EG
+      city: Zamalek - Ismail Mohamed St. (الزمالك - ش اسماعيل محمد)
+      city_lat: '30.064526'
+      city_lon: '31.218122'
+    - country: EG
+      city: Zamalek - Mohamad El Maraashly St. (الزمالك - ش محمد المرعشلي)
+      city_lat: '30.065344'
+      city_lon: '31.221472'
+    - country: EG
+      city: Zamalek - Mohamed Mazhar St. (الزمالك - ش محمد مظهر)
+      city_lat: '30.064211'
+      city_lon: '31.222866'
+    - country: EG
+      city: Zamalek - Shagaret El Dorr St. (الزمالك - ش شجرة الدر)
+      city_lat: '30.062519'
+      city_lon: '31.219625'
+    - country: EG
+      city: Ain Helwan Metro Station (محطة مترو عين حلوان)
+      city_lat: '29.862604'
+      city_lon: '31.324854'
+    - country: EG
+      city: Ain Shams Metro Station (محطة مترو عين شمس)
+      city_lat: '30.131062'
+      city_lon: '31.318974'
+    - country: EG
+      city: Bohooth Metro Station (محطة مترو البحوث)
+      city_lat: '30.035885'
+      city_lon: '31.2001'
+    - country: EG
+      city: Cairo University Metro Station (محطة مترو جامعة القاهرة)
+      city_lat: '30.026077'
+      city_lon: '31.200956'
+    - country: EG
+      city: Dar El-Salam Metro Station (محطة مترو دار السلام)
+      city_lat: '29.982'
+      city_lon: '31.242027'
+    - country: EG
+      city: Dokki Metro Station (محطة مترو الدقي)
+      city_lat: '30.038448'
+      city_lon: '31.2122'
+    - country: EG
+      city: El-Demerdash Metro Station (محطة مترو الدمرداش)
+      city_lat: '30.07756'
+      city_lon: '31.277431'
+    - country: EG
+      city: El-Giza Metro Station (محطة مترو الجيزة)
+      city_lat: '30.00601'
+      city_lon: '31.208038'
+    - country: EG
+      city: El-Maasara Metro Station (محطة مترو المعصرة)
+      city_lat: '29.906845'
+      city_lon: '31.299534'
+    - country: EG
+      city: El-Malek El-Saleh Metro Station (محطة مترو الملك الصالح)
+      city_lat: '30.017679'
+      city_lon: '31.231127'
+    - country: EG
+      city: El-Marg Metro Station (محطة مترو المرج)
+      city_lat: '30.151993'
+      city_lon: '31.335325'
+    - country: EG
+      city: El-Matareyya Metro Station (محطة مترو المطرية)
+      city_lat: '30.120928'
+      city_lon: '31.313696'
+    - country: EG
+      city: El-Zahraa Metro Station (محطة مترو الزهراء)
+      city_lat: '29.995493'
+      city_lon: '31.230742'
+    - country: EG
+      city: Ezbet El-Nakhi Metro Station (محطة مترو عزبة النخل)
+      city_lat: '30.139412'
+      city_lon: '31.324339'
+    - country: EG
+      city: Faisal Metro Station (محطة مترو فيصل)
+      city_lat: '30.017456'
+      city_lon: '31.203747'
+    - country: EG
+      city: Gezira(Opera) Metro Station (محطة مترو الأوبرا)
+      city_lat: '30.041866'
+      city_lon: '31.225077'
+    - country: EG
+      city: Ghamra Metro Station (محطة مترو غمرة)
+      city_lat: '30.069057'
+      city_lon: '31.264601'
+    - country: EG
+      city: Giza Railway Metro Station (محطة مترو سكة حديد الجيزة)
+      city_lat: '30.010656'
+      city_lon: '31.20705'
+    - country: EG
+      city: Hadayeq El-Maadi Metro Station (محطة مترو حدائق المعادي)
+      city_lat: '29.969807'
+      city_lon: '31.250868'
+    - country: EG
+      city: Hadayeq El-Zaitoun Metro Station (محطة مترو حدائق الزيتون)
+      city_lat: '30.10593'
+      city_lon: '31.310434'
+    - country: EG
+      city: Hadayeq Helwan Metro Station (محطة مترو حدائق حلوان)
+      city_lat: '29.897137'
+      city_lon: '31.303997'
+    - country: EG
+      city: Hammamat El-Qobba Metro Station (محطة مترو حمامات القبة)
+      city_lat: '30.091265'
+      city_lon: '31.298504'
+    - country: EG
+      city: Helmiet El-Zaitoun Metro Station (محطة مترو حلمية الزيتون)
+      city_lat: '30.113281'
+      city_lon: '31.313953'
+    - country: EG
+      city: Helwan Metro Station (محطة مترو حلوان)
+      city_lat: '29.848982'
+      city_lon: '31.334209'
+    - country: EG
+      city: Helwan University Metro Station (محطة مترو جامعة حلوان)
+      city_lat: '29.86949'
+      city_lon: '31.320047'
+    - country: EG
+      city: Khalafawy Metro Station (محطة مترو الخلفاوي)
+      city_lat: '30.097836'
+      city_lon: '31.244602'
+    - country: EG
+      city: Kobri El-Qobba Metro Station (محطة مترو كوبري القبة)
+      city_lat: '30.087515'
+      city_lon: '31.293783'
+    - country: EG
+      city: Koliet El-Zeraa Metro Station (محطة مترو كلية الزراعة)
+      city_lat: '30.113689'
+      city_lon: '31.248722'
+    - country: EG
+      city: Kozzika Metro Station (محطة مترو كوتسيكا)
+      city_lat: '29.936417'
+      city_lon: '31.281382'
+    - country: EG
+      city: Maadi Metro Station (محطة مترو المعادي)
+      city_lat: '29.960289'
+      city_lon: '31.257734'
+    - country: EG
+      city: Manshiet El-Sadr Metro Station (محطة مترو منشية الصدر)
+      city_lat: '30.082054'
+      city_lon: '31.287476'
+    - country: EG
+      city: Mar Girgis Metro Station (محطة مترو مار جرجس)
+      city_lat: '30.006195'
+      city_lon: '31.229452'
+    - country: EG
+      city: Massara Metro Station (محطة مترو مسرة)
+      city_lat: '30.070841'
+      city_lon: '31.245117'
+    - country: EG
+      city: Mezallat Metro Station (محطة مترو المظلات)
+      city_lat: '30.104074'
+      city_lon: '31.245588'
+    - country: EG
+      city: Mubarak Metro Station (محطة مترو مبارك)
+      city_lat: '30.061071'
+      city_lon: '31.246017'
+    - country: EG
+      city: Naguib Metro Station (محطة مترو محمد نجيب)
+      city_lat: '30.045322'
+      city_lon: '31.244129'
+    - country: EG
+      city: Nasser Metro Station (محطة مترو جمال عبد الناصر)
+      city_lat: '30.053419'
+      city_lon: '31.238724'
+    - country: EG
+      city: New El-Marg Metro Station (محطة مترو المرج الجديد)
+      city_lat: '30.163681'
+      city_lon: '31.338329'
+    - country: EG
+      city: Omm el Misryeen Metro Station (محطة مترو أم المصريين)
+      city_lat: '30.005489'
+      city_lon: '31.207825'
+    - country: EG
+      city: Orabi Metro Station (محطة مترو أحمد عرابي)
+      city_lat: '30.056911'
+      city_lon: '31.242456'
+    - country: EG
+      city: Ramses Metro Station (رمسيس محطة مترو)
+      city_lat: '30.062929'
+      city_lon: '31.246449'
+    - country: EG
+      city: Road El-Farag Metro Station (محطة مترو روض الفرج)
+      city_lat: '30.080606'
+      city_lon: '31.245375'
+    - country: EG
+      city: Saad Zaghloul Metro Station (محطة مترو سعد زغلول)
+      city_lat: '30.0357'
+      city_lon: '31.237606'
+    - country: EG
+      city: Sadat Metro Station (محطة مترو السادات)
+      city_lat: '30.044802'
+      city_lon: '31.23559'
+    - country: EG
+      city: Sainte Teresa Metro Station (محطة مترو سانت تريز)
+      city_lat: '30.087959'
+      city_lon: '31.245502'
+    - country: EG
+      city: Sakanat El-Maadi Metro Station (محطة مترو ثكنات المعادي)
+      city_lat: '29.953337'
+      city_lon: '31.26297'
+    - country: EG
+      city: Sakiat Mekki Metro Station (محطة مترو ساقية مكي)
+      city_lat: '29.995529'
+      city_lon: '31.208595'
+    - country: EG
+      city: Saray El-Qobba Metro Station (محطة مترو سراي القبة)
+      city_lat: '30.097725'
+      city_lon: '31.304468'
+    - country: EG
+      city: Sayyeda Zeinab Metro Station (محطة مترو السيدة زينب)
+      city_lat: '30.029308'
+      city_lon: '31.235291'
+    - country: EG
+      city: Shobra Metro Station (محطة مترو شبرا)
+      city_lat: '30.122524'
+      city_lon: '31.244303'
+    - country: EG
+      city: Shubra El-Kheima Metro Station (محطة مترو شبرا الخيمة)
+      city_lat: '30.12167'
+      city_lon: '31.245159'
+    - country: EG
+      city: Tora El-Asmant Metro Station (محطة مترو طرة الأسمنت)
+      city_lat: '29.925964'
+      city_lon: '31.287518'
+    - country: EG
+      city: Tora El-Balad Metro Station (محطة مترو طرة البلد)
+      city_lat: '29.947275'
+      city_lon: '31.272968'
+    - country: EG
+      city: Wadi Hof Metro Station (محطة مترو وادي حوف)
+      city_lat: '29.879017'
+      city_lon: '31.313438'

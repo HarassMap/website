@@ -28,19 +28,25 @@
             <div class="row">
                 <div class="col-12 col-md-5">
                     <div class="form-group">
+                        {{ form_label('country', 'Country' | _) }}
+                        {{ form_select('country', [], '', {'class': 'form-control'}) }}
+                    </div>
+                </div>
+                <div class="col-12 col-md-7">
+                    <div class="form-group">
                         {{ form_label('city', 'City' | _) }}
                         {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off'}) }}
                     </div>
                 </div>
-                <div class="col-12 col-md-7">
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-5">
                     <div class="form-group">
                         {{ form_label('region', 'Region' | _) }}
                         {{ form_text('region', '', {'class': 'form-control'}) }}
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-7">
                     <div class="form-group">
                         {{ form_label('address', 'Address' | _) }}
                         {{ form_text('address', '', {'class': 'form-control'}) }}

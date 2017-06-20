@@ -1,0 +1,997 @@
+countries:
+    - iso: AD
+      country: Andorra
+      capital: Andorra la Vella
+      cities: 0
+    - iso: AE
+      country: United Arab Emirates
+      capital: Abu Dhabi
+      cities: 0
+    - iso: AF
+      country: Afghanistan
+      capital: Kabul
+      cities: 0
+    - iso: AG
+      country: Antigua and Barbuda
+      capital: St. John's
+      cities: 0
+    - iso: AI
+      country: Anguilla
+      capital: The Valley
+      cities: 0
+    - iso: AL
+      country: Albania
+      capital: Tirana
+      cities: 0
+    - iso: AM
+      country: Armenia
+      capital: Yerevan
+      cities: 0
+    - iso: AN
+      country: Netherlands Antilles
+      capital: Willemstad
+      cities: 0
+    - iso: AO
+      country: Angola
+      capital: Luanda
+      cities: 0
+    - iso: AQ
+      country: Antarctica
+      capital: ''
+      cities: 0
+    - iso: AR
+      country: Argentina
+      capital: Buenos Aires
+      cities: 0
+    - iso: AS
+      country: American Samoa
+      capital: Pago Pago
+      cities: 0
+    - iso: AT
+      country: Austria
+      capital: Vienna
+      cities: 0
+    - iso: AU
+      country: Australia
+      capital: Canberra
+      cities: 0
+    - iso: AW
+      country: Aruba
+      capital: Oranjestad
+      cities: 0
+    - iso: AX
+      country: Aland Islands
+      capital: Mariehamn
+      cities: 0
+    - iso: AZ
+      country: Azerbaijan
+      capital: Baku
+      cities: 0
+    - iso: BA
+      country: Bosnia and Herzegovina
+      capital: Sarajevo
+      cities: 0
+    - iso: BB
+      country: Barbados
+      capital: Bridgetown
+      cities: 0
+    - iso: BD
+      country: Bangladesh
+      capital: Dhaka
+      cities: 0
+    - iso: BE
+      country: Belgium
+      capital: Brussels
+      cities: 0
+    - iso: BF
+      country: Burkina Faso
+      capital: Ouagadougou
+      cities: 0
+    - iso: BG
+      country: Bulgaria
+      capital: Sofia
+      cities: 0
+    - iso: BH
+      country: Bahrain
+      capital: Manama
+      cities: 0
+    - iso: BI
+      country: Burundi
+      capital: Bujumbura
+      cities: 0
+    - iso: BJ
+      country: Benin
+      capital: Porto-Novo
+      cities: 0
+    - iso: BL
+      country: Saint BarthÃ©lemy
+      capital: Gustavia
+      cities: 0
+    - iso: BM
+      country: Bermuda
+      capital: Hamilton
+      cities: 0
+    - iso: BN
+      country: Brunei
+      capital: Bandar Seri Begawan
+      cities: 0
+    - iso: BO
+      country: Bolivia
+      capital: La Paz
+      cities: 0
+    - iso: BR
+      country: Brazil
+      capital: BrasÃ­lia
+      cities: 0
+    - iso: BS
+      country: Bahamas
+      capital: Nassau
+      cities: 0
+    - iso: BT
+      country: Bhutan
+      capital: Thimphu
+      cities: 0
+    - iso: BV
+      country: Bouvet Island
+      capital: ''
+      cities: 0
+    - iso: BW
+      country: Botswana
+      capital: Gaborone
+      cities: 0
+    - iso: BY
+      country: Belarus
+      capital: Minsk
+      cities: 0
+    - iso: BZ
+      country: Belize
+      capital: Belmopan
+      cities: 0
+    - iso: CA
+      country: Canada
+      capital: Ottawa
+      cities: 0
+    - iso: CC
+      country: Cocos Islands
+      capital: West Island
+      cities: 0
+    - iso: CD
+      country: Democratic Republic of the Congo
+      capital: Kinshasa
+      cities: 0
+    - iso: CF
+      country: Central African Republic
+      capital: Bangui
+      cities: 0
+    - iso: CG
+      country: Congo Brazzavile
+      capital: Brazzaville
+      cities: 0
+    - iso: CH
+      country: Switzerland
+      capital: Berne
+      cities: 0
+    - iso: CI
+      country: Ivory Coast
+      capital: Yamoussoukro
+      cities: 0
+    - iso: CK
+      country: Cook Islands
+      capital: Avarua
+      cities: 0
+    - iso: CL
+      country: Chile
+      capital: Santiago
+      cities: 0
+    - iso: CM
+      country: Cameroon
+      capital: YaoundÃ©
+      cities: 0
+    - iso: CN
+      country: China
+      capital: Beijing
+      cities: 0
+    - iso: CO
+      country: Colombia
+      capital: BogotÃ¡
+      cities: 0
+    - iso: CR
+      country: Costa Rica
+      capital: San JosÃ©
+      cities: 0
+    - iso: CS
+      country: Serbia and Montenegro
+      capital: Belgrade
+      cities: 0
+    - iso: CU
+      country: Cuba
+      capital: Havana
+      cities: 0
+    - iso: CV
+      country: Cape Verde
+      capital: Praia
+      cities: 0
+    - iso: CX
+      country: Christmas Island
+      capital: Flying Fish Cove
+      cities: 0
+    - iso: CY
+      country: Cyprus
+      capital: Nicosia
+      cities: 0
+    - iso: CZ
+      country: Czech Republic
+      capital: Prague
+      cities: 0
+    - iso: DE
+      country: Germany
+      capital: Berlin
+      cities: 0
+    - iso: DJ
+      country: Djibouti
+      capital: Djibouti
+      cities: 0
+    - iso: DK
+      country: Denmark
+      capital: Copenhagen
+      cities: 0
+    - iso: DM
+      country: Dominica
+      capital: Roseau
+      cities: 0
+    - iso: DO
+      country: Dominican Republic
+      capital: Santo Domingo
+      cities: 0
+    - iso: DZ
+      country: Algeria
+      capital: Algiers
+      cities: 0
+    - iso: EC
+      country: Ecuador
+      capital: Quito
+      cities: 0
+    - iso: EE
+      country: Estonia
+      capital: Tallinn
+      cities: 0
+    - iso: EG
+      country: Egypt
+      capital: Cairo
+      cities: 100
+    - iso: EH
+      country: Western Sahara
+      capital: El-Aaiun
+      cities: 0
+    - iso: ER
+      country: Eritrea
+      capital: Asmara
+      cities: 0
+    - iso: ES
+      country: Spain
+      capital: Madrid
+      cities: 0
+    - iso: ET
+      country: Ethiopia
+      capital: Addis Ababa
+      cities: 0
+    - iso: FI
+      country: Finland
+      capital: Helsinki
+      cities: 0
+    - iso: FJ
+      country: Fiji
+      capital: Suva
+      cities: 0
+    - iso: FK
+      country: Falkland Islands
+      capital: Stanley
+      cities: 0
+    - iso: FM
+      country: Micronesia
+      capital: Palikir
+      cities: 0
+    - iso: FO
+      country: Faroe Islands
+      capital: TÃ³rshavn
+      cities: 0
+    - iso: FR
+      country: France
+      capital: Paris
+      cities: 0
+    - iso: GA
+      country: Gabon
+      capital: Libreville
+      cities: 0
+    - iso: GB
+      country: United Kingdom
+      capital: London
+      cities: 0
+    - iso: GD
+      country: Grenada
+      capital: St. George's
+      cities: 0
+    - iso: GE
+      country: Georgia
+      capital: Tbilisi
+      cities: 0
+    - iso: GF
+      country: French Guiana
+      capital: Cayenne
+      cities: 0
+    - iso: GG
+      country: Guernsey
+      capital: St Peter Port
+      cities: 0
+    - iso: GH
+      country: Ghana
+      capital: Accra
+      cities: 0
+    - iso: GI
+      country: Gibraltar
+      capital: Gibraltar
+      cities: 0
+    - iso: GL
+      country: Greenland
+      capital: Nuuk
+      cities: 0
+    - iso: GM
+      country: Gambia
+      capital: Banjul
+      cities: 0
+    - iso: GN
+      country: Guinea
+      capital: Conakry
+      cities: 0
+    - iso: GP
+      country: Guadeloupe
+      capital: Basse-Terre
+      cities: 0
+    - iso: GQ
+      country: Equatorial Guinea
+      capital: Malabo
+      cities: 0
+    - iso: GR
+      country: Greece
+      capital: Athens
+      cities: 0
+    - iso: GS
+      country: South Georgia and the South Sandwich Islands
+      capital: Grytviken
+      cities: 0
+    - iso: GT
+      country: Guatemala
+      capital: Guatemala City
+      cities: 0
+    - iso: GU
+      country: Guam
+      capital: HagÃ¥tÃ±a
+      cities: 0
+    - iso: GW
+      country: Guinea-Bissau
+      capital: Bissau
+      cities: 0
+    - iso: GY
+      country: Guyana
+      capital: Georgetown
+      cities: 0
+    - iso: HK
+      country: Hong Kong
+      capital: Hong Kong
+      cities: 0
+    - iso: HM
+      country: Heard Island and McDonald Islands
+      capital: ''
+      cities: 0
+    - iso: HN
+      country: Honduras
+      capital: Tegucigalpa
+      cities: 0
+    - iso: HR
+      country: Croatia
+      capital: Zagreb
+      cities: 0
+    - iso: HT
+      country: Haiti
+      capital: Port-au-Prince
+      cities: 0
+    - iso: HU
+      country: Hungary
+      capital: Budapest
+      cities: 0
+    - iso: ID
+      country: Indonesia
+      capital: Jakarta
+      cities: 0
+    - iso: IE
+      country: Ireland
+      capital: Dublin
+      cities: 0
+    - iso: IL
+      country: Israel
+      capital: Jerusalem
+      cities: 0
+    - iso: IM
+      country: Isle of Man
+      capital: Douglas, Isle of Man
+      cities: 0
+    - iso: IN
+      country: India
+      capital: New Delhi
+      cities: 0
+    - iso: IO
+      country: British Indian Ocean Territory
+      capital: Diego Garcia
+      cities: 0
+    - iso: IQ
+      country: Iraq
+      capital: Baghdad
+      cities: 0
+    - iso: IR
+      country: Iran
+      capital: Tehran
+      cities: 0
+    - iso: IS
+      country: Iceland
+      capital: ReykjavÃ­k
+      cities: 0
+    - iso: IT
+      country: Italy
+      capital: Rome
+      cities: 0
+    - iso: JE
+      country: Jersey
+      capital: Saint Helier
+      cities: 0
+    - iso: JM
+      country: Jamaica
+      capital: Kingston
+      cities: 0
+    - iso: JO
+      country: Jordan
+      capital: Amman
+      cities: 0
+    - iso: JP
+      country: Japan
+      capital: Tokyo
+      cities: 0
+    - iso: KE
+      country: Kenya
+      capital: Nairobi
+      cities: 0
+    - iso: KG
+      country: Kyrgyzstan
+      capital: Bishkek
+      cities: 0
+    - iso: KH
+      country: Cambodia
+      capital: Phnom Penh
+      cities: 0
+    - iso: KI
+      country: Kiribati
+      capital: South Tarawa
+      cities: 0
+    - iso: KM
+      country: Comoros
+      capital: Moroni
+      cities: 0
+    - iso: KN
+      country: Saint Kitts and Nevis
+      capital: Basseterre
+      cities: 0
+    - iso: KP
+      country: North Korea
+      capital: Pyongyang
+      cities: 0
+    - iso: KR
+      country: South Korea
+      capital: Seoul
+      cities: 0
+    - iso: KW
+      country: Kuwait
+      capital: Kuwait City
+      cities: 0
+    - iso: KY
+      country: Cayman Islands
+      capital: George Town
+      cities: 0
+    - iso: KZ
+      country: Kazakhstan
+      capital: Astana
+      cities: 0
+    - iso: LA
+      country: Laos
+      capital: Vientiane
+      cities: 0
+    - iso: LB
+      country: Lebanon
+      capital: Beirut
+      cities: 0
+    - iso: LC
+      country: Saint Lucia
+      capital: Castries
+      cities: 0
+    - iso: LI
+      country: Liechtenstein
+      capital: Vaduz
+      cities: 0
+    - iso: LK
+      country: Sri Lanka
+      capital: Colombo
+      cities: 0
+    - iso: LR
+      country: Liberia
+      capital: Monrovia
+      cities: 0
+    - iso: LS
+      country: Lesotho
+      capital: Maseru
+      cities: 0
+    - iso: LT
+      country: Lithuania
+      capital: Vilnius
+      cities: 0
+    - iso: LU
+      country: Luxembourg
+      capital: Luxembourg
+      cities: 0
+    - iso: LV
+      country: Latvia
+      capital: Riga
+      cities: 0
+    - iso: LY
+      country: Libya
+      capital: Tripolis
+      cities: 0
+    - iso: MA
+      country: Morocco
+      capital: Rabat
+      cities: 0
+    - iso: MC
+      country: Monaco
+      capital: Monaco
+      cities: 0
+    - iso: MD
+      country: Moldova
+      capital: Chi_in_u
+      cities: 0
+    - iso: ME
+      country: Montenegro
+      capital: Podgorica
+      cities: 0
+    - iso: MF
+      country: Saint Martin
+      capital: Marigot
+      cities: 0
+    - iso: MG
+      country: Madagascar
+      capital: Antananarivo
+      cities: 0
+    - iso: MH
+      country: Marshall Islands
+      capital: Uliga
+      cities: 0
+    - iso: MK
+      country: Macedonia
+      capital: Skopje
+      cities: 0
+    - iso: ML
+      country: Mali
+      capital: Bamako
+      cities: 0
+    - iso: MM
+      country: Myanmar
+      capital: Yangon
+      cities: 0
+    - iso: MN
+      country: Mongolia
+      capital: Ulan Bator
+      cities: 0
+    - iso: MO
+      country: Macao
+      capital: Macao
+      cities: 0
+    - iso: MP
+      country: Northern Mariana Islands
+      capital: Saipan
+      cities: 0
+    - iso: MQ
+      country: Martinique
+      capital: Fort-de-France
+      cities: 0
+    - iso: MR
+      country: Mauritania
+      capital: Nouakchott
+      cities: 0
+    - iso: MS
+      country: Montserrat
+      capital: Plymouth
+      cities: 0
+    - iso: MT
+      country: Malta
+      capital: Valletta
+      cities: 0
+    - iso: MU
+      country: Mauritius
+      capital: Port Louis
+      cities: 0
+    - iso: MV
+      country: Maldives
+      capital: MalÃ©
+      cities: 0
+    - iso: MW
+      country: Malawi
+      capital: Lilongwe
+      cities: 0
+    - iso: MX
+      country: Mexico
+      capital: Mexico City
+      cities: 0
+    - iso: MY
+      country: Malaysia
+      capital: Kuala Lumpur
+      cities: 0
+    - iso: MZ
+      country: Mozambique
+      capital: Maputo
+      cities: 0
+    - iso: NA
+      country: Namibia
+      capital: Windhoek
+      cities: 0
+    - iso: NC
+      country: New Caledonia
+      capital: NoumÃ©a
+      cities: 0
+    - iso: NE
+      country: Niger
+      capital: Niamey
+      cities: 0
+    - iso: NF
+      country: Norfolk Island
+      capital: Kingston
+      cities: 0
+    - iso: NG
+      country: Nigeria
+      capital: Abuja
+      cities: 0
+    - iso: NI
+      country: Nicaragua
+      capital: Managua
+      cities: 0
+    - iso: NL
+      country: Netherlands
+      capital: Amsterdam
+      cities: 0
+    - iso: 'NO'
+      country: Norway
+      capital: Oslo
+      cities: 0
+    - iso: NP
+      country: Nepal
+      capital: Kathmandu
+      cities: 0
+    - iso: NR
+      country: Nauru
+      capital: Yaren
+      cities: 0
+    - iso: NU
+      country: Niue
+      capital: Alofi
+      cities: 0
+    - iso: NZ
+      country: New Zealand
+      capital: Wellington
+      cities: 0
+    - iso: OM
+      country: Oman
+      capital: Muscat
+      cities: 0
+    - iso: PA
+      country: Panama
+      capital: Panama City
+      cities: 0
+    - iso: PE
+      country: Peru
+      capital: Lima
+      cities: 0
+    - iso: PF
+      country: French Polynesia
+      capital: Papeete
+      cities: 0
+    - iso: PG
+      country: Papua New Guinea
+      capital: Port Moresby
+      cities: 0
+    - iso: PH
+      country: Philippines
+      capital: Manila
+      cities: 0
+    - iso: PK
+      country: Pakistan
+      capital: Islamabad
+      cities: 0
+    - iso: PL
+      country: Poland
+      capital: Warsaw
+      cities: 0
+    - iso: PM
+      country: Saint Pierre and Miquelon
+      capital: Saint-Pierre
+      cities: 0
+    - iso: PN
+      country: Pitcairn
+      capital: Adamstown
+      cities: 0
+    - iso: PR
+      country: Puerto Rico
+      capital: San Juan
+      cities: 0
+    - iso: PS
+      country: Palestinian Territory
+      capital: East Jerusalem
+      cities: 0
+    - iso: PT
+      country: Portugal
+      capital: Lisbon
+      cities: 0
+    - iso: PW
+      country: Palau
+      capital: Koror
+      cities: 0
+    - iso: PY
+      country: Paraguay
+      capital: AsunciÃ³n
+      cities: 0
+    - iso: QA
+      country: Qatar
+      capital: Doha
+      cities: 0
+    - iso: RE
+      country: Reunion
+      capital: Saint-Denis
+      cities: 0
+    - iso: RO
+      country: Romania
+      capital: Bucharest
+      cities: 0
+    - iso: RS
+      country: Serbia
+      capital: Belgrade
+      cities: 0
+    - iso: RU
+      country: Russia
+      capital: Moscow
+      cities: 0
+    - iso: RW
+      country: Rwanda
+      capital: Kigali
+      cities: 0
+    - iso: SA
+      country: Saudi Arabia
+      capital: Riyadh
+      cities: 0
+    - iso: SB
+      country: Solomon Islands
+      capital: Honiara
+      cities: 0
+    - iso: SC
+      country: Seychelles
+      capital: Victoria
+      cities: 0
+    - iso: SD
+      country: Sudan
+      capital: Khartoum
+      cities: 0
+    - iso: SE
+      country: Sweden
+      capital: Stockholm
+      cities: 0
+    - iso: SG
+      country: Singapore
+      capital: Singapur
+      cities: 0
+    - iso: SH
+      country: Saint Helena
+      capital: Jamestown
+      cities: 0
+    - iso: SI
+      country: Slovenia
+      capital: Ljubljana
+      cities: 0
+    - iso: SJ
+      country: Svalbard and Jan Mayen
+      capital: Longyearbyen
+      cities: 0
+    - iso: SK
+      country: Slovakia
+      capital: Bratislava
+      cities: 0
+    - iso: SL
+      country: Sierra Leone
+      capital: Freetown
+      cities: 0
+    - iso: SM
+      country: San Marino
+      capital: San Marino
+      cities: 0
+    - iso: SN
+      country: Senegal
+      capital: Dakar
+      cities: 0
+    - iso: SO
+      country: Somalia
+      capital: Mogadishu
+      cities: 0
+    - iso: SR
+      country: Suriname
+      capital: Paramaribo
+      cities: 0
+    - iso: ST
+      country: Sao Tome and Principe
+      capital: SÃ£o TomÃ©
+      cities: 0
+    - iso: SV
+      country: El Salvador
+      capital: San Salvador
+      cities: 0
+    - iso: SY
+      country: Syria
+      capital: Damascus
+      cities: 0
+    - iso: SZ
+      country: Swaziland
+      capital: Mbabane
+      cities: 0
+    - iso: TC
+      country: Turks and Caicos Islands
+      capital: Cockburn Town
+      cities: 0
+    - iso: TD
+      country: Chad
+      capital: N'Djamena
+      cities: 0
+    - iso: TF
+      country: French Southern Territories
+      capital: Martin-de-ViviÃ¨s
+      cities: 0
+    - iso: TG
+      country: Togo
+      capital: LomÃ©
+      cities: 0
+    - iso: TH
+      country: Thailand
+      capital: Bangkok
+      cities: 0
+    - iso: TJ
+      country: Tajikistan
+      capital: Dushanbe
+      cities: 0
+    - iso: TK
+      country: Tokelau
+      capital: ''
+      cities: 0
+    - iso: TL
+      country: East Timor
+      capital: Dili
+      cities: 0
+    - iso: TM
+      country: Turkmenistan
+      capital: Ashgabat
+      cities: 0
+    - iso: TN
+      country: Tunisia
+      capital: Tunis
+      cities: 0
+    - iso: TO
+      country: Tonga
+      capital: Nuku'alofa
+      cities: 0
+    - iso: TR
+      country: Turkey
+      capital: Ankara
+      cities: 0
+    - iso: TT
+      country: Trinidad and Tobago
+      capital: Port of Spain
+      cities: 0
+    - iso: TV
+      country: Tuvalu
+      capital: Vaiaku
+      cities: 0
+    - iso: TW
+      country: Taiwan
+      capital: Taipei
+      cities: 0
+    - iso: TZ
+      country: Tanzania
+      capital: Dar es Salaam
+      cities: 0
+    - iso: UA
+      country: Ukraine
+      capital: Kiev
+      cities: 0
+    - iso: UG
+      country: Uganda
+      capital: Kampala
+      cities: 0
+    - iso: UM
+      country: United States Minor Outlying Islands
+      capital: ''
+      cities: 0
+    - iso: US
+      country: United States
+      capital: Washington
+      cities: 0
+    - iso: UY
+      country: Uruguay
+      capital: Montevideo
+      cities: 0
+    - iso: UZ
+      country: Uzbekistan
+      capital: Tashkent
+      cities: 0
+    - iso: VA
+      country: Vatican
+      capital: Vatican City
+      cities: 0
+    - iso: VC
+      country: Saint Vincent and the Grenadines
+      capital: Kingstown
+      cities: 0
+    - iso: VE
+      country: Venezuela
+      capital: Caracas
+      cities: 0
+    - iso: VG
+      country: British Virgin Islands
+      capital: Road Town
+      cities: 0
+    - iso: VI
+      country: U.S. Virgin Islands
+      capital: Charlotte Amalie
+      cities: 0
+    - iso: VN
+      country: Vietnam
+      capital: Hanoi
+      cities: 0
+    - iso: VU
+      country: Vanuatu
+      capital: Port Vila
+      cities: 0
+    - iso: WF
+      country: Wallis and Futuna
+      capital: MatÃ¢'Utu
+      cities: 0
+    - iso: WS
+      country: Samoa
+      capital: Apia
+      cities: 0
+    - iso: YE
+      country: Yemen
+      capital: Sanâ€˜aâ€™
+      cities: 0
+    - iso: YT
+      country: Mayotte
+      capital: Mamoudzou
+      cities: 0
+    - iso: ZA
+      country: South Africa
+      capital: Pretoria
+      cities: 0
+    - iso: ZM
+      country: Zambia
+      capital: Lusaka
+      cities: 0
+    - iso: ZW
+      country: Zimbabwe
+      capital: Harare
+      cities: 0
+    - iso: XK
+      country: Kosovo
+      capital: Pristina
+      cities: 0
+    - iso: SS
+      country: South Sudan
+      capital: Juba
+      cities: 0

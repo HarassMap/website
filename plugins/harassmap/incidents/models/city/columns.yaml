@@ -1,0 +1,7 @@
+columns:
+    name:
+        label: name
+        type: text
+    country_id:
+        label: country_id
+        type: text

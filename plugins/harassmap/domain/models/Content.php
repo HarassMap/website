@@ -22,6 +22,8 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $link
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Content whereLink($value)
  */
 class Content extends Model
 {

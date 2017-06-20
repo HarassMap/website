@@ -29,6 +29,18 @@ use Request;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereYoutube($value)
  * @mixin \Eloquent
+ * @property string $lat
+ * @property string $lng
+ * @property int $zoom
+ * @property string $name
+ * @property bool $incident
+ * @property bool $intervention
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereIncident($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereIntervention($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereLat($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereLng($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereZoom($value)
  */
 class Domain extends Model
 {

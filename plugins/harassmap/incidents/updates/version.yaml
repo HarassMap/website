@@ -21,3 +21,15 @@
 1.0.8:
     - 'Created table harassmap_intervention_assistance'
     - builder_table_create_harassmap_incidents_intervention_assistance.php
+1.0.9:
+    - 'Created table harassmap_incidents_country'
+    - builder_table_create_harassmap_incidents_country.php
+1.0.10:
+    - 'Created table harassmap_incidents_city'
+    - builder_table_create_harassmap_incidents_city.php
+1.0.11:
+    - 'Seed table harassmap_incidents_country'
+    - seed_harass_map_incidents_county_table.php
+1.0.12:
+    - 'Seed table harassmap_incidents_city'
+    - seed_harass_map_incidents_city_table.php

@@ -1,0 +1,11 @@
+list: $/harassmap/incidents/models/country/columns.yaml
+modelClass: Harassmap\Incidents\Models\Country
+title: Countries
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'harassmap/incidents/countries/update/:id'
