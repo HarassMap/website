@@ -17,6 +17,13 @@ tabs:
             type: textarea
             commentAbove: 'harassmap.domain::lang.form.about_help'
             tab: 'harassmap.domain::lang.form.tab.site'
+        country:
+            label: 'harassmap.domain::lang.form.country'
+            nameFrom: name
+            descriptionFrom: description
+            span: full
+            type: relation
+            tab: 'harassmap.domain::lang.form.tab.site'
         headerLogo:
             label: 'harassmap.domain::lang.form.logo.header'
             mode: file

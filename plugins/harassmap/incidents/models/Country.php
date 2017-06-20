@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Models;
 
+use Harassmap\Domain\Models\Domain;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -28,7 +29,8 @@ class Country extends Model
     ];
 
     public $hasMany = [
-        'cities' => [City::class, 'delete' => true]
+        'cities' => [City::class, 'delete' => true],
+        'domains' => Domain::class
     ];
 
 }

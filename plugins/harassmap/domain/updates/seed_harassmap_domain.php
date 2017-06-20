@@ -16,7 +16,9 @@ class SeedHarassMapDomainTable extends Seeder
             'twitter' => 'http://twitter.com',
             'instagram' => 'http://instagram.com',
             'youtube' => 'http://youtube.com',
-            'blogger' => 'http://blogger.com'
+            'blogger' => 'http://blogger.com',
+            'lat' => '30.044420',
+            'lng' => '31.235712'
         ]);
     }
 }

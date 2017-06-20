@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Domain\Models;
 
 use Backend\Models\User as BackendUserModel;
+use Harassmap\Incidents\Models\Country;
 use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
@@ -17,6 +18,13 @@ use Request;
  * @property string $instagram
  * @property string $youtube
  * @property string $blogger
+ * @property string $lat
+ * @property string $lng
+ * @property int $zoom
+ * @property string $name
+ * @property bool $incident
+ * @property bool $intervention
+ * @property int $country_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereAbout($value)
@@ -29,25 +37,22 @@ use Request;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereTwitter($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereYoutube($value)
- * @mixin \Eloquent
- * @property string $lat
- * @property string $lng
- * @property int $zoom
- * @property string $name
- * @property bool $incident
- * @property bool $intervention
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereIncident($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereIntervention($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereLat($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereLng($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereZoom($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Domain\Models\Domain whereCountryId($value)
+ * @mixin \Eloquent
  */
 class Domain extends Model
 {
     use Validation;
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $table = 'harassmap_domain_domain';
 
     public $translatable = [
         'name',
@@ -63,15 +68,16 @@ class Domain extends Model
         'zoom' => 'required',
     ];
 
+    public $belongsTo = [
+        'country' => Country::class
+    ];
+
     public $hasMany = [
         'content' => [Content::class, 'delete' => true],
         'tips' => [Tip::class, 'delete' => true],
         'posts' => [Posts::class, 'delete' => true]
     ];
 
-    /*
-     * A domain can have many users associated with it
-     */
     public $belongsToMany = [
         'users' => [BackendUserModel::class, 'table' => 'harassmap_domain_user']
     ];
@@ -80,11 +86,6 @@ class Domain extends Model
         'headerLogo' => 'System\Models\File',
         'footerLogo' => 'System\Models\File'
     ];
-
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'harassmap_domain_domain';
 
     /**
      *
