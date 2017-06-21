@@ -5,7 +5,11 @@ import mapStyle from "./map.style.json";
 export class ReportPageMap {
 
     constructor(element) {
-        let centre = new google.maps.LatLng(30.044420, 31.235712);
+        let lat = element.dataset.lat,
+            lng = element.dataset.lng,
+            latInput = document.getElementById(element.dataset.latInput),
+            lngInput = document.getElementById(element.dataset.lngInput),
+            centre = new google.maps.LatLng(lat, lng);
 
         this._element = element;
 
@@ -22,9 +26,6 @@ export class ReportPageMap {
             fullscreenControl: false
         });
 
-        let latInput = document.getElementById(element.dataset.lat);
-        let lonInput = document.getElementById(element.dataset.lon);
-
         this.marker = new google.maps.Marker({
             position: centre,
             draggable: true
@@ -35,8 +36,8 @@ export class ReportPageMap {
                 latInput.value = event.latLng.lat();
             }
 
-            if (lonInput) {
-                lonInput.value = event.latLng.lng();
+            if (lngInput) {
+                lngInput.value = event.latLng.lng();
             }
         };
 

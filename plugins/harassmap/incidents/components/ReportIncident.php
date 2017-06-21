@@ -20,10 +20,7 @@ class ReportIncident extends ComponentBase
     public function onRender()
     {
         $this->page['countries'] = Country::all()->lists('name', 'id');
-
-        $domain = Domain::getBestMatchingDomain();
-
-        $this->page['default_country'] = $domain->country_id;
+        $this->page['domain'] = Domain::getBestMatchingDomain();
     }
 
     public function onSubmit()

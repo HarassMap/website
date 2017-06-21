@@ -29,7 +29,7 @@
                 <div class="col-12 col-md-5">
                     <div class="form-group">
                         {{ form_label('country', 'Country' | _) }}
-                        {{ form_select('country', countries, default_country, {'class': 'form-control'}) }}
+                        {{ form_select('country', countries, domain.country_id, {'class': 'form-control'}) }}
                     </div>
                 </div>
                 <div class="col-12 col-md-7">
@@ -76,21 +76,21 @@
 </div>
 
 <div id="map" class="map map--report" data-map="report"
-     data-lat="lat" data-lon="lng"></div>
+     data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}"
+     data-lat-input="lat" data-lng-input="lng"></div>
 
 <div class="container mt-4">
-
     <div class="row">
         <div class="col-12 col-lg-6">
             <div class="form-group">
                 {{ form_label('lat', 'Latitude' | _) }}
-                {{ form_text('lat', '', {'class': 'form-control'}) }}
+                {{ form_text('lat', domain.lat, {'class': 'form-control'}) }}
             </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="form-group">
                 {{ form_label('lng', 'Longitude' | _) }}
-                {{ form_text('lng', '', {'class': 'form-control'}) }}
+                {{ form_text('lng', domain.lng, {'class': 'form-control'}) }}
             </div>
         </div>
     </div>
