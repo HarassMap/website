@@ -4,12 +4,20 @@
         'description' => '',
         'permissions' => [
             'tab' => 'HarassMap',
-            'access_categories' => 'Manage Categories'
+            'access_categories' => 'Manage Categories',
+            'manage_domains' => 'Manage Domains',
+            'manage_content_blocks' => 'Manage Content Blocks',
+            'manage_user_domains' => 'Manage User Domains',
         ],
     ],
     'menu' => [
-        'main' => 'Incidents',
-        'categories' => 'Categories'
+        'incidents' => 'Incidents',
+        'categories' => 'Categories',
+        'domain' => 'Domain',
+        'content' => 'Content',
+        'tips' => 'Tips',
+        'countries' => 'Countries',
+        'cities' => 'Cities',
     ],
     'form' => [
         'title' => 'Title',
