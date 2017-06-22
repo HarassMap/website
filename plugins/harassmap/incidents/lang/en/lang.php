@@ -52,5 +52,9 @@
         'image' => 'Image',
         'link' => 'Link',
         'country' => 'Country',
+        'lat' => 'Latitude',
+        'lng' => 'Longitude',
+        'zoom' => 'Zoom',
+        'iso' => 'ISO Code',
     ]
 ];

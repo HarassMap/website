@@ -80,19 +80,19 @@ tabs:
             type: text
             tab: 'harassmap.incidents::lang.form.tab.social'
         lat:
-            label: Latitude
+            label: 'harassmap.incidents::lang.form.lat'
             oc.commentPosition: ''
             span: auto
             type: text
             tab: 'harassmap.incidents::lang.form.tab.map'
         lng:
-            label: Longitude
+            label: 'harassmap.incidents::lang.form.lng'
             oc.commentPosition: ''
             span: auto
             type: text
             tab: 'harassmap.incidents::lang.form.tab.map'
         zoom:
-            label: Zoom
+            label: 'harassmap.incidents::lang.form.zoom'
             oc.commentPosition: ''
             options:
                 6: '6'
