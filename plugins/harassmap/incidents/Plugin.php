@@ -1,6 +1,10 @@
 <?php namespace Harassmap\Incidents;
 
+use Harassmap\Incidents\Components\ContentBlock;
+use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ReportIncident;
+use Harassmap\Incidents\Components\Tip;
+use Harassmap\Incidents\Components\Tips;
 use System\Classes\PluginBase;
 use Backend\Controllers\Users as BackendUsersController;
 use Backend\Models\User as BackendUserModel;
@@ -42,6 +46,10 @@ class Plugin extends PluginBase
     {
         return [
             ReportIncident::class => 'harassmapReportIncident',
+            ContentBlock::class => 'harassmapDomainContentBlock',
+            Domain::class => 'harassmapDomain',
+            Tip::class => 'harassmapTip',
+            Tips::class => 'harassmapTips',
         ];
     }
 

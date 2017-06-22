@@ -16,7 +16,7 @@ class BuilderTableCreateHarassmapDomainContent extends Migration
             $table->integer('domain_id')->unsigned();
             $table->string('content_id');
             $table->text('content');
-            $table->string('link', 255);
+            $table->string('link', 255)->nullable();
 
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
