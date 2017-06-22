@@ -5,16 +5,6 @@ use \October\Rain\Database\Traits\Validation;
 
 /**
  * Model
- *
- * @property int $id
- * @property string $title
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 class Assistance extends Model
 {

@@ -18,7 +18,7 @@ class Domain extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $table = 'harassmap_domain_domain';
+    public $table = 'harassmap_incidents_domain';
 
     public $translatable = [
         'name',

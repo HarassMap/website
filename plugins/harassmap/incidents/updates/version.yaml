@@ -18,3 +18,24 @@
 1.0.7:
     - 'Created table harassmap_incidents_tip'
     - builder_table_create_harassmap_incidents_tip.php
+1.0.8:
+    - 'Created table harassmap_incidents_category'
+    - builder_table_create_harassmap_incidents_category.php
+1.0.9:
+    - 'Created table harassmap_incidents_assistance'
+    - builder_table_create_harassmap_incidents_assistance.php
+1.0.10:
+    - 'Created table harassmap_incidents_location'
+    - builder_table_create_harassmap_incidents_location.php
+1.0.11:
+    - 'Created table harassmap_incidents_incident'
+    - builder_table_create_harassmap_incidents_incident.php
+1.0.11:
+    - 'Created table harassmap_incidents_intervention'
+    - builder_table_create_harassmap_incidents_intervention.php
+1.0.12:
+    - 'Created table harassmap_incidents_incident_category'
+    - builder_table_create_harassmap_incidents_incident_category.php
+1.0.13:
+    - 'Created table harassmap_incidents_intervention_assistance'
+    - builder_table_create_harassmap_incidents_intervention_assistance.php

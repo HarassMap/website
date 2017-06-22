@@ -6,18 +6,6 @@ use RainLab\User\Models\User;
 
 /**
  * Model
- *
- * @property int $id
- * @property int $user_id
- * @property int $incident_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereIncidentId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereUserId($value)
- * @mixin \Eloquent
  */
 class Intervention extends Model
 {

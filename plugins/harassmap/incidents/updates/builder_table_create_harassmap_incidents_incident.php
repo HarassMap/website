@@ -25,7 +25,7 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
 
             // foreign keys
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('domain_id')->references('id')->on('harassmap_domain_domain');
+            $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
             $table->foreign('location_id')->references('id')->on('harassmap_incidents_location');
         });
     }

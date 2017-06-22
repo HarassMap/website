@@ -14,6 +14,8 @@ class Content extends Model
     use Validation;
     use DomainOptions;
 
+    public $table = 'harassmap_incidents_content';
+
     const CONTENT_IDS = [
         'homepage.basics' => 'Homepage (Learn)',
         'homepage.share' => 'Homepage (Share)',
@@ -40,11 +42,6 @@ class Content extends Model
     public $attachOne = [
         'image' => 'System\Models\File'
     ];
-
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'harassmap_domain_content';
 
     public function getContentIdOptions()
     {

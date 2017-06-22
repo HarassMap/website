@@ -8,12 +8,13 @@ use October\Rain\Database\Traits\Validation;
 
 /**
  * Tip
- *
  */
 class Tip extends Model
 {
     use Validation;
     use DomainOptions;
+
+    public $table = 'harassmap_incidents_tip';
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
@@ -26,11 +27,6 @@ class Tip extends Model
     public $belongsTo = [
         'domain' => Domain::class
     ];
-
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'harassmap_domain_tip';
 
     public function beforeCreate()
     {
