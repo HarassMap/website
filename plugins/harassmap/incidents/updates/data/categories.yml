@@ -1,0 +1,241 @@
+categories:
+    -
+        id: 1
+        parent_id: 0
+        locale: en_US
+        category_position: 11
+        category_title: Touching
+        category_description: Touching, massaging, pinching, rubbing up against, standing too close, grabbing, and any kind of sexual gesture towards someone.
+        category_color: 9900CC
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 2
+        parent_id: 0
+        locale: en_US
+        category_position: 3
+        category_title: Catcalls
+        category_description: Whistling, shouting, whispering, and any kind of sexual sounds/noises.
+        category_color: 3300FF
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 3
+        parent_id: 0
+        locale: en_US
+        category_position: 1
+        category_title: Ogling
+        category_description: Staring or looking inappropriately at someoneâs body, body parts, and/or eyes.
+        category_color: 663300
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 4
+        parent_id: 0
+        locale: en_US
+        category_position: 0
+        category_title: BLANK
+        category_description: Blank
+        category_color: CC0000
+        category_image:
+        category_image_thumb:
+        category_visible: 0
+        category_trusted: 0
+    -
+        id: 999
+        parent_id: 0
+        locale: en_US
+        category_position: 4
+        category_title: Comments
+        category_description: Sexual remarks about someoneâs body or dress or way of walking/behaving/working, telling sexual jokes or stories, suggestions that are sexual or off
+        category_color: CC9933
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 6
+        parent_id: 0
+        locale: en_US
+        category_position: 5
+        category_title: Stalking or Following
+        category_description: Following someone close or at distance by foot or in a car, repeatedly or just once, waiting outside someoneâs work/home/car etc.
+        category_color: 9999FF
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 7
+        parent_id: 0
+        locale: en_US
+        category_position: 10
+        category_title: Phone Calls
+        category_description: Making unwanted phone calls or sending text messages that are sexually suggestive or threatening.
+        category_color: 66CC00
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 8
+        parent_id: 0
+        locale: en_US
+        category_position: 12
+        category_title: Indecent Exposure
+        category_description: Showing intimate body parts to someone, or masturbating in front of someone or in someoneâs presence.
+        category_color: FFCC00
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 10
+        parent_id: 0
+        locale: en_US
+        category_position: 19
+        category_title: Trusted Reports
+        category_description: Reports from trusted reporters
+        category_color: 339900
+        category_image:
+        category_image_thumb:
+        category_visible: 0
+        category_trusted: 1
+    -
+        id: 11
+        parent_id: 0
+        locale: en_US
+        category_position: 6
+        category_title: Sexual Invites
+        category_description: Asking for sex, describing sexual acts or wishes, asking for phone numbers, dinner dates and other suggestions that are implicitly or explicitly sexual in nature.
+        category_color: 336666
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 12
+        parent_id: 0
+        locale: en_US
+        category_position: 2
+        category_title: Facial Expressions
+        category_description: Making any kind of facial expression (licking, smacking, opening the mouth) that suggest sexual intentions.
+        category_color: 996633
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 13
+        parent_id: 0
+        locale: en_US
+        category_position: 14
+        category_title: Sexual Assault
+        category_description: Coerced and/or forced sexual acts such as kissing, undressing etc.
+        category_color: a837a8
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 1008
+        parent_id: 0
+        locale: en_US
+        category_position: 15
+        category_title: Rape
+        category_description: Coerced and/or forced oral, anal, or vaginal penetration using body parts or other objects.
+        category_color: 000000
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 5
+        parent_id: 0
+        locale: en_US
+        category_position: 18
+        category_title: NONE
+        category_description: Holds uncategorized reports
+        category_color: 009887
+        category_image:
+        category_image_thumb:
+        category_visible: 0
+        category_trusted: 1
+    -
+        id: 1000
+        parent_id: 0
+        locale: en_US
+        category_position: 7
+        category_title: Unwanted Attention
+        category_description: Interfering with someone's work or actions by seeking unwelcome contact, asking to socialize, making sexual demands in exchange for work or other benefits, giving gifts that are sexually suggestive, insisting on walking/driving someone home or to work in spite of refusal from the victim.
+        category_color: FF0000
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 1003
+        parent_id: 0
+        locale: en_US
+        category_position: 8
+        category_title: Sexual photos
+        category_description: Displaying sexual photos or pictures online or offline.
+        category_color: cc89c8
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 1004
+        parent_id: 0
+        locale: en_US
+        category_position: 19
+        category_title: Psychological torture
+        category_description: Threatening with rape or other sexual assault and harassment during arrest, imprisonment, interrogation, police interviews etc
+        category_color: d0e687
+        category_image:
+        category_image_thumb:
+        category_visible: 0
+        category_trusted: 0
+    -
+        id: 1005
+        parent_id: 0
+        locale: en_US
+        category_position: 16
+        category_title: Mob attacks
+        category_description: Groping, molesting, undressing, and rape etc of individual victims, committed by large groups of people.
+        category_color: ff8400
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 1006
+        parent_id: 0
+        locale: en_US
+        category_position: 9
+        category_title: Online
+        category_description: Repeatedly or occasionally sending unwanted, abusive, or obscene messages, comments, and/or photos and videos via email, instant messaging, on social media, forums, blogs, or online discussion boards.
+        category_color: 152fd6
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0
+    -
+        id: 1007
+        parent_id: 0
+        locale: en_US
+        category_position: 13
+        category_title: Threat
+        category_description: Showing intimate body parts to someone, or masturbating in front of someone or in someone's presence.
+        category_color: 424242
+        category_image:
+        category_image_thumb:
+        category_visible: 1
+        category_trusted: 0

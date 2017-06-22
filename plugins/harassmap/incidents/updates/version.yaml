@@ -30,9 +30,6 @@
 1.0.11:
     - 'Created table harassmap_incidents_incident'
     - builder_table_create_harassmap_incidents_incident.php
-1.0.11:
-    - 'Created table harassmap_incidents_intervention'
-    - builder_table_create_harassmap_incidents_intervention.php
 1.0.12:
     - 'Created table harassmap_incidents_incident_category'
     - builder_table_create_harassmap_incidents_incident_category.php
@@ -51,3 +48,6 @@
 1.0.17:
     - 'Seed harassmap_incidents_content_table'
     - seed_harassmap_incidents_content_table.php
+1.0.18:
+    - 'Seed harassmap_incidents_category_table'
+    - seed_harassmap_incidents_category_table.php
