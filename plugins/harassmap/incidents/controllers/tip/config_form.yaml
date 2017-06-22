@@ -1,0 +1,10 @@
+name: Tip
+form: $/harassmap/domain/models/tip/fields.yaml
+modelClass: Harassmap\Incidents\Models\Tip
+defaultRedirect: harassmap/domain/tip
+create:
+    redirect: 'harassmap/domain/tip/update/:id'
+    redirectClose: harassmap/domain/tip
+update:
+    redirect: harassmap/domain/tip
+    redirectClose: harassmap/domain/tip

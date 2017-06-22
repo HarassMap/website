@@ -2,7 +2,7 @@
 
 namespace Harassmap\Incidents\Models;
 
-use Harassmap\Domain\Models\Domain;
+use Harassmap\Incidents\Models\Domain;
 use Model;
 use October\Rain\Database\Traits\Validation;
 

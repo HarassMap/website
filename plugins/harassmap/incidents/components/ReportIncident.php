@@ -3,7 +3,7 @@
 namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
-use Harassmap\Domain\Models\Domain;
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Country;
 
 class ReportIncident extends ComponentBase

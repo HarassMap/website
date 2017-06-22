@@ -1,4 +1,6 @@
-<?php namespace Harassmap\Incidents\Controllers;
+<?php
+
+namespace Harassmap\Incidents\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;

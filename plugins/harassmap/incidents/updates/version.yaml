@@ -1,35 +1,20 @@
 1.0.1:
     - 'Initialize plugin.'
 1.0.2:
-    - 'Created table harassmap_incidents_category'
-    - builder_table_create_harassmap_incidents_category.php
-1.0.3:
-    - 'Created table harassmap_incidents_location'
-    - builder_table_create_harassmap_incidents_location.php
-1.0.4:
-    - 'Created table harassmap_incidents_incident'
-    - builder_table_create_harassmap_incidents_incident.php
-1.0.5:
-    - 'Created table harassmap_incidents_incident_category'
-    - builder_table_create_harassmap_incidents_incident_category.php
-1.0.6:
-    - 'Created table harassmap_incidents_intervention'
-    - builder_table_create_harassmap_incidents_intervention.php
-1.0.7:
-    - 'Created table harassmap_incidents_assistance'
-    - builder_table_create_harassmap_incidents_assistance.php
-1.0.8:
-    - 'Created table harassmap_intervention_assistance'
-    - builder_table_create_harassmap_incidents_intervention_assistance.php
-1.0.9:
     - 'Created table harassmap_incidents_country'
     - builder_table_create_harassmap_incidents_country.php
-1.0.10:
+1.0.3:
     - 'Created table harassmap_incidents_city'
     - builder_table_create_harassmap_incidents_city.php
-1.0.11:
-    - 'Seed table harassmap_incidents_country'
-    - seed_harass_map_incidents_county_table.php
-1.0.12:
-    - 'Seed table harassmap_incidents_city'
-    - seed_harass_map_incidents_city_table.php
+1.0.4:
+    - 'Created table harassmap_incidents_domain'
+    - builder_table_create_harassmap_incidents_domain.php
+1.0.5:
+    - 'Created table harassmap_incidents_content'
+    - builder_table_create_harassmap_domain_content.php
+1.0.6:
+    - 'Created table harassmap_incidents_domain_user'
+    - builder_table_create_harassmap_incidents_domain_user.php
+1.0.7:
+    - 'Created table harassmap_incidents_tip'
+    - builder_table_create_harassmap_incidents_tip.php

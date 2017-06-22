@@ -1,0 +1,11 @@
+list: $/harassmap/domain/models/content/columns.yaml
+modelClass: Harassmap\Incidents\Models\Content
+title: Content
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'harassmap/domain/content/update/:id'

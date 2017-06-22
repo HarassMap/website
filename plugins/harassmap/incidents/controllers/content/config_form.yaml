@@ -1,0 +1,10 @@
+name: Content
+form: $/harassmap/domain/models/content/fields.yaml
+modelClass: Harassmap\Incidents\Models\Content
+defaultRedirect: harassmap/domain/content
+create:
+    redirect: 'harassmap/domain/content/update/:id'
+    redirectClose: harassmap/domain/content
+update:
+    redirect: harassmap/domain/content
+    redirectClose: harassmap/domain/content

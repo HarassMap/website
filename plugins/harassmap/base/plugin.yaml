@@ -1,6 +1,0 @@
-plugin:
-    name: 'harassmap.base::lang.plugin.name'
-    description: 'harassmap.base::lang.plugin.description'
-    author: Harassmap
-    icon: oc-icon-anchor
-    homepage: ''
