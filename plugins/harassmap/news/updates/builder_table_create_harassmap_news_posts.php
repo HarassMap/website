@@ -20,7 +20,7 @@ class BuilderTableCreateHarassmapNewsPosts extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 
-            $table->foreign('domain_id')->references('id')->on('harassmap_domain_domain');
+            $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
         });
     }
     

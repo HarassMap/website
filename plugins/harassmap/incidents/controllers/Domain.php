@@ -21,7 +21,7 @@ class Domain extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Harassmap.Incidents', 'harassmap.domain', 'harassmap.domain.domain');
+        BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents.domain', 'harassmap.incidents.domain.domain');
     }
 
     protected $domain_id = 'id';

@@ -31,20 +31,20 @@ navigation:
                 label: 'harassmap.incidents::lang.menu.countries'
                 url: harassmap/incidents/cities
                 icon: icon-building-o
-    harassmap.domain:
+    harassmap.incidents.domain:
         label: 'harassmap.incidents::lang.menu.domain'
         url: harassmap/incidents/domain
         icon: icon-square-o
         permissions:
             - harassmap.incidents.domain.access_content
             - harassmap.incidents.domain.access_domain
-    harassmap.domain.content:
+    harassmap.incidents.domain.content:
         label: 'harassmap.incidents::lang.menu.content'
         url: harassmap/incidents/content
         icon: icon-edit
         permissions:
             - harassmap.incidents.domain.access_content
-    harassmap.domain.tips:
+    harassmap.incidents.domain.tips:
         label: 'harassmap.incidents::lang.menu.tips'
         url: harassmap/incidents/tip
         icon: icon-quote-left

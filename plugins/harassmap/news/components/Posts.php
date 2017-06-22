@@ -5,7 +5,7 @@ namespace Harassmap\News\Components;
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
-use Harassmap\Domain\Models\Domain;
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\News\Models\Posts as PostsModel;
 
 class Posts extends ComponentBase

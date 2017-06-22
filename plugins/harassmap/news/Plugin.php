@@ -8,7 +8,7 @@ use System\Classes\PluginBase;
 class Plugin extends PluginBase
 {
 
-    public $require = ['Harassmap.Domain'];
+    public $require = ['Harassmap.Incidents'];
 
     public function registerComponents()
     {

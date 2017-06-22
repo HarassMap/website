@@ -26,7 +26,7 @@ class Plugin extends PluginBase
 
             $user = BackendAuth::getUser();
 
-            if ($user->isSuperUser() || $user->hasPermission(['harassmap.domain.manage_user_domains'])) {
+            if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_user_domains'])) {
                 $form->addTabFields([
                     'domains' => [
                         'label' => 'Domain',
