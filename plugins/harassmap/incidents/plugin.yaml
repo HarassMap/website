@@ -31,7 +31,33 @@ navigation:
                 label: Cities
                 url: harassmap/incidents/cities
                 icon: icon-building-o
+    harassmap.domain:
+        label: 'Domain'
+        url: harassmap/incidents/domain
+        icon: icon-square-o
+        permissions:
+            - harassmap.incidents.domain.access_content
+            - harassmap.incidents.domain.access_domain
+    harassmap.domain.content:
+        label: 'harassmap.domain::lang.plugin.menu.content'
+        url: harassmap/incidents/content
+        icon: icon-edit
+        permissions:
+            - harassmap.incidents.domain.access_content
+    harassmap.domain.tips:
+        label: 'harassmap.domain::lang.plugin.menu.tips'
+        url: harassmap/incidents/tip
+        icon: icon-quote-left
 permissions:
     harassmap.incidents.access_categories:
         tab: 'harassmap.incidents::lang.plugin.permissions.tab'
         label: 'harassmap.incidents::lang.plugin.permissions.access_categories'
+    harassmap.incidents.domain.access_domain:
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.domain::lang.plugin.permissions.manage_domains'
+    harassmap.incidents.domain.access_content:
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.domain::lang.plugin.permissions.manage_content_blocks'
+    harassmap.incidents.domain.manage_user_domains:
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.domain::lang.plugin.permissions.manage_user_domains'

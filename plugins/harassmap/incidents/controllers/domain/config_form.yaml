@@ -1,10 +1,10 @@
 name: Domain
-form: $/harassmap/domain/models/domain/fields.yaml
+form: $/harassmap/incidents/models/domain/fields.yaml
 modelClass: Harassmap\Incidents\Models\Domain
-defaultRedirect: harassmap/domain/domain
+defaultRedirect: harassmap/incidents/domain
 create:
-    redirect: 'harassmap/domain/domain/update/:id'
-    redirectClose: harassmap/domain/domain
+    redirect: 'harassmap/incidents/domain/update/:id'
+    redirectClose: harassmap/incidents/domain
 update:
-    redirect: harassmap/domain/domain
-    redirectClose: harassmap/domain/domain
+    redirect: harassmap/incidents/domain
+    redirectClose: harassmap/incidents/domain

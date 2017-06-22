@@ -1,4 +1,4 @@
-list: $/harassmap/domain/models/content/columns.yaml
+list: $/harassmap/incidents/models/content/columns.yaml
 modelClass: Harassmap\Incidents\Models\Content
 title: Content
 noRecordsMessage: 'backend::lang.list.no_records'
@@ -8,4 +8,4 @@ toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
-recordUrl: 'harassmap/domain/content/update/:id'
+recordUrl: 'harassmap/incidents/content/update/:id'
