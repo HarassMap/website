@@ -1,37 +1,37 @@
 fields:
     domain_id:
-        label: 'harassmap.domain::lang.form.domain'
+        label: 'harassmap.incidents::lang.form.domain'
         span: auto
         type: dropdown
-        commentAbove: 'harassmap.domain::lang.content.form.domain_help'
+        commentAbove: 'harassmap.incidents::lang.content.form.domain_help'
     content_id:
-        label: 'harassmap.domain::lang.form.content_id'
+        label: 'harassmap.incidents::lang.form.content_id'
         span: auto
         type: dropdown
-        commentAbove: 'harassmap.domain::lang.content.form.content_id_help'
+        commentAbove: 'harassmap.incidents::lang.content.form.content_id_help'
 tabs:
     fields:
         content:
-            label: 'harassmap.domain::lang.form.content'
+            label: 'harassmap.incidents::lang.form.content'
             size: giant
             span: full
             type: richeditor
-            tab: 'harassmap.domain::lang.form.tab.content'
+            tab: 'harassmap.incidents::lang.form.tab.content'
         image:
-            label: 'harassmap.domain::lang.form.image'
+            label: 'harassmap.incidents::lang.form.image'
             mode: file
             span: full
             type: fileupload
-            tab: 'harassmap.domain::lang.form.tab.extra'
+            tab: 'harassmap.incidents::lang.form.tab.extra'
             trigger:
                 action: show
                 field: content_id
                 condition: 'value[homepage.basics] | value[homepage.share] | value[homepage.active] | value[homepage.bottomLeft] | value[homepage.bottomCenter] | value[homepage.bottomRight]'
         link:
-            label: 'harassmap.domain::lang.form.link'
+            label: 'harassmap.incidents::lang.form.link'
             span: full
             type: text
-            tab: 'harassmap.domain::lang.form.tab.extra'
+            tab: 'harassmap.incidents::lang.form.tab.extra'
             trigger:
                 action: show
                 field: content_id

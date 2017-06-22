@@ -1,4 +1,4 @@
 columns:
     host:
-        label: 'harassmap.domain::lang.form.host'
+        label: 'harassmap.incidents::lang.form.host'
         type: text

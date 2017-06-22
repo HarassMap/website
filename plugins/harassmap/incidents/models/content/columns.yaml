@@ -1,11 +1,11 @@
 columns:
     domain:
-        label: 'harassmap.domain::lang.form.domain'
+        label: 'harassmap.incidents::lang.form.domain'
         relation: domain
         select: host
     content_id:
-        label: 'harassmap.domain::lang.form.content_id'
+        label: 'harassmap.incidents::lang.form.content_id'
         type: text
     content:
-        label: 'harassmap.domain::lang.form.content'
+        label: 'harassmap.incidents::lang.form.content'
         type: text

@@ -1,31 +1,31 @@
 tabs:
     fields:
         host:
-            label: 'harassmap.domain::lang.form.host'
+            label: 'harassmap.incidents::lang.form.host'
             span: auto
             type: text
-            comment: 'harassmap.domain::lang.form.host_help'
-            tab: 'harassmap.domain::lang.form.tab.site'
+            comment: 'harassmap.incidents::lang.form.host_help'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         name:
-            label: 'harassmap.domain::lang.form.name'
+            label: 'harassmap.incidents::lang.form.name'
             span: auto
             type: text
-            tab: 'harassmap.domain::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         about:
-            label: 'harassmap.domain::lang.form.about'
+            label: 'harassmap.incidents::lang.form.about'
             span: full
             type: textarea
-            commentAbove: 'harassmap.domain::lang.form.about_help'
-            tab: 'harassmap.domain::lang.form.tab.site'
+            commentAbove: 'harassmap.incidents::lang.form.about_help'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         country:
-            label: 'harassmap.domain::lang.form.country'
+            label: 'harassmap.incidents::lang.form.country'
             nameFrom: name
             descriptionFrom: description
             span: full
             type: relation
-            tab: 'harassmap.domain::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         headerLogo:
-            label: 'harassmap.domain::lang.form.logo.header'
+            label: 'harassmap.incidents::lang.form.logo.header'
             mode: file
             useCaption: true
             thumbOptions:
@@ -33,9 +33,9 @@ tabs:
                 extension: auto
             span: full
             type: fileupload
-            tab: 'harassmap.domain::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         footerLogo:
-            label: 'harassmap.domain::lang.form.logo.footer'
+            label: 'harassmap.incidents::lang.form.logo.footer'
             mode: file
             useCaption: true
             thumbOptions:
@@ -43,54 +43,54 @@ tabs:
                 extension: auto
             span: full
             type: fileupload
-            tab: 'harassmap.domain::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         incident:
             label: 'Enable Incident'
             span: auto
             type: checkbox
-            tab: 'harassmap.domain::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         intervention:
             label: 'Enable Intervention'
             span: auto
             type: checkbox
-            tab: 'harassmap.domain::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.site'
         facebook:
-            label: 'harassmap.domain::lang.form.facebook'
+            label: 'harassmap.incidents::lang.form.facebook'
             span: full
             type: text
-            tab: 'harassmap.domain::lang.form.tab.social'
+            tab: 'harassmap.incidents::lang.form.tab.social'
         twitter:
-            label: 'harassmap.domain::lang.form.twitter'
+            label: 'harassmap.incidents::lang.form.twitter'
             span: full
             type: text
-            tab: 'harassmap.domain::lang.form.tab.social'
+            tab: 'harassmap.incidents::lang.form.tab.social'
         instagram:
-            label: 'harassmap.domain::lang.form.instagram'
+            label: 'harassmap.incidents::lang.form.instagram'
             span: full
             type: text
-            tab: 'harassmap.domain::lang.form.tab.social'
+            tab: 'harassmap.incidents::lang.form.tab.social'
         youtube:
-            label: 'harassmap.domain::lang.form.youtube'
+            label: 'harassmap.incidents::lang.form.youtube'
             span: full
             type: text
-            tab: 'harassmap.domain::lang.form.tab.social'
+            tab: 'harassmap.incidents::lang.form.tab.social'
         blogger:
-            label: 'harassmap.domain::lang.form.blogger'
+            label: 'harassmap.incidents::lang.form.blogger'
             span: full
             type: text
-            tab: 'harassmap.domain::lang.form.tab.social'
+            tab: 'harassmap.incidents::lang.form.tab.social'
         lat:
             label: Latitude
             oc.commentPosition: ''
             span: auto
             type: text
-            tab: 'harassmap.domain::lang.form.tab.map'
+            tab: 'harassmap.incidents::lang.form.tab.map'
         lng:
             label: Longitude
             oc.commentPosition: ''
             span: auto
             type: text
-            tab: 'harassmap.domain::lang.form.tab.map'
+            tab: 'harassmap.incidents::lang.form.tab.map'
         zoom:
             label: Zoom
             oc.commentPosition: ''
@@ -102,4 +102,4 @@ tabs:
                 10: '10'
             span: full
             type: dropdown
-            tab: 'harassmap.domain::lang.form.tab.map'
+            tab: 'harassmap.incidents::lang.form.tab.map'

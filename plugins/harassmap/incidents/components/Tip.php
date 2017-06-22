@@ -23,8 +23,8 @@ class Tip extends ComponentBase
     {
         return [
             'listPage' => [
-                'title' => 'harassmap.domain::lang.tip.list.page_name',
-                'description' => 'harassmap.domain::lang.tip.list.page_help',
+                'title' => 'harassmap.incidents::lang.tip.list.page_name',
+                'description' => 'harassmap.incidents::lang.tip.list.page_help',
                 'type' => 'dropdown',
                 'group' => 'Links',
             ],

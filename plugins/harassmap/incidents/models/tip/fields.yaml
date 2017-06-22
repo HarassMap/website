@@ -1,18 +1,18 @@
 fields:
     domain_id:
-        label: 'harassmap.domain::lang.form.domain'
+        label: 'harassmap.incidents::lang.form.domain'
         span: full
         type: dropdown
-        commentAbove: 'harassmap.domain::lang.tip.form.domain_help'
+        commentAbove: 'harassmap.incidents::lang.tip.form.domain_help'
     tip:
-        label: 'harassmap.domain::lang.form.tip'
+        label: 'harassmap.incidents::lang.form.tip'
         size: large
         span: full
         type: textarea
 secondaryTabs:
     fields:
         featured_from:
-            label: 'harassmap.domain::lang.form.featured_from'
+            label: 'harassmap.incidents::lang.form.featured_from'
             type: datepicker
             mode: datetime
             required: true
