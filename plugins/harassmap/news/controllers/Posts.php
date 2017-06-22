@@ -2,7 +2,7 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
-use Harassmap\Domain\Traits\FilterDomain;
+use Harassmap\Incidents\Traits\FilterDomain;
 
 class Posts extends Controller
 {

@@ -28,7 +28,7 @@ navigation:
                 url: harassmap/incidents/countries
                 icon: icon-globe
             harassmap.incidents.countries.city:
-                label: 'harassmap.incidents::lang.menu.countries'
+                label: 'harassmap.incidents::lang.menu.cities'
                 url: harassmap/incidents/cities
                 icon: icon-building-o
     harassmap.incidents.domain:
