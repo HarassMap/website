@@ -138,7 +138,7 @@
     <div class="row mt-4">
         <div class="col-4">
             {{ form_label('intervention', 'Did someone come to your assistance?' | _) }}
-            {# Intervention Selector #}
+            {{ form_select('intervention', {'': 'Yes/No' | _, 1: 'Yes' | _, 0: 'No' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
         </div>
     </div>
 
