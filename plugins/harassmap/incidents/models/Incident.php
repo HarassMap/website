@@ -35,6 +35,10 @@ class Incident extends Model
 
     public $table = 'harassmap_incidents_incident';
 
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['description'];
+
     public $rules = [
         'public_id' => 'required|string',
         'description' => 'required|string',
