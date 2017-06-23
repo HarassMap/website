@@ -8,6 +8,22 @@ use October\Rain\Database\Traits\Validation;
 
 /**
  * Content
+ *
+ * @property int $id
+ * @property int $domain_id
+ * @property string $content_id
+ * @property string $content
+ * @property string $link
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereContentId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereDomainId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereLink($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Content whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Content extends Model
 {

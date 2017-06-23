@@ -314,7 +314,7 @@ return [
     |
     */
 
-    'enableCsrfProtection' => false,
+    'enableCsrfProtection' => true,
 
     /*
     |--------------------------------------------------------------------------

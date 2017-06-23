@@ -16,7 +16,7 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
             $table->text('description');
             $table->dateTime('date');
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->integer('location_id')->unsigned();
             $table->integer('domain_id')->unsigned();
 

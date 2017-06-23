@@ -6,6 +6,8 @@ use RainLab\User\Models\User;
 
 /**
  * Model
+ *
+ * @mixin \Eloquent
  */
 class Intervention extends Model
 {

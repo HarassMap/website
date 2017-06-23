@@ -11,6 +11,42 @@ use Request;
 
 /**
  * Domain
+ *
+ * @property int $id
+ * @property string $host
+ * @property string $about
+ * @property string $facebook
+ * @property string $twitter
+ * @property string $instagram
+ * @property string $youtube
+ * @property string $blogger
+ * @property string $lat
+ * @property string $lng
+ * @property int $zoom
+ * @property string $name
+ * @property bool $incident
+ * @property bool $intervention
+ * @property int $country_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAbout($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereBlogger($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereCountryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereFacebook($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereHost($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereIncident($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereInstagram($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereIntervention($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereLat($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereLng($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTwitter($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereYoutube($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereZoom($value)
+ * @mixin \Eloquent
  */
 class Domain extends Model
 {

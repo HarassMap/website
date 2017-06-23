@@ -6,7 +6,7 @@ use Harassmap\Incidents\Models\Country;
 use Seeder;
 use Symfony\Component\Yaml\Yaml;
 
-class SeedHarassmapBaseCountryTable extends Seeder
+class SeedHarassmapIncidentsCountryTable extends Seeder
 {
     public function run()
     {

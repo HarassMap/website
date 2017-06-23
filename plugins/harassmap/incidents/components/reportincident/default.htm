@@ -29,13 +29,13 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         {{ form_label('country', 'Country' | _) }}
-                        {{ form_select('country', countries, domain.country_id, {'class': 'form-control'}) }}
+                        {{ form_select('country', countries, domain.country_id, {'class': 'form-control', 'required': 'required'}) }}
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         {{ form_label('city', 'City' | _) }}
-                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off'}) }}
+                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
                     </div>
                 </div>
             </div>
@@ -43,29 +43,29 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         {{ form_label('region', 'Region' | _) }}
-                        {{ form_text('region', '', {'class': 'form-control'}) }}
+                        {{ form_text('region', '', {'class': 'form-control', 'required': 'required'}) }}
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         {{ form_label('address', 'Address' | _) }}
-                        {{ form_text('address', '', {'class': 'form-control'}) }}
+                        {{ form_text('address', '', {'class': 'form-control', 'required': 'required'}) }}
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-lg-6">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-12">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-lg-7">
                     <div class="form-group">
                         {{ form_label('date', 'Date' | _) }}
-                        {{ form_text('date', '', {'class': 'form-control'}) }}
+                        {{ form_text('date', '', {'class': 'form-control', 'required': 'required'}) }}
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-12">
+                <div class="col-12 col-sm-6 col-lg-7">
                     <div class="form-group">
                         {{ form_label('time', 'Time' | _) }}
-                        {{ form_text('time', '', {'class': 'form-control'}) }}
+                        {{ form_text('time', '', {'class': 'form-control', 'required': 'required'}) }}
                     </div>
                 </div>
             </div>
@@ -90,13 +90,13 @@
         <div class="col-12 col-lg-6">
             <div class="form-group">
                 {{ form_label('lat', 'Latitude' | _) }}
-                {{ form_text('lat', domain.lat, {'class': 'form-control'}) }}
+                {{ form_text('lat', domain.lat, {'class': 'form-control', 'required': 'required'}) }}
             </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="form-group">
                 {{ form_label('lng', 'Longitude' | _) }}
-                {{ form_text('lng', domain.lng, {'class': 'form-control'}) }}
+                {{ form_text('lng', domain.lng, {'class': 'form-control', 'required': 'required'}) }}
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
         <div class="col-12">
             <div class="form-group">
                 {{ form_label('description', 'Description' | _) }}
-                {{ form_textarea('description', '', {'class': 'form-control'}) }}
+                {{ form_textarea('description', '', {'class': 'form-control', 'required': 'required'}) }}
             </div>
         </div>
     </div>

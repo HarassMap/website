@@ -38,7 +38,7 @@
     - builder_table_create_harassmap_incidents_intervention_assistance.php
 1.0.14:
     - 'Seed harassmap_incidents_country_table'
-    - seed_harassmap_incidents_country_table.php
+    - seed_harassmap_base_country_table.php
 1.0.15:
     - 'Seed harassmap_incidents_city_table'
     - seed_harassmap_incidents_city_table.php
