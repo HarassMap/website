@@ -4,12 +4,11 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Faker\Provider\Uuid;
+use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Location;
-use ValidationException;
-use Validator;
 
 class ReportIncident extends ComponentBase
 {
@@ -24,13 +23,17 @@ class ReportIncident extends ComponentBase
 
     public function onRender()
     {
+        $domain = Domain::getBestMatchingDomain();
+
         $this->page['countries'] = Country::all()->lists('name', 'id');
-        $this->page['domain'] = Domain::getBestMatchingDomain();
+        $this->page['domain'] = $domain;
+        $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
+            $query->where('id', '=', $domain->id);
+        })->get();
     }
 
     public function onSubmit()
     {
-
         // get the domain
         $domain = Domain::getBestMatchingDomain();
 
@@ -51,13 +54,22 @@ class ReportIncident extends ComponentBase
         $incident->public_id = Uuid::uuid();
         $incident->description = $data['description'];
 
-        // create a datetime out of the date and time
-        $date = new \DateTime();
-        $date->setTimestamp(strtotime($data['date']));
-        $time = new \DateTime();
-        $time->setTimestamp(strtotime($data['time']));
-        $date->setTime($time->format('h'), $time->format('i'), $time->format('s'));
-        $incident->date = $date;
+        if (array_key_exists('categories', $data)) {
+            $incident->categories = $data['categories'];
+        }
+
+        $dateTime = strtotime($data['date']);
+        $timeTime = strtotime($data['time']);
+
+        if($dateTime !== false && $timeTime !== false) {
+            $date = new \DateTime();
+            $date->setTimestamp($dateTime);
+            $time = new \DateTime();
+            $time->setTimestamp($timeTime);
+            $date->setTime($time->format('h'), $time->format('i'), $time->format('s'));
+            $incident->date = $date;
+        }
+
 
         $incident->validate();
 

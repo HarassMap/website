@@ -34,10 +34,11 @@ class Incident extends Model
     public $table = 'harassmap_incidents_incident';
 
     public $rules = [
-        'public_id' => 'required',
-        'description' => 'required',
-        'date' => 'required',
+        'public_id' => 'required|string',
+        'description' => 'required|string',
+        'date' => 'required|date',
         'domain_id' => 'required',
+        'categories' => 'required|array',
     ];
 
     public $belongsTo = [

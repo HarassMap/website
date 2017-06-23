@@ -116,7 +116,16 @@
         </div>
     </div>
     <div class="row mt-4">
-        {# Categories Selector #}
+        <div class="col-12">
+            {% for category in categories %}
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" name="categories[]" type="checkbox" value="{{ category.id }}">
+                        {{ category.title }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="row mt-4">
