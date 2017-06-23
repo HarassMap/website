@@ -29,6 +29,8 @@ class Country extends Model
     public $timestamps = false;
 
     public $rules = [
+        'name' => 'required',
+        'iso' => 'required|unique:harassmap_incidents_country'
     ];
 
     public $hasMany = [
