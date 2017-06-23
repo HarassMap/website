@@ -26,6 +26,10 @@ navigation:
                 label: Roles
                 url: harassmap/incidents/roles
                 icon: icon-asterisk
+            harassmap.incidents.assistance:
+                label: 'Assistance Types'
+                url: harassmap/incidents/assistance
+                icon: icon-hand-o-right
     harassmap.incidents.countries:
         label: 'harassmap.incidents::lang.menu.countries'
         url: harassmap/incidents/countries

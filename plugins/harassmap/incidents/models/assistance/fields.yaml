@@ -1,0 +1,6 @@
+fields:
+    title:
+        label: 'harassmap.incidents::lang.form.title'
+        oc.commentPosition: ''
+        span: full
+        type: text

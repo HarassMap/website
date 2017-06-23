@@ -1,0 +1,10 @@
+name: Assistance
+form: $/harassmap/incidents/models/assistance/fields.yaml
+modelClass: Harassmap\Incidents\Models\Assistance
+defaultRedirect: harassmap/incidents/assistance
+create:
+    redirect: 'harassmap/incidents/assistance/update/:id'
+    redirectClose: harassmap/incidents/assistance
+update:
+    redirect: harassmap/incidents/assistance
+    redirectClose: harassmap/incidents/assistance

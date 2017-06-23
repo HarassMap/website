@@ -1,0 +1,7 @@
+columns:
+    title:
+        label: title
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
