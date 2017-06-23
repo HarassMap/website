@@ -55,3 +55,9 @@
 1.0.19:
     - 'Created table harassmap_incidents_domain_category'
     - builder_table_create_harassmap_incidents_domain_category.php
+1.0.20:
+    - 'Created table harassmap_incidents_role'
+    - builder_table_create_harassmap_incidents_role.php
+1.0.21:
+    - 'Updated table harassmap_incidents_incident'
+    - builder_table_update_harassmap_incidents_incident.php
