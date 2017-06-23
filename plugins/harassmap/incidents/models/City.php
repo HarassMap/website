@@ -33,6 +33,9 @@ class City extends Model
     public $timestamps = false;
 
     public $rules = [
+        'name' => 'required',
+        'lat' => 'required',
+        'lng' => 'required',
     ];
 
     public $belongsTo = [
