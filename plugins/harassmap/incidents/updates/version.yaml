@@ -51,7 +51,6 @@
 1.0.18:
     - 'Seed harassmap_incidents_category_table'
     - seed_harassmap_incidents_category_table.php
-    - builder_table_create_harassmap_domain_content.php
 1.0.19:
     - 'Created table harassmap_incidents_domain_category'
     - builder_table_create_harassmap_incidents_domain_category.php
@@ -61,3 +60,6 @@
 1.0.21:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident.php
+1.0.22:
+    - 'Seed harassmap_incidents_role_table'
+    - seed_harassmap_incidents_role_table.php

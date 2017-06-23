@@ -26,6 +26,8 @@ use RainLab\User\Models\User;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereUserId($value)
  * @mixin \Eloquent
+ * @property int $role_id
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereRoleId($value)
  */
 class Incident extends Model
 {

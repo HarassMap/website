@@ -18,6 +18,10 @@ navigation:
                 icon: icon-tags
                 permissions:
                     - harassmap.incidents.access_categories
+            harassmap.incidents.roles:
+                label: Roles
+                url: harassmap/incidents/roles
+                icon: icon-asterisk
     harassmap.incidents.countries:
         label: 'harassmap.incidents::lang.menu.countries'
         url: harassmap/incidents/countries

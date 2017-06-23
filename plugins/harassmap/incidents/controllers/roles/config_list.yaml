@@ -1,0 +1,11 @@
+list: $/harassmap/incidents/models/role/columns.yaml
+modelClass: Harassmap\Incidents\Models\Role
+title: Roles
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'harassmap/incidents/roles/update/:id'

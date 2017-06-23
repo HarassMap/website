@@ -5,7 +5,7 @@ namespace Harassmap\Incidents\Updates;
 use Harassmap\Incidents\Models\Domain;
 use Seeder;
 
-class SeedHarassmapDomainTable extends Seeder
+class SeedHarassmapIncidentsDomainTable extends Seeder
 {
     public function run()
     {

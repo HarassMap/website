@@ -6,7 +6,7 @@ use Harassmap\Incidents\Models\Content;
 use Harassmap\Incidents\Models\Domain;
 use Seeder;
 
-class SeedHarassmapContentTable extends Seeder
+class SeedHarassmapIncidentsContentTable extends Seeder
 {
     public function run()
     {

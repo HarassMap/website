@@ -1,0 +1,10 @@
+name: Roles
+form: $/harassmap/incidents/models/role/fields.yaml
+modelClass: Harassmap\Incidents\Models\Role
+defaultRedirect: harassmap/incidents/roles
+create:
+    redirect: 'harassmap/incidents/roles/update/:id'
+    redirectClose: harassmap/incidents/roles
+update:
+    redirect: harassmap/incidents/roles
+    redirectClose: harassmap/incidents/roles
