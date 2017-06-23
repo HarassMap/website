@@ -3,8 +3,8 @@
 namespace Harassmap\Incidents\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
 use October\Rain\Database\Traits\Sortable;
+use October\Rain\Database\Traits\Validation;
 
 /**
  * Category
@@ -37,10 +37,8 @@ class Category extends Model
     public $translatable = ['title', 'description'];
 
     public $belongsToMany = [
-        'incidents' => [
-            Incident::class,
-            'table' => 'harassmap_incidents_incident_category'
-        ]
+        'incidents' => [Incident::class, 'table' => 'harassmap_incidents_incident_category'],
+        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_category']
     ];
 
     public $rules = [
@@ -50,7 +48,7 @@ class Category extends Model
     {
 
         // adding a default value for the sort order
-        if(!$this->sort_order) {
+        if (!$this->sort_order) {
             $this->sort_order = 0;
         }
     }

@@ -5,10 +5,14 @@ fields:
         type: text
     description:
         label: 'harassmap.incidents::lang.form.description'
-        size: ''
         span: full
         type: textarea
     color:
         label: 'harassmap.incidents::lang.form.color'
         span: full
         type: colorpicker
+    domains:
+        label: Relation
+        nameFrom: host
+        span: full
+        type: relation
