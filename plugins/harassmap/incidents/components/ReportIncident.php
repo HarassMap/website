@@ -9,6 +9,7 @@ use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Location;
+use Redirect;
 
 class ReportIncident extends ComponentBase
 {
@@ -61,7 +62,7 @@ class ReportIncident extends ComponentBase
         $dateTime = strtotime($data['date']);
         $timeTime = strtotime($data['time']);
 
-        if($dateTime !== false && $timeTime !== false) {
+        if ($dateTime !== false && $timeTime !== false) {
             $date = new \DateTime();
             $date->setTimestamp($dateTime);
             $time = new \DateTime();
@@ -70,15 +71,13 @@ class ReportIncident extends ComponentBase
             $incident->date = $date;
         }
 
-
         $incident->validate();
-
         $location->save();
 
         $incident->location()->add($location);
         $incident->save();
 
-        // validate the location
+        return Redirect::refresh();
     }
 
 }
