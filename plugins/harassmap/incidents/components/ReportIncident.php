@@ -9,6 +9,7 @@ use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Location;
+use Harassmap\Incidents\Models\Role;
 use Redirect;
 
 class ReportIncident extends ComponentBase
@@ -31,6 +32,7 @@ class ReportIncident extends ComponentBase
         $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
         })->get();
+        $this->page['roles'] = Role::all()->lists('name', 'id');
     }
 
     public function onSubmit()
@@ -53,6 +55,7 @@ class ReportIncident extends ComponentBase
         $incident = new Incident();
         $incident->domain_id = $domain->id;
         $incident->public_id = Uuid::uuid();
+        $incident->role_id = $data['role'];
         $incident->description = $data['description'];
 
         if (array_key_exists('categories', $data)) {

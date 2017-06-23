@@ -2,12 +2,9 @@ columns:
     description:
         label: description
         type: text
+    public_id:
+        label: ID
+        type: text
     date:
         label: date
         type: text
-    created_at:
-        label: created_at
-        type: datetime
-    updated_at:
-        label: updated_at
-        type: datetime

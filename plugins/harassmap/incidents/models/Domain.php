@@ -77,7 +77,8 @@ class Domain extends Model
     public $hasMany = [
         'content' => [Content::class, 'delete' => true],
         'tips' => [Tip::class, 'delete' => true],
-        'posts' => [Posts::class, 'delete' => true]
+        'posts' => [Posts::class, 'delete' => true],
+        'incidents' => Incident::class,
     ];
 
     public $belongsToMany = [

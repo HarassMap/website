@@ -1,4 +1,10 @@
 fields:
+    public_id:
+        label: 'Public ID'
+        oc.commentPosition: ''
+        span: full
+        disabled: 1
+        type: text
     description:
         label: 'harassmap.incidents::lang.form.description'
         size: large

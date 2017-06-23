@@ -25,5 +25,10 @@ class Role extends Model
     public $timestamps = false;
 
     public $rules = [
+        'name' => 'required'
+    ];
+
+    public $hasMany = [
+        'incidents' => Incident::class
     ];
 }

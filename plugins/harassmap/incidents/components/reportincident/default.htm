@@ -131,7 +131,7 @@
     <div class="row mt-4">
         <div class="col-5">
             {{ form_label('role', 'Your role' | _) }}
-            {# Role Selector #}
+            {{ form_select('role', roles, '', {'class': 'form-control', 'required': 'required'}) }}
         </div>
     </div>
 

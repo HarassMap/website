@@ -14,6 +14,7 @@ use RainLab\User\Models\User;
  * @property int $user_id
  * @property int $location_id
  * @property int $domain_id
+ * @property int $role_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereCreatedAt($value)
@@ -25,9 +26,8 @@ use RainLab\User\Models\User;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident wherePublicId($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereUserId($value)
- * @mixin \Eloquent
- * @property int $role_id
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereRoleId($value)
+ * @mixin \Eloquent
  */
 class Incident extends Model
 {
@@ -39,13 +39,16 @@ class Incident extends Model
         'public_id' => 'required|string',
         'description' => 'required|string',
         'date' => 'required|date',
-        'domain_id' => 'required',
+        'domain' => 'required',
         'categories' => 'required|array',
+        'role' => 'required',
     ];
 
     public $belongsTo = [
         'user' => User::class,
         'location' => Location::class,
+        'domain' => Domain::class,
+        'role' => Role::class,
     ];
 
     public $belongsToMany = [
