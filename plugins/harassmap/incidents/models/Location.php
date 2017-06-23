@@ -36,6 +36,7 @@ class Location extends Model
         'address' => 'required',
         'lat' => 'required',
         'lng' => 'required',
+        'country_id' => 'required',
     ];
 
     public $hasOne = [
