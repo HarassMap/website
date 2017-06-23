@@ -1,0 +1,7 @@
+fields:
+    description:
+        label: 'harassmap.incidents::lang.form.description'
+        size: large
+        oc.commentPosition: ''
+        span: full
+        type: textarea

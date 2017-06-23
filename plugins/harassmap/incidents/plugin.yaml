@@ -7,11 +7,15 @@ plugin:
 navigation:
     harassmap.incidents:
         label: 'harassmap.incidents::lang.menu.incidents'
-        url: harassmap/incidents/category
+        url: harassmap/incidents/incidents
         icon: icon-map-marker
         permissions:
             - harassmap.incidents.access_categories
         sideMenu:
+            harassmap.incidents.incidents:
+                label: 'harassmap.incidents::lang.menu.incidents'
+                url: harassmap/incidents/incidents
+                icon: icon-map-marker
             harassmap.incidents.categories:
                 label: 'harassmap.incidents::lang.menu.categories'
                 url: harassmap/incidents/category
