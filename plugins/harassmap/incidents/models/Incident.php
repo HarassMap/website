@@ -55,10 +55,5 @@ class Incident extends Model
         'role' => Role::class,
     ];
 
-    public $belongsToMany = [
-        'categories' => [
-            Category::class,
-            'table' => 'harassmap_incidents_incident_category'
-        ]
-    ];
+    public $belongsToMany = ['categories' => [Category::class, 'table' => 'harassmap_incidents_incident_category']];
 }
