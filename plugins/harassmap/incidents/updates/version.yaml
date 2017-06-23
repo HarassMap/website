@@ -63,3 +63,6 @@
 1.0.22:
     - 'Seed harassmap_incidents_role_table'
     - seed_harassmap_incidents_role_table.php
+1.0.23:
+    - 'Seed harassmap_incidents_assistance_table'
+    - seed_harassmap_incidents_assistance_table.php

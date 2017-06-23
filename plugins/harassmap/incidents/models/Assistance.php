@@ -22,13 +22,15 @@ class Assistance extends Model
 
     public $table = 'harassmap_incidents_assistance';
 
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = ['title'];
+
     public $rules = [
+        'title' => 'required',
     ];
 
     public $belongsToMany = [
-        'interventions' => [
-            Intervention::class,
-            'table' => 'harassmap_incidents_intervention_assistance'
-        ]
+        'interventions' => [Intervention::class, 'table' => 'harassmap_incidents_intervention_assistance']
     ];
 }

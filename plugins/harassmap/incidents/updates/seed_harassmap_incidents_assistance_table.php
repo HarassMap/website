@@ -6,7 +6,7 @@ use Harassmap\Incidents\Models\Assistance;
 use Seeder;
 use Symfony\Component\Yaml\Yaml;
 
-class SeedHarassmapAssistanceRoleTable extends Seeder
+class SeedHarassmapIncidentsAssistanceTable extends Seeder
 {
     public function run()
     {
