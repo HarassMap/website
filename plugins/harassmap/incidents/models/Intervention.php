@@ -16,10 +16,10 @@ class Intervention extends Model
     public $table = 'harassmap_incidents_intervention';
 
     public $rules = [
+        'assistance' => 'required|array',
     ];
 
-    public $hasOne = [
-        'user' => User::class,
+    public $belongsTo = [
         'incident' => Incident::class,
     ];
 

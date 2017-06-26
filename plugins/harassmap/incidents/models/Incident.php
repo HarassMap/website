@@ -55,6 +55,10 @@ class Incident extends Model
         'role' => Role::class,
     ];
 
+    public $hasOne = [
+        'intervention' => [Intervention::class, 'delete' => true],
+    ];
+
     public $belongsToMany = [
         'categories' => [Category::class, 'table' => 'harassmap_incidents_incident_category']
     ];

@@ -72,3 +72,6 @@
 1.0.25:
     - 'Created table harassmap_incidents_domain_assistance'
     - builder_table_create_harassmap_incidents_domain_assistance.php
+1.0.26:
+    - 'Created table harassmap_incidents_intervention'
+    - builder_table_create_harassmap_incidents_intervention.php

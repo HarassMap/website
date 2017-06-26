@@ -9,9 +9,11 @@ use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
 use Redirect;
+use ValidationException;
 
 class ReportIncident extends ComponentBase
 {
@@ -83,11 +85,26 @@ class ReportIncident extends ComponentBase
             $incident->date = $date;
         }
 
+        // if there was an intervention but no type then throw an error
+        if ($data['intervention'] && !array_key_exists('assistance', $data)) {
+            throw new ValidationException(['assistance']);
+        }
+
+
         $incident->validate();
         $location->save();
 
         $incident->location()->add($location);
         $incident->save();
+
+        if ($data['intervention'] && array_key_exists('assistance', $data)) {
+            $intervention = new Intervention();
+
+            $intervention->assistance = $data['assistance'];
+
+            $intervention->incident()->add($incident);
+            $intervention->save();
+        }
 
         return Redirect::refresh();
     }
