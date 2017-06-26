@@ -38,7 +38,7 @@ class Category extends Model
 
     public $belongsToMany = [
         'incidents' => [Incident::class, 'table' => 'harassmap_incidents_incident_category'],
-        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_category']
+        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_category'],
     ];
 
     public $rules = [

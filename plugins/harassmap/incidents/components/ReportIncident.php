@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Faker\Provider\Uuid;
+use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
@@ -29,10 +30,18 @@ class ReportIncident extends ComponentBase
 
         $this->page['countries'] = Country::all()->lists('name', 'id');
         $this->page['domain'] = $domain;
+
         $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
-        })->get();
-        $this->page['roles'] = Role::all()->lists('name', 'id');
+        })->get()->lists('title', 'id');
+
+        $this->page['roles'] = Role::whereHas('domains', function ($query) use ($domain) {
+            $query->where('id', '=', $domain->id);
+        })->get()->lists('name', 'id');
+
+        $this->page['assistance'] = Assistance::whereHas('domains', function ($query) use ($domain) {
+            $query->where('id', '=', $domain->id);
+        })->get()->lists('title', 'id');
     }
 
     public function onSubmit()

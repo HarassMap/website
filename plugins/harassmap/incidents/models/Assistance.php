@@ -31,6 +31,7 @@ class Assistance extends Model
     ];
 
     public $belongsToMany = [
-        'interventions' => [Intervention::class, 'table' => 'harassmap_incidents_intervention_assistance']
+        'interventions' => [Intervention::class, 'table' => 'harassmap_incidents_intervention_assistance'],
+        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_assistance'],
     ];
 }

@@ -1,6 +1,11 @@
 fields:
     name:
-        label: Name
+        label: 'harassmap.incidents::lang.form.name'
         oc.commentPosition: ''
         span: full
         type: text
+    domains:
+        label: 'harassmap.incidents::lang.form.domain'
+        nameFrom: host
+        span: full
+        type: relation

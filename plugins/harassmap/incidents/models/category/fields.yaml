@@ -12,7 +12,7 @@ fields:
         span: full
         type: colorpicker
     domains:
-        label: Relation
+        label: 'harassmap.incidents::lang.form.domain'
         nameFrom: host
         span: full
         type: relation

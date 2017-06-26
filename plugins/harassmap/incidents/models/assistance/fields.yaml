@@ -4,3 +4,8 @@ fields:
         oc.commentPosition: ''
         span: full
         type: text
+    domains:
+        label: 'harassmap.incidents::lang.form.domain'
+        nameFrom: host
+        span: full
+        type: relation

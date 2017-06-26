@@ -66,3 +66,9 @@
 1.0.23:
     - 'Seed harassmap_incidents_assistance_table'
     - seed_harassmap_incidents_assistance_table.php
+1.0.24:
+    - 'Created table harassmap_incidents_domain_role'
+    - builder_table_create_harassmap_incidents_domain_role.php
+1.0.25:
+    - 'Created table harassmap_incidents_domain_assistance'
+    - builder_table_create_harassmap_incidents_domain_assistance.php

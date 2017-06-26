@@ -29,6 +29,10 @@ class Role extends Model
     ];
 
     public $hasMany = [
-        'incidents' => Incident::class
+        'incidents' => Incident::class,
+    ];
+
+    public $belongsToMany = [
+        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_role'],
     ];
 }
