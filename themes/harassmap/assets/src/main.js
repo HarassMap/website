@@ -1,77 +1,38 @@
 'use strict';
 
-import _ from "lodash";
-import Pikaday from "pikaday";
 import MapFactory from "./map/map.factory";
 
-let map = null;
+import { createDatePicker } from "./utils/datePicker";
+import { initGeolocate } from "./utils/geoLocate";
+import { createTimePicker } from "./utils/timePicker";
 
 window.initMap = (id = 'map') => {
-    map = MapFactory.createFromElement(document.getElementById(id));
+    MapFactory.createFromElement(document.getElementById(id));
 };
 
-window.createDatePicker = (id) => {
-    let picker = new Pikaday({field: document.getElementById(id)});
-};
+window.initReportIncidentPage = () => {
+    createDatePicker('date');
+    createTimePicker('time');
+    // initAutoComplete('incident_report_location_city', {{ cities | serialize('json') | raw }});
+    initGeolocate('geolocate');
 
-window.createTimePicker = (id) => {
-    $('#' + id).timepicker();
-};
+    // show/hide the assistance
+    let $assistance = $('.assistance'),
+        $intervention = $('#intervention');
 
-window.initAutoComplete = (id, data) => {
-    const cities = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        identify: ({name}) => name,
-        local: data
-    });
+    // hide the assistance to begin with
+    $assistance.hide();
 
-    const listener = (event, data) => {
-        if (_.isString(data)) {
-            data = cities.get(data)[0];
+    $intervention.on('change', () => {
+        let value = $intervention.val();
+
+        if (value === "1") {
+            $assistance.slideDown();
+        } else {
+            console.debug("slide up?");
+            $assistance.slideUp();
         }
 
-        // if we have a map and data
-        if (map && data) {
-            map.setCenter(new google.maps.LatLng(data.lat, data.lon));
-        }
-
-    };
-
-    $('#' + id)
-        .typeahead({highlight: true, hint: false}, {
-            name: 'cities',
-            display: 'name',
-            source: cities
-        })
-        .bind('typeahead:change', listener)
-        .bind('typeahead:select', listener)
-        .bind('typeahead:autocomplete', listener);
-};
-
-window.initGeolocate = (id) => {
-    document.getElementById(id).addEventListener('click', (event) => {
-        let geocoder = new google.maps.Geocoder;
-
-        navigator.geolocation.getCurrentPosition((position) => {
-            let pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            map.setCenter(pos);
-
-            geocoder.geocode({'location': pos}, (results, status) => {
-                if (status === 'OK') {
-                    if (results[1]) {
-                        console.debug(results);
-                    } else {
-                        window.alert('No results found');
-                    }
-                } else {
-                    window.alert('Geocoder failed due to: ' + status);
-                }
-            });
-        });
     });
+
 };

@@ -138,12 +138,12 @@
     <div class="row mt-4">
         <div class="col-4">
             {{ form_label('intervention', 'Did someone come to your assistance?' | _) }}
-            {{ form_select('intervention', {'': 'Yes/No' | _, 1: 'Yes' | _, 0: 'No' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
+            {{ form_select('intervention', {0: 'No' | _, 1: 'Yes' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-12">
+    <div class="row assistance">
+        <div class="col-12 pt-4">
             {{ form_label('assistance', 'What sort of assistance was offered?' | _) }}
 
             {% for id,title in assistance %}
@@ -165,14 +165,10 @@
 </div>
 {{ form_close() }}
 
-
 {% put scripts %}
-<script>
-    createDatePicker('date');
-    createTimePicker('time');
-    {#initAutoComplete('incident_report_location_city', {{ cities | serialize('json') | raw }});#}
-    initGeolocate('geolocate');
-</script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+<script>
+    initReportIncidentPage();
+</script>
 {% endput %}

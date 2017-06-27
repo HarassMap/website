@@ -4,15 +4,17 @@ layout = "default"
 is_hidden = 0
 
 [viewBag]
-localeUrl[ar] = "/report-incident"
+localeUrl[ar] = "/report"
 
 [harassmapReportIncident]
 
 [harassmapDomainContentBlock]
 id = "report.incident"
 ==
-{% component 'harassmapReportIncident' %}
+<div class=" report report--incident">
+    {% component 'harassmapReportIncident' %}
 
-<div class="container mt-5">
-    {% component 'harassmapDomainContentBlock' %}
+    <div class="container mt-5">
+        {% component 'harassmapDomainContentBlock' %}
+    </div>
 </div>
