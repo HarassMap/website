@@ -6,6 +6,7 @@ use Cms\Classes\ComponentBase;
 use Faker\Provider\Uuid;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
+use Harassmap\Incidents\Models\City;
 use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
@@ -44,6 +45,13 @@ class ReportIncident extends ComponentBase
         $this->page['assistance'] = Assistance::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
         })->get()->lists('title', 'id');
+    }
+
+    public function onCountrySelect()
+    {
+        $data = post();
+
+        return City::whereCountryId($data['country'])->get();
     }
 
     public function onSubmit()

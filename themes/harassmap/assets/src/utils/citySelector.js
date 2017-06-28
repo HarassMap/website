@@ -2,7 +2,36 @@
 
 import _ from "lodash";
 
-export const initAutoComplete = (id, data) => {
+import MapFactory from "../map/map.factory";
+
+export const initCitySelector = () => {
+    let $country = $('#country');
+
+    $country.on('changed', () => {
+        onCountryChange();
+    });
+
+    onCountryChange();
+};
+
+const onCountryChange = () => {
+    let $country = $('#country'),
+        country = $country.val();
+
+    $.request('onCountrySelect', {
+        data: {
+            country
+        },
+        success: function (data) {
+            initAutocomplete(data);
+        }
+    });
+};
+
+const initAutocomplete = (data) => {
+    let $city = $('#city'),
+        map = MapFactory.getMap();
+
     const cities = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -17,12 +46,12 @@ export const initAutoComplete = (id, data) => {
 
         // if we have a map and data
         if (map && data) {
-            map.setCenter(new google.maps.LatLng(data.lat, data.lon));
+            map.setCenter(new google.maps.LatLng(data.lat, data.lng));
         }
 
     };
 
-    $('#' + id)
+    $city
         .typeahead({highlight: true, hint: false}, {
             name: 'cities',
             display: 'name',
