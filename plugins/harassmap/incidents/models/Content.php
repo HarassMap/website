@@ -40,7 +40,8 @@ class Content extends Model
         'homepage.bottomLeft' => 'Homepage (Bottom Left)',
         'homepage.bottomCenter' => 'Homepage (Bottom Center)',
         'homepage.bottomRight' => 'Homepage (Bottom Right)',
-        'report.incident' => 'Report Incident',
+        'report.incident' => 'Report (Incident)',
+        'report.thanks' => 'Report (Thanks)',
     ];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];

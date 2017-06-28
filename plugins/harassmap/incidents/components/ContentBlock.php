@@ -77,9 +77,6 @@ class ContentBlock extends ComponentBase
             case 'homepage.active':
                 $partial = 'home/top';
                 break;
-            case 'homepage.droplet':
-                $partial = 'home/droplet';
-                break;
             case 'homepage.bottomLeft':
             case 'homepage.bottomCenter':
             case 'homepage.bottomRight':
@@ -87,6 +84,10 @@ class ContentBlock extends ComponentBase
                 break;
             case 'report.incident':
                 $partial = 'report/incident';
+                break;
+            case 'homepage.droplet':
+            case 'report.thanks':
+                $partial = 'common/raw';
                 break;
         }
 

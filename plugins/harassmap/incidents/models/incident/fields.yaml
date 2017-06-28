@@ -1,7 +1,6 @@
 fields:
     public_id:
         label: 'Public ID'
-        oc.commentPosition: ''
         span: full
         disabled: 1
         type: text
@@ -10,7 +9,6 @@ tabs:
         description:
             label: 'harassmap.incidents::lang.form.description'
             size: large
-            oc.commentPosition: ''
             span: full
             type: textarea
             tab: 'harassmap.incidents::lang.form.tab.incident'

@@ -3,12 +3,10 @@ fields:
         label: 'harassmap.incidents::lang.form.domain'
         span: auto
         type: dropdown
-        commentAbove: 'harassmap.incidents::lang.content.form.domain_help'
     content_id:
         label: 'harassmap.incidents::lang.form.content_id'
         span: auto
         type: dropdown
-        commentAbove: 'harassmap.incidents::lang.content.form.content_id_help'
 tabs:
     fields:
         content:

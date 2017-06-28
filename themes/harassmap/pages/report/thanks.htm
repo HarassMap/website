@@ -5,4 +5,40 @@ is_hidden = 0
 
 [viewBag]
 localeUrl[ar] = "/report/thanks"
+
+[harassmapDomainContentBlock]
+id = "report.thanks"
 ==
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Success' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="pr-md-5">
+                {% component 'harassmapDomainContentBlock' %}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
+            <h3>{{ 'Overall Activity' | _ }}</h3>
+            <p>{{ 'Number of submissions on HarassMap website in the last 30 days.' | _ }}</p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h3>{{ 'Do you want to receive updates on this incident?' | _ }}</h3>
+        </div>
+    </div>
+</div>

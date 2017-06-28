@@ -14,6 +14,7 @@ use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
 use Illuminate\Support\MessageBag;
+use RainLab\User\Facades\Auth;
 use Redirect;
 
 class ReportIncident extends ComponentBase
@@ -59,12 +60,19 @@ class ReportIncident extends ComponentBase
         // get the domain
         $domain = Domain::getBestMatchingDomain();
 
+        // get the current user
+        $user = Auth::getUser();
+
         // this is the data that has been submitted
         $data = post();
 
         $location = new Location();
         $incident = new Incident();
         $intervention = new Intervention();
+
+        if ($user) {
+            $incident->user_id = $user->id;
+        }
 
         $location->country_id = $data['country'];
         $location->city = $data['city'];
@@ -130,7 +138,7 @@ class ReportIncident extends ComponentBase
             $intervention->save();
         }
 
-        return Redirect::to('/report/thanks');
+        return Redirect::to('report/thanks');
     }
 
 }
