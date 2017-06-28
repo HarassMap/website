@@ -130,7 +130,7 @@ class ReportIncident extends ComponentBase
             $intervention->save();
         }
 
-        return Redirect::refresh();
+        return Redirect::to('/report/thanks');
     }
 
 }
