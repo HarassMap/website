@@ -138,7 +138,7 @@ class ReportIncident extends ComponentBase
             $intervention->save();
         }
 
-        return Redirect::to($this->pageUrl('report/thanks'));
+        return Redirect::to($this->pageUrl('report/thanks', ['id' => $incident->public_id]));
     }
 
 }
