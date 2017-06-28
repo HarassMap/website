@@ -8,6 +8,9 @@ columns:
     created_at:
         label: 'harassmap.incidents::lang.form.date_reported'
         type: text
+    verified:
+        label: 'harassmap.incidents::lang.form.verified'
+        type: switch
     intervention:
         label: 'harassmap.incidents::lang.form.intervention'
         type: switch

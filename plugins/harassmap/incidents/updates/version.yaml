@@ -75,3 +75,6 @@
 1.0.26:
     - 'Created table harassmap_incidents_intervention'
     - builder_table_create_harassmap_incidents_intervention.php
+1.0.27:
+    - 'Updated table harassmap_incidents_incident'
+    - builder_table_update_harassmap_incidents_incident_2.php

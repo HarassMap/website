@@ -59,5 +59,6 @@
         'date' => 'Date',
         'date_reported' => 'Date Reported',
         'intervention' => 'Intervention',
+        'verified' => 'Verified',
     ]
 ];
