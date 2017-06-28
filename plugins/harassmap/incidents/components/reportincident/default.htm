@@ -27,29 +27,41 @@
         <div class="col-12 col-lg-6">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
+                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
                         {{ form_label('country', 'Country' | _) }}
                         {{ form_select('country', countries, domain.country_id, {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('country') }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
+                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
                         {{ form_label('city', 'City' | _) }}
                         {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('country') }}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
+                    <div class="form-group {{ (errors.has('region')) ? 'has-danger' : '' }}">
                         {{ form_label('region', 'Region' | _) }}
                         {{ form_text('region', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('region') }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
+                    <div class="form-group {{ (errors.has('address')) ? 'has-danger' : '' }}">
                         {{ form_label('address', 'Address' | _) }}
                         {{ form_text('address', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('address') }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,15 +69,21 @@
         <div class="col-12 col-lg-6">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-lg-7">
-                    <div class="form-group">
+                    <div class="form-group {{ (errors.has('date')) ? 'has-danger' : '' }}">
                         {{ form_label('date', 'Date' | _) }}
                         {{ form_text('date', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('date') }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-7">
-                    <div class="form-group">
+                    <div class="form-group {{ (errors.has('date')) ? 'has-danger' : '' }}">
                         {{ form_label('time', 'Time' | _) }}
                         {{ form_text('time', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('date') }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,24 +106,31 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-12 col-lg-6">
-            <div class="form-group">
-                {{ form_label('lat', 'Latitude' | _) }}
+            <div class="form-group {{ (errors.has('lat')) ? 'has-danger' : '' }}">
                 {{ form_text('lat', domain.lat, {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('lat') }}
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-6">
-            <div class="form-group">
-                {{ form_label('lng', 'Longitude' | _) }}
+            <div class="form-group {{ (errors.has('lng')) ? 'has-danger' : '' }}">
                 {{ form_text('lng', domain.lng, {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('lng') }}
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12">
-            <div class="form-group">
+            <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
                 {{ form_label('description', 'Description' | _) }}
                 {{ form_textarea('description', '', {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('description') }}
+                </div>
             </div>
         </div>
     </div>
@@ -123,7 +148,8 @@
                 {% for id,title in categories %}
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="categories[]" type="checkbox" value="{{ id }}">
+                            <input class="form-check-input" name="categories[]" type="checkbox"
+                                   value="{{ id }}">
                             {{ title }}
                         </label>
                     </div>
@@ -137,30 +163,47 @@
 
     <div class="row mt-4">
         <div class="col-5">
-            {{ form_label('role', 'Your role' | _) }}
-            {{ form_select('role', roles, '', {'class': 'form-control', 'required': 'required'}) }}
+            <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
+                {{ form_label('role', 'Your role' | _) }}
+                {{ form_select('role', roles, '', {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('role') }}
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-4">
-            {{ form_label('intervention', 'Did someone come to your assistance?' | _) }}
-            {{ form_select('intervention', {0: 'No' | _, 1: 'Yes' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
+            <div class="form-group {{ (errors.has('intervention')) ? 'has-danger' : '' }}">
+                {{ form_label('intervention', 'Did someone come to your assistance?' | _) }}
+                {{ form_select('intervention', {0: 'No' | _, 1: 'Yes' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('intervention') }}
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="row assistance">
         <div class="col-12 pt-4">
-            {{ form_label('assistance', 'What sort of assistance was offered?' | _) }}
+            <div class="form-group {{ (errors.has('assistance')) ? 'has-danger' : '' }}">
+                {{ form_label('assistance', 'What sort of assistance was offered?' | _) }}
 
-            {% for id,title in assistance %}
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="assistance[]" type="checkbox" value="{{ id }}">
-                        {{ title }}
-                    </label>
+                {% for id,title in assistance %}
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="assistance[]" type="checkbox"
+                                   value="{{ id }}">
+                            {{ title }}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                <div class="form-control-feedback">
+                    {{ errors.first('assistance') }}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 
@@ -172,7 +215,7 @@
 </div>
 {{ form_close() }}
 
-{% put scripts %}
+        {% put scripts %}
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
 <script>
