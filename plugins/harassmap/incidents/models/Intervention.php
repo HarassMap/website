@@ -15,6 +15,8 @@ class Intervention extends Model
 
     public $table = 'harassmap_incidents_intervention';
 
+    public $throwOnValidation = false;
+
     public $rules = [
         'assistance' => 'required|array',
     ];

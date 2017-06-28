@@ -112,19 +112,26 @@
 
     <div class="row mt-4">
         <div class="col-12">
-            {{ form_label('categories', 'Type of incident' | _) }}
+            <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
+                {{ form_label('categories', 'Type of incident' | _, {'class': 'form-control-label'}) }}
+            </div>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col-12">
-            {% for id,title in categories %}
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="categories[]" type="checkbox" value="{{ id }}">
-                        {{ title }}
-                    </label>
+            <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
+                {% for id,title in categories %}
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="categories[]" type="checkbox" value="{{ id }}">
+                            {{ title }}
+                        </label>
+                    </div>
+                {% endfor %}
+                <div class="form-control-feedback">
+                    {{ errors.first('categories') }}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 

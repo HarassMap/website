@@ -12,8 +12,8 @@ use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
+use Illuminate\Support\MessageBag;
 use Redirect;
-use ValidationException;
 
 class ReportIncident extends ComponentBase
 {
@@ -55,15 +55,16 @@ class ReportIncident extends ComponentBase
         $data = post();
 
         $location = new Location();
+        $incident = new Incident();
+        $intervention = new Intervention();
+
         $location->country_id = $data['country'];
         $location->city = $data['city'];
         $location->region = $data['region'];
         $location->address = $data['address'];
         $location->lat = $data['lat'];
         $location->lng = $data['lng'];
-        $location->validate();
 
-        $incident = new Incident();
         $incident->domain_id = $domain->id;
         $incident->public_id = Uuid::uuid();
         $incident->role_id = $data['role'];
@@ -85,24 +86,39 @@ class ReportIncident extends ComponentBase
             $incident->date = $date;
         }
 
+        // generate an errors array
+        $errors = new MessageBag();
+
         // if there was an intervention but no type then throw an error
-        if ($data['intervention'] && !array_key_exists('assistance', $data)) {
-            throw new ValidationException(['assistance']);
+        if ($data['intervention']) {
+
+            if (array_key_exists('assistance', $data)) {
+                $intervention->assistance = $data['assistance'];
+            }
+
+            $intervention->incident()->add($incident);
+            $intervention->validate();
+
+            $errors->merge($intervention->errors());
         }
 
-
+        $location->validate();
         $incident->validate();
+
+        $errors->merge($location->errors());
+        $errors->merge($incident->errors());
+
+        // if we have errors
+        if (!$errors->isEmpty()) {
+            return Redirect::refresh()->withErrors($errors);
+        }
+
         $location->save();
 
         $incident->location()->add($location);
         $incident->save();
 
-        if ($data['intervention'] && array_key_exists('assistance', $data)) {
-            $intervention = new Intervention();
-
-            $intervention->assistance = $data['assistance'];
-
-            $intervention->incident()->add($incident);
+        if ($data['intervention']) {
             $intervention->save();
         }
 

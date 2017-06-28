@@ -30,6 +30,8 @@ class Location extends Model
 
     public $timestamps = false;
 
+    public $throwOnValidation = false;
+
     public $rules = [
         'city' => 'required',
         'region' => 'required',
