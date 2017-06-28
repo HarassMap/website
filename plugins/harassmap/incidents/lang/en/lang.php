@@ -26,6 +26,7 @@
             'map' => 'Map',
             'content' => 'Content',
             'extra' => 'Extra',
+            'incident' => 'Incident',
         ],
         'title' => 'Title',
         'description' => 'Description',
