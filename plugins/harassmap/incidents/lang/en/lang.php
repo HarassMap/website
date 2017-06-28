@@ -56,5 +56,8 @@
         'lng' => 'Longitude',
         'zoom' => 'Zoom',
         'iso' => 'ISO Code',
+        'date' => 'Date',
+        'date_reported' => 'Date Reported',
+        'intervention' => 'Intervention',
     ]
 ];

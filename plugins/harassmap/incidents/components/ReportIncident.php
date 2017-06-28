@@ -104,7 +104,6 @@ class ReportIncident extends ComponentBase
                 $intervention->assistance = $data['assistance'];
             }
 
-            $intervention->incident()->add($incident);
             $intervention->validate();
 
             $errors->merge($intervention->errors());
@@ -127,6 +126,7 @@ class ReportIncident extends ComponentBase
         $incident->save();
 
         if ($data['intervention']) {
+            $intervention->incident()->add($incident);
             $intervention->save();
         }
 

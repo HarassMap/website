@@ -1,7 +1,4 @@
 columns:
     title:
-        label: title
+        label: 'harassmap.incidents::lang.form.title'
         type: text
-    created_at:
-        label: created_at
-        type: datetime

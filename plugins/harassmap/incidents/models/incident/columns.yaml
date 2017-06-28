@@ -1,10 +1,13 @@
 columns:
     description:
-        label: description
-        type: text
-    public_id:
-        label: ID
+        label: 'harassmap.incidents::lang.form.description'
         type: text
     date:
-        label: date
+        label: 'harassmap.incidents::lang.form.date'
         type: text
+    created_at:
+        label: 'harassmap.incidents::lang.form.date_reported'
+        type: text
+    intervention:
+        label: 'harassmap.incidents::lang.form.intervention'
+        type: switch
