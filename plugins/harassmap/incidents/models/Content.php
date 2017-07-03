@@ -41,6 +41,7 @@ class Content extends Model
         'homepage.bottomCenter' => 'Homepage (Bottom Center)',
         'homepage.bottomRight' => 'Homepage (Bottom Right)',
         'report.incident' => 'Report (Incident)',
+        'report.intervention' => 'Report (Intervention)',
         'report.thanks' => 'Report (Thanks)',
     ];
 

@@ -1,0 +1,213 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Report an intervention' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+                <span id="geolocate" class="btn btn--large btn--white btn-block">
+                    {{ 'It just happened here' | _ }}
+                </span>
+        </div>
+        <div class="col-6">
+                <span class="btn btn--large btn--white btn-block">
+                    {{ 'It happened earlier / elsewhere' | _ }}
+                </span>
+        </div>
+    </div>
+</div>
+
+{{ form_open({ request: 'onSubmit' }) }}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
+                        {{ form_label('country', 'Country' | _) }}
+                        {{ form_select('country', countries, domain.country_id, {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('country') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
+                        {{ form_label('city', 'City' | _) }}
+                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('country') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group {{ (errors.has('region')) ? 'has-danger' : '' }}">
+                        {{ form_label('region', 'Region' | _) }}
+                        {{ form_text('region', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('region') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group {{ (errors.has('address')) ? 'has-danger' : '' }}">
+                        {{ form_label('address', 'Address' | _) }}
+                        {{ form_text('address', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('address') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-lg-7">
+                    <div class="form-group {{ (errors.has('date')) ? 'has-danger' : '' }}">
+                        {{ form_label('date', 'Date' | _) }}
+                        {{ form_text('date', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('date') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-7">
+                    <div class="form-group {{ (errors.has('date')) ? 'has-danger' : '' }}">
+                        {{ form_label('time', 'Time' | _) }}
+                        {{ form_text('time', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('date') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hr hr--thin">
+        <div class="hr__line"></div>
+    </div>
+
+    <p>
+        {{ 'Now position the crosshairs as close as possible to where the incident occurred...' | _ }}
+    </p>
+</div>
+
+<div id="map" class="map map--report" data-map="report"
+     data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}"
+     data-lat-input="lat" data-lng-input="lng"></div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="form-group {{ (errors.has('lat')) ? 'has-danger' : '' }}">
+                {{ form_label('lat', 'Latitude' | _) }}
+                {{ form_text('lat', domain.lat, {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('lat') }}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="form-group {{ (errors.has('lng')) ? 'has-danger' : '' }}">
+                {{ form_label('lng', 'Longitude' | _) }}
+                {{ form_text('lng', domain.lng, {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('lng') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 pt-4">
+            <div class="form-group {{ (errors.has('assistance')) ? 'has-danger' : '' }}">
+                {{ form_label('assistance', 'Describe what happened' | _) }}
+
+                {% for id,title in assistance %}
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="assistance[]" type="checkbox"
+                                   value="{{ id }}">
+                            {{ title }}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                <div class="form-control-feedback">
+                    {{ errors.first('assistance') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
+                {{ form_textarea('description', '', {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('description') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
+                {{ form_label('categories', 'Type of incident' | _, {'class': 'form-control-label'}) }}
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
+                {% for id,title in categories %}
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="categories[]" type="checkbox"
+                                   value="{{ id }}">
+                            {{ title }}
+                        </label>
+                    </div>
+                {% endfor %}
+                <div class="form-control-feedback">
+                    {{ errors.first('categories') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-5">
+            <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
+                {{ form_label('role', 'Your role' | _) }}
+                {{ form_select('role', roles, '', {'class': 'form-control', 'required': 'required'}) }}
+                <div class="form-control-feedback">
+                    {{ errors.first('role') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            {{ form_submit('Submit' | _, {'class': 'btn'}) }}
+        </div>
+    </div>
+</div>
+{{ form_close() }}
+
+        {% put scripts %}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+<script>
+    initReportIncidentPage();
+</script>
+{% endput %}

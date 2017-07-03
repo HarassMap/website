@@ -6,5 +6,17 @@ robot_index = "index"
 robot_follow = "follow"
 
 [viewBag]
-localeUrl[ar] = "/report-intervention"
+localeUrl[ar] = "/report/intervention"
+
+[harassmapReportIntervention]
+
+[harassmapDomainContentBlock]
+id = "report.intervention"
 ==
+<div class=" report report--intervention">
+    {% component 'harassmapReportIntervention' %}
+
+    <div class="container mt-5">
+        {% component 'harassmapDomainContentBlock' %}
+    </div>
+</div>
