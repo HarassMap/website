@@ -8,6 +8,10 @@ localeUrl[ar] = "/report/thanks/:id"
 
 [harassmapDomainContentBlock]
 id = "report.thanks"
+
+[account reportregister]
+paramCode = "code"
+forceSecure = 0
 ==
 <div class="container">
     <div class="row">
@@ -36,9 +40,17 @@ id = "report.thanks"
             </h3>
         </div>
     </div>
-    <div class="row mt-4">
-        <div class="col-12">
-            <h3>{{ 'Do you want to receive updates on this incident?' | _ }}</h3>
+
+    {% if not user %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>{{ 'Do you want to receive updates on this incident?' | _ }}</h3>
+            </div>
         </div>
-    </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                {% component 'reportregister' %}
+            </div>
+        </div>
+    {% endif %}
 </div>
