@@ -1,6 +1,6 @@
 <div class="row mb-5">
     <div class="col-12">
-        <form data-request="onRegister">
+        <form data-request="onIncidentRegister">
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
@@ -19,17 +19,15 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-sm-6">
                     <div class="form-group">
                         <label for="username">{{ 'Username' | _ }}</label>
                         <input required name="username" type="text" class="form-control" id="username"
                                placeholder="{{ 'Enter a username' | _ }}"/>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-sm-6">
                     <div class="form-group">
                         <label for="registerEmail">{{ 'Email' | _ }}</label>
                         <input required name="email" type="email" class="form-control" id="registerEmail"
@@ -69,6 +67,5 @@
 
             <button type="submit" class="btn btn-default">{{ 'Register' | _ }}</button>
         </form>
-
     </div>
 </div>
