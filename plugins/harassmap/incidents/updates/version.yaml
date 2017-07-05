@@ -78,3 +78,6 @@
 1.0.27:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_2.php
+1.0.28:
+    - 'Updated table harassmap_incidents_location'
+    - builder_table_update_harassmap_incidents_location.php

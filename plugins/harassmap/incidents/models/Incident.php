@@ -52,12 +52,12 @@ class Incident extends Model
 
     public $belongsTo = [
         'user' => User::class,
-        'location' => Location::class,
         'domain' => Domain::class,
         'role' => Role::class,
     ];
 
     public $hasOne = [
+        'location' => [Location::class, 'delete' => true],
         'intervention' => [Intervention::class, 'delete' => true],
     ];
 

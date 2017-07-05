@@ -13,6 +13,7 @@ use October\Rain\Database\Traits\Validation;
  * @property string $lat
  * @property string $lng
  * @property int $country_id
+ * @property int $incident_id
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereAddress($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereCity($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereCountryId($value)
@@ -41,7 +42,8 @@ class Location extends Model
         'country_id' => 'required',
     ];
 
-    public $hasOne = [
-        'incident' => Incident::class
+    public $belongsTo = [
+        'incident' => Incident::class,
+        'country' => Country::class,
     ];
 }

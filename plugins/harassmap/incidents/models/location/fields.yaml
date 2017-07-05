@@ -1,0 +1,26 @@
+fields:
+    city:
+        label: City
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    region:
+        label: Region
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    address:
+        label: Address
+        oc.commentPosition: ''
+        span: full
+        type: text
+    lat:
+        label: Latitude
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    lng:
+        label: Longitude
+        oc.commentPosition: ''
+        span: auto
+        type: text

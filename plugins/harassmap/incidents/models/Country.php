@@ -35,7 +35,8 @@ class Country extends Model
 
     public $hasMany = [
         'cities' => [City::class, 'delete' => true],
-        'domains' => Domain::class
+        'domains' => Domain::class,
+        'locations' => Location::class,
     ];
 
 }

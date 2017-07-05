@@ -1,0 +1,8 @@
+location:
+    label: Location
+    view:
+        form: $/harassmap/incidents/models/location/fields.yaml
+        list: $/harassmap/incidents/models/location/columns.yaml
+    manage:
+        form: $/harassmap/incidents/models/location/fields.yaml
+        list: $/harassmap/incidents/models/location/columns.yaml

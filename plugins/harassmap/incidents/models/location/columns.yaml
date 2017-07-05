@@ -1,0 +1,16 @@
+columns:
+    city:
+        label: city
+        type: text
+    region:
+        label: region
+        type: text
+    address:
+        label: address
+        type: text
+    lat:
+        label: lat
+        type: text
+    lng:
+        label: lng
+        type: text
