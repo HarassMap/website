@@ -10,6 +10,12 @@ fields:
         span: auto
         disabled: 1
         type: relation
+    user:
+        label: User
+        select: concat(name, ' ', surname)
+        span: auto
+        disabled: 1
+        type: relation
     verified:
         label: 'harassmap.incidents::lang.form.verified'
         span: full
