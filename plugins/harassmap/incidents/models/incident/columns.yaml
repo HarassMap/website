@@ -14,3 +14,6 @@ columns:
     intervention:
         label: 'harassmap.incidents::lang.form.intervention'
         type: switch
+    user:
+        label: 'harassmap.incidents::lang.form.user'
+        type: switch
