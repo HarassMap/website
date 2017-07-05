@@ -3,6 +3,8 @@ location:
     view:
         form: $/harassmap/incidents/models/location/fields.yaml
         list: $/harassmap/incidents/models/location/columns.yaml
+        toolbarButtons: update
     manage:
         form: $/harassmap/incidents/models/location/fields.yaml
         list: $/harassmap/incidents/models/location/columns.yaml
+        toolbarButtons: update

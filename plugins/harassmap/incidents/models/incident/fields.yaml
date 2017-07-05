@@ -12,26 +12,35 @@ fields:
         type: relation
     user:
         label: User
-        select: concat(name, ' ', surname)
-        span: auto
+        select: 'concat(name, '' '', surname)'
+        span: full
         disabled: 1
         type: relation
-    verified:
-        label: 'harassmap.incidents::lang.form.verified'
-        span: full
-        type: checkbox
-
 tabs:
     fields:
         description:
             label: 'harassmap.incidents::lang.form.description'
             size: large
-            span: auto
+            span: full
             type: textarea
             tab: 'harassmap.incidents::lang.form.tab.incident'
-        categories:
-            label: Categories
-            nameFrom: title
-            span: auto
-            type: relation
+        date:
+            label: 'harassmap.incidents::lang.form.date'
+            mode: datetime
+            span: full
+            type: datepicker
             tab: 'harassmap.incidents::lang.form.tab.incident'
+        verified:
+            label: 'harassmap.incidents::lang.form.verified'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.incident'
+        categories:
+            nameFrom: title
+            span: full
+            type: relation
+            tab: 'harassmap.incidents::lang.form.tab.categories'
+        location:
+            type: partial
+            path: $/harassmap/incidents/controllers/incidents/_location.htm
+            tab: 'harassmap.incidents::lang.form.tab.location'

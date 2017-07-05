@@ -27,6 +27,8 @@
             'content' => 'Content',
             'extra' => 'Extra',
             'incident' => 'Incident',
+            'location' => 'Location',
+            'categories' => 'Categories',
         ],
         'title' => 'Title',
         'description' => 'Description',
