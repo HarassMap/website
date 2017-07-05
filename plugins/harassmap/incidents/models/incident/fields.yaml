@@ -1,19 +1,31 @@
 fields:
     public_id:
         label: 'Public ID'
-        span: full
+        span: auto
         disabled: 1
         type: text
+    domain:
+        label: Domain
+        nameFrom: host
+        span: auto
+        disabled: 1
+        type: relation
+    verified:
+        label: 'harassmap.incidents::lang.form.verified'
+        span: full
+        type: checkbox
+
 tabs:
     fields:
         description:
             label: 'harassmap.incidents::lang.form.description'
             size: large
-            span: full
+            span: auto
             type: textarea
             tab: 'harassmap.incidents::lang.form.tab.incident'
-        verified:
-            label: 'harassmap.incidents::lang.form.verified'
+        categories:
+            label: Categories
+            nameFrom: title
             span: auto
-            type: checkbox
+            type: relation
             tab: 'harassmap.incidents::lang.form.tab.incident'
