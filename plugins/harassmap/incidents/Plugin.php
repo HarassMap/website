@@ -7,11 +7,13 @@ use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\Tip;
 use Harassmap\Incidents\Components\Tips;
+use Harassmap\Incidents\Models\Incident;
 use System\Classes\PluginBase;
 use Backend\Controllers\Users as BackendUsersController;
 use Backend\Models\User as BackendUserModel;
 use BackendAuth;
 use Harassmap\Incidents\Models\Domain as DomainModel;
+use RainLab\User\Models\User as UserModel;
 
 class Plugin extends PluginBase
 {
@@ -21,6 +23,10 @@ class Plugin extends PluginBase
         // extend the user class to give it a list of domains
         BackendUserModel::extend(function ($model) {
             $model->belongsToMany['domains'] = [DomainModel::class, 'table' => 'harassmap_incidents_domain_user'];
+        });
+
+        UserModel::extend(function ($model) {
+            $model->hasMany['incidents'] = Incident::class;
         });
 
         // extend the user edit form to allow domain allocation
