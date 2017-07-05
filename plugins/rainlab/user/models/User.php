@@ -9,7 +9,7 @@ use RainLab\User\Models\Settings as UserSettings;
 
 class User extends UserBase
 {
-    use \October\Rain\Database\Traits\SoftDeleting;
+    use \October\Rain\Database\Traits\SoftDelete;
 
     /**
      * @var string The database table used by the model.
@@ -69,7 +69,7 @@ class User extends UserBase
     /**
      * Sends the confirmation email to a user, after activating.
      * @param  string $code
-     * @return void
+     * @return bool
      */
     public function attemptActivation($code)
     {
@@ -371,11 +371,11 @@ class User extends UserBase
     protected function getNotificationVars()
     {
         $vars = [
-            'name'  => $this->name,
-            'email' => $this->email,
+            'name'     => $this->name,
+            'email'    => $this->email,
             'username' => $this->username,
-            'login' => $this->getLogin(),
-            'password' => $this->getOriginalHashValue('password'),
+            'login'    => $this->getLogin(),
+            'password' => $this->getOriginalHashValue('password')
         ];
 
         /*

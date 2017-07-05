@@ -5,9 +5,11 @@ use Auth;
 use Event;
 use Flash;
 use Request;
+use Response;
 use Redirect;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
+use RainLab\User\Models\UserGroup;
 use ValidationException;
 
 class Session extends ComponentBase
@@ -38,6 +40,13 @@ class Session extends ComponentBase
                     'guest' => 'rainlab.user::lang.session.guests'
                 ]
             ],
+            'allowedUserGroups' => [
+                'title'       => 'rainlab.user::lang.session.allowed_groups_title',
+                'description' => 'rainlab.user::lang.session.allowed_groups_description',
+                'placeholder' => '*',
+                'type'        => 'set',
+                'default'     => []
+            ],
             'redirect' => [
                 'title'       => 'rainlab.user::lang.session.redirect_title',
                 'description' => 'rainlab.user::lang.session.redirect_desc',
@@ -52,19 +61,28 @@ class Session extends ComponentBase
         return [''=>'- none -'] + Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function getAllowedUserGroupsOptions()
+    {
+        return UserGroup::lists('name','code');
+    }
+
+    /**
+     * Component is initialized.
+     */
+    public function init()
+    {
+        if (Request::ajax() && !$this->checkUserSecurity()) {
+            return Response::make('Access denied', 403);
+        }
+    }
+
     /**
      * Executed when this component is bound to a page or layout.
      */
     public function onRun()
     {
-        $redirectUrl = $this->controller->pageUrl($this->property('redirect'));
-        $allowedGroup = $this->property('security', self::ALLOW_ALL);
-        $isAuthenticated = Auth::check();
-
-        if (!$isAuthenticated && $allowedGroup == self::ALLOW_USER) {
-            return Redirect::guest($redirectUrl);
-        }
-        elseif ($isAuthenticated && $allowedGroup == self::ALLOW_GUEST) {
+        if (!$this->checkUserSecurity()) {
+            $redirectUrl = $this->controller->pageUrl($this->property('redirect'));
             return Redirect::guest($redirectUrl);
         }
 
@@ -111,5 +129,36 @@ class Session extends ComponentBase
         $user->touchLastSeen();
 
         return $user;
+    }
+
+    /**
+     * Checks if the user can access this page based on the security rules
+     * @return bool
+     */
+    protected function checkUserSecurity()
+    {
+        $allowedGroup = $this->property('security', self::ALLOW_ALL);
+        $allowedUserGroups = $this->property('allowedUserGroups', []);
+        $isAuthenticated = Auth::check();
+
+        if ($isAuthenticated) {
+            if ($allowedGroup == self::ALLOW_GUEST) {
+                return false;
+            }
+
+            if (!empty($allowedUserGroups)) {
+                $userGroups = Auth::getUser()->groups->lists('code');
+                if (!count(array_intersect($allowedUserGroups, $userGroups))) {
+                    return false;
+                }
+            }
+        }
+        else {
+            if ($allowedGroup == self::ALLOW_USER) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

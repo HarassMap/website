@@ -18,6 +18,12 @@ use Exception;
 
 class Account extends ComponentBase
 {
+    /**
+     * Flag for allowing registration, pulled from UserSettings
+     * @var bool
+     */
+    public $canRegister;
+    
     public function componentDetails()
     {
         return [
@@ -53,6 +59,14 @@ class Account extends ComponentBase
     public function getRedirectOptions()
     {
         return [''=>'- none -'] + Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+    
+    /**
+     * Executed when this component is initialized
+     */
+    public function init()
+    {
+        $this->canRegister = $this->page['canRegister'] = UserSettings::get('allow_registration', true);
     }
 
     /**
@@ -150,6 +164,8 @@ class Account extends ComponentBase
 
             $user = Auth::authenticate($credentials, true);
 
+            Event::fire('rainlab.user.authenticate', [$user]);
+
             /*
              * Redirect to the intended page after successful sign in
              */
@@ -172,7 +188,7 @@ class Account extends ComponentBase
     public function onRegister()
     {
         try {
-            if (!UserSettings::get('allow_registration', true)) {
+            if (!$this->canRegister) {
                 throw new ApplicationException(Lang::get('rainlab.user::lang.account.registration_disabled'));
             }
 
@@ -202,6 +218,8 @@ class Account extends ComponentBase
             /*
              * Register user
              */
+            Event::fire('rainlab.user.beforeRegister', [&$data]);
+            
             $requireActivation = UserSettings::get('require_activation', true);
             $automaticActivation = UserSettings::get('activate_mode') == UserSettings::ACTIVATE_AUTO;
             $userActivation = UserSettings::get('activate_mode') == UserSettings::ACTIVATE_USER;
@@ -322,9 +340,9 @@ class Account extends ComponentBase
         if (!$user->checkHashValue('password', post('password'))) {
             throw new ValidationException(['password' => Lang::get('rainlab.user::lang.account.invalid_deactivation_pass')]);
         }
-
-        $user->delete();
+        
         Auth::logout();
+        $user->delete();
 
         Flash::success(post('flash', Lang::get('rainlab.user::lang.account.success_deactivation')));
 
