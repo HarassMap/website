@@ -128,10 +128,10 @@ class ReportIncident extends ComponentBase
             return Redirect::refresh()->withErrors($errors);
         }
 
-        $location->save();
-
-        $incident->location()->add($location);
         $incident->save();
+
+        $location->incident()->add($incident);
+        $location->save();
 
         if ($data['intervention']) {
             $intervention->incident()->add($incident);
