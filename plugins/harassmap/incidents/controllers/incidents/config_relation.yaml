@@ -7,4 +7,12 @@ location:
     manage:
         form: $/harassmap/incidents/models/location/fields.yaml
         list: $/harassmap/incidents/models/location/columns.yaml
-        toolbarButtons: update
+intervention:
+    label: Intervention
+    view:
+        form: $/harassmap/incidents/models/intervention/fields.yaml
+        list: $/harassmap/incidents/models/intervention/columns.yaml
+        toolbarButtons: update|delete
+    manage:
+        form: $/harassmap/incidents/models/intervention/fields.yaml
+        list: $/harassmap/incidents/models/intervention/columns.yaml

@@ -1,0 +1,6 @@
+fields:
+    assistance:
+        label: Assistance
+        nameFrom: title
+        span: full
+        type: relation

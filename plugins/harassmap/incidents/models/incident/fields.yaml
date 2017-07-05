@@ -44,3 +44,7 @@ tabs:
             type: partial
             path: $/harassmap/incidents/controllers/incidents/_location.htm
             tab: 'harassmap.incidents::lang.form.tab.location'
+        intervention:
+            type: partial
+            path: $/harassmap/incidents/controllers/incidents/_intervention.htm
+            tab: 'harassmap.incidents::lang.form.tab.intervention'
