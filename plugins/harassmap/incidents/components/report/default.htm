@@ -16,8 +16,13 @@
 <div class="row mb-4">
     <div class="col-12">
         <h3>
-            {{ 'Incident happened on :date at :time' |
-            _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+            {% if report.intervention %}
+                {{ 'Intervention happened on :date at :time' |
+                _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+            {% else %}
+                {{ 'Incident happened on :date at :time' |
+                _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+            {% endif %}
         </h3>
         <p class="pt-2">{{ 'at :location' | _({location: report.location.address}) }} ({{ report.location.lat }} {{ report.location.lng }})</p>
     </div>

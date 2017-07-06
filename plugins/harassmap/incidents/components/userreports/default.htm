@@ -8,6 +8,7 @@
     <thead>
     <tr>
         <th>{{ 'Date' | _ }}</th>
+        <th>{{ 'Type' | _ }}</th>
         <th>{{ 'Description' | _ }}</th>
         <th>{{ 'Location' | _ }}</th>
         <th>{{ 'Comments' | _ }}</th>
@@ -17,7 +18,8 @@
     {% for report in reports %}
         <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
             <td>{{ report.date | date("d / m / Y") }}</td>
-            <td>{{ report.description }}</td>
+            <td>{{ report.intervention ? 'Intervention' : 'Incident' }}</td>
+            <td>{{ report.description | slice(0, 50) }}</td>
             <td>{{ report.location.address }}</td>
             <td></td>
         </tr>
