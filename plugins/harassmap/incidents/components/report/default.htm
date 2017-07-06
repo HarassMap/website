@@ -2,7 +2,13 @@
     <div class="col-12">
         <h3 class="hr">
             <span class="hr__line"></span>
-            <span class="hr__text">{{ 'Incident' | _ }}</span>
+            <span class="hr__text">
+                {% if report.intervention %}
+                    {{ 'Intervention' | _ }}
+                {% else %}
+                    {{ 'Incident' | _ }}
+                {% endif %}
+            </span>
         </h3>
     </div>
 </div>
