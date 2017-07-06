@@ -1,0 +1,26 @@
+<div class="row mb-4">
+    <div class="col-12">
+        <h3>{{ 'My Reports' | _ }}</h3>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>{{ 'Date' | _ }}</th>
+        <th>{{ 'Description' | _ }}</th>
+        <th>{{ 'Location' | _ }}</th>
+        <th>{{ 'Comments' | _ }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for report in reports %}
+        <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
+            <td>{{ report.date | date("d / m / Y") }}</td>
+            <td>{{ report.description }}</td>
+            <td>{{ report.location.address }}</td>
+            <td></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

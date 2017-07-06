@@ -2,12 +2,25 @@ title = "User Dashboard"
 url = "/dashboard"
 layout = "default"
 is_hidden = 0
-robot_index = "index"
-robot_follow = "follow"
+
+[viewBag]
+localeUrl[ar] = "/dashboard"
 
 [session]
 security = "user"
 
-[viewBag]
-localeUrl[ar] = "/user-dashboard"
+[harassmapUserReports]
+viewPage = "reports/view"
 ==
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'User Dashboard' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+    
+    {% component 'harassmapUserReports' %}
+</div>

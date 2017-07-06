@@ -7,6 +7,7 @@ use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\Tip;
 use Harassmap\Incidents\Components\Tips;
+use Harassmap\Incidents\Components\UserReports;
 use Harassmap\Incidents\Models\Incident;
 use System\Classes\PluginBase;
 use Backend\Controllers\Users as BackendUsersController;
@@ -59,7 +60,8 @@ class Plugin extends PluginBase
             Domain::class => 'harassmapDomain',
             Tip::class => 'harassmapTip',
             Tips::class => 'harassmapTips',
-            IncidentAccount::class => 'harassmapIncidentAccount'
+            IncidentAccount::class => 'harassmapIncidentAccount',
+            UserReports::class => 'harassmapUserReports',
         ];
     }
 
