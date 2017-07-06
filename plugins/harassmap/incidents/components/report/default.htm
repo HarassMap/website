@@ -1,0 +1,18 @@
+<div class="row mb-4">
+    <div class="col-12">
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'Incident' | _ }}</span>
+        </h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h3>
+            {{ 'Incident happened on :date at :time' |
+            _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+        </h3>
+        <p class="pt-2">{{ 'at :location' | _({location: report.location.address}) }} ({{ report.location.lat }} {{ report.location.lng }})</p>
+    </div>
+</div>
