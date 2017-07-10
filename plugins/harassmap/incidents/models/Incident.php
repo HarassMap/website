@@ -44,7 +44,7 @@ class Incident extends Model
     public $rules = [
         'public_id' => 'required|string',
         'description' => 'required|string',
-        'date' => 'required|date',
+        'date' => 'required|date|before:now',
         'domain' => 'required',
         'categories' => 'required|array',
         'role' => 'required',

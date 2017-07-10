@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Faker\Provider\Uuid;
 use Harassmap\Incidents\Models\Assistance;
@@ -94,9 +95,9 @@ class ReportIntervention extends ComponentBase
         $timeTime = strtotime($data['time']);
 
         if ($dateTime !== false && $timeTime !== false) {
-            $date = new \DateTime();
+            $date = new Carbon();
             $date->setTimestamp($dateTime);
-            $time = new \DateTime();
+            $time = new Carbon();
             $time->setTimestamp($timeTime);
             $date->setTime($time->format('h'), $time->format('i'), $time->format('s'));
             $incident->date = $date;
