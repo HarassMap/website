@@ -4,25 +4,31 @@
     </div>
 </div>
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>{{ 'Date' | _ }}</th>
-        <th>{{ 'Type' | _ }}</th>
-        <th>{{ 'Description' | _ }}</th>
-        <th>{{ 'Location' | _ }}</th>
-        <th>{{ 'Comments' | _ }}</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for report in reports %}
-        <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
-            <td>{{ report.date | date("d / m / Y") }}</td>
-            <td>{{ report.intervention ? 'Intervention' : 'Incident' }}</td>
-            <td>{{ report.description | slice(0, 50) }}</td>
-            <td>{{ report.location.address }}</td>
-            <td></td>
+{% if reports.length > 0 %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>{{ 'Date' | _ }}</th>
+            <th>{{ 'Type' | _ }}</th>
+            <th>{{ 'Description' | _ }}</th>
+            <th>{{ 'Location' | _ }}</th>
+            <th>{{ 'Comments' | _ }}</th>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        {% for report in reports %}
+            <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
+                <td>{{ report.date | date("d / m / Y") }}</td>
+                <td>{{ report.intervention ? 'Intervention' : 'Incident' }}</td>
+                <td>{{ report.description | slice(0, 50) }}</td>
+                <td>{{ report.location.address }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+   <p>{{ 'You don\'t seem to have any reports' | _ }}</p>
+{% endif %}
