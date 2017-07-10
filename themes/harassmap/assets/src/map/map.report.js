@@ -33,11 +33,11 @@ export class ReportPageMap {
 
         const listener = (event) => {
             if (latInput) {
-                latInput.value = event.latLng.lat();
+                latInput.value = event.latLng.lat().toFixed(5);
             }
 
             if (lngInput) {
-                lngInput.value = event.latLng.lng();
+                lngInput.value = event.latLng.lng().toFixed(5);
             }
         };
 
