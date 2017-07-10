@@ -4,7 +4,9 @@
     </div>
 </div>
 
-{% if reports.length > 0 %}
+{% if reports.empty %}
+    <p>{{ 'You don\'t seem to have any reports' | _ }}</p>
+{% else %}
 
     <table class="table table-hover">
         <thead>
@@ -28,7 +30,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-{% else %}
-   <p>{{ 'You don\'t seem to have any reports' | _ }}</p>
 {% endif %}
