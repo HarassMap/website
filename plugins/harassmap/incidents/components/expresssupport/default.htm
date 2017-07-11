@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Express Support' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="pt-1 inset">
+                {{ 'Your support has been added to the database and the victim has been notified of your support.' | _ }}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="pt-1">
+                <strong>
+                    {{ 'This incident has now :support expressions of support.' | _({support: report.support}) }}
+                </strong>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="pt-1">
+                {{ 'You can share a message of support on social media:' }}
+            </p>
+        </div>
+    </div>
+</div>

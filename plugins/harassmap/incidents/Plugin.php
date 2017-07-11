@@ -2,6 +2,7 @@
 
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
+use Harassmap\Incidents\Components\ExpressSupport;
 use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\Report;
 use Harassmap\Incidents\Components\ReportIncident;
@@ -64,6 +65,7 @@ class Plugin extends PluginBase
             IncidentAccount::class => 'harassmapIncidentAccount',
             UserReports::class => 'harassmapUserReports',
             Report::class => 'harassmapUserReport',
+            ExpressSupport::class => 'harassmapExpressSupport',
         ];
     }
 
