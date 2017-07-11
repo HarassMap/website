@@ -7,7 +7,16 @@ is_hidden = 0
 localeUrl[ar] = "/reports/:id"
 
 [harassmapUserReport]
+
+[forumEmbedTopic reportcomments]
+embedCode = ":id"
+channelSlug = "blog-comments"
+memberPage = 404
 ==
 <div class="report-view">
     {% component 'harassmapUserReport' %}
+</div>
+
+<div class="container mt-4">
+    {% component 'reportcomments' %}
 </div>
