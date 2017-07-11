@@ -217,10 +217,10 @@
 </div>
 {{ form_close() }}
 
-        {% put scripts %}
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
-<script>
-    initReportIncidentPage();
-</script>
+{% put scripts %}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+    <script>
+        initReportIncidentPage();
+    </script>
 {% endput %}

@@ -2,6 +2,7 @@
 
 import { HomePageMap } from "./map.home";
 import { ReportPageMap } from "./map.report";
+import { ReportsPageMap } from "./map.reports";
 
 let map = null;
 
@@ -22,6 +23,9 @@ export default {
                 break;
             case 'report':
                 map = new ReportPageMap(element);
+                break;
+            case 'reports':
+                map = new ReportsPageMap(element);
                 break;
         }
 

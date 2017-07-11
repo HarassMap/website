@@ -1,29 +1,41 @@
-<div class="row mb-4">
-    <div class="col-12">
-        <h3 class="hr">
-            <span class="hr__line"></span>
-            <span class="hr__text">
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">
                 {% if report.intervention %}
                     {{ 'Intervention' | _ }}
                 {% else %}
                     {{ 'Incident' | _ }}
                 {% endif %}
             </span>
-        </h3>
+            </h3>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3>
+                {% if report.intervention %}
+                    {{ 'Intervention happened on :date at :time' |
+                    _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+                {% else %}
+                    {{ 'Incident happened on :date at :time' |
+                    _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+                {% endif %}
+            </h3>
+            <p class="pt-2">
+                {{ 'at :location' | _({location: report.location.address}) }}
+                ({{ report.location.lat }} {{ report.location.lng }})
+            </p>
+        </div>
     </div>
 </div>
 
-<div class="row mb-4">
-    <div class="col-12">
-        <h3>
-            {% if report.intervention %}
-                {{ 'Intervention happened on :date at :time' |
-                _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
-            {% else %}
-                {{ 'Incident happened on :date at :time' |
-                _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
-            {% endif %}
-        </h3>
-        <p class="pt-2">{{ 'at :location' | _({location: report.location.address}) }} ({{ report.location.lat }} {{ report.location.lng }})</p>
-    </div>
-</div>
+<div id="map" class="map map--report" data-map="reports" data-lat="{{ report.location.lat }}" data-lng="{{ report.location.lng }}"></div>
+
+{% put scripts %}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+{% endput %}
