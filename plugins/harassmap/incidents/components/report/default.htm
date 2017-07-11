@@ -33,7 +33,23 @@
     </div>
 </div>
 
-<div id="map" class="map map--report" data-map="reports" data-lat="{{ report.location.lat }}" data-lng="{{ report.location.lng }}"></div>
+<div id="map" class="map map--report" data-map="reports"
+     data-lat="{{ report.location.lat }}" data-lng="{{ report.location.lng }}"></div>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-12">
+            <span class="category category--title">
+                {{ 'Categories' | _ }}
+            </span>
+            {% for category in report.categories %}
+                <span class="category">
+                    {{ category.title }}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
 {% put scripts %}
 <script async defer

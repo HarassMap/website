@@ -1,0 +1,19 @@
+@import '../variables';
+@import "rem";
+
+.report-view {
+
+  .category {
+    color: $dusty-gray;
+    border: 1px solid $dusty-gray;
+    font-family: $oswald;
+
+    @include rem((font-size: 14px, padding: 5px 10px, margin: 0 5px 0 0));
+  }
+
+  .category--title {
+    border: 0;
+    color: $black;
+  }
+
+}
