@@ -7,10 +7,6 @@
     </div>
     {% endflash %}
 
-    {% if returnUrl %}
-        <p>&larr; <a href="{{ returnUrl }}">Back to {{ channel.title }}</a></p>
-    {% endif %}
-
     {% if topic %}
 
         <div class="row">
@@ -20,13 +16,14 @@
 
                 {% partial "@pagination" %}
 
-                <h4>Reply to this discussion</h4>
+                <h4>{{ 'Reply to this discussion' | _ }}</h4>
+
                 {% if not topic.canPost %}
                     <p>
-                        You cannot edit posts or make replies:
-                        {% if not member %}You should be logged in before you can post.{% endif %}
-                        {% if member.is_banned %}Your account is banned.{% endif %}
-                        {% if topic.is_locked %}This topic is locked.{% endif %}
+                        {{ 'You cannot edit posts or make replies:' | _ }}
+                        {% if not member %}{{ 'You should be logged in before you can post.' | _ }}{% endif %}
+                        {% if member.is_banned %}{{ 'Your account is banned.' | _ }}{% endif %}
+                        {% if topic.is_locked %}{{ 'Comments are locked' | _ }}{% endif %}
                     </p>
                 {% else %}
                     {% partial "@postform" %}
@@ -37,12 +34,12 @@
 
     {% elseif channel %}
 
-        <h4>Create a new discussion topic</h4>
+        <h4>{{ 'Create a new discussion topic' | _ }}</h4>
         {% partial "@createform" %}
 
     {% else %}
 
-        <p>Topic not found</p>
+        <p>{{ 'Topic not found' | _ }}</p>
 
     {% endif %}
 </div>
