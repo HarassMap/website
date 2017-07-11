@@ -3,9 +3,8 @@
 namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
-use Cms\Classes\Page;
 use Harassmap\Incidents\Models\Incident;
-use RainLab\User\Facades\Auth;
+use Redirect;
 
 class Report extends ComponentBase
 {
@@ -24,6 +23,19 @@ class Report extends ComponentBase
 
         // find the incident with the public id
         $this->page['report'] = Incident::wherePublicId($id)->first();
+    }
+
+    public function onExpressSupport()
+    {
+        $id = $this->param('id');
+
+        $incident = Incident::wherePublicId($id)->first();
+
+        $incident->support++;
+
+        $incident->save();
+
+        return Redirect::to($this->pageUrl('reports/support', ['id' => $id]));
     }
 
 }

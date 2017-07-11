@@ -21,6 +21,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereLat($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereLng($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereRegion($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Location whereIncidentId($value)
  * @mixin \Eloquent
  */
 class Location extends Model
