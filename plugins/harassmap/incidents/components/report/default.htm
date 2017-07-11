@@ -37,7 +37,7 @@
      data-lat="{{ report.location.lat }}" data-lng="{{ report.location.lng }}"></div>
 
 <div class="container">
-    <div class="row mt-4 mb-4">
+    <div class="row mt-4">
         <div class="col-12">
             <span class="category category--title">
                 {{ 'Categories' | _ }}
@@ -49,7 +49,23 @@
             {% endfor %}
         </div>
     </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            {% if report.verified %}
+                <p>
+                    {{ report.description | nl2br }}
+                </p>
+            {% else %}
+                <p class="unverified">
+                    We can not show the description until we have verified this report. Thank you.
+                </p>
+            {% endif %}
+        </div>
+    </div>
 </div>
+
+<h3 class="hr"><span class="hr__line"></span></h3>
 
 {% put scripts %}
 <script async defer
