@@ -9,7 +9,9 @@ class BuilderTableUpdateHarassmapIncidentsIncident3 extends Migration
     {
         Schema::table('harassmap_incidents_incident', function($table)
         {
-            $table->integer('support');
+            $table->dropForeign('harassmap_incidents_incident_user_id_foreign');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
     
@@ -17,7 +19,9 @@ class BuilderTableUpdateHarassmapIncidentsIncident3 extends Migration
     {
         Schema::table('harassmap_incidents_incident', function($table)
         {
-            $table->dropColumn('support');
+            $table->dropForeign('harassmap_incidents_incident_user_id_foreign');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 }

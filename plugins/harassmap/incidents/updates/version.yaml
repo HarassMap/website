@@ -83,7 +83,7 @@
     - builder_table_update_harassmap_incidents_location.php
 1.0.29:
     - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident3.php
+    - builder_table_update_harassmap_incidents_incident_3.php
 1.0.30:
     - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_3.php
+    - builder_table_update_harassmap_incidents_incident_4.php
