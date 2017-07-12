@@ -5,6 +5,8 @@ use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
 use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\Report;
+use Harassmap\Incidents\Components\ReportComments;
+use Harassmap\Incidents\Components\ReportCommentsTopic;
 use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\Tip;
@@ -66,6 +68,8 @@ class Plugin extends PluginBase
             UserReports::class => 'harassmapUserReports',
             Report::class => 'harassmapUserReport',
             ExpressSupport::class => 'harassmapExpressSupport',
+            ReportComments::class => 'harassmapReportComments',
+            ReportCommentsTopic::class => 'harassmapReportCommentsTopic',
         ];
     }
 

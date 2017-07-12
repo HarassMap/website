@@ -24,4 +24,14 @@
     @include rem((font-size: 20px));
   }
 
+  .comments {
+
+    .text {
+      p {
+        @include rem((padding: 10px 0));
+      }
+    }
+
+  }
+
 }
