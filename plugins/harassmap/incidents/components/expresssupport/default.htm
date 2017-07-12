@@ -8,15 +8,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <p class="pt-1 inset">
+        <div class="col-12 col-sm-6">
+            <p class="inset">
+                <span class="icon"></span>
                 {{ 'Your support has been added to the database and the victim has been notified of your support.' | _ }}
             </p>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <p class="pt-1">
+            <p class="pt-4">
                 <strong>
                     {{ 'This incident has now :support expressions of support.' | _({support: report.support}) }}
                 </strong>

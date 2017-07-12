@@ -1,0 +1,25 @@
+@import '../variables';
+@import "rem";
+
+.express-support {
+
+  .inset {
+    background-color: #F3F3F3;
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+    position: relative;
+
+    @include rem((padding: 20px 20px 20px 90px));
+
+    .icon {
+      background: url('/themes/harassmap/assets/img/support/task-complete.svg') no-repeat center center;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @include rem((width: 90px));
+    }
+  }
+
+}
