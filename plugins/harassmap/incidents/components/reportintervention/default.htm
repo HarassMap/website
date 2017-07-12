@@ -36,22 +36,22 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
-                        {{ form_label('city', 'City' | _) }}
-                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
+                    <div class="form-group {{ (errors.has('region')) ? 'has-danger' : '' }}">
+                        {{ form_label('region', 'Governorate' | _) }}
+                        {{ form_text('region', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('country') }}
+                            {{ errors.first('region') }}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="form-group {{ (errors.has('region')) ? 'has-danger' : '' }}">
-                        {{ form_label('region', 'Region' | _) }}
-                        {{ form_text('region', '', {'class': 'form-control', 'required': 'required'}) }}
+                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
+                        {{ form_label('city', 'City' | _) }}
+                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('region') }}
+                            {{ errors.first('country') }}
                         </div>
                     </div>
                 </div>
