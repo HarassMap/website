@@ -30,7 +30,7 @@ $('.row-link').each((index, element) => {
     }
 });
 
-$('.share-link').each((index, element) => {
+$('.share').each((index, element) => {
     let href = element.href;
 
     if (href) {
