@@ -13,13 +13,10 @@
         <input type="hidden" name="mode" value="save"/>
         <input type="hidden" name="post" value="{{ post.id }}"/>
 
-        {% if topic.first_post.id == post.id %}
-            <input type="text" name="subject" class="form-control" value="{{ topic.subject }}"/>
-        {% endif %}
-
         <div class="text">
             <textarea rows="5" name="content" class="form-control">{{ post.content }}</textarea>
         </div>
+
         <div class="actions">
             <a href="javascript:;"
                data-request="{{ __SELF__ }}::onUpdate"
@@ -65,14 +62,6 @@
             {% endif %}
         </div>
         <div class="actions">
-            {% if topic.canPost %}
-                <a href="javascript:;"
-                   class="quote"
-                   data-request-data="post: {{ post.id }}"
-                   data-quote-button>
-                    {{ 'Quote' | _ }}
-                </a>
-            {% endif %}
             {% if topic.canPost and post.canEdit and mode != 'edit' and mode != 'delete' %}
                 <a href="javascript:;"
                    class="edit"
