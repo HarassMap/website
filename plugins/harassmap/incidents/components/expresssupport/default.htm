@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-sm-6">
             <p class="pt-4">
                 <strong>
                     {{ 'This incident has now :support expressions of support.' | _({support: report.support}) }}
@@ -25,17 +25,31 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-sm-6">
             <p class="pt-1">
                 {{ 'You can share a message of support on social media:' }}
             </p>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <textarea>
-                {#TODO: Add content block for social media post#}
-            </textarea>
+        <div class="col-12 col-sm-6">
+            <textarea id="share-message" class="form-control social-message">I support an end to sexual harassment {{ 'reports/view' | page }}</textarea>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 col-sm-6">
+            <div class="row">
+                <div class="col-4">
+                    <a class="btn btn-block share-link">
+                        {{ 'Facebook' | _ }}
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="btn btn-block share-link" href="https://twitter.com/home?status=:message">
+                        {{ 'Twitter' | _ }}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

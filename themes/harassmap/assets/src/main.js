@@ -29,3 +29,19 @@ $('.row-link').each((index, element) => {
         });
     }
 });
+
+$('.share-link').each((index, element) => {
+    let href = element.href;
+
+    if (href) {
+        let message = $('#share-message').val();
+
+        href = href.replace(':message', message);
+
+        $(element).on('click', (event) => {
+            event.preventDefault();
+
+            window.open(href, 'popup', 'width=600,height=255');
+        });
+    }
+});

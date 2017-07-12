@@ -4,7 +4,7 @@
 .express-support {
 
   .inset {
-    background-color: #F3F3F3;
+    background-color: $light-gray;
     box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
     position: relative;
 
@@ -20,6 +20,18 @@
 
       @include rem((width: 90px));
     }
+  }
+
+  .social-message {
+    color: $tundora;
+    border: 1px solid $dusty-gray;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    font-family: $oswald;
+    font-weight: $light;
+
+    @include rem((font-size: 13px));
   }
 
 }
