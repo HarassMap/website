@@ -70,6 +70,8 @@ class Incident extends Model
         'categories' => [Category::class, 'table' => 'harassmap_incidents_incident_category']
     ];
 
+    public $hidden = ['id', 'domain_id'];
+
     /**
      * @param $bounds
      * @return \Illuminate\Database\Eloquent\Collection|static[]
@@ -82,7 +84,7 @@ class Incident extends Model
             $query
                 ->whereBetween(DB::raw('CAST(lat as DECIMAL(10,6))'), [floatval($bounds['south']), floatval($bounds['north'])])
                 ->whereBetween(DB::raw('CAST(lng as DECIMAL(10,6))'), [floatval($bounds['west']), floatval($bounds['east'])]);
-        })->get();
+        })->with('location')->with('intervention')->get();
 
         return $reports;
     }
