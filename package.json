@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
+    "debounce": "^1.0.2",
     "float-labels.js": "^2.0.1",
     "lodash": "^4.17.4",
     "pikaday": "^1.5.1",

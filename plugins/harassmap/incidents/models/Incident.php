@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Incidents\Models;
 
+use Illuminate\Support\Facades\DB;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
@@ -68,4 +69,21 @@ class Incident extends Model
     public $belongsToMany = [
         'categories' => [Category::class, 'table' => 'harassmap_incidents_incident_category']
     ];
+
+    /**
+     * @param $bounds
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function whereInsideBounds($bounds)
+    {
+        $domain = Domain::getBestMatchingDomain();
+
+        $reports = self::where('domain_id', $domain->id)->whereHas('location', function ($query) use ($bounds) {
+            $query
+                ->whereBetween(DB::raw('CAST(lat as DECIMAL(10,6))'), [floatval($bounds['south']), floatval($bounds['north'])])
+                ->whereBetween(DB::raw('CAST(lng as DECIMAL(10,6))'), [floatval($bounds['west']), floatval($bounds['east'])]);
+        })->get();
+
+        return $reports;
+    }
 }

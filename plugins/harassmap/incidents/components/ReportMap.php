@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Domain;
+use Harassmap\Incidents\Models\Incident;
 
 class ReportMap extends ComponentBase
 {
@@ -16,9 +17,19 @@ class ReportMap extends ComponentBase
         ];
     }
 
-    public function onRender()
+    public function onGetReports()
     {
-        $domain = Domain::getBestMatchingDomain();
+        $data = post();
+
+        // default reports [empty]
+        $reports = [];
+
+        // if the bounds exist
+        if(array_key_exists('bounds', $data)) {
+            $reports = Incident::whereInsideBounds($data['bounds']);
+        }
+
+        return $reports;
     }
 
 }
