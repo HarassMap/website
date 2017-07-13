@@ -33,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <textarea rows="3" id="share-message" class="form-control social-message">I support an end to sexual harassment</textarea>
+            <textarea rows="3" id="share-message" class="form-control social-message">{{ 'I support an end to sexual harassment' | _ }}</textarea>
         </div>
     </div>
     <div class="row mt-2">
@@ -42,6 +42,7 @@
                 <div class="col-6">
                     <a class="btn btn-block share share--facebook" id="facebook-share" href="#">
                         {{ 'Facebook' | _ }}
+
                     </a>
                 </div>
                 <div class="col-6">
@@ -66,7 +67,7 @@
 <script>
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '1960174324227281',
+            appId: '{{ domain.facebook_app_id }}',
             autoLogAppEvents: true,
             xfbml: true,
             version: 'v2.9'

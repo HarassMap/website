@@ -44,6 +44,7 @@
             'header' => 'Header Logo',
             'footer' => 'Footer Logo',
         ],
+        'facebook_app_id' => 'Facebook App Id',
         'facebook' => 'Facebook',
         'twitter' => 'Twitter',
         'instagram' => 'Instagram',

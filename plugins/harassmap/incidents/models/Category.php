@@ -42,6 +42,9 @@ class Category extends Model
     ];
 
     public $rules = [
+        'title' => 'required',
+        'description' => 'required',
+        'category' => 'required',
     ];
 
     public function beforeSave()

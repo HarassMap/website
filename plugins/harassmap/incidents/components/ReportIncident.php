@@ -34,7 +34,6 @@ class ReportIncident extends ComponentBase
         $domain = Domain::getBestMatchingDomain();
 
         $this->page['countries'] = Country::all()->lists('name', 'id');
-        $this->page['domain'] = $domain;
 
         $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);

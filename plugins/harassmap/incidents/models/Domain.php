@@ -27,6 +27,7 @@ use Request;
  * @property bool $incident
  * @property bool $intervention
  * @property int $country_id
+ * @property string $facebook_app_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAbout($value)
