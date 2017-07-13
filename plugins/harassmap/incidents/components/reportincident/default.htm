@@ -149,7 +149,8 @@
             <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
                 {% for category in categories %}
                     <div class="form-check form-check-inline">
-                        <label class="form-check-label" data-toggle="tooltip" data-placement="top" title="{{ category.description }}">
+                        <label class="form-check-label" data-toggle="tooltip" data-placement="top"
+                               title="{{ category.description }}">
                             <input class="form-check-input" name="categories[]" type="checkbox"
                                    value="{{ category.id }}">
                             {{ category.title }}
@@ -179,7 +180,7 @@
         <div class="col-4">
             <div class="form-group {{ (errors.has('intervention')) ? 'has-danger' : '' }}">
                 {{ form_label('intervention', 'Did someone come to your assistance?' | _) }}
-                {{ form_select('intervention', {0: 'No' | _, 1: 'Yes' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
+                {{ form_select('intervention', {'' : '', 0: 'No' | _, 1: 'Yes' | _}, '', {'class': 'form-control', 'required': 'required'}) }}
                 <div class="form-control-feedback">
                     {{ errors.first('intervention') }}
                 </div>
@@ -218,9 +219,9 @@
 {{ form_close() }}
 
 {% put scripts %}
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
-    <script>
-        initReportIncidentPage();
-    </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+<script>
+    initReportIncidentPage();
+</script>
 {% endput %}
