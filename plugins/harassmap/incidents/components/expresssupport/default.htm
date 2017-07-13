@@ -33,19 +33,20 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <textarea rows="3" id="share-message" class="form-control social-message">I support an end to sexual harassment {{ 'reports/view' | page }}</textarea>
+            <textarea rows="3" id="share-message" class="form-control social-message">I support an end to sexual harassment</textarea>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-6">
-                    <a class="btn btn-block share share--facebook">
+                    <a class="btn btn-block share share--facebook" id="facebook-share" href="#">
                         {{ 'Facebook' | _ }}
                     </a>
                 </div>
                 <div class="col-6">
-                    <a class="btn btn-block share share--twitter" href="https://twitter.com/home?status=:message">
+                    <a class="btn btn-block share share--twitter" id="twitter-share"
+                       href="https://twitter.com/home?status=:message">
                         {{ 'Twitter' | _ }}
                     </a>
                 </div>
@@ -57,5 +58,61 @@
             <a href="{{ 'reports/view' | page }}" class="btn">
                 {{ 'Cancel' | _ }}
             </a>
+        </div>
     </div>
 </div>
+
+{% put scripts %}
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '298607297013662',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    var shareUrl = '{{ 'reports/view' | page }}';
+
+    $('#twitter-share').on('click', function (event) {
+        event.preventDefault();
+
+        var message = $('#share-message').val(),
+            href = this.href;
+
+        href = href.replace(':message', message + ' ' + shareUrl);
+
+        window.open(href, 'popup', 'width=600,height=255');
+    });
+
+    $('#facebook-share').on('click', function (event) {
+        event.preventDefault();
+
+        var message = $('#share-message').val();
+
+        // make sure we have the global FB variable
+        if (window.FB) {
+            FB.ui({
+                method: 'share',
+                href: shareUrl,
+            }, function (response) {
+
+            });
+        }
+    });
+</script>
+{% endput %}
