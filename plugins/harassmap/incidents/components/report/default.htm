@@ -83,8 +83,9 @@
 {% endput %}
 
 {% put meta %}
-<meta property="og:url"
-      content="{{ 'reports/view' | page }}"/>
+<meta property="og:url" content="{{ 'reports/view' | page }}"/>
+<meta property="og:description" content="{{ report.description }}"/>
+
 {% if report.intervention %}
     <meta property="og:title" content="{{ 'Intervention happened on :date at :time' |
     _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}"/>
@@ -92,5 +93,5 @@
     <meta property="og:title" content="{{ 'Incident happened on :date at :time' |
     _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}"/>
 {% endif %}
-<meta property="og:description" content="{{ report.description }}"/>
+
 {% endput %}
