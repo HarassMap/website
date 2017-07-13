@@ -147,12 +147,12 @@
     <div class="row mt-4">
         <div class="col-12">
             <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
-                {% for id,title in categories %}
+                {% for category in categories %}
                     <div class="form-check form-check-inline">
-                        <label class="form-check-label">
+                        <label class="form-check-label" data-toggle="tooltip" data-placement="top" title="{{ category.description }}">
                             <input class="form-check-input" name="categories[]" type="checkbox"
-                                   value="{{ id }}">
-                            {{ title }}
+                                   value="{{ category.id }}">
+                            {{ category.title }}
                         </label>
                     </div>
                 {% endfor %}

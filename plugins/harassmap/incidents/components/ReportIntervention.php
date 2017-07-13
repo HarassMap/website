@@ -37,7 +37,7 @@ class ReportIntervention extends ComponentBase
 
         $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
-        })->get()->lists('title', 'id');
+        })->get();
 
         $this->page['roles'] = Role::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);

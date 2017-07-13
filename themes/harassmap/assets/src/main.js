@@ -8,6 +8,9 @@ import { initGeolocate } from "./utils/geoLocate";
 import { createTimePicker } from "./utils/timePicker";
 import { initToggleIntervention } from "./utils/toggleIntervention";
 
+// enable all tooltips
+$('[data-toggle="tooltip"]').tooltip();
+
 window.initMap = (id = 'map') => {
     MapFactory.createFromElement(document.getElementById(id));
 };
