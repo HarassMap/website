@@ -21,6 +21,8 @@ window.initReportIncidentPage = () => {
     initCitySelector();
     initGeolocate('geolocate');
     initToggleIntervention();
+
+    $('.floating').FloatLabel();
 };
 
 $('.row-link').each((index, element) => {
