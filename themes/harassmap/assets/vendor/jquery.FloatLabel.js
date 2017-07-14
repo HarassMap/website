@@ -1,36 +1,44 @@
-(function($) {
-    $.fn.FloatLabel = function(options) {
+(function ($) {
+    $.fn.FloatLabel = function (options) {
         var defaults = {
                 populatedClass: 'populated',
                 focusedClass: 'focused'
             },
             settings = $.extend({}, defaults, options);
-        return this.each(function() {
+
+        return this.each(function () {
             var element = $(this),
                 label = element.find('label'),
                 input = element.find('textarea, input');
-            if (input.val() == '') {
-                input.val(label.text());
-            } else {
+
+            input.attr("placeholder", label.text());
+
+            if (input.val() !== '') {
                 element.addClass(settings.populatedClass);
             }
-            input.on('focus', function() {
+
+            input.on('focus', function () {
                 element.addClass(settings.focusedClass);
-                if (input.val() === label.text()) {
-                    input.val('');
-                } else {
-                    element.addClass(settings.populatedClass);
-                }
             });
-            input.on('blur', function() {
+
+            input.on('blur', function () {
                 element.removeClass(settings.focusedClass);
+
                 if (!input.val()) {
-                    input.val(label.text());
                     element.removeClass(settings.populatedClass);
                 }
             });
-            input.on('keyup', function() {
+
+            input.on('keyup', function () {
                 element.addClass(settings.populatedClass);
+            });
+
+            input.on('change', function () {
+                if ($(this).val()) {
+                    element.addClass(settings.populatedClass);
+                } else {
+                    element.removeClass(settings.populatedClass);
+                }
             });
         });
     };
