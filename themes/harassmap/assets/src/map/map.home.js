@@ -61,9 +61,12 @@ export class HomePageMap {
     }
 
     addMarker(report) {
-        console.debug(report);
         let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
         let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
+
+        let infowindow = new google.maps.InfoWindow({
+            content: '<div class="infowindow">THIS IS A TEST</div>'
+        });
 
         let marker = new google.maps.Marker({
             position: centre,
@@ -71,7 +74,9 @@ export class HomePageMap {
             icon: icon
         });
 
-        marker.setMap(this.map);
+        marker.addListener('click', () => {
+            infowindow.open(this.map, marker);
+        });
 
         this.markers.push(marker);
     }
