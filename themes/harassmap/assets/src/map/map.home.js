@@ -61,11 +61,18 @@ export class HomePageMap {
     }
 
     addMarker(report) {
+        console.debug(report);
         let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
+        let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
+
         let marker = new google.maps.Marker({
-            position: centre
+            position: centre,
+            map: this.map,
+            icon: icon
         });
+
         marker.setMap(this.map);
+
         this.markers.push(marker);
     }
 
