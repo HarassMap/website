@@ -1,10 +1,17 @@
 <div class="comments">
 
+    <h3 class="hr">
+        <span class="hr__line"></span>
+        <span class="hr__text">
+            {{ 'Comments' | _ }}
+        </span>
+    </h3>
+
     {% flash %}
-        <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        </div>
+    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
     {% endflash %}
 
     {% if topic %}
