@@ -52,7 +52,10 @@ const initAutocomplete = (data) => {
     };
 
     $city
-        .typeahead({highlight: true, hint: false}, {
+        .typeahead({
+            highlight: true,
+            hint: false
+        }, {
             name: 'cities',
             display: 'name',
             source: cities

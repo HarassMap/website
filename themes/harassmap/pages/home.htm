@@ -36,9 +36,10 @@ postPage = "news/view"
 listPage = "news/index"
 
 [harassmapDomain]
+
+[harassmapReportMap]
 ==
-<div id="map" class="map map--home" data-map="homepage" data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}"
-     data-zoom="{{ domain.zoom }}"></div>
+{% component 'harassmapReportMap' %}
 
 {% if domain.incident or domain.intervention %}
     <div class="container">
@@ -129,8 +130,3 @@ listPage = "news/index"
         </div>
     </div>
 </div>
-
-{% put scripts %}
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
-{% endput %}

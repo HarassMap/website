@@ -9,6 +9,7 @@ use Harassmap\Incidents\Components\ReportComments;
 use Harassmap\Incidents\Components\ReportCommentsTopic;
 use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
+use Harassmap\Incidents\Components\ReportMap;
 use Harassmap\Incidents\Components\Tip;
 use Harassmap\Incidents\Components\Tips;
 use Harassmap\Incidents\Components\UserReports;
@@ -70,6 +71,7 @@ class Plugin extends PluginBase
             ExpressSupport::class => 'harassmapExpressSupport',
             ReportComments::class => 'harassmapReportComments',
             ReportCommentsTopic::class => 'harassmapReportCommentsTopic',
+            ReportMap::class => 'harassmapReportMap',
         ];
     }
 

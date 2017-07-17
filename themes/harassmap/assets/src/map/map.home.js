@@ -1,5 +1,7 @@
 'use strict';
 
+import debounce from "debounce";
+import _ from "lodash";
 import mapStyle from "./map.style.json";
 
 export class HomePageMap {
@@ -24,6 +26,55 @@ export class HomePageMap {
             rotateControl: false,
             fullscreenControl: false
         });
+
+        this.markers = [];
+
+        google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
+            this.getReports();
+        }, 500));
+    }
+
+    /**
+     *
+     */
+    getReports() {
+        let bounds = this.map.getBounds().toJSON();
+
+        $.request('onGetReports', {
+            data: {
+                bounds
+            },
+            success: (data) => {
+                this.addMarkers(data);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param data
+     */
+    addMarkers(data) {
+        this.clearMarkers();
+
+        _.forEach(data, (report) => this.addMarker(report));
+    }
+
+    addMarker(report) {
+        let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
+        let marker = new google.maps.Marker({
+            position: centre
+        });
+        marker.setMap(this.map);
+        this.markers.push(marker);
+    }
+
+    clearMarkers() {
+        _.forEach(this.markers, (marker) => {
+            marker.setMap(null);
+        });
+
+        this.markers = [];
     }
 
 }
