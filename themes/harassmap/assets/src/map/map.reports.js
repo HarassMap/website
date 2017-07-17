@@ -30,6 +30,10 @@ export class ReportsPageMap {
 
         // add the marker to the map
         this.marker.setMap(this.map);
+
+        google.maps.event.addDomListener(window, 'resize', () => {
+            this.map.setCenter(centre);
+        });
     }
 
 }
