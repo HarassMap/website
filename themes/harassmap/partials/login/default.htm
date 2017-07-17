@@ -1,34 +1,39 @@
-{% if not user %}
+<div class="row mb-5">
+    <div class="col-12">
 
-    <div class="row mb-5">
-        <div class="col-12">
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'Login' | _ }}</span>
+        </h3>
 
-            <h3 class="hr">
-                <span class="hr__line"></span>
-                <span class="hr__text">{{ 'Login' | _ }}</span>
-            </h3>
+        <div class="alerts"></div>
 
-            <form data-request="onSignin">
-                <div class="form-group">
-                    <label for="userSigninLogin">{{ 'Email' | _ }}</label>
-                    <input name="login" type="text" class="form-control" id="userSigninLogin"
-                           placeholder="{{ 'Enter your email' | _ }}"/>
-                </div>
+        <form data-request="onSignin">
+            <div class="form-group">
+                <label for="userSigninLogin">{{ 'Email' | _ }}</label>
+                <input name="login" type="text" class="form-control" id="userSigninLogin"
+                       required placeholder="{{ 'Enter your email' | _ }}"/>
+            </div>
 
-                <div class="form-group">
-                    <label for="userSigninPassword">{{ 'Password' | _ }}</label>
-                    <input name="password" type="password" class="form-control" id="userSigninPassword"
-                           placeholder="{{ 'Enter your password' | _ }}"/>
-                </div>
+            <div class="form-group">
+                <label for="userSigninPassword">{{ 'Password' | _ }}</label>
+                <input name="password" type="password" class="form-control" id="userSigninPassword"
+                       required placeholder="{{ 'Enter your password' | _ }}"/>
+            </div>
 
-                <button type="submit" class="btn btn-default">{{ 'Login' | _ }}</button>
-                <a href="{{ 'register' | page }}" class="btn btn-default">{{ 'I don\'t have an account' | _ }}</a>
-            </form>
+            <button type="submit" class="btn btn-default">{{ 'Login' | _ }}</button>
+            <a href="{{ 'register' | page }}" class="btn btn-default">{{ 'I don\'t have an account' | _ }}</a>
+        </form>
 
-        </div>
     </div>
+</div>
 
-{% else %}
+{% put scripts %}
+<script>
+    $(window).on('ajaxErrorMessage', function (event, message) {
+        event.preventDefault();
 
-
-{% endif %}
+        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+    });
+</script>
+{% endput %}

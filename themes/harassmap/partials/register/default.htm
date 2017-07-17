@@ -1,84 +1,93 @@
-{% if not user %}
+<div class="row mb-5">
+    <div class="col-12">
 
-    <div class="row mb-5">
-        <div class="col-12">
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'Register' | _ }}</span>
+        </h3>
 
-            <h3 class="hr">
-                <span class="hr__line"></span>
-                <span class="hr__text">{{ 'Register' | _ }}</span>
-            </h3>
+        <div class="alerts"></div>
 
-            <form data-request="onRegister">
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                            <label for="firstName">{{ 'First Name' | _ }}</label>
-                            <input required name="name" type="text" class="form-control" id="firstName"
-                                   placeholder="{{ 'Enter your first name' | _ }}"/>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                            <label for="lastName">{{ 'Last Name' | _ }}</label>
-                            <input required name="surname" type="text" class="form-control" id="lastName"
-                                   placeholder="{{ 'Enter your last name' | _ }}"/>
-                        </div>
+        <form data-request="onRegister">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="firstName">{{ 'First Name' | _ }}</label>
+                        <input required name="name" type="text" class="form-control" id="firstName"
+                               placeholder="{{ 'Enter your first name' | _ }}"/>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="username">{{ 'Username' | _ }}</label>
-                            <input required name="username" type="text" class="form-control" id="username"
-                                   placeholder="{{ 'Enter a username' | _ }}"/>
-                        </div>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="lastName">{{ 'Last Name' | _ }}</label>
+                        <input required name="surname" type="text" class="form-control" id="lastName"
+                               placeholder="{{ 'Enter your last name' | _ }}"/>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="registerEmail">{{ 'Email' | _ }}</label>
-                            <input required name="email" type="email" class="form-control" id="registerEmail"
-                                   placeholder="{{ 'Enter your email' | _ }}"/>
-                        </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="username">{{ 'Username' | _ }}</label>
+                        <input required name="username" type="text" class="form-control" id="username"
+                               placeholder="{{ 'Enter a username' | _ }}"/>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="registerPassword">{{ 'Password' | _ }}</label>
-                            <input required name="password" type="password" class="form-control" id="registerPassword"
-                                   placeholder="{{ 'Choose a password' | _ }}"/>
-                        </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="registerEmail">{{ 'Email' | _ }}</label>
+                        <input required name="email" type="email" class="form-control" id="registerEmail"
+                               placeholder="{{ 'Enter your email' | _ }}"/>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="custom-control custom-checkbox">
-                                <input name="terms" required type="checkbox" value="1" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Agree to terms</span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="custom-control custom-checkbox">
-                                <input name="marketing" required type="checkbox" value="1" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Agree to emails</span>
-                            </label>
-                        </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="registerPassword">{{ 'Password' | _ }}</label>
+                        <input required name="password" type="password" class="form-control" id="registerPassword"
+                               placeholder="{{ 'Choose a password' | _ }}"/>
                     </div>
                 </div>
+            </div>
 
-                <button type="submit" class="btn btn-default">{{ 'Register' | _ }}</button>
-                <a href="{{ 'login' | page }}" class="btn btn-default">{{ 'I already have an account' | _ }}</a>
-            </form>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input name="terms" required type="checkbox" value="1" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Agree to terms</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input name="marketing" required type="checkbox" value="1" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Agree to emails</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-        </div>
+            <button type="submit" class="btn btn-default">{{ 'Register' | _ }}</button>
+            <a href="{{ 'login' | page }}" class="btn btn-default">{{ 'I already have an account' | _ }}</a>
+        </form>
+
     </div>
-{% endif %}
+</div>
+
+{% put scripts %}
+<script>
+    $(window).on('ajaxErrorMessage', function (event, message) {
+        event.preventDefault();
+
+        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+    });
+</script>
+{% endput %}
