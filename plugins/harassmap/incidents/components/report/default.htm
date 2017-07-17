@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-sm-9">
             {% if report.verified %}
                 <p>
                     {{ report.description | nl2br }}
@@ -44,10 +44,26 @@
                 </p>
             {% endif %}
         </div>
+        <div class="col-12 col-sm-3">
+
+            {% if report.verified %}
+                <p class="pt-1 pb-1">{{ 'Verified' | _ }}</p>
+            {% endif %}
+
+            <p class="pt-1 pb-1">
+                {{ ':support expressions of support.' | _({support: report.support}) }}
+            </p>
+
+            <a href="#comment" class="btn mb-2 mt-2">{{ 'Add Comment' | _ }}</a>
+
+            <form data-request="onExpressSupport">
+                <button class="btn" type="submit">{{ 'Express Support' | _ }}</button>
+            </form>
+        </div>
     </div>
 
     <div class="row mt-2 mb-4">
-        <div class="col-12">
+        <div class="col-12 categories">
             <span class="category category--title">
                 {{ 'Categories' | _ }}
             </span>
@@ -62,16 +78,6 @@
 
 <div id="map" class="map map--report" data-map="reports"
      data-lat="{{ report.location.lat }}" data-lng="{{ report.location.lng }}"></div>
-
-<div class="container">
-    <div class="row mt-4">
-        <div class="col-12">
-            <form data-request="onExpressSupport">
-                <button class="btn btn-default" type="submit">{{ 'Express Support' | _ }}</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 {% put scripts %}
 <script async defer
