@@ -24,7 +24,7 @@ export class HomePageMap {
             scaleControl: false,
             streetViewControl: false,
             rotateControl: false,
-            fullscreenControl: false
+            fullscreenControl: true
         });
 
         this.markers = [];

@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-12 col-sm-9">
             {% if report.verified %}
-                <p>
+                <p class="read-more">
                     {{ report.description | nl2br }}
                 </p>
             {% else %}
@@ -82,6 +82,13 @@
 {% put scripts %}
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+
+<script>
+    $('.read-more').readmore({
+        moreLink: '<a href="#" class="btn">{{ 'Read More' | _ }}</a>',
+        lessLink: '<a href="#" class="btn">{{ 'Close' | _ }}</a>'
+    });
+</script>
 {% endput %}
 
 {% put meta %}
