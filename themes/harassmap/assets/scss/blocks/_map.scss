@@ -1,4 +1,5 @@
 @import '../variables';
+@import "rem";
 
 .map {
   border-bottom: 1px solid $dusty-gray;
@@ -12,4 +13,48 @@
 
 .map--report {
   height: 370px;
+}
+
+.infowindow {
+  @include rem((padding: 0 5px 5px 0));
+
+  > * {
+    @include rem((padding-left: 30px));
+  }
+
+  .info {
+    position: relative;
+    font-family: $oswald;
+
+    @include rem((padding: 5px 0 5px 30px, font-size: 14px));
+  }
+
+  .icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+
+    @include rem((width: 25px));
+  }
+
+  .icon--time {
+    background-image: url('/themes/harassmap/assets/img/map/schedule.svg');
+  }
+
+  .icon--address {
+    background-image: url('/themes/harassmap/assets/img/map/place.svg');
+  }
+
+  .read-more {
+    color: $dusty-gray;
+    text-decoration: underline;
+    font-family: $merriweather;
+
+    @include rem((font-size: 14px));
+  }
+
 }

@@ -8,9 +8,17 @@
 <script id="info-template" type="text/x-handlebars-template">
     <div class="infowindow">
         {% raw %}
-        <div class="time">{{ time }}</div>
-        <div class="address">{{ address }}</div>
-        <a href="{{ link }}">
+
+        <div class="info info--time">
+            <span class="icon icon--time"></span>
+            {{ time }}
+        </div>
+        <div class="info info--address">
+            <span class="icon icon--address"></span>
+            {{ address }}
+        </div>
+
+        <a class="read-more" href="{{ link }}">
             {% endraw %}
             {{ 'Read more' | _ }}
         </a>
