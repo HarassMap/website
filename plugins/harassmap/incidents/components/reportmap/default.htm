@@ -1,8 +1,19 @@
 <div id="map" class="map map--home" data-map="homepage" data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}"
-     data-zoom="{{ domain.zoom }}"></div>
+     data-zoom="{{ domain.zoom }}" data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
 
 
 {% put scripts %}
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+<script id="info-template" type="text/x-handlebars-template">
+    <div class="infowindow">
+        {% raw %}
+        <div class="time">{{ time }}</div>
+        <div class="address">{{ address }}</div>
+        <a href="{{ link }}">
+            {% endraw %}
+            {{ 'Read more' | _ }}
+        </a>
+    </div>
+</script>
 {% endput %}
