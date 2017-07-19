@@ -7,7 +7,8 @@
     overflow: hidden;
   }
 
-  input, select, textarea {
+  input, select, textarea, .form-check-label {
+    color: $tundora;
     font-family: $oswald;
     font-weight: $light;
   }

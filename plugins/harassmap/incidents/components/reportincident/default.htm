@@ -139,24 +139,28 @@
 
     <div class="row mt-4">
         <div class="col-12">
-            <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
+            <div class="form-group mb-0 {{ (errors.has('categories')) ? 'has-danger' : '' }}">
                 {{ form_label('categories', 'Type of incident' | _, {'class': 'form-control-label'}) }}
             </div>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-2">
         <div class="col-12">
             <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
-                {% for category in categories %}
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label" data-toggle="tooltip" data-placement="top"
-                               title="{{ category.description }}">
-                            <input class="form-check-input" name="categories[]" type="checkbox"
-                                   value="{{ category.id }}">
-                            {{ category.title }}
-                        </label>
-                    </div>
-                {% endfor %}
+                <div class="row">
+                    {% for category in categories %}
+                        <div class="col-6 col-sm-3">
+                            <div class="form-check">
+                                <label class="form-check-label" data-toggle="tooltip" data-placement="top"
+                                       title="{{ category.description }}">
+                                    <input class="form-check-input" name="categories[]" type="checkbox"
+                                           value="{{ category.id }}">
+                                    {{ category.title }}
+                                </label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
                 <div class="form-control-feedback">
                     {{ errors.first('categories') }}
                 </div>
