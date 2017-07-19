@@ -7,4 +7,9 @@
     overflow: hidden;
   }
 
+  input, select, textarea {
+    font-family: $oswald;
+    font-weight: $light;
+  }
+
 }
