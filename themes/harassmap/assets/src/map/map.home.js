@@ -1,10 +1,10 @@
 'use strict';
 
 import debounce from "debounce";
+import Handlebars from "handlebars";
 import _ from "lodash";
 import moment from "moment";
 import mapStyle from "./map.style.json";
-import Handlebars from "handlebars";
 
 export class HomePageMap {
 
@@ -61,56 +61,58 @@ export class HomePageMap {
      * @param data
      */
     addMarkers(data) {
-        this.clearMarkers();
+        let new_ids = _.map(data, 'public_id');
+        let old_ids = _.map(this.markers, 'id');
 
-        _.forEach(data, (report) => this.addMarker(report));
-    }
-
-    addMarker(report) {
-        let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
-        let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
-        let date = moment(report.date);
-        let location = report.location;
-        let address = location.address + ', ' + location.city + ', ' + location.region;
-        let source   = $("#info-template").html();
-        let template = Handlebars.compile(source);
-
-        let infowindow = new google.maps.InfoWindow({
-            content: template({
-                time: date.format("L, LT"),
-                address: address,
-                link: this.link.replace('REPORT_ID', report.public_id)
-            })
+        // first we remove the markers we don't need
+        _.forEach(this.markers, (marker) => {
+            if (_.indexOf(new_ids, marker.id) === -1) {
+                marker.setMap(null);
+            }
         });
 
-        let marker = new google.maps.Marker({
-            position: centre,
-            map: this.map,
-            icon: icon
-        });
+        this.markers = _.filter(this.markers, (marker) => marker.map);
 
-        marker.addListener('click', () => {
-            this.closeWindows();
-            infowindow.open(this.map, marker);
-        });
+        _.forEach(data, (report) => {
+            if (_.indexOf(old_ids, report.public_id) === -1) {
+                let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
+                let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
+                let date = moment(report.date);
+                let location = report.location;
+                let address = location.address + ', ' + location.city + ', ' + location.region;
+                let source = $("#info-template").html();
+                let template = Handlebars.compile(source);
 
-        this.windows.push(infowindow);
-        this.markers.push(marker);
+                let infowindow = new google.maps.InfoWindow({
+                    content: template({
+                        time: date.format("L, LT"),
+                        address: address,
+                        link: this.link.replace('REPORT_ID', report.public_id)
+                    })
+                });
+
+                let marker = new google.maps.Marker({
+                    position: centre,
+                    map: this.map,
+                    icon: icon,
+                    id: report.public_id
+                });
+
+                marker.addListener('click', () => {
+                    this.closeWindows();
+                    infowindow.open(this.map, marker);
+                });
+
+                this.windows.push(infowindow);
+                this.markers.push(marker);
+            }
+        });
     }
 
     closeWindows() {
         _.forEach(this.windows, (window) => {
             window.close();
         });
-    }
-
-    clearMarkers() {
-        _.forEach(this.markers, (marker) => {
-            marker.setMap(null);
-        });
-
-        this.windows = [];
-        this.markers = [];
     }
 
 }
