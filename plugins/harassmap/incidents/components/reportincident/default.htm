@@ -149,7 +149,7 @@
             <div class="form-group {{ (errors.has('categories')) ? 'has-danger' : '' }}">
                 <div class="row">
                     {% for category in categories %}
-                        <div class="col-6 col-sm-3">
+                        <div class="col-6 col-sm-3 mb-3">
                             <div class="form-check">
                                 <label class="form-check-label" data-toggle="tooltip" data-placement="top"
                                        title="{{ category.description }}">
@@ -168,7 +168,7 @@
         </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-1">
         <div class="col-5">
             <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
                 {{ form_label('role', 'Your role' | _) }}
