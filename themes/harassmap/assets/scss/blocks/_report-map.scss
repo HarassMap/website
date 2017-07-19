@@ -1,0 +1,61 @@
+@import "../variables";
+@import "rem";
+
+.report-map {
+
+  .controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+
+    @include rem((padding: 20px 0 0));
+
+    .control {
+      border: 1px solid $alto;
+      background-color: $tundora;
+      color: $white;
+      font-family: $oswald;
+      position: relative;
+      text-transform: uppercase;
+
+      @include rem((font-size: 14px, padding: 5px 25px 5px 50px, margin-left: 15px));
+
+      &.active {
+        color: $dusty-gray;
+        background-color: $white;
+      }
+
+      .icon {
+        background: no-repeat center center;
+        display: block;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 20px;
+
+        @include rem((left: 20px));
+      }
+    }
+
+    .control--map {
+
+      .icon {
+        background-image: url('/themes/harassmap/assets/img/map/map.svg');
+      }
+
+      &.active .icon {
+        background-image: url('/themes/harassmap/assets/img/map/map-active.svg');
+      }
+    }
+
+    .control--chart .icon {
+      background-image: url('/themes/harassmap/assets/img/map/chart.svg');
+    }
+
+    .control--table .icon {
+      background-image: url('/themes/harassmap/assets/img/map/table.svg');
+    }
+  }
+
+}

@@ -76,8 +76,6 @@ export class HomePageMap {
         this.windows = _.filter(this.windows, (window) => _.indexOf(remove_ids, window.id) === -1);
         this.markers = _.filter(this.markers, (marker) => marker.map);
 
-        console.debug(this.windows);
-
         // add all the markers that need to be added
         _.forEach(data, (report) => {
             if (_.indexOf(old_ids, report.public_id) === -1) {
