@@ -6,7 +6,7 @@ use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Incident;
 use Redirect;
 
-class Report extends ComponentBase
+class ReportView extends ComponentBase
 {
 
     public function componentDetails()

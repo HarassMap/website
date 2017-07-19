@@ -74,6 +74,21 @@
             {% endfor %}
         </div>
     </div>
+
+    {% if report.intervention %}
+        <div class="row mt-3 mb-4">
+            <div class="col-12 categories">
+            <span class="category mb-1 category--title">
+                {{ 'Assistance' | _ }}
+            </span>
+                {% for assistance in report.intervention.assistance %}
+                    <span class="category mb-1">
+                    {{ assistance.title }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 </div>
 
 <div id="map" class="map map--report" data-map="reports"
