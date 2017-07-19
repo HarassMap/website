@@ -64,6 +64,7 @@ return [
         'selectmenutype' => '-- Select Menu Type --',
         'optinternal' => 'Internal',
         'optexternal' => 'External',
+        'optpages' => 'Static Page',
         'internalurl' => 'File to link To',
         'internalurlplaceholder' => '-- Select File to link to --',
         'externalurl' => 'Type external url',

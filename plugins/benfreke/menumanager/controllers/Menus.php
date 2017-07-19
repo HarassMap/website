@@ -51,6 +51,9 @@ class Menus extends Controller
             case 1:
                 $allFields['external_url']->value = $allFields['url']->value;
                 break;
+            case 2:
+                $allFields['static_url']->value = $allFields['url']->value;
+                break;
             default:
                 break;
         }
