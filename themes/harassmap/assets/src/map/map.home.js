@@ -63,16 +63,22 @@ export class HomePageMap {
     addMarkers(data) {
         let new_ids = _.map(data, 'public_id');
         let old_ids = _.map(this.markers, 'id');
+        let remove_ids = _.difference(old_ids, new_ids);
 
         // first we remove the markers we don't need
         _.forEach(this.markers, (marker) => {
-            if (_.indexOf(new_ids, marker.id) === -1) {
+            if (_.indexOf(remove_ids, marker.id) !== -1) {
                 marker.setMap(null);
             }
         });
 
+        // remove the marker/windows that have been removed from the map
+        this.windows = _.filter(this.windows, (window) => _.indexOf(remove_ids, window.id) === -1);
         this.markers = _.filter(this.markers, (marker) => marker.map);
 
+        console.debug(this.windows);
+
+        // add all the markers that need to be added
         _.forEach(data, (report) => {
             if (_.indexOf(old_ids, report.public_id) === -1) {
                 this.addMarker(report);
@@ -90,6 +96,7 @@ export class HomePageMap {
         let template = Handlebars.compile(source);
 
         let infowindow = new google.maps.InfoWindow({
+            id: report.public_id,
             content: template({
                 time: date.format("L, LT"),
                 address: address,
