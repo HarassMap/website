@@ -150,7 +150,7 @@
     <div class="row">
         <div class="col-12">
             <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
-                {{ form_textarea('description', '', {'class': 'form-control', 'required': 'required'}) }}
+                {{ form_textarea('description', '', {'class': 'form-control', 'required': 'required', 'placeholder' : 'Describe what happened...' | _}) }}
                 <div class="form-control-feedback">
                     {{ errors.first('description') }}
                 </div>
