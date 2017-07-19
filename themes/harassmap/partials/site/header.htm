@@ -2,10 +2,15 @@
 
 [extendedLocalePicker localepicker]
 
-[harassmapDomain]
+[menu headermenu]
+start = "id-1"
+activeNode = 0
+listItemClasses = "item"
+primaryClasses = "nav nav-pills"
+secondaryClasses = "dropdown-menu"
+numberOfLevels = 2
 
-[staticMenu headermenutest]
-code = "main-menu"
+[harassmapDomain]
 ==
 <header class="header">
     <div class="header__bar">
@@ -62,7 +67,7 @@ code = "main-menu"
                      src="{% if domain.headerLogo %}{{ domain.headerLogo.path }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}"/>
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="main_nav">
-                {% component 'headermenutest' %}
+                {% component 'headermenu' %}
             </div>
         </div>
     </nav>

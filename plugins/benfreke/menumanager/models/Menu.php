@@ -2,12 +2,11 @@
 
 use Cms\Classes\Controller as BaseController;
 use Cms\Classes\Page;
-use Cms\Classes\Theme;
 use Lang;
 use Model;
+use RainLab\Pages\Classes\Page as StaticPage;
 use System\Classes\ApplicationException;
 use Validator;
-use Input;
 
 /**
  * Menu Model
@@ -32,7 +31,7 @@ class Menu extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'title'      => 'required',
+        'title' => 'required',
         'parameters' => 'json'
     ];
 
@@ -49,7 +48,7 @@ class Menu extends Model
     /**
      * @var array List of purgeable values.
      */
-    protected $purgeable = ['internal_url', 'external_url'];
+    protected $purgeable = ['internal_url', 'external_url', 'static_url'];
 
     /**
      * @var \Cms\Classes\Controller A reference to the CMS controller.
@@ -110,7 +109,7 @@ class Menu extends Model
     /**
      * Recursively adds depth indicators, a '-', to a string
      *
-     * @param int    $depth
+     * @param int $depth
      * @param string $indicators
      *
      * @return string
@@ -142,6 +141,20 @@ class Menu extends Model
         return $pages;
     }
 
+    public function getStaticOptions()
+    {
+        $allPages = StaticPage::listInTheme('harassmap')->lists('title', 'baseFileName');
+
+        $pages = array(
+            '' => Lang::get('benfreke.menumanager::lang.create.nolink')
+        );
+        foreach ($allPages as $key => $value) {
+            $pages[$key] = "{$value} - (File: $key)";
+        }
+
+        return $pages;
+    }
+
     /**
      * Returns the class name so I can compare
      *
@@ -150,7 +163,7 @@ class Menu extends Model
     public static function getClassName()
     {
         return get_called_class();
-     }
+    }
 
     /**
      * Returns the correct url for this menu item.
@@ -169,10 +182,17 @@ class Menu extends Model
         $parameters = (array)json_decode($this->parameters);
 
         if ($this->url) {
-            if (!$this->is_external) {
-                $url = $this->controller->pageUrl($this->url, $parameters, $routePersistence);
-            } else {
-                $url = $this->url;
+
+            switch ($this->is_external) {
+                case 0:
+                    $url = $this->controller->pageUrl($this->url, $parameters, $routePersistence);
+                    break;
+                case 1:
+                    $url = $this->url;
+                    break;
+                case 2:
+                    $url = StaticPage::url($this->url);
+                    break;
             }
         }
 
@@ -259,11 +279,19 @@ class Menu extends Model
     public function setUrlAttribute($value)
     {
         $urlValue = null;
-        if ($this->is_external && !empty($this->external_url)) {
-            $urlValue = $this->external_url;
-        } elseif (!$this->is_external && !empty($this->internal_url)) {
-            $urlValue = $this->internal_url;
+
+        switch ($this->is_external) {
+            case 0:
+                $urlValue = $this->internal_url;
+                break;
+            case 1:
+                $urlValue = $this->external_url;
+                break;
+            case 2:
+                $urlValue = $this->static_url;
+                break;
         }
+
         // Allow seeding via the 'url' value
         if (empty($urlValue) && !empty($value)) {
             $urlValue = $value;
