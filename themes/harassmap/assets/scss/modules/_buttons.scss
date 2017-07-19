@@ -36,6 +36,13 @@
   }
 }
 
+.btn--hover-green {
+  &:hover {
+    background-color: $green;
+    color: $white;
+  }
+}
+
 .btn--green {
   background-color: $green;
   border: none;
