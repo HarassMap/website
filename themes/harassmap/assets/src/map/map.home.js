@@ -75,38 +75,42 @@ export class HomePageMap {
 
         _.forEach(data, (report) => {
             if (_.indexOf(old_ids, report.public_id) === -1) {
-                let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
-                let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
-                let date = moment(report.date);
-                let location = report.location;
-                let address = location.address + ', ' + location.city + ', ' + location.region;
-                let source = $("#info-template").html();
-                let template = Handlebars.compile(source);
-
-                let infowindow = new google.maps.InfoWindow({
-                    content: template({
-                        time: date.format("L, LT"),
-                        address: address,
-                        link: this.link.replace('REPORT_ID', report.public_id)
-                    })
-                });
-
-                let marker = new google.maps.Marker({
-                    position: centre,
-                    map: this.map,
-                    icon: icon,
-                    id: report.public_id
-                });
-
-                marker.addListener('click', () => {
-                    this.closeWindows();
-                    infowindow.open(this.map, marker);
-                });
-
-                this.windows.push(infowindow);
-                this.markers.push(marker);
+                this.addMarker(report);
             }
         });
+    }
+
+    addMarker(report) {
+        let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
+        let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
+        let date = moment(report.date);
+        let location = report.location;
+        let address = location.address + ', ' + location.city + ', ' + location.region;
+        let source = $("#info-template").html();
+        let template = Handlebars.compile(source);
+
+        let infowindow = new google.maps.InfoWindow({
+            content: template({
+                time: date.format("L, LT"),
+                address: address,
+                link: this.link.replace('REPORT_ID', report.public_id)
+            })
+        });
+
+        let marker = new google.maps.Marker({
+            position: centre,
+            map: this.map,
+            icon: icon,
+            id: report.public_id
+        });
+
+        marker.addListener('click', () => {
+            this.closeWindows();
+            infowindow.open(this.map, marker);
+        });
+
+        this.windows.push(infowindow);
+        this.markers.push(marker);
     }
 
     closeWindows() {
