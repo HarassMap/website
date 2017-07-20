@@ -97,7 +97,7 @@
     {% endif %}
 </div>
 
-<div id="map" class="map map--report" data-map="reports"
+<div id="map" class="map map--report" data-map="reports" data-type="{{ report.intervention ? 'intervention' : 'incident' }}"
      data-lat="{{ report.location.lat }}" data-lng="{{ report.location.lng }}"></div>
 
 {% put scripts %}

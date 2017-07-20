@@ -7,7 +7,9 @@ export class ReportsPageMap {
     constructor(element) {
         let lat = element.dataset.lat,
             lng = element.dataset.lng,
-            centre = new google.maps.LatLng(lat, lng);
+            type = element.dataset.type,
+            centre = new google.maps.LatLng(lat, lng),
+            icon = '/themes/harassmap/assets/img/map/' + type + '.svg';
 
         this._element = element;
 
@@ -25,11 +27,10 @@ export class ReportsPageMap {
         });
 
         this.marker = new google.maps.Marker({
-            position: centre
+            position: centre,
+            icon: icon,
+            map: this.map
         });
-
-        // add the marker to the map
-        this.marker.setMap(this.map);
 
         google.maps.event.addDomListener(window, 'resize', () => {
             this.map.setCenter(centre);
