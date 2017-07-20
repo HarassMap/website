@@ -19,7 +19,13 @@
         <div class="col-12 col-md-6">
             <p class="pt-4">
                 <strong>
-                    {{ 'This incident has now :support expressions of support.' | _({support: report.support}) }}
+                    {% if report.support == 1 %}
+                        {{ 'This incident has :support expression of support.' | _({support: report.support}) }}
+                    {% elseif report.support > 1 %}
+                        {{ 'This incident has :support expressions of support.' | _({support: report.support}) }}
+                    {% else %}
+                        {{ 'This incident has no expressions of support.' | _ }}
+                    {% endif %}
                 </strong>
             </p>
         </div>
@@ -33,7 +39,8 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <textarea rows="3" id="share-message" class="form-control social-message">{{ 'I support an end to sexual harassment' | _ }}</textarea>
+            <textarea rows="3" id="share-message"
+                      class="form-control social-message">{{ 'I support an end to sexual harassment' | _ }}</textarea>
         </div>
     </div>
     <div class="row mt-2">

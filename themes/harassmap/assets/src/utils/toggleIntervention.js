@@ -1,5 +1,19 @@
 'use strict';
 
+const checkAssistance = () => {
+    let $assistance = $('.assistance'),
+        $intervention = $('#intervention');
+
+    let value = $intervention.val();
+
+    if (value === "1") {
+        $assistance.slideDown();
+    } else {
+        console.debug("slide up?");
+        $assistance.slideUp();
+    }
+};
+
 export const initToggleIntervention = () => {
     let $assistance = $('.assistance'),
         $intervention = $('#intervention');
@@ -7,15 +21,7 @@ export const initToggleIntervention = () => {
     // hide the assistance to begin with
     $assistance.hide();
 
-    $intervention.on('change', () => {
-        let value = $intervention.val();
+    checkAssistance();
 
-        if (value === "1") {
-            $assistance.slideDown();
-        } else {
-            console.debug("slide up?");
-            $assistance.slideUp();
-        }
-
-    });
+    $intervention.on('change', () => checkAssistance());
 };

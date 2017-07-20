@@ -51,7 +51,13 @@
             {% endif %}
 
             <p class="pt-1 pb-1">
-                {{ ':support expressions of support.' | _({support: report.support}) }}
+                {% if report.support == 1 %}
+                    {{ ':support expression of support.'|_({ support: report.support }) }}
+                {% elseif report.support > 1 %}
+                    {{ ':support expressions of support.'|_({ support: report.support }) }}
+                {% else %}
+                    {{ 'No expressions of support.' | _ }}
+                {% endif %}
             </p>
 
             <a href="#comment" class="btn mb-2 mt-2">{{ 'Add Comment' | _ }}</a>

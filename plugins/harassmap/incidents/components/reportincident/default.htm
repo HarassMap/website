@@ -21,6 +21,10 @@
     </div>
 </div>
 
+<pre>
+    {{ input }}
+</pre>
+
 {{ form_open({ request: 'onSubmit' }) }}
 <div class="container">
     <div class="row">
@@ -153,8 +157,8 @@
                             <div class="form-check">
                                 <label class="form-check-label" data-toggle="tooltip" data-placement="top"
                                        title="{{ category.description }}">
-                                    <input class="form-check-input" name="categories[]" type="checkbox"
-                                           value="{{ category.id }}">
+
+                                    {{ form_checkbox('categories[' ~ loop.index ~ ']', category.id, false, {'class' : 'form-check-input'}) }}
                                     {{ category.title }}
                                 </label>
                             </div>
@@ -200,8 +204,7 @@
                 {% for id,title in assistance %}
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="assistance[]" type="checkbox"
-                                   value="{{ id }}">
+                            {{ form_checkbox('assistance[' ~ loop.index ~ ']', id, false, {'class' : 'form-check-input'}) }}
                             {{ title }}
                         </label>
                     </div>
