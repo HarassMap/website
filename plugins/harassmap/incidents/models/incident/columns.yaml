@@ -1,4 +1,7 @@
 columns:
+    public_id:
+        label: 'harassmap.incidents::lang.form.public_id'
+        type: text
     date:
         label: 'harassmap.incidents::lang.form.date'
         type: text

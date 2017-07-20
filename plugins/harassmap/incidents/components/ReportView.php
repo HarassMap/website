@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
+use App;
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Incident;
 use Redirect;
@@ -22,7 +23,13 @@ class ReportView extends ComponentBase
         $id = $this->param('id');
 
         // find the incident with the public id
-        $this->page['report'] = Incident::wherePublicId($id)->first();
+        $report = Incident::wherePublicId($id)->first();
+
+        if (!$report) {
+            App::abort(404);
+        }
+
+        $this->page['report'] = $report;
     }
 
     public function onExpressSupport()

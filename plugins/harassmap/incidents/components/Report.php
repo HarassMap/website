@@ -6,18 +6,18 @@ use App;
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Incident;
 
-class ExpressSupport extends ComponentBase
+class Report extends ComponentBase
 {
 
     public function componentDetails()
     {
         return [
-            'name' => 'Express Support Page',
-            'description' => ''
+            'name' => 'View Report',
+            'description' => 'Shows a single report'
         ];
     }
 
-    public function onRender()
+    public function onRun()
     {
         $id = $this->param('id');
 
