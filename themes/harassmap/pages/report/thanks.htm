@@ -14,7 +14,7 @@ redirect = "user/dashboard"
 paramCode = "code"
 forceSecure = 0
 ==
-<div class="container">
+<div class="container report-thanks">
     <div class="row">
         <div class="col-12">
             <h3 class="hr">
@@ -27,6 +27,17 @@ forceSecure = 0
         <div class="col-12 col-md-6">
             <div class="pr-md-5">
                 {% component 'harassmapDomainContentBlock' %}
+
+                <div class="row">
+                    <div class="col-12">
+                        <p class="pb-1">
+                            {{ 'You can review your reported incident and any time at:' }}
+                        </p>
+                        <p class="pt-1">
+                            <a href="{{ 'reports/view' | page }}">{{ 'reports/view' | page }}</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 mt-4 mt-md-0">
