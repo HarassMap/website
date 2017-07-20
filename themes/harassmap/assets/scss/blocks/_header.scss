@@ -120,6 +120,12 @@
       .nav-item {
         text-transform: capitalize;
 
+        border-bottom: 1px solid $dusty-gray;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
         @include rem((padding: 5px 0, font-size: 15px));
       }
     }
