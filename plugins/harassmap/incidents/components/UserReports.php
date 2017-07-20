@@ -39,7 +39,7 @@ class UserReports extends ComponentBase
         $user = Auth::getUser();
 
         // get the users incidents
-        $this->page['reports'] = $user->incidents()->paginate(10);
+        $this->page['reports'] = $user->incidents()->orderBy('created_at', 'desc')->paginate(10);
         $this->page['viewPage'] = $this->property('viewPage');
     }
 
