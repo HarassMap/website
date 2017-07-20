@@ -3,6 +3,10 @@
 
 .table {
 
+  thead {
+    background-color: $light-gray;
+  }
+
   th {
     font-family: $oswald;
     font-weight: $light;
