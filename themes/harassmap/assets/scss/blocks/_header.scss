@@ -59,11 +59,13 @@
 
   .nav {
     font-family: $oswald;
-    text-transform: uppercase;
+
+    @include rem((font-size: 16px));
 
     > .nav-item {
       border: 2px solid $white;
       cursor: pointer;
+      text-transform: uppercase;
 
       @include rem((padding: 10px 0));
 
@@ -116,7 +118,9 @@
       }
 
       .nav-item {
-        @include rem((padding: 5px 0));
+        text-transform: capitalize;
+
+        @include rem((padding: 5px 0, font-size: 15px));
       }
     }
 
