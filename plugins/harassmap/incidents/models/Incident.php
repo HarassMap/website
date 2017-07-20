@@ -82,8 +82,8 @@ class Incident extends Model
 
         $reports = self::where('domain_id', $domain->id)->whereHas('location', function ($query) use ($bounds) {
             $query
-                ->whereBetween(DB::raw('CAST(lat as DECIMAL(10,6))'), [floatval($bounds['south']), floatval($bounds['north'])])
-                ->whereBetween(DB::raw('CAST(lng as DECIMAL(10,6))'), [floatval($bounds['west']), floatval($bounds['east'])]);
+                ->whereBetween('lat', [floatval($bounds['south']), floatval($bounds['north'])])
+                ->whereBetween('lng', [floatval($bounds['west']), floatval($bounds['east'])]);
         })->with('location')->with('intervention')->get();
 
         return $reports;
