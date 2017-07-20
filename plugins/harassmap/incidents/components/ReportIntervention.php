@@ -15,6 +15,7 @@ use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
 use Illuminate\Support\MessageBag;
+use RainLab\Translate\Models\Message;
 use RainLab\User\Facades\Auth;
 use Redirect;
 
@@ -39,9 +40,11 @@ class ReportIntervention extends ComponentBase
             $query->where('id', '=', $domain->id);
         })->get();
 
-        $this->page['roles'] = Role::whereHas('domains', function ($query) use ($domain) {
+        $roles = Role::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
         })->get()->lists('name', 'id');
+
+        $this->page['roles'] = ['' => Message::get('My role was...')] + $roles;
 
         $this->page['assistance'] = Assistance::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
