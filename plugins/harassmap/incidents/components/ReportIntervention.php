@@ -85,6 +85,7 @@ class ReportIntervention extends ComponentBase
         $location->lng = number_format($data['lng'], 5, '.', '');
 
         $incident->domain_id = $domain->id;
+        $incident->is_intervention = true;
         $incident->public_id = Uuid::uuid();
         $incident->role_id = $data['role'];
         $incident->description = $data['description'];

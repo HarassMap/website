@@ -47,6 +47,7 @@ use Request;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereYoutube($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereZoom($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereFacebookAppId($value)
  * @mixin \Eloquent
  */
 class Domain extends Model

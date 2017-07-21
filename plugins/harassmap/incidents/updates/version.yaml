@@ -99,3 +99,6 @@
 1.0.34:
     - 'Updated table harassmap_incidents_city'
     - builder_table_update_harassmap_incidents_city.php
+1.0.35:
+    - 'Updated table harassmap_incidents_incident'
+    - builder_table_update_harassmap_incidents_incident_6.php
