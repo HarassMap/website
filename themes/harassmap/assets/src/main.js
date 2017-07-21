@@ -23,6 +23,26 @@ window.initReportIncidentPage = () => {
     initToggleIntervention();
 };
 
+window.initBanner = () => {
+    let $banners = $('.banner'),
+        $controls = $('.control');
+
+    $banners.not('.active').hide();
+
+    $controls.on('click', function (event) {
+        let $control = $(this),
+            href = $control.attr('href');
+
+        event.preventDefault();
+
+        $controls.removeClass('active');
+        $control.addClass('active');
+
+        $banners.hide();
+        $(href).show();
+    });
+};
+
 $('.row-link').each((index, element) => {
     let href = element.dataset.href;
 

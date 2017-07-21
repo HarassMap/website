@@ -49,12 +49,26 @@
       }
     }
 
-    .control--chart .icon {
-      background-image: url('/themes/harassmap/assets/img/map/chart.svg');
+    .control--chart {
+
+      .icon {
+        background-image: url('/themes/harassmap/assets/img/map/chart.svg');
+      }
+
+      &.active .icon {
+        background-image: url('/themes/harassmap/assets/img/map/chart-active.svg');
+      }
     }
 
-    .control--table .icon {
-      background-image: url('/themes/harassmap/assets/img/map/table.svg');
+    .control--table {
+
+      .icon {
+        background-image: url('/themes/harassmap/assets/img/map/table.svg');
+      }
+
+      &.active .icon {
+        background-image: url('/themes/harassmap/assets/img/map/table-active.svg');
+      }
     }
   }
 
