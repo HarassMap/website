@@ -10,7 +10,7 @@
   text-align: center;
   text-transform: uppercase;
 
-  @include rem((padding: 8px 50px));
+  @include rem((padding: 8px 50px, letter-spacing: 1px));
 }
 
 .btn--inverse {

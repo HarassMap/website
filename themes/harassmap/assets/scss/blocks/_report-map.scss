@@ -86,5 +86,38 @@
     position: relative;
 
     @include rem((padding: 8px 0));
+
+    .legend {
+      float: left;
+      overflow: hidden;
+
+      @include rem((margin: 0 0 0 40px));
+
+      .key {
+        display: block;
+        float: left;
+        font-family: $oswald;
+        position: relative;
+
+        @include rem((font-size: 16px, padding: 9px 40px 9px 0, letter-spacing: 1px));
+
+        .icon {
+          background: no-repeat center center;
+          background-size: 100% 100%;
+          display: block;
+          float: left;
+
+          @include rem((margin-right: 10px, height: 24px, width: 24px));
+        }
+      }
+
+      .key--incident .icon {
+        background-image: url('/themes/harassmap/assets/img/map/incident.svg');
+      }
+
+      .key--intervention .icon {
+        background-image: url('/themes/harassmap/assets/img/map/intervention.svg');
+      }
+    }
   }
 }
