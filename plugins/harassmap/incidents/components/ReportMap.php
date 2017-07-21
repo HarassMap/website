@@ -36,7 +36,7 @@ class ReportMap extends ComponentBase
 
     public function onRender()
     {
-        $this->page['reports'] = Incident::orderBy('date', 'desc')->limit(5)->get();
+        $this->page['reports'] = Incident::orderBy('date', 'desc')->limit(4)->get();
 
         $this->page['viewPage'] = $this->property('viewPage');
     }
