@@ -5,6 +5,7 @@ import Handlebars from "handlebars";
 import _ from "lodash";
 import moment from "moment";
 import mapStyle from "./map.style.json";
+import { emitter, REFRESH_MAP } from '../utils/events';
 
 export class HomePageMap {
 
@@ -38,6 +39,10 @@ export class HomePageMap {
         google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
             this.getReports();
         }, 500));
+
+        emitter.on(REFRESH_MAP, () => {
+            google.maps.event.trigger(this.map, 'resize');
+        });
     }
 
     /**
