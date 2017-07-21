@@ -79,4 +79,12 @@
     }
   }
 
+  .toolbar {
+    border-top: 1px solid $dusty-gray;
+    border-bottom: 1px solid $dusty-gray;
+    overflow: hidden;
+    position: relative;
+
+    @include rem((padding: 8px 0));
+  }
 }

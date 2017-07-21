@@ -1,7 +1,7 @@
 <div class="report-map">
     <div class="container">
         <div class="controls">
-            <a class="control control--map active" href="#map">
+            <a class="control control--map active" href="#report-map">
                 <span class="icon"></span>
                 {{ 'Map' | _ }}
             </a>
@@ -16,15 +16,16 @@
         </div>
     </div>
 
-    <div id="map" class="banner active map map--home" data-map="homepage" data-lat="{{ domain.lat }}"
-         data-lng="{{ domain.lng }}"
-         data-zoom="{{ domain.zoom }}" data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
+    <div id="report-map" class="banner banner--map active">
+        <div id="map" class="map map--home" data-map="homepage" data-lat="{{ domain.lat }}"
+             data-lng="{{ domain.lng }}"
+             data-zoom="{{ domain.zoom }}" data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
+    </div>
 
-    <div id="chart" class="banner"></div>
+    <div id="chart" class="banner banner--chart sep--top"></div>
 
-    <div id="table" class="banner">
+    <div id="table" class="banner banner--table sep--top">
         <div class="container">
-
             <h3>{{ 'Incidents data' | _ }}</h3>
 
             <table class="table table-hover">
@@ -53,7 +54,18 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="toolbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{{ tablePage | page }}" class="btn btn--inverse float-right">{{ 'Read More' | _ }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 </div>
 

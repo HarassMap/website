@@ -21,8 +21,12 @@ class ReportMap extends ComponentBase
     {
         return [
             'viewPage' => [
-                'title' => 'harassmap.incidents::lang.tip.list.page_name',
-                'description' => 'harassmap.incidents::lang.tip.list.page_help',
+                'title' => 'Report View Page',
+                'type' => 'dropdown',
+                'group' => 'Links',
+            ],
+            'tablePage' => [
+                'title' => 'Table View Page',
                 'type' => 'dropdown',
                 'group' => 'Links',
             ],
@@ -34,11 +38,17 @@ class ReportMap extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function getTablePageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
     public function onRender()
     {
         $this->page['reports'] = Incident::orderBy('date', 'desc')->limit(4)->get();
 
         $this->page['viewPage'] = $this->property('viewPage');
+        $this->page['tablePage'] = $this->property('tablePage');
     }
 
     public function onGetReports()
