@@ -62,9 +62,11 @@
         'zoom' => 'Zoom',
         'iso' => 'ISO Code',
         'date' => 'Date',
+        'date_report' => 'Date Of Incident',
         'date_reported' => 'Date Reported',
         'intervention' => 'Intervention',
         'verified' => 'Verified',
         'user' => 'User',
+        'public_id' => 'ID',
     ]
 ];

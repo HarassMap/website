@@ -3,15 +3,15 @@ columns:
         label: 'harassmap.incidents::lang.form.public_id'
         type: text
     date:
-        label: 'harassmap.incidents::lang.form.date'
-        type: text
+        label: 'harassmap.incidents::lang.form.date_report'
+        type: datetime
     created_at:
         label: 'harassmap.incidents::lang.form.date_reported'
-        type: text
+        type: datetime
     verified:
         label: 'harassmap.incidents::lang.form.verified'
         type: switch
-    intervention:
+    is_intervention:
         label: 'harassmap.incidents::lang.form.intervention'
         type: switch
     user:
