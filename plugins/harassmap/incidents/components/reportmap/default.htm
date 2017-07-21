@@ -20,6 +20,27 @@
         <div id="map" class="map map--home" data-map="homepage" data-lat="{{ domain.lat }}"
              data-lng="{{ domain.lng }}"
              data-zoom="{{ domain.zoom }}" data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
+
+        <div class="toolbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="legend">
+                            <span class="key key--incident">
+                                <span class="icon"></span>
+                                {{ 'Incident' | _ }}
+                            </span>
+                            <span class="key key--intervention">
+                                <span class="icon"></span>
+                                {{ 'Intervention' | _ }}
+                            </span>
+                        </div>
+
+                        <a href="{{ tablePage | page }}" class="btn btn--inverse float-right">{{ 'Read More' | _ }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="chart" class="banner banner--chart sep--top"></div>
