@@ -1,3 +1,49 @@
-.row-link {
-  cursor: pointer;
+@import '../variables';
+@import "rem";
+
+.table {
+
+  thead {
+    background-color: $light-gray;
+  }
+
+  th {
+    font-family: $oswald;
+    font-weight: $light;
+
+    @include rem((font-size: 20px));
+  }
+
+  td {
+    font-family: $merriweather;
+    font-weight: $light;
+
+    @include rem((font-size: 14px));
+  }
+
+  .row-link {
+    cursor: pointer;
+  }
+
+  .type {
+
+    .icon {
+      background: no-repeat center center;
+      background-size: 100% 100%;
+      display: block;
+
+      margin: auto;
+      @include rem((height: 25px, width: 25px));
+    }
+
+    .icon--intervention {
+      background-image: url('/themes/harassmap/assets/img/map/intervention.svg');
+    }
+
+    .icon--incident {
+      background-image: url('/themes/harassmap/assets/img/map/incident.svg');
+    }
+
+  }
+
 }
