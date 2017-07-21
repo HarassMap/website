@@ -22,7 +22,35 @@
 
     <div id="chart"></div>
 
-    <div id="table"></div>
+    <div id="table">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'Date' | _ }}</th>
+                    <th>{{ 'Type' | _ }}</th>
+                    <th>{{ 'Description' | _ }}</th>
+                    <th>{{ 'Location' | _ }}</th>
+                    <th>{{ 'Categories' | _ }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for report in reports %}
+                    <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
+                        <td>{{ report.date | date("d / m / Y") }}</td>
+                        <td class="type">
+                            <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
+                            <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>
+                        </td>
+                        <td>{{ report.description | slice(0, 50) }}</td>
+                        <td>{{ report.location.address }}, {{ report.location.city }}</td>
+                        <td>{% for category in report.categories | slice(0, 2) %}{% if loop.index > 1 %}, {% endif %}{{ category.title }}{% endfor %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </div>
 
