@@ -131,23 +131,6 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-
-      .key {
-        opacity: 0.6;
-        transition: opacity 0.5s, color 0.5s;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        &.active {
-          opacity: 1;
-
-          &:hover {
-            opacity: 0.6;
-          }
-        }
-      }
     }
   }
 }

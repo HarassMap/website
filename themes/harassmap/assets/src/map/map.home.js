@@ -4,8 +4,8 @@ import debounce from "debounce";
 import Handlebars from "handlebars";
 import _ from "lodash";
 import moment from "moment";
+import { emitter, FILTER_MAP, REFRESH_MAP } from '../utils/events';
 import mapStyle from "./map.style.json";
-import { emitter, REFRESH_MAP } from '../utils/events';
 
 export class HomePageMap {
 
@@ -40,9 +40,7 @@ export class HomePageMap {
             this.getReports();
         }, 500));
 
-        emitter.on(REFRESH_MAP, () => {
-            google.maps.event.trigger(this.map, 'resize');
-        });
+        emitter.on(REFRESH_MAP, () => google.maps.event.trigger(this.map, 'resize'));
     }
 
     /**
@@ -55,9 +53,7 @@ export class HomePageMap {
             data: {
                 bounds
             },
-            success: (data) => {
-                this.addMarkers(data);
-            }
+            success: (data) => this.addMarkers(data)
         });
     }
 

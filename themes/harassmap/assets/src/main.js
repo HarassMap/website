@@ -4,7 +4,7 @@ import MapFactory from "./map/map.factory";
 import { initCitySelector } from "./utils/citySelector";
 
 import { createDatePicker } from "./utils/datePicker";
-import { emitter, REFRESH_MAP } from './utils/events';
+import { emitter, REFRESH_MAP, FILTER_MAP } from './utils/events';
 import { initGeolocate } from "./utils/geoLocate";
 import { createTimePicker } from "./utils/timePicker";
 import { initToggleIntervention } from "./utils/toggleIntervention";
