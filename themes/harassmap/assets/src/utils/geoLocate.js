@@ -18,7 +18,7 @@ export const initGeolocate = (id, map) => {
             geocoder.geocode({'location': pos}, (results, status) => {
                 if (status === 'OK') {
                     if (results[1]) {
-                        
+
                     } else {
                         window.alert('No results found');
                     }
