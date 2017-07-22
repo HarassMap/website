@@ -4,18 +4,8 @@
 .js-float-label-wrapper.populated label {
   opacity: 1
 }
-//.js-float-label-wrapper.focused input,
-//.js-float-label-wrapper.populated input,
-//.js-float-label-wrapper.focused textarea,
-//.js-float-label-wrapper.populated textarea {
-//  padding-top: 2em;
-//}
 .js-float-label-wrapper input,
 .js-float-label-wrapper textarea,
 .js-float-label-wrapper label {
-  -webkit-transition: 0.2s ease-in-out;
-  -moz-transition: 0.2s ease-in-out;
-  -ms-transition: 0.2s ease-in-out;
-  -o-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
