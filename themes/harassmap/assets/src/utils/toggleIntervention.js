@@ -9,7 +9,6 @@ const checkAssistance = () => {
     if (value === "1") {
         $assistance.slideDown();
     } else {
-        console.debug("slide up?");
         $assistance.slideUp();
     }
 };
