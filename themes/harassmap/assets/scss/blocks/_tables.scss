@@ -14,6 +14,10 @@
     text-transform: uppercase;
 
     @include rem((font-size: 20px));
+
+    &.date {
+      @include rem((width: 120px));
+    }
   }
 
   td {
