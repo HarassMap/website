@@ -102,3 +102,6 @@
 1.0.35:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_6.php
+1.0.36:
+    - 'Updated table harassmap_incidents_incident'
+    - builder_table_update_harassmap_incidents_incident_7.php

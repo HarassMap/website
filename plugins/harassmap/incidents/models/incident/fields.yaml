@@ -16,6 +16,10 @@ fields:
         span: full
         disabled: 1
         type: relation
+    verified:
+        label: 'harassmap.incidents::lang.form.verified'
+        span: full
+        type: checkbox
 tabs:
     fields:
         description:
@@ -24,16 +28,16 @@ tabs:
             span: full
             type: textarea
             tab: 'harassmap.incidents::lang.form.tab.incident'
+        approved:
+            label: 'harassmap.incidents::lang.form.description_approved'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.incident'
         date:
             label: 'harassmap.incidents::lang.form.date'
             mode: datetime
             span: full
             type: datepicker
-            tab: 'harassmap.incidents::lang.form.tab.incident'
-        verified:
-            label: 'harassmap.incidents::lang.form.verified'
-            span: full
-            type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.incident'
         categories:
             nameFrom: title

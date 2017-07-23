@@ -33,6 +33,7 @@
         ],
         'title' => 'Title',
         'description' => 'Description',
+        'description_approved' => 'Description Approved',
         'color' => 'Color',
         'domain' => 'Domain',
         'host' => 'Host',
