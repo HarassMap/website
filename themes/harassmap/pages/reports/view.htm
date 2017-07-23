@@ -12,11 +12,18 @@ localeUrl[ar] = "/reports/:id"
 embedCode = "{{ :id }}"
 channelSlug = "blog-comments"
 memberPage = 404
+
+[harassmapDomainContentBlock]
+id = "report.comments"
 ==
 <div class="report-view">
     {% component 'harassmapUserReport' %}
 
     <div class="container mt-4">
         {% component 'harassmapReportComments' %}
+    </div>
+
+    <div class="container mb-4">
+        {% component 'harassmapDomainContentBlock' %}
     </div>
 </div>

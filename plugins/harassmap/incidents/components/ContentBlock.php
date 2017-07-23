@@ -85,8 +85,7 @@ class ContentBlock extends ComponentBase
             case 'report.incident':
                 $partial = 'report/incident';
                 break;
-            case 'homepage.droplet':
-            case 'report.thanks':
+            default:
                 $partial = 'common/raw';
                 break;
         }
