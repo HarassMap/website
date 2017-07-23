@@ -69,7 +69,8 @@ class ContentBlock extends ComponentBase
 
     public function getPartial($content_id)
     {
-        $partial = '';
+        // this is the default template
+        $partial = 'common/raw';
 
         switch ($content_id) {
             case 'homepage.basics':
@@ -84,9 +85,6 @@ class ContentBlock extends ComponentBase
                 break;
             case 'report.incident':
                 $partial = 'report/incident';
-                break;
-            default:
-                $partial = 'common/raw';
                 break;
         }
 
