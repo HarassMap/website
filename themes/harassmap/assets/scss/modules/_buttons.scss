@@ -13,6 +13,15 @@
   @include rem((padding: 8px 50px, letter-spacing: 1px));
 }
 
+.btn--default {
+
+  &:hover {
+    color: $black;
+    background-color: $light-gray;
+  }
+
+}
+
 .btn--wrap {
   white-space: normal;
 }
