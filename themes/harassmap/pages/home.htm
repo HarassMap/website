@@ -54,14 +54,14 @@ tablePage = "reports/index"
         <div class="row justify-content-center">
             {% if domain.incident %}
                 <div class="col-6">
-                    <a href="{{ 'report/incident' | page }}" class="btn btn-block btn--large btn--red">
+                    <a href="{{ 'report/incident' | page }}" class="btn btn-block btn--large btn--red btn--wrap">
                         {{ 'Report an Incident' | _ }}
                     </a>
                 </div>
             {% endif %}
             {% if domain.intervention %}
                 <div class="col-6">
-                    <a href="{{ 'report/intervention' | page }}" class="btn btn-block btn--large btn--green">
+                    <a href="{{ 'report/intervention' | page }}" class="btn btn-block btn--large btn--green btn--wrap">
                         {{ 'Report an Intervention' | _ }}
                     </a>
                 </div>

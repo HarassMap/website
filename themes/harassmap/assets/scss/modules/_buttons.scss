@@ -9,9 +9,12 @@
   font-family: $oswald;
   text-align: center;
   text-transform: uppercase;
-  white-space: normal;
 
   @include rem((padding: 8px 50px, letter-spacing: 1px));
+}
+
+.btn--wrap {
+  white-space: normal;
 }
 
 .btn--inverse {
