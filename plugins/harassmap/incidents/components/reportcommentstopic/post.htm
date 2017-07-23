@@ -8,6 +8,8 @@
 
     {% if mode == 'edit' %}
 
+        <div class="alerts pt-2"></div>
+
         {{ form_open() }}
         <!-- Passable fields -->
         <input type="hidden" name="mode" value="save"/>
@@ -80,3 +82,13 @@
 
 </div>
 <div class="post-divider"></div>
+
+{% put scripts %}
+<script>
+    $(window).on('ajaxErrorMessage', function (event, message) {
+        event.preventDefault();
+
+        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+    });
+</script>
+{% endput %}
