@@ -13,6 +13,10 @@
         <input type="hidden" name="mode" value="save"/>
         <input type="hidden" name="post" value="{{ post.id }}"/>
 
+        {% if topic.first_post.id == post.id %}
+            <input type="hidden" name="subject" class="form-control" value="{{ topic.subject }}" />
+        {% endif %}
+
         <div class="text">
             <textarea rows="5" name="content" class="form-control">{{ post.content }}</textarea>
         </div>
