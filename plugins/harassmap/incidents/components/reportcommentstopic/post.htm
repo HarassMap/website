@@ -17,7 +17,7 @@
             <input type="hidden" name="subject" class="form-control" value="{{ topic.subject }}" />
         {% endif %}
 
-        <div class="text">
+        <div class="text mb-1">
             <textarea rows="5" name="content" class="form-control">{{ post.content }}</textarea>
         </div>
 
@@ -26,7 +26,7 @@
                data-request="{{ __SELF__ }}::onUpdate"
                data-request-data="post: {{ post.id }}"
                data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-               class="save">
+               class="save btn btn--default">
                 {{ 'Save' | _ }}
             </a>
 
@@ -35,7 +35,7 @@
                data-request-data="post: {{ post.id }}, mode: 'delete'"
                data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
                data-request-confirm="Are you sure?"
-               class="delete">
+               class="delete btn btn--default">
                 {{ 'Delete' | _ }}
             </a>
 
@@ -43,7 +43,7 @@
                data-request="{{ __SELF__ }}::onUpdate"
                data-request-data="post: {{ post.id }}, mode: 'view'"
                data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-               class="cancel">
+               class="cancel btn btn--default">
                 {{ 'Cancel' | _ }}
             </a>
         </div>
@@ -51,7 +51,7 @@
 
     {% elseif mode == 'delete' %}
         <div class="text">
-            <p><em>Post has been deleted</em></p>
+            <p><em>{{ 'Comment has been deleted' | _ }}</em></p>
         </div>
     {% else %}
         <div class="text">
@@ -68,7 +68,7 @@
         <div class="actions">
             {% if topic.canPost and post.canEdit and mode != 'edit' and mode != 'delete' %}
                 <a href="javascript:;"
-                   class="edit"
+                   class="edit btn btn--default"
                    data-request="onUpdate"
                    data-request-data="post: {{ post.id }}"
                    data-request-update="'{{ __SELF__ ~ '::post' }}': '#post-{{ post.id }}'">
