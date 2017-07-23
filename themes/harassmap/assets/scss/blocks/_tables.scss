@@ -8,8 +8,10 @@
   }
 
   th {
+    color: $tundora;
     font-family: $oswald;
     font-weight: $light;
+    text-transform: uppercase;
 
     @include rem((font-size: 20px));
   }
