@@ -2,6 +2,7 @@
 
 import MapFactory from "./map/map.factory";
 import { initCitySelector } from "./utils/citySelector";
+import screenfull from 'screenfull';
 
 import { createDatePicker } from "./utils/datePicker";
 import { emitter, REFRESH_MAP, FILTER_MAP } from './utils/events';
@@ -28,6 +29,8 @@ window.initBanner = () => {
     let $banners = $('.banner'),
         $controls = $('.control');
 
+    initFullscreenMap();
+
     $banners.not('.active').hide();
 
     $controls.on('click', function (event) {
@@ -43,6 +46,27 @@ window.initBanner = () => {
         $(href).show();
 
         emitter.emit(REFRESH_MAP);
+    });
+};
+
+const initFullscreenMap = () => {
+    let $map = $('#report-map');
+
+    screenfull.on('change', () => {
+
+        if(screenfull.isFullscreen) {
+            $map.addClass('full-screen');
+        } else {
+            $map.removeClass('full-screen');
+        }
+    });
+
+    $('#map-fullscreen').on('click', (event) => {
+        event.preventDefault();
+
+        if (screenfull.enabled) {
+            screenfull.toggle($map[0]);
+        }
     });
 };
 

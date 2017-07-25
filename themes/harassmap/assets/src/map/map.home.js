@@ -30,7 +30,7 @@ export class HomePageMap {
             scaleControl: false,
             streetViewControl: false,
             rotateControl: false,
-            fullscreenControl: true
+            fullscreenControl: false
         });
 
         this.markers = [];
