@@ -22,18 +22,43 @@
              data-zoom="{{ domain.zoom }}" data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
 
         <div class="toolbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="legend">
-                            <span class="key key--incident">
+            <div class="container container--filter">
+                <div class="filter">
+                    <form id="filter-form">
+                        <div class="row">
+                            <div class="col-6">
+                                This is the date
+                            </div>
+                            <div class="col-3">
+                                <select class="form-control form-control-range" name="type">
+                                    <option>{{ 'Type' | _ }}</option>
+                                    <option value="incident">{{ 'Incident' | _ }}</option>
+                                    <option value="intervention">{{ 'Intervention' | _ }}</option>
+                                </select>
+                            </div>
+                            <div class="col-3 text-center">
+                                <button class="btn btn--inverse">{{ 'Go' | _ }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="legend--container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="legend">
+                                <span class="key key--incident">
+                                    <span class="icon"></span>
+                                    {{ 'Incident' | _ }}
+                                </span>
+                                <span class="key key--intervention">
                                 <span class="icon"></span>
-                                {{ 'Incident' | _ }}
-                            </span>
-                            <span class="key key--intervention">
-                                <span class="icon"></span>
-                                {{ 'Incidents with intervention' | _ }}
-                            </span>
+                                    {{ 'Incidents with intervention' | _ }}
+                                </span>
+                            </div>
+
+                            <a href="#" id="map-filter" class="btn btn--inverse float-right">{{ 'Filter' | _ }}</a>
                         </div>
                     </div>
                 </div>

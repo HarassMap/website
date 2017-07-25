@@ -80,12 +80,15 @@
   }
 
   .toolbar {
-    border-top: 1px solid $dusty-gray;
-    border-bottom: 1px solid $dusty-gray;
-    overflow: hidden;
     position: relative;
 
-    @include rem((padding: 8px 0));
+    .legend--container {
+      border-top: 1px solid $dusty-gray;
+      border-bottom: 1px solid $dusty-gray;
+      position: relative;
+
+      @include rem((padding: 8px 0));
+    }
 
     .legend {
       float: left;
@@ -121,13 +124,29 @@
         background-image: url('/themes/harassmap/assets/img/map/intervention.svg');
       }
     }
+
+    .container--filter {
+      overflow: hidden;
+    }
+
+    .filter {
+      background-color: $white;
+      border: 1px solid $dusty-gray;
+      float: right;
+      width: 75%;
+
+      @include rem((padding: 8px));
+    }
   }
 
   .banner--map {
     position: relative;
 
-    .toolbar {
+    .legend--container {
       background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .toolbar {
       position: absolute;
       bottom: 0;
       width: 100%;
