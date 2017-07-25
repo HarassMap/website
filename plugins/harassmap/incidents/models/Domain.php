@@ -84,7 +84,7 @@ class Domain extends Model
     ];
 
     public $belongsToMany = [
-        'users' => [BackendUserModel::class, 'table' => 'harassmap_domain_user'],
+        'users' => [BackendUserModel::class, 'table' => 'harassmap_incidents_domain_user'],
         'categories' => [Category::class, 'table' => 'harassmap_incidents_domain_category']
     ];
 
