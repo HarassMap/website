@@ -67,8 +67,8 @@
             </div>
         </div>
         <div class="col-12 col-lg-6">
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-6 col-lg-7">
+            <div class="row">
+                <div class="col-12 col-sm-6">
                     <div class="form-group floating {{ (errors.has('date')) ? 'has-danger' : '' }}">
                         {{ form_label('date', 'Date' | _) }}
                         {{ form_text('date', '', {'class': 'form-control', 'required': 'required'}) }}
@@ -77,12 +77,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-7">
+                <div class="col-12 col-sm-6">
                     <div class="form-group floating {{ (errors.has('date')) ? 'has-danger' : '' }}">
                         {{ form_label('time', 'Time' | _) }}
                         {{ form_text('time', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
                             {{ errors.first('date') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        {{ form_label('timezone', 'Timezone' | _) }}
+                        {{ form_select('timezone', timezones, domain.timezone, {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('timezone') }}
                         </div>
                     </div>
                 </div>

@@ -49,6 +49,10 @@ class ReportIncident extends ComponentBase
         $this->page['assistance'] = Assistance::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
         })->get()->lists('title', 'id');
+
+        // timezones
+        $zones = timezone_identifiers_list();
+        $this->page['timezones'] =  array_combine($zones, $zones);
     }
 
     public function onCountrySelect()
