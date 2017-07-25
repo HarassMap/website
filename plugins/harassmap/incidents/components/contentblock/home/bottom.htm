@@ -2,7 +2,7 @@
     <div class="bottom-links">
         <div class="img">
             {% if __SELF__.block.image %}
-                <img class="img-fluid mx-auto d-block" src="{{ __SELF__.block.image.path }}">
+                <img class="img-fluid mx-auto d-block" src="{{ __SELF__.block.image.path | resize(350, 220, {mode: 'crop'}) }}">
             {% endif %}
         </div>
         <div class="text">
