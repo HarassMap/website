@@ -20,7 +20,7 @@
         <tbody>
         {% for report in reports %}
             <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
-                <td>{{ report.date | date("d / m / Y") }}</td>
+                <td>{{ report.date | date("d / m / Y", domain.timezone) }}</td>
                 <td class="type">
                     <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
                     <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>

@@ -14,7 +14,7 @@
         <tbody>
         {% for tip in tips %}
             <tr>
-                <td>{{ tip.featured_from | date("Y-m-d") }}</td>
+                <td>{{ tip.featured_from | date("Y-m-d", domain.timezone) }}</td>
                 <td>{{ tip.tip }}</td>
             </tr>
         {% endfor %}

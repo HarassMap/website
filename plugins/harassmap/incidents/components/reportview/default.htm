@@ -15,10 +15,10 @@
             <h3>
                 {% if report.intervention %}
                     {{ 'Intervention happened on :date at :time' |
-                    _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+                    _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}
                 {% else %}
                     {{ 'Incident happened on :date at :time' |
-                    _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}
+                    _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}
                 {% endif %}
             </h3>
             <p class="pt-2 pb-0">
@@ -114,10 +114,10 @@
 
 {% if report.intervention %}
     <meta property="og:title" content="{{ 'Intervention happened on :date at :time' |
-    _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}"/>
+    _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
 {% else %}
     <meta property="og:title" content="{{ 'Incident happened on :date at :time' |
-    _({ date : report.date | date('d/m/Y'), time : report.date | date('g:iA') }) }}"/>
+    _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
 {% endif %}
 
 {% endput %}

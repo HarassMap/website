@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
+use DateTimeZone;
 use Faker\Provider\Uuid;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
@@ -52,7 +53,7 @@ class ReportIncident extends ComponentBase
 
         // timezones
         $zones = timezone_identifiers_list();
-        $this->page['timezones'] =  array_combine($zones, $zones);
+        $this->page['timezones'] = array_combine($zones, $zones);
     }
 
     public function onCountrySelect()
@@ -98,15 +99,18 @@ class ReportIncident extends ComponentBase
             $incident->categories = $data['categories'];
         }
 
-        $dateTime = strtotime($data['date']);
-        $timeTime = strtotime($data['time']);
+        if (strtotime($data['date']) !== false && strtotime($data['time']) !== false) {
 
-        if ($dateTime !== false && $timeTime !== false) {
-            $date = new Carbon();
-            $date->setTimestamp($dateTime);
-            $time = new Carbon();
-            $time->setTimestamp($timeTime);
+            // get the date and time from the form in the users timezone
+            $date = new Carbon($data['date'], new DateTimeZone($data['timezone']));
+            $time = new Carbon($data['time'], new DateTimeZone($data['timezone']));
             $date->setTime($time->format('h'), $time->format('i'), $time->format('s'));
+
+            // get the server timezone and store it in that timezone
+            $serverTimeZone = date_default_timezone_get();
+            $date->setTimezone($serverTimeZone);
+
+            // save the date to the incident
             $incident->date = $date;
         }
 
