@@ -19,8 +19,8 @@ window.initMap = (id = 'map') => {
 window.initReportIncidentPage = () => {
     createDatePicker('date');
     createTimePicker('time');
-    initCitySelector();
-    initGeolocate('geolocate');
+    // initCitySelector();
+    initGeolocate();
     initToggleIntervention();
 };
 

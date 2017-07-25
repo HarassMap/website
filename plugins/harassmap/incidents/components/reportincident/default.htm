@@ -49,7 +49,7 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group floating {{ (errors.has('country')) ? 'has-danger' : '' }}">
                         {{ form_label('city', 'City' | _) }}
-                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
+                        {{ form_text('city', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
                             {{ errors.first('country') }}
                         </div>
