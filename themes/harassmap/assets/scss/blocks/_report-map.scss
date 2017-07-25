@@ -20,8 +20,8 @@
 
     .control {
       border: 1px solid $alto;
-      background-color: $tundora;
-      color: $white;
+      background-color: $white;
+      color: $dusty-gray;
       font-family: $oswald;
       position: relative;
       text-transform: uppercase;
@@ -29,8 +29,8 @@
       @include rem((font-size: 14px, padding: 5px 25px 5px 50px, margin-left: 15px));
 
       &.active {
-        color: $dusty-gray;
-        background-color: $white;
+        background-color: $tundora;
+        color: $white;
       }
 
       .icon {
