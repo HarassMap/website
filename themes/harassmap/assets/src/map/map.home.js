@@ -26,6 +26,9 @@ export class HomePageMap {
             styles: mapStyle,
             scrollwheel: false,
             zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_TOP
+            },
             mapTypeControl: false,
             scaleControl: false,
             streetViewControl: false,
