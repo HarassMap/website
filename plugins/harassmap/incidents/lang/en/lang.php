@@ -69,5 +69,6 @@
         'verified' => 'Verified',
         'user' => 'User',
         'public_id' => 'ID',
+        'timezone' => 'Timezone',
     ]
 ];

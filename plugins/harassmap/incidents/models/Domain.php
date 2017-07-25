@@ -117,4 +117,12 @@ class Domain extends Model
     {
         return self::getMatchingDomains()[0];
     }
+
+    public function getTimezoneOptions()
+    {
+        $zones = timezone_identifiers_list();
+
+        // make the values the keys
+        return array_combine($zones, $zones);
+    }
 }

@@ -20,9 +20,13 @@ tabs:
         country:
             label: 'harassmap.incidents::lang.form.country'
             nameFrom: name
-            descriptionFrom: description
-            span: full
+            span: auto
             type: relation
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        timezone:
+            label: 'harassmap.incidents::lang.form.timezone'
+            span: auto
+            type: dropdown
             tab: 'harassmap.incidents::lang.form.tab.site'
         headerLogo:
             label: 'harassmap.incidents::lang.form.logo.header'
