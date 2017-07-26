@@ -1,0 +1,82 @@
+<div class="row mb-5">
+    <div class="col-12">
+
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'My Account' | _ }}</span>
+        </h3>
+
+        <div class="alerts"></div>
+
+        {{ form_ajax('onUpdate', { model: user }) }}
+
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="firstName">{{ 'First Name' | _ }}</label>
+                    <input required name="name" type="text" class="form-control" id="firstName"
+                           value="{{ form_value('name') }}" placeholder="{{ 'Enter your first name' | _ }}"/>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="lastName">{{ 'Last Name' | _ }}</label>
+                    <input required name="surname" type="text" class="form-control" id="lastName"
+                           value="{{ form_value('surname') }}" placeholder="{{ 'Enter your last name' | _ }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="username">{{ 'Username' | _ }}</label>
+                    <input id="username" type="text" disabled value="{{ form_value('username') }}" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="registerEmail">{{ 'Email' | _ }}</label>
+                    <input name="email" type="email" class="form-control" id="registerEmail"
+                           value="{{ form_value('email') }}" placeholder="{{ 'Enter your email' | _ }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="accountPassword">{{ 'New Password' | _ }}</label>
+                    <input name="password" type="password" class="form-control" id="accountPassword"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="accountPasswordConfirm">{{ 'Confirm New Password' | _ }}</label>
+                    <input name="password_confirmation" type="password" class="form-control" id="accountPasswordConfirm">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-default">{{ 'Update' | _ }}</button>
+
+        {{ form_close() }}
+
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+    $(window).on('ajaxErrorMessage', function (event, message) {
+        event.preventDefault();
+
+        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+    });
+</script>
+{% endput %}

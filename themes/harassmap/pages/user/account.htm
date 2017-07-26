@@ -1,0 +1,15 @@
+title = "Account"
+url = "/dashboard/account"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[ar] = "/dashboard/account"
+
+[account myaccount]
+paramCode = "code"
+forceSecure = 0
+==
+<div class="container">
+    {% component 'myaccount' %}
+</div>
