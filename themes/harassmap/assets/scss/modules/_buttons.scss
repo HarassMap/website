@@ -33,6 +33,11 @@
 .btn--inverse {
   background-color: $tundora;
   color: $white;
+
+  &.active {
+    background-color: $white;
+    color: $dusty-gray;
+  }
 }
 
 .btn--large {

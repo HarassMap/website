@@ -30,6 +30,7 @@ window.initBanner = () => {
         $controls = $('.control');
 
     initFullscreenMap();
+    initMapFilter();
 
     $banners.not('.active').hide();
 
@@ -46,6 +47,18 @@ window.initBanner = () => {
         $(href).show();
 
         emitter.emit(REFRESH_MAP);
+    });
+};
+
+const initMapFilter = () => {
+  let $filterButton = $('#map-filter')  ,
+      $filter = $('#filter');
+
+    $filterButton.on('click', (event) => {
+        event.preventDefault();
+
+        $filter.toggle();
+        $filterButton.toggleClass('active');
     });
 };
 

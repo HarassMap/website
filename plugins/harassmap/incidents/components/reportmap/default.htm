@@ -22,7 +22,7 @@
              data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
 
         <div class="toolbar">
-            <div class="container container--filter">
+            <div id="filter" class="container container--filter">
                 <div class="filter">
                     <form id="filter-form">
                         <div class="row">
@@ -37,7 +37,7 @@
                                 </select>
                             </div>
                             <div class="col-3 text-center">
-                                <button class="btn btn--inverse">{{ 'Go' | _ }}</button>
+                                <button class="btn btn--inverse btn-block">{{ 'Go' | _ }}</button>
                             </div>
                         </div>
                     </form>
@@ -59,7 +59,8 @@
                             </div>
 
                             <a href="#" id="map-fullscreen" class="btn float-right btn--fullscreen ml-2">
-                                &nbsp; <span class="sr-only">{{ 'Full Screen' | _ }}</span>
+                                &nbsp;
+                                <span class="sr-only">{{ 'Full Screen' | _ }}</span>
                             </a>
 
                             <a href="#" id="map-filter" class="btn btn--inverse float-right">{{ 'Filter' | _ }}</a>

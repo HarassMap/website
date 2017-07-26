@@ -126,6 +126,7 @@
     }
 
     .container--filter {
+      display: none;
       overflow: hidden;
     }
 
@@ -133,8 +134,11 @@
       background-color: $white;
       border: 1px solid $dusty-gray;
       border-bottom: none;
-      float: right;
-      width: 75%;
+
+      @include media-breakpoint-up(md) {
+        float: right;
+        width: 75%;
+      }
 
       @include rem((padding: 8px));
     }
