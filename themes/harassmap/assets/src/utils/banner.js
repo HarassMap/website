@@ -1,12 +1,13 @@
 'use strict';
 
 import screenfull from 'screenfull';
-import { emitter, REFRESH_MAP } from './events';
+import { emitter, REFRESH_MAP, FILTER_MAP } from './events';
+import { createDatePicker } from "./datePicker";
 
 export const initBanner = () => {
     initFullscreenMap();
     initBannerSwitcher();
-    // initMapFilter();
+    initMapFilter();
 };
 
 const initBannerSwitcher = () => {
@@ -54,12 +55,24 @@ const initFullscreenMap = () => {
 
 const initMapFilter = () => {
     let $filterButton = $('#map-filter'),
-        $filter = $('#filter');
+        $filter = $('#filter'),
+        $filterForm = $('#filter-form');
+
+    createDatePicker('date_from');
+    createDatePicker('date_to');
 
     $filterButton.on('click', (event) => {
         event.preventDefault();
 
         $filter.toggle();
         $filterButton.toggleClass('active');
+    });
+
+    $filterForm.on('submit', (event) => {
+        event.preventDefault();
+
+        let data = $filterForm.serializeJSON();
+
+        emitter.emit(FILTER_MAP, data);
     });
 };

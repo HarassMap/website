@@ -27,11 +27,18 @@
                     <form id="filter-form">
                         <div class="row">
                             <div class="col-6">
-                                This is the date
+                                <div class="row">
+                                    <div class="col-6">
+                                        {{ form_text('date_from', '', {'id': 'date_from', 'class': 'form-control', 'placeholder': 'Date From' | _}) }}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form_text('date_to', '', {'id': 'date_to', 'class': 'form-control', 'placeholder': 'Date To' | _}) }}
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-3">
                                 <select class="form-control form-control-range" name="type">
-                                    <option>{{ 'Type' | _ }}</option>
+                                    <option value="">{{ 'Type' | _ }}</option>
                                     <option value="incident">{{ 'Incident' | _ }}</option>
                                     <option value="intervention">{{ 'Intervention' | _ }}</option>
                                 </select>

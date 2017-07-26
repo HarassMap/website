@@ -39,6 +39,7 @@ export class HomePageMap {
 
         this.markers = [];
         this.windows = [];
+        this.filters = {};
 
         google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
             this.center = this.map.getCenter();
@@ -47,17 +48,24 @@ export class HomePageMap {
         }, 500));
 
         emitter.on(REFRESH_MAP, () => google.maps.event.trigger(this.map, 'resize'));
+        emitter.on(FILTER_MAP, (filters) => this.getReports(filters));
     }
 
     /**
      *
      */
-    getReports() {
+    getReports(filters = {}) {
         let bounds = this.map.getBounds().toJSON();
+
+        this.filters = {
+            ...this.filters,
+            ...filters
+        };
 
         $.request('onGetReports', {
             data: {
-                bounds
+                bounds,
+                filters: this.filters
             },
             success: (data) => this.addMarkers(data)
         });
