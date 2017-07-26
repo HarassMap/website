@@ -4,11 +4,14 @@ import screenfull from 'screenfull';
 import { emitter, REFRESH_MAP } from './events';
 
 export const initBanner = () => {
+    initFullscreenMap();
+    initBannerSwitcher();
+    // initMapFilter();
+};
+
+const initBannerSwitcher = () => {
     let $banners = $('.banner'),
         $controls = $('.control');
-
-    initFullscreenMap();
-    // initMapFilter();
 
     $banners.not('.active').hide();
 
@@ -25,18 +28,6 @@ export const initBanner = () => {
         $(href).show();
 
         emitter.emit(REFRESH_MAP);
-    });
-};
-
-const initMapFilter = () => {
-    let $filterButton = $('#map-filter'),
-        $filter = $('#filter');
-
-    $filterButton.on('click', (event) => {
-        event.preventDefault();
-
-        $filter.toggle();
-        $filterButton.toggleClass('active');
     });
 };
 
@@ -58,5 +49,17 @@ const initFullscreenMap = () => {
         if (screenfull.enabled) {
             screenfull.toggle($map[0]);
         }
+    });
+};
+
+const initMapFilter = () => {
+    let $filterButton = $('#map-filter'),
+        $filter = $('#filter');
+
+    $filterButton.on('click', (event) => {
+        event.preventDefault();
+
+        $filter.toggle();
+        $filterButton.toggleClass('active');
     });
 };

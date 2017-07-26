@@ -12,17 +12,18 @@ export class HomePageMap {
     constructor(element) {
         let lat = element.dataset.lat,
             lng = element.dataset.lng,
-            zoom = element.dataset.zoom,
-            centre = new google.maps.LatLng(lat, lng);
+            zoom = element.dataset.zoom;
 
         // get the link for the read more
         this.link = element.dataset.link;
 
         this._element = element;
 
+        this.center = new google.maps.LatLng(lat, lng);
+
         this.map = new google.maps.Map(element, {
             zoom: parseInt(zoom),
-            center: centre,
+            center: this.center,
             styles: mapStyle,
             scrollwheel: false,
             zoomControl: true,
@@ -40,6 +41,8 @@ export class HomePageMap {
         this.windows = [];
 
         google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
+            this.center = this.map.getCenter();
+
             this.getReports();
         }, 500));
 
