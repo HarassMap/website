@@ -8,10 +8,12 @@ export const initGeolocate = () => {
 };
 
 const initAddressListener = () => {
-    let $address = $('#address');
-    let $city = $('#city');
-    let $region = $('#region');
-    let valueCache = '';
+    let $address = $('#address'),
+        $city = $('#city'),
+        $region = $('#region'),
+        $lat = $('#lat'),
+        $lng = $('#lng'),
+        valueCache = '';
 
     $('#region, #city, #address').on('blur', () => {
         let value = $address.val() + ', ' + $city.val() + ', ' + $region.val();
@@ -28,10 +30,10 @@ const initAddressListener = () => {
             geocoder.geocode({address: value}, (results, status) => {
                 let result = results[0];
 
-                if(result) {
+                if (result) {
                     let location = result.geometry.location.toJSON();
 
-                    map.setCenter(location);
+                    setPosition(location);
                 }
             });
         }
@@ -40,18 +42,18 @@ const initAddressListener = () => {
 
 const initItJustHappenedHere = () => {
     $('#geolocate').on('click', (event) => {
-        let map = MapFactory.getMap();
-        let geocoder = new google.maps.Geocoder;
+        let map = MapFactory.getMap(),
+            geocoder = new google.maps.Geocoder;
 
         navigator.geolocation.getCurrentPosition((position) => {
-            let pos = {
+            let location = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
 
-            map.setCenter(pos);
+            setPosition(location);
 
-            geocoder.geocode({location: pos}, (results, status) => {
+            geocoder.geocode({location: location}, (results, status) => {
                 if (status === 'OK') {
                     if (results[1]) {
 
@@ -64,4 +66,15 @@ const initItJustHappenedHere = () => {
             });
         });
     });
-}
+};
+
+const setPosition = (position) => {
+    let map = MapFactory.getMap(),
+        $lat = $('#lat'),
+        $lng = $('#lng');
+
+    map.setCenter(position);
+
+    $lat.val(position.lat.toFixed(5));
+    $lng.val(position.lng.toFixed(5));
+};
