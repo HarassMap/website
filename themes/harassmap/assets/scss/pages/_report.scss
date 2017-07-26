@@ -13,15 +13,4 @@
     font-weight: $light;
   }
 
-  label {
-    font-family: $merriweather;
-    font-weight: $light;
-
-    @include rem((font-size: 14px));
-  }
-
-  .form-check-label {
-    @include rem((font-size: 16px));
-  }
-
 }

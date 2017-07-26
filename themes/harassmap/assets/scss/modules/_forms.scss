@@ -1,0 +1,42 @@
+@import '../variables';
+@import "rem";
+
+.form-group {
+
+  .form-check-label {
+    @include rem((font-size: 16px));
+  }
+
+  label {
+    font-family: $merriweather;
+    font-weight: $light;
+
+    @include rem((font-size: 14px));
+  }
+
+  @include media-breakpoint-down(sm) {
+
+    &.floating {
+      label {
+        display: none;
+      }
+    }
+
+    label {
+      @include rem((font-size: 18px));
+    }
+
+    input, textarea {
+      @include rem((font-size: 18px));
+    }
+
+    select {
+      @include rem((padding: 1px 9px));
+    }
+
+    .form-check-label {
+      @include rem((font-size: 18px));
+    }
+
+  }
+}
