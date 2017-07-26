@@ -12,9 +12,9 @@
         <tr>
             <th class="date">{{ 'Date' | _ }}</th>
             <th>{{ 'Type' | _ }}</th>
-            <th>{{ 'Description' | _ }}</th>
+            <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
             <th>{{ 'Location' | _ }}</th>
-            <th>{{ 'Support' | _ }}</th>
+            <th class="hidden-sm-down">{{ 'Support' | _ }}</th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +25,9 @@
                     <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
                     <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>
                 </td>
-                <td>{{ report.description | slice(0, 50) }}</td>
+                <td class="hidden-sm-down">{{ report.description | slice(0, 50) }}</td>
                 <td>{{ report.location.address }}, {{ report.location.city }}</td>
-                <td class="text-center">{{ report.support }}</td>
+                <td class="text-center hidden-sm-down">{{ report.support }}</td>
             </tr>
         {% endfor %}
         </tbody>
