@@ -32,6 +32,7 @@
 
 .btn--inverse {
   background-color: $tundora;
+  border: none;
   color: $white;
 
   &.active {
@@ -77,6 +78,7 @@
 .btn--fullscreen {
   background: url('/themes/harassmap/assets/img/map/full-screen.svg') no-repeat center center $tundora;
   background-size: 100% 100%;
+  border: none;
 
   @include rem((padding: 8px 0, width: 35px));
 }
