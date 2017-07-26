@@ -36,3 +36,5 @@ $('.row-link').each((index, element) => {
 
 $('.floating').addClass('js-float-label-wrapper');
 $('.js-float-label-wrapper').FloatLabel();
+
+$('body').addClass('js');
