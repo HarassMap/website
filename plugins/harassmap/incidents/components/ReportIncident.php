@@ -8,8 +8,6 @@ use DateTimeZone;
 use Faker\Provider\Uuid;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
-use Harassmap\Incidents\Models\City;
-use Harassmap\Incidents\Models\Country;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Intervention;
@@ -35,8 +33,6 @@ class ReportIncident extends ComponentBase
     {
         $domain = Domain::getBestMatchingDomain();
 
-        $this->page['countries'] = Country::all()->lists('name', 'id');
-
         $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
             $query->where('id', '=', $domain->id);
         })->get();
@@ -54,13 +50,6 @@ class ReportIncident extends ComponentBase
         // timezones
         $zones = timezone_identifiers_list();
         $this->page['timezones'] = array_combine($zones, $zones);
-    }
-
-    public function onCountrySelect()
-    {
-        $data = post();
-
-        return City::whereCountryId($data['country'])->get();
     }
 
     public function onSubmit()
@@ -82,9 +71,7 @@ class ReportIncident extends ComponentBase
             $incident->user_id = $user->id;
         }
 
-        $location->country_id = $data['country'];
         $location->city = $data['city'];
-        $location->region = $data['region'];
         $location->address = $data['address'];
         $location->lat = number_format($data['lat'], 5, '.', '');
         $location->lng = number_format($data['lng'], 5, '.', '');

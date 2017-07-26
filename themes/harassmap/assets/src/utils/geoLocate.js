@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import MapFactory from "../map/map.factory";
+import moment from 'moment';
 
 export const initGeolocate = () => {
     initAddressListener();
@@ -11,27 +12,22 @@ export const initGeolocate = () => {
 const initAddressListener = () => {
     let $address = $('#address'),
         $city = $('#city'),
-        $region = $('#region'),
-        $lat = $('#lat'),
-        $lng = $('#lng'),
         valueCache = '';
 
     $('#region, #city, #address').on('blur', () => {
-        let value = $address.val() + ', ' + $city.val() + ', ' + $region.val();
+        let value = $address.val() + ', ' + $city.val();
 
         // if the value has changed
         if (value !== valueCache) {
+            let geocoder = new google.maps.Geocoder;
 
             // cache the value
             valueCache = value;
 
-            let map = MapFactory.getMap();
-            let geocoder = new google.maps.Geocoder;
-
             geocoder.geocode({address: value}, (results, status) => {
-                let result = results[0];
+                if (status === 'OK' && !_.isEmpty(results)) {
+                    let result = results[0];
 
-                if (result) {
                     let location = result.geometry.location.toJSON();
 
                     setPosition(location);
@@ -43,8 +39,7 @@ const initAddressListener = () => {
 
 const initItJustHappenedHere = () => {
     $('#geolocate').on('click', (event) => {
-        let map = MapFactory.getMap(),
-            geocoder = new google.maps.Geocoder;
+        let geocoder = new google.maps.Geocoder;
 
         navigator.geolocation.getCurrentPosition((position) => {
             let location = {
@@ -54,13 +49,20 @@ const initItJustHappenedHere = () => {
 
             setPosition(location);
 
-            geocoder.geocode({location: location}, (results, status) => {
-                if (status === 'OK') {
+            $('#date').val(moment().format('YYYY-MM-DD'));
+            $('#time').val(moment().format('h:mma'));
 
-                    // make sure we have address results
-                    if (!_.isEmpty(results)) {
-                        let result = results[0];
-                    }
+            geocoder.geocode({location: location}, (results, status) => {
+                if (status === 'OK' && !_.isEmpty(results)) {
+                    let result = results[0],
+                        address = result.formatted_address,
+                        parts = _.split(address, ','),
+                        chunks = _.chunk(parts, Math.ceil(parts.length / 2));
+
+                    // set the values for the address and trigger the change
+                    $('#address').val(_.join(chunks[0], ', ')).trigger('change');
+                    $('#city').val(_.join(chunks[1], ', ')).trigger('change');
+
 
                 } else {
                     window.alert('Geocoder failed due to: ' + status);

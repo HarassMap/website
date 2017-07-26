@@ -20,47 +20,28 @@
         </div>
     </div>
 </div>
+</div>
 
 {{ form_open({ request: 'onSubmit' }) }}
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-6">
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group {{ (errors.has('country')) ? 'has-danger' : '' }}">
-                        {{ form_label('country', 'Country' | _) }}
-                        {{ form_select('country', countries, domain.country_id, {'class': 'form-control', 'required': 'required'}) }}
-                        <div class="form-control-feedback">
-                            {{ errors.first('country') }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group floating {{ (errors.has('region')) ? 'has-danger' : '' }}">
-                        {{ form_label('region', 'Governorate' | _) }}
-                        {{ form_text('region', '', {'class': 'form-control', 'required': 'required'}) }}
-                        <div class="form-control-feedback">
-                            {{ errors.first('region') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group floating {{ (errors.has('country')) ? 'has-danger' : '' }}">
-                        {{ form_label('city', 'City' | _) }}
-                        {{ form_text('city', '', {'class': 'form-control', 'autocomplete': 'off', 'required': 'required'}) }}
-                        <div class="form-control-feedback">
-                            {{ errors.first('country') }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                     <div class="form-group floating {{ (errors.has('address')) ? 'has-danger' : '' }}">
-                        {{ form_label('address', 'Address' | _) }}
+                        {{ form_label('address', 'Address/Description' | _) }}
                         {{ form_text('address', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
                             {{ errors.first('address') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group floating {{ (errors.has('city')) ? 'has-danger' : '' }}">
+                        {{ form_label('city', 'City/Town/Country' | _) }}
+                        {{ form_text('city', '', {'class': 'form-control', 'required': 'required'}) }}
+                        <div class="form-control-feedback">
+                            {{ errors.first('city') }}
                         </div>
                     </div>
                 </div>

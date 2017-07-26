@@ -8,7 +8,6 @@ use October\Rain\Database\Traits\Validation;
  *
  * @property int $id
  * @property string $city
- * @property string $region
  * @property string $address
  * @property string $lat
  * @property string $lng
@@ -35,16 +34,13 @@ class Location extends Model
     public $throwOnValidation = false;
 
     public $rules = [
-        'city' => 'required',
-        'region' => 'required',
         'address' => 'required',
+        'city' => 'required',
         'lat' => 'required',
-        'lng' => 'required',
-        'country_id' => 'required',
+        'lng' => 'required'
     ];
 
     public $belongsTo = [
-        'incident' => Incident::class,
-        'country' => Country::class,
+        'incident' => Incident::class
     ];
 }
