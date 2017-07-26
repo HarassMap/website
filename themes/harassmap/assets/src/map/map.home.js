@@ -47,6 +47,10 @@ export class HomePageMap {
             this.getReports();
         }, 500));
 
+        google.maps.event.addDomListener(window, 'resize', () => {
+            this.map.setCenter(this.center);
+        });
+
         emitter.on(REFRESH_MAP, () => google.maps.event.trigger(this.map, 'resize'));
         emitter.on(FILTER_MAP, (filters) => this.getReports(filters));
     }
