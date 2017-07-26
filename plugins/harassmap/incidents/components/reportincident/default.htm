@@ -94,27 +94,10 @@
      data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}"
      data-lat-input="lat" data-lng-input="lng"></div>
 
+{{ form_hidden('lat', domain.lat, {'id': 'lat', 'required': 'required'}) }}
+{{ form_hidden('lng', domain.lng, {'id': 'lng', 'required': 'required'}) }}
+
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group {{ (errors.has('lat')) ? 'has-danger' : '' }}">
-                {{ form_label('lat', 'Latitude' | _) }}
-                {{ form_text('lat', domain.lat, {'class': 'form-control', 'required': 'required'}) }}
-                <div class="form-control-feedback">
-                    {{ errors.first('lat') }}
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group {{ (errors.has('lng')) ? 'has-danger' : '' }}">
-                {{ form_label('lng', 'Longitude' | _) }}
-                {{ form_text('lng', domain.lng, {'class': 'form-control', 'required': 'required'}) }}
-                <div class="form-control-feedback">
-                    {{ errors.first('lng') }}
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-12 col-lg-7">
