@@ -64,7 +64,7 @@ const initMapFilter = () => {
     $filterButton.on('click', (event) => {
         event.preventDefault();
 
-        $filter.toggle();
+        $filter.fadeToggle();
         $filterButton.toggleClass('active');
     });
 

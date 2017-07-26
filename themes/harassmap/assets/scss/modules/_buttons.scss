@@ -32,11 +32,12 @@
 
 .btn--inverse {
   background-color: $tundora;
-  border: none;
+  border: 1px solid $tundora;
   color: $white;
 
   &.active {
     background-color: $white;
+    border: 1px solid $green;
     color: $dusty-gray;
   }
 }

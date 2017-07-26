@@ -60,7 +60,12 @@ class ReportMap extends ComponentBase
 
         // if the bounds exist
         if (array_key_exists('bounds', $data)) {
-            $reports = Incident::whereInsideBounds($data['bounds']);
+
+            if (!array_key_exists('filters', $data)) {
+                $data['filters'] = [];
+            }
+
+            $reports = Incident::whereInsideBounds($data['bounds'], $data['filters']);
         }
 
         return $reports;

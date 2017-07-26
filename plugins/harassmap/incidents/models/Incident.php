@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Incidents\Models;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Model;
 use October\Rain\Database\Traits\Validation;
@@ -78,7 +79,7 @@ class Incident extends Model
      * @param $bounds
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public static function whereInsideBounds($bounds)
+    public static function whereInsideBounds($bounds, $filters)
     {
         $domain = Domain::getBestMatchingDomain();
 
@@ -86,8 +87,26 @@ class Incident extends Model
             $query
                 ->whereBetween('lat', [floatval($bounds['south']), floatval($bounds['north'])])
                 ->whereBetween('lng', [floatval($bounds['west']), floatval($bounds['east'])]);
-        })->with('location')->with('intervention')->get();
+        });
 
-        return $reports;
+        if (array_key_exists('type', $filters) && !empty($filters['type'])) {
+            if($filters['type'] === 'incident') {
+                $reports->doesntHave('intervention');
+            } else {
+                $reports->has('intervention');
+            }
+        }
+
+        if (array_key_exists('date_from', $filters) && !empty($filters['date_from'])) {
+            $from = new Carbon($filters['date_from']);
+            $reports->where('date', '>', $from->toDateString());
+        }
+
+        if (array_key_exists('date_to', $filters) && !empty($filters['date_to'])) {
+            $to = new Carbon($filters['date_to']);
+            $reports->where('date', '<', $to->toDateString());
+        }
+
+        return $reports->with('location')->with('intervention')->get();
     }
 }
