@@ -1,9 +1,0 @@
-fields:
-    name:
-        label: 'harassmap.incidents::lang.form.name'
-        span: auto
-        type: text
-    iso:
-        label: 'harassmap.incidents::lang.form.iso'
-        span: auto
-        type: text

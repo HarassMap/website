@@ -1,7 +1,0 @@
-columns:
-    name:
-        label: 'harassmap.incidents::lang.form.name'
-        type: text
-    iso:
-        label: 'harassmap.incidents::lang.form.iso'
-        type: text

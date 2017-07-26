@@ -30,19 +30,6 @@ navigation:
                 label: 'Assistance Types'
                 url: harassmap/incidents/assistance
                 icon: icon-hand-o-right
-    harassmap.incidents.countries:
-        label: 'harassmap.incidents::lang.menu.countries'
-        url: harassmap/incidents/countries
-        icon: icon-globe
-        sideMenu:
-            harassmap.incidents.countries.country:
-                label: 'harassmap.incidents::lang.menu.countries'
-                url: harassmap/incidents/countries
-                icon: icon-globe
-            harassmap.incidents.countries.city:
-                label: 'harassmap.incidents::lang.menu.cities'
-                url: harassmap/incidents/cities
-                icon: icon-building-o
     harassmap.incidents.domain:
         label: 'harassmap.incidents::lang.menu.domain'
         url: harassmap/incidents/domain

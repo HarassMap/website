@@ -1,8 +1,0 @@
-columns:
-    name:
-        label: 'harassmap.incidents::lang.form.name'
-        type: text
-    country:
-        label: 'harassmap.incidents::lang.form.country'
-        relation: country
-        select: name

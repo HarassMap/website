@@ -3,7 +3,6 @@
 namespace Harassmap\Incidents\Models;
 
 use Backend\Models\User as BackendUserModel;
-use Harassmap\Incidents\Models\Country;
 use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
@@ -26,13 +25,11 @@ use Request;
  * @property string $name
  * @property bool $incident
  * @property bool $intervention
- * @property int $country_id
  * @property string $facebook_app_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAbout($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereBlogger($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereCountryId($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereFacebook($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereHost($value)
@@ -70,10 +67,6 @@ class Domain extends Model
         'lat' => 'required',
         'lng' => 'required',
         'zoom' => 'required',
-    ];
-
-    public $belongsTo = [
-        'country' => Country::class
     ];
 
     public $hasMany = [
