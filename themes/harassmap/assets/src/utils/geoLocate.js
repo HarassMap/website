@@ -1,5 +1,6 @@
 'use strict';
 
+import _ from 'lodash';
 import MapFactory from "../map/map.factory";
 
 export const initGeolocate = () => {
@@ -55,11 +56,12 @@ const initItJustHappenedHere = () => {
 
             geocoder.geocode({location: location}, (results, status) => {
                 if (status === 'OK') {
-                    if (results[1]) {
 
-                    } else {
-                        window.alert('No results found');
+                    // make sure we have address results
+                    if (!_.isEmpty(results)) {
+                        let result = results[0];
                     }
+
                 } else {
                     window.alert('Geocoder failed due to: ' + status);
                 }
