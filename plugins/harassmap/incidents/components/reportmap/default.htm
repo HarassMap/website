@@ -92,6 +92,7 @@
                     <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
                     <th>{{ 'Location' | _ }}</th>
                     <th class="hidden-sm-down">{{ 'Categories' | _ }}</th>
+                    <th class="js-hidden">{{ 'Link' | _ }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -105,6 +106,9 @@
                         <td class="hidden-sm-down">{{ report.description | slice(0, 50) }}</td>
                         <td>{{ report.location.address }}, {{ report.location.city }}</td>
                         <td class="hidden-sm-down">{% for category in report.categories | slice(0, 2) %}{% if loop.index > 1 %}, {% endif %}{{ category.title }}{% endfor %}</td>
+                        <td class="js-hidden">
+                            <a href="{{ viewPage | page({id: report.public_id}) }}">{{ 'View' | _ }}</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
