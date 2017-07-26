@@ -8,6 +8,8 @@ import { initGeolocate } from "./utils/geoLocate";
 import { createTimePicker } from "./utils/timePicker";
 import { initToggleIntervention } from "./utils/toggleIntervention";
 
+$('body').addClass('js');
+
 // enable all tooltips
 $('[data-toggle="tooltip"]').tooltip();
 
@@ -36,5 +38,3 @@ $('.row-link').each((index, element) => {
 
 $('.floating').addClass('js-float-label-wrapper');
 $('.js-float-label-wrapper').FloatLabel();
-
-$('body').addClass('js');
