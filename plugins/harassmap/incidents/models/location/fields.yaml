@@ -1,18 +1,13 @@
 fields:
+    address:
+        label: Address
+        oc.commentPosition: ''
+        span: auto
+        type: text
     city:
         label: City
         oc.commentPosition: ''
         span: auto
-        type: text
-    region:
-        label: Region
-        oc.commentPosition: ''
-        span: auto
-        type: text
-    address:
-        label: Address
-        oc.commentPosition: ''
-        span: full
         type: text
     lat:
         label: Latitude
