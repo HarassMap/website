@@ -6,18 +6,16 @@
 <div class="alerts"></div>
 
 <div id="partialUserResetForm">
-    <form data-request="{{ __SELF__ }}::onResetPassword"
+    <form data-request="{{ __SELF__ }}::onRestorePassword"
           data-request-update="'{{ __SELF__ }}::complete': '#partialUserResetForm'">
 
-        <input name="code" type="hidden" value="{{ __SELF__.code }}">
-
         <div class="form-group">
-            <label for="resetPassword">{{ 'New Password' | _ }}</label>
-            <input name="password" type="password" class="form-control" id="resetPassword"
-                   placeholder="{{ 'Enter a new password' | _ }}">
+            <label for="userRestoreEmail">{{ 'Email' | _ }}</label>
+            <input required name="email" type="email" class="form-control" id="userRestoreEmail"
+                   placeholder="{{ 'Enter your email' | _ }}">
         </div>
 
-        <button class="btn btn--default">{{ 'Reset password' | _ }}</button>
+        <button class="btn btn-default">{{ 'Submit' | _ }}</button>
     </form>
 </div>
 
