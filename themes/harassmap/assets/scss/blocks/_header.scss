@@ -63,7 +63,7 @@
     @include rem((font-size: 16px));
 
     > .nav-item {
-      border: 2px solid $white;
+      border: 1px solid $white;
       cursor: pointer;
       text-transform: uppercase;
 
@@ -81,7 +81,7 @@
 
       &.dropdown:hover {
         @include media-breakpoint-up(md) {
-          border: 2px solid $green;
+          border: 1px solid $green;
           border-bottom: none;
 
           .dropdown-menu {
@@ -96,14 +96,14 @@
       position: absolute;
       top: 100%;
       left: 0;
-      height: 2px;
+      height: 1px;
       width: 100%;
       z-index: 1001;
     }
 
     .dropdown-menu {
-      border: 2px solid $green;
-      margin: 0 0 0 -2px;
+      border: 1px solid $green;
+      margin: 0 0 0 -1px;
       z-index: 1000;
 
       @include rem((padding: 5px 20px 5px 10px));
