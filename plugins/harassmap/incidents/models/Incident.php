@@ -97,12 +97,12 @@ class Incident extends Model
             }
         }
 
-        if (array_key_exists('date_from', $filters) && !empty($filters['date_from'])) {
+        if (array_key_exists('date_from', $filters) && !empty($filters['date_from']) && strtotime($filters['date_from']) !== false) {
             $from = new Carbon($filters['date_from']);
             $reports->where('date', '>', $from->toDateString());
         }
 
-        if (array_key_exists('date_to', $filters) && !empty($filters['date_to'])) {
+        if (array_key_exists('date_to', $filters) && !empty($filters['date_to']) && strtotime($filters['date_to']) !== false) {
             $to = new Carbon($filters['date_to']);
             $reports->where('date', '<', $to->toDateString());
         }
