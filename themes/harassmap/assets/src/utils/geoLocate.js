@@ -39,15 +39,16 @@ const initAddressListener = () => {
 
 const initItJustHappenedHere = () => {
     $('#geolocate').on('click', (event) => {
-        let geocoder = new google.maps.Geocoder;
-
         event.preventDefault();
 
+        alert('clicked on this');
+
         navigator.geolocation.getCurrentPosition((position) => {
-            let location = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+            let geocoder = new google.maps.Geocoder,
+                location = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
             setPosition(location);
 
