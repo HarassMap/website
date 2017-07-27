@@ -39,6 +39,11 @@
   }
 
   .navbar {
+    @include rem((padding: 8px 0));
+
+    .navbar-toggler-right {
+      right: 0;
+    }
 
     .navbar-brand {
       @include rem((padding: 20px 0));
@@ -81,7 +86,7 @@
 
       a {
         display: block;
-        
+
         @include rem((padding: 0 15px));
       }
 
