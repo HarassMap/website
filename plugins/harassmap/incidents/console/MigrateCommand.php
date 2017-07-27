@@ -5,9 +5,11 @@ namespace Harassmap\Incidents\Console;
 use Carbon\Carbon;
 use DateTimeZone;
 use Faker\Provider\Uuid;
+use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
 use Illuminate\Console\Command;
@@ -34,11 +36,16 @@ class MigrateCommand extends Command
     {
         $csv = new parseCSV(__DIR__ . '/harassmap_data.csv');
 
-        foreach ($csv->data as $data) {
-            $this->output->writeln($data['report_number']);
+        $assistance = Assistance::whereTitle('other')->first();
+        $domain = Domain::whereHost('*')->first();
 
+        $witness = Role::whereName('I witnessed the incident')->first()->id;
+        $harassed = Role::whereName('I was harassed')->first()->id;
+
+        $emptyCategory = Category::whereTitle('BLANK')->first()->id;
+
+        foreach ($csv->data as $data) {
             // get the default host
-            $domain = Domain::whereHost('*')->first();
             $latlng = explode(',', $data['location']);
 
             if (count($latlng) === 2) {
@@ -51,6 +58,7 @@ class MigrateCommand extends Command
 
             $location = new Location();
             $incident = new Incident();
+            $intervention = new Intervention();
 
             $location->address = $data['addess/description'];
             $location->city = $data['city/town'] . ',' . $data['governorate'];
@@ -60,14 +68,9 @@ class MigrateCommand extends Command
             $incident->domain_id = $domain->id;
             $incident->public_id = Uuid::uuid();
             $incident->description = $data['description'];
+            $incident->approved = true;
 
-            if ($data['reporter_state'] === 'Witness') {
-                $role = Role::whereName('I witnessed the incident')->first();
-            } else {
-                $role = Role::whereName('I was harassed')->first();
-            }
-
-            $incident->role_id = $role->id;
+            $incident->role_id = $data['reporter_state'] === 'Witness' ? $witness : $harassed;
 
             // get the date and time from the form in the users timezone
             $date = new Carbon($data['incident_date'], new DateTimeZone($domain->timezone));
@@ -101,12 +104,30 @@ class MigrateCommand extends Command
                 }
             }
 
+            if(empty($categories)) {
+                $categories = [$emptyCategory];
+            }
+
             $incident->categories = $categories;
+
+            if ($data['intervention'] === 'Yes') {
+                $incident->is_intervention = true;
+            }
 
             $incident->save();
 
-            $location->incident()->add($incident);
+            if (empty($incident->id)) {
+                print_r($incident->errors());
+            }
+
+            $location->incident_id = $incident->id;
             $location->save();
+
+            if ($data['intervention'] === 'Yes') {
+                $intervention->assistance = [$assistance];
+                $intervention->incident_id = $incident->id;
+                $intervention->save();
+            }
         }
     }
 

@@ -20,6 +20,7 @@ use RainLab\User\Models\User;
  * @property bool $verified
  * @property int $support
  * @property bool $is_intervention
+ * @property bool $approved
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereCreatedAt($value)
@@ -35,6 +36,7 @@ use RainLab\User\Models\User;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereSupport($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereVerified($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereIsIntervention($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereApproved($value)
  * @mixin \Eloquent
  */
 class Incident extends Model
