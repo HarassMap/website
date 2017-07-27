@@ -60,6 +60,18 @@
         }
       }
     }
+
+    .navbar-collapse {
+      background: $tundora;
+      color: $white;
+      margin: 0 -15px 0 -15px;
+
+      @include media-breakpoint-up(md) {
+        background: $white;
+        color: $black;
+        margin: 0;
+      }
+    }
   }
 
   .nav {
@@ -73,21 +85,31 @@
     }
 
     > .nav-item {
-      border: 1px solid $white;
+      border: 1px solid $tundora;
       cursor: pointer;
       text-transform: uppercase;
       display: block;
 
       @include media-breakpoint-up(md) {
+        border: 1px solid $white;
         display: list-item;
       }
 
       @include rem((padding: 10px 0));
 
       a {
+        color: $white;
         display: block;
+        font-weight: $light;
 
-        @include rem((padding: 0 15px));
+        @include rem((padding: 0 15px, font-size: 24px));
+
+        @include media-breakpoint-up(md) {
+          color: $black;
+          font-weight: $normal;
+
+          @include rem((font-size: 16px));
+        }
       }
 
       &:hover {
@@ -110,12 +132,17 @@
 
     .border-block {
       background: $white;
+      display: none;
       position: absolute;
       top: 100%;
       left: 0;
       height: 1px;
       width: 100%;
       z-index: 1001;
+
+      @include media-breakpoint-up(md) {
+        display: block;
+      }
     }
 
     .dropdown-menu {
