@@ -1,0 +1,17 @@
+scopes:
+    date:
+        label: Reported
+        type: date
+        conditions: date >= ':filtered'
+    verified:
+        label: Verified
+        type: switch
+        conditions:
+            - verified <> true
+            - verified = true
+    approved:
+        label: Approved
+        type: switch
+        conditions:
+            - approved <> true
+            - approved = true
