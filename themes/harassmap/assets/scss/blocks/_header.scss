@@ -58,18 +58,30 @@
   }
 
   .nav {
+    display: block;
     font-family: $oswald;
 
     @include rem((font-size: 16px));
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+    }
 
     > .nav-item {
       border: 1px solid $white;
       cursor: pointer;
       text-transform: uppercase;
+      display: block;
+
+      @include media-breakpoint-up(md) {
+        display: list-item;
+      }
 
       @include rem((padding: 10px 0));
 
       a {
+        display: block;
+        
         @include rem((padding: 0 15px));
       }
 
