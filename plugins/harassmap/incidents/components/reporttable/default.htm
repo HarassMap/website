@@ -1,0 +1,46 @@
+<div class="row mb-4">
+    <div class="col-12">
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'Reports' | _ }}</span>
+        </h3>
+    </div>
+</div>
+
+{% if reports.empty %}
+    <p>{{ 'There doesn\'t seem to be any reports' | _ }}</p>
+{% else %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="date">{{ 'Date' | _ }}</th>
+            <th>{{ 'Type' | _ }}</th>
+            <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
+            <th>{{ 'Location' | _ }}</th>
+            <th class="hidden-sm-down">{{ 'Categories' | _ }}</th>
+            <th class="js-hidden">{{ 'Link' | _ }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for report in reports %}
+            <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
+                <td>{{ report.date | date("d / m / Y", domain.timezone) }}</td>
+                <td class="type">
+                    <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
+                    <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>
+                </td>
+                <td class="hidden-sm-down">{{ report.description | slice(0, 50) }}</td>
+                <td>{{ report.location.address }}, {{ report.location.city }}</td>
+                <td class="hidden-sm-down">{% for category in report.categories | slice(0, 2) %}{% if loop.index > 1 %}, {% endif %}{{ category.title }}{% endfor %}</td>
+                <td class="js-hidden">
+                    <a href="{{ viewPage | page({id: report.public_id}) }}">{{ 'View' | _ }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination--container">
+        {{ reports | raw }}
+    </div>
+{% endif %}
