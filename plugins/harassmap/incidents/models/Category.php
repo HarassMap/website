@@ -44,7 +44,11 @@ class Category extends Model
     public $rules = [
         'title' => 'required',
         'description' => 'required',
-        'category' => 'required',
+        'color' => 'required',
+    ];
+
+    protected $fillable = [
+        'title', 'description', 'color'
     ];
 
     public function beforeSave()

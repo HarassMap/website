@@ -33,7 +33,8 @@
         "wikimedia/composer-merge-plugin": "dev-master",
         "owen-it/laravel-auditing": "2.4",
         "barryvdh/laravel-ide-helper": "^2.3",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "parsecsv/php-parsecsv": "^0.4.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

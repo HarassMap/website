@@ -68,7 +68,8 @@
         'intervention' => 'Intervention',
         'verified' => 'Verified',
         'user' => 'User',
-        'public_id' => 'ID',
+        'id' => 'ID',
+        'public_id' => 'Public ID',
         'timezone' => 'Timezone',
     ]
 ];

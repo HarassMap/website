@@ -1,27 +1,28 @@
 <?php namespace Harassmap\Incidents;
 
+use Backend\Controllers\Users as BackendUsersController;
+use Backend\Models\User as BackendUserModel;
+use BackendAuth;
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
 use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\Report;
-use Harassmap\Incidents\Components\ReportTable;
-use Harassmap\Incidents\Components\ReportView;
 use Harassmap\Incidents\Components\ReportComments;
 use Harassmap\Incidents\Components\ReportCommentsTopic;
 use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\ReportMap;
+use Harassmap\Incidents\Components\ReportTable;
+use Harassmap\Incidents\Components\ReportView;
 use Harassmap\Incidents\Components\Tip;
 use Harassmap\Incidents\Components\Tips;
 use Harassmap\Incidents\Components\UserReports;
-use Harassmap\Incidents\Models\Incident;
-use System\Classes\PluginBase;
-use Backend\Controllers\Users as BackendUsersController;
-use Backend\Models\User as BackendUserModel;
-use BackendAuth;
+use Harassmap\Incidents\Console\MigrateCommand;
 use Harassmap\Incidents\Models\Domain as DomainModel;
+use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Models\User as UserModel;
+use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
@@ -79,7 +80,8 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerSettings()
+    public function register()
     {
+        $this->registerConsoleCommand('harassmap.migrate', MigrateCommand::class);
     }
 }
