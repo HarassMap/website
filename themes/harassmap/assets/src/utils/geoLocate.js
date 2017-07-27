@@ -7,6 +7,7 @@ import MapFactory from "../map/map.factory";
 export const initGeolocate = () => {
     initAddressListener();
     initItJustHappenedHere();
+    initItHappenedElsewhere();
 };
 
 const initAddressListener = () => {
@@ -73,6 +74,14 @@ const initItJustHappenedHere = () => {
                 }
             });
         });
+    });
+};
+
+const initItHappenedElsewhere = () => {
+    $('#elsewhere').on('click', (event) => {
+        event.preventDefault();
+
+        $('#address, #city, #date, #time').val('');
     });
 };
 
