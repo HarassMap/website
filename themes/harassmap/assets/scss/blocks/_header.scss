@@ -39,10 +39,31 @@
   }
 
   .navbar {
-    @include rem((padding: 8px 0));
+    margin: 0 -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: background-color 0.3s;
+
+    @include rem((padding-top: 8px, padding-bottom: 8px));
+
+    @include media-breakpoint-up(md) {
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
 
     .navbar-toggler-right {
+      background-color: $white;
+      border: none;
       right: 0;
+    }
+
+    &.open {
+      background-color: $tundora;
+
+      .navbar-toggler-right {
+        background-color: $tundora;
+      }
     }
 
     .navbar-brand {
@@ -62,12 +83,9 @@
     }
 
     .navbar-collapse {
-      background: $tundora;
       color: $white;
-      margin: 0 -15px 0 -15px;
 
       @include media-breakpoint-up(md) {
-        background: $white;
         color: $black;
         margin: 0;
       }
@@ -85,7 +103,7 @@
     }
 
     > .nav-item {
-      border: 1px solid $tundora;
+      border: none;
       cursor: pointer;
       text-transform: uppercase;
       display: block;

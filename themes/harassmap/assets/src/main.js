@@ -38,3 +38,16 @@ $('.row-link').each((index, element) => {
 
 $('.floating').addClass('js-float-label-wrapper');
 $('.js-float-label-wrapper').FloatLabel();
+
+$('.navbar-toggler').on('click', () => {
+    let $navbar = $('.navbar'),
+        $nav = $('#main_nav');
+
+    if ($navbar.hasClass('open')) {
+        $navbar.removeClass('open');
+        $nav.slideUp();
+    } else {
+        $navbar.addClass('open');
+        $nav.slideDown();
+    }
+});
