@@ -29,7 +29,13 @@
                     <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
                     <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>
                 </td>
-                <td class="hidden-sm-down">{{ report.description | slice(0, 50) }}</td>
+                <td class="hidden-sm-down">
+                    {% if report.approved %}
+                        {{ report.description | slice(0, 40) }}
+                    {% else %}
+                        {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 40)}}
+                    {% endif %}
+                </td>
                 <td>{{ report.location.address }}, {{ report.location.city }}</td>
                 <td class="hidden-sm-down">{% for category in report.categories | slice(0, 2) %}{% if loop.index > 1 %}, {% endif %}{{ category.title }}{% endfor %}</td>
                 <td class="js-hidden">
