@@ -26,9 +26,8 @@ const initAddressListener = () => {
 
             geocoder.geocode({address: value}, (results, status) => {
                 if (status === 'OK' && !_.isEmpty(results)) {
-                    let result = results[0];
-
-                    let location = result.geometry.location.toJSON();
+                    let result = results[0],
+                        location = result.geometry.location.toJSON();
 
                     setPosition(location);
                 }
@@ -41,7 +40,9 @@ const initItJustHappenedHere = () => {
     $('#geolocate').on('click', (event) => {
         event.preventDefault();
 
-        alert('clicked on this');
+        if (!navigator || !navigator.geolocation) {
+            alert('cannot get location');
+        }
 
         navigator.geolocation.getCurrentPosition((position) => {
             let geocoder = new google.maps.Geocoder,
