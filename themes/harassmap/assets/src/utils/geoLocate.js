@@ -1,8 +1,8 @@
 'use strict';
 
 import _ from 'lodash';
-import MapFactory from "../map/map.factory";
 import moment from 'moment';
+import MapFactory from "../map/map.factory";
 
 export const initGeolocate = () => {
     initAddressListener();
@@ -41,34 +41,40 @@ const initItJustHappenedHere = () => {
     $('#geolocate').on('click', (event) => {
         let geocoder = new google.maps.Geocoder;
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            let location = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+        if (navigator && navigator.geolocation) {
 
-            setPosition(location);
+            navigator.geolocation.getCurrentPosition((position) => {
+                let location = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
-            $('#date').val(moment().format('YYYY-MM-DD'));
-            $('#time').val(moment().format('h:mma'));
+                setPosition(location);
 
-            geocoder.geocode({location: location}, (results, status) => {
-                if (status === 'OK' && !_.isEmpty(results)) {
-                    let result = results[0],
-                        address = result.formatted_address,
-                        parts = _.split(address, ','),
-                        chunks = _.chunk(parts, Math.ceil(parts.length / 2));
+                $('#date').val(moment().format('YYYY-MM-DD'));
+                $('#time').val(moment().format('h:mma'));
 
-                    // set the values for the address and trigger the change
-                    $('#address').val(_.join(chunks[0], ', ')).trigger('change');
-                    $('#city').val(_.join(chunks[1], ', ')).trigger('change');
+                geocoder.geocode({location: location}, (results, status) => {
+                    if (status === 'OK' && !_.isEmpty(results)) {
+                        let result = results[0],
+                            address = result.formatted_address,
+                            parts = _.split(address, ','),
+                            chunks = _.chunk(parts, Math.ceil(parts.length / 2));
+
+                        // set the values for the address and trigger the change
+                        $('#address').val(_.join(chunks[0], ', ')).trigger('change');
+                        $('#city').val(_.join(chunks[1], ', ')).trigger('change');
 
 
-                } else {
-                    window.alert('Geocoder failed due to: ' + status);
-                }
+                    } else {
+                        window.alert('Geocoder failed due to: ' + status);
+                    }
+                });
             });
-        });
+
+        } else {
+            alert('cant get this');
+        }
     });
 };
 
