@@ -16,7 +16,7 @@
             <th class="date">{{ 'Date' | _ }}</th>
             <th>{{ 'Type' | _ }}</th>
             <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
-            <th>{{ 'Location' | _ }}</th>
+            <th class="w-25">{{ 'Location' | _ }}</th>
             <th class="hidden-sm-down">{{ 'Categories' | _ }}</th>
             <th class="js-hidden">{{ 'Link' | _ }}</th>
         </tr>
@@ -31,10 +31,10 @@
                 </td>
                 <td class="hidden-sm-down">
                     {% if report.approved %}
-                        {{ report.description | length > 40 ? report.description | slice(0, 40) ~ '...' : report.description }}
+                        {{ report.description | length > 50 ? report.description | slice(0, 50) ~ '...' : report.description }}
                     {% else %}
                         <span class="faded">
-                            {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 40) }}...
+                            {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 50) }}...
                         </span>
                     {% endif %}
                 </td>
