@@ -93,3 +93,7 @@ p {
 .hr--thin {
   @include rem((margin: 15px 0));
 }
+
+.faded {
+  opacity: 0.8;
+}

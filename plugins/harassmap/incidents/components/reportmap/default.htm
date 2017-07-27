@@ -105,9 +105,11 @@
                         </td>
                         <td class="hidden-sm-down">
                             {% if report.approved %}
-                                {{ report.description | slice(0, 40) }}
+                                {{ report.description | length > 40 ? report.description | slice(0, 40) ~ '...' : report.description }}
                             {% else %}
-                                {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 40)}}
+                                <span class="faded">
+                                    {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 40) }}...
+                                </span>
                             {% endif %}
                         </td>
                         <td>{{ report.location.address }}, {{ report.location.city }}</td>
