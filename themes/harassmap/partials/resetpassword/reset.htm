@@ -1,0 +1,32 @@
+<h3 class="hr">
+    <span class="hr__line"></span>
+    <span class="hr__text">{{ 'Password Reset' | _ }}</span>
+</h3>
+
+<div class="alerts"></div>
+
+<div id="partialUserResetForm">
+    <form data-request="{{ __SELF__ }}::onResetPassword"
+          data-request-update="'{{ __SELF__ }}::complete': '#partialUserResetForm'">
+
+        <input name="code" type="hidden" value="{{ __SELF__.code }}">
+
+        <div class="form-group">
+            <label for="resetPassword">{{ 'New Password' | _ }}</label>
+            <input name="password" type="password" class="form-control" id="resetPassword"
+                   placeholder="{{ 'Enter a new password' | _ }}">
+        </div>
+
+        <button class="btn btn--default">{{ 'Reset password' | _ }}</button>
+    </form>
+</div>
+
+{% put scripts %}
+<script>
+    $(window).on('ajaxErrorMessage', function (event, message) {
+        event.preventDefault();
+
+        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+    });
+</script>
+{% endput %}
