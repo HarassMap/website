@@ -22,7 +22,7 @@
                 {% endif %}
             </h3>
             <p class="pt-2 pb-0">
-                {{ 'at :location' | _({location: report.location.address}) }}
+                {{ 'at :location' | _({location: report.location.address ~ ', ' ~ report.location.city}) }}
                 ({{ report.location.lat }} {{ report.location.lng }})
             </p>
         </div>
