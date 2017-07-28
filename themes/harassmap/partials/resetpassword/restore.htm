@@ -7,7 +7,7 @@
 
 <div id="partialUserResetForm">
     <form data-request="{{ __SELF__ }}::onRestorePassword"
-          data-request-update="'{{ __SELF__ }}::complete': '#partialUserResetForm'">
+          data-request-update="'{{ __SELF__ }}::restoreComplete': '#partialUserResetForm'">
 
         <div class="form-group">
             <label for="userRestoreEmail">{{ 'Email' | _ }}</label>

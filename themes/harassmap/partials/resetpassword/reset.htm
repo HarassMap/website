@@ -7,7 +7,7 @@
 
 <div id="partialUserResetForm">
     <form data-request="{{ __SELF__ }}::onResetPassword"
-          data-request-update="'{{ __SELF__ }}::complete': '#partialUserResetForm'">
+          data-request-update="'{{ __SELF__ }}::resetComplete': '#partialUserResetForm'">
 
         <input name="code" type="hidden" value="{{ __SELF__.code }}">
 
