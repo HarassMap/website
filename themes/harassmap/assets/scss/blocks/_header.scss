@@ -61,8 +61,16 @@
     &.open {
       background-color: $tundora;
 
+      @include media-breakpoint-up(md) {
+        background-color: $white;
+      }
+
       .navbar-toggler-right {
         background-color: $tundora;
+
+        @include media-breakpoint-up(md) {
+          background-color: $white;
+        }
       }
     }
 
@@ -105,34 +113,42 @@
     > .nav-item {
       border: none;
       cursor: pointer;
-      text-transform: uppercase;
       display: block;
+      text-transform: uppercase;
 
       @include media-breakpoint-up(md) {
         border: 1px solid $white;
         display: list-item;
       }
 
-      @include rem((padding: 10px 0));
-
-      a {
+      > a {
+        border-bottom: 1px solid $white;
         color: $white;
         display: block;
         font-weight: $light;
 
-        @include rem((padding: 0 15px, font-size: 24px));
+        @include rem((padding: 10px 0, font-size: 24px));
 
         @include media-breakpoint-up(md) {
+          border: none;
           color: $black;
           font-weight: $normal;
 
-          @include rem((font-size: 16px));
+          @include rem((padding: 10px 15px, font-size: 16px));
+        }
+      }
+
+      &:last-child {
+        a {
+          border: none;
         }
       }
 
       &:hover {
         a {
-          color: $green;
+          @include media-breakpoint-up(md) {
+            color: $green;
+          }
         }
       }
 
@@ -164,38 +180,54 @@
     }
 
     .dropdown-menu {
+      background-color: $tundora;
+      border: none;
       float: none;
       position: relative;
       margin: 0 0 0 -1px;
       z-index: 1000;
 
       @include media-breakpoint-up(md) {
+        background-color: $white;
         border: 1px solid $green;
         float: left;
         position: absolute;
+
       }
 
       @include rem((padding: 5px 20px 5px 10px));
 
       a {
-        color: $green;
+        color: $white;
         padding: 0;
 
+        @include media-breakpoint-up(md) {
+          color: $green;
+        }
+
         &:hover {
-          color: $black;
+          @include media-breakpoint-up(md) {
+            color: $black;
+          }
         }
       }
 
       .nav-item {
         text-transform: capitalize;
+        font-weight: $light;
 
-        border-bottom: 1px solid $dusty-gray;
+        @include rem((padding: 10px 0, font-size: 16px));
 
-        &:last-child {
-          border-bottom: none;
+        @include media-breakpoint-up(md) {
+          border-bottom: 1px solid $dusty-gray;
+          font-weight: $normal;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          @include rem((padding: 5px 0, font-size: 15px));
         }
-
-        @include rem((padding: 5px 0, font-size: 15px));
       }
     }
 
@@ -203,7 +235,9 @@
       color: $black;
 
       &:hover {
-        color: $green;
+        @include media-breakpoint-up(md) {
+          color: $green;
+        }
       }
     }
   }
