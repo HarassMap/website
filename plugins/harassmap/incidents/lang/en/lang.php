@@ -30,6 +30,7 @@
             'intervention' => 'Intervention',
             'location' => 'Location',
             'categories' => 'Categories',
+            'analytics' => 'Analytics',
         ],
         'title' => 'Title',
         'description' => 'Description',
@@ -74,5 +75,6 @@
         'id' => 'ID',
         'public_id' => 'Public ID',
         'timezone' => 'Timezone',
+        'attributable_key' => 'Attributable API Key',
     ]
 ];

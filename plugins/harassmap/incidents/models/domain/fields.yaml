@@ -94,19 +94,16 @@ tabs:
             tab: 'harassmap.incidents::lang.form.tab.social'
         lat:
             label: 'harassmap.incidents::lang.form.lat'
-            oc.commentPosition: ''
             span: auto
             type: text
             tab: 'harassmap.incidents::lang.form.tab.map'
         lng:
             label: 'harassmap.incidents::lang.form.lng'
-            oc.commentPosition: ''
             span: auto
             type: text
             tab: 'harassmap.incidents::lang.form.tab.map'
         zoom:
             label: 'harassmap.incidents::lang.form.zoom'
-            oc.commentPosition: ''
             options:
                 6: '6'
                 7: '7'
@@ -116,3 +113,8 @@ tabs:
             span: full
             type: dropdown
             tab: 'harassmap.incidents::lang.form.tab.map'
+        attributable_key:
+            label: 'harassmap.incidents::lang.form.attributable_key'
+            span: full
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.analytics'
