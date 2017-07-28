@@ -1,15 +1,20 @@
 <div class="reply-form mb-4" id="comment">
+    {% if topic.canPost %}
+        {{ form_open({ request: 'onPost' }) }}
 
-    {{ form_open({ request: 'onPost' }) }}
+        <input type="hidden" name="topic" value="{{ topic.id }}"/>
 
-    <input type="hidden" name="topic" value="{{ topic.id }}"/>
+        <textarea id="topicContent" name="content" rows="6" class="form-control"
+                  required>{{ form_value('content') }}</textarea>
 
-    <textarea id="topicContent" name="content" rows="6" class="form-control" required>{{ form_value('content') }}</textarea>
+        <div class="mt-2">
+            <button class="btn btn--default btn-lg">{{ 'Post comment' | _ }}</button>
+        </div>
 
-    <div class="mt-2">
-        <button class="btn btn--default btn-lg">{{ 'Post comment' | _ }}</button>
-    </div>
-
-    {{ form_close() }}
-
+        {{ form_close() }}
+    {% else %}
+        <p>
+            {{ 'Sorry, you need to be logged in to comment.' | _ }}
+        </p>
+    {% endif %}
 </div>
