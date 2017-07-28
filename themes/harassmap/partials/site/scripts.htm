@@ -27,4 +27,9 @@
     ga('create', 'UA-103600541-1', 'auto');
     ga('send', 'pageview');
 
+    {% if domain.ga_key %}
+    ga('create', '{{ domain.ga_key }}', 'auto', 'domainTracker');
+    ga('domainTracker.send', 'pageview');
+    {% endif %}
+
 </script>

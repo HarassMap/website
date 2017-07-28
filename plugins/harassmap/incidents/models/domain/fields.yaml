@@ -113,6 +113,11 @@ tabs:
             span: full
             type: dropdown
             tab: 'harassmap.incidents::lang.form.tab.map'
+        ga_key:
+            label: 'harassmap.incidents::lang.form.ga_key'
+            span: full
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.analytics'
         attributable_key:
             label: 'harassmap.incidents::lang.form.attributable_key'
             span: full
