@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
+use App;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use RainLab\User\Facades\Auth;
@@ -37,6 +38,10 @@ class UserReports extends ComponentBase
     public function onRender()
     {
         $user = Auth::getUser();
+
+        if (!$user) {
+            App::abort(404);
+        }
 
         // get the users incidents
         $this->page['reports'] = $user->incidents()->orderBy('created_at', 'desc')->paginate(10);
