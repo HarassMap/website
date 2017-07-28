@@ -1,15 +1,15 @@
 title = "Register"
-url = "/register"
+url = "/register/:code?"
 layout = "default"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
 
 [viewBag]
-localeUrl[ar] = "/register"
+localeUrl[ar] = "/register/:code?"
 
 [account register]
-redirect = "user/dashboard"
+redirect = "login"
 paramCode = "code"
 forceSecure = 0
 ==
