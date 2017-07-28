@@ -83,17 +83,63 @@
     }
 
     .navbar-brand {
-      @include rem((padding: 20px 0));
+      @include rem((padding: 10px 0));
+
+      @include media-breakpoint-up(md) {
+        @include rem((padding: 20px 0));
+      }
 
       .site-logo {
-        @include rem((width: 200px));
+        display: none;
+        float: left;
 
-        @include media-breakpoint-up(md) {
-          @include rem((width: 300px));
-        }
+        @include rem((padding-right: 14px, height: 50px));
 
         @include media-breakpoint-up(lg) {
-          @include rem((width: 400px));
+          display: block;
+
+          @include rem((height: 65px));
+        }
+      }
+
+      .site-name {
+
+        .name {
+          display: block;
+          font-family: $roboto;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+
+          @include rem((font-size: 41px, line-height: 41px));
+
+          @include media-breakpoint-up(md) {
+            @include rem((font-size: 41px, line-height: 41px));
+          }
+
+          @include media-breakpoint-up(lg) {
+            @include rem((font-size: 48px, line-height: 48px));
+          }
+
+          .namestart {
+            color: $tundora;
+          }
+
+          .nameend {
+            color: $green;
+          }
+        }
+
+        .tagline {
+          display: block;
+          color: $tundora;
+          font-family: $opensans;
+          letter-spacing: 1px;
+
+          @include rem((font-size: 12px, line-height: 12px));
+
+          @include media-breakpoint-up(lg) {
+            @include rem((font-size: 14px, line-height: 14px));
+          }
         }
       }
     }

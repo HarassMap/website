@@ -2,13 +2,23 @@ tabs:
     fields:
         host:
             label: 'harassmap.incidents::lang.form.host'
-            span: auto
+            span: full
             type: text
             comment: 'harassmap.incidents::lang.form.host_help'
             tab: 'harassmap.incidents::lang.form.tab.site'
         name:
-            label: 'harassmap.incidents::lang.form.name'
+            label: 'harassmap.incidents::lang.form.namestart'
             span: auto
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        nameend:
+            label: 'harassmap.incidents::lang.form.nameend'
+            span: auto
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        tagline:
+            label: 'harassmap.incidents::lang.form.tagline'
+            span: full
             type: text
             tab: 'harassmap.incidents::lang.form.tab.site'
         about:

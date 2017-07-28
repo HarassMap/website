@@ -123,3 +123,9 @@
 1.0.42:
     - 'Drop table harassmap_incidents_country'
     - builder_table_delete_harassmap_incidents_country.php
+1.0.43:
+    - 'Updated table harassmap_incidents_domain'
+    - builder_table_update_harassmap_incidents_domain_4.php
+1.0.44:
+    - 'Updated table harassmap_incidents_domain'
+    - builder_table_update_harassmap_incidents_domain_5.php

@@ -27,6 +27,8 @@ use Request;
  * @property bool $intervention
  * @property string $facebook_app_id
  * @property string $timezone
+ * @property string $nameend
+ * @property string $tagline
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAbout($value)
@@ -47,6 +49,8 @@ use Request;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereZoom($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereFacebookAppId($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTimezone($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereNameend($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTagline($value)
  * @mixin \Eloquent
  */
 class Domain extends Model
@@ -59,6 +63,8 @@ class Domain extends Model
 
     public $translatable = [
         'name',
+        'nameend',
+        'tagline',
         'about',
     ];
 

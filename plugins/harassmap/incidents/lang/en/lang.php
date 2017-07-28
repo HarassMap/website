@@ -39,6 +39,9 @@
         'host' => 'Host',
         'host_help' => 'Pattern for matching the domain name.',
         'name' => 'Name',
+        'namestart' => 'Name Start',
+        'nameend' => 'Name End',
+        'tagline' => 'Tagline',
         'about' => 'About',
         'about_help' => 'A short description of the site.',
         'logo' => [

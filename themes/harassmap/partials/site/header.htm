@@ -65,6 +65,15 @@ numberOfLevels = 2
             <a class="navbar-brand" href="/">
                 <img class="site-logo" alt="{{ domain.name }}" title="{{ domain.name }}"
                      src="{% if domain.headerLogo %}{{ domain.headerLogo.path }}{% else %}{{ 'assets/img/logo.svg' | theme }}{% endif %}"/>
+                <div class="site-name">
+                    <div class="name">
+                        {% spaceless %}
+                            <span class="namestart">{{ domain.name }}</span>
+                            <span class="nameend">{{ domain.nameend }}</span>
+                        {% endspaceless %}
+                    </div>
+                    <span class="tagline">{{ domain.tagline }}</span>
+                </div>
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="main_nav">
                 {% component 'headermenu' %}
