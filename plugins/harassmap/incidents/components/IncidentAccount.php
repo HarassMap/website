@@ -5,6 +5,7 @@ namespace Harassmap\Incidents\Components;
 use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Components\Account;
 use RainLab\User\Facades\Auth;
+use Redirect;
 
 class IncidentAccount extends Account
 {
@@ -15,6 +16,34 @@ class IncidentAccount extends Account
             'name' => 'Incident Account',
             'description' => 'Account component for registering users with incidents'
         ];
+    }
+
+    /**
+     * Executed when this component is bound to a page or layout.
+     */
+    public function onRun()
+    {
+        /*
+         * Redirect to HTTPS checker
+         */
+        if ($redirect = $this->redirectForceSecure()) {
+            return $redirect;
+        }
+
+        /*
+         * Activation code supplied
+         */
+        $routeParameter = $this->property('paramCode');
+
+        if ($activationCode = $this->param($routeParameter)) {
+            $this->onActivate($activationCode);
+
+            return Redirect::to($this->pageUrl('user/dashboard'));
+        }
+
+        $this->page['user'] = $this->user();
+        $this->page['loginAttribute'] = $this->loginAttribute();
+        $this->page['loginAttributeLabel'] = $this->loginAttributeLabel();
     }
 
     public function onIncidentRegister()
