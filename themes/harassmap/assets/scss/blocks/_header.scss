@@ -79,6 +79,11 @@
 
         @include rem((padding-right: 14px, height: 50px));
 
+        .ar & {
+          float: right;
+          @include rem((padding: 0 0 0 14px));
+        }
+
         @include media-breakpoint-up(lg) {
           display: block;
 
