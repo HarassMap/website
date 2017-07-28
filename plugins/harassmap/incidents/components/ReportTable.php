@@ -38,7 +38,7 @@ class ReportTable extends ComponentBase
     public function onRender()
     {
         // get the users incidents
-        $this->page['reports'] = Incident::orderBy('created_at', 'desc')->paginate(10);
+        $this->page['reports'] = Incident::orderBy('date', 'desc')->paginate(10);
         $this->page['viewPage'] = $this->property('viewPage');
     }
 

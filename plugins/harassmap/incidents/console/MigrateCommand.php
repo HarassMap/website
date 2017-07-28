@@ -60,8 +60,18 @@ class MigrateCommand extends Command
             $incident = new Incident();
             $intervention = new Intervention();
 
-            $location->address = $data['addess/description'];
-            $location->city = $data['city/town'] . ',' . $data['governorate'];
+            $address = !empty($data['addess/description']) ? $data['addess/description'] : 'No Address';
+            $town = $data['city/town'];
+            $governate = $data['governorate'];
+
+            $city = trim($town . ', ' . $governate, " \t\n\r \v,");
+
+            if (empty($city)) {
+                $city = 'No City/Country';
+            }
+
+            $location->address = $address;
+            $location->city = $city;
             $location->lat = number_format(floatval($lat), 5, '.', '');
             $location->lng = number_format(floatval($lng), 5, '.', '');
 
@@ -104,7 +114,7 @@ class MigrateCommand extends Command
                 }
             }
 
-            if(empty($categories)) {
+            if (empty($categories)) {
                 $categories = [$emptyCategory];
             }
 
@@ -120,12 +130,12 @@ class MigrateCommand extends Command
                 print_r($incident->errors());
             }
 
-            $location->incident_id = $incident->id;
+            $location->incident()->add($incident);
             $location->save();
 
             if ($data['intervention'] === 'Yes') {
                 $intervention->assistance = [$assistance];
-                $intervention->incident_id = $incident->id;
+                $intervention->incident()->add($incident);
                 $intervention->save();
             }
         }
