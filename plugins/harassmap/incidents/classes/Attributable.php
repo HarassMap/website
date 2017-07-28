@@ -4,8 +4,8 @@ namespace Harassmap\Incidents\Classes;
 
 class Attributable
 {
-    protected $key = null;
-    protected $apiVersion = "1-0";
+    public $key = null;
+    public $apiVersion = "1-0";
 
     public $settings = [
         'default_to_current_datetime' => true,
@@ -17,12 +17,6 @@ class Attributable
     public $success = [];
     public $errors = [];
     public $warnings = [];
-
-    public function __construct($key, $apiVersion = "1-0")
-    {
-        $this->key = $key;
-        $this->apiVersion = $apiVersion;
-    }
 
     public function capture($event, $occurred_on = null, $author = null, $tags = null, $is_error = null, $is_resolved = null, $execution_time_in_seconds = null, $comments = null)
     {
@@ -75,9 +69,9 @@ class Attributable
             $author['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         }
 
-        if ($author['latitude']) $author['latitude'] = floatval($author['latitude']);
+        if (@$author['latitude']) $author['latitude'] = floatval($author['latitude']);
 
-        if ($author['longitude']) $author['longitude'] = floatval($author['longitude']);
+        if (@$author['longitude']) $author['longitude'] = floatval($author['longitude']);
 
         $is_error = floatval($is_error);
 

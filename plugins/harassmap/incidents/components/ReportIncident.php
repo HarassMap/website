@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use DateTimeZone;
 use Faker\Provider\Uuid;
+use Harassmap\Incidents\Classes\Analytics;
+use Harassmap\Incidents\Classes\Attributable;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Domain;
@@ -136,6 +138,10 @@ class ReportIncident extends ComponentBase
             $intervention->incident()->add($incident);
             $intervention->save();
         }
+
+        Analytics::capture(Analytics::INCIDENT_CREATED, $incident->created_at, $user, [
+            'incident_id' => $incident->id
+        ]);
 
         return Redirect::to($this->pageUrl('report/thanks', ['id' => $incident->public_id]));
     }

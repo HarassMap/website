@@ -26,6 +26,7 @@ use Request;
  * @property bool $incident
  * @property bool $intervention
  * @property string $facebook_app_id
+ * @property string $attributable_key
  * @property string $timezone
  * @property string $nameend
  * @property string $tagline
@@ -51,6 +52,7 @@ use Request;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTimezone($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereNameend($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTagline($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAttributableKey($value)
  * @mixin \Eloquent
  */
 class Domain extends Model
@@ -114,6 +116,9 @@ class Domain extends Model
         return $matches;
     }
 
+    /**
+     * @return Domain
+     */
     static function getBestMatchingDomain()
     {
         return self::getMatchingDomains()[0];
