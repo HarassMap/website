@@ -14,17 +14,25 @@
       .ar & {
         float: left;
       }
-    }
 
-    .dropdown-menu {
-      padding: 0;
+      .dropdown-menu {
+        padding: 0;
 
-      li {
-        @include rem((padding: 5px));
+        li {
+          @include rem((padding: 5px));
 
-        a {
-          color: $tundora;
-          display: block;
+          a {
+            border-bottom: 1px solid $dusty-gray;
+            color: $tundora;
+            display: block;
+            text-transform: none;
+
+            @include rem((padding: 5px));
+
+            &:last-child {
+              border: none;
+            }
+          }
         }
       }
     }
