@@ -30,7 +30,7 @@ class UserAPI extends ComponentBase
         // get the current user
         $user = Auth::getUser();
 
-        // make sure the user doesnt already have an api keyu
+        // make sure the user doesn't already have an api key
         if(!$user->api) {
 
             // generate a key

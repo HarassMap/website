@@ -3,8 +3,8 @@
 namespace Harassmap\Incidents\Models;
 
 use Model;
-use RainLab\User\Models\User;
 use October\Rain\Database\Traits\Validation;
+use RainLab\User\Models\User;
 
 /**
  * API
@@ -13,6 +13,8 @@ use October\Rain\Database\Traits\Validation;
  * @property string $key
  * @property int $user_id
  * @property int $calls
+ * @property int $total
+ * @property string $last_call
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\API whereCalls($value)
@@ -21,6 +23,8 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\API whereKey($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\API whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\API whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\API whereLastCall($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\API whereTotal($value)
  * @mixin \Eloquent
  */
 class API extends Model
@@ -37,4 +41,14 @@ class API extends Model
     public $belongsTo = [
         'user' => User::class
     ];
+
+    public function getCallsThisMonth()
+    {
+        // if we have made no calls
+        if ($this->total === 0) {
+            return 0;
+        }
+
+        return $this->last_call > date('Y-m-01') ? $this->calls : 0;
+    }
 }
