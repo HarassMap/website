@@ -13,6 +13,7 @@ use Harassmap\Incidents\Components\ReportCommentsTopic;
 use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\ReportMap;
+use Harassmap\Incidents\Components\ReportStory;
 use Harassmap\Incidents\Components\ReportTable;
 use Harassmap\Incidents\Components\ReportView;
 use Harassmap\Incidents\Components\Tip;
@@ -82,6 +83,7 @@ class Plugin extends PluginBase
             Report::class => 'harassmapReport',
             ReportTable::class => 'harassmapReportTable',
             UserAPI::class => 'harassmapUserAPI',
+            ReportStory::class => 'harassmapStory'
         ];
     }
 

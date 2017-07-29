@@ -6,14 +6,14 @@ use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Harassmap\Incidents\Models\Incident;
 
-class ReportTable extends ComponentBase
+class ReportStory extends ComponentBase
 {
 
     public function componentDetails()
     {
         return [
-            'name' => 'Report Table',
-            'description' => 'Shows a table of all the reports'
+            'name' => 'View Report',
+            'description' => 'Shows a single report'
         ];
     }
 
@@ -36,8 +36,11 @@ class ReportTable extends ComponentBase
 
     public function onRender()
     {
-        // get the users incidents
-        $this->page['reports'] = Incident::orderBy('date', 'desc')->paginate(10);
+        $incident = Incident::whereApproved(true)
+            ->orderBy('date', 'desc')
+            ->first();
+
+        $this->page['report'] = $incident;
         $this->page['viewPage'] = $this->property('viewPage');
     }
 

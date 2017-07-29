@@ -29,6 +29,9 @@ id = "homepage.bottomRight"
 [harassmapTip]
 listPage = "tips/index"
 
+[harassmapStory]
+viewPage = "reports/view"
+
 [harassmapNewsPosts]
 postPage = "news/view"
 listPage = "news/index"
@@ -67,12 +70,12 @@ tablePage = "reports/index"
 </div>
 
 <div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-12 col-md-6">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
             {% component 'harassmapTip' %}
         </div>
-        <div class="col-12 col-md-6">
-
+        <div class="col-12 col-md-5">
+            {% component 'harassmapStory' %}
         </div>
     </div>
     <div class="row mt-5">

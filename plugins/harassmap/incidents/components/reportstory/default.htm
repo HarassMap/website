@@ -1,0 +1,14 @@
+<div class="report-story pl-5 pr-5">
+    <h3 class="hr mb-2">
+        <span class="hr__line"></span>
+        <span class="hr__text">{{ 'Your Story' | _ }}</span>
+    </h3>
+
+    <p class="p-1 pb-4">
+        "{{ report.description | slice(0, 60) }}..."
+    </p>
+
+    <a href="{{ viewPage | page({id: report.public_id}) }}" class="btn btn--default">
+        {{ 'Read More' | _ }}
+    </a>
+</div>
