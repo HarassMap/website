@@ -11,8 +11,8 @@ class Analytics
 
     static $attributable = null;
 
-    const INCIDENT_CREATED = 'Created Incident';
-    const INTERVENTION_CREATED = 'Created Intervention';
+    const INCIDENT = 'incident';
+    const INTERVENTION = 'intervention';
 
     /**
      * @return Attributable
@@ -64,6 +64,38 @@ class Analytics
         $attributable = self::getInstance();
 
         $attributable->measure($metric, $value, $occurred_on);
+    }
+
+    public static function captureIncident($incident, $user)
+    {
+        $event = '';
+
+        if ($user) {
+            $event = $user->name . ' ' . $user->surname . ' ';
+        }
+
+        $event = $event . 'created incident';
+
+        self::capture($event, $incident->created_at, $user, [
+            'incident_id' => $incident->id,
+            'category' => self::INCIDENT
+        ]);
+    }
+
+    public static function captureIntervention($incident, $user)
+    {
+        $event = '';
+
+        if ($user) {
+            $event = $user->name . ' ' . $user->surname . ' ';
+        }
+
+        $event = $event . 'created intervention';
+
+        self::capture($event, $incident->created_at, $user, [
+            'intervention_id' => $incident->id,
+            'category' => self::INTERVENTION
+        ]);
     }
 
 

@@ -138,9 +138,7 @@ class ReportIncident extends ComponentBase
             $intervention->save();
         }
 
-        Analytics::capture(Analytics::INCIDENT_CREATED, $incident->created_at, $user, [
-            'incident_id' => $incident->id
-        ]);
+        Analytics::captureIncident($incident, $user);
 
         return Redirect::to($this->pageUrl('report/thanks', ['id' => $incident->public_id]));
     }
