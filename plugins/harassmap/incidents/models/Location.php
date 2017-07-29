@@ -41,4 +41,6 @@ class Location extends Model
     public $belongsTo = [
         'incident' => Incident::class
     ];
+
+    public $hidden = ['id', 'incident_id'];
 }

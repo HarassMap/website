@@ -75,7 +75,7 @@ class Incident extends Model
         'categories' => [Category::class, 'table' => 'harassmap_incidents_incident_category']
     ];
 
-    public $hidden = ['id', 'domain_id'];
+    public $hidden = ['id', 'domain_id', 'role_id', 'user_id', 'is_intervention', 'created_at', 'updated_at'];
 
     /**
      * @param $bounds

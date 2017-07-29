@@ -15,7 +15,7 @@
     </tr>
     <tr>
         <td>{{ 'Last Call' }}</td>
-        <td>{{ api.last_call ? api.last_call | date : 'You have made no API calls' | _ }}</td>
+        <td>{{ api.last_call ? api.last_call | date('Y-M-d H:i:s', domain.timezone) : 'You have made no API calls' | _ }}</td>
     </tr>
     </tbody>
 </table>

@@ -35,4 +35,6 @@ class Role extends Model
     public $belongsToMany = [
         'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_role'],
     ];
+
+    public $hidden = ['id'];
 }

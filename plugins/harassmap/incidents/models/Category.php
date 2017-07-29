@@ -51,6 +51,8 @@ class Category extends Model
         'title', 'description', 'color'
     ];
 
+    public $hidden = ['id', 'color', 'sort_order', 'pivot', 'created_at', 'updated_at'];
+
     public function beforeSave()
     {
 
