@@ -1,5 +1,9 @@
-{% if __SELF__.code == null %}
-    {% partial __SELF__ ~ '::restore' %}
-{% else %}
-    {% partial __SELF__ ~ '::reset' %}
-{% endif %}
+<div class="row">
+    <div class="col-12 col-md-9">
+        {% if __SELF__.code == null %}
+            {% partial __SELF__ ~ '::restore' %}
+        {% else %}
+            {% partial __SELF__ ~ '::reset' %}
+        {% endif %}
+    </div>
+</div>
