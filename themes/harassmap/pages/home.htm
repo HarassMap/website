@@ -39,36 +39,16 @@ listPage = "news/index"
 viewPage = "reports/view"
 tablePage = "reports/index"
 ==
+
+<div class="hidden-sm-up">
+    {% partial 'site/report' %}
+</div>
+
 {% component 'harassmapReportMap' %}
 
-{% if domain.incident or domain.intervention %}
-    <div class="container">
-        <div class="row justify-content-center mt-4">
-            <div class="col-12">
-                <h3 class="hr hr--center">
-                    <span class="hr__line"></span>
-                    <span class="hr__text">{{ 'Report' | _ }}</span>
-                </h3>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            {% if domain.incident %}
-                <div class="col-6">
-                    <a href="{{ 'report/incident' | page }}" class="btn btn-block btn--large btn--red btn--wrap">
-                        {{ 'Report an Incident' | _ }}
-                    </a>
-                </div>
-            {% endif %}
-            {% if domain.intervention %}
-                <div class="col-6">
-                    <a href="{{ 'report/intervention' | page }}" class="btn btn-block btn--large btn--green btn--wrap">
-                        {{ 'Report an Intervention' | _ }}
-                    </a>
-                </div>
-            {% endif %}
-        </div>
-    </div>
-{% endif %}
+<div class="hidden-xs-down">
+    {% partial 'site/report' %}
+</div>
 
 <div class="bg--polar">
     <div class="container">
