@@ -27,14 +27,27 @@
 
 }
 
-.news-post__image {
-  float: right;
+.news-post {
 
-  @include rem((padding: 0 0 10px 10px));
+  .news-post__image {
+    width: 100%;
 
-  .ar & {
-    float: left;
+    img {
+      width: 100%;
+    }
 
-    @include rem((padding: 0 10px 10px 0));
+    @include media-breakpoint-up(md) {
+      width: auto;
+      float: right;
+
+      @include rem((padding: 0 0 10px 10px));
+
+      .ar & {
+        float: left;
+
+        @include rem((padding: 0 10px 10px 0));
+      }
+    }
   }
+
 }
