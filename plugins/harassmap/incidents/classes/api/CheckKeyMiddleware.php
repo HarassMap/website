@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Closure;
 use Harassmap\Incidents\Models\API;
 use Illuminate\Http\Request;
-use Response;
 
 class CheckKeyMiddleware
 {
@@ -47,13 +46,12 @@ class CheckKeyMiddleware
 
         }
 
-
         return $response;
     }
 
     public static function keyError()
     {
-        return Response::json(array(
+        return response()->json(array(
             'code' => 401,
             'message' => 'You need a valid API Key'
         ), 401);

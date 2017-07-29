@@ -15,4 +15,11 @@ class BaseController extends CmsController
         $this->middleware(CheckKeyMiddleware::class);
     }
 
+    public static function error($message) {
+        return response()->json([
+            'code' => '404',
+            'message' => $message
+        ], 404);
+    }
+
 }
