@@ -3,8 +3,9 @@ url = "/dashboard/account"
 layout = "default"
 is_hidden = 0
 
-[viewBag]
-localeUrl[ar] = "/dashboard/account"
+[session]
+security = "user"
+redirect = "home"
 
 [account myaccount]
 paramCode = "code"

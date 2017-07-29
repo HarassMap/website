@@ -1,24 +1,19 @@
-title = "User Dashboard"
-url = "/dashboard"
+title = "API"
+url = "/dashboard/api"
 layout = "default"
 is_hidden = 0
 
 [session]
 security = "user"
 redirect = "home"
-
-[harassmapUserReports]
-viewPage = "reports/view"
 ==
 <div class="container">
     <div class="row mb-4">
         <div class="col-12">
             <h3 class="hr">
                 <span class="hr__line"></span>
-                <span class="hr__text">{{ 'User Dashboard' | _ }}</span>
+                <span class="hr__text">{{ 'API' | _ }}</span>
             </h3>
         </div>
     </div>
-    
-    {% component 'harassmapUserReports' %}
 </div>
