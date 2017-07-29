@@ -135,3 +135,6 @@
 1.0.46:
     - 'Updated table harassmap_incidents_domain'
     - builder_table_update_harassmap_incidents_domain_7.php
+1.0.47:
+    - 'Created table harassmap_incidents_api'
+    - builder_table_create_harassmap_incidents_api.php
