@@ -6,16 +6,20 @@
 <table class="table table-bordered mt-4">
     <tbody>
     <tr>
-        <td class="w-50">{{ 'Total number of API requests' | _ }}</td>
-        <td>{{ api.total }}</td>
+        <td class="w-50">{{ 'Requests allowed per day' | _ }}</td>
+        <td>{{ limit }}</td>
     </tr>
     <tr>
         <td>{{ 'Number of API requests today' | _ }}</td>
         <td>{{ api.callsThisMonth }}</td>
     </tr>
     <tr>
-        <td>{{ 'Last API requests' | _ }}</td>
+        <td>{{ 'Last API request' | _ }}</td>
         <td>{{ api.last_call ? api.last_call | date('Y-M-d H:i:s', domain.timezone) : 'You have made no API calls' | _ }}</td>
+    </tr>
+    <tr>
+        <td>{{ 'Lifetime number of API requests' | _ }}</td>
+        <td>{{ api.total }}</td>
     </tr>
     </tbody>
 </table>

@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\API;
+use Harassmap\Incidents\Models\Settings;
 use RainLab\User\Facades\Auth;
 
 class UserAPI extends ComponentBase
@@ -23,6 +24,7 @@ class UserAPI extends ComponentBase
 
         $this->page['user'] = $user;
         $this->page['api'] = $user->api;
+        $this->page['limit'] = Settings::get('api_day_limit');
     }
 
     public function onGenerateKey()
