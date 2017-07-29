@@ -80,9 +80,9 @@ export class HomePageMap {
      * @param data
      */
     addMarkers(data) {
-        let new_ids = _.map(data, 'public_id');
-        let old_ids = _.map(this.markers, 'id');
-        let remove_ids = _.difference(old_ids, new_ids);
+        let new_ids = _.map(data, 'public_id'),
+            old_ids = _.map(this.markers, 'id'),
+            remove_ids = _.difference(old_ids, new_ids);
 
         // first we remove the markers we don't need
         _.forEach(this.markers, (marker) => {
@@ -101,6 +101,12 @@ export class HomePageMap {
                 this.addMarker(report);
             }
         });
+
+        let markerCluster = new MarkerClusterer(this.map, this.markers,
+            {
+                imagePath: '/themes/harassmap/assets/img/markers/m'
+            }
+        );
     }
 
     addMarker(report) {
@@ -123,7 +129,6 @@ export class HomePageMap {
 
         let marker = new google.maps.Marker({
             position: centre,
-            map: this.map,
             icon: icon,
             id: report.public_id
         });
