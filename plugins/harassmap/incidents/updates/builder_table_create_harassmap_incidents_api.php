@@ -11,9 +11,9 @@ class BuilderTableCreateHarassmapIncidentsApi extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
-            $table->string('key', 20);
+            $table->string('key', 40);
             $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('calls');
+            $table->integer('calls')->unsigned()->default(0);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 
