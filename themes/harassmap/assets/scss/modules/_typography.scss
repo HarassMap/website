@@ -64,6 +64,10 @@ p {
     z-index: -1;
 
     @include rem((height: 1px));
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
   }
 
   .hr__text {
@@ -74,6 +78,12 @@ p {
 
     .ar & {
       @include rem((padding: 0 0 0 25px));
+    }
+
+    @include media-breakpoint-down(sm) {
+      background-color: transparent;
+      display: block;
+      padding: 0;
     }
   }
 }
