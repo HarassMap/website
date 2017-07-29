@@ -28,7 +28,11 @@ class CheckKeyMiddleware
         // get the day limit
         $day_limit = Settings::get('api_day_limit');
 
-
+        // if the number of calls is greater than or the same as the daily limit
+        // and the last call was today then error here
+        if ($api->calls >= $day_limit && !(strtotime($api->last_call) < strtotime(date('Y-m-d')))) {
+            return self::limitError();
+        }
 
         // get the user from the API
         $user = $api->user;
@@ -67,6 +71,14 @@ class CheckKeyMiddleware
             'code' => 401,
             'message' => 'You need a valid API Key'
         ), 401);
+    }
+
+    public static function limitError()
+    {
+        return response()->json(array(
+            'code' => 429,
+            'message' => 'You have reached your API limit'
+        ), 429);
     }
 
 }

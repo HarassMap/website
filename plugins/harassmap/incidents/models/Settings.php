@@ -9,6 +9,7 @@ class Settings extends Model
     public $implement = ['System.Behaviors.SettingsModel'];
 
     public $settingsCode = 'harassmap_settings';
+
     public $settingsFields = 'fields.yaml';
 
     public function initSettingsData()

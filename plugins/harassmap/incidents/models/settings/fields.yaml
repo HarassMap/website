@@ -4,7 +4,7 @@
 
 tabs:
     fields:
-        use_throttle:
+        api_day_limit:
             label: API Limit (Per Day)
             span: left
             type: number
