@@ -7,7 +7,6 @@ use Cms\Classes\ComponentBase;
 use DateTimeZone;
 use Faker\Provider\Uuid;
 use Harassmap\Incidents\Classes\Analytics;
-use Harassmap\Incidents\Classes\Attributable;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Domain;

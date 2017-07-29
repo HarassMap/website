@@ -17,8 +17,10 @@ use Harassmap\Incidents\Components\ReportTable;
 use Harassmap\Incidents\Components\ReportView;
 use Harassmap\Incidents\Components\Tip;
 use Harassmap\Incidents\Components\Tips;
+use Harassmap\Incidents\Components\UserAPI;
 use Harassmap\Incidents\Components\UserReports;
 use Harassmap\Incidents\Console\MigrateCommand;
+use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Models\User as UserModel;
@@ -36,6 +38,7 @@ class Plugin extends PluginBase
 
         UserModel::extend(function ($model) {
             $model->hasMany['incidents'] = Incident::class;
+            $model->hasOne['api'] = API::class;
         });
 
         // extend the user edit form to allow domain allocation
@@ -77,6 +80,7 @@ class Plugin extends PluginBase
             ReportMap::class => 'harassmapReportMap',
             Report::class => 'harassmapReport',
             ReportTable::class => 'harassmapReportTable',
+            UserAPI::class => 'harassmapUserAPI',
         ];
     }
 
