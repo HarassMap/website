@@ -23,3 +23,20 @@
     </tr>
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card bg-faded">
+            <div class="card-block">
+                <h4 class="card-title">{{ 'Documentation' | _ }}</h4>
+
+                <p class="card-text">
+                    {{ 'For every APi request you make you must supply you api key with it. Just add it as a parameter on your request e.g' | _ }}
+                    <code>{{ route('incidents', {'key' : api.key}) }}</code>
+                </p>
+
+                <h4 class="card-title">{{ 'Api Calls' | _ }}</h4>
+            </div>
+        </div>
+    </div>
+</div>

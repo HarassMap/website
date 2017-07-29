@@ -1,3 +1,3 @@
 <?php
 
-Route::get('api/incidents', 'Harassmap\Incidents\Classes\Api\IncidentsController@index');
+Route::get('api/incidents', ['as' => 'incidents', 'uses' => 'Harassmap\Incidents\Classes\Api\IncidentsController@index']);
