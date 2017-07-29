@@ -1,0 +1,14 @@
+@import "../variables";
+@import "rem";
+
+.card {
+
+  pre {
+    margin: 0;
+  }
+
+  .card-text {
+    @include rem((padding: 8px 0));
+  }
+
+}

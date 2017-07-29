@@ -26,16 +26,44 @@
 
 <div class="row">
     <div class="col-12">
+
+        <h3 class="mt-4 mb-4">{{ 'Documentation' | _ }}</h3>
+
         <div class="card bg-faded">
             <div class="card-block">
-                <h4 class="card-title">{{ 'Documentation' | _ }}</h4>
+                <h4>{{ 'API Key' | _ }}</h4>
 
                 <p class="card-text">
-                    {{ 'For every APi request you make you must supply you api key with it. Just add it as a parameter on your request e.g' | _ }}
-                    <code>{{ route('incidents', {'key' : api.key}) }}</code>
+                    {{ 'For every API request you make you must supply you api key with it. Just add it as a parameter on your request' | _ }}
                 </p>
 
-                <h4 class="card-title">{{ 'Api Calls' | _ }}</h4>
+                <pre>{{ route('incidents', {'key' : api.key}) }}</pre>
+            </div>
+            <div class="card-block">
+                <h4>{{ 'Pagination' | _ }}</h4>
+
+                <p class="card-text">
+                    {{ 'Every API request can paginate. You can specify the page number and the amount of results per page (maximum 100)' | _ }}
+                </p>
+
+                <pre>{{ route('incidents', {'page' : 2, 'perPage' : 100}) }}</pre>
+            </div>
+        </div>
+
+        <h4 class="mt-4">{{ 'Incidents' | _ }}</h4>
+
+        <div class="card bg-faded">
+            <div class="card-block">
+                <pre>{{ route('incidents') }}</pre>
+            </div>
+            <div class="card-block">
+                <strong>{{ 'Boundries' | _ }}</strong>
+
+                <p class="card-text">
+                    {{ 'You can specify boundries for the incidents with latitude and longitude coordinates.' }}
+                </p>
+
+                <pre>{{ route('incidents', {'bounds' : '30.044420-30.045842,31.208840-31.241598'}) }}</pre>
             </div>
         </div>
     </div>
