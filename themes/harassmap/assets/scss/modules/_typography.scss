@@ -8,6 +8,10 @@ h2 {
   font-weight: $light;
 
   @include rem((font-size: 36px, padding: 0 0 30px, margin: 0));
+
+  .static-content & {
+    color: $black;
+  }
 }
 
 h3 {
@@ -22,7 +26,7 @@ h4 {
   color: $green;
   font-weight: $bold;
 
-  @include rem((font-size: 20px, padding: 0, margin: 0));
+  @include rem((font-size: 20px, line-height: 30px, padding: 0 0 20px, margin: 0));
 }
 
 p {
