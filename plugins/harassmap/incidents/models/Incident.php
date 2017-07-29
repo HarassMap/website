@@ -1,7 +1,6 @@
 <?php namespace Harassmap\Incidents\Models;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
@@ -85,14 +84,12 @@ class Incident extends Model
     {
         $domain = Domain::getBestMatchingDomain();
 
-        $reports = self::where('domain_id', $domain->id)->whereHas('location', function ($query) use ($bounds) {
-            $query
-                ->whereBetween('lat', [floatval($bounds['south']), floatval($bounds['north'])])
-                ->whereBetween('lng', [floatval($bounds['west']), floatval($bounds['east'])]);
-        });
+        $reports = self::where('domain_id', $domain->id);
+
+        self::filterBounds($reports, [$bounds['south'], $bounds['north']], [$bounds['west'], $bounds['east']]);
 
         if (array_key_exists('type', $filters) && !empty($filters['type'])) {
-            if($filters['type'] === 'incident') {
+            if ($filters['type'] === 'incident') {
                 $reports->doesntHave('intervention');
             } else {
                 $reports->has('intervention');
@@ -110,5 +107,14 @@ class Incident extends Model
         }
 
         return $reports->with('location')->with('intervention')->get();
+    }
+
+    public static function filterBounds($query, $lat, $lng)
+    {
+        $query->whereHas('location', function ($query) use ($lat, $lng) {
+            $query
+                ->whereBetween('lat', [floatval($lat[0]), floatval($lat[1])])
+                ->whereBetween('lng', [floatval($lng[0]), floatval($lng[1])]);
+        });
     }
 }

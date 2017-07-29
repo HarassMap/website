@@ -18,6 +18,18 @@ class IncidentsController extends BaseController
             ::orderBy('date', 'desc')
             ->with('location')->with('intervention')->with('role')->with('categories');
 
+        $this->filterBounds($incidents);
+
+        // get the paginated results
+        $results = $incidents
+            ->paginate($perPage)
+            ->all();
+
+        return response()->json($results);
+    }
+
+    protected function filterBounds($query)
+    {
         $bounds = get('bounds');
 
         // if we have a bounds parameter then get incidents inside bounds
@@ -35,19 +47,8 @@ class IncidentsController extends BaseController
                 return self::boundsError();
             }
 
-            $incidents->whereHas('location', function ($query) use ($lat, $lng) {
-                $query
-                    ->whereBetween('lat', [floatval($lat[0]), floatval($lat[1])])
-                    ->whereBetween('lng', [floatval($lng[0]), floatval($lng[1])]);
-            });
+            Incident::filterBounds($query, $lat, $lng);
         }
-
-        // get the paginated results
-        $results = $incidents
-            ->paginate($perPage)
-            ->all();
-
-        return response()->json($results);
     }
 
     public static function boundsError()

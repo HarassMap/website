@@ -41,6 +41,14 @@ export class HomePageMap {
         this.windows = [];
         this.filters = {};
 
+        this.markerCluster = new MarkerClusterer(
+            this.map,
+            [],
+            {
+                imagePath: '/themes/harassmap/assets/img/markers/m'
+            }
+        );
+
         google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
             this.center = this.map.getCenter();
 
@@ -85,28 +93,27 @@ export class HomePageMap {
             remove_ids = _.difference(old_ids, new_ids);
 
         // first we remove the markers we don't need
+        let old_markers = [];
         _.forEach(this.markers, (marker) => {
             if (_.indexOf(remove_ids, marker.id) !== -1) {
-                marker.setMap(null);
+                marker.remove = true;
+                old_markers.push(marker);
             }
         });
+        this.markerCluster.removeMarkers(old_markers);
 
         // remove the marker/windows that have been removed from the map
         this.windows = _.filter(this.windows, (window) => _.indexOf(remove_ids, window.id) === -1);
-        this.markers = _.filter(this.markers, (marker) => marker.map);
+        this.markers = _.filter(this.markers, (marker) => !marker.remove);
 
         // add all the markers that need to be added
+        let new_markers = [];
         _.forEach(data, (report) => {
             if (_.indexOf(old_ids, report.public_id) === -1) {
-                this.addMarker(report);
+                new_markers.push(this.addMarker(report));
             }
         });
-
-        let markerCluster = new MarkerClusterer(this.map, this.markers,
-            {
-                imagePath: '/themes/harassmap/assets/img/markers/m'
-            }
-        );
+        this.markerCluster.addMarkers(new_markers);
     }
 
     addMarker(report) {
@@ -130,7 +137,8 @@ export class HomePageMap {
         let marker = new google.maps.Marker({
             position: centre,
             icon: icon,
-            id: report.public_id
+            id: report.public_id,
+            remove: false
         });
 
         marker.addListener('click', () => {
@@ -140,6 +148,8 @@ export class HomePageMap {
 
         this.windows.push(infowindow);
         this.markers.push(marker);
+
+        return marker;
     }
 
     closeWindows() {
