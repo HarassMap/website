@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-sm-9">
+        <div class="col-12 col-md-8">
             {% if report.approved %}
                 <p class="read-more">
                     {{ report.description | nl2br }}
@@ -44,7 +44,7 @@
                 </p>
             {% endif %}
         </div>
-        <div class="col-12 col-sm-3">
+        <div class="col-12 col-md-4">
 
             {% if report.verified %}
                 <p class="pt-1 pb-1">{{ 'Verified' | _ }}</p>
@@ -65,6 +65,8 @@
             <form data-request="onExpressSupport">
                 <button class="btn btn--default">{{ 'Express Support' | _ }}</button>
             </form>
+
+            <a href="{{ 'reports/index' | page }}" class="btn btn--default mb-2 mt-2">{{ 'View More Reports' | _ }}</a>
         </div>
     </div>
 
