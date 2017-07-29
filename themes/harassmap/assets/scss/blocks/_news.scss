@@ -17,6 +17,14 @@
     @include rem((font-size: 14px));
   }
 
+  .img-fluid {
+    width: 100%;
+
+    @include media-breakpoint-up(sm) {
+      width: auto;
+    }
+  }
+
 }
 
 .news-post__image {
