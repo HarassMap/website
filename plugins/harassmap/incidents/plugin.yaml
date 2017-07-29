@@ -60,3 +60,6 @@ permissions:
     harassmap.incidents.domain.manage_user_domains:
         tab: 'harassmap.incidents::lang.plugin.permissions.tab'
         label: 'harassmap.incidents::lang.plugin.permissions.manage_user_domains'
+    harassmap.incidents.access_settings:
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.incidents::lang.plugin.permissions.access_settings'

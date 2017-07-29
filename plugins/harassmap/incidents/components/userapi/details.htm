@@ -1,20 +1,20 @@
 <h3>
-    {{ 'Your API Key:' }}
+    {{ 'Your API Key:' | _ }}
     <span class="api-key">{{ api.key }}</span>
 </h3>
 
 <table class="table table-bordered mt-4">
     <tbody>
     <tr>
-        <td class="w-50">{{ 'Total number of API Calls' }}</td>
+        <td class="w-50">{{ 'Total number of API requests' | _ }}</td>
         <td>{{ api.total }}</td>
     </tr>
     <tr>
-        <td>{{ 'Number of API calls this month' }}</td>
+        <td>{{ 'Number of API requests today' | _ }}</td>
         <td>{{ api.callsThisMonth }}</td>
     </tr>
     <tr>
-        <td>{{ 'Last Call' }}</td>
+        <td>{{ 'Last API requests' | _ }}</td>
         <td>{{ api.last_call ? api.last_call | date('Y-M-d H:i:s', domain.timezone) : 'You have made no API calls' | _ }}</td>
     </tr>
     </tbody>

@@ -49,6 +49,6 @@ class API extends Model
             return 0;
         }
 
-        return $this->last_call > date('Y-m-01') ? $this->calls : 0;
+        return strtotime($this->last_call) > strtotime(date('Y-m-d')) ? $this->calls : 0;
     }
 }

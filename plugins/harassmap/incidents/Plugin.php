@@ -25,6 +25,7 @@ use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
+use System\Classes\SettingsManager;
 
 class Plugin extends PluginBase
 {
@@ -87,5 +88,20 @@ class Plugin extends PluginBase
     public function register()
     {
         $this->registerConsoleCommand('harassmap.migrate', MigrateCommand::class);
+    }
+
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label'       => 'HarassMap Settings',
+                'description' => '',
+                'category'    => SettingsManager::CATEGORY_MISC,
+                'icon'        => 'icon-cog',
+                'class'       => 'Harassmap\Incidents\Models\Settings',
+                'order'       => 500,
+                'permissions' => ['harassmap.incidents.access_settings']
+            ]
+        ];
     }
 }

@@ -5,6 +5,7 @@ namespace Harassmap\Incidents\Classes\Api;
 use Carbon\Carbon;
 use Closure;
 use Harassmap\Incidents\Models\API;
+use Harassmap\Incidents\Models\Settings;
 use Illuminate\Http\Request;
 
 class CheckKeyMiddleware
@@ -24,6 +25,11 @@ class CheckKeyMiddleware
             return self::keyError();
         }
 
+        // get the day limit
+        $day_limit = Settings::get('api_day_limit');
+
+
+
         // get the user from the API
         $user = $api->user;
 
@@ -41,6 +47,12 @@ class CheckKeyMiddleware
             // increase the total
             $api->total++;
             $api->calls++;
+
+            // if the last call was yesterday then reset the calls
+            if (strtotime($api->last_call) < strtotime(date('Y-m-d'))) {
+                $api->calls = 1;
+            }
+
             $api->last_call = new Carbon();
             $api->save();
 
