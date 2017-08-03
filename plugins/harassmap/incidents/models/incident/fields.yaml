@@ -16,6 +16,7 @@ fields:
         span: full
         disabled: 1
         type: relation
+        emptyOption: 'No User'
     verified:
         label: 'harassmap.incidents::lang.form.verified'
         span: full
