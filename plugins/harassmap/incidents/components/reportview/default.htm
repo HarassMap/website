@@ -14,7 +14,7 @@
         <div class="col-12">
             <h3>
                 {% if report.intervention %}
-                    {{ 'Intervention happened on :date at :time' |
+                    {{ 'Incident with intervention happened on :date at :time' |
                     _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}
                 {% else %}
                     {{ 'Incident happened on :date at :time' |
