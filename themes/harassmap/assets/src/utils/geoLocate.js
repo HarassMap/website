@@ -40,12 +40,16 @@ const initAddressListener = () => {
 const initItJustHappenedHere = () => {
     let $geolocate = $('#geolocate');
     let $elsewhere = $('#elsewhere');
+    let $geoText = $('.instructions--geolocate');
+    let $elsText = $('.instructions--elsewhere');
 
     $geolocate.on('click', (event) => {
         event.preventDefault();
 
         $elsewhere.removeClass('active');
         $geolocate.addClass('active');
+        $geoText.show();
+        $elsText.hide();
 
         if (!navigator || !navigator.geolocation) {
             alert('cannot get location');
@@ -86,12 +90,17 @@ const initItJustHappenedHere = () => {
 const initItHappenedElsewhere = () => {
     let $geolocate = $('#geolocate');
     let $elsewhere = $('#elsewhere');
+    let $geoText = $('.instructions--geolocate');
+    let $elsText = $('.instructions--elsewhere');
 
     $elsewhere.on('click', (event) => {
         event.preventDefault();
 
         $geolocate.removeClass('active');
         $elsewhere.addClass('active');
+
+        $geoText.hide();
+        $elsText.show();
 
         $('#address, #city, #date, #time').val('');
     });

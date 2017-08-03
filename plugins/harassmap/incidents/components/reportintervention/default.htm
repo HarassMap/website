@@ -19,6 +19,17 @@
             </a>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="instructions instructions--geolocate">
+                {{ 'We\'ve filled in your address below based on where we think you are. Feel free to adjust, or just move the map pin to narrow down the exact location.' | _ }}
+            </p>
+            <p class="instructions instructions--elsewhere">
+                {{ 'Please provide as much information as you can on the location -- you can even move the map pin to provide a very specific location.' | _ }}
+            </p>
+        </div>
+    </div>
 </div>
 
 {{ form_open({ request: 'onSubmit' }) }}
@@ -80,14 +91,6 @@
             </div>
         </div>
     </div>
-
-    <div class="hr hr--thin">
-        <div class="hr__line"></div>
-    </div>
-
-    <p>
-        {{ 'Now position the crosshairs as close as possible to where the incident occurred...' | _ }}
-    </p>
 </div>
 
 <div id="map" class="map map--report" data-map="report"
