@@ -236,21 +236,21 @@
             display: block;
           }
         }
-      }
-    }
+        
+        .border-block {
+          background: $white;
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          height: 1px;
+          width: 100%;
+          z-index: 1001;
 
-    .border-block {
-      background: $white;
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      z-index: 1001;
-
-      @include media-breakpoint-up(md) {
-        display: block;
+          @include media-breakpoint-up(md) {
+            display: block;
+          }
+        }
       }
     }
 
