@@ -31,7 +31,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -43,7 +43,7 @@
         "color": "#f2f2f2"
       },
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -79,7 +79,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -142,7 +142,7 @@
     "elementType": "labels.text",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -151,7 +151,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -178,7 +178,7 @@
     "elementType": "geometry",
     "stylers": [
       {
-        "visibility": "simplified"
+        "visibility": "on"
       }
     ]
   },
@@ -235,7 +235,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
