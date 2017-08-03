@@ -5,6 +5,12 @@
 
   .form-check-label {
     @include rem((font-size: 16px));
+
+    .form-check-input {
+      @include media-breakpoint-down(sm) {
+        @include rem((margin-right: 10px));
+      }
+    }
   }
 
   label {
