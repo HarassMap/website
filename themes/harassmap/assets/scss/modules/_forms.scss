@@ -46,3 +46,16 @@
 
   }
 }
+
+.select2-container--default .select2-selection--single {
+  border-radius: 0;
+  height: auto;
+
+  .select2-selection__rendered {
+    font-family: $oswald;
+    font-weight: $light;
+
+    @include rem((font-size: 14px, padding: 4px 12px));
+  }
+
+}
