@@ -57,14 +57,14 @@
   border: 1px solid $tundora;
   color: $tundora;
 
-  &:hover {
+  &:hover, &.active {
     background-color: $red;
     color: $white;
   }
 }
 
 .btn--hover-green {
-  &:hover {
+  &:hover, &.active {
     background-color: $green;
     color: $white;
   }

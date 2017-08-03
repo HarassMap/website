@@ -38,8 +38,14 @@ const initAddressListener = () => {
 };
 
 const initItJustHappenedHere = () => {
-    $('#geolocate').on('click', (event) => {
+    let $geolocate = $('#geolocate');
+    let $elsewhere = $('#elsewhere');
+
+    $geolocate.on('click', (event) => {
         event.preventDefault();
+
+        $elsewhere.removeClass('active');
+        $geolocate.addClass('active');
 
         if (!navigator || !navigator.geolocation) {
             alert('cannot get location');
@@ -78,8 +84,14 @@ const initItJustHappenedHere = () => {
 };
 
 const initItHappenedElsewhere = () => {
-    $('#elsewhere').on('click', (event) => {
+    let $geolocate = $('#geolocate');
+    let $elsewhere = $('#elsewhere');
+
+    $elsewhere.on('click', (event) => {
         event.preventDefault();
+
+        $geolocate.removeClass('active');
+        $elsewhere.addClass('active');
 
         $('#address, #city, #date, #time').val('');
     });

@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'key' => '4BA1OHbEzWm6m1yiZQkVuFPp1OCznAil',
+    'key' => 'Wte5086BmyGfIoZujW9Vdp2AbXxfOE3T',
 
     'cipher' => 'AES-256-CBC',
 
