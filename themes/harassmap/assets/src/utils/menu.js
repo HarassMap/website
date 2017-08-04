@@ -14,7 +14,7 @@ export const initMenu = () => {
         }
     });
 
-    $('.nav .nav-item.dropdown a').on('click', function (event) {
+    $('.nav > .nav-item.dropdown > a').on('click', function (event) {
         let $this = $(this);
 
         // very crude check to see if we are in mobile
