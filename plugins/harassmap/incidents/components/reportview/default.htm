@@ -50,15 +50,15 @@
                 <p class="pt-1 pb-1">{{ 'Verified' | _ }}</p>
             {% endif %}
 
-            <p class="pt-1 pb-1">
-                {% if report.support == 1 %}
-                    {{ ':support expression of support.'|_({ support: report.support }) }}
-                {% elseif report.support > 1 %}
-                    {{ ':support expressions of support.'|_({ support: report.support }) }}
-                {% else %}
-                    {{ 'No expressions of support.' | _ }}
-                {% endif %}
-            </p>
+            {% if report.support > 0 %}
+                <p class="pt-1 pb-1">
+                    {% if report.support == 1 %}
+                        {{ ':support expression of support.'|_({ support: report.support }) }}
+                    {% else %}
+                        {{ ':support expressions of support.'|_({ support: report.support }) }}
+                    {% endif %}
+                </p>
+            {% endif %}
 
             <a href="#comment" class="btn btn--default mb-2 mt-2">{{ 'Add Comment' | _ }}</a>
 
