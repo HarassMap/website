@@ -2,6 +2,17 @@
 @import "rem";
 
 .table {
+  margin-bottom: 0;
+
+  &.table-bordered {
+    border-bottom: none;
+    border-top: none;
+
+    th, td {
+      border-bottom: none;
+      border-top: none;
+    }
+  }
 
   thead {
     background-color: $light-gray;
