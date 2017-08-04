@@ -1,7 +1,8 @@
 <div class="news-posts">
     <div class="row">
         {% for post in posts %}
-            <a href="{{ postPage | page({slug: post.slug}) }}" class="col-12 col-sm-6 col-md-3">
+            <a href="{{ postPage | page({slug: post.slug}) }}"
+               class="col-12 col-sm-6 col-md-3{% if loop.index > 2 %} hidden-md-down{% endif %}">
                 {% if post.image %}
                     <div class="text-center">
                         <img class="img-fluid" src="{{ post.image.path  | resize(255, 170, {mode: 'crop'}) }}">
