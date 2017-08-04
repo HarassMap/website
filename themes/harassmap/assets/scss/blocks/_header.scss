@@ -11,6 +11,10 @@
     .user-menu {
       float: right;
 
+      .underline:hover {
+        text-decoration: underline;
+      }
+
       .ar & {
         float: left;
 

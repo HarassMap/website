@@ -45,13 +45,10 @@ numberOfLevels = 2
                                 </li>
                             </ul>
                         {% else %}
-                            <a href="{{ 'security/login' | page }}" class="priority-2">
-                                {{ 'Login' | _ }}
-                            </a>
+                            <a href="{{ 'security/login' | page }}" class="priority-2 underline">{{ 'Login' | _ }}</a>
                             /
-                            <a href="{{ 'security/register' | page }}" class="priority-2">
-                                {{ 'Register' | _ }}
-                            </a>
+                            <a href="{{ 'security/register' | page }}"
+                               class="priority-2 underline">{{ 'Register' | _ }}</a>
                         {% endif %}
                     </div>
                 </div>
