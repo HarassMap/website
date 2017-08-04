@@ -16,7 +16,7 @@ const initBannerSwitcher = () => {
 
     $banners.not('.active').hide();
 
-    $controls.on('click', function (event) {
+    $controls.on('click touchstart', function (event) {
         let $control = $(this),
             href = $control.attr('href');
 
@@ -44,7 +44,7 @@ const initFullscreenMap = () => {
         }
     });
 
-    $('#map-fullscreen').on('click', (event) => {
+    $('#map-fullscreen').on('click touchstart', (event) => {
         event.preventDefault();
 
         if (screenfull.enabled) {
@@ -61,7 +61,7 @@ const initMapFilter = () => {
     createDatePicker('date_from');
     createDatePicker('date_to');
 
-    $filterButton.on('click', (event) => {
+    $filterButton.on('click touchstart', (event) => {
         event.preventDefault();
 
         $filter.fadeToggle();

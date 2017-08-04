@@ -1,7 +1,7 @@
 'use strict';
 
 export const initMenu = () => {
-    $('.navbar-toggler').on('click', () => {
+    $('.navbar-toggler').on('click touchstart', () => {
         let $navbar = $('.navbar'),
             $nav = $('#main_nav');
 
@@ -14,7 +14,7 @@ export const initMenu = () => {
         }
     });
 
-    $('.nav > .nav-item.dropdown > a').on('click', function (event) {
+    $('.nav > .nav-item.dropdown > a').on('click touchstart', function (event) {
         let $this = $(this);
 
         // very crude check to see if we are in mobile
