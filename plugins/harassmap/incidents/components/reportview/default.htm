@@ -117,7 +117,12 @@
 
 {% put meta %}
 <meta property="og:url" content="{{ 'reports/view' | page }}"/>
-<meta property="og:description" content="{{ report.description }}"/>
+
+{% if report.approved %}
+    <meta property="og:description" content="{{ report.description }}"/>
+{% else %}
+    <meta property="og:description" content="{{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ }}"/>
+{% endif %}
 
 {% if report.intervention %}
     <meta property="og:title" content="{{ 'Intervention happened on :date at :time' |
