@@ -5,10 +5,12 @@
   margin-bottom: 0;
 
   &.table-bordered {
+    border-color: $alto;
     border-bottom: none;
     border-top: none;
 
     th, td {
+      border-color: $alto;
       border-bottom: none;
       border-top: none;
     }
