@@ -76,6 +76,12 @@ class Incident extends Model
 
     public $hidden = ['id', 'domain_id', 'role_id', 'user_id', 'is_intervention', 'created_at', 'updated_at'];
 
+    public function __construct()
+    {
+        // generate a random public id on creation
+        $this->public_id = bin2hex(random_bytes(5));
+    }
+
     /**
      * @param $bounds
      * @return \Illuminate\Database\Eloquent\Collection|static[]

@@ -5,7 +5,6 @@ namespace Harassmap\Incidents\Components;
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use DateTimeZone;
-use Faker\Provider\Uuid;
 use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
@@ -79,7 +78,6 @@ class ReportIncident extends ComponentBase
 
         $incident->domain_id = $domain->id;
         $incident->is_intervention = false;
-        $incident->public_id = Uuid::uuid();
         $incident->role_id = $data['role'];
         $incident->description = $data['description'];
 

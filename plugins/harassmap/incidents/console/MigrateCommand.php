@@ -76,7 +76,7 @@ class MigrateCommand extends Command
             $location->lng = number_format(floatval($lng), 5, '.', '');
 
             $incident->domain_id = $domain->id;
-            $incident->public_id = Uuid::uuid();
+
             $incident->description = $data['description'];
             $incident->approved = true;
 
