@@ -4,8 +4,9 @@
         'description' => '',
         'permissions' => [
             'tab' => 'HarassMap',
-            'access_categories' => 'Manage Categories',
             'manage_domains' => 'Manage Domains',
+            'access_domain' => 'Access Domains',
+            'access_categories' => 'Manage Categories',
             'manage_content_blocks' => 'Manage Content Blocks',
             'manage_user_domains' => 'Manage User Domains',
             'access_settings' => 'Access Settings',

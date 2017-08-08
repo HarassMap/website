@@ -48,12 +48,15 @@ navigation:
         url: harassmap/incidents/tip
         icon: icon-quote-left
 permissions:
+    harassmap.incidents.domain.manage_domains:
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.incidents::lang.plugin.permissions.manage_domains'
+    harassmap.incidents.domain.access_domain:
+        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
+        label: 'harassmap.incidents::lang.plugin.permissions.access_domain'
     harassmap.incidents.access_categories:
         tab: 'harassmap.incidents::lang.plugin.permissions.tab'
         label: 'harassmap.incidents::lang.plugin.permissions.access_categories'
-    harassmap.incidents.domain.access_domain:
-        tab: 'harassmap.incidents::lang.plugin.permissions.tab'
-        label: 'harassmap.incidents::lang.plugin.permissions.manage_domains'
     harassmap.incidents.domain.access_content:
         tab: 'harassmap.incidents::lang.plugin.permissions.tab'
         label: 'harassmap.incidents::lang.plugin.permissions.manage_content_blocks'
