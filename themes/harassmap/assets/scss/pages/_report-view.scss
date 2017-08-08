@@ -34,4 +34,10 @@
 
   }
 
+  .tick {
+    background: url('/themes/harassmap/assets/img/done.svg') no-repeat left center;
+
+    @include rem((padding-left: 30px));
+  }
+
 }

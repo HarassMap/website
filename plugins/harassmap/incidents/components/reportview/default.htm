@@ -47,11 +47,11 @@
         <div class="col-12 col-md-4">
 
             {% if report.verified %}
-                <p class="pt-1 pb-1">{{ 'Verified' | _ }}</p>
+                <p class="pt-1 pb-1 tick">{{ 'Verified' | _ }}</p>
             {% endif %}
 
             {% if report.support > 0 %}
-                <p class="pt-1 pb-1">
+                <p class="pt-1 pb-1 tick">
                     {% if report.support == 1 %}
                         {{ ':support expression of support.'|_({ support: report.support }) }}
                     {% else %}
