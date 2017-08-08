@@ -41,6 +41,15 @@ p {
   }
 }
 
+ul {
+  li {
+    font-family: $merriweather;
+    font-weight: $light;
+
+    @include rem((font-size: 14px));
+  }
+}
+
 // text styles
 .priority-2 {
   letter-spacing: 1px;
