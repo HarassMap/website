@@ -33,7 +33,7 @@
 </div>
 
 {{ form_open({ request: 'onSubmit', id: 'report' }) }}
-<input type="hidden" id="marker-moved" value="false"/>
+{{ form_hidden('moved', 'false', {'id': 'marker-moved', 'required': 'required'}) }}
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-6">
@@ -95,7 +95,8 @@
 </div>
 
 <div id="map" class="map map--report" data-map="report"
-     data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}"
+     data-lat="{{ form_value('lat') ? form_value('lat') : domain.lat }}"
+     data-lng="{{ form_value('lng') ? form_value('lng') : domain.lng }}"
      data-lat-input="lat" data-lng-input="lng"></div>
 
 {{ form_hidden('lat', domain.lat, {'id': 'lat', 'required': 'required'}) }}
