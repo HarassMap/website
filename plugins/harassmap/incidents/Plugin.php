@@ -74,7 +74,6 @@ class Plugin extends PluginBase
             ContentBlock::class => 'harassmapDomainContentBlock',
             Domain::class => 'harassmapDomain',
             Tip::class => 'harassmapTip',
-            Tips::class => 'harassmapTips',
             IncidentAccount::class => 'harassmapIncidentAccount',
             IncidentResetPassword::class => 'harassmapIncidentResetPassword',
             UserReports::class => 'harassmapUserReports',

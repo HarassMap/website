@@ -2,15 +2,22 @@ title = "Browse Tips"
 url = "/tips"
 layout = "default"
 is_hidden = 0
-robot_index = "index"
-robot_follow = "follow"
 
 [viewBag]
-localeUrl[ar] = "/browse-tips"
+localeUrl[ar] = "/tips"
 
-[harassmapTips]
+[harassmapDomainContentBlock tips]
+id = "tips"
 ==
-
 <div class="container">
-    {% component 'harassmapTips' %}
+    <div class="row">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Tips' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+
+    {% component 'tips' %}
 </div>
