@@ -32,6 +32,8 @@ export class ReportPageMap {
         });
 
         const listener = (event) => {
+            $('#marker-moved').val(true);
+
             if (latInput) {
                 latInput.value = event.latLng.lat().toFixed(5);
             }

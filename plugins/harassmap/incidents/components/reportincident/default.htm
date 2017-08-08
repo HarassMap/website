@@ -32,7 +32,8 @@
     </div>
 </div>
 
-{{ form_open({ request: 'onSubmit' }) }}
+{{ form_open({ request: 'onSubmit', id: 'report' }) }}
+<input type="hidden" id="marker-moved" value="false"/>
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-6">
@@ -40,7 +41,7 @@
                 <div class="col-12">
                     <div class="form-group floating {{ (errors.has('address')) ? 'has-danger' : '' }}">
                         {{ form_label('address', 'Address/Description' | _) }}
-                        {{ form_text('address', '', {'class': 'form-control', 'required': 'required'}) }}
+                        {{ form_text('address', '', {'class': 'form-control'}) }}
                         <div class="form-control-feedback">
                             {{ errors.first('address') }}
                         </div>
@@ -196,12 +197,17 @@
             <a href="{{ 'home' | page }}" class="btn btn--default ml-4">{{ 'Cancel' | _ }}</a>
         </div>
     </div>
+
+    <div class="alerts pt-2"></div>
 </div>
 {{ form_close() }}
 
 {% put scripts %}
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
+<script id="alert-template" type="text/x-handlebars-template">
+    <div class="alert alert-danger" role="alert">{{ 'We noticed you haven\'t moved the map marker, are you sure the location is correct?' | _ }}</div>
+</script>
 <script>
     initReportIncidentPage();
 </script>

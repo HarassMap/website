@@ -3,11 +3,31 @@
 import _ from 'lodash';
 import moment from 'moment';
 import MapFactory from "../map/map.factory";
+import Handlebars from "handlebars";
 
 export const initGeolocate = () => {
     initAddressListener();
     initItJustHappenedHere();
     initItHappenedElsewhere();
+    initMarkerListener();
+};
+
+const initMarkerListener = () => {
+    let $moved = $('#marker-moved');
+    let source = $("#alert-template").html();
+    let template = Handlebars.compile(source);
+
+    $('#report').on('submit', (event) => {
+        let moved = $moved.val();
+
+        if (moved !== 'true') {
+            event.preventDefault();
+
+            $moved.val(true);
+
+            $('.alerts').html(template());
+        }
+    });
 };
 
 const initAddressListener = () => {
@@ -45,6 +65,8 @@ const initItJustHappenedHere = () => {
 
     $geolocate.on('click', (event) => {
         event.preventDefault();
+
+        $('#marker-moved').val(true);
 
         $elsewhere.removeClass('active');
         $geolocate.addClass('active');

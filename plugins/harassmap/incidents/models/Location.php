@@ -32,7 +32,6 @@ class Location extends Model
     public $throwOnValidation = false;
 
     public $rules = [
-        'address' => 'required',
         'city' => 'required',
         'lat' => 'required',
         'lng' => 'required'
