@@ -13,8 +13,16 @@
     font-weight: $light;
   }
 
-  .instructions--geolocate {
+  .instructions {
+    color: $red;
     display: none;
+    font-weight: $bold;
+  }
+
+  &.report--intervention {
+    .instructions {
+      color: $green;
+    }
   }
 
 }
