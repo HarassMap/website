@@ -18,11 +18,9 @@ trait FilterDomain
         $user = BackendAuth::getUser();
 
         // if the user is a super use then stop here
-        if ($user->isSuperUser()) {
+        if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains'])) {
             return;
         }
-
-        // TODO: Only do the domain check on certain user groups
 
         $domains = $user->domains;
 

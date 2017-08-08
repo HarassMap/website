@@ -15,7 +15,7 @@ trait DomainOptions
         $choices = [];
 
         // if the user is a super use then return all the domains
-        if ($user->isSuperUser()) {
+        if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains'])) {
             $domains = Domain::get();
         } else {
             $domains = $user->domains;

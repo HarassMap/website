@@ -31,7 +31,7 @@ class Content extends Controller
         $user = BackendAuth::getUser();
 
         // if the user is a super use then stop here
-        if (!$user->isSuperUser()) {
+        if (!($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains']))) {
 
             $content = ContentModel::find($recordId);
             $id = $content->domain->id;

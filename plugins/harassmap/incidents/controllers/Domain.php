@@ -30,8 +30,8 @@ class Domain extends Controller
     {
         $user = BackendAuth::getUser();
 
-        // if the user is a super use then stop here
-        if (!$user->isSuperUser()) {
+        // if the user has permission then stop here
+        if (!($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains']))) {
 
             $domain = DomainModel::find($recordId);
             $id = $domain->id;
