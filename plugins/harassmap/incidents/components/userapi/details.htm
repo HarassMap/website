@@ -1,6 +1,10 @@
 <h3>
-    {{ 'Your API Key:' | _ }}
-    <span class="api-key">{{ api.key }}</span>
+    {{ 'Your API Key:' | _ }} <span class="api-key">{{ api.key }}</span>
+
+    <form class="float-right" data-request="{{ __SELF__ }}::onGenerateKey"
+          data-request-update="'{{ __SELF__ }}::details': '#apiContainer'">
+        <button class="btn btn--default">{{ 'Reset API Key' }}</button>
+    </form>
 </h3>
 
 <table class="table table-bordered mt-4">

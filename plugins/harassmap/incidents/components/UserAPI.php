@@ -32,11 +32,11 @@ class UserAPI extends ComponentBase
         // get the current user
         $user = Auth::getUser();
 
+        // generate a key
+        $key = bin2hex(random_bytes(16));
+
         // make sure the user doesn't already have an api key
         if(!$user->api) {
-
-            // generate a key
-            $key = bin2hex(random_bytes(16));
 
             // create a new API model for this user
             $api = new API();
@@ -45,9 +45,15 @@ class UserAPI extends ComponentBase
 
             // save the api key to the database
             $api->save();
-
-            $this->page['api'] = $api;
+        } else {
+            $api = $user->api;
+            $api->key = $key;
+            $api->save();
         }
+
+        $this->page['user'] = $user;
+        $this->page['api'] = $api;
+        $this->page['limit'] = Settings::get('api_day_limit');
 
     }
 

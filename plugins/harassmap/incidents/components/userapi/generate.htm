@@ -1,9 +1,7 @@
-<div id="apiContainer">
-    <form data-request="{{ __SELF__ }}::onGenerateKey"
-          data-request-update="'{{ __SELF__ }}::details': '#apiContainer'">
+<form data-request="{{ __SELF__ }}::onGenerateKey"
+      data-request-update="'{{ __SELF__ }}::details': '#apiContainer'">
 
-        <h3>{{ 'You do not have an API key yet.' | _ }}</h3>
+    <h3>{{ 'You do not have an API key yet.' | _ }}</h3>
 
-        <button class="btn bt--default mt-4">{{ 'Generate API Key' | _ }}</button>
-    </form>
-</div>
+    <button class="btn bt--default mt-4">{{ 'Generate API Key' | _ }}</button>
+</form>

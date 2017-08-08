@@ -1,5 +1,7 @@
-{% if api %}
-    {% partial "@details" %}
-{% else %}
-    {% partial "@generate" %}
-{% endif %}
+<div id="apiContainer">
+    {% if api %}
+        {% partial "@details" %}
+    {% else %}
+        {% partial "@generate" %}
+    {% endif %}
+</div>
