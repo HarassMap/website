@@ -62,6 +62,11 @@ tabs:
             span: auto
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
+        need_approval:
+            label: 'Do descriptions require approval?'
+            span: auto
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.site'
         twitter_message:
             label: 'harassmap.incidents::lang.form.twitter_message'
             span: full

@@ -31,6 +31,8 @@ use Request;
  * @property string $timezone
  * @property string $nameend
  * @property string $tagline
+ * @property string $twitter_message
+ * @property bool $need_approval
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAbout($value)
@@ -55,6 +57,8 @@ use Request;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTagline($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereAttributableKey($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereGaKey($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereNeedApproval($value)
+ * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Domain whereTwitterMessage($value)
  * @mixin \Eloquent
  */
 class Domain extends Model

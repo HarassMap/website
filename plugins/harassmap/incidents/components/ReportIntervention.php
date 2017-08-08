@@ -82,6 +82,11 @@ class ReportIntervention extends ComponentBase
         $incident->role_id = $data['role'];
         $incident->description = $data['description'];
 
+        // if the domain doesnt require descriptions to be approved then auto approve it
+        if (!$domain->need_approval) {
+            $incident->approved = true;
+        }
+
         if (array_key_exists('categories', $data)) {
             $incident->categories = $data['categories'];
         }

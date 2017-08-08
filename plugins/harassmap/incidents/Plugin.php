@@ -3,6 +3,7 @@
 use Backend\Controllers\Users as BackendUsersController;
 use Backend\Models\User as BackendUserModel;
 use BackendAuth;
+use Harassmap\Incidents\Classes\Mailer;
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
@@ -109,11 +110,20 @@ class Plugin extends PluginBase
         ];
     }
 
+
     public function registerMailTemplates()
     {
         return [
             'harassmap.incidents::mail.admin.report'   => 'Sent to admin when a new report is added',
             'harassmap.incidents::mail.user.support'   => 'Sent to users when someone has expressed support to them',
         ];
+    }
+
+    public function registerSchedule($schedule)
+    {
+        // every day at 9pm send emails to people with support
+        $schedule->call(function () {
+            Mailer::sendSupportMail();
+        })->dailyAt('20:00');
     }
 }

@@ -33,4 +33,12 @@ class Mailer
         }
     }
 
+    /**
+     * Send email to everyone who has received support
+     */
+    public static function sendSupportMail()
+    {
+
+    }
+
 }
