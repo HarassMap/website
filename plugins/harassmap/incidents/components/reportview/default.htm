@@ -61,7 +61,8 @@
             {% endif %}
 
             <form data-request="onExpressSupport">
-                <button class="btn btn--default mb-2 mt-2"">{{ 'Express Support' | _ }}</button>
+                <button class="btn btn--default mb-2 mt-2"
+                ">{{ 'Express Support' | _ }}</button>
             </form>
 
             <a href="#comment" class="btn btn--default">{{ 'Add Comment' | _ }}</a>
@@ -119,22 +120,20 @@
 <meta property="fb:app_id" content="{{ domain.facebook_app_id }}"/>
 <meta property="og:url" content="{{ 'reports/view' | page }}"/>
 <meta property="og:image"
-      content="https://maps.googleapis.com/maps/api/staticmap?center={{ report.location.lat }},{{ report.location.lng }}&zoom=13&size=600x315&markers={{ report.location.lat }},{{ report.location.lng }}&key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc" />
+      content="https://maps.googleapis.com/maps/api/staticmap?center={{ report.location.lat }},{{ report.location.lng }}&zoom=13&size=600x315&scale=2&markers={{ report.location.lat }},{{ report.location.lng }}&key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 
 {% if report.approved %}
-    <meta property="og:description" content="{{ report.description }}"/>
+    <meta property="og:description" content="{{ 'Incident happened on :date at :time' | _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }} - {{ report.description }}"/>
 {% else %}
-    <meta property="og:description" content="{{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ }}"/>
+    <meta property="og:description" content="{{ 'Incident happened on :date at :time' | _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
 {% endif %}
 
 {% if report.intervention %}
-    <meta property="og:title" content="{{ 'Intervention happened on :date at :time' |
-    _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
+    <meta property="og:title" content="{{ 'SOMEONE INTERVENED AGAINST SEXUAL HARASSMENT' }}"/>
 {% else %}
-    <meta property="og:title" content="{{ 'Incident happened on :date at :time' |
-    _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
+    <meta property="og:title" content="{{ 'SEXUAL HARASSMENT REPORTED' }}"/>
 {% endif %}
 
 {% endput %}
