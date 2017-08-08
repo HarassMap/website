@@ -12,6 +12,9 @@ list = "de5e71e5b9"
 
 [session]
 security = "all"
+
+[harassmapDomainContentBlock about]
+id = "footer.about"
 ==
 <!DOCTYPE html>
 <html {% if activeLocale == 'ar' %}dir="rtl"{% endif %}>
@@ -69,7 +72,7 @@ security = "all"
             <div class="col-12 col-md-5">
                 <div class="pr-5">
                     <h4 class="priority-2">{{ 'About Us' | _ }}</h4>
-                    <p>{{ domain.about }}</p>
+                    {% component 'about' %}
                 </div>
             </div>
             <div class="col-12 col-md-7">

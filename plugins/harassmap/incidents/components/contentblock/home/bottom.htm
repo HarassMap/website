@@ -1,17 +1,19 @@
-<a class="mt-3 mb-3" href="{{ __SELF__.block.link }}">
-    <div class="bottom-links">
-        <div class="img">
-            {% if __SELF__.block.image %}
-                <img class="img-fluid mx-auto d-block" src="{{ __SELF__.block.image.path | resize(350, 220, {mode: 'crop'}) }}">
-            {% endif %}
+<div class="mt-3 mb-3">
+    <a href="{{ __SELF__.block.link }}">
+        <div class="bottom-links">
+            <div class="img">
+                {% if __SELF__.block.image %}
+                    <img class="img-fluid mx-auto d-block"
+                         src="{{ __SELF__.block.image.path | resize(350, 220, {mode: 'crop'}) }}">
+                {% endif %}
+            </div>
+            <div class="text">
+                {% if __SELF__.block.content %}
+                    {{ __SELF__.block.content | raw }}
+                {% else %}
+                    <!-- No content -->
+                {% endif %}
+            </div>
         </div>
-        <div class="text">
-            {% if __SELF__.block.content %}
-                {{ __SELF__.block.content | raw }}
-            {% else %}
-                <!-- No content -->
-            {% endif %}
-        </div>
-    </div>
-</a>
-
+    </a>
+</div>

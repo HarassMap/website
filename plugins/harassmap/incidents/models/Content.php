@@ -44,6 +44,7 @@ class Content extends Model
         'report.intervention' => 'Report (Intervention)',
         'report.thanks' => 'Report (Thanks)',
         'report.comments' => 'Report (Comments)',
+        'footer.about' => 'Footer (About)',
     ];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];

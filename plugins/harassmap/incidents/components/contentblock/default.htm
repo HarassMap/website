@@ -1,4 +1,4 @@
-<div class="content-block" data-content-block="{{ content_id }}">
+<div class="content-block {{ content_id | replace({'.': '-'}) }}" data-content-block="{{ content_id }}">
     {% if __SELF__.partial %}
         {% partial __SELF__ ~ '::' ~ __SELF__.partial %}
     {% endif %}
