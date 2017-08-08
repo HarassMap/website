@@ -4,7 +4,7 @@ import debounce from "debounce";
 import Handlebars from "handlebars";
 import _ from "lodash";
 import moment from "moment";
-import { emitter, FILTER_MAP, REFRESH_MAP, CENTER_MAP } from '../utils/events';
+import { CENTER_MAP, emitter, FILTER_MAP, REFRESH_MAP } from '../utils/events';
 import mapStyle from "./map.style.json";
 
 export class HomePageMap {
@@ -45,7 +45,8 @@ export class HomePageMap {
             this.map,
             [],
             {
-                imagePath: '/themes/harassmap/assets/img/markers/m'
+                imagePath: '/themes/harassmap/assets/img/markers/m',
+                imageExtension: 'svg'
             }
         );
 
