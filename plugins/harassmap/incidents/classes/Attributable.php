@@ -1,9 +1,13 @@
 <?php
 
-namespace Harassmap\Incidents\Classes;
-
-class Attributable
+/*
+        Attributable PHP SDK v1.0
+        --
+        For complete documentation, please visit attributables.com/sdks
+*/
+class attributable
 {
+
     public $key = null;
     public $apiVersion = "1-0";
 
@@ -18,7 +22,7 @@ class Attributable
     public $errors = [];
     public $warnings = [];
 
-    public function capture($event, $occurred_on = null, $author = null, $tags = null, $is_error = null, $is_resolved = null, $execution_time_in_seconds = null, $comments = null)
+    public function capture($event, $occurred_on = null, $author = null, $tags = null, $is_alert = null, $is_resolved = null, $execution_time_in_seconds = null, $comments = null)
     {
 
         // check for errors
@@ -52,7 +56,7 @@ class Attributable
             return false;
         }
 
-        // sanitize data
+        // santitize data
         if (!@$occurred_on && $this->settings['default_to_current_datetime']) {
             $occurred_on = date('Y-m-d H:i:s');
         }
@@ -69,53 +73,47 @@ class Attributable
             $author['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         }
 
-        if (@$author['latitude']) $author['latitude'] = floatval($author['latitude']);
+        if ($author['latitude']) $author['latitude'] = floatval($author['latitude']);
 
-        if (@$author['longitude']) $author['longitude'] = floatval($author['longitude']);
+        if ($author['longitude']) $author['longitude'] = floatval($author['longitude']);
 
-        $is_error = floatval($is_error);
+        $is_alert = floatval($is_alert);
 
         $is_resolved = floatval($is_resolved);
 
         $execution_time_in_seconds = floatval($execution_time_in_seconds);
 
         // create data payload
-        $payload = '{' . "\n";
-        $payload .= '  "event" : "' . addSlashes($event) . '",' . "\n";
-        $payload .= '  "occurred_on" : "' . date('Y-m-d H:i:s', strtotime($occurred_on)) . '",' . "\n";
+        $payload = [];
+        $payload['event'] = addSlashes($event);
+        $payload['occurred_on'] = date('Y-m-d H:i:s', strtotime($occurred_on));
         if ($author) {
-            $payload .= '  "author" : {' . "\n";
-            if (@$author['user_id']) $payload .= '    "user_id" : "' . $author['user_id'] . '",' . "\n";
-            if (@$author['first_name']) $payload .= '    "first_name" : "' . $author['first_name'] . '",' . "\n";
-            if (@$author['last_name']) $payload .= '    "last_name" : "' . $author['last_name'] . '",' . "\n";
-            if (@$author['ip']) $payload .= '    "ip" : "' . $author['ip'] . '",' . "\n";
-            if (@$author['latitude']) $payload .= '    "latitude" : "' . $author['latitude'] . '",' . "\n";
-            if (@$author['longitude']) $payload .= '    "longitude" : "' . $author['longitude'] . '",' . "\n";
-            if (@$author['user_agent']) $payload .= '    "user_agent" : "' . $author['user_agent'] . '",' . "\n";
-            if (@$author['email']) $payload .= '    "email" : "' . $author['email'] . '",' . "\n";
-            if (@$author['phone']) $payload .= '    "phone" : "' . $author['phone'] . '",' . "\n";
-            $lists = ['is_blacklisted', 'is_greylisted', 'is_whitelisted'];
-            foreach ($lists as $list) {
-                if (array_key_exists($list, @$author)) $payload .= '    "' . $list . '" : "' . $author[$list] . '",' . "\n";
-            }
-            $payload = rtrim($payload, "\n\r, ") . "\n";
-            $payload .= '  },' . "\n";
+            $payload['author'] = [];
+            if (@$author['user_id']) $payload['author']['user_id'] = $author['user_id'];
+            if (@$author['first_name']) $payload['author']['first_name'] = $author['first_name'];
+            if (@$author['last_name']) $payload['author']['last_name'] = $author['last_name'];
+            if (@$author['ip']) $payload['author']['ip'] = $author['ip'];
+            if (@$author['latitude']) $payload['author']['latitude'] = $author['latitude'];
+            if (@$author['longitude']) $payload['author']['longitude'] = $author['longitude'];
+            if (@$author['user_agent']) $payload['author']['user_agent'] = $author['user_agent'];
+            if (@$author['email']) $payload['author']['email'] = $author['email'];
+            if (@$author['phone']) $payload['author']['phone'] = $author['phone'];
+            if (array_key_exists('is_blacklisted', @$author)) $payload['author']['is_blacklisted'] = $author['is_blacklisted'];
+            if (array_key_exists('is_greylisted', @$author)) $payload['author']['is_greylisted'] = $author['is_greylisted'];
+            if (array_key_exists('is_whitelisted', @$author)) $payload['author']['is_whitelisted'] = $author['is_whitelisted'];
         }
         if ($tags) {
-            $payload .= '  "tags" : {' . "\n";
+            $payload['tags'] = [];
             foreach ($tags as $key => $value) {
-                $payload .= '    "' . $key . '" : "' . $value . '",' . "\n";
+                $payload['tags'][$key] = addSlashes($value);
             }
-            $payload = rtrim($payload, "\n\r, ") . "\n";
-            $payload .= '  },' . "\n";
         }
-        if ($is_error === 1 || $is_error === 0) $payload .= '  "is_error" : "' . $is_error . '",' . "\n";
-        if ($is_resolved === 1 || $is_resolved === 0) $payload .= '  "is_resolved" : "' . $is_resolved . '",' . "\n";
-        if ($execution_time_in_seconds) $payload .= '  "execution_time_in_seconds" : "' . $execution_time_in_seconds . '",' . "\n";
-        if ($comments) $payload .= '  "comments" : "' . addSlashes($comments) . '",' . "\n";
+        if ($is_alert === 1 || $is_alert === 0) $payload['is_alert'] = $is_alert;
+        if ($is_resolved === 1 || $is_resolved === 0) $payload['is_resolved'] = $is_resolved;
+        if ($execution_time_in_seconds === 1 || $execution_time_in_seconds === 0) $payload['execution_time_in_seconds'] = $execution_time_in_seconds;
+        if ($comments) $payload['comments'] = addSlashes($comments);
 
-        $payload = trim($payload, "\n\r, ") . "\n";
-        $payload .= '}' . "\n";
+        $payload = json_encode($payload);
 
         // connect with Attributable
         $curl = curl_init();
@@ -185,13 +183,13 @@ class Attributable
         }
 
         // create data payload
-        $payload = '{' . "\n";
-        $payload .= '  "metric" : "' . addSlashes($metric) . '",' . "\n";
-        $payload .= '  "value" : "' . $value . '",' . "\n";
-        $payload .= '  "occurred_on" : "' . (!$occurred_on || !strtotime($occurred_on) ? date('Y-m-d H:i:s') : $occurred_on) . '",' . "\n";
+        $payload = [
+            'metric' => addSlashes($metric),
+            'value' => addSlashes($value),
+            'occurred_on' => (!$occurred_on || !strtotime($occurred_on) ? date('Y-m-d H:i:s') : $occurred_on)
+        ];
 
-        $payload = trim($payload, "\n\r, ") . "\n";
-        $payload .= '}' . "\n";
+        $payload = json_encode($payload);
 
         // connect with Attributable
         $curl = curl_init();
@@ -236,7 +234,7 @@ class Attributable
 
     }
 
-    public function events($eventID = null, $author = null, $startDate = null, $endDate = null, $tags = null, $is_error = null, $is_resolved = null, $page = null)
+    public function events($eventID = null, $author = null, $startDate = null, $endDate = null, $tags = null, $is_alert = null, $is_resolved = null, $page = null)
     {
 
         // check for errors
@@ -261,37 +259,32 @@ class Attributable
         }
 
         // create data payload
-        $payload = '{' . "\n";
-        if ($eventID) $payload .= '  "event_id" : "' . addSlashes($eventID) . '",' . "\n";
+        $payload = [];
+        if ($eventID) $payload['event_id'] = addSlashes($eventID);
         if ($author) {
-            $payload .= '  "author" : {' . "\n";
-            if (@$author['author_id']) $payload .= '    "author_id" : "' . $author['author_id'] . '",' . "\n";
-            if (@$author['user_id']) $payload .= '    "user_id" : "' . $author['user_id'] . '",' . "\n";
-            if (@$author['ip']) $payload .= '    "ip" : "' . $author['ip'] . '",' . "\n";
-            if (@$author['email']) $payload .= '    "email" : "' . $author['email'] . '",' . "\n";
-            if (@$author['phone']) $payload .= '    "phone" : "' . $author['phone'] . '",' . "\n";
-            if (array_key_exists('is_blacklisted', @$author)) $payload .= '    "is_blacklisted" : "' . $author['is_blacklisted'] . '",' . "\n";
-            if (array_key_exists('is_greylisted', @$author)) $payload .= '    "is_greylisted" : "' . $author['is_greylisted'] . '",' . "\n";
-            if (array_key_exists('is_whitelisted', @$author)) $payload .= '    "is_whitelisted" : "' . $author['is_whitelisted'] . '",' . "\n";
-            $payload = rtrim($payload, "\n\r, ") . "\n";
-            $payload .= '  },' . "\n";
+            $payload['author'] = [];
+            if (@$author['author_id']) $payload['author']['author_id'] = $author['author_id'];
+            if (@$author['user_id']) $payload['author']['user_id'] = $author['user_id'];
+            if (@$author['ip']) $payload['author']['ip'] = $author['ip'];
+            if (@$author['email']) $payload['author']['email'] = $author['email'];
+            if (@$author['phone']) $payload['author']['phone'] = $author['phone'];
+            if (array_key_exists('is_blacklisted', @$author)) $payload['author']['is_blacklisted'] = $author['is_blacklisted'];
+            if (array_key_exists('is_greylisted', @$author)) $payload['author']['is_greylisted'] = $author['is_greylisted'];
+            if (array_key_exists('is_whitelisted', @$author)) $payload['author']['is_whitelisted'] = $author['is_whitelisted'];
         }
-        if ($startDate) $payload .= '  "start_date" : "' . $startDate . '",' . "\n";
-        if ($endDate) $payload .= '  "end_date" : "' . $endDate . '",' . "\n";
+        if ($startDate) $payload['start_date'] = $startDate;
+        if ($endDate) $payload['end_date'] = $endDate;
         if ($tags) {
-            $payload .= '  "tags" : {' . "\n";
+            $payload['tags'] = [];
             foreach ($tags as $key => $value) {
-                $payload .= '    "' . $key . '" : "' . $value . '",' . "\n";
+                $payload['tags'][$key] = addSlashes($value);
             }
-            $payload = rtrim($payload, "\n\r, ") . "\n";
-            $payload .= '  },' . "\n";
         }
-        if ($is_error === 1 || $is_error === 0) $payload .= '  "is_error" : "' . $is_error . '",' . "\n";
-        if ($is_resolved === 1 || $is_resolved === 0) $payload .= '  "is_resolved" : "' . $is_resolved . '",' . "\n";
-        if ($page) $payload .= '  "page" : "' . $page . '",' . "\n";
+        if ($is_alert === 1 || $is_alert === 0) $payload['is_alert'] = $is_alert;
+        if ($is_resolved === 1 || $is_resolved === 0) $payload['is_resolved'] = $is_resolved;
+        if ($page) $payload['page'] = $page;
 
-        $payload = trim($payload, "\n\r, ") . "\n";
-        $payload .= '}' . "\n";
+        $payload = json_encode($payload);
 
         // connect with Attributable
         $curl = curl_init();
@@ -359,19 +352,18 @@ class Attributable
         }
 
         // create data payload
-        $payload = '{' . "\n";
-        if (@$author['author_id']) $payload .= '  "author_id" : "' . $author['author_id'] . '",' . "\n";
-        if (@$author['user_id']) $payload .= '  "user_id" : "' . $author['user_id'] . '",' . "\n";
-        if (@$author['ip']) $payload .= '  "ip" : "' . $author['ip'] . '",' . "\n";
-        if (@$author['email']) $payload .= '  "email" : "' . $author['email'] . '",' . "\n";
-        if (@$author['phone']) $payload .= '  "phone" : "' . $author['phone'] . '",' . "\n";
-        if (array_key_exists('is_blacklisted', @$author)) $payload .= '  "is_blacklisted" : "' . $author['is_blacklisted'] . '",' . "\n";
-        if (array_key_exists('is_greylisted', @$author)) $payload .= '  "is_greylisted" : "' . $author['is_greylisted'] . '",' . "\n";
-        if (array_key_exists('is_whitelisted', @$author)) $payload .= '  "is_whitelisted" : "' . $author['is_whitelisted'] . '",' . "\n";
-        if ($page) $payload .= '  "page" : "' . $page . '",' . "\n";
+        $payload = [];
+        if (@$author['author_id']) $payload['author_id'] = $author['author_id'];
+        if (@$author['user_id']) $payload['user_id'] = $author['user_id'];
+        if (@$author['ip']) $payload['ip'] = $author['ip'];
+        if (@$author['email']) $payload['email'] = $author['email'];
+        if (@$author['phone']) $payload['phone'] = $author['phone'];
+        if (array_key_exists('is_blacklisted', @$author)) $payload['is_blacklisted'] = $author['is_blacklisted'];
+        if (array_key_exists('is_greylisted', @$author)) $payload['is_greylisted'] = $author['is_greylisted'];
+        if (array_key_exists('is_whitelisted', @$author)) $payload['is_whitelisted'] = $author['is_whitelisted'];
+        if ($page) $payload['page'] = $page;
 
-        $payload = trim($payload, "\n\r, ") . "\n";
-        $payload .= '}' . "\n";
+        $payload = json_encode($payload);
 
         // connect with Attributable
         $curl = curl_init();
