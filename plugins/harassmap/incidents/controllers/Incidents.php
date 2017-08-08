@@ -3,10 +3,13 @@
 use Backend\Classes\Controller;
 use BackendMenu;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Traits\FilterDomain;
 use Illuminate\Http\Response;
 
 class Incidents extends Controller
 {
+    use FilterDomain;
+
     public $implement = [
         'Backend\Behaviors\ListController',
         'Backend\Behaviors\FormController',
