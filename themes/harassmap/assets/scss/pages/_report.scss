@@ -17,16 +17,14 @@
     color: $red;
     display: none;
     font-weight: $bold;
+
+    @include rem((padding: 0 0 30px));
   }
 
   &.report--intervention {
     .instructions {
       color: $green;
     }
-  }
-
-  #date {
-
   }
 
 }
