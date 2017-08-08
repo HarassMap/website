@@ -27,7 +27,7 @@ window.initReportIncidentPage = () => {
     createTimePicker('time');
     initGeolocate();
     initToggleIntervention();
-    $('#timezone').select2();
+    $('#timezone').select2({width: '100%'});
 };
 
 $('.row-link').each((index, element) => {
