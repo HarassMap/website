@@ -117,6 +117,8 @@
 
 {% put meta %}
 <meta property="og:url" content="{{ 'reports/view' | page }}"/>
+<meta property="og:image"
+      content="https://maps.googleapis.com/maps/api/staticmap?center={{ report.location.lat }},{{ report.location.lng }}&size=1200x630&key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc" />
 
 {% if report.approved %}
     <meta property="og:description" content="{{ report.description }}"/>
