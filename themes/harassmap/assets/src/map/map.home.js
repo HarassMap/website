@@ -4,7 +4,7 @@ import debounce from "debounce";
 import Handlebars from "handlebars";
 import _ from "lodash";
 import moment from "moment";
-import { emitter, FILTER_MAP, REFRESH_MAP } from '../utils/events';
+import { emitter, FILTER_MAP, REFRESH_MAP, CENTER_MAP } from '../utils/events';
 import mapStyle from "./map.style.json";
 
 export class HomePageMap {
@@ -61,6 +61,7 @@ export class HomePageMap {
 
         emitter.on(REFRESH_MAP, () => google.maps.event.trigger(this.map, 'resize'));
         emitter.on(FILTER_MAP, (filters) => this.getReports(filters));
+        emitter.on(CENTER_MAP, (center) => this.map.setCenter(center));
     }
 
     /**

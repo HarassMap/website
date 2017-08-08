@@ -4,6 +4,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import MapFactory from "../map/map.factory";
 import Handlebars from "handlebars";
+import { CENTER_MAP, emitter } from './events';
 
 export const initGeolocate = () => {
     initAddressListener();
@@ -129,11 +130,10 @@ const initItHappenedElsewhere = () => {
 };
 
 const setPosition = (position) => {
-    let map = MapFactory.getMap(),
-        $lat = $('#lat'),
+    let $lat = $('#lat'),
         $lng = $('#lng');
 
-    map.setCenter(position);
+    emitter.emit(CENTER_MAP, position);
 
     $lat.val(position.lat.toFixed(5));
     $lng.val(position.lng.toFixed(5));

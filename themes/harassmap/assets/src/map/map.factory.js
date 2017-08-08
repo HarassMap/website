@@ -4,19 +4,15 @@ import { HomePageMap } from "./map.home";
 import { ReportPageMap } from "./map.report";
 import { ReportsPageMap } from "./map.reports";
 
-let map = null;
-
 export default {
-
-    getMap() {
-        return map;
-    },
 
     createFromElement(element) {
         return this.create(element, element.dataset.map);
     },
 
     create(element, type = 'homepage') {
+        let map = null;
+
         switch (type) {
             case 'homepage':
                 map = new HomePageMap(element);

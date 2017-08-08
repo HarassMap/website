@@ -1,8 +1,7 @@
 'use strict';
 
 import _ from "lodash";
-
-import MapFactory from "../map/map.factory";
+import { CENTER_MAP, emitter } from './events';
 
 export const initCitySelector = () => {
     let $country = $('#country');
@@ -29,8 +28,7 @@ const onCountryChange = () => {
 };
 
 const initAutocomplete = (data) => {
-    let $city = $('#city'),
-        map = MapFactory.getMap();
+    let $city = $('#city');
 
     const cities = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -45,8 +43,8 @@ const initAutocomplete = (data) => {
         }
 
         // if we have a map and data
-        if (map && data) {
-            map.setCenter(new google.maps.LatLng(data.lat, data.lng));
+        if (data) {
+            emitter.emit(CENTER_MAP, new google.maps.LatLng(data.lat, data.lng));
         }
 
     };

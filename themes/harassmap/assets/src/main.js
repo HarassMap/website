@@ -16,8 +16,10 @@ initMenu();
 // enable all tooltips
 $('[data-toggle="tooltip"]').tooltip();
 
-window.initMap = (id = 'map') => {
-    MapFactory.createFromElement(document.getElementById(id));
+window.initMap = () => {
+    $('.map').each(function () {
+        MapFactory.createFromElement(this);
+    });
 };
 
 window.initBanner = initBanner;
