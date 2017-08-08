@@ -1,0 +1,7 @@
+{% if __SELF__.block.content %}
+    {{ __SELF__.block.content | raw }}
+
+    <a href="{{ __SELF__.block.link }}" class="btn btn--default">{{ 'Read More' | _ }}</a>
+{% else %}
+    <!-- No content -->
+{% endif %}

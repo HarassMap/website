@@ -83,6 +83,9 @@ class ContentBlock extends ComponentBase
             case 'homepage.bottomRight':
                 $partial = 'home/bottom';
                 break;
+            case 'homepage.droplet':
+                $partial = 'home/droplet';
+                break;
             case 'report.incident':
                 $partial = 'report/incident';
                 break;
