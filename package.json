@@ -49,6 +49,7 @@
     "handlebars": "^4.0.10",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "pikaday": "^1.5.1",
     "sass-rem": "^1.2.3",
     "screenfull": "^3.3.1"

@@ -17,6 +17,7 @@ use Illuminate\Support\MessageBag;
 use RainLab\Translate\Models\Message;
 use RainLab\User\Facades\Auth;
 use Redirect;
+use DateTime;
 
 class ReportIncident extends ComponentBase
 {
@@ -50,6 +51,12 @@ class ReportIncident extends ComponentBase
         // timezones
         $zones = timezone_identifiers_list();
         $this->page['timezones'] = array_combine($zones, $zones);
+
+        // getting the offset the domain timezone is from the server
+        $domainZone = new DateTimeZone($domain->timezone);
+        $serverZone = new DateTimeZone(date_default_timezone_get());
+        $serverDateTime = new DateTime("now", $serverZone);
+        $this->page['offset'] = $domainZone->getOffset($serverDateTime) / 60;
     }
 
     public function onSubmit()

@@ -1,9 +1,8 @@
 'use strict';
 
-import _ from 'lodash';
-import moment from 'moment';
-import MapFactory from "../map/map.factory";
 import Handlebars from "handlebars";
+import _ from 'lodash';
+import moment from 'moment-timezone';
 import { CENTER_MAP, emitter } from './events';
 
 export const initGeolocate = () => {
@@ -87,8 +86,10 @@ const initItJustHappenedHere = () => {
 
             setPosition(location);
 
-            $('#date').val(moment().format('YYYY-MM-DD'));
-            $('#time').val(moment().format('h:mma'));
+            let time = moment().tz($('#timezone').val());
+
+            $('#date').val(time.format('YYYY-MM-DD'));
+            $('#time').val(time.format('h:mma'));
 
             geocoder.geocode({location: location}, (results, status) => {
                 if (status === 'OK' && !_.isEmpty(results)) {
