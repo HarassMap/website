@@ -18,6 +18,10 @@
 
       @include rem((font-size: 14px, margin: 0 10px 0 0));
 
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+
       a {
         color: $white;
         display: block;
@@ -27,6 +31,12 @@
 
       &:hover {
         background: $green;
+      }
+
+      &.active, &:first-child, &:last-child {
+        @include media-breakpoint-down(sm) {
+          display: inline-block;
+        }
       }
 
       &.disabled, &.active {
