@@ -116,6 +116,7 @@
 {% endput %}
 
 {% put meta %}
+<meta property="fb:app_id" content="{{ domain.facebook_app_id }}"/>
 <meta property="og:url" content="{{ 'reports/view' | page }}"/>
 <meta property="og:image"
       content="https://maps.googleapis.com/maps/api/staticmap?center={{ report.location.lat }},{{ report.location.lng }}&zoom=13&size=1200x630&markers={{ report.location.lat }},{{ report.location.lng }}&key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc" />
