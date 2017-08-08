@@ -1,10 +1,8 @@
 columns:
     id:
         label: 'harassmap.incidents::lang.form.id'
-        type: text
     public_id:
         label: 'harassmap.incidents::lang.form.public_id'
-        type: text
     date:
         label: 'harassmap.incidents::lang.form.date_report'
         type: datetime
@@ -21,3 +19,5 @@ columns:
         label: 'harassmap.incidents::lang.form.user'
         relation: user
         select: 'concat(name, '' '', surname)'
+    support:
+        label: 'harassmap.incidents::lang.form.support'

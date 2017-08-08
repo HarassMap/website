@@ -31,8 +31,13 @@ tabs:
             tab: 'harassmap.incidents::lang.form.tab.incident'
         approved:
             label: 'harassmap.incidents::lang.form.description_approved'
-            span: full
+            span: auto
             type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.incident'
+        support:
+            label: 'harassmap.incidents::lang.form.support'
+            span: auto
+            type: number
             tab: 'harassmap.incidents::lang.form.tab.incident'
         date:
             label: 'harassmap.incidents::lang.form.date'

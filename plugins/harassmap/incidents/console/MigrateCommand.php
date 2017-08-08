@@ -4,7 +4,6 @@ namespace Harassmap\Incidents\Console;
 
 use Carbon\Carbon;
 use DateTimeZone;
-use Faker\Provider\Uuid;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Domain;

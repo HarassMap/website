@@ -76,6 +76,7 @@
         'id' => 'ID',
         'public_id' => 'Public ID',
         'timezone' => 'Timezone',
+        'support' => 'Support',
         'attributable_key' => 'Attributable API Key',
         'ga_key' => 'Google Analytics Key'
     ]
