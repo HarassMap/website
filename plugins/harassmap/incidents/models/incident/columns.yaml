@@ -21,3 +21,7 @@ columns:
         select: 'concat(name, '' '', surname)'
     support:
         label: 'harassmap.incidents::lang.form.support'
+    description:
+        label: Description
+        searchable: true
+        invisible: true
