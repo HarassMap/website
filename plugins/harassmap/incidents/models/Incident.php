@@ -76,10 +76,18 @@ class Incident extends Model
 
     public $hidden = ['id', 'domain_id', 'role_id', 'user_id', 'is_intervention', 'created_at', 'updated_at'];
 
-    public function __construct()
+    public function generatePublicId()
     {
         // generate a random public id on creation
         $this->public_id = bin2hex(random_bytes(5));
+
+        // try and find an incident which has this public id already
+        $duplicate = Incident::where('public_id', '=', $this->public_id)->limit(1)->count();
+
+        // if it exists then create a new one and try again
+        if ($duplicate) {
+            $this->generatePublicId();
+        }
     }
 
     /**

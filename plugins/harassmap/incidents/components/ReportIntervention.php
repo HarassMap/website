@@ -76,6 +76,7 @@ class ReportIntervention extends ComponentBase
         $location->lat = number_format($data['lat'], 5, '.', '');
         $location->lng = number_format($data['lng'], 5, '.', '');
 
+        $incident->generatePublicId();
         $incident->domain_id = $domain->id;
         $incident->is_intervention = true;
         $incident->role_id = $data['role'];

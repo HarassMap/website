@@ -1,11 +1,8 @@
 <?php
 
-/*
-        Attributable PHP SDK v1.0
-        --
-        For complete documentation, please visit attributables.com/sdks
-*/
-class attributable
+namespace Harassmap\Incidents\Classes;
+
+class Attributable
 {
 
     public $key = null;
@@ -73,9 +70,9 @@ class attributable
             $author['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         }
 
-        if ($author['latitude']) $author['latitude'] = floatval($author['latitude']);
+        if (@$author['latitude']) $author['latitude'] = floatval($author['latitude']);
 
-        if ($author['longitude']) $author['longitude'] = floatval($author['longitude']);
+        if (@$author['longitude']) $author['longitude'] = floatval($author['longitude']);
 
         $is_alert = floatval($is_alert);
 
