@@ -23,7 +23,7 @@ class Mailer
         foreach ($users as $user) {
 
             $data = [
-                'name' => $user->getFullNameAttribute(),
+                'name' => $user->first_name,
                 'link' => Backend::url('harassmap/incidents/incidents/update', ['id' => $incident->id])
             ];
 
