@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Incidents\Models;
 
 use Carbon\Carbon;
+use Harassmap\Incidents\Classes\Mailer;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
@@ -88,6 +89,11 @@ class Incident extends Model
         if ($duplicate) {
             $this->generatePublicId();
         }
+    }
+
+    public function afterCreate()
+    {
+        Mailer::incidentCreated($this);
     }
 
     /**

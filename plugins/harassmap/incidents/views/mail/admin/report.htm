@@ -3,6 +3,14 @@ subject = "A new report has been added"
 
 Hello {{ name }},
 
+A new report has been submitted. You can view it here:
+
+{{ link }}
+
 ==
 
-Hello {{ name }},
+<p>Hello {{ name }},</p>
+
+<p>A new report has been submitted. You can view it here:</p>
+
+<a href="{{ link }}">{{ link }}</a>
