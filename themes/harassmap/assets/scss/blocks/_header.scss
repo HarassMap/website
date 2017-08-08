@@ -194,6 +194,7 @@
       cursor: pointer;
       display: block;
       text-transform: uppercase;
+      font-family: $oswald;
 
       @include media-breakpoint-up(md) {
         border: 1px solid $white;
@@ -295,6 +296,7 @@
       .nav-item {
         text-transform: capitalize;
         font-weight: $light;
+        font-family: $oswald;
 
         @include rem((padding: 10px 0, font-size: 16px));
 
