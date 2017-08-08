@@ -2,9 +2,16 @@
 @import "rem";
 
 .bg--drop {
+  background: url('/themes/harassmap/assets/img/home/drop.png') no-repeat center top;
+  background-size: 100% auto;
+
+  @include rem((padding-top: 200px));
+
   @include media-breakpoint-up(lg) {
-    background: url('/themes/harassmap/assets/img/home/drop.png') no-repeat center right;
+    background-position: center right;
+    background-size: auto auto;
     min-height: 300px;
+    padding-top: 0;
 
     .ar & {
       background-position: center left;

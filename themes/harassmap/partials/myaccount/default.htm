@@ -5,7 +5,14 @@
             <span class="hr__text">{{ 'My Account' | _ }}</span>
         </h3>
 
-        <div class="alerts"></div>
+        <div class="alerts">
+            {% flash %}
+            <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
+            {% endflash %}
+        </div>
 
         {{ form_ajax('onUpdate', { model: user }) }}
 
@@ -30,7 +37,8 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="username">{{ 'Username' | _ }}</label>
-                    <input id="username" type="text" disabled value="{{ form_value('username') }}" class="form-control" />
+                    <input id="username" name="username" type="text" value="{{ form_value('username') }}"
+                           class="form-control"/>
                 </div>
             </div>
         </div>
@@ -58,7 +66,8 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="accountPasswordConfirm">{{ 'Confirm New Password' | _ }}</label>
-                    <input name="password_confirmation" type="password" class="form-control" id="accountPasswordConfirm">
+                    <input name="password_confirmation" type="password" class="form-control"
+                           id="accountPasswordConfirm">
                 </div>
             </div>
         </div>

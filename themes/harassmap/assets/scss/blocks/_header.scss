@@ -11,6 +11,10 @@
     .user-menu {
       float: right;
 
+      .underline:hover {
+        text-decoration: underline;
+      }
+
       .ar & {
         float: left;
 
@@ -236,21 +240,21 @@
             display: block;
           }
         }
-      }
-    }
 
-    .border-block {
-      background: $white;
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      z-index: 1001;
+        .border-block {
+          background: $white;
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          height: 1px;
+          width: 100%;
+          z-index: 1001;
 
-      @include media-breakpoint-up(md) {
-        display: block;
+          @include media-breakpoint-up(md) {
+            display: block;
+          }
+        }
       }
     }
 
@@ -262,6 +266,8 @@
       margin: 0 0 0 -1px;
       z-index: 1000;
 
+      @include rem((padding: 5px 20px 5px 10px, min-width: 200px));
+
       @include media-breakpoint-up(md) {
         background-color: $white;
         border: 1px solid $green;
@@ -270,7 +276,6 @@
 
       }
 
-      @include rem((padding: 5px 20px 5px 10px));
 
       a {
         color: $white;

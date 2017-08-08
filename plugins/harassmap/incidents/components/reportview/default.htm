@@ -14,7 +14,7 @@
         <div class="col-12">
             <h3>
                 {% if report.intervention %}
-                    {{ 'Intervention happened on :date at :time' |
+                    {{ 'Incident with intervention happened on :date at :time' |
                     _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}
                 {% else %}
                     {{ 'Incident happened on :date at :time' |
@@ -50,15 +50,15 @@
                 <p class="pt-1 pb-1">{{ 'Verified' | _ }}</p>
             {% endif %}
 
-            <p class="pt-1 pb-1">
-                {% if report.support == 1 %}
-                    {{ ':support expression of support.'|_({ support: report.support }) }}
-                {% elseif report.support > 1 %}
-                    {{ ':support expressions of support.'|_({ support: report.support }) }}
-                {% else %}
-                    {{ 'No expressions of support.' | _ }}
-                {% endif %}
-            </p>
+            {% if report.support > 0 %}
+                <p class="pt-1 pb-1">
+                    {% if report.support == 1 %}
+                        {{ ':support expression of support.'|_({ support: report.support }) }}
+                    {% else %}
+                        {{ ':support expressions of support.'|_({ support: report.support }) }}
+                    {% endif %}
+                </p>
+            {% endif %}
 
             <a href="#comment" class="btn btn--default mb-2 mt-2">{{ 'Add Comment' | _ }}</a>
 
@@ -117,7 +117,12 @@
 
 {% put meta %}
 <meta property="og:url" content="{{ 'reports/view' | page }}"/>
-<meta property="og:description" content="{{ report.description }}"/>
+
+{% if report.approved %}
+    <meta property="og:description" content="{{ report.description }}"/>
+{% else %}
+    <meta property="og:description" content="{{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ }}"/>
+{% endif %}
 
 {% if report.intervention %}
     <meta property="og:title" content="{{ 'Intervention happened on :date at :time' |

@@ -43,7 +43,7 @@
 }
 
 .btn--large {
-  @include rem((font-size: 20px, margin: 0 0 50px, padding: 18px));
+  @include rem((font-size: 20px, margin: 0 0 30px, padding: 18px));
 }
 
 .btn--red {
@@ -57,14 +57,14 @@
   border: 1px solid $tundora;
   color: $tundora;
 
-  &:hover {
+  &:hover, &.active {
     background-color: $red;
     color: $white;
   }
 }
 
 .btn--hover-green {
-  &:hover {
+  &:hover, &.active {
     background-color: $green;
     color: $white;
   }

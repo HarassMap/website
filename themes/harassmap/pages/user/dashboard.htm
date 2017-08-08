@@ -19,6 +19,13 @@ viewPage = "reports/view"
             </h3>
         </div>
     </div>
-    
+
+    {% flash %}
+    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
+    {% endflash %}
+
     {% component 'harassmapUserReports' %}
 </div>

@@ -23,7 +23,9 @@ id = "report.comments"
         {% component 'harassmapReportComments' %}
     </div>
 
-    <div class="container mb-4">
-        {% component 'harassmapDomainContentBlock' %}
-    </div>
+    {% if user %}
+        <div class="container mb-4">
+            {% component 'harassmapDomainContentBlock' %}
+        </div>
+    {% endif %}
 </div>
