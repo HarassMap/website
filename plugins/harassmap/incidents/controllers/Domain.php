@@ -3,7 +3,6 @@
 namespace Harassmap\Incidents\Controllers;
 
 use Backend\Classes\Controller;
-use BackendAuth;
 use BackendMenu;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Traits\FilterDomain;
@@ -28,10 +27,10 @@ class Domain extends Controller
 
     public function update($recordId, $context = null)
     {
-        $user = BackendAuth::getUser();
+        $user = $this->user;
 
         // if the user has permission then stop here
-        if (!($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains']))) {
+        if (!$this->hasPermission()) {
 
             $domain = DomainModel::find($recordId);
             $id = $domain->id;
@@ -39,17 +38,32 @@ class Domain extends Controller
             $found = false;
 
             foreach ($domains as $domain) {
-                if($domain->id === $id) {
+                if ($domain->id === $id) {
                     $found = true;
                     break;
                 }
             }
 
-            if(!$found) {
+            if (!$found) {
                 throw new AccessDeniedHttpException();
             }
         }
 
         return $this->asExtension('FormController')->update($recordId, $context);
+    }
+
+    public function create($context = null)
+    {
+        // if the user has permission then stop here
+        if (!$this->hasPermission()) {
+            throw new AccessDeniedHttpException();
+        }
+
+        return $this->asExtension('FormController')->create($context);
+    }
+
+    public function hasPermission()
+    {
+        return ($this->user->isSuperUser() || $this->user->hasPermission(['harassmap.incidents.domain.manage_domains']));
     }
 }
