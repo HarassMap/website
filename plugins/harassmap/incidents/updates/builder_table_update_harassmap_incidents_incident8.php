@@ -8,7 +8,7 @@ class BuilderTableUpdateHarassmapIncidentsIncident8 extends Migration
     public function up()
     {
         Schema::table('harassmap_incidents_incident', function ($table) {
-            $table->string('public_id', 50)->change();
+            $table->string('public_id', 20)->change();
             $table->unique('public_id');
         });
     }
