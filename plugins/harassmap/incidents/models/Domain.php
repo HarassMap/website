@@ -70,6 +70,7 @@ class Domain extends Model
         'nameend',
         'tagline',
         'about',
+        'twitter_message',
     ];
 
     public $rules = [
@@ -79,6 +80,7 @@ class Domain extends Model
         'lat' => 'required',
         'lng' => 'required',
         'zoom' => 'required',
+        'twitter_message' => 'max:100'
     ];
 
     public $hasMany = [

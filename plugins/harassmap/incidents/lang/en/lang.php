@@ -79,6 +79,7 @@
         'timezone' => 'Timezone',
         'support' => 'Support',
         'attributable_key' => 'Attributable API Key',
-        'ga_key' => 'Google Analytics Key'
+        'ga_key' => 'Google Analytics Key',
+        'twitter_message' => 'Twitter Message'
     ]
 ];

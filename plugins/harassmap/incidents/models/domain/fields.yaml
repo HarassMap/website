@@ -62,6 +62,11 @@ tabs:
             span: auto
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
+        twitter_message:
+            label: 'harassmap.incidents::lang.form.twitter_message'
+            span: full
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.social'
         facebook_app_id:
             label: 'harassmap.incidents::lang.form.facebook_app_id'
             span: full
