@@ -106,6 +106,10 @@
 
         @include rem((font-size: 16px, padding: 9px 40px 9px 0, letter-spacing: 1px));
 
+        @include media-breakpoint-down(sm) {
+          @include rem((font-size: 12px, padding: 9px 10px 9px 0));
+        }
+
         .icon {
           background: no-repeat center center;
           background-size: 100% 100%;
@@ -113,6 +117,10 @@
           float: left;
 
           @include rem((margin-right: 10px, height: 24px, width: 24px));
+
+          @include media-breakpoint-down(sm) {
+            @include rem((height: 18px, width: 18px));
+          }
         }
       }
 
