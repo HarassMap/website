@@ -7,6 +7,7 @@ use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
 use Harassmap\Incidents\Components\IncidentAccount;
+use Harassmap\Incidents\Components\IncidentResetPassword;
 use Harassmap\Incidents\Components\Report;
 use Harassmap\Incidents\Components\ReportComments;
 use Harassmap\Incidents\Components\ReportCommentsTopic;
@@ -74,6 +75,7 @@ class Plugin extends PluginBase
             Tip::class => 'harassmapTip',
             Tips::class => 'harassmapTips',
             IncidentAccount::class => 'harassmapIncidentAccount',
+            IncidentResetPassword::class => 'harassmapIncidentResetPassword',
             UserReports::class => 'harassmapUserReports',
             ReportView::class => 'harassmapUserReport',
             ExpressSupport::class => 'harassmapExpressSupport',

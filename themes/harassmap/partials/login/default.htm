@@ -8,7 +8,7 @@
 
         <div class="alerts"></div>
 
-        <form data-request="onSignin">
+        <form id="signin" data-request="onSignin">
             <div class="form-group">
                 <label for="userSigninLogin">{{ 'Email' | _ }}</label>
                 <input name="login" type="text" class="form-control" id="userSigninLogin"
@@ -35,10 +35,14 @@
 
 {% put scripts %}
 <script>
+    $('#signin').on('submit', function () {
+        $('.alerts').html('');
+    });
+
     $(window).on('ajaxErrorMessage', function (event, message) {
         event.preventDefault();
 
-        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+        $('.alerts').html('<div class="alert alert-danger" role="alert">{{ 'A user was not found with the given credentials.' | _ }}</div>');
     });
 </script>
 {% endput %}

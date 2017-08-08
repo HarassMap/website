@@ -46,6 +46,11 @@ class IncidentAccount extends Account
         $this->page['loginAttributeLabel'] = $this->loginAttributeLabel();
     }
 
+    public function onSignin()
+    {
+        parent::onSignin();
+    }
+
     public function onIncidentRegister()
     {
 
