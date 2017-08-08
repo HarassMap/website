@@ -45,6 +45,7 @@ class Posts extends Model
         'title' => 'required',
         'intro' => 'required',
         'content' => 'required',
+        'domain' => 'required',
         'slug' => ['required', 'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i', 'unique:harassmap_news_posts']
     ];
 
