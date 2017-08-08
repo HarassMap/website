@@ -2,8 +2,6 @@
     <div class="col-12 col-md-9">
         {% if __SELF__.code == null %}
             {% partial __SELF__ ~ '::restore' %}
-        {% elseif error %}
-            {% partial __SELF__ ~ '::error' %}
         {% else %}
             {% partial __SELF__ ~ '::reset' %}
         {% endif %}

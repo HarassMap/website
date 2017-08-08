@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
+use App;
 use Exception;
 use RainLab\User\Components\ResetPassword;
 use RainLab\User\Models\User;
@@ -14,11 +15,13 @@ class IncidentResetPassword extends ResetPassword
         $code = $this->code();
 
         if ($code) {
-            $user = User::where('reset_password_code', '=', $code)->first();
+            $parts = explode('!', $code);
+
+            $user = User::whereId($parts[0])->first();
 
             // if there is no user then error
-            if (is_null($user)) {
-                $this->page['error'] = true;
+            if (!$user->checkResetPasswordCode($parts[1])) {
+                App::abort(404);
             }
         }
     }
