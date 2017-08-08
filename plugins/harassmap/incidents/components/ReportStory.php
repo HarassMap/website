@@ -37,7 +37,7 @@ class ReportStory extends ComponentBase
     public function onRender()
     {
         $incident = Incident::whereApproved(true)
-            ->orderBy('date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->first();
 
         $this->page['report'] = $incident;
