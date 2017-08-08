@@ -43,6 +43,15 @@ viewPage = "reports/view"
 tablePage = "reports/index"
 ==
 
+{% flash %}
+<div class="container">
+    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
+</div>
+{% endflash %}
+
 <div class="hidden-sm-up">
     {% partial 'site/report' %}
 </div>
