@@ -108,4 +108,12 @@ class Plugin extends PluginBase
             ]
         ];
     }
+
+    public function registerMailTemplates()
+    {
+        return [
+            'harassmap.incidents::mail.admin.report'   => 'Sent to admin when a new report is added',
+            'harassmap.incidents::mail.user.support'   => 'Sent to users when someone has expressed support to them',
+        ];
+    }
 }
