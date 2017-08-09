@@ -14,6 +14,11 @@
             data-stripe-load-indicator>
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
-    <a href="<?= Backend::url('harassmap/incidents/incidents/download') ?>"
-       class="btn btn-default oc-icon-download">Download</a>
+    <form style="display: inline;" action="<?= Backend::url('harassmap/incidents/incidents/download') ?>">
+        <input id="download_checked" type="hidden" name="checked" value="false">
+        <button class="btn btn-default oc-icon-download"
+                onclick="$('#download_checked').val($('.control-list').listWidget('getChecked'))">
+            Download
+        </button>
+    </form>
 </div>

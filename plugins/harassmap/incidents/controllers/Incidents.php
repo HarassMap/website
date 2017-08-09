@@ -28,12 +28,20 @@ class Incidents extends Controller
 
     public function download()
     {
-        $all = Incident::with('location')->with('intervention')->get()->toJson();
+        $checked = get('checked');
 
-        return new Response($all, 200, array(
+        $results = Incident::with('location')->with('intervention');
+
+        if (!empty($checked)) {
+            $results = $results->whereIn('id', explode(',', $checked));
+        }
+
+        $results = $results->get()->toJson();
+
+        return new Response($results, 200, array(
             'Content-type' => 'application/json',
             'Content-Disposition' => 'attachment;filename=incident_data.json',
-            'Content-Length' => strlen($all)
+            'Content-Length' => strlen($results)
         ));
     }
 }
