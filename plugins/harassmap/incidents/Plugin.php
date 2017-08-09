@@ -26,6 +26,7 @@ use Harassmap\Incidents\Console\MigrateCommand;
 use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Support;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
@@ -42,6 +43,7 @@ class Plugin extends PluginBase
 
         UserModel::extend(function ($model) {
             $model->hasMany['incidents'] = Incident::class;
+            $model->hasMany['support'] = Support::class;
             $model->hasOne['api'] = API::class;
         });
 

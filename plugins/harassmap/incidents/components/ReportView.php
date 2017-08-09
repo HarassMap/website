@@ -5,6 +5,7 @@ namespace Harassmap\Incidents\Components;
 use App;
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Support;
 use Redirect;
 
 class ReportView extends ComponentBase
@@ -36,11 +37,14 @@ class ReportView extends ComponentBase
     {
         $id = $this->param('id');
 
+        // increase the support for the incident
         $incident = Incident::wherePublicId($id)->first();
-
         $incident->support++;
-
         $incident->save();
+
+        if ($incident->user_id) {
+            Support::addIncidentSupport($incident);
+        }
 
         return Redirect::to($this->pageUrl('reports/support', ['id' => $id]));
     }
