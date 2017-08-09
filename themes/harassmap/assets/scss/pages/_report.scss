@@ -7,7 +7,7 @@
     overflow: hidden;
   }
 
-  input, select, textarea, .form-check-label {
+  input, select, textarea, .form-check-label, option {
     color: $tundora;
     font-family: $oswald;
     font-weight: $light;
@@ -36,4 +36,11 @@
     background: url('/themes/harassmap/assets/img/icons/time.svg') no-repeat 95% center;
   }
 
+}
+
+.select2-selection__rendered, .select2-results__option {
+  color: $tundora;
+  font-family: $oswald;
+  font-weight: $light;
+  letter-spacing: 1px;
 }
