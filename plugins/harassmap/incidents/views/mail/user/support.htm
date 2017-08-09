@@ -3,6 +3,41 @@ subject = "Someone has expressed their support for you"
 
 Hello {{ name }},
 
+People have been expressing their support for you!
+
+{% for report in reports %}
+    ------
+
+    There are {{ report.count }} new expressions of support for an incident which
+    you reported on {{ report.incident.created_at | date('d M Y') }}
+
+    View the report here: {{ report.link }}
+
+{% endfor %}
+
+------
+
+Please do not reply to this email.
+
 ==
 
 <p>Hello {{ name }},</p>
+
+<p>People have been expressing their support for you!</p>
+
+{% for report in reports %}
+    <hr>
+
+    <p>
+        There are {{ report.count }} new expressions of support for <a href="{{ report.link }}">this incident</a> which
+        you reported on {{ report.incident.created_at | date('d M Y') }}
+    </p>
+
+    <p>{{ report.incident.description | slice(0, 100) }}</p>
+
+    <a href="{{ report.link }}">{{ report.link }}</a>
+{% endfor %}
+
+<hr>
+
+Please do not reply to this email.

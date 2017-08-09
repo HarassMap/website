@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use App;
 use Cms\Classes\ComponentBase;
+use Harassmap\Incidents\Classes\Mailer;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Support;
 use Redirect;
