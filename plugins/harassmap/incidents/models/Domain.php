@@ -80,11 +80,17 @@ class Domain extends Model
     public $rules = [
         'name' => 'required',
         'about' => 'required',
-        'host' => 'required',
+        'host' => 'required|max:50',
         'lat' => 'required',
         'lng' => 'required',
         'zoom' => 'required',
-        'twitter_message' => 'max:100'
+        'twitter_message' => 'max:100',
+        'facebook_app_id' => 'max:32',
+        'facebook' => 'max:100',
+        'twitter' => 'max:100',
+        'instagram' => 'max:100',
+        'youtube' => 'max:100',
+        'blogger' => 'max:100',
     ];
 
     public $hasMany = [

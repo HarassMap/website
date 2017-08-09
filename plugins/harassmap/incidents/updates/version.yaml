@@ -148,3 +148,6 @@
 1.0.51:
     - 'Updated table harassmap_incidents_domain'
     - builder_table_update_harassmap_incidents_domain_9.php
+1.0.52:
+    - 'Updated table harassmap_incidents_domain'
+    - builder_table_update_harassmap_incidents_domain_10.php
