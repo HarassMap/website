@@ -36,7 +36,7 @@ class BaseController extends CmsController
         $results = [
             'query' => [
                 'count' => count($data),
-                'per_page' => $paginate->perPage(),
+                'perPage' => $paginate->perPage(),
                 'total' => $paginate->isEmpty() ? 0 : $paginate->total(),
                 'page' => $paginate->currentPage(),
                 'params' => $params
