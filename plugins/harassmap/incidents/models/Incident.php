@@ -107,26 +107,32 @@ class Incident extends Model
         $reports = self::where('domain_id', $domain->id);
 
         self::filterBounds($reports, [$bounds['south'], $bounds['north']], [$bounds['west'], $bounds['east']]);
+        self::applyFilters($reports, $filters);
 
+        return $reports->with('location')->with('intervention')->get();
+    }
+
+    public static function applyFilters($query, $filters)
+    {
         if (array_key_exists('type', $filters) && !empty($filters['type'])) {
             if ($filters['type'] === 'incident') {
-                $reports->doesntHave('intervention');
+                $query->doesntHave('intervention');
             } else {
-                $reports->has('intervention');
+                $query->has('intervention');
             }
         }
 
         if (array_key_exists('date_from', $filters) && !empty($filters['date_from']) && strtotime($filters['date_from']) !== false) {
             $from = new Carbon($filters['date_from']);
-            $reports->where('date', '>', $from->toDateString());
+            $query->where('date', '>', $from->toDateString());
         }
 
         if (array_key_exists('date_to', $filters) && !empty($filters['date_to']) && strtotime($filters['date_to']) !== false) {
             $to = new Carbon($filters['date_to']);
-            $reports->where('date', '<', $to->toDateString());
+            $query->where('date', '<', $to->toDateString());
         }
 
-        return $reports->with('location')->with('intervention')->get();
+        return $query;
     }
 
     public static function filterBounds($query, $lat, $lng)
@@ -136,5 +142,7 @@ class Incident extends Model
                 ->whereBetween('lat', [floatval($lat[0]), floatval($lat[1])])
                 ->whereBetween('lng', [floatval($lng[0]), floatval($lng[1])]);
         });
+
+        return $query;
     }
 }

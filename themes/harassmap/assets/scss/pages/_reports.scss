@@ -1,0 +1,17 @@
+@import '../variables';
+@import "rem";
+
+.report-table {
+
+  .table-filter {
+    background-color: $light-gray;
+    border: 1px solid $alto;
+
+    @include rem((padding: 10px));
+  }
+
+  .table {
+    border-bottom: 1px solid $alto;
+  }
+
+}

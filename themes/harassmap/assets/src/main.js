@@ -32,6 +32,11 @@ window.initReportIncidentPage = () => {
     $('#timezone').select2({width: '100%'});
 };
 
+window.initReportTablePage = () => {
+    createDatePicker('date_from');
+    createDatePicker('date_to');
+};
+
 $('.row-link').each((index, element) => {
     let href = element.dataset.href;
 

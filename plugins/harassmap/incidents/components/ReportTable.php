@@ -41,4 +41,14 @@ class ReportTable extends ComponentBase
         $this->page['viewPage'] = $this->property('viewPage');
     }
 
+    public function onFilter()
+    {
+        $data = post();
+
+        $reports = Incident::applyFilters(Incident::orderBy('date', 'desc'), $data);
+
+        $this->page['reports'] = $reports->paginate(10);
+        $this->page['viewPage'] = $this->property('viewPage');
+    }
+
 }
