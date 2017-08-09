@@ -37,14 +37,14 @@ class BaseController extends CmsController
             'query' => [
                 'count' => count($data),
                 'per_page' => $paginate->perPage(),
-                'total' => $paginate->total(),
+                'total' => $paginate->isEmpty() ? 0 : $paginate->total(),
                 'page' => $paginate->currentPage(),
                 'params' => $params
             ],
             'data' => $data
         ];
 
-        if($paginate->hasMorePages()) {
+        if ($paginate->hasMorePages()) {
             $results['query']['next_page'] = $paginate->nextPageUrl();
         }
 
@@ -52,7 +52,8 @@ class BaseController extends CmsController
         return response()->json($results);
     }
 
-    public static function error($message) {
+    public static function error($message)
+    {
         return response()->json([
             'code' => '404',
             'message' => $message
