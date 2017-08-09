@@ -52,6 +52,15 @@
 
                 <pre>{{ route('incidents', {'page' : 2, 'perPage' : 100}) }}</pre>
             </div>
+            <div class="card-block">
+                <h4>{{ 'Pretty Print' | _ }}</h4>
+
+                <p class="card-text">
+                    {{ 'You can format the JSON response so it easier to read byt passing the pretty parameter' | _ }}
+                </p>
+
+                <pre>{{ route('incidents', {'pretty' : true}) }}</pre>
+            </div>
         </div>
 
         <h4 class="mt-4">{{ 'Incidents' | _ }}</h4>
