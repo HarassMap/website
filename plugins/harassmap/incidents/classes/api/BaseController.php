@@ -21,6 +21,13 @@ class BaseController extends CmsController
         // get the per page with maximum value of 100
         $perPage = min(get('perPage', 10), 100);
 
+        $options = null;
+
+        // if the user wants a pretty response
+        if (get('pretty', false)) {
+            $options = JSON_PRETTY_PRINT;
+        }
+
         // get the paginated results
         $paginate = $query->paginate($perPage);
 
@@ -31,6 +38,7 @@ class BaseController extends CmsController
         unset($params['page']);
         unset($params['perPage']);
         unset($params['key']);
+        unset($params['pretty']);
 
         // build up the results
         $results = [
@@ -44,7 +52,7 @@ class BaseController extends CmsController
             'data' => $data
         ];
 
-        return response()->json($results);
+        return response()->json($results, 200, array(), $options);
     }
 
     public static function error($message)
