@@ -53,7 +53,8 @@ class Content extends Model
     public $translatable = ['content'];
 
     public $rules = [
-        'content' => 'required'
+        'content_id' => 'required|max:50',
+        'content' => 'required',
     ];
 
     public $belongsTo = [
