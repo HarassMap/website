@@ -154,3 +154,6 @@
 1.0.53:
     - 'Updated table harassmap_incidents_content'
     - builder_table_update_harassmap_incidents_content.php
+1.0.54:
+    - 'Updated table harassmap_incidents_role'
+    - builder_table_update_harassmap_incidents_role.php

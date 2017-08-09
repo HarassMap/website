@@ -25,7 +25,7 @@ class Role extends Model
     public $timestamps = false;
 
     public $rules = [
-        'name' => 'required'
+        'name' => 'required|max:100'
     ];
 
     public $hasMany = [
