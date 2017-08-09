@@ -10,9 +10,6 @@ class IncidentsController extends BaseController
 
     public function index(Request $request)
     {
-        // get the per page with maximum value of 100
-        $perPage = min(get('perPage', 10), 100);
-
         // get the base incident list
         $incidents = Incident
             ::orderBy('date', 'desc')
@@ -20,12 +17,7 @@ class IncidentsController extends BaseController
 
         $this->filterBounds($incidents);
 
-        // get the paginated results
-        $results = $incidents
-            ->paginate($perPage)
-            ->all();
-
-        return response()->json($results);
+        return $this->apiResponse($incidents);
     }
 
     protected function filterBounds($query)
