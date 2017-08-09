@@ -36,7 +36,9 @@ class Incidents extends Controller
             $results = $results->whereIn('id', explode(',', $checked));
         }
 
-        $results = $results->get()->toJson();
+        $results = $results->get()
+            ->withHidden(['id', 'domain_id', 'role_id', 'user_id', 'is_intervention', 'created_at', 'updated_at'])
+            ->toJson();
 
         return new Response($results, 200, array(
             'Content-type' => 'application/json',
