@@ -44,11 +44,6 @@ class BaseController extends CmsController
             'data' => $data
         ];
 
-        if ($paginate->hasMorePages()) {
-            $results['query']['next_page'] = $paginate->nextPageUrl();
-        }
-
-
         return response()->json($results);
     }
 
