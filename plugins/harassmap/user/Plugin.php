@@ -43,6 +43,13 @@ class Plugin extends PluginBase
             }
 
             $widget->removeColumn('forum_member_username');
+
+            $widget->addColumns([
+                'username' => [
+                    'label'      => 'rainlab.user::lang.user.username',
+                    'searchable' => true
+                ]
+            ]);
         });
 
     }
