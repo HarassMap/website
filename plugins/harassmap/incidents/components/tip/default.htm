@@ -4,9 +4,10 @@
         <span class="hr__text">{{ 'Weekly Tip' | _ }}</span>
     </h3>
 
-    <p>{{ tip }}</p>
+    <p>{{ tip.tip }}</p>
 
-    <a href="{{ listPage | page }}" class="btn btn--default">
-        {{ 'Browse Tips' | _ }}
+
+    <a href="{{ tip.link ? tip.link : listPage | page }}" class="btn btn--default">
+        {{ tip.read_more ? tip.read_more : 'Browse Tips' | _ }}
     </a>
 </div>

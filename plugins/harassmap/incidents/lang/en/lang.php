@@ -85,5 +85,6 @@
         'twitter_message' => 'Twitter Message',
         'read_more_label' => 'Label',
         'read_more_link' => 'Link',
+        'read_more_help' => 'You can leave this blank for "Browse Tips" and link to tip page.',
     ]
 ];

@@ -32,7 +32,11 @@ class Tip extends Model
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
-    public $translatable = ['tip'];
+    public $translatable = [
+        'tip',
+        'read_more',
+        'link',
+    ];
 
     public $rules = [
         'tip' => 'required',

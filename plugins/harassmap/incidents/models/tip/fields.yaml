@@ -16,13 +16,13 @@ tabs:
             label: 'harassmap.incidents::lang.form.read_more_label'
             span: full
             type: text
+            commentAbove: 'harassmap.incidents::lang.form.read_more_help'
             tab: 'harassmap.incidents::lang.form.tab.read_more'
         link:
             label: 'harassmap.incidents::lang.form.read_more_link'
             span: full
             type: text
             tab: 'harassmap.incidents::lang.form.tab.read_more'
-
 secondaryTabs:
     fields:
         featured_from:

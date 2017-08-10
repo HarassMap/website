@@ -56,7 +56,7 @@ class Tip extends ComponentBase
 
         // if we have found the content block then
         if ($found) {
-            $this->page['tip'] = $found->tip;
+            $this->page['tip'] = $found;
         }
 
         $this->page['listPage'] = $this->property('listPage');
