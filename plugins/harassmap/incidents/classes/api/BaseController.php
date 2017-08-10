@@ -19,7 +19,7 @@ class BaseController extends CmsController
     protected function apiResponse(Builder $query)
     {
         // get the per page with maximum value of 100
-        $perPage = min(get('perPage', 10), 100);
+        $perPage = min(get('perPage', 100), 100);
 
         $options = null;
 
