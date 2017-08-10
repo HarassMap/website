@@ -23,6 +23,7 @@ use Harassmap\Incidents\Components\Tips;
 use Harassmap\Incidents\Components\UserAPI;
 use Harassmap\Incidents\Components\UserReports;
 use Harassmap\Incidents\Console\MigrateCommand;
+use Harassmap\Incidents\FormWidgets\RelationLink;
 use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
@@ -126,5 +127,12 @@ class Plugin extends PluginBase
         $schedule->call(function () {
             Mailer::sendSupportMail();
         })->dailyAt('20:00');
+    }
+
+    public function registerFormWidgets()
+    {
+        return [
+            RelationLink::class => 'relation_link'
+        ];
     }
 }

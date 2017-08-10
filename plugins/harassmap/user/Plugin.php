@@ -41,6 +41,33 @@ class Plugin extends PluginBase
 
         });
 
+        UsersController::extendFormFields(function ($widget, $model, $context) {
+
+            if (!$widget->model instanceof \RainLab\User\Models\User) {
+                return;
+            }
+
+            if ($context != 'preview') {
+                return;
+            }
+
+            $widget->addFields([
+                'username' => [
+                    'label' => 'Username',
+                    'tab' => 'rainlab.user::lang.user.account',
+                ],
+            ], 'primary');
+
+            $widget->addFields([
+                'incidents' => [
+                    'label' => 'Incidents',
+                    'type' => 'relation_link',
+                    'tab' => 'Reports',
+                ],
+            ], 'primary');
+
+        });
+
         UsersController::extendListColumns(function ($widget, $model) {
             if (!$model instanceof \RainLab\User\Models\User) {
                 return;
