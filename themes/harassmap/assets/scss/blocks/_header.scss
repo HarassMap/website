@@ -11,6 +11,10 @@
     .user-menu {
       float: right;
 
+      .dropdown-menu li {
+        font-family: $oswald;
+      }
+
       .underline:hover {
         text-decoration: underline;
       }
