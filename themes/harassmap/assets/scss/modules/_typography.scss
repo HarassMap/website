@@ -39,6 +39,10 @@ p {
   .static-content & {
     @include rem((padding: 15px 0));
   }
+
+  &.small {
+    @include rem((padding: 5px 0));
+  }
 }
 
 pre {
