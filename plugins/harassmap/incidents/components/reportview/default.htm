@@ -60,10 +60,13 @@
                 </p>
             {% endif %}
 
-            <form data-request="onExpressSupport">
-                <button class="btn btn--default mb-2 mt-2"
-                ">{{ 'Express Support' | _ }}</button>
-            </form>
+            {% if user.id != report.user.id %}
+                <form data-request="onExpressSupport">
+                    <button class="btn btn--default mb-2 mt-2">
+                        {{ 'Express Support' | _ }}
+                    </button>
+                </form>
+            {% endif %}
 
             <a href="#comment" class="btn btn--default">{{ 'Add Comment' | _ }}</a>
 
@@ -125,9 +128,11 @@
 <meta property="og:image:height" content="630"/>
 
 {% if report.approved %}
-    <meta property="og:description" content="{{ 'Incident happened on :date at :time' | _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }} - {{ report.description }}"/>
+    <meta property="og:description"
+          content="{{ 'Incident happened on :date at :time' | _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }} - {{ report.description }}"/>
 {% else %}
-    <meta property="og:description" content="{{ 'Incident happened on :date at :time' | _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
+    <meta property="og:description"
+          content="{{ 'Incident happened on :date at :time' | _({ date : report.date | date('d/m/Y', domain.timezone), time : report.date | date('g:iA', domain.timezone) }) }}"/>
 {% endif %}
 
 {% if report.intervention %}
@@ -136,6 +141,6 @@
     <meta property="og:title" content="{{ 'SEXUAL HARASSMENT REPORTED' }}"/>
 {% endif %}
 
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary_large_image"/>
 
 {% endput %}
