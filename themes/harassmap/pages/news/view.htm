@@ -2,13 +2,12 @@ title = "News Posts"
 url = "/news/:slug"
 layout = "default"
 is_hidden = 0
-robot_index = "index"
-robot_follow = "follow"
 
 [viewBag]
 localeUrl[ar] = "/news/:slug"
 
 [harassmapNewsPost]
+listPage = "news/index"
 ==
 <div class="container">
     {% component 'harassmapNewsPost' %}
