@@ -94,13 +94,23 @@ const initItJustHappenedHere = () => {
             geocoder.geocode({location: location}, (results, status) => {
                 if (status === 'OK' && !_.isEmpty(results)) {
                     let result = results[0],
-                        address = result.formatted_address,
-                        parts = _.split(address, ','),
-                        chunks = _.chunk(parts, Math.ceil(parts.length / 2));
+                        addressTypes = ['street_number', 'route'],
+                        cityTypes = ['locality', 'administrative_area_level_1', 'country'],
+                        address = [],
+                        city = [];
+
+                    // build the address from the address components
+                    _.forEach(result.address_components, (component) => {
+                        if (_.some(addressTypes, (value) => _.indexOf(component.types, value) !== -1)) {
+                            address.push(component.long_name);
+                        } else if (_.some(cityTypes, (value) => _.indexOf(component.types, value) !== -1)) {
+                            city.push(component.long_name);
+                        }
+                    });
 
                     // set the values for the address and trigger the change
-                    $('#address').val(_.join(chunks[0], ', ')).trigger('change');
-                    $('#city').val(_.join(chunks[1], ', ')).trigger('change');
+                    $('#address').val(_.join(address, ', ')).trigger('change');
+                    $('#city').val(_.join(city, ', ')).trigger('change');
 
 
                 } else {
