@@ -3,3 +3,6 @@
 1.0.2:
     - 'Created table harassmap_news_posts'
     - builder_table_create_harassmap_news_posts.php
+1.0.3:
+    - 'Updated table harassmap_news_posts'
+    - builder_table_update_harassmap_news_posts.php

@@ -29,6 +29,7 @@
         'slug' => 'Slug',
         'domain' => 'Domain',
         'image' => 'Image',
+        'hide_image' => 'Only show image on home page?',
         'published' => 'Published',
     ],
 ];

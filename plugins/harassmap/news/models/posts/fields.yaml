@@ -35,6 +35,9 @@ secondaryTabs:
             label: 'harassmap.news::lang.form.image'
             mode: file
             type: fileupload
+        hide_image:
+            label: 'harassmap.news::lang.form.hide_image'
+            type: checkbox
 
         published_at:
             label: 'harassmap.news::lang.form.published'
