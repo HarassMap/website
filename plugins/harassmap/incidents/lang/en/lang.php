@@ -33,6 +33,8 @@
             'location' => 'Location',
             'categories' => 'Categories',
             'analytics' => 'Analytics',
+            'tip' => 'Tip',
+            'read_more' => 'Read More Button',
         ],
         'title' => 'Title',
         'description' => 'Description',
@@ -80,6 +82,8 @@
         'support' => 'Support',
         'attributable_key' => 'Attributable API Key',
         'ga_key' => 'Google Analytics Key',
-        'twitter_message' => 'Twitter Message'
+        'twitter_message' => 'Twitter Message',
+        'read_more_label' => 'Label',
+        'read_more_link' => 'Link',
     ]
 ];

@@ -35,7 +35,9 @@ class Tip extends Model
     public $translatable = ['tip'];
 
     public $rules = [
-        'tip' => 'required'
+        'tip' => 'required',
+        'read_more' => 'max:50',
+        'link' => 'max:100',
     ];
 
     public $belongsTo = [
