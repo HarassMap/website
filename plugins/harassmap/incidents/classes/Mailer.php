@@ -51,7 +51,7 @@ class Mailer
                 $incident = $item->incident;
 
                 $reports[] = [
-                    'link' => Page::url('reports/view', ['id' => $incident->public_id]),
+                    'link' => $item->link,
                     'incident' => $incident,
                     'count' => $item->count,
                     'since' => $item->created_at

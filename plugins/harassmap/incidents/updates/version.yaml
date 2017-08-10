@@ -160,3 +160,6 @@
 1.0.55:
     - 'Created table harassmap_incidents_support'
     - builder_table_create_harassmap_incidents_support.php
+1.0.56:
+    - 'Updated table harassmap_incidents_support'
+    - builder_table_update_harassmap_incidents_support.php
