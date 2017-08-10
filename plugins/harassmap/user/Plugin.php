@@ -28,6 +28,10 @@ class Plugin extends PluginBase
                 return;
             }
 
+            $widget->removeField('forum_member[username]');
+            $widget->removeField('forum_member[is_moderator]');
+            $widget->removeField('forum_member[is_banned]');
+
             $widget->addFields([
                 'username' => [
                     'label' => 'Username',
