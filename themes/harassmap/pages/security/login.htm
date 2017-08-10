@@ -12,7 +12,14 @@ localeUrl[ar] = "/login"
 redirect = "user/dashboard"
 paramCode = "code"
 forceSecure = 0
+
+[harassmapDomainContentBlock]
+id = "login"
 ==
 <div class="container">
     {% component 'login' %}
+</div>
+
+<div class="container mt-4">
+    {% component 'harassmapDomainContentBlock' %}
 </div>

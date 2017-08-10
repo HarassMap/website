@@ -33,6 +33,8 @@ class Content extends Model
     public $table = 'harassmap_incidents_content';
 
     const CONTENT_IDS = [
+        'login' => 'Login',
+        'register' => 'Register',
         'homepage.basics' => 'Homepage (Learn)',
         'homepage.share' => 'Homepage (Share)',
         'homepage.active' => 'Homepage (Active)',

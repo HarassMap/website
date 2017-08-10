@@ -12,7 +12,14 @@ localeUrl[ar] = "/register/:code?"
 redirect = "security/activate"
 paramCode = "code"
 forceSecure = 0
+
+[harassmapDomainContentBlock]
+id = "register"
 ==
 <div class="container">
     {% component 'register' %}
+</div>
+
+<div class="container mt-4">
+    {% component 'harassmapDomainContentBlock' %}
 </div>
