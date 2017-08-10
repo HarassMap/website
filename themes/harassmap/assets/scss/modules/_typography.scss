@@ -41,7 +41,9 @@ p {
   }
 
   &.small {
-    @include rem((padding: 5px 0));
+    font-weight: $normal;
+
+    @include rem((font-size: 12px, padding: 5px 0));
   }
 }
 
