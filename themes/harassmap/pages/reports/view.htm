@@ -25,7 +25,11 @@ id = "report.comments"
 
     {% if user %}
         <div class="container mb-4">
-            {% component 'harassmapDomainContentBlock' %}
+            <div class="row">
+                <div class="col-12">
+                    {% component 'harassmapDomainContentBlock' %}
+                </div>
+            </div>
         </div>
     {% endif %}
 </div>
