@@ -16,23 +16,17 @@
 
         {{ form_ajax('onUpdate', { model: user }) }}
 
-        <input style="display:none" type="text" name="fakeusernameremembered">
-        <input style="display:none" type="text" name="fakeuemailremembered">
-        <input style="display:none" type="password" name="fakepasswordremembered">
-
         <div class="row">
             <div class="col-12 col-sm-6">
                 <div class="form-group">
-                    <label for="firstName">{{ 'First Name' | _ }}</label>
-                    <input required name="name" type="text" class="form-control" id="firstName"
-                           value="{{ form_value('name') }}" placeholder="{{ 'Enter your first name' | _ }}"/>
+                    {{ form_label('name', 'First Name' | _) }}
+                    {{ form_text('name', user.name, {'class' : 'form-control', 'autocomplete' : 'off', 'required' : true}) }}
                 </div>
             </div>
             <div class="col-12 col-sm-6">
                 <div class="form-group">
-                    <label for="lastName">{{ 'Last Name' | _ }}</label>
-                    <input required name="surname" type="text" class="form-control" id="lastName"
-                           value="{{ form_value('surname') }}" placeholder="{{ 'Enter your last name' | _ }}"/>
+                    {{ form_label('surname', 'Last Name' | _) }}
+                    {{ form_text('surname', user.surname, {'class' : 'form-control', 'autocomplete' : 'off', 'required': true}) }}
                 </div>
             </div>
         </div>
@@ -40,9 +34,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="username">{{ 'Username' | _ }}</label>
-                    <input id="username" name="username" type="text" value="{{ form_value('username') }}"
-                           class="form-control"/>
+                    {{ form_label('username', 'Username' | _) }}
+                    {{ form_text('username', user.username, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
                     <p class="small">{{ 'Your username is visible to other users on the site.' | _ }}</p>
                 </div>
             </div>
@@ -51,9 +44,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="registerEmail">{{ 'Email' | _ }}</label>
-                    <input name="email" type="email" class="form-control" id="registerEmail"
-                           value="{{ form_value('email') }}" placeholder="{{ 'Enter your email' | _ }}"/>
+                    {{ form_label('email', 'Email' | _) }}
+                    {{ form_email('email', user.email, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
                 </div>
             </div>
         </div>
