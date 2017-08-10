@@ -1,11 +1,25 @@
 <div class="container">
-    <div class="row mb-4">
+    <div class="row">
         <div class="col-12">
+            <div class="float-right">
+                <a class="btn share share--facebook share--icon" id="facebook-share" href="#">
+                    <span class="sr-only">
+                        {{ 'Facebook' | _ }}
+                    </span>
+                </a>
+                <a class="btn share share--twitter share--icon" id="twitter-share"
+                   href="https://twitter.com/share?url={{ 'reports/view' | page }}&text={{ domain.twitter_message }}">
+                    <span class="sr-only">
+                        {{ 'Twitter' | _ }}
+                    </span>
+                </a>
+            </div>
+
             <h3 class="hr">
                 <span class="hr__line"></span>
                 <span class="hr__text">
                     {{ 'Report' | _ }}
-            </span>
+                </span>
             </h3>
         </div>
     </div>
@@ -116,6 +130,8 @@
         moreLink: '<a href="#" class="btn">{{ 'Read More' | _ }}</a>',
         lessLink: '<a href="#" class="btn">{{ 'Close' | _ }}</a>'
     });
+
+    initShareButtons("{{ 'reports/view' | page }}");
 </script>
 {% endput %}
 

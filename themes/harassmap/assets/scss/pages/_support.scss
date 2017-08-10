@@ -35,20 +35,4 @@
     @include rem((font-size: 13px));
   }
 
-  .share {
-    background-size: auto 100%;
-    background-position: center left;
-    background-repeat: no-repeat;
-
-    @include rem((padding: 8px 20px 8px 60px));
-  }
-
-  .share--facebook {
-    background-image: url('/themes/harassmap/assets/img/support/facebook.svg');
-  }
-
-  .share--twitter {
-    background-image: url('/themes/harassmap/assets/img/support/twitter.svg');
-  }
-
 }

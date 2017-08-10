@@ -81,6 +81,7 @@ ul {
   font-weight: $light;
   text-transform: uppercase;
   position: relative;
+  z-index: -1;
 
   @include rem((font-size: 20px, margin: 15px 0 35px));
 

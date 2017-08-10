@@ -65,48 +65,6 @@
 
 {% put scripts %}
 <script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '{{ domain.facebook_app_id }}',
-            autoLogAppEvents: true,
-            xfbml: true,
-            version: 'v2.9'
-        });
-        FB.AppEvents.logPageView();
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<script>
-    var shareUrl = '{{ 'reports/view' | page }}';
-
-    $('#twitter-share').on('click', function (event) {
-        event.preventDefault();
-
-        window.open(this.href, 'popup', 'width=600,height=255');
-    });
-
-    $('#facebook-share').on('click', function (event) {
-        event.preventDefault();
-
-        // make sure we have the global FB variable
-        if (window.FB) {
-            FB.ui({
-                method: 'share',
-                href: shareUrl
-            }, function (response) {
-
-            });
-        }
-    });
+    initShareButtons("{{ 'reports/view' | page }}");
 </script>
 {% endput %}
