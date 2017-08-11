@@ -1,4 +1,8 @@
 scopes:
+    intervention:
+        label: Intervention?
+        type: switch
+        scope: intervention
     date:
         label: Incident Date
         type: daterange

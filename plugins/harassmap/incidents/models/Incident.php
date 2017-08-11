@@ -96,6 +96,17 @@ class Incident extends Model
         Mailer::incidentCreated($this);
     }
 
+    public function scopeIntervention($query, $status)
+    {
+        // if status is 1 then we remove interventions
+        // otherwise its only interventions
+        if($status === "1") {
+            $query->doesntHave('intervention');
+        } else {
+            $query->has('intervention');
+        }
+    }
+
     /**
      * @param $bounds
      * @return \Illuminate\Database\Eloquent\Collection|static[]
