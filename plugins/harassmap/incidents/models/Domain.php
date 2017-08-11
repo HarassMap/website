@@ -79,7 +79,7 @@ class Domain extends Model
         'twitter_message',
     ];
 
-    protected $jsonable = ['form_data'];
+    protected $jsonable = ['colours'];
 
     public $rules = [
         'name' => 'required',
@@ -113,6 +113,8 @@ class Domain extends Model
         'headerLogo' => 'System\Models\File',
         'footerLogo' => 'System\Models\File'
     ];
+
+    public $colourTypes = ['header', 'font_color'];
 
     /**
      *
@@ -148,5 +150,18 @@ class Domain extends Model
 
         // make the values the keys
         return array_combine($zones, $zones);
+    }
+
+    public function beforeSave()
+    {
+        $colours = [];
+
+        foreach ($this->colourTypes as $colour) {
+            $value = $this->{'colours_' . $colour};
+            $colours[$colour] = $value;
+            unset($this->{'colours_' . $colour});
+        }
+
+        $this->colours = $colours;
     }
 }

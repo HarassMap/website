@@ -39,4 +39,30 @@ class Domain extends Controller
 
         return $this->asExtension('FormController')->create($context);
     }
+
+    public function formExtendFields($form)
+    {
+        $model = $form->model;
+        $colours = $model->colours ? $model->colours : [];
+
+        foreach ($model->colourTypes as $colour) {
+            $name = 'colours_' . $colour;
+            $label = implode(' ', array_map('ucfirst', explode('_', $colour)));
+
+            // setting the value for this fake field
+            $default = '';
+            if (array_key_exists($colour, $colours)) {
+                $default = $colours[$colour];
+            }
+            $model->{$name} = $default;
+
+            $form->addTabFields([
+                $name => [
+                    'label' => $label,
+                    'type' => 'colorpicker',
+                    'tab' => 'Colours'
+                ]
+            ]);
+        }
+    }
 }
