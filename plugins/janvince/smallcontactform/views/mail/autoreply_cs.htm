@@ -1,0 +1,71 @@
+subject = "Potvrzení doručení zprávy z kontaktního formuláře"
+==
+
+Dobrý den,
+
+posíláme potvrzení přijetí vaší zprávy odeslané z kontaktního formuláře.
+
+{% if fields|length %}
+Vyplnil/a jste toto:
+
+<table border="0">
+
+	<tbody>
+
+		{% for key,value in fields %}
+
+			<tr>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key }}</th>
+				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+
+</table>
+
+{% endif %}
+
+
+S pozdravem,
+
+Kontaktní formulář
+
+
+==
+
+<p>Dobrý den,</p>
+
+<p>posíláme potvrzení přijetí vaší zprávy odeslané z kontaktního formuláře.</p>
+
+{% if fields|length %}
+
+<br>
+
+<p>Vyplnil/a jste toto:</p>
+
+<table border="0">
+
+	<tbody>
+
+		{% for key,value in fields %}
+
+			<tr>
+				<th style="vertical-align: top; text-align: left; padding-right: 10px;">{{ key }}</th>
+				<td style="text-align: left;">{{ value|raw|nl2br }}</td>
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+
+</table>
+
+{% endif %}
+
+<br>
+
+<p>S pozdravem,<br>
+
+Kontaktní formulář</p>
