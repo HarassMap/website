@@ -114,7 +114,10 @@ class Domain extends Model
         'footerLogo' => 'System\Models\File'
     ];
 
-    public $colourTypes = ['header', 'font_color'];
+    public $colourTypes = [
+        'header' => 'background-color',
+        'font_color' => 'color'
+    ];
 
     /**
      *
@@ -156,9 +159,12 @@ class Domain extends Model
     {
         $colours = [];
 
-        foreach ($this->colourTypes as $colour) {
+        foreach ($this->colourTypes as $colour => $property) {
             $value = $this->{'colours_' . $colour};
-            $colours[$colour] = $value;
+            $colours[$colour] = [
+                'value' => $value,
+                'property' => $property
+            ];
             unset($this->{'colours_' . $colour});
         }
 

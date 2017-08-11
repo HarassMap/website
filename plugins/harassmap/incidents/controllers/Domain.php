@@ -45,14 +45,14 @@ class Domain extends Controller
         $model = $form->model;
         $colours = $model->colours ? $model->colours : [];
 
-        foreach ($model->colourTypes as $colour) {
+        foreach ($model->colourTypes as $colour => $property) {
             $name = 'colours_' . $colour;
             $label = implode(' ', array_map('ucfirst', explode('_', $colour)));
 
             // setting the value for this fake field
             $default = '';
             if (array_key_exists($colour, $colours)) {
-                $default = $colours[$colour];
+                $default = $colours[$colour]['value'];
             }
             $model->{$name} = $default;
 
