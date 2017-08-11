@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Contact;
 
 use Event;
+use Harassmap\Contact\Classes\Mailer;
 use Harassmap\Incidents\Models\Domain;
 use Janvince\SmallContactform\Controllers\Messages;
 use JanVince\SmallContactForm\Models\Message;
@@ -17,6 +18,11 @@ class Plugin extends PluginBase
                 $domain = Domain::getBestMatchingDomain();
 
                 $model->domain_id = $domain->id;
+            });
+
+            // after a message has been created send an email to domain admins
+            $model->bindEvent('model.afterCreate', function () use ($model) {
+                Mailer::sendContactEmail($model);
             });
         });
 
