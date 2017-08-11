@@ -101,12 +101,12 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label'       => 'HarassMap Settings',
+                'label' => 'HarassMap Settings',
                 'description' => '',
-                'category'    => SettingsManager::CATEGORY_MISC,
-                'icon'        => 'icon-cog',
-                'class'       => 'Harassmap\Incidents\Models\Settings',
-                'order'       => 500,
+                'category' => SettingsManager::CATEGORY_MISC,
+                'icon' => 'icon-cog',
+                'class' => 'Harassmap\Incidents\Models\Settings',
+                'order' => 500,
                 'permissions' => ['harassmap.incidents.access_settings']
             ]
         ];
@@ -116,8 +116,8 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            'harassmap.incidents::mail.admin.report'   => 'Sent to admin when a new report is added',
-            'harassmap.incidents::mail.user.support'   => 'Sent to users when someone has expressed support to them',
+            'harassmap.incidents::mail.admin.report' => 'Sent to admin when a new report is added',
+            'harassmap.incidents::mail.user.support' => 'Sent to users when someone has expressed support to them',
         ];
     }
 

@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.contact::lang.plugin.name'
+    description: 'harassmap.contact::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-envelope-o
+    homepage: ''
