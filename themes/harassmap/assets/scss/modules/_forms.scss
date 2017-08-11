@@ -1,6 +1,20 @@
 @import '../variables';
 @import "rem";
 
+input, select, textarea, .form-check-label, option {
+  color: $tundora;
+  font-family: $oswald;
+  font-weight: $light;
+  letter-spacing: 1px;
+}
+
+.select2-selection__rendered, .select2-results__option {
+  color: $tundora;
+  font-family: $oswald;
+  font-weight: $light;
+  letter-spacing: 1px;
+}
+
 .form-group {
 
   .form-check-label {
