@@ -7,58 +7,61 @@
 
   @include rem((padding: 30px 0 40px, margin: 20px 0 0));
 
-  a {
-    color: $dusty-gray;
-    text-decoration: underline;
+  .footer-contact {
+    border-top: 1px solid $green;
+    color: $white;
 
-    &:hover {
-      color: $dusty-gray;
+    @include rem((padding: 40px 0 0));
+
+    .contact__link {
+      color: #fff;
+
+      &:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+
+    .footer-nav {
+      display: inline;
+      list-style: none;
+
+      font-family: $merriweather;
+
+      @include rem((font-size: 14px, padding-left: 10px));
+
+      li {
+        display: inline;
+
+        @include rem((margin-left: 20px));
+
+        a {
+          color: $dusty-gray;
+          text-decoration: underline;
+
+          &:hover {
+            color: $dusty-gray;
+          }
+        }
+      }
     }
   }
-}
 
-.footer-contact {
-  border-top: 1px solid $green;
-  color: $white;
+  .social-links {
+    @include media-breakpoint-up(md) {
+      float: right;
 
-  @include rem((padding: 40px 0 0));
-}
-
-.footer-nav {
-  display: inline;
-  list-style: none;
-
-  font-family: $merriweather;
-
-  @include rem((font-size: 14px, padding-left: 10px));
-
-  li {
-    display: inline;
-
-    @include rem((margin-left: 20px));
-
-    a {
-      text-decoration: underline;
-
-      color: $dusty-gray;
+      .ar & {
+        float: left;
+      }
     }
   }
-}
 
-.social-links {
-  @include media-breakpoint-up(md) {
-    float: right;
+  .social {
+    display: inline-block;
+    height: 31px;
+    width: 31px;
 
-    .ar & {
-      float: left;
-    }
+    @include rem((margin-left: 10px));
   }
-}
-
-.social {
-  display: inline-block;
-  height: 31px;
-  width: 31px;
-
-  @include rem((margin-left: 10px));
 }
