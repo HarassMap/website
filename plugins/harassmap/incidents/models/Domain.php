@@ -115,8 +115,7 @@ class Domain extends Model
     ];
 
     public $colourTypes = [
-        'header' => 'background-color',
-        'font_color' => 'color'
+        'header' => 'background-color'
     ];
 
     /**
