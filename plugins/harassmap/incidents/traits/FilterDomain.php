@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Traits;
 
 use BackendAuth;
+use Harassmap\Incidents\Models\Domain;
 
 trait FilterDomain
 {
@@ -24,15 +25,46 @@ trait FilterDomain
 
         $domains = $user->domains;
 
-        // if the user has no domains then show nothing
         if ($domains->isEmpty()) {
-            $query->limit(0);
+            $query->where('id', '=', -1);
         }
 
         foreach ($domains as $domain) {
             $query->orWhere($this->domain_id, '=', $domain->id);
         }
 
+    }
+
+    public function update($recordId, $context = null)
+    {
+        $user = $this->user;
+
+        // if the user has permission then stop here
+        if (!$this->hasPermission()) {
+
+            $domain = $this->findDomain($recordId);
+            $id = $domain->id;
+            $domains = $user->domains;
+            $found = false;
+
+            foreach ($domains as $domain) {
+                if ($domain->id === $id) {
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                throw new AccessDeniedHttpException();
+            }
+        }
+
+        return $this->asExtension('FormController')->update($recordId, $context);
+    }
+
+    protected function hasPermission()
+    {
+        return ($this->user->isSuperUser() || $this->user->hasPermission(['harassmap.incidents.domain.manage_domains']));
     }
 
 }

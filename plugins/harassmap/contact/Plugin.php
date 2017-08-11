@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Contact;
 
+use BackendAuth;
 use Event;
 use Harassmap\Contact\Classes\Mailer;
 use Harassmap\Incidents\Models\Domain;
@@ -37,12 +38,29 @@ class Plugin extends PluginBase
             ]);
         });
 
-        Event::listen('backend.list.extendQuery', function ($query) {
+        Event::listen('backend.list.extendQuery', function ($widget, $query) {
 
-            if (!$query->getController() instanceof Messages) {
+            if (!$widget->getController() instanceof Messages) {
                 return;
             }
 
+            $user = BackendAuth::getUser();
+
+            // if the user is a super use then stop here
+            if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains'])) {
+                return;
+            }
+
+            $domains = $user->domains;
+
+            // if the user has no domains then show nothing
+            if ($domains->isEmpty()) {
+                $query->where('id', '=', -1);
+            }
+
+            foreach ($domains as $domain) {
+                $query->orWhere('domain_id', '=', $domain->id);
+            }
 
         });
     }

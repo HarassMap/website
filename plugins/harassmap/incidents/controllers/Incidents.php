@@ -27,6 +27,13 @@ class Incidents extends Controller
         BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents', 'harassmap.incidents.incidents');
     }
 
+    protected function findDomain($id)
+    {
+        $incident = Incident::find($id);
+
+        return $incident->domain;
+    }
+
     public function download()
     {
         $checked = get('checked');

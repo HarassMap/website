@@ -25,31 +25,9 @@ class Domain extends Controller
 
     protected $domain_id = 'id';
 
-    public function update($recordId, $context = null)
+    protected function findDomain($id)
     {
-        $user = $this->user;
-
-        // if the user has permission then stop here
-        if (!$this->hasPermission()) {
-
-            $domain = DomainModel::find($recordId);
-            $id = $domain->id;
-            $domains = $user->domains;
-            $found = false;
-
-            foreach ($domains as $domain) {
-                if ($domain->id === $id) {
-                    $found = true;
-                    break;
-                }
-            }
-
-            if (!$found) {
-                throw new AccessDeniedHttpException();
-            }
-        }
-
-        return $this->asExtension('FormController')->update($recordId, $context);
+        return DomainModel::find($id);
     }
 
     public function create($context = null)
@@ -60,10 +38,5 @@ class Domain extends Controller
         }
 
         return $this->asExtension('FormController')->create($context);
-    }
-
-    public function hasPermission()
-    {
-        return ($this->user->isSuperUser() || $this->user->hasPermission(['harassmap.incidents.domain.manage_domains']));
     }
 }
