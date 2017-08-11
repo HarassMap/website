@@ -7,36 +7,35 @@ use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
 
 /**
- * Model
+ * Harassmap\Incidents\Models\Incident
  *
  * @property int $id
  * @property string $public_id
  * @property string $description
  * @property string $date
- * @property int $user_id
- * @property int $location_id
+ * @property int|null $user_id
  * @property int $domain_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  * @property int $role_id
- * @property bool $verified
+ * @property int $verified
  * @property int $support
- * @property bool $is_intervention
- * @property bool $approved
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereDomainId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereLocationId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident wherePublicId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereRoleId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereSupport($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereVerified($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereIsIntervention($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Incident whereApproved($value)
+ * @property int $is_intervention
+ * @property int $approved
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident intervention($status)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereApproved($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereDomainId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereIsIntervention($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident wherePublicId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereRoleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereSupport($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereVerified($value)
  * @mixin \Eloquent
  */
 class Incident extends Model

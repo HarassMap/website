@@ -3,7 +3,6 @@
 namespace Harassmap\Incidents\Classes;
 
 use Backend;
-use Cms\Classes\Page;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Support;
 use Mail;
@@ -47,26 +46,29 @@ class Mailer
             $user = User::whereId($user_id)->first();
             $reports = [];
 
-            foreach ($items as $item) {
-                $incident = $item->incident;
+            // only notify the user if they have notifications enabled
+            if ($user->notification_incident) {
+                foreach ($items as $item) {
+                    $incident = $item->incident;
 
-                $reports[] = [
-                    'link' => $item->link,
-                    'incident' => $incident,
-                    'count' => $item->count,
-                    'since' => $item->created_at
+                    $reports[] = [
+                        'link' => $item->link,
+                        'incident' => $incident,
+                        'count' => $item->count,
+                        'since' => $item->created_at
+                    ];
+
+                }
+
+                $data = [
+                    'name' => $user->name,
+                    'reports' => $reports
                 ];
 
+                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
+                    $message->to($user->email, $user->full_name);
+                });
             }
-
-            $data = [
-                'name' => $user->name,
-                'reports' => $reports
-            ];
-
-            Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
-                $message->to($user->email, $user->full_name);
-            });
         }
 
         // delete all the supports

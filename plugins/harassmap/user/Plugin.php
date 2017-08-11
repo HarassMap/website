@@ -14,7 +14,7 @@ class Plugin extends PluginBase
             $model->rules['surname'] = 'required';
 
             $model->addFillable([
-                'terms', 'marketing'
+                'terms', 'marketing', 'notification_incident'
             ]);
         });
 

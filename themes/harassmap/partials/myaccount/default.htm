@@ -17,6 +17,20 @@
         {{ form_ajax('onUpdate', { model: user }) }}
 
         <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            {{ form_hidden('notification_incident', 0) }}
+                            {{ form_checkbox('notification_incident', true, user.notification_incident, {'class' : 'form-check-input'}) }}
+                            {{ 'Notify me of updates to incidents I\'ve reported' | _ }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     {{ form_label('name', 'First Name' | _) }}

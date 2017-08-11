@@ -7,20 +7,24 @@ use Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
- * Tip
+ * Harassmap\Incidents\Models\Tip
  *
  * @property int $id
  * @property string $tip
  * @property string $featured_from
  * @property int $domain_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Tip whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Tip whereDomainId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Tip whereFeaturedFrom($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Tip whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Tip whereTip($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Tip whereUpdatedAt($value)
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $read_more
+ * @property string|null $link
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereDomainId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereFeaturedFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereReadMore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereTip($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Tip whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Tip extends Model

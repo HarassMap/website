@@ -11,6 +11,7 @@ class UpdateFrontendUser extends Migration
         {
             $table->boolean('terms')->default(0);
             $table->boolean('marketing')->default(0);
+            $table->boolean('notification_incident')->default(1);
         });
     }
     
@@ -20,6 +21,7 @@ class UpdateFrontendUser extends Migration
         {
             $table->dropColumn('terms');
             $table->dropColumn('marketing');
+            $table->dropColumn('notification_incident');
         });
     }
 }

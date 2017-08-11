@@ -1,19 +1,21 @@
-<?php namespace Harassmap\Incidents\Models;
+<?php
+
+namespace Harassmap\Incidents\Models;
 
 use Model;
 use \October\Rain\Database\Traits\Validation;
 
 /**
- * Model
+ * Harassmap\Incidents\Models\Assistance
  *
  * @property int $id
  * @property string $title
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Assistance whereUpdatedAt($value)
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Assistance extends Model

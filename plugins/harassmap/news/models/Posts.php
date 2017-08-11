@@ -30,6 +30,8 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $hide_image
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereHideImage($value)
  */
 class Posts extends Model
 {
