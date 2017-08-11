@@ -5,6 +5,7 @@ use BackendMenu;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Traits\FilterDomain;
 use Illuminate\Http\Response;
+use League\Csv\Writer;
 
 class Incidents extends Controller
 {
@@ -30,20 +31,71 @@ class Incidents extends Controller
     {
         $checked = get('checked');
 
-        $results = Incident::with('location')->with('intervention');
+        $results = Incident::with('location')
+            ->with('intervention')
+            ->with('categories')
+            ->with('intervention.assistance');
 
         if (!empty($checked)) {
             $results = $results->whereIn('id', explode(',', $checked));
         }
 
-        $results = $results->get()
-            ->withHidden(['id', 'domain_id', 'role_id', 'user_id', 'is_intervention', 'created_at', 'updated_at'])
-            ->toJson();
+        $result = $this->createCsv($results->get());
 
-        return new Response($results, 200, array(
-            'Content-type' => 'application/json',
-            'Content-Disposition' => 'attachment;filename=incident_data.json',
-            'Content-Length' => strlen($results)
+        return new Response($result, 200, array(
+            'Content-type' => 'text/csv',
+            'Content-Disposition' => 'attachment;filename=incident_data.csv',
+            'Content-Length' => strlen($result)
         ));
+    }
+
+    protected function createCsv($collection)
+    {
+        $header = [
+            'id',
+            'public_id',
+            'domain',
+            'description',
+            'date',
+            'address',
+            'city',
+            'position',
+            'role',
+            'categories',
+            'intervention',
+            'reported'
+        ];
+
+        $writer = Writer::createFromFileObject(new \SplTempFileObject());
+        $writer->setOutputBOM(Writer::BOM_UTF8);
+        $writer->insertOne($header);
+
+        foreach ($collection as $item) {
+
+            $categories = $item->categories->map(function ($category) {
+                return $category->title;
+            })->implode(', ');
+
+            $intervention = $item->intervention->assistance->map(function($assistance) {
+                return $assistance->title;
+            })->implode(', ');
+
+            $writer->insertOne([
+                'id' => $item->id,
+                'public_id' => $item->public_id,
+                'domain' => $item->domain->host,
+                'description' => $item->description,
+                'date' => $item->date,
+                'address' => $item->location->address,
+                'city' => $item->location->city,
+                'position' => $item->location->lat . ',' . $item->location->lng,
+                'role' => $item->role->name,
+                'categories' => $categories,
+                'intervention' => $intervention,
+                'date_reported' => $item->created_at,
+            ]);
+        }
+
+        return (string)$writer;
     }
 }
