@@ -76,9 +76,13 @@ class Incidents extends Controller
                 return $category->title;
             })->implode(', ');
 
-            $intervention = $item->intervention->assistance->map(function($assistance) {
-                return $assistance->title;
-            })->implode(', ');
+            if ($item->intervention) {
+                $intervention = $item->intervention->assistance->map(function ($assistance) {
+                    return $assistance->title;
+                })->implode(', ');
+            } else {
+                $intervention = '';
+            }
 
             $writer->insertOne([
                 'id' => $item->id,
