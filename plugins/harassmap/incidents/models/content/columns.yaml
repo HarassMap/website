@@ -1,11 +1,25 @@
 columns:
     domain:
         label: 'harassmap.incidents::lang.form.domain'
-        relation: domain
         select: host
+        relation: domain
+        width: '250px'
     content_id:
         label: 'harassmap.incidents::lang.form.content_id'
         type: text
+        sortable: false
     content:
         label: 'harassmap.incidents::lang.form.content'
         type: text
+        searchable: true
+        invisible: true
+    updated_at:
+        label: 'harassmap.incidents::lang.form.updated_at'
+        type: datetime
+        sortable: true
+        width: '200px'
+    created_at:
+        label: 'harassmap.incidents::lang.form.created_at'
+        type: datetime
+        sortable: true
+        width: '200px'

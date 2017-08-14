@@ -70,6 +70,8 @@
         'lng' => 'Longitude',
         'zoom' => 'Zoom',
         'iso' => 'ISO Code',
+        'updated_at' => 'Updated',
+        'created_at' => 'Created',
         'date' => 'Date',
         'date_report' => 'Date Of Incident',
         'date_reported' => 'Date Reported',
