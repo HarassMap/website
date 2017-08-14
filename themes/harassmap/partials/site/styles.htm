@@ -2,4 +2,13 @@
       rel="stylesheet">
 <link href="{{ 'assets/css/styles.css'|theme }}" rel="stylesheet">
 {% styles %}
-<style>{% for name,colour in domain.colours %} .domain--{{ name }} { {{ colour.property }}: {{ colour.value }}!important;}{% endfor %}</style>
+
+<style>
+    {% for name,colour in domain.colours %}
+
+    {{ colour.selector }} {
+    {{ colour.property }}: {{ colour.value }} !important;
+    }
+
+    {% endfor %}
+</style>

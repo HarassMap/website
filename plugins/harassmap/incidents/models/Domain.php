@@ -115,7 +115,18 @@ class Domain extends Model
     ];
 
     public $colourTypes = [
-        'header' => 'background-color'
+        'header' => [
+            'selector' => '.domain--header',
+            'property' => 'background-color'
+        ],
+        'fontColorDark' => [
+            'selector' => 'p',
+            'property' => 'color'
+        ],
+        'fontColorLight' => [
+            'selector' => '.bg--dark p',
+            'property' => 'color'
+        ]
     ];
 
     /**
@@ -158,15 +169,21 @@ class Domain extends Model
     {
         $colours = [];
 
-        foreach ($this->colourTypes as $colour => $property) {
+        foreach ($this->colourTypes as $colour => $options) {
             $value = $this->{'colours_' . $colour};
-            $colours[$colour] = [
-                'value' => $value,
-                'property' => $property
-            ];
+
+            $options['value'] = $value;
+            $colours[$colour] = $options;
+
             unset($this->{'colours_' . $colour});
         }
 
         $this->colours = $colours;
+
+        // reset all the colours
+        if ($this->resetColours === "1") {
+            unset($this->resetColours);
+            $this->colours = [];
+        }
     }
 }

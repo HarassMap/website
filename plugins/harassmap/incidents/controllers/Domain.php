@@ -64,5 +64,13 @@ class Domain extends Controller
                 ]
             ]);
         }
+
+        $form->addTabFields([
+            'resetColours' => [
+                'label' => 'Reset All Colours?',
+                'type' => 'checkbox',
+                'tab' => 'Colours'
+            ]
+        ]);
     }
 }
