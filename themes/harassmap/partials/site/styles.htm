@@ -4,11 +4,13 @@
 {% styles %}
 
 <style>
-    {% for name,colour in domain.colours %}
+    {% for colour in domain.colours %}
 
-    {{ colour.selector }} {
-    {{ colour.property }}: {{ colour.value }} !important;
+    {% for selector,property in colour.selector %}
+    {{ selector }} {
+    {{ property }}: {{ colour.value }} !important;
     }
+    {% endfor %}
 
     {% endfor %}
 </style>
