@@ -2,7 +2,6 @@
 @import "rem";
 
 h2 {
-  color: $white;
   text-transform: uppercase;
   font-family: $oswald;
   font-weight: $light;
@@ -11,6 +10,10 @@ h2 {
 
   .static-content & {
     color: $black;
+  }
+
+  .bg--dark & {
+    color: $white;
   }
 }
 

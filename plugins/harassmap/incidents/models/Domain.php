@@ -119,12 +119,20 @@ class Domain extends Model
             'selector' => '.domain--header',
             'property' => 'background-color'
         ],
-        'fontColorDark' => [
+        'header_text' => [
+            'selector' => '.domain--header a',
+            'property' => 'color'
+        ],
+        'font_color_dark' => [
             'selector' => 'p',
             'property' => 'color'
         ],
-        'fontColorLight' => [
-            'selector' => '.bg--dark p',
+        'font_color_light' => [
+            'selector' => '.bg--dark p, .bg--dark h2',
+            'property' => 'color'
+        ],
+        'green_text' => [
+            'selector' => 'h4',
             'property' => 'color'
         ]
     ];
@@ -182,8 +190,9 @@ class Domain extends Model
 
         // reset all the colours
         if ($this->resetColours === "1") {
-            unset($this->resetColours);
             $this->colours = [];
         }
+
+        unset($this->resetColours);
     }
 }
