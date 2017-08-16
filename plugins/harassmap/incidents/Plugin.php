@@ -82,8 +82,6 @@ class Plugin extends PluginBase
             UserReports::class => 'harassmapUserReports',
             ReportView::class => 'harassmapUserReport',
             ExpressSupport::class => 'harassmapExpressSupport',
-            ReportComments::class => 'harassmapReportComments',
-            ReportCommentsTopic::class => 'harassmapReportCommentsTopic',
             ReportMap::class => 'harassmapReportMap',
             Report::class => 'harassmapReport',
             ReportTable::class => 'harassmapReportTable',
