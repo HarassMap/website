@@ -84,6 +84,14 @@
   @include rem((padding: 8px 0, width: 35px));
 }
 
+.share__conatiner {
+  float: right;
+
+  .ar & {
+    float: left;
+  }
+}
+
 .share {
   background-size: auto 100%;
   background-position: center left;
