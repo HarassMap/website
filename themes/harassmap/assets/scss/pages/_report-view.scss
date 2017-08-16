@@ -3,6 +3,21 @@
 
 .report-view {
 
+  .location {
+    .ar & {
+      float: right;
+
+      @include rem((padding: 0 0 0 10px));
+    }
+  }
+  .latlng {
+    .location {
+      .ar & {
+        float: right;
+      }
+    }
+  }
+
   .categories {
     overflow: hidden;
 
