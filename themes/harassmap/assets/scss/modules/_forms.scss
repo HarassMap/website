@@ -20,9 +20,22 @@ input, select, textarea, .form-check-label, option {
   .form-check-label {
     @include rem((font-size: 16px));
 
+    .ar & {
+      @include rem((padding: 0 20px 0 0));
+    }
+
     .form-check-input {
+
+      .ar & {
+        @include rem((margin-left: 0, margin-right: -20px));
+      }
+
       @include media-breakpoint-down(sm) {
         @include rem((margin-right: 10px));
+
+        .ar & {
+          @include rem((margin-right: 0, margin-left: 10px));
+        }
       }
     }
   }

@@ -23,10 +23,18 @@
 
   #date {
     background: url('/themes/harassmap/assets/img/icons/date.svg') no-repeat 95% center;
+
+    .ar & {
+      background-position: 5% center;
+    }
   }
 
   #time {
     background: url('/themes/harassmap/assets/img/icons/time.svg') no-repeat 95% center;
+
+    .ar & {
+      background-position: 5% center;
+    }
   }
 
 }
