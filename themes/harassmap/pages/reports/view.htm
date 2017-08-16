@@ -10,9 +10,14 @@ localeUrl[ar] = "/reports/:id"
 
 [harassmapDomainContentBlock]
 id = "report.comments"
+
+[harassmapCommentsTopic]
+id = "{{ id }}"
 ==
 <div class="report-view">
     {% component 'harassmapUserReport' %}
+    
+    {% component 'harassmapCommentsTopic' %}
 
     {% if user %}
         <div class="container mb-4">

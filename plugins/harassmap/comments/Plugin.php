@@ -1,8 +1,9 @@
 <?php namespace Harassmap\Comments;
 
+use Harassmap\Comments\Components\Topic;
 use Harassmap\Comments\Models\Comment;
-use System\Classes\PluginBase;
 use RainLab\User\Models\User;
+use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
@@ -11,5 +12,12 @@ class Plugin extends PluginBase
         User::extend(function ($model) {
             $model->hasMany['comments'] = Comment::class;
         });
+    }
+
+    public function registerComponents()
+    {
+        return [
+            Topic::class => 'harassmapCommentsTopic',
+        ];
     }
 }
