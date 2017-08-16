@@ -58,6 +58,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-12 p-0 pb-4 hidden-sm-up">
+            <div class="map map--report" data-map="report"
+                 data-lat="{{ form_value('lat') ? form_value('lat') : domain.lat }}"
+                 data-lng="{{ form_value('lng') ? form_value('lng') : domain.lng }}"
+                 data-lat-input="lat" data-lng-input="lng"></div>
+        </div>
+
         <div class="col-12 col-lg-6">
             <div class="row">
                 <div class="col-12 col-sm-6">
@@ -94,7 +102,7 @@
     </div>
 </div>
 
-<div class="map map--report" data-map="report"
+<div class="map map--report hidden-xs-down" data-map="report"
      data-lat="{{ form_value('lat') ? form_value('lat') : domain.lat }}"
      data-lng="{{ form_value('lng') ? form_value('lng') : domain.lng }}"
      data-lat-input="lat" data-lng-input="lng"></div>
