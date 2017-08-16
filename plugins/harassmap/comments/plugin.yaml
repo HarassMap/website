@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.comments::lang.plugin.name'
+    description: 'harassmap.comments::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-comment-o
+    homepage: ''

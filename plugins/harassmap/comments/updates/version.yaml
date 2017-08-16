@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table harassmap_comments_topic'
+    - builder_table_create_harassmap_comments_topic.php
+1.0.3:
+    - 'Created table harassmap_comments_comments'
+    - builder_table_create_harassmap_comments_comments.php
