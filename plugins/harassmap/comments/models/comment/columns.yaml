@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: id
+        type: number
+    user:
+        label: User
+        relation: user
+        select: 'concat(name, '' '', surname)'
+    content:
+        label: content
+        type: text
+    flags:
+        label: flags
+        type: number
+    approved:
+        label: approved
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    edited_at:
+        label: edited_at
+        type: text

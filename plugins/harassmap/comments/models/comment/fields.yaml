@@ -1,0 +1,10 @@
+fields:
+    content:
+        label: Content
+        span: full
+        type: textarea
+    approved:
+        label: Approved?
+        span: full
+        type: checkbox
+        comment: Approving a comment will remove the ability to flag the comment to moderators.

@@ -1,0 +1,10 @@
+name: Comments
+form: $/harassmap/comments/models/comment/fields.yaml
+modelClass: Harassmap\Comments\Models\Comment
+defaultRedirect: harassmap/comments/comments
+create:
+    redirect: 'harassmap/comments/comments/update/:id'
+    redirectClose: harassmap/comments/comments
+update:
+    redirect: harassmap/comments/comments
+    redirectClose: harassmap/comments/comments

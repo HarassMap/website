@@ -4,3 +4,8 @@ plugin:
     author: Harassmap
     icon: oc-icon-comment-o
     homepage: ''
+navigation:
+    harassmap.comments.menu:
+        label: 'harassmap.comments::lang.plugin.name'
+        url: harassmap/comments/comments
+        icon: icon-comments-o
