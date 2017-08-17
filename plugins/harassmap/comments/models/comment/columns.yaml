@@ -9,6 +9,7 @@ columns:
     content:
         label: content
         type: text
+        searchable: true
     flags:
         label: flags
         type: number
