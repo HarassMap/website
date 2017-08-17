@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Incidents\Models;
 
 use Carbon\Carbon;
+use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Classes\Mailer;
 use Model;
 use October\Rain\Database\Traits\Validation;
@@ -68,6 +69,10 @@ class Incident extends Model
     public $hasOne = [
         'location' => [Location::class, 'delete' => true],
         'intervention' => [Intervention::class, 'delete' => true],
+    ];
+
+    public $hasMany = [
+        'comments' => [Comment::class, 'delete' => true]
     ];
 
     public $belongsToMany = [

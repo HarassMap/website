@@ -11,7 +11,7 @@ class BuilderTableCreateHarassmapCommentsComments extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
-            $table->string('topic_id', 20);
+            $table->integer('topic_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('content');
             $table->timestamp('created_at')->nullable();

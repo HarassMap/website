@@ -2,10 +2,9 @@
 
 namespace Harassmap\Comments\Components;
 
-use ApplicationException;
 use Cms\Classes\ComponentBase;
-use Harassmap\Incidents\Models\Content;
-use Harassmap\Incidents\Models\Domain;
+use Exception;
+use Harassmap\Comments\Models\Topic as TopicModel;
 
 class Topic extends ComponentBase
 {
@@ -27,6 +26,24 @@ class Topic extends ComponentBase
                 'type' => 'string'
             ],
         ];
+    }
+
+    public function onRender()
+    {
+        $id = $this->property('id');
+
+        if (!$id) {
+            throw new Exception('No id specified for the comments topic component');
+        }
+
+        $topic = TopicModel::whereCode($id)->first();
+
+        // if there is no topic then create it
+        if (!$topic) {
+            $topic = TopicModel::createWithCode($id);
+        }
+
+        $this->page['topic'] = $topic;
     }
 
 }

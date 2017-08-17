@@ -2,13 +2,16 @@
 
 namespace Harassmap\Comments\Models;
 
+use Harassmap\Incidents\Models\Incident;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
  * Harassmap\Comments\Models\Topic
  *
- * @property string $id
+ * @property int $id
+ * @property string $code
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Topic whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Topic whereId($value)
  * @mixin \Eloquent
  */
@@ -22,4 +25,25 @@ class Topic extends Model
 
     public $rules = [
     ];
+
+    public $hasMany = [
+        'comments' => Comment::class
+    ];
+
+    public $belongsTo = [
+        'incident' => Incident::class
+    ];
+
+    /**
+     * @param $code
+     * @return Topic
+     */
+    public static function createWithCode($code)
+    {
+        $topic = new self();
+        $topic->code = $code;
+        $topic->save();
+
+        return $topic;
+    }
 }

@@ -12,12 +12,14 @@ localeUrl[ar] = "/reports/:id"
 id = "report.comments"
 
 [harassmapCommentsTopic]
-id = "{{ id }}"
+id = "{{ :id }}"
 ==
 <div class="report-view">
     {% component 'harassmapUserReport' %}
-    
-    {% component 'harassmapCommentsTopic' %}
+
+    <div class="container mb-4">
+        {% component 'harassmapCommentsTopic' %}
+    </div>
 
     {% if user %}
         <div class="container mb-4">

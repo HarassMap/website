@@ -10,8 +10,10 @@ class BuilderTableCreateHarassmapCommentsTopic extends Migration
         Schema::create('harassmap_comments_topic', function($table)
         {
             $table->engine = 'InnoDB';
-            $table->string('id', 20);
-            $table->primary(['id']);
+            $table->increments('id')->unsigned();
+            $table->string('code', 20);
+
+            $table->foreign('code')->references('public_id')->on('harassmap_incidents_incident');
         });
     }
     
