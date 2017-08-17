@@ -1,0 +1,5 @@
+{% partial __SELF__ ~ "::posts" %}
+
+{% if user %}
+    {% partial __SELF__ ~ "::postform" %}
+{% endif %}

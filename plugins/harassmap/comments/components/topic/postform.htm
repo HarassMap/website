@@ -1,0 +1,13 @@
+<div class="comment-form mt-4">
+
+    {{ form_open({'data-request': 'onComment', 'data-request-update': "'" ~ __SELF__ ~ "::comments': '#commentsContainer'"}) }}
+
+    <div class="post-area">
+        {{ form_textarea('content', '', {class: 'form-control', required: true}) }}
+
+        <button class="btn btn--default mt-2">{{ 'Comment' | _ }}</button>
+    </div>
+
+    {{ form_close() }}
+
+</div>

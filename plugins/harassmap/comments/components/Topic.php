@@ -4,10 +4,17 @@ namespace Harassmap\Comments\Components;
 
 use Cms\Classes\ComponentBase;
 use Exception;
+use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic as TopicModel;
+use RainLab\User\Facades\Auth;
 
 class Topic extends ComponentBase
 {
+
+    /**
+     * @var TopicModel
+     */
+    public $topic;
 
     public function componentDetails()
     {
@@ -28,7 +35,7 @@ class Topic extends ComponentBase
         ];
     }
 
-    public function onRender()
+    public function init()
     {
         $id = $this->property('id');
 
@@ -43,7 +50,25 @@ class Topic extends ComponentBase
             $topic = TopicModel::createWithCode($id);
         }
 
-        $this->page['topic'] = $topic;
+        // expose the topic
+        $this->topic = $topic;
+    }
+
+    public function onComment()
+    {
+        // get the user that is commenting
+        $user = Auth::getUser();
+        $content = post('content');
+
+        $comment = new Comment();
+        $comment->content = $content;
+        $comment->topic_id = $this->topic->id;
+        $comment->user_id = $user->id;
+        $comment->validate();
+
+        $comment->save();
+
+        $this->page['user'] = $user;
     }
 
 }
