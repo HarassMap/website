@@ -15,14 +15,18 @@ use RainLab\User\Models\User;
  * @property int $topic_id
  * @property int $user_id
  * @property string $content
+ * @property int $flags
+ * @property int $approved
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $edited_at
  * @property \Carbon\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereApproved($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereEditedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereFlags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUpdatedAt($value)
@@ -51,7 +55,7 @@ class Comment extends Model
     {
         $user = Auth::getUser();
 
-        if ($user->id === $this->user_id) {
+        if ($user && $user->id === $this->user_id) {
             return true;
         }
 

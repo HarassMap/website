@@ -53,6 +53,12 @@
       }
     }
 
+    .flag {
+      text-decoration: underline;
+
+      @include rem((font-size: 14px));
+    }
+
   }
 
   .tick {

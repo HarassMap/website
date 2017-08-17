@@ -121,6 +121,14 @@ class Topic extends ComponentBase
         $this->page['comment'] = $comment;
     }
 
+    public function onFlag()
+    {
+        $comment = Comment::find(post('comment'));
+
+        $comment->flags++;
+        $comment->save();
+    }
+
     /**
      * @return Comment
      * @throws ApplicationException

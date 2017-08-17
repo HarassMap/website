@@ -18,13 +18,17 @@ id = "{{ :id }}"
     {% component 'harassmapUserReport' %}
 
     <div class="container mb-4">
-        {% component 'harassmapCommentsTopic' %}
+        <div class="row">
+            <div class="col-12 col-md-8">
+                {% component 'harassmapCommentsTopic' %}
+            </div>
+        </div>
     </div>
 
     {% if user %}
         <div class="container mb-4">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-8">
                     {% component 'harassmapDomainContentBlock' %}
                 </div>
             </div>

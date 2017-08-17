@@ -4,6 +4,16 @@
             <div class="comment__meta">
                 <strong>{{ comment.user.username }}</strong>
 
+                {% if comment.canEdit == false and comment.approved == false %}
+                    <a href="#"
+                       class="flag float-right"
+                       data-request="onFlag"
+                       data-request-confirm="{{ 'Are you sure you want to flag this comment to a moderator?' | _ }}"
+                       data-request-data="comment: {{ comment.id }}">
+                        {{ 'Flag for moderator' | _ }}
+                    </a>
+                {% endif %}
+
                 <span class="timestamp">
                     <a href="#comment-{{ comment.id }}">
                         <time title="{{ comment.created_at.toDayDateTimeString }}"
@@ -59,13 +69,14 @@
                 <div class="comment__actions">
                     {% if comment.canEdit %}
                         <a href="#"
-                           class="edit btn btn--default"
+                           class="btn btn--default"
                            data-request="onEdit"
                            data-request-data="comment: {{ comment.id }}"
                            data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
                             {{ 'Edit' | _ }}
                         </a>
                     {% endif %}
+
                 </div>
             {% endif %}
         </div>
