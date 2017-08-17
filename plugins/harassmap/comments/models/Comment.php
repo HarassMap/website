@@ -3,8 +3,9 @@
 namespace Harassmap\Comments\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
 use October\Rain\Database\Traits\SoftDelete;
+use October\Rain\Database\Traits\Validation;
+use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
 
 /**
@@ -43,4 +44,15 @@ class Comment extends Model
         'user' => User::class,
         'topic' => Topic::class
     ];
+
+    public function canEdit()
+    {
+        $user = Auth::getUser();
+
+        if ($user->id === $this->user_id) {
+            return true;
+        }
+
+        return false;
+    }
 }

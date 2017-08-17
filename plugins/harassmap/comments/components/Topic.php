@@ -2,6 +2,7 @@
 
 namespace Harassmap\Comments\Components;
 
+use ApplicationException;
 use Cms\Classes\ComponentBase;
 use Exception;
 use Harassmap\Comments\Models\Comment;
@@ -57,6 +58,7 @@ class Topic extends ComponentBase
     public function onRender()
     {
         $this->page['user'] = Auth::getUser();
+        $this->page['mode'] = 'view';
         $this->page['comments'] = Comment
             ::orderBy('created_at', 'asc')
             ->where('topic_id', '=', $this->topic->id)
@@ -78,6 +80,56 @@ class Topic extends ComponentBase
         $comment->save();
 
         $this->onRender();
+    }
+
+    public function onEdit()
+    {
+        $comment = $this->getComment();
+
+        $this->page['mode'] = 'edit';
+        $this->page['comment'] = $comment;
+    }
+
+    public function onUpdate()
+    {
+        $comment = $this->getComment();
+
+        $comment->content = post('content');
+        $comment->save();
+
+        $this->page['mode'] = 'view';
+        $this->page['comment'] = $comment;
+    }
+
+    public function onCancel()
+    {
+        $comment = $this->getComment();
+
+        $this->page['mode'] = 'view';
+        $this->page['comment'] = $comment;
+    }
+
+    public function onDelete()
+    {
+        $comment = $this->getComment();
+
+        $comment->delete();
+
+        $this->page['mode'] = 'delete';
+        $this->page['comment'] = $comment;
+    }
+
+    protected function getComment()
+    {
+        $data = post();
+
+        $comment = Comment::find($data['comment']);
+
+        if (!$comment || !$comment->canEdit()) {
+            throw new ApplicationException('Permission denied.');
+        }
+
+        return $comment;
     }
 
 }

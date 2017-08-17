@@ -41,7 +41,7 @@
 
   .comments {
 
-    .text {
+    .comment__content {
       p {
         @include rem((padding: 10px 0));
       }
