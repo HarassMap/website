@@ -3,6 +3,7 @@
 namespace Harassmap\Comments\Components;
 
 use ApplicationException;
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Exception;
 use Harassmap\Comments\Models\Comment;
@@ -95,6 +96,7 @@ class Topic extends ComponentBase
         $comment = $this->getComment();
 
         $comment->content = post('content');
+        $comment->edited_at = new Carbon();
         $comment->save();
 
         $this->page['mode'] = 'view';
@@ -119,6 +121,10 @@ class Topic extends ComponentBase
         $this->page['comment'] = $comment;
     }
 
+    /**
+     * @return Comment
+     * @throws ApplicationException
+     */
     protected function getComment()
     {
         $data = post();

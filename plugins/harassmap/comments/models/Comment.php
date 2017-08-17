@@ -12,15 +12,17 @@ use RainLab\User\Models\User;
  * Harassmap\Comments\Models\Comment
  *
  * @property int $id
- * @property string $topic_id
+ * @property int $topic_id
  * @property int $user_id
  * @property string $content
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $edited_at
  * @property \Carbon\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereEditedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUpdatedAt($value)
@@ -34,7 +36,7 @@ class Comment extends Model
 
     public $table = 'harassmap_comments_comments';
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['edited_at', 'deleted_at'];
 
     public $rules = [
         'content' => 'required|max:1000'

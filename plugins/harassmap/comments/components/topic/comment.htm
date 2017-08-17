@@ -5,13 +5,19 @@
                 <strong>{{ comment.user.username }}</strong>
 
                 <span class="timestamp">
-                <a href="#comment-{{ comment.id }}">
-                    <time title="{{ comment.created_at.toDayDateTimeString }}"
-                          datetime="{{ comment.created_at | date('c') }}">
-                        {{ comment.created_at.diffForHumans }}
-                    </time>
-                </a>
-            </span>
+                    <a href="#comment-{{ comment.id }}">
+                        <time title="{{ comment.created_at.toDayDateTimeString }}"
+                              datetime="{{ comment.created_at | date('c') }}">
+                            {{ comment.created_at.diffForHumans }}
+                        </time>
+                    </a>
+                    {% if comment.edited_at %}
+                        <time title="{{ comment.edited_at.toDayDateTimeString }}"
+                              datetime="{{ comment.edited_at | date('c') }}">
+                            ({{ 'Edited :ago' | _({ago: comment.edited_at.diffForHumans}) }})
+                        </time>
+                    {% endif %}
+                </span>
             </div>
             {% if mode == 'edit' %}
                 {{ form_open() }}
