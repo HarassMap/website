@@ -54,6 +54,15 @@ class Topic extends ComponentBase
         $this->topic = $topic;
     }
 
+    public function onRender()
+    {
+        $this->page['user'] = Auth::getUser();
+        $this->page['comments'] = Comment
+            ::orderBy('created_at', 'asc')
+            ->where('topic_id', '=', $this->topic->id)
+            ->paginate(10);
+    }
+
     public function onComment()
     {
         // get the user that is commenting
@@ -68,7 +77,7 @@ class Topic extends ComponentBase
 
         $comment->save();
 
-        $this->page['user'] = $user;
+        $this->onRender();
     }
 
 }

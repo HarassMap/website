@@ -1,0 +1,21 @@
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="comment__meta">
+            <strong>{{ comment.user.username }}</strong>
+
+            <span class="timestamp">
+                <a href="#comment-{{ comment.id }}">
+                    <time title="{{ comment.created_at.toDayDateTimeString }}"
+                          datetime="{{ comment.created_at | date('c') }}">
+                        {{ comment.created_at.diffForHumans }}
+                    </time>
+                </a>
+            </span>
+        </div>
+        <div class="comment__content text">
+            <p>
+                {{ comment.content | nl2br }}
+            </p>
+        </div>
+    </div>
+</div>

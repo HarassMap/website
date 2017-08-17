@@ -1,0 +1,9 @@
+{% for comment in comments %}
+    <div class="comment" data-comment-id="{{ comment.id }}" id="comment-{{ comment.id }}">
+        {% partial __SELF__ ~ "::comment" comment=comment %}
+    </div>
+{% endfor %}
+
+<div class="pagination">
+    {{ comments | raw }}
+</div>
