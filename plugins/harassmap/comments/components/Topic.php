@@ -96,6 +96,7 @@ class Topic extends ComponentBase
         $comment = $this->getComment();
 
         $comment->content = post('content');
+        $comment->approved = false;
         $comment->edited_at = new Carbon();
         $comment->save();
 
