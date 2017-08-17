@@ -1,0 +1,17 @@
+scopes:
+    created_at:
+        label: Date
+        type: daterange
+        conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'
+    flags:
+        label: Flagged?
+        type: switch
+        conditions:
+            - flags = 0
+            - flags > 0
+    approved:
+        label: Approved
+        type: switch
+        conditions:
+            - approved <> true
+            - approved = true
