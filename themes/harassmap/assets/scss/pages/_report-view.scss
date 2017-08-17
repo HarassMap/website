@@ -41,6 +41,12 @@
 
   .comments {
 
+    .comment__meta {
+      time {
+        @include rem((font-size: 13px));
+      }
+    }
+
     .comment__content {
       p {
         @include rem((padding: 10px 0));
