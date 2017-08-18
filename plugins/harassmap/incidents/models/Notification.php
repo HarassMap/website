@@ -122,9 +122,9 @@ class Notification extends Model
 
         if (!$notification) {
             $notification = new Notification();
-            $notification->user_id = $incident->user_id;
-            $notification->reference = $incident->id;
-            $notification->type = self::INCIDENT_SUPPORT;
+            $notification->user_id = $user_id;
+            $notification->reference = $reference;
+            $notification->type = $type;
         }
 
         return $notification;
@@ -134,17 +134,19 @@ class Notification extends Model
     {
         switch ($this->type) {
             case self::INCIDENT_COMMENT:
-                return 'New comment on your incident';
+                return 'You have new comments';
             case self::COMMENT_REPLY:
                 return 'New reply on a comment thread';
             default;
-                return 'New support on your incident';
+                return 'You have new expressions of support';
         }
     }
 
     public function getDescription()
     {
         switch ($this->type) {
+            case self::INCIDENT_COMMENT:
+                $description = $this->content['count'] > 1 ? 'You have :count new comments on one of your incidents.' : 'You have :count new comment on one of your incidents.';
             default;
                 $description = $this->content['count'] > 1 ? 'You have :count new expressions of support.' : 'You have :count new expression of support.';
         }
@@ -155,6 +157,7 @@ class Notification extends Model
     public function getLinkText()
     {
         switch ($this->type) {
+            case self::INCIDENT_COMMENT:
             case self::COMMENT_REPLY:
                 return 'View Comments';
             default;

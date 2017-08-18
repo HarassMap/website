@@ -2,9 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
-use App;
 use Cms\Classes\ComponentBase;
-use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
 use RainLab\User\Facades\Auth;
 
@@ -21,18 +19,13 @@ class Notifications extends ComponentBase
 
     public function onRun()
     {
-        $user = Auth::getUser();
-
         // find the incident with the public id
-        $notifications = Notification
-            ::where('user_id', '=', $user->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $notifications = $this->getNotifications();
 
         $this->page['notifications'] = $notifications;
 
         // after the page is sent mark all the notifications as read
-        $this->controller->bindEvent('page.postprocess', function() use ($notifications) {
+        $this->controller->bindEvent('page.postprocess', function () use ($notifications) {
             foreach ($notifications as $notification) {
                 $notification->read = true;
                 $notification->save();
@@ -40,13 +33,25 @@ class Notifications extends ComponentBase
         });
     }
 
+    public function getNotifications()
+    {
+        $user = Auth::getUser();
+
+        return Notification
+            ::where('user_id', '=', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+    }
+
     public function onDelete()
     {
         $notification = Notification::find(post('notification'));
 
-        if($notification) {
+        if ($notification) {
             $notification->delete();
         }
+
+        $this->page['notifications'] = $this->getNotifications();;
     }
 
 }
