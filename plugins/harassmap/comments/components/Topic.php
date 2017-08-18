@@ -64,6 +64,7 @@ class Topic extends ComponentBase
         $this->page['comments'] = Comment
             ::orderBy('created_at', 'asc')
             ->where('topic_id', '=', $this->topic->id)
+            ->withTrashed()
             ->paginate(10);
     }
 
@@ -116,6 +117,8 @@ class Topic extends ComponentBase
     public function onDelete()
     {
         $comment = $this->getComment();
+        $comment->user_deleted = true;
+        $comment->save();
 
         $comment->delete();
 

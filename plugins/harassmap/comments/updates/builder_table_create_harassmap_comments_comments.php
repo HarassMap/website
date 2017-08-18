@@ -17,6 +17,8 @@ class BuilderTableCreateHarassmapCommentsComments extends Migration
             $table->text('content');
             $table->integer('flags')->unsigned()->default(0);
             $table->boolean('approved')->default(false);
+            $table->boolean('user_deleted')->default(false);
+
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('edited_at')->nullable();

@@ -1,83 +1,95 @@
 {% if mode != 'delete' %}
     <div class="row mb-5">
         <div class="col-12">
-            <div class="comment__meta">
-                <strong>{{ comment.user.username }}</strong>
+            {% if comment.deleted_at %}
+                <div class="comment__content">
+                    <em>
+                        {% if comment.user_deleted %}
+                            {{ 'This comment has been deleted by the user.' | _ }}
+                        {% else %}
+                            {{ 'This comment has been deleted by a moderator.' | _ }}
+                        {% endif %}
+                    </em>
+                </div>
+            {% else %}
+                <div class="comment__meta">
+                    <strong>{{ comment.user.username }}</strong>
 
-                {% if comment.canEdit == false and comment.approved == false %}
-                    <a href="#"
-                       class="flag float-right"
-                       data-request="onFlag"
-                       data-request-confirm="{{ 'Are you sure you want to flag this comment to a moderator?' | _ }}"
-                       data-request-data="comment: {{ comment.id }}">
-                        {{ 'Flag for moderator' | _ }}
-                    </a>
-                {% endif %}
+                    {% if comment.canEdit == false and comment.approved == false %}
+                        <a href="#"
+                           class="flag float-right"
+                           data-request="onFlag"
+                           data-request-confirm="{{ 'Are you sure you want to flag this comment to a moderator?' | _ }}"
+                           data-request-data="comment: {{ comment.id }}">
+                            {{ 'Flag for moderator' | _ }}
+                        </a>
+                    {% endif %}
 
-                <span class="timestamp">
+                    <span class="timestamp">
                     <a href="#comment-{{ comment.id }}">
                         <time title="{{ comment.created_at.toDayDateTimeString }}"
                               datetime="{{ comment.created_at | date('c') }}">
                             {{ comment.created_at.diffForHumans }}
                         </time>
                     </a>
-                    {% if comment.edited_at %}
-                        <time title="{{ comment.edited_at.toDayDateTimeString }}"
-                              datetime="{{ comment.edited_at | date('c') }}">
+                        {% if comment.edited_at %}
+                            <time title="{{ comment.edited_at.toDayDateTimeString }}"
+                                  datetime="{{ comment.edited_at | date('c') }}">
                             ({{ 'Edited :ago' | _({ago: comment.edited_at.diffForHumans}) }})
                         </time>
-                    {% endif %}
+                        {% endif %}
                 </span>
-            </div>
-            {% if mode == 'edit' %}
-                {{ form_open() }}
-                <div class="comment__content">
-                    {{ form_textarea('content', comment.content, {class: 'form-control', rows: 3}) }}
                 </div>
-                <div class="comment__actions mt-2">
-                    {% if comment.canEdit %}
-                        <a href="#"
-                           class="btn btn--default"
-                           data-request="onUpdate"
-                           data-request-data="comment: {{ comment.id }}"
-                           data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
-                            {{ 'Update' | _ }}
-                        </a>
-                        <a href="#"
-                           class="btn btn--default"
-                           data-request="onDelete"
-                           data-request-data="comment: {{ comment.id }}"
-                           data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
-                            {{ 'Delete' | _ }}
-                        </a>
-                        <a href="#"
-                           class="btn btn--default"
-                           data-request="onCancel"
-                           data-request-data="comment: {{ comment.id }}"
-                           data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
-                            {{ 'Cancel' | _ }}
-                        </a>
-                    {% endif %}
-                </div>
-                {{ form_close() }}
-            {% else %}
-                <div class="comment__content">
-                    <p>
-                        {{ comment.content | nl2br }}
-                    </p>
-                </div>
-                <div class="comment__actions">
-                    {% if comment.canEdit %}
-                        <a href="#"
-                           class="btn btn--default"
-                           data-request="onEdit"
-                           data-request-data="comment: {{ comment.id }}"
-                           data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
-                            {{ 'Edit' | _ }}
-                        </a>
-                    {% endif %}
+                {% if mode == 'edit' %}
+                    {{ form_open() }}
+                    <div class="comment__content">
+                        {{ form_textarea('content', comment.content, {class: 'form-control', rows: 3}) }}
+                    </div>
+                    <div class="comment__actions mt-2">
+                        {% if comment.canEdit %}
+                            <a href="#"
+                               class="btn btn--default"
+                               data-request="onUpdate"
+                               data-request-data="comment: {{ comment.id }}"
+                               data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
+                                {{ 'Update' | _ }}
+                            </a>
+                            <a href="#"
+                               class="btn btn--default"
+                               data-request="onDelete"
+                               data-request-data="comment: {{ comment.id }}"
+                               data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
+                                {{ 'Delete' | _ }}
+                            </a>
+                            <a href="#"
+                               class="btn btn--default"
+                               data-request="onCancel"
+                               data-request-data="comment: {{ comment.id }}"
+                               data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
+                                {{ 'Cancel' | _ }}
+                            </a>
+                        {% endif %}
+                    </div>
+                    {{ form_close() }}
+                {% else %}
+                    <div class="comment__content">
+                        <p>
+                            {{ comment.content | nl2br }}
+                        </p>
+                    </div>
+                    <div class="comment__actions">
+                        {% if comment.canEdit %}
+                            <a href="#"
+                               class="btn btn--default"
+                               data-request="onEdit"
+                               data-request-data="comment: {{ comment.id }}"
+                               data-request-update="'{{ __SELF__ ~ '::comment' }}': '#comment-{{ comment.id }}'">
+                                {{ 'Edit' | _ }}
+                            </a>
+                        {% endif %}
 
-                </div>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>

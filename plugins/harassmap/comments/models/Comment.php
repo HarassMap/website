@@ -17,6 +17,7 @@ use RainLab\User\Models\User;
  * @property string $content
  * @property int $flags
  * @property int $approved
+ * @property string|null $deleted_reason
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $edited_at
@@ -25,6 +26,7 @@ use RainLab\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereDeletedReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereEditedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereFlags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereId($value)
