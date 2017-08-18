@@ -5,17 +5,15 @@
 
 <style type="text/css">
     {% for name,colour in domain.colours %}
-
+    {% if colour.value %}
     /* {{ name }} */
     {% for selector,properties in colour.selector %}
     {{ selector | raw }} {
-
     {% for property in properties %}
     {{ property }}: {{ colour.value }} !important;
     {% endfor %}
-
     }
     {% endfor %}
-
+    {% endif %}
     {% endfor %}
 </style>
