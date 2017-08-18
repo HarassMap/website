@@ -37,6 +37,7 @@ class Mailer
 
     /**
      * Send email to everyone who has received support
+     * TODO: Change this to also send email about comments
      */
     public static function sendSupportMail()
     {
