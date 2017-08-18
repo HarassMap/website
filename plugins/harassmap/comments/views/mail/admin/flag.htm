@@ -1,0 +1,26 @@
+subject = "A comment has been flagged!"
+==
+
+Hello {{ name }},
+
+A comment has been flagged as inappropriate. The message is below.
+
+----
+{{ comment }}
+----
+
+You can view the comment here: {{ link }}
+
+==
+
+<p>Hello {{ name }},</p>
+
+<p>A comment has been flagged as inappropriate. The message is below.</p>
+
+<hr>
+
+<p>{{ comment }}</p>
+
+<hr>
+
+<p>You can view the comment here: <a href="{{ link }}">{{ link }}</a></p>

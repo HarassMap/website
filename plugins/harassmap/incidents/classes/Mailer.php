@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Classes;
 
 use Backend;
+use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Support;
 use Mail;
@@ -17,7 +18,6 @@ class Mailer
      */
     public static function incidentCreated(Incident $incident)
     {
-
         // get the domain that the incident is part of
         $domain = $incident->domain;
         $users = $domain->users;

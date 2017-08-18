@@ -20,4 +20,11 @@ class Plugin extends PluginBase
             Topic::class => 'harassmapCommentsTopic',
         ];
     }
+
+    public function registerMailTemplates()
+    {
+        return [
+            'harassmap.comments::mail.admin.flag' => 'Sent to admin when a new report is added'
+        ];
+    }
 }

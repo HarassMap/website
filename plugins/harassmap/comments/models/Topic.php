@@ -31,7 +31,7 @@ class Topic extends Model
     ];
 
     public $belongsTo = [
-        'incident' => Incident::class
+        'incident' => [Incident::class, 'key' => 'code', 'otherKey' => 'public_id']
     ];
 
     /**

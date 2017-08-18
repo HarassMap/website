@@ -8,6 +8,7 @@ use Cms\Classes\ComponentBase;
 use Exception;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic as TopicModel;
+use Harassmap\Comments\Classes\Mailer;
 use RainLab\User\Facades\Auth;
 
 class Topic extends ComponentBase
@@ -128,6 +129,8 @@ class Topic extends ComponentBase
 
         $comment->flags++;
         $comment->save();
+
+        Mailer::commentReported($comment);
     }
 
     /**
