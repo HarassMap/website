@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use App;
 use Cms\Classes\ComponentBase;
+use Harassmap\Incidents\Classes\Mailer;
 use Harassmap\Incidents\Models\Incident;
 
 class ExpressSupport extends ComponentBase
@@ -29,6 +30,8 @@ class ExpressSupport extends ComponentBase
         }
 
         $this->page['report'] = $report;
+
+        Mailer::sendSupportMail();
     }
 
 }

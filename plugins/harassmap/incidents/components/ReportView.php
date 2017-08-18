@@ -44,9 +44,8 @@ class ReportView extends ComponentBase
         $incident->support++;
         $incident->save();
 
-        if ($incident->user_id) {
-            Notification::addIncidentSupport($incident);
-        }
+        // add a notification for incident support
+        Notification::addIncidentSupport($incident);
 
         return Redirect::to($this->pageUrl('reports/support', ['id' => $id]));
     }

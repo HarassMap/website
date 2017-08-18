@@ -42,37 +42,42 @@ class Mailer
     {
         $collection = Notification::all()->groupBy('user_id');
 
-//        foreach ($collection as $user_id => $items) {
-//            $user = User::whereId($user_id)->first();
-//            $reports = [];
-//
-//            // only notify the user if they have notifications enabled
-//            if ($user->notification_incident) {
-//                foreach ($items as $item) {
-//                    $incident = $item->incident;
-//
-//                    $reports[] = [
-//                        'link' => $item->link,
-//                        'incident' => $incident,
-//                        'count' => $item->count,
-//                        'since' => $item->created_at
-//                    ];
-//
-//                }
-//
-//                $data = [
-//                    'name' => $user->name,
-//                    'reports' => $reports
-//                ];
-//
-//                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
-//                    $message->to($user->email, $user->full_name);
-//                });
-//            }
-//        }
+        foreach ($collection as $user_id => $notifications) {
+            $user = User::whereId($user_id)->first();
+            $reports = [];
 
-        // delete all the supports
-        Notification::getQuery()->delete();
+            // only notify the user if they have notifications enabled
+            if ($user->notification_incident) {
+                foreach ($notifications as $notification) {
+                    $content = $notification->content;
+
+                    if (array_key_exists('support', $content)) {
+
+                        foreach ($content['support'] as $id => $item) {
+                            $incident = Incident::find($id);
+
+                            $reports[] = [
+                                'link' => $item['link'],
+                                'incident' => $incident,
+                                'count' => $item['count'],
+                                'since' => $incident->created_at
+                            ];
+                        }
+                    }
+
+
+                }
+
+                $data = [
+                    'name' => $user->name,
+                    'reports' => $reports
+                ];
+
+                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
+                    $message->to($user->email, $user->full_name);
+                });
+            }
+        }
     }
 
 }

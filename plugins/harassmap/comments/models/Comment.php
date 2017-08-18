@@ -34,6 +34,9 @@ use RainLab\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUserId($value)
  * @mixin \Eloquent
+ * @property int $user_deleted
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment deleted($status)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUserDeleted($value)
  */
 class Comment extends Model
 {
