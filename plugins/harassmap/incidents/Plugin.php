@@ -27,6 +27,7 @@ use Harassmap\Incidents\FormWidgets\RelationLink;
 use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Notification;
 use Harassmap\Incidents\Models\Support;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
@@ -44,7 +45,7 @@ class Plugin extends PluginBase
 
         UserModel::extend(function ($model) {
             $model->hasMany['incidents'] = Incident::class;
-            $model->hasMany['support'] = Support::class;
+            $model->hasMany['notifications'] = Notification::class;
             $model->hasOne['api'] = API::class;
         });
 

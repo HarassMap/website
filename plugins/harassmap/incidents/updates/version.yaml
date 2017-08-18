@@ -159,13 +159,14 @@
     - builder_table_update_harassmap_incidents_role.php
 1.0.55:
     - 'Created table harassmap_incidents_support'
-    - builder_table_create_harassmap_incidents_support.php
 1.0.56:
     - 'Updated table harassmap_incidents_support'
-    - builder_table_update_harassmap_incidents_support.php
 1.0.57:
     - 'Updated table harassmap_incidents_tip'
     - builder_table_update_harassmap_incidents_tip.php
 1.0.58:
     - 'Updated table harassmap_incidents_domain'
     - builder_table_update_harassmap_incidents_domain_11.php
+1.0.59:
+    - 'Created table harassmap_incidents_notifications'
+    - builder_table_create_harassmap_incidents_notifications.php

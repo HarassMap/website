@@ -3,8 +3,8 @@
 namespace Harassmap\Incidents\Classes;
 
 use Backend;
-use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Notification;
 use Harassmap\Incidents\Models\Support;
 use Mail;
 use RainLab\User\Models\User;
@@ -40,39 +40,39 @@ class Mailer
      */
     public static function sendSupportMail()
     {
-        $collection = Support::all()->groupBy('user_id');
+        $collection = Notification::all()->groupBy('user_id');
 
-        foreach ($collection as $user_id => $items) {
-            $user = User::whereId($user_id)->first();
-            $reports = [];
-
-            // only notify the user if they have notifications enabled
-            if ($user->notification_incident) {
-                foreach ($items as $item) {
-                    $incident = $item->incident;
-
-                    $reports[] = [
-                        'link' => $item->link,
-                        'incident' => $incident,
-                        'count' => $item->count,
-                        'since' => $item->created_at
-                    ];
-
-                }
-
-                $data = [
-                    'name' => $user->name,
-                    'reports' => $reports
-                ];
-
-                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
-                    $message->to($user->email, $user->full_name);
-                });
-            }
-        }
+//        foreach ($collection as $user_id => $items) {
+//            $user = User::whereId($user_id)->first();
+//            $reports = [];
+//
+//            // only notify the user if they have notifications enabled
+//            if ($user->notification_incident) {
+//                foreach ($items as $item) {
+//                    $incident = $item->incident;
+//
+//                    $reports[] = [
+//                        'link' => $item->link,
+//                        'incident' => $incident,
+//                        'count' => $item->count,
+//                        'since' => $item->created_at
+//                    ];
+//
+//                }
+//
+//                $data = [
+//                    'name' => $user->name,
+//                    'reports' => $reports
+//                ];
+//
+//                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
+//                    $message->to($user->email, $user->full_name);
+//                });
+//            }
+//        }
 
         // delete all the supports
-        Support::getQuery()->delete();
+        Notification::getQuery()->delete();
     }
 
 }

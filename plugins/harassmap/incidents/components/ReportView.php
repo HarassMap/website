@@ -6,6 +6,7 @@ use App;
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Classes\Mailer;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Notification;
 use Harassmap\Incidents\Models\Support;
 use Redirect;
 
@@ -44,7 +45,7 @@ class ReportView extends ComponentBase
         $incident->save();
 
         if ($incident->user_id) {
-            Support::addIncidentSupport($incident);
+            Notification::addIncidentSupport($incident);
         }
 
         return Redirect::to($this->pageUrl('reports/support', ['id' => $id]));
