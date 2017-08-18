@@ -1,0 +1,32 @@
+@import '../variables';
+@import "rem";
+
+.notifications {
+
+  .notification {
+
+    &.notification--read {
+      opacity: 0.5;
+    }
+
+    time {
+      @include rem((font-size: 12px, padding: 0));
+    }
+
+    .notification__title {
+      font-weight: $bold;
+
+      @include rem((font-size: 16px, padding: 5px 0));
+    }
+
+    .notification__delete {
+      float: right;
+
+      .ar & {
+        float: left;
+      }
+    }
+
+  }
+
+}

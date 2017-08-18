@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-12">
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'Notifications' | _ }}</span>
+        </h3>
+    </div>
+</div>
+
+{% for notification in notifications %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card notification {% if notification.read %}notification--read{% endif %}">
+                <div class="card-block">
+                    <time title="{{ notification.created_at.toDayDateTimeString }}"
+                          datetime="{{ notification.created_at | date('c') }}">
+                        {{ notification.created_at.diffForHumans }}
+                    </time>
+
+                    <p class="notification__title pb-1">
+                        {{ notification.title }}
+                    </p>
+
+                    <p class="notification__text">
+                        {{ notification.description }}
+                    </p>
+
+                    <a href="{{ notification.content.link }}" class="btn btn--default">
+                        {{ notification.linkText }}
+                    </a>
+
+                    <a href="#" class="btn btn--default notification__delete"
+                       data-request="onDelete"
+                       data-request-data="notification: {{ notification.id }}"
+                    >
+                        {{ 'Delete' | _ }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

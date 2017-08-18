@@ -88,4 +88,34 @@ class Notification extends Model
             $notification->save();
         }
     }
+
+    public function getTitle()
+    {
+        switch ($this->type) {
+            case self::INCIDENT_COMMENT:
+                return 'New comment on your incident';
+            case self::COMMENT_REPLY:
+                return 'New reply on a comment thread';
+            default;
+                return 'New support on your incident';
+        }
+    }
+
+    public function getDescription()
+    {
+        switch ($this->type) {
+            default;
+                return 'New support on your incident';
+        }
+    }
+
+    public function getLinkText()
+    {
+        switch ($this->type) {
+            case self::COMMENT_REPLY:
+                return 'View Comments';
+            default;
+                return 'View Incident';
+        }
+    }
 }

@@ -9,6 +9,7 @@ use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
 use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\IncidentResetPassword;
+use Harassmap\Incidents\Components\Notifications;
 use Harassmap\Incidents\Components\Report;
 use Harassmap\Incidents\Components\ReportComments;
 use Harassmap\Incidents\Components\ReportCommentsTopic;
@@ -87,7 +88,8 @@ class Plugin extends PluginBase
             Report::class => 'harassmapReport',
             ReportTable::class => 'harassmapReportTable',
             UserAPI::class => 'harassmapUserAPI',
-            ReportStory::class => 'harassmapStory'
+            ReportStory::class => 'harassmapStory',
+            Notifications::class => 'harassmapNotifications',
         ];
     }
 
