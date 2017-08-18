@@ -3,6 +3,10 @@ fields:
         label: Content
         span: full
         type: textarea
+    flags:
+        label: flags
+        span: auto
+        type: number
     approved:
         label: Approved?
         span: full

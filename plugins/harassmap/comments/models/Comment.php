@@ -61,4 +61,12 @@ class Comment extends Model
 
         return false;
     }
+
+    public function beforeSave()
+    {
+        // remove the flags if the comment is approved
+        if ($this->approved) {
+            $this->flags = 0;
+        }
+    }
 }
