@@ -19,17 +19,19 @@ class Mailer
         $domain = $incident->domain;
         $users = $domain->users;
 
-        foreach ($users as $user) {
+        // only send the email on the first flag
+        if($comment->flags === 1) {
+            foreach ($users as $user) {
+                $data = [
+                    'name' => $user->first_name,
+                    'comment' => $comment->content,
+                    'link' => Backend::url('harassmap/comments/comments/update', ['id' => $comment->id])
+                ];
 
-            $data = [
-                'name' => $user->first_name,
-                'comment' => $comment->content,
-                'link' => Backend::url('harassmap/comments/comments/update', ['id' => $comment->id])
-            ];
-
-            Mail::send('harassmap.comments::mail.admin.flag', $data, function ($message) use ($user) {
-                $message->to($user->email, $user->getFullNameAttribute());
-            });
+                Mail::send('harassmap.comments::mail.admin.flag', $data, function ($message) use ($user) {
+                    $message->to($user->email, $user->getFullNameAttribute());
+                });
+            }
         }
     }
 

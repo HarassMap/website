@@ -3,6 +3,13 @@ fields:
         label: Content
         span: full
         type: textarea
+    user:
+        label: User
+        select: 'concat(name, '' '', surname)'
+        span: full
+        disabled: 1
+        type: relation
+        emptyOption: 'No User'
     flags:
         label: Flags
         span: auto
