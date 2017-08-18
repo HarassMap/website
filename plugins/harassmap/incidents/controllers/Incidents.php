@@ -70,6 +70,7 @@ class Incidents extends Controller
             'role',
             'categories',
             'intervention',
+            'form',
             'reported'
         ];
 
@@ -103,6 +104,7 @@ class Incidents extends Controller
                 'role' => $item->role->name,
                 'categories' => $categories,
                 'intervention' => $intervention,
+                'form' => $item->is_intervention ? 'intervention' : 'incident',
                 'date_reported' => $item->created_at,
             ]);
         }
