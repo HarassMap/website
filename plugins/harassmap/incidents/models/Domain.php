@@ -210,8 +210,10 @@ class Domain extends Model
         foreach ($this->colourTypes as $colour => $options) {
             $value = $this->{'colours_' . $colour};
 
-            $options['value'] = $value;
-            $colours[$colour] = $options;
+            if ($value) {
+                $options['value'] = $value;
+                $colours[$colour] = $options;
+            }
 
             unset($this->{'colours_' . $colour});
         }
