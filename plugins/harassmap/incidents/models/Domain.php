@@ -116,22 +116,34 @@ class Domain extends Model
 
     public $colourTypes = [
         'header' => [
-            'selector' => ['.domain--header' => 'background-color']
+            'selector' => ['.domain--header' => 'background-color'],
+            'label' => 'Header',
+            'help' => 'Default: #00b8b0'
         ],
         'header_text' => [
-            'selector' => ['.domain--header a' => 'color']
+            'selector' => ['.domain--header a' => 'color'],
+            'label' => 'Header Text',
+            'help' => 'Default #ffffff'
         ],
         'font_color_dark' => [
-            'selector' => ['p' => 'color']
+            'selector' => ['p' => 'color'],
+            'label' => 'Font Colour Dark',
+            'help' => 'Default: #000000'
         ],
         'font_color_light' => [
             'selector' => ['.bg--dark p, .bg--dark h2' => 'color'],
+            'label' => 'Font Colour Light',
+            'help' => 'Default: #ffffff'
         ],
         'horizontal_header' => [
-            'selector' => ['.hr__text' => 'color', '.hr__line' => 'background-color']
+            'selector' => ['.hr__text' => 'color', '.hr__line' => 'background-color'],
+            'label' => 'Line Header',
+            'help' => 'Default: #4a4a4a'
         ],
         'green_text' => [
             'selector' => ['h4' => 'color'],
+            'label' => 'Green Text',
+            'help' => 'Default: #00b8b0'
         ]
     ];
 

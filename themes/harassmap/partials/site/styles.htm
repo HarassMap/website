@@ -4,8 +4,9 @@
 {% styles %}
 
 <style type="text/css">
-    {% for colour in domain.colours %}
+    {% for name,colour in domain.colours %}
 
+    /* {{ name }} */
     {% for selector,property in colour.selector %}
     {{ selector }} {
     {{ property }}: {{ colour.value }} !important;
