@@ -15,3 +15,7 @@ scopes:
         conditions:
             - approved <> true
             - approved = true
+    deleted:
+        label: Deleted
+        type: switch
+        scope: deleted

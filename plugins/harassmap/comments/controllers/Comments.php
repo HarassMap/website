@@ -15,4 +15,9 @@ class Comments extends Controller
         parent::__construct();
         BackendMenu::setContext('Harassmap.Comments', 'harassmap.comments.menu');
     }
+
+    public function formExtendQuery($query)
+    {
+        $query->withTrashed();
+    }
 }

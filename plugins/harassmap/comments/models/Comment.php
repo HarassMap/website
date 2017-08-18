@@ -71,4 +71,13 @@ class Comment extends Model
             $this->flags = 0;
         }
     }
+
+    public function scopeDeleted($query, $status)
+    {
+        // if status is 1 then we remove interventions
+        // otherwise its only interventions
+        if($status === "2") {
+            $query->onlyTrashed();
+        }
+    }
 }
