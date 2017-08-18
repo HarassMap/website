@@ -4,9 +4,10 @@ fields:
         span: full
         type: textarea
     flags:
-        label: flags
+        label: Flags
         span: auto
         type: number
+        commentAbove: How many times has this comment been flagged by users?
     approved:
         label: Approved?
         span: full
