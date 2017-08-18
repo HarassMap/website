@@ -1,0 +1,40 @@
+subject = "You have some unread notifications."
+==
+
+Hello {{ name }},
+
+You have {{ count }} unread notification{% if count > 1 %}s{% endif %}!
+
+{% for notification in notifications %}
+    ------
+    {{ notification.message }}
+
+    View the report here: {{ report.link }}
+
+{% endfor %}
+
+------
+
+Please do not reply to this email.
+
+==
+
+<p>Hello {{ name }},</p>
+
+<p>You have {{ count }} unread notification{% if count > 1 %}s{% endif %}!</p>
+
+{% for notification in notifications %}
+    <hr>
+
+    <p>
+        {{ notification.message }}
+    </p>
+
+    <a href="{{ notification.link }}">{{ notification.link }}</a>
+{% endfor %}
+
+<hr>
+
+<p>
+    Please do not reply to this email.
+</p>

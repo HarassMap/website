@@ -30,8 +30,6 @@ class ExpressSupport extends ComponentBase
         }
 
         $this->page['report'] = $report;
-
-        Mailer::sendSupportMail();
     }
 
 }

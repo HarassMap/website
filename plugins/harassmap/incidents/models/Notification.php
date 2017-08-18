@@ -134,10 +134,10 @@ class Notification extends Model
     {
         switch ($this->type) {
             case self::INCIDENT_COMMENT:
-                $description = $this->content['count'] > 1 ? 'You have :count new comments on one of your incidents.' : 'You have :count new comment on one of your incidents.';
+                $description = $this->content['count'] > 1 ? 'You have :count new comments on one of your reports.' : 'You have :count new comment on one of your reports.';
                 break;
             default;
-                $description = $this->content['count'] > 1 ? 'You have :count new expressions of support.' : 'You have :count new expression of support.';
+                $description = $this->content['count'] > 1 ? 'You have :count new expressions of support on one of your reports.' : 'You have :count new expression of support on one of your reports.';
         }
 
         return Message::trans($description, $this->content);

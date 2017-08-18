@@ -37,12 +37,14 @@ class Mailer
 
     /**
      * Send email to everyone who has received support
-     * TODO: Change this to also send email about comments
      */
     public static function sendSupportMail()
     {
         // get all the notifications grouped by user
-        $collection = Notification::all()->groupBy('user_id');
+        $collection = Notification
+            ::where('read', '=', false)
+            ->orderBy('created_at', 'desc')
+            ->groupBy('user_id');
 
         // loop through each user
         foreach ($collection as $user_id => $notifications) {
@@ -56,30 +58,21 @@ class Mailer
                 foreach ($notifications as $notification) {
                     $content = $notification->content;
 
-                    if (array_key_exists('support', $content)) {
-
-                        foreach ($content['support'] as $id => $item) {
-                            $incident = Incident::find($id);
-
-                            $reports[] = [
-                                'link' => $item['link'],
-                                'incident' => $incident,
-                                'count' => $item['count'],
-                                'since' => $incident->created_at
-                            ];
-                        }
-                    }
-
+                    $reports[] = [
+                        'link' => $content['link'],
+                        'message' => $notification->getTitle()
+                    ];
                 }
 
                 $data = [
                     'name' => $user->name,
-                    'reports' => $reports
+                    'count' => $notifications->count(),
+                    'notifications' => $reports
                 ];
 
-//                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
-//                    $message->to($user->email, $user->full_name);
-//                });
+                Mail::send('harassmap.incidents::mail.user.notifications', $data, function ($message) use ($user) {
+                    $message->to($user->email, $user->full_name);
+                });
             }
         }
     }
