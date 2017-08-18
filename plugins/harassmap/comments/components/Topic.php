@@ -9,6 +9,7 @@ use Exception;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic as TopicModel;
 use Harassmap\Comments\Classes\Mailer;
+use Harassmap\Incidents\Models\Notification;
 use RainLab\User\Facades\Auth;
 
 class Topic extends ComponentBase
@@ -83,6 +84,8 @@ class Topic extends ComponentBase
         $comment->save();
 
         $this->onRender();
+
+        Notification::addComment($comment);
     }
 
     public function onEdit()

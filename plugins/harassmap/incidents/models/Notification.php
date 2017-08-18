@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Incidents\Models;
 
 use Cms\Classes\Page;
+use Harassmap\Comments\Models\Comment;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\Translate\Models\Message;
@@ -56,19 +57,7 @@ class Notification extends Model
     {
         // only do this if there is a user
         if ($incident->user_id) {
-            $notification = self
-                ::where('user_id', '=', $incident->user_id)
-                ->where('reference', '=', $incident->id)
-                ->where('type', '=', self::INCIDENT_SUPPORT)
-                ->where('read', '=', false)
-                ->first();
-
-            if (!$notification) {
-                $notification = new Notification();
-                $notification->user_id = $incident->user_id;
-                $notification->reference = $incident->id;
-                $notification->type = self::INCIDENT_SUPPORT;
-            }
+            $notification = self::getNotification($incident->user_id, $incident->id, self::INCIDENT_SUPPORT);
 
             // get the content of the notification
             $content = $notification->content;
@@ -88,6 +77,57 @@ class Notification extends Model
             $notification->content = $content;
             $notification->save();
         }
+    }
+
+    /**
+     * A comment has been added to an incident
+     * @param Comment $comment
+     */
+    public static function addComment(Comment $comment)
+    {
+        $topic = $comment->topic;
+        $incident = $topic->incident;
+
+        if ($incident->user_id) {
+            $notification = self::getNotification($incident->user_id, $incident->id, self::INCIDENT_COMMENT);
+
+            // get the content of the notification
+            $content = $notification->content;
+
+            // if the content is empty then create a new one
+            if (!$content) {
+                $content = [
+                    'count' => 0,
+                    'link' => Page::url('reports/view', ['id' => $incident->public_id]) . '#comments'
+                ];
+            }
+
+            // now increase the count
+            $content['count']++;
+
+            // save the notification
+            $notification->content = $content;
+            $notification->save();
+        }
+    }
+
+    public static function getNotification($user_id, $reference, $type)
+    {
+        $notification = self
+            ::where('user_id', '=', $user_id)
+            ->where('reference', '=', $reference)
+            ->where('type', '=', $type)
+            ->where('read', '=', false)
+            ->first();
+
+        if (!$notification) {
+            $notification = new Notification();
+            $notification->user_id = $incident->user_id;
+            $notification->reference = $incident->id;
+            $notification->type = self::INCIDENT_SUPPORT;
+        }
+
+        return $notification;
     }
 
     public function getTitle()

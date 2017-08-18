@@ -11,6 +11,7 @@ use October\Rain\Database\Traits\Validation;
  *
  * @property int $id
  * @property string $code
+ * @property Incident $incident
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Topic whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Topic whereId($value)
  * @mixin \Eloquent

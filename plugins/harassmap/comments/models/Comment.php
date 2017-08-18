@@ -22,6 +22,7 @@ use RainLab\User\Models\User;
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $edited_at
  * @property \Carbon\Carbon|null $deleted_at
+ * @property Topic $topic
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereApproved($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereCreatedAt($value)
