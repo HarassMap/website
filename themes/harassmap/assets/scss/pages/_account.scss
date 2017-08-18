@@ -1,0 +1,10 @@
+@import '../variables';
+@import "rem";
+
+.account {
+
+  .form-check-label {
+    @include rem((font-size: 14px));
+  }
+
+}
