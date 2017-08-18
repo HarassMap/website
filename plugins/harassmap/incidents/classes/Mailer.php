@@ -41,14 +41,18 @@ class Mailer
      */
     public static function sendSupportMail()
     {
+        // get all the notifications grouped by user
         $collection = Notification::all()->groupBy('user_id');
 
+        // loop through each user
         foreach ($collection as $user_id => $notifications) {
             $user = User::whereId($user_id)->first();
             $reports = [];
 
             // only notify the user if they have notifications enabled
             if ($user->notification_incident) {
+
+                // loop through each notification
                 foreach ($notifications as $notification) {
                     $content = $notification->content;
 
@@ -66,7 +70,6 @@ class Mailer
                         }
                     }
 
-
                 }
 
                 $data = [
@@ -74,9 +77,9 @@ class Mailer
                     'reports' => $reports
                 ];
 
-                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
-                    $message->to($user->email, $user->full_name);
-                });
+//                Mail::send('harassmap.incidents::mail.user.support', $data, function ($message) use ($user) {
+//                    $message->to($user->email, $user->full_name);
+//                });
             }
         }
     }
