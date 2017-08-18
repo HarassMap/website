@@ -7,9 +7,13 @@
     {% for name,colour in domain.colours %}
 
     /* {{ name }} */
-    {% for selector,property in colour.selector %}
+    {% for selector,properties in colour.selector %}
     {{ selector | raw }} {
+
+    {% for property in properties %}
     {{ property }}: {{ colour.value }} !important;
+    {% endfor %}
+
     }
     {% endfor %}
 

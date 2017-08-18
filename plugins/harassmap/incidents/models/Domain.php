@@ -116,40 +116,55 @@ class Domain extends Model
 
     public $colourTypes = [
         'header' => [
-            'selector' => ['.domain--header' => 'background-color'],
+            'selector' => ['.domain--header' => ['background-color']],
             'label' => 'Header',
             'help' => 'Default: #00b8b0'
         ],
         'header_text' => [
-            'selector' => ['.domain--header a' => 'color'],
+            'selector' => ['.domain--header a' => ['color']],
             'label' => 'Header Text',
             'help' => 'Default #ffffff'
         ],
         'menu' => [
-            'selector' => ['.header .nav > .nav-item > a' => 'color'],
+            'selector' => ['.header .nav > .nav-item > a' => ['color']],
             'label' => 'Menu Text',
             'help' => 'Default #000000'
         ],
         'font_color_dark' => [
-            'selector' => ['p' => 'color'],
+            'selector' => ['p' => ['color']],
             'label' => 'Font Colour Dark',
             'help' => 'Default: #000000'
         ],
         'font_color_light' => [
-            'selector' => ['.bg--dark p, .bg--dark h2' => 'color'],
+            'selector' => ['.bg--dark p, .bg--dark h2' => ['color']],
             'label' => 'Font Colour Light',
             'help' => 'Default: #ffffff'
         ],
         'horizontal_header' => [
-            'selector' => ['.hr__text' => 'color', '.hr__line' => 'background-color'],
+            'selector' => ['.hr__text' => ['color'], '.hr__line' => ['background-color']],
             'label' => 'Line Header',
             'help' => 'Default: #4a4a4a'
         ],
         'green_text' => [
-            'selector' => ['h4' => 'color', '.header .nav > .nav-item:hover a' => 'color'],
+            'selector' => ['h4' => ['color'], '.header .nav > .nav-item:hover a' => ['color']],
             'label' => 'Green Text',
             'help' => 'Default: #00b8b0'
-        ]
+        ],
+        'button' => [
+            'selector' => ['.btn--default' => ['color', 'border-color']],
+            'label' => 'Button Color',
+            'help' => 'Default: #00b8b0'
+        ],
+        'button_red' => [
+            'selector' => ['.btn--red' => ['background-color']],
+            'label' => 'Red Button Color',
+            'help' => 'Default: #ba1d4a'
+        ],
+        'button_green' => [
+            'selector' => ['.btn--green' => ['background-color']],
+            'label' => 'Green Button Color',
+            'help' => 'Default: #00b8b0'
+        ],
     ];
 
     /**
