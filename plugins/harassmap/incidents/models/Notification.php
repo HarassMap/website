@@ -134,19 +134,8 @@ class Notification extends Model
     {
         switch ($this->type) {
             case self::INCIDENT_COMMENT:
-                return 'You have new comments';
-            case self::COMMENT_REPLY:
-                return 'New reply on a comment thread';
-            default;
-                return 'You have new expressions of support';
-        }
-    }
-
-    public function getDescription()
-    {
-        switch ($this->type) {
-            case self::INCIDENT_COMMENT:
                 $description = $this->content['count'] > 1 ? 'You have :count new comments on one of your incidents.' : 'You have :count new comment on one of your incidents.';
+                break;
             default;
                 $description = $this->content['count'] > 1 ? 'You have :count new expressions of support.' : 'You have :count new expression of support.';
         }

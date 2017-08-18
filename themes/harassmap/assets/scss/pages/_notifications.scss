@@ -16,7 +16,7 @@
     .notification__title {
       font-weight: $bold;
 
-      @include rem((font-size: 16px, padding: 5px 0));
+      @include rem((font-size: 16px, padding: 5px 0 20px 0));
     }
 
     .notification__delete {

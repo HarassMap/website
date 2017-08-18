@@ -15,12 +15,8 @@
                             {{ notification.created_at.diffForHumans }}
                         </time>
 
-                        <p class="notification__title pb-1">
+                        <p class="notification__title">
                             {{ notification.title }}
-                        </p>
-
-                        <p class="notification__text">
-                            {{ notification.description }}
                         </p>
 
                         <a href="{{ notification.content.link }}" class="btn btn--default">
