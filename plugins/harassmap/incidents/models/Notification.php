@@ -42,9 +42,15 @@ class Notification extends Model
 
     protected $jsonable = ['content'];
 
-    const INCIDENT_SUPPORT = 'support';
-    const INCIDENT_COMMENT = 'comment';
+    // types of notification
+    const INCIDENT_SUPPORT = 'incident_support'; // someone supported your incident
+    const INCIDENT_COMMENT = 'incident_comment'; // someone commented on your incident
+    const COMMENT_REPLY = 'comment_reply'; // someone replied to a comment thread you are on
 
+    /**
+     * Add an incident support notification
+     * @param Incident $incident
+     */
     public static function addIncidentSupport(Incident $incident)
     {
         // only do this if there is a user
@@ -53,6 +59,7 @@ class Notification extends Model
                 ::where('user_id', '=', $incident->user_id)
                 ->where('reference', '=', $incident->id)
                 ->where('type', '=', self::INCIDENT_SUPPORT)
+                ->where('read', '=', false)
                 ->first();
 
             if (!$notification) {
