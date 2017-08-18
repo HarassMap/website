@@ -125,6 +125,11 @@ class Domain extends Model
             'label' => 'Header Text',
             'help' => 'Default #ffffff'
         ],
+        'menu' => [
+            'selector' => ['.header .nav > .nav-item > a' => 'color'],
+            'label' => 'Menu Text',
+            'help' => 'Default #000000'
+        ],
         'font_color_dark' => [
             'selector' => ['p' => 'color'],
             'label' => 'Font Colour Dark',
@@ -141,7 +146,7 @@ class Domain extends Model
             'help' => 'Default: #4a4a4a'
         ],
         'green_text' => [
-            'selector' => ['h4' => 'color'],
+            'selector' => ['h4' => 'color', '.header .nav > .nav-item:hover a' => 'color'],
             'label' => 'Green Text',
             'help' => 'Default: #00b8b0'
         ]

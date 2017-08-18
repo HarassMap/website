@@ -8,7 +8,7 @@
 
     /* {{ name }} */
     {% for selector,property in colour.selector %}
-    {{ selector }} {
+    {{ selector | raw }} {
     {{ property }}: {{ colour.value }} !important;
     }
     {% endfor %}
