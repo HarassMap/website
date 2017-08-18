@@ -3,6 +3,7 @@
 use Cms\Classes\Page;
 use Model;
 use October\Rain\Database\Traits\Validation;
+use RainLab\Translate\Models\Message;
 use RainLab\User\Models\User;
 
 /**
@@ -105,8 +106,10 @@ class Notification extends Model
     {
         switch ($this->type) {
             default;
-                return 'New support on your incident';
+                $description = $this->content['count'] > 1 ? 'You have :count new expressions of support.' : 'You have :count new expression of support.';
         }
+
+        return Message::trans($description, $this->content);
     }
 
     public function getLinkText()

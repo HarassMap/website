@@ -30,6 +30,14 @@ class Notifications extends ComponentBase
             ->paginate(10);
 
         $this->page['notifications'] = $notifications;
+
+        // after the page is sent mark all the notifications as read
+        $this->controller->bindEvent('page.postprocess', function() use ($notifications) {
+            foreach ($notifications as $notification) {
+                $notification->read = true;
+                $notification->save();
+            }
+        });
     }
 
     public function onDelete()
