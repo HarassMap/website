@@ -21,10 +21,12 @@ class UserMenu extends ComponentBase
     {
         $user = Auth::getUser();
 
-        $this->page['notifications'] = Notification
-            ::where('user_id', '=', $user->id)
-            ->where('read', '=', false)
-            ->count();
+        if ($user) {
+            $this->page['notifications'] = Notification
+                ::where('user_id', '=', $user->id)
+                ->where('read', '=', false)
+                ->count();
+        }
     }
 
 }
