@@ -135,7 +135,7 @@ class ReportIntervention extends ComponentBase
         $intervention->incident()->add($incident);
         $intervention->save();
 
-        Analytics::captureIntervention($incident, $user);
+        Analytics::interventionCreated($incident, $user);
 
         return Redirect::to($this->pageUrl('report/thanks', ['id' => $incident->public_id]));
     }

@@ -3,16 +3,15 @@
 namespace Harassmap\Incidents\Classes;
 
 use Carbon\Carbon;
+use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Models\Domain;
+use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Models\User;
 
 class Analytics
 {
 
     static $attributable = null;
-
-    const INCIDENT = 'incident';
-    const INTERVENTION = 'intervention';
 
     /**
      * @return Attributable
@@ -66,37 +65,66 @@ class Analytics
         $attributable->measure($metric, $value, $occurred_on);
     }
 
-    public static function captureIncident($incident, $user)
+    public static function getEventName($message, User $user = null)
     {
-        $event = '';
+        $event = 'Anonymous ';
 
         if ($user) {
             $event = $user->name . ' ' . $user->surname . ' ';
         }
 
-        $event = $event . 'created incident';
+        return $event . $message;
+    }
+
+    public static function incidentCreated(Incident $incident, User $user = null)
+    {
+        $event = self::getEventName('created incident', $user);
 
         self::capture($event, $incident->created_at, $user, [
-            'incident_id' => $incident->id,
-            'category' => self::INCIDENT
+            'incident_id' => $incident->id
         ]);
     }
 
-    public static function captureIntervention($incident, $user)
+    public static function interventionCreated(Incident $incident, User $user = null)
     {
-        $event = '';
-
-        if ($user) {
-            $event = $user->name . ' ' . $user->surname . ' ';
-        }
-
-        $event = $event . 'created intervention';
+        $event = self::getEventName('created intervention', $user);
 
         self::capture($event, $incident->created_at, $user, [
             'intervention_id' => $incident->id,
-            'category' => self::INTERVENTION
+            'incident_id' => $incident->id
         ]);
     }
 
+    public static function comment(Comment $comment, $message, User $user = null)
+    {
+        $event = self::getEventName($message, $user);
+
+        $incident = $comment->topic->incident;
+
+        self::capture($event, $comment->created_at, $user, [
+            'incident_id' => $incident->id,
+            'comment_id' => $comment->id
+        ]);
+    }
+
+    public static function commentCreated(Comment $comment, User $user = null)
+    {
+        self::comment($comment, $user, 'commented');
+    }
+
+    public static function commentEdited(Comment $comment, User $user = null)
+    {
+        self::comment($comment, $user, 'edited comment');
+    }
+
+    public static function commentDeleted(Comment $comment, User $user = null)
+    {
+        self::comment($comment, $user, 'deleted comment');
+    }
+
+    public static function commentReported(Comment $comment, User $user = null)
+    {
+        self::comment($comment, $user, 'reported comment');
+    }
 
 }

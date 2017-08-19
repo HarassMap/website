@@ -9,6 +9,7 @@ use Exception;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic as TopicModel;
 use Harassmap\Comments\Classes\Mailer;
+use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Models\Notification;
 use RainLab\User\Facades\Auth;
 
@@ -86,6 +87,8 @@ class Topic extends ComponentBase
         $this->onRender();
 
         Notification::addComment($comment);
+
+        Analytics::commentCreated($comment, $user);
     }
 
     public function onEdit()
@@ -107,6 +110,8 @@ class Topic extends ComponentBase
 
         $this->page['mode'] = 'view';
         $this->page['comment'] = $comment;
+
+        Analytics::commentEdited($comment, $comment->user);
     }
 
     public function onCancel()
@@ -127,6 +132,8 @@ class Topic extends ComponentBase
 
         $this->page['mode'] = 'delete';
         $this->page['comment'] = $comment;
+
+        Analytics::commentDeleted($comment, $comment->user);
     }
 
     public function onFlag()
@@ -137,6 +144,10 @@ class Topic extends ComponentBase
         $comment->save();
 
         Mailer::commentReported($comment);
+
+        $user = Auth::getUser();
+
+        Analytics::commentReported($comment, $user);
     }
 
     /**
