@@ -2,6 +2,9 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Harassmap\Comments\Models\Comment;
+use Harassmap\Incidents\Classes\Analytics;
+use BackendAuth;
 
 class Comments extends Controller
 {
@@ -19,5 +22,19 @@ class Comments extends Controller
     public function formExtendQuery($query)
     {
         $query->withTrashed();
+    }
+
+    public function formAfterUpdate(Comment $comment)
+    {
+        $user = BackendAuth::getUser();
+
+        Analytics::commentEdited($comment, $user);
+    }
+
+    public function formAfterDelete(Comment $comment)
+    {
+        $user = BackendAuth::getUser();
+
+        Analytics::commentDeleted($comment, $user);
     }
 }

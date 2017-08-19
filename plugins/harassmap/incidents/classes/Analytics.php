@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
-use RainLab\User\Models\User;
 
 class Analytics
 {
@@ -31,7 +30,7 @@ class Analytics
     /**
      * @param $event
      * @param Carbon $occurred_on
-     * @param User $author
+     * @param $author
      * @param array $tags
      * @param bool $is_error
      * @param bool $is_resolved
@@ -65,7 +64,7 @@ class Analytics
         $attributable->measure($metric, $value, $occurred_on);
     }
 
-    public static function getEventName($message, User $user = null)
+    public static function getEventName($message, $user = null)
     {
         $event = 'Anonymous ';
 
@@ -76,7 +75,7 @@ class Analytics
         return $event . $message;
     }
 
-    public static function incidentCreated(Incident $incident, User $user = null)
+    public static function incidentCreated(Incident $incident, $user = null)
     {
         $event = self::getEventName('created incident', $user);
 
@@ -85,7 +84,7 @@ class Analytics
         ]);
     }
 
-    public static function interventionCreated(Incident $incident, User $user = null)
+    public static function interventionCreated(Incident $incident, $user = null)
     {
         $event = self::getEventName('created intervention', $user);
 
@@ -95,7 +94,7 @@ class Analytics
         ]);
     }
 
-    public static function comment(Comment $comment, $message, User $user = null)
+    public static function comment(Comment $comment, $message, $user = null)
     {
         $event = self::getEventName($message, $user);
 
@@ -107,22 +106,22 @@ class Analytics
         ]);
     }
 
-    public static function commentCreated(Comment $comment, User $user = null)
+    public static function commentCreated(Comment $comment, $user = null)
     {
         self::comment($comment, $user, 'commented');
     }
 
-    public static function commentEdited(Comment $comment, User $user = null)
+    public static function commentEdited(Comment $comment, $user = null)
     {
         self::comment($comment, $user, 'edited comment');
     }
 
-    public static function commentDeleted(Comment $comment, User $user = null)
+    public static function commentDeleted(Comment $comment, $user = null)
     {
         self::comment($comment, $user, 'deleted comment');
     }
 
-    public static function commentReported(Comment $comment, User $user = null)
+    public static function commentReported(Comment $comment, $user = null)
     {
         self::comment($comment, $user, 'reported comment');
     }
