@@ -177,4 +177,28 @@ class Analytics
         self::comment($comment, 'reported comment');
     }
 
+    public static function domain(Domain $domain, $message)
+    {
+        $event = self::getEventName($message);
+
+        self::capture($event, new Carbon(), [
+            'domain_id' => $domain->id
+        ]);
+    }
+
+    public static function domainCreated(Domain $domain)
+    {
+        self::domain($domain, 'created');
+    }
+
+    public static function domainEdited(Domain $domain)
+    {
+        self::domain($domain, 'edited');
+    }
+
+    public static function domainDeleted(Domain $domain)
+    {
+        self::domain($domain, 'deleted');
+    }
+
 }

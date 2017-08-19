@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Models;
 
 use Backend\Models\User as BackendUserModel;
+use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
@@ -226,5 +227,20 @@ class Domain extends Model
         }
 
         unset($this->resetColours);
+    }
+
+    public function afterCreate()
+    {
+        Analytics::domainCreated($this);
+    }
+
+    public function afterUpdate()
+    {
+        Analytics::domainEdited($this);
+    }
+
+    public function afterDelete()
+    {
+        Analytics::domainDeleted($this);
     }
 }
