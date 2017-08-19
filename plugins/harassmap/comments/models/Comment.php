@@ -2,6 +2,7 @@
 
 namespace Harassmap\Comments\Models;
 
+use Harassmap\Incidents\Classes\Analytics;
 use Model;
 use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Database\Traits\Validation;
@@ -75,6 +76,21 @@ class Comment extends Model
         if ($this->approved) {
             $this->flags = 0;
         }
+    }
+
+    public function afterCreate()
+    {
+        Analytics::commentCreated($this);
+    }
+
+    public function afterUpdate()
+    {
+        Analytics::commentEdited($this);
+    }
+
+    public function afterDelete()
+    {
+        Analytics::commentDeleted($this);
     }
 
     public function scopeDeleted($query, $status)

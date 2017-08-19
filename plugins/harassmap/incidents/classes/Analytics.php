@@ -2,10 +2,13 @@
 
 namespace Harassmap\Incidents\Classes;
 
+use BackendAuth;
 use Carbon\Carbon;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
+use RainLab\User\Facades\Auth;
+use RainLab\User\Models\User;
 
 class Analytics
 {
@@ -30,28 +33,27 @@ class Analytics
     /**
      * @param $event
      * @param Carbon $occurred_on
-     * @param $author
      * @param array $tags
      * @param bool $is_error
      * @param bool $is_resolved
      * @param null $execution_time_in_seconds
      * @param null $comments
      */
-    public static function capture($event, $occurred_on = null, $author = null, $tags = null, $is_error = null, $is_resolved = null, $execution_time_in_seconds = null, $comments = null)
+    public static function capture($event, $occurred_on = null, $tags = null, $is_error = null, $is_resolved = null, $execution_time_in_seconds = null, $comments = null)
     {
         $attributable = self::getInstance();
+        $user = self::getUser();
 
-        // if there is an author
-        if ($author) {
-            $user = $author;
-
+        // if there is a use then build the author array
+        if ($user) {
             $author = [
                 'user_id' => $user->id,
-                'first_name' => $user->name,
-                'last_name' => $user->surname,
+                'first_name' => self::getFirstName($user),
+                'last_name' => self::getLastName($user),
                 'email' => $user->email,
                 "is_whitelisted" => true
             ];
+
         }
 
         $attributable->capture($event, $occurred_on, $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
@@ -64,66 +66,115 @@ class Analytics
         $attributable->measure($metric, $value, $occurred_on);
     }
 
-    public static function getEventName($message, $user = null)
+    public static function getUser()
     {
+        $user = BackendAuth::getUser();
+
+        if (!$user) {
+            $user = Auth::getUser();
+        }
+
+        return $user;
+    }
+
+    public static function getFirstName($user)
+    {
+        $name = $user->first_name;
+
+        if ($user instanceof User) {
+            $name = $user->name;
+        }
+
+        return $name;
+    }
+
+    public static function getLastName($user)
+    {
+        $name = $user->last_aname;
+
+        if ($user instanceof User) {
+            $name = $user->surname;
+        }
+
+        return $name;
+    }
+
+    public static function getEventName($message)
+    {
+        $user = self::getUser();
         $event = 'Anonymous ';
 
         if ($user) {
-            $event = $user->name . ' ' . $user->surname . ' ';
+            $event = self::getFirstName($user) . ' ' . self::getLastName($user) . ' ';
         }
 
         return $event . $message;
     }
 
-    public static function incidentCreated(Incident $incident, $user = null)
+    public static function report(Incident $incident, $type = 'created')
     {
-        $event = self::getEventName('created incident', $user);
-
-        self::capture($event, $incident->created_at, $user, [
+        $message = 'incident';
+        $tags = [
             'incident_id' => $incident->id
-        ]);
+        ];
+
+        if ($incident->is_intervention) {
+            $message = 'intervention';
+            $tags['intervention_id'] = $incident->id;
+        }
+
+        $message = $type . ' ' . $message;
+
+        $event = self::getEventName($message);
+
+        self::capture($event, new Carbon(), $tags);
     }
 
-    public static function interventionCreated(Incident $incident, $user = null)
+    public static function reportCreated(Incident $incident)
     {
-        $event = self::getEventName('created intervention', $user);
-
-        self::capture($event, $incident->created_at, $user, [
-            'intervention_id' => $incident->id,
-            'incident_id' => $incident->id
-        ]);
+        self::report($incident, 'created');
     }
 
-    public static function comment(Comment $comment, $message, $user = null)
+    public static function reportEdited(Incident $incident)
     {
-        $event = self::getEventName($message, $user);
+        self::report($incident, 'edited');
+    }
+
+    public static function reportDeleted(Incident $incident)
+    {
+        self::report($incident, 'deleted');
+    }
+
+    public static function comment(Comment $comment, $message)
+    {
+        $event = self::getEventName($message);
 
         $incident = $comment->topic->incident;
 
-        self::capture($event, $comment->created_at, $user, [
+        self::capture($event, new Carbon(), [
             'incident_id' => $incident->id,
             'comment_id' => $comment->id
         ]);
     }
 
-    public static function commentCreated(Comment $comment, $user = null)
+    public static function commentCreated(Comment $comment)
     {
-        self::comment($comment, $user, 'commented');
+        self::comment($comment, 'commented');
     }
 
-    public static function commentEdited(Comment $comment, $user = null)
+    public static function commentEdited(Comment $comment)
     {
-        self::comment($comment, $user, 'edited comment');
+        self::comment($comment, 'edited comment');
     }
 
-    public static function commentDeleted(Comment $comment, $user = null)
+    public static function commentDeleted(Comment $comment)
     {
-        self::comment($comment, $user, 'deleted comment');
+        self::comment($comment, 'deleted comment');
     }
 
-    public static function commentReported(Comment $comment, $user = null)
+    public static function commentReported(Comment $comment)
     {
-        self::comment($comment, $user, 'reported comment');
+        self::comment($comment, 'reported comment');
     }
 
 }

@@ -1,8 +1,10 @@
 <?php namespace Harassmap\Incidents\Models;
 
+use BackendAuth;
 use Carbon\Carbon;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic;
+use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Classes\Mailer;
 use Model;
 use October\Rain\Database\Traits\Validation;
@@ -105,13 +107,25 @@ class Incident extends Model
     public function afterCreate()
     {
         Mailer::incidentCreated($this);
+
+        Analytics::reportCreated($this);
+    }
+
+    public function afterUpdate()
+    {
+        Analytics::reportEdited($this);
+    }
+
+    public function afterDelete()
+    {
+        Analytics::reportDeleted($this);
     }
 
     public function scopeIntervention($query, $status)
     {
         // if status is 1 then we remove interventions
         // otherwise its only interventions
-        if($status === "1") {
+        if ($status === "1") {
             $query->doesntHave('intervention');
         } else {
             $query->has('intervention');

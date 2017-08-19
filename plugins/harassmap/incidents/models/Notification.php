@@ -25,6 +25,8 @@ use RainLab\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereUserId($value)
  * @mixin \Eloquent
+ * @property int $read
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereRead($value)
  */
 class Notification extends Model
 {
