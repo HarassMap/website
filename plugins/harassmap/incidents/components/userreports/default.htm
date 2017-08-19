@@ -14,7 +14,7 @@
             <th>{{ 'Type' | _ }}</th>
             <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
             <th class="w-25">{{ 'Location' | _ }}</th>
-            <th class="hidden-sm-down">{{ 'Support' | _ }}</th>
+            <th class="hidden-sm-down">{{ 'Comments' | _ }}</th>
             <th class="js-hidden">{{ 'Link' | _ }}</th>
         </tr>
         </thead>
@@ -28,7 +28,7 @@
                 </td>
                 <td class="hidden-sm-down">{{ report.description | slice(0, 50) }}</td>
                 <td>{{ report.location.address }}, {{ report.location.city }}</td>
-                <td class="text-center hidden-sm-down">{{ report.support }}</td>
+                <td class="text-center hidden-sm-down">{{ report.comments | length }}</td>
                 <td class="js-hidden">
                     <a href="{{ viewPage | page({id: report.public_id}) }}">{{ 'View' | _ }}</a>
                 </td>
