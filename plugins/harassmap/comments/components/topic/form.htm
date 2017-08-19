@@ -1,13 +1,18 @@
 <div class="comment-form mt-4" id="comment">
+    {% if user %}
+        {{ form_open({'data-request': 'onComment', 'data-request-update': "'" ~ __SELF__ ~ "::comments': '#commentsContainer'"}) }}
 
-    {{ form_open({'data-request': 'onComment', 'data-request-update': "'" ~ __SELF__ ~ "::comments': '#commentsContainer'"}) }}
+        <div class="post-area">
+            {{ form_textarea('content', '', {class: 'form-control', required: true}) }}
 
-    <div class="post-area">
-        {{ form_textarea('content', '', {class: 'form-control', required: true}) }}
+            <button class="btn btn--default mt-2">{{ 'Post Comment' | _ }}</button>
+        </div>
 
-        <button class="btn btn--default mt-2">{{ 'Post Comment' | _ }}</button>
-    </div>
-
-    {{ form_close() }}
-
+        {{ form_close() }}
+    {% else %}
+        <p>
+            {{ 'Sorry, you need to be logged in to comment.' | _ }}
+            <a class="underline" href="{{ 'security/login' }}">{{ 'Login here' | _ }}</a>
+        </p>
+    {% endif %}
 </div>
