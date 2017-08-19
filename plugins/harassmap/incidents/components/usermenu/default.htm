@@ -1,0 +1,30 @@
+{% if user %}
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        {{ user.name }} {{ user.surname }} <span class="caret"></span>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li>
+            <a href="{{ 'user/dashboard' | page }}">
+                {{ 'Dashboard' | _ }}
+            </a>
+            <a href="{{ 'user/notifications' | page }}">
+                {{ 'Notifications' | _ }}
+            </a>
+            <a href="{{ 'user/account' | page }}">
+                {{ 'My Account' | _ }}
+            </a>
+            <a href="{{ 'user/api' | page }}">
+                {{ 'API' | _ }}
+            </a>
+            <a href="#" data-request="onLogout" data-request-data="redirect: '/'">
+                {{ 'Sign out' | _ }}
+            </a>
+        </li>
+    </ul>
+{% else %}
+    <a href="{{ 'security/login' | page }}" class="priority-2 underline">{{ 'Login' | _ }}</a>
+    /
+    <a href="{{ 'security/register' | page }}"
+       class="priority-2 underline">{{ 'Register' | _ }}</a>
+{% endif %}

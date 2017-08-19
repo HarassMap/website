@@ -22,6 +22,7 @@ use Harassmap\Incidents\Components\ReportView;
 use Harassmap\Incidents\Components\Tip;
 use Harassmap\Incidents\Components\Tips;
 use Harassmap\Incidents\Components\UserAPI;
+use Harassmap\Incidents\Components\UserMenu;
 use Harassmap\Incidents\Components\UserReports;
 use Harassmap\Incidents\Console\MigrateCommand;
 use Harassmap\Incidents\FormWidgets\RelationLink;
@@ -90,6 +91,7 @@ class Plugin extends PluginBase
             UserAPI::class => 'harassmapUserAPI',
             ReportStory::class => 'harassmapStory',
             Notifications::class => 'harassmapNotifications',
+            UserMenu::class => 'harassmapUserMenu',
         ];
     }
 
