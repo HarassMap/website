@@ -59,6 +59,14 @@ class Plugin extends PluginBase
             ], 'primary');
 
             $widget->addFields([
+                'notification_incident' => [
+                    'label' => 'Notifications?',
+                    'tab' => 'rainlab.user::lang.user.account',
+                    'type' => 'checkbox'
+                ],
+            ], 'primary');
+
+            $widget->addFields([
                 'incidents' => [
                     'label' => 'Incidents',
                     'type' => 'relation_link',
