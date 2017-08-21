@@ -127,7 +127,7 @@ class Plugin extends PluginBase
     {
         // every day at 9pm send emails to people with support
         $schedule->call(function () {
-            Mailer::sendSupportMail();
+            Mailer::sendNotificationMail();
         })->dailyAt('20:00');
     }
 

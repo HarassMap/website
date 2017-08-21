@@ -113,7 +113,14 @@ class Incident extends Model
 
     public function afterUpdate()
     {
-        Analytics::reportEdited($this);
+        // get which attributes have changed
+        $changed = $this->getDirty();
+
+        if(array_key_exists('support', $changed)) {
+            Analytics::reportSupportAdded($this);
+        } else {
+            Analytics::reportEdited($this);
+        }
     }
 
     public function afterDelete()

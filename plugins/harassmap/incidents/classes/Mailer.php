@@ -36,9 +36,9 @@ class Mailer
     }
 
     /**
-     * Send email to everyone who has received support
+     * Send email to everyone who has received notifications
      */
-    public static function sendSupportMail()
+    public static function sendNotificationMail()
     {
         // get all the notifications grouped by user
         $collection = Notification

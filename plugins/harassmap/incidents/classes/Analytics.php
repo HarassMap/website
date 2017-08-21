@@ -44,6 +44,8 @@ class Analytics
         $attributable = self::getInstance();
         $user = self::getUser();
 
+        $author = null;
+
         // if there is a use then build the author array
         if ($user) {
             $author = [
@@ -138,6 +140,11 @@ class Analytics
     public static function reportEdited(Incident $incident)
     {
         self::report($incident, 'edited');
+    }
+
+    public static function reportSupportAdded(Incident $incident)
+    {
+        self::report($incident, 'added support for an');
     }
 
     public static function reportDeleted(Incident $incident)
