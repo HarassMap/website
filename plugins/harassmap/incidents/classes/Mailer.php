@@ -44,6 +44,7 @@ class Mailer
         $collection = Notification
             ::where('read', '=', false)
             ->orderBy('created_at', 'desc')
+            ->get()
             ->groupBy('user_id');
 
         // loop through each user
