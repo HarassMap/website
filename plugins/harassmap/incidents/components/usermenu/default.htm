@@ -2,9 +2,8 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         {{ user.name }} {{ user.surname }}
         {% if notifications > 0 %}
-            <span class="notification--alert">*</span>
+            <span class="notification--alert"></span>
         {% endif %}
-        <span class="caret"></span>
     </a>
 
     <ul class="dropdown-menu dropdown-menu-right">

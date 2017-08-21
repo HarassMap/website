@@ -44,6 +44,22 @@
           }
         }
       }
+
+      .dropdown-toggle {
+        position: relative;
+
+        .notification--alert {
+          background-color: $red;
+          border-radius: 10px;
+          display: block;
+          height: 5px;
+          width: 5px;
+
+          position: absolute;
+          top: 5px;
+          right: 10px;
+        }
+      }
     }
 
     a {
@@ -276,7 +292,6 @@
         position: absolute;
 
       }
-
 
       a {
         color: $white;
