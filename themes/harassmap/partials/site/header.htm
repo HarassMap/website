@@ -25,11 +25,9 @@ numberOfLevels = 2
                 </div>
                 <div class="col-9">
                     <div class="priority-2 user-menu">
-                        <a href="{{ 'report/incident' | page }}" class="priority-2 underline mr-4">
-                            {{ 'Submit Report' | _ }}
-                        </a>
                         {% component 'harassmapUserMenu' %}
                     </div>
+                    <a href="{{ 'report/incident' | page }}" class="priority-2 underline submit-report">{{ 'Submit Report' | _ }}</a>
                 </div>
             </div>
         </div>

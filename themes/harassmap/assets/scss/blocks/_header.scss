@@ -8,6 +8,18 @@
 
     @include rem((padding: 8px 0));
 
+    .submit-report {
+      float: right;
+
+      @include rem((margin: 0 20px 0 0));
+
+      .ar & {
+        float: left;
+
+        @include rem((margin: 0 0 0 20px));
+      }
+    }
+
     .user-menu {
       float: right;
 
@@ -58,6 +70,12 @@
           position: absolute;
           top: 5px;
           right: 10px;
+
+          .ar & {
+            top: 5px;
+            left: 10px;
+            right: auto;
+          }
         }
       }
     }
