@@ -119,7 +119,7 @@ class Plugin extends PluginBase
     {
         return [
             'harassmap.incidents::mail.admin.report' => 'Sent to admin when a new report is added',
-            'harassmap.incidents::mail.user.support' => 'Sent to users when someone has expressed support to them',
+            'harassmap.incidents::mail.user.notifications' => 'Tells users they have new notifications',
         ];
     }
 
