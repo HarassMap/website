@@ -3,24 +3,30 @@
     <span class="hr__text">{{ 'Password Reset' | _ }}</span>
 </h3>
 
-<div id="partialUserResetForm">
+{% if error %}
+    <p>
+        {{ 'There\'s something wrong with the URL that brought you here. Please check it, and if you continue to encounter problems, :link_start let us know. :link_end' | _({link_start: ('<a href="' ~ 'contact' | page ~ '">'), link_end: '</a>'}) }}
+    </p>
+{% else %}
+    <div id="partialUserResetForm">
 
-    <div class="alerts"></div>
+        <div class="alerts"></div>
 
-    <form data-request="{{ __SELF__ }}::onResetPassword"
-          data-request-update="'{{ __SELF__ }}::resetComplete': '#partialUserResetForm'">
+        <form data-request="{{ __SELF__ }}::onResetPassword"
+              data-request-update="'{{ __SELF__ }}::resetComplete': '#partialUserResetForm'">
 
-        <input name="code" type="hidden" value="{{ __SELF__.code }}">
+            <input name="code" type="hidden" value="{{ __SELF__.code }}">
 
-        <div class="form-group">
-            <label for="resetPassword">{{ 'New Password' | _ }}</label>
-            <input name="password" type="password" class="form-control" id="resetPassword"
-                   placeholder="{{ 'Enter a new password' | _ }}">
-        </div>
+            <div class="form-group">
+                <label for="resetPassword">{{ 'New Password' | _ }}</label>
+                <input name="password" type="password" class="form-control" id="resetPassword"
+                       placeholder="{{ 'Enter a new password' | _ }}">
+            </div>
 
-        <button class="btn btn--default">{{ 'Reset password' | _ }}</button>
-    </form>
-</div>
+            <button class="btn btn--default">{{ 'Reset password' | _ }}</button>
+        </form>
+    </div>
+{% endif %}
 
 {% put scripts %}
 <script>

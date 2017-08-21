@@ -20,10 +20,11 @@ class IncidentResetPassword extends ResetPassword
             $user = User::whereId($parts[0])->first();
 
             // if there is no user then error
-            if (!$user->checkResetPasswordCode($parts[1])) {
-                App::abort(404);
+            if (!$user || !$user->checkResetPasswordCode($parts[1])) {
+                $this->page['error'] = true;
             }
         }
+
     }
 
     public function onRestorePassword()
