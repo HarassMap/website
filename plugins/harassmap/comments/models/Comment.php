@@ -101,4 +101,13 @@ class Comment extends Model
             $query->onlyTrashed();
         }
     }
+
+    public function scopeIncident($query, $status)
+    {
+        $query->whereHas('topic', function ($query) use ($status) {
+            $query->whereHas('incident', function($query) use ($status) {
+                $query->whereIn('id', $status);
+            });
+        });
+    }
 }

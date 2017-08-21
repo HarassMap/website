@@ -5,7 +5,11 @@ columns:
     user:
         label: User
         relation: user
-        select: 'concat(name, '' '', surname)'
+        select: 'username'
+    incident:
+        label: Incident
+        relation: topic
+        select: 'code'
     content:
         label: content
         type: text

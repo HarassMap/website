@@ -1,20 +1,22 @@
 fields:
-    content:
-        label: Content
-        span: full
-        type: textarea
     user:
         label: User
-        select: 'concat(name, '' '', surname)'
-        span: full
+        select: 'username'
+        span: auto
         disabled: 1
         type: relation
         emptyOption: 'No User'
+        commentAbove: Which user left this comment?
     flags:
         label: Flags
         span: auto
         type: number
         commentAbove: How many times has this comment been flagged by users?
+        disabled: 1
+    content:
+        label: Content
+        span: full
+        type: textarea
     approved:
         label: Approved?
         span: full

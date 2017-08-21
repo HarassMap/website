@@ -1,4 +1,9 @@
 scopes:
+    incident:
+        label: Incident
+        modelClass: Harassmap\Incidents\Models\Incident
+        scope: incident
+        nameFrom: public_id
     created_at:
         label: Date
         type: daterange
