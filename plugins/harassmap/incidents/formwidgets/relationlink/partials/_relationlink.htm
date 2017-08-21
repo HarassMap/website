@@ -1,3 +1,4 @@
+<?php if(isset($items)): ?>
 <?php foreach($items as $item): ?>
 <p class="form-control">
     <a href="<?php echo Backend::url('harassmap/incidents/incidents/update', ['id' => $item->id]); ?>">
@@ -5,3 +6,10 @@
     </a>
 </p>
 <?php endforeach; ?>
+<?php else: ?>
+<p class="form-control">
+    <a href="<?php echo Backend::url('harassmap/incidents/incidents/update', ['id' => $item->id]); ?>">
+        Report (<?php echo $item->public_id; ?>)
+    </a>
+</p>
+<?php endif; ?>

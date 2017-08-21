@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Incidents\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
+use October\Rain\Database\Collection;
 
 /**
  * RelationLink Form Widget
@@ -29,17 +30,34 @@ class RelationLink extends FormWidgetBase
         return $this->makePartial('relationlink');
     }
 
+    protected function getRelation($name)
+    {
+        $parts = explode('.', $name);
+        $relation = $this->model;
+
+        foreach ($parts as $part) {
+            $relation = $relation->{$part};
+        }
+
+        return $relation;
+    }
+
     /**
      * Prepares the form widget view data
      */
     public function prepareVars()
     {
-        $relationName = $this->formField->fieldName;
-        $relation = $this->model->{$relationName};
+        $relationName = $this->config->relation;
+        $relation = $this->getRelation($relationName);
 
         $this->vars['name'] = $this->formField->getName();
-        $this->vars['items'] = $relation;
         $this->vars['model'] = $this->model;
+
+        if ($relation instanceof Collection) {
+            $this->vars['items'] = $relation;
+        } else {
+            $this->vars['item'] = $relation;
+        }
     }
 
     /**

@@ -71,6 +71,7 @@ class Plugin extends PluginBase
                     'label' => 'Incidents',
                     'type' => 'relation_link',
                     'tab' => 'Reports',
+                    'relation' => 'incidents'
                 ],
             ], 'primary');
 

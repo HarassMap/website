@@ -1,4 +1,8 @@
 fields:
+    incident:
+        label: Incident
+        type: relation_link
+        relation: topic.incident
     user:
         label: User
         select: 'username'
