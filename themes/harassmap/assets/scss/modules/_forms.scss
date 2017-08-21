@@ -3,16 +3,18 @@
 
 input, select, textarea, .form-check-label, option {
   color: $tundora;
-  font-family: $oswald;
   font-weight: $light;
   letter-spacing: 1px;
+
+  @include oswald();
 }
 
 .select2-selection__rendered, .select2-results__option {
   color: $tundora;
-  font-family: $oswald;
   font-weight: $light;
   letter-spacing: 1px;
+
+  @include oswald();
 }
 
 .form-group {
@@ -41,9 +43,9 @@ input, select, textarea, .form-check-label, option {
   }
 
   label {
-    font-family: $merriweather;
     font-weight: $light;
 
+    @include merriweather();
     @include rem((font-size: 14px));
   }
 
@@ -79,9 +81,9 @@ input, select, textarea, .form-check-label, option {
   height: auto;
 
   .select2-selection__rendered {
-    font-family: $oswald;
     font-weight: $light;
 
+    @include oswald();
     @include rem((font-size: 14px, padding: 4px 12px));
   }
 

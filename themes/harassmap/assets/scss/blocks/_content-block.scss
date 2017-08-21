@@ -2,7 +2,7 @@
 @import "rem";
 
 .content-block {
-  font-family: $merriweather;
+  @include merriweather();
 
   h4 {
     padding: 0;

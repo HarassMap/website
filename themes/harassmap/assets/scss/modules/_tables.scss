@@ -22,10 +22,10 @@
 
   th {
     color: $tundora;
-    font-family: $oswald;
     font-weight: $light;
     text-transform: uppercase;
 
+    @include oswald();
     @include rem((font-size: 20px));
 
     &.date {
@@ -34,9 +34,9 @@
   }
 
   td {
-    font-family: $merriweather;
     font-weight: $light;
 
+    @include merriweather();
     @include rem((font-size: 14px));
   }
 

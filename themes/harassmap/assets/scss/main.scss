@@ -1,6 +1,7 @@
 @import "rem";
 @import "variables";
-// importing bootstrap styles
+@import "utils";
+@import "fonts";
 @import "bootstrap";
 @import "pikaday";
 @import "plugins/timepicker";

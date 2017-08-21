@@ -12,7 +12,7 @@
       float: right;
 
       .dropdown-menu li {
-        font-family: $oswald;
+        @include oswald();
       }
 
       .ar & {
@@ -197,8 +197,8 @@
 
   .nav {
     display: block;
-    font-family: $oswald;
 
+    @include oswald();
     @include rem((font-size: 16px));
 
     @include media-breakpoint-up(md) {
@@ -210,7 +210,8 @@
       cursor: pointer;
       display: block;
       text-transform: uppercase;
-      font-family: $oswald;
+
+      @include oswald();
 
       @include media-breakpoint-up(md) {
         border: 1px solid $white;
@@ -311,8 +312,8 @@
       .nav-item {
         text-transform: capitalize;
         font-weight: $light;
-        font-family: $oswald;
 
+        @include oswald();
         @include rem((padding: 10px 0, font-size: 16px));
 
         @include media-breakpoint-up(md) {

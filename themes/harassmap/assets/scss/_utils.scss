@@ -1,0 +1,17 @@
+@import "variables";
+
+@mixin merriweather() {
+  font-family: $merriweather;
+
+  .ar & {
+    font-family: $frutiger;
+  }
+}
+
+@mixin oswald() {
+  font-family: $oswald;
+
+  .ar & {
+    font-family: $cairo;
+  }
+}

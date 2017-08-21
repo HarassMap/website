@@ -20,8 +20,8 @@
 
   p {
     color: $white;
-    font-family: $merriweather;
 
+    @include merriweather();
     @include rem((font-size: 14px, padding: 0 0 30px, margin: 0));
   }
 }
@@ -53,12 +53,12 @@
     p {
       color: $white;
       display: table-cell;
-      font-family: $oswald;
       font-weight: $normal;
       margin: 0;
       padding: 0;
       vertical-align: middle;
 
+      @include oswald();
       @include rem((font-size: 36px));
     }
 

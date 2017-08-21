@@ -2,7 +2,7 @@
 @import "rem";
 
 .weekly-tip {
-  font-family: $merriweather;
+  @include merriweather();
 
   p {
     color: $tundora;

@@ -6,10 +6,10 @@
   border: 1px solid $green;
   cursor: pointer;
   color: $green;
-  font-family: $oswald;
   text-align: center;
   text-transform: uppercase;
 
+  @include oswald();
   @include rem((padding: 8px 50px, letter-spacing: 1px));
 }
 

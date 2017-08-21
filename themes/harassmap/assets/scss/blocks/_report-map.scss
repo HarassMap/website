@@ -4,9 +4,9 @@
 .report-map {
 
   h3 {
-    font-family: $oswald;
     font-weight: $light;
 
+    @include oswald();
     @include rem((font-size: 20px, padding: 20px 0));
   }
 
@@ -22,10 +22,10 @@
       border: 1px solid $alto;
       background-color: $white;
       color: $dusty-gray;
-      font-family: $oswald;
       position: relative;
       text-transform: uppercase;
 
+      @include oswald();
       @include rem((font-size: 14px, padding: 5px 25px 5px 50px, margin-left: 15px));
 
       &.active {
@@ -101,9 +101,9 @@
       .key {
         display: block;
         float: left;
-        font-family: $oswald;
         position: relative;
 
+        @include oswald();
         @include rem((font-size: 16px, padding: 9px 40px 9px 0, letter-spacing: 1px));
 
         @include media-breakpoint-down(sm) {

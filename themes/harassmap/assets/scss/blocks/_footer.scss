@@ -26,8 +26,7 @@
       display: inline;
       list-style: none;
 
-      font-family: $merriweather;
-
+      @include merriweather();
       @include rem((font-size: 14px, padding-left: 10px));
 
       li {

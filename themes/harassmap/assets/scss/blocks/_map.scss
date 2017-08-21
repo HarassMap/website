@@ -24,8 +24,8 @@
 
   .info {
     position: relative;
-    font-family: $oswald;
 
+    @include oswald();
     @include rem((padding: 5px 0 5px 30px, font-size: 14px));
   }
 
@@ -52,8 +52,8 @@
   .read-more {
     color: $dusty-gray;
     text-decoration: underline;
-    font-family: $merriweather;
 
+    @include merriweather();
     @include rem((font-size: 14px));
   }
 

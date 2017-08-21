@@ -24,9 +24,9 @@
     .category {
       color: $dusty-gray;
       border: 1px solid $dusty-gray;
-      font-family: $oswald;
       float: left;
 
+      @include oswald();
       @include rem((font-size: 14px, padding: 5px 10px, margin: 0 5px 0 0));
     }
 
