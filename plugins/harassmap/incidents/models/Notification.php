@@ -90,27 +90,52 @@ class Notification extends Model
         $topic = $comment->topic;
         $incident = $topic->incident;
 
-        if ($incident->user_id) {
+        if ($incident->user_id && $incident->user_id != $comment->user_id) {
             $notification = self::getNotification($incident->user_id, $incident->id, self::INCIDENT_COMMENT);
-
-            // get the content of the notification
-            $content = $notification->content;
-
-            // if the content is empty then create a new one
-            if (!$content) {
-                $content = [
-                    'count' => 0,
-                    'link' => Page::url('reports/view', ['id' => $incident->public_id]) . '#comments'
-                ];
-            }
-
-            // now increase the count
-            $content['count']++;
-
-            // save the notification
-            $notification->content = $content;
-            $notification->save();
+            self::increaseCommentNotification($notification, $incident);
         }
+
+        $notified = [];
+
+        // loop through all the comments for this topic to notify them of a reply
+        foreach ($topic->comments as $otherComment) {
+
+            // notify the comment author that someone else has commented on the topic
+            // don't notify more than once
+            // don't notify if the user commenting is the incident user
+            // don't notify the author of this comment
+            if (
+                !array_search($otherComment->user_id, $notified)
+                && $otherComment->user_id !== $incident->user_id
+                && $otherComment->user_id !== $comment->user_id
+            ) {
+                $notified[] = $otherComment->user_id;
+
+                $notification = self::getNotification($otherComment->user_id, $incident->id, self::COMMENT_REPLY);
+                self::increaseCommentNotification($notification, $incident);
+            }
+        }
+    }
+
+    protected static function increaseCommentNotification(Notification $notification, Incident $incident)
+    {
+        // get the content of the notification
+        $content = $notification->content;
+
+        // if the content is empty then create a new one
+        if (!$content) {
+            $content = [
+                'count' => 0,
+                'link' => Page::url('reports/view', ['id' => $incident->public_id]) . '#comments'
+            ];
+        }
+
+        // now increase the count
+        $content['count']++;
+
+        // save the notification
+        $notification->content = $content;
+        $notification->save();
     }
 
     public static function getNotification($user_id, $reference, $type)

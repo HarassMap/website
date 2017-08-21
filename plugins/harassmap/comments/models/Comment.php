@@ -9,6 +9,7 @@ use October\Rain\Database\Traits\Validation;
 use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
 
+
 /**
  * Harassmap\Comments\Models\Comment
  *
@@ -18,28 +19,25 @@ use RainLab\User\Models\User;
  * @property string $content
  * @property int $flags
  * @property int $approved
- * @property string|null $deleted_reason
+ * @property int $user_deleted
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $edited_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property Topic $topic
- * @property User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment deleted($status)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment incident($status)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereApproved($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereDeletedReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereEditedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereFlags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUserDeleted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUserId($value)
  * @mixin \Eloquent
- * @property int $user_deleted
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment deleted($status)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Comments\Models\Comment whereUserDeleted($value)
  */
 class Comment extends Model
 {

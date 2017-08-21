@@ -13,6 +13,7 @@ use October\Rain\Database\Traits\Validation;
  * @property int $id
  * @property string $code
  * @property Incident $incident
+ * @property Comment[] $comments
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at

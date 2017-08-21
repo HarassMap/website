@@ -80,7 +80,6 @@ class Topic extends ComponentBase
         $comment->content = $content;
         $comment->topic_id = $this->topic->id;
         $comment->user_id = $user->id;
-        $comment->validate();
 
         $comment->save();
 
