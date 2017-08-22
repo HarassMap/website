@@ -98,6 +98,11 @@ class Domain extends Model
         'blogger' => 'max:100',
     ];
 
+    public $attachOne = [
+        'headerLogo' => 'System\Models\File',
+        'footerLogo' => 'System\Models\File'
+    ];
+
     public $hasMany = [
         'content' => [Content::class, 'delete' => true],
         'tips' => [Tip::class, 'delete' => true],
@@ -108,11 +113,6 @@ class Domain extends Model
     public $belongsToMany = [
         'users' => [BackendUserModel::class, 'table' => 'harassmap_incidents_domain_user'],
         'categories' => [Category::class, 'table' => 'harassmap_incidents_domain_category']
-    ];
-
-    public $attachOne = [
-        'headerLogo' => 'System\Models\File',
-        'footerLogo' => 'System\Models\File'
     ];
 
     public $colourTypes = [
