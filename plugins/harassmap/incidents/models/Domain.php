@@ -174,7 +174,7 @@ class Domain extends Model
     static function getMatchingDomains()
     {
         $requestHost = Request::getHost();
-        $domains = self::get();
+        $domains = self::orderBy('created_at', 'desc')->get();
         $matches = [];
 
         foreach ($domains as $domain) {
