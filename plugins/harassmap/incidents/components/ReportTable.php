@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 
 class ReportTable extends ComponentBase
@@ -36,8 +37,14 @@ class ReportTable extends ComponentBase
 
     public function onRender()
     {
+        $domain = Domain::getBestMatchingDomain();
+
         // get the users incidents
-        $this->page['reports'] = Incident::orderBy('date', 'desc')->paginate(10);
+        $this->page['reports'] = Incident
+            ::where('domain_id', $domain->id)
+            ->orderBy('date', 'desc')
+            ->paginate(10);
+
         $this->page['viewPage'] = $this->property('viewPage');
     }
 
