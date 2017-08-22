@@ -58,7 +58,7 @@ class Analytics
 
         }
 
-        $attributable->capture($event, $occurred_on, $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
+        $attributable->capture($event, $occurred_on->toDateTimeString(), $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
     }
 
     public static function measure($metric, $value, $occurred_on = null)
