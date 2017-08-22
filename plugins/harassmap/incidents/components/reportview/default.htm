@@ -74,7 +74,7 @@
                 </p>
             {% endif %}
 
-            {% if user.id != report.user.id %}
+            {% if not user or user.id != report.user.id %}
                 <form data-request="onExpressSupport">
                     <button class="btn btn--default mb-2 mt-2">
                         {{ 'Express Support' | _ }}
