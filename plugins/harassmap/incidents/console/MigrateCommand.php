@@ -74,7 +74,6 @@ class MigrateCommand extends Command
             $location->lat = number_format(floatval($lat), 5, '.', '');
             $location->lng = number_format(floatval($lng), 5, '.', '');
 
-            $incident->generatePublicId();
             $incident->domain_id = $domain->id;
             $incident->description = $data['description'];
             $incident->approved = true;

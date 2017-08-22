@@ -55,7 +55,6 @@ class Incident extends Model
     public $translatable = ['description'];
 
     public $rules = [
-        'public_id' => 'required|string',
         'description' => 'required|string',
         'date' => 'required|date|before:now',
         'domain' => 'required',
@@ -102,6 +101,11 @@ class Incident extends Model
         if ($duplicate) {
             $this->generatePublicId();
         }
+    }
+
+    public function beforeCreate()
+    {
+        $this->generatePublicId();
     }
 
     public function afterCreate()

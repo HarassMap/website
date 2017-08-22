@@ -76,13 +76,12 @@ class ReportIntervention extends ComponentBase
         $location->lat = number_format($data['lat'], 5, '.', '');
         $location->lng = number_format($data['lng'], 5, '.', '');
 
-        $incident->generatePublicId();
         $incident->domain_id = $domain->id;
         $incident->is_intervention = true;
         $incident->role_id = $data['role'];
         $incident->description = $data['description'];
 
-        // if the domain doesnt require descriptions to be approved then auto approve it
+        // if the domain doesn't require descriptions to be approved then auto approve it
         if (!$domain->need_approval) {
             $incident->approved = true;
         }
