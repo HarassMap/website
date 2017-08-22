@@ -1,5 +1,6 @@
 <?php namespace Harassmap\User;
 
+use Harassmap\Incidents\Classes\Analytics;
 use RainLab\User\Controllers\Users as UsersController;
 use RainLab\User\Models\User;
 use System\Classes\PluginBase;
@@ -16,6 +17,18 @@ class Plugin extends PluginBase
             $model->addFillable([
                 'terms', 'marketing', 'notification_incident'
             ]);
+
+            $model->bindEvent('model.afterCreate', function () use ($model) {
+                Analytics::userCreated($model);
+            });
+
+            $model->bindEvent('model.afterUpdate', function () use ($model) {
+                Analytics::userEdited($model);
+            });
+
+            $model->bindEvent('model.afterDelete', function () use ($model) {
+                Analytics::userDeleted($model);
+            });
         });
 
         UsersController::extendFormFields(function ($widget, $model, $context) {
@@ -86,7 +99,7 @@ class Plugin extends PluginBase
 
             $widget->addColumns([
                 'username' => [
-                    'label'      => 'rainlab.user::lang.user.username',
+                    'label' => 'rainlab.user::lang.user.username',
                     'searchable' => true
                 ]
             ]);

@@ -208,4 +208,28 @@ class Analytics
         self::domain($domain, 'deleted');
     }
 
+    public static function user(User $user, $message)
+    {
+        $event = self::getEventName($message);
+
+        self::capture($event, new Carbon(), [
+            'user_id' => $user->id
+        ]);
+    }
+
+    public static function userCreated(User $user)
+    {
+        self::user($user, 'created');
+    }
+
+    public static function userEdited(User $user)
+    {
+        self::user($user, 'edited');
+    }
+
+    public static function userDeleted(User $user)
+    {
+        self::user($user, 'edited');
+    }
+
 }
