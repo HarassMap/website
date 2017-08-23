@@ -5,7 +5,6 @@ namespace Harassmap\Incidents\Classes;
 use Backend;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
-use Harassmap\Incidents\Models\Support;
 use Mail;
 use RainLab\User\Models\User;
 
@@ -18,12 +17,18 @@ class Mailer
      */
     public static function incidentCreated(Incident $incident)
     {
+        $isCLI = (php_sapi_name() === 'cli');
+
+        // end early if we are in the cli
+        if ($isCLI) {
+            return;
+        }
+
         // get the domain that the incident is part of
         $domain = $incident->domain;
         $users = $domain->users;
 
         foreach ($users as $user) {
-
             $data = [
                 'name' => $user->first_name,
                 'link' => Backend::url('harassmap/incidents/incidents/update', ['id' => $incident->id])

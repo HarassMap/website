@@ -41,6 +41,13 @@ class Analytics
      */
     public static function capture($event, $occurred_on = null, $tags = null, $is_error = null, $is_resolved = null, $execution_time_in_seconds = null, $comments = null)
     {
+        $isCLI = (php_sapi_name() === 'cli');
+
+        // end early if we are in the cli
+        if ($isCLI) {
+            return;
+        }
+
         $attributable = self::getInstance();
         $user = self::getUser();
 
