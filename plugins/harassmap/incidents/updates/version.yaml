@@ -170,3 +170,9 @@
 1.0.59:
     - 'Created table harassmap_incidents_notifications'
     - builder_table_create_harassmap_incidents_notifications.php
+1.0.60:
+    - 'Updated table harassmap_incidents_intervention_assistance'
+    - builder_table_update_harass_map_intervention_assistance.php
+1.0.61:
+    - 'Updated table harassmap_incidents_incident_category'
+    - builder_table_update_harass_map_incident_category.php
