@@ -33,40 +33,34 @@ tabs:
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
         name:
-            label: 'harassmap.incidents::lang.form.namestart'
-            span: auto
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.logo'
-        nameend:
-            label: 'harassmap.incidents::lang.form.nameend'
-            span: auto
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.logo'
-        tagline:
-            label: 'harassmap.incidents::lang.form.tagline'
+            label: 'harassmap.incidents::lang.form.name'
             span: full
             type: text
             tab: 'harassmap.incidents::lang.form.tab.logo'
-        headerLogo:
-            label: 'harassmap.incidents::lang.form.logo.header'
-            mode: file
-            useCaption: true
-            thumbOptions:
-                mode: crop
-                extension: auto
-            span: full
-            type: fileupload
+        logos:
+            type: repeater
             tab: 'harassmap.incidents::lang.form.tab.logo'
-        footerLogo:
-            label: 'harassmap.incidents::lang.form.logo.footer'
-            mode: file
-            useCaption: true
-            thumbOptions:
-                mode: crop
-                extension: auto
-            span: full
-            type: fileupload
-            tab: 'harassmap.incidents::lang.form.tab.logo'
+            maxItems: 1
+            form:
+                fields:
+                    header:
+                        label: Header Logo
+                        mode: image
+                        type: mediafinder
+                        imageWidth: 390
+                        imageHeight: 110
+                    mobile:
+                        label: Mobile Logo
+                        mode: image
+                        type: mediafinder
+                        imageWidth: 390
+                        imageHeight: 110
+                    footer:
+                        label: Footer Logo
+                        mode: image
+                        type: mediafinder
+                        imageWidth: 150
+                        imageHeight: 150
         incident:
             label: 'Enable Incident'
             span: auto

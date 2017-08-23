@@ -117,7 +117,6 @@
       }
 
       .site-logo {
-        display: none;
         float: left;
 
         @include rem((padding-right: 14px, height: 50px));
@@ -128,50 +127,7 @@
         }
 
         @include media-breakpoint-up(lg) {
-          display: block;
-
           @include rem((height: 65px));
-        }
-      }
-
-      .site-name {
-
-        .name {
-          display: block;
-          font-family: $roboto;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-
-          @include rem((font-size: 41px, line-height: 41px));
-
-          @include media-breakpoint-up(md) {
-            @include rem((font-size: 41px, line-height: 41px));
-          }
-
-          @include media-breakpoint-up(lg) {
-            @include rem((font-size: 48px, line-height: 48px));
-          }
-
-          .namestart {
-            color: $tundora;
-          }
-
-          .nameend {
-            color: $green;
-          }
-        }
-
-        .tagline {
-          display: block;
-          color: $tundora;
-          font-family: $opensans;
-          letter-spacing: 1px;
-
-          @include rem((font-size: 12px, line-height: 12px));
-
-          @include media-breakpoint-up(lg) {
-            @include rem((font-size: 14px, line-height: 14px));
-          }
         }
       }
     }
@@ -197,16 +153,6 @@
 
         @include media-breakpoint-up(md) {
           background-color: $white;
-        }
-      }
-
-      .navbar-brand {
-        .site-name {
-          .name {
-            .namestart, .nameend {
-              color: $white;
-            }
-          }
         }
       }
     }
