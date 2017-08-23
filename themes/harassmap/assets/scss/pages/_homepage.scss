@@ -60,6 +60,10 @@
 
       @include oswald();
       @include rem((font-size: 36px));
+
+      .ar & {
+        font-weight: $bold;
+      }
     }
 
   }
