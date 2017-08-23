@@ -1,8 +1,8 @@
 columns:
     domain:
         label: 'harassmap.incidents::lang.form.domain'
-        select: host
         relation: domain
+        select: host
         width: '250px'
     content_id:
         label: 'harassmap.incidents::lang.form.content_id'
