@@ -1,14 +1,14 @@
 scopes:
     domain:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.news::lang.form.domain'
         modelClass: Harassmap\Incidents\Models\Domain
         conditions: domain_id in (:filtered)
         nameFrom: host
-    updated_at:
-        label: 'harassmap.incidents::lang.form.updated_at'
+    published_at:
+        label: 'harassmap.news::lang.form.published'
         type: daterange
-        conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'
+        conditions: published_at >= ':afterDate' AND published_at <= ':beforeDate'
     created_at:
-        label: 'harassmap.incidents::lang.form.created_at'
+        label: 'harassmap.news::lang.form.created_at'
         type: daterange
         conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'
