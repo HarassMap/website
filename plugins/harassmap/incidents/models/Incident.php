@@ -69,9 +69,20 @@ class Incident extends Model
     ];
 
     public $hasOne = [
-        'location' => [Location::class, 'delete' => true],
-        'intervention' => [Intervention::class, 'delete' => true],
-        'topic' => [Topic::class, 'delete' => true, 'key' => 'code', 'otherKey' => 'public_id'],
+        'location' => [
+            Location::class,
+            'delete' => true
+        ],
+        'intervention' => [
+            Intervention::class,
+            'delete' => true
+        ],
+        'topic' => [
+            Topic::class,
+            'delete' => true,
+            'key' => 'code',
+            'otherKey' => 'public_id'
+        ],
     ];
 
     public $hasManyThrough = [

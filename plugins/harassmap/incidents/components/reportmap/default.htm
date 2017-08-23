@@ -84,43 +84,48 @@
         <div class="container">
             <h3>{{ 'Reports' | _ }}</h3>
 
-            <table class="table table-hover table-bordered table--bordered">
-                <thead>
-                <tr>
-                    <th class="date">{{ 'Date' | _ }}</th>
-                    <th>{{ 'Type' | _ }}</th>
-                    <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
-                    <th class="w-25">{{ 'Location' | _ }}</th>
-                    <th class="hidden-sm-down">{{ 'Categories' | _ }}</th>
-                    <th class="js-hidden">{{ 'Link' | _ }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for report in reports %}
-                    <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
-                        <td>{{ report.date | date("d / m / Y", domain.timezone) }}</td>
-                        <td class="type">
-                            <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
-                            <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>
-                        </td>
-                        <td class="hidden-sm-down">
-                            {% if report.approved %}
-                                {{ report.description | length > 50 ? report.description | slice(0, 50) ~ '...' : report.description }}
-                            {% else %}
-                                <span class="faded">
-                                    {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 50) }}...
-                                </span>
-                            {% endif %}
-                        </td>
-                        <td>{{ report.location.address }}, {{ report.location.city }}</td>
-                        <td class="hidden-sm-down">{% for category in report.categories | slice(0, 2) %}{% if loop.index > 1 %}, {% endif %}{{ category.title }}{% endfor %}</td>
-                        <td class="js-hidden">
-                            <a href="{{ viewPage | page({id: report.public_id}) }}">{{ 'View' | _ }}</a>
-                        </td>
+            {% if reports.empty %}
+                <p>{{ 'There doesn\'t seem to be any reports.' | _ }}</p>
+            {% else %}
+                <table class="table table-hover table-bordered table--bordered">
+                    <thead>
+                    <tr>
+                        <th class="date">{{ 'Date' | _ }}</th>
+                        <th>{{ 'Type' | _ }}</th>
+                        <th class="hidden-sm-down">{{ 'Description' | _ }}</th>
+                        <th class="w-25">{{ 'Location' | _ }}</th>
+                        <th class="hidden-sm-down">{{ 'Categories' | _ }}</th>
+                        <th class="js-hidden">{{ 'Link' | _ }}</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for report in reports %}
+                        <tr class="row-link" data-href="{{ viewPage | page({id: report.public_id}) }}">
+                            <td>{{ report.date | date("d / m / Y", domain.timezone) }}</td>
+                            <td class="type">
+                                <span class="icon icon--{{ report.intervention ? 'intervention' : 'incident' }}"></span>
+                                <span class="sr-only">{{ report.intervention ? 'Intervention' : 'Incident' }}</span>
+                            </td>
+                            <td class="hidden-sm-down">
+                                {% if report.approved %}
+                                    {{ report.description | length > 50 ? report.description | slice(0, 50) ~ '...' : report.description }}
+                                {% else %}
+                                    <span class="faded">
+                                    {{ 'We check all report descriptions to ensure anonymity and confidentiality. You will be able to view the full text soon.' | _ | slice(0, 50) }}
+                                        ...
+                                </span>
+                                {% endif %}
+                            </td>
+                            <td>{{ report.location.address }}, {{ report.location.city }}</td>
+                            <td class="hidden-sm-down">{% for category in report.categories | slice(0, 2) %}{% if loop.index > 1 %}, {% endif %}{{ category.title }}{% endfor %}</td>
+                            <td class="js-hidden">
+                                <a href="{{ viewPage | page({id: report.public_id}) }}">{{ 'View' | _ }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
         </div>
 
         <div class="toolbar">
