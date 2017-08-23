@@ -9,7 +9,7 @@ class BuilderTableUpdateHarassmapIncidentsDomain12 extends Migration
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->json('logos')->nullable();
+            $table->text('logos')->nullable();
         });
     }
     
