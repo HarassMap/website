@@ -36,8 +36,7 @@ class Intervention extends Model
     public $belongsToMany = [
         'assistance' => [
             Assistance::class,
-            'table' => 'harassmap_incidents_intervention_assistance',
-            'delete' => true
+            'table' => 'harassmap_incidents_intervention_assistance'
         ]
     ];
 }
