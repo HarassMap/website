@@ -74,8 +74,6 @@ return [
         'activate_mode_user_comment' => '用户使用邮箱激活它们的账号.',
         'activate_mode_admin' => '管理员',
         'activate_mode_admin_comment' => '只能通过管理员来激活用户.',
-        'welcome_template' => '欢迎邮件模板',
-        'welcome_template_comment' => '该邮件模板在用户第一次激活后发送给用户.',
         'require_activation' => '激活后才能登陆',
         'require_activation_comment' => '用户必须激活后才能登录.',
         'use_throttle' => '登录限制',
@@ -84,8 +82,6 @@ return [
         'block_persistence_comment' => '当该项被打开时,用户在同一时间不能登录多个终端.',
         'login_attribute' => '登录字段',
         'login_attribute_comment' => '选择用户登录类型.',
-        'no_mail_template' => '不发送通知',
-        'hint_templates' => '你可以通过管理面板 邮件 > 邮件模版 设置邮件正文模版.'
     ],
     'user' => [
         'label' => '用户',
@@ -139,7 +135,7 @@ return [
         'delete_selected_success' => '成功删除选中的用户组.',
         'delete_selected_empty' => '没有选中要删除的用户组.',
         'return_to_list' => '返回用户组列表',
-        'return_to_users' => '返回用户组列表',
+        'return_to_users' => '返回用户列表',
         'create_title' => '创建用户组',
         'update_title' => '编辑用户组',
         'preview_title' => '预览用户组'
