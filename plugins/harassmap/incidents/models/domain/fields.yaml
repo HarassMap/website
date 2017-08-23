@@ -6,21 +6,6 @@ tabs:
             type: text
             comment: 'harassmap.incidents::lang.form.host_help'
             tab: 'harassmap.incidents::lang.form.tab.site'
-        name:
-            label: 'harassmap.incidents::lang.form.namestart'
-            span: auto
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.site'
-        nameend:
-            label: 'harassmap.incidents::lang.form.nameend'
-            span: auto
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.site'
-        tagline:
-            label: 'harassmap.incidents::lang.form.tagline'
-            span: full
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.site'
         about:
             label: 'harassmap.incidents::lang.form.about'
             span: full
@@ -32,6 +17,36 @@ tabs:
             span: auto
             type: dropdown
             tab: 'harassmap.incidents::lang.form.tab.site'
+        incident:
+            label: 'Enable Incident'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        intervention:
+            label: 'Enable Intervention'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        need_approval:
+            label: 'Do descriptions require approval?'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        name:
+            label: 'harassmap.incidents::lang.form.namestart'
+            span: auto
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.logo'
+        nameend:
+            label: 'harassmap.incidents::lang.form.nameend'
+            span: auto
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.logo'
+        tagline:
+            label: 'harassmap.incidents::lang.form.tagline'
+            span: full
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.logo'
         headerLogo:
             label: 'harassmap.incidents::lang.form.logo.header'
             mode: file
@@ -41,7 +56,7 @@ tabs:
                 extension: auto
             span: full
             type: fileupload
-            tab: 'harassmap.incidents::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.logo'
         footerLogo:
             label: 'harassmap.incidents::lang.form.logo.footer'
             mode: file
@@ -51,7 +66,7 @@ tabs:
                 extension: auto
             span: full
             type: fileupload
-            tab: 'harassmap.incidents::lang.form.tab.site'
+            tab: 'harassmap.incidents::lang.form.tab.logo'
         incident:
             label: 'Enable Incident'
             span: auto

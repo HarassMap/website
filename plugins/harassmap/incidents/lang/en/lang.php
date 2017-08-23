@@ -24,6 +24,7 @@
     'form' => [
         'tab' => [
             'site' => 'Site',
+            'logo' => 'Logo',
             'social' => 'Social',
             'map' => 'Map',
             'content' => 'Content',
