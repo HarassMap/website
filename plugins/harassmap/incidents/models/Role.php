@@ -37,4 +37,11 @@ class Role extends Model
     ];
 
     public $hidden = ['id'];
+
+    public function scopeDomain($query, $status)
+    {
+        $query->whereHas('domains', function ($query) use ($status) {
+            $query->whereIn('domain_id', $status);
+        });
+    }
 }

@@ -1,4 +1,10 @@
 columns:
     name:
-        label: name
+        label: 'harassmap.incidents::lang.form.name'
         type: text
+        searchable: true
+    domains:
+        label: 'harassmap.incidents::lang.form.domains'
+        select: host
+        relation: domains
+        sortable: false
