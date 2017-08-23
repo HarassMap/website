@@ -1,9 +1,14 @@
 scopes:
+    domain:
+        label: Domain
+        modelClass: Harassmap\Incidents\Models\Domain
+        nameFrom: host
+        scope: domain
     incident:
         label: Incident
         modelClass: Harassmap\Incidents\Models\Incident
-        scope: incident
         nameFrom: public_id
+        scope: incident
     created_at:
         label: Date
         type: daterange

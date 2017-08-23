@@ -108,4 +108,13 @@ class Comment extends Model
             });
         });
     }
+
+    public function scopeDomain($query, $status)
+    {
+        $query->whereHas('topic', function ($query) use ($status) {
+            $query->whereHas('incident', function($query) use ($status) {
+                $query->whereIn('domain_id', $status);
+            });
+        });
+    }
 }
