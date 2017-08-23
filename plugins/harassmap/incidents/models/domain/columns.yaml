@@ -2,3 +2,4 @@ columns:
     host:
         label: 'harassmap.incidents::lang.form.host'
         type: text
+        searchable: true

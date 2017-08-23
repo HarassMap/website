@@ -9,3 +9,4 @@ toolbar:
     search:
         prompt: 'backend::lang.list.search_prompt'
 recordUrl: 'harassmap/incidents/domain/update/:id'
+recordsPerPage: 20

@@ -17,13 +17,13 @@ class Domain extends Controller
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
 
+    protected $domain_id = 'id';
+
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents.domain', 'harassmap.incidents.domain.domain');
     }
-
-    protected $domain_id = 'id';
 
     protected function findDomain($id)
     {

@@ -21,6 +21,10 @@ columns:
         select: 'concat(name, '' '', surname)'
     support:
         label: 'harassmap.incidents::lang.form.support'
+    domain_id:
+        label: 'harassmap.incidents::lang.form.domain'
+        select: host
+        relation: domain
     description:
         label: Description
         searchable: true

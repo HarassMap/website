@@ -20,13 +20,13 @@ class Tip extends Controller
 
     public $bodyClass = 'compact-container';
 
+    protected $domain_id = 'domain_id';
+
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('harassmap.incidents.domain', 'harassmap.incidents.domain', 'harassmap.incidents.domain.tips');
     }
-
-    protected $domain_id = 'domain_id';
 
     public function update($recordId, $context = null)
     {

@@ -21,6 +21,8 @@ class Incidents extends Controller
     public $formConfig = 'config_form.yaml';
     public $relationConfig = 'config_relation.yaml';
 
+    protected $domain_id = 'domain_id';
+
     public function __construct()
     {
         parent::__construct();

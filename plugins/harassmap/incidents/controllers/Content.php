@@ -18,13 +18,13 @@ class Content extends Controller
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
 
+    protected $domain_id = 'domain_id';
+
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('harassmap.incidents.domain', 'harassmap.incidents.domain', 'harassmap.incidents.domain.content');
     }
-
-    protected $domain_id = 'domain_id';
 
     public function update($recordId, $context = null)
     {

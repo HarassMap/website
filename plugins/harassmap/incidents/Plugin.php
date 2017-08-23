@@ -95,6 +95,13 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerPageSnippets()
+    {
+        return [
+            ContentBlock::class => 'harassmapDomainContentBlock',
+        ];
+    }
+
     public function register()
     {
         $this->registerConsoleCommand('harassmap.migrate', MigrateCommand::class);
