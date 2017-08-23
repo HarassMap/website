@@ -55,7 +55,7 @@ abstract class GeneratorCommand extends Command
      *
      * @return bool|null
      */
-    public function handle()
+    public function fire()
     {
         $this->vars = $this->processVars($this->prepareVars());
 

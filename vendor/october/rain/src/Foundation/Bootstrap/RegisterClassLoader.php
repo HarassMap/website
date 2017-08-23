@@ -1,11 +1,11 @@
 <?php namespace October\Rain\Foundation\Bootstrap;
 
 use October\Rain\Support\ClassLoader;
-use October\Rain\Filesystem\Filesystem;
 use Illuminate\Contracts\Foundation\Application;
 
 class RegisterClassLoader
 {
+
     /**
      * Register The October Auto Loader
      *
@@ -14,23 +14,11 @@ class RegisterClassLoader
      */
     public function bootstrap(Application $app)
     {
-        $loader = new ClassLoader(
-            new Filesystem,
-            $app->basePath(),
-            $app->getCachedClassesPath()
-        );
-
-        $app->instance(ClassLoader::class, $loader);
-
-        $loader->register();
-
-        $loader->addDirectories([
-            'modules',
-            'plugins'
+        ClassLoader::register();
+        ClassLoader::addDirectories([
+            $app->basePath().'/modules',
+            $app->basePath().'/plugins'
         ]);
-
-        $app->after(function() use ($loader) {
-            $loader->build();
-        });
     }
+
 }

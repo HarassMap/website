@@ -68,5 +68,3 @@ class Twig_Profiler_Dumper_Text
         return $str;
     }
 }
-
-class_alias('Twig_Profiler_Dumper_Text', 'Twig\Profiler\Dumper\TextDumper', false);

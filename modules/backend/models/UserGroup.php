@@ -10,7 +10,10 @@ use October\Rain\Auth\Models\Group as GroupBase;
  */
 class UserGroup extends GroupBase
 {
-    const CODE_OWNERS = 'owners';
+    /**
+     * @var string The default group code.
+     */
+    const DEFAULT_CODE = 'owners';
 
     /**
      * @var string The database table used by the model.
@@ -28,8 +31,8 @@ class UserGroup extends GroupBase
      * @var array Relations
      */
     public $belongsToMany = [
-        'users' => [User::class, 'table' => 'backend_users_groups'],
-        'users_count' => [User::class, 'table' => 'backend_users_groups', 'count' => true]
+        'users' => ['Backend\Models\User', 'table' => 'backend_users_groups'],
+        'users_count' => ['Backend\Models\User', 'table' => 'backend_users_groups', 'count' => true]
     ];
 
     public function afterCreate()

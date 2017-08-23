@@ -32,15 +32,11 @@ class User extends UserBase
      * Relations
      */
     public $belongsToMany = [
-        'groups' => [UserGroup::class, 'table' => 'backend_users_groups']
-    ];
-
-    public $belongsTo = [
-        'role' => UserRole::class
+        'groups' => ['Backend\Models\UserGroup', 'table' => 'backend_users_groups']
     ];
 
     public $attachOne = [
-        'avatar' => \System\Models\File::class
+        'avatar' => ['System\Models\File']
     ];
 
     /**
@@ -148,22 +144,9 @@ class User extends UserBase
     public function getGroupsOptions()
     {
         $result = [];
-
         foreach (UserGroup::all() as $group) {
             $result[$group->id] = [$group->name, $group->description];
         }
-
-        return $result;
-    }
-
-    public function getRoleOptions()
-    {
-        $result = [];
-
-        foreach (UserRole::all() as $role) {
-            $result[$role->id] = [$role->name, $role->description];
-        }
-
         return $result;
     }
 }

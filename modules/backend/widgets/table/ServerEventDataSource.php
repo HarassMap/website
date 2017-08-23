@@ -20,14 +20,6 @@ class ServerEventDataSource extends DataSourceBase
     }
 
     /**
-     * Identical to getRecords except provided with a search query.
-     */
-    public function searchRecords($query, $offset, $count)
-    {
-        return $this->fireEvent('data.searchRecords', [$query, $offset, $count], true);
-    }
-
-    /**
      * Returns a total number of records in the data source.
      * @return integer
      */

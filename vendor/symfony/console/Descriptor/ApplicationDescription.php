@@ -13,7 +13,6 @@ namespace Symfony\Component\Console\Descriptor;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Exception\CommandNotFoundException;
 
 /**
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
@@ -50,22 +49,15 @@ class ApplicationDescription
     private $aliases;
 
     /**
-     * @var bool
-     */
-    private $showHidden;
-
-    /**
      * Constructor.
      *
      * @param Application $application
      * @param string|null $namespace
-     * @param bool        $showHidden
      */
-    public function __construct(Application $application, $namespace = null, $showHidden = false)
+    public function __construct(Application $application, $namespace = null)
     {
         $this->application = $application;
         $this->namespace = $namespace;
-        $this->showHidden = $showHidden;
     }
 
     /**
@@ -97,12 +89,12 @@ class ApplicationDescription
      *
      * @return Command
      *
-     * @throws CommandNotFoundException
+     * @throws \InvalidArgumentException
      */
     public function getCommand($name)
     {
         if (!isset($this->commands[$name]) && !isset($this->aliases[$name])) {
-            throw new CommandNotFoundException(sprintf('Command %s does not exist.', $name));
+            throw new \InvalidArgumentException(sprintf('Command %s does not exist.', $name));
         }
 
         return isset($this->commands[$name]) ? $this->commands[$name] : $this->aliases[$name];
@@ -119,7 +111,7 @@ class ApplicationDescription
 
             /** @var Command $command */
             foreach ($commands as $name => $command) {
-                if (!$command->getName() || (!$this->showHidden && $command->isHidden())) {
+                if (!$command->getName()) {
                     continue;
                 }
 

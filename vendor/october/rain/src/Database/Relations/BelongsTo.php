@@ -14,11 +14,11 @@ class BelongsTo extends BelongsToBase
      */
     protected $relationName;
 
-    public function __construct(Builder $query, Model $child, $foreignKey, $ownerKey, $relationName)
+    public function __construct(Builder $query, Model $parent, $foreignKey, $otherKey, $relationName)
     {
         $this->relationName = $relationName;
 
-        parent::__construct($query, $child, $foreignKey, $ownerKey, $relationName);
+        parent::__construct($query, $parent, $foreignKey, $otherKey, $relationName);
 
         $this->addDefinedConstraints();
     }
@@ -32,7 +32,7 @@ class BelongsTo extends BelongsToBase
             $this->associate($model);
         }
         else {
-            $this->child->bindDeferred($this->relationName, $model, $sessionKey);
+            $this->parent->bindDeferred($this->relationName, $model, $sessionKey);
         }
     }
 
@@ -45,7 +45,7 @@ class BelongsTo extends BelongsToBase
             $this->dissociate();
         }
         else {
-            $this->child->unbindDeferred($this->relationName, $model, $sessionKey);
+            $this->parent->unbindDeferred($this->relationName, $model, $sessionKey);
         }
     }
 
@@ -72,11 +72,11 @@ class BelongsTo extends BelongsToBase
             }
 
             $this->associate($value);
-            $this->child->setRelation($this->relationName, $value);
+            $this->parent->setRelation($this->relationName, $value);
         }
         else {
-            $this->child->setAttribute($this->getForeignKey(), $value);
-            $this->child->reloadRelations($this->relationName);
+            $this->parent->setAttribute($this->getForeignKey(), $value);
+            $this->parent->reloadRelations($this->relationName);
         }
     }
 
@@ -86,15 +86,6 @@ class BelongsTo extends BelongsToBase
      */
     public function getSimpleValue()
     {
-        return $this->child->getAttribute($this->getForeignKey());
-    }
-
-    /**
-     * Get the associated key of the relationship.
-     * @return string
-     */
-    public function getOtherKey()
-    {
-        return $this->ownerKey;
+        return $this->parent->getAttribute($this->getForeignKey());
     }
 }

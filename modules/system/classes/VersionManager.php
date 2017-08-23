@@ -37,11 +37,6 @@ class VersionManager
     protected $notes = [];
 
     /**
-     * @var \Illuminate\Console\OutputStyle
-     */
-    protected $notesOutput;
-
-    /**
      * Cache of plugin versions as files.
      */
     protected $fileVersions;
@@ -90,7 +85,7 @@ class VersionManager
 
         // No updates needed
         if ($currentVersion == $databaseVersion) {
-            $this->note('- <info>Nothing to update.</info>');
+            $this->note('<info>Nothing to update.</info>');
             return;
         }
 
@@ -155,7 +150,7 @@ class VersionManager
 
         $this->setDatabaseVersion($code, $version);
 
-        $this->note(sprintf('- <info>v%s: </info> %s', $version, $comment));
+        $this->note(sprintf('<info>v%s: </info> %s', $version, $comment));
     }
 
     /**
@@ -323,7 +318,7 @@ class VersionManager
         if (!isset($this->databaseVersions[$code])) {
             $this->databaseVersions[$code] = Db::table('system_plugin_versions')
                 ->where('code', $code)
-                ->value('version')
+                ->pluck('version')
             ;
         }
 
@@ -433,11 +428,7 @@ class VersionManager
             return $this->databaseHistory[$code];
         }
 
-        $historyInfo = Db::table('system_plugin_history')
-            ->where('code', $code)
-            ->orderBy('id')
-            ->get()
-            ->all();
+        $historyInfo = Db::table('system_plugin_history')->where('code', $code)->orderBy('id')->get();
 
         return $this->databaseHistory[$code] = $historyInfo;
     }
@@ -480,13 +471,7 @@ class VersionManager
      */
     protected function note($message)
     {
-        if ($this->notesOutput !== null) {
-            $this->notesOutput->writeln($message);
-        }
-        else {
-            $this->notes[] = $message;
-        }
-
+        $this->notes[] = $message;
         return $this;
     }
 
@@ -501,26 +486,11 @@ class VersionManager
 
     /**
      * Resets the notes store.
-     * @return self
+     * @return array
      */
     public function resetNotes()
     {
-        $this->notesOutput = null;
-
         $this->notes = [];
-
-        return $this;
-    }
-
-    /**
-     * Sets an output stream for writing notes.
-     * @param  Illuminate\Console\Command $output
-     * @return self
-     */
-    public function setNotesOutput($output)
-    {
-        $this->notesOutput = $output;
-
         return $this;
     }
 }

@@ -35,9 +35,11 @@ class JobMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->option('sync')
-                        ? __DIR__.'/stubs/job.stub'
-                        : __DIR__.'/stubs/job-queued.stub';
+        if ($this->option('queued')) {
+            return __DIR__.'/stubs/job-queued.stub';
+        } else {
+            return __DIR__.'/stubs/job.stub';
+        }
     }
 
     /**
@@ -59,7 +61,7 @@ class JobMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['sync', null, InputOption::VALUE_NONE, 'Indicates that job should be synchronous.'],
+            ['queued', null, InputOption::VALUE_NONE, 'Indicates that job should be queued.'],
         ];
     }
 }

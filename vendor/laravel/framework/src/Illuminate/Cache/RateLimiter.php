@@ -2,13 +2,10 @@
 
 namespace Illuminate\Cache;
 
-use Illuminate\Support\InteractsWithTime;
 use Illuminate\Contracts\Cache\Repository as Cache;
 
 class RateLimiter
 {
-    use InteractsWithTime;
-
     /**
      * The cache store implementation.
      *
@@ -32,19 +29,17 @@ class RateLimiter
      *
      * @param  string  $key
      * @param  int  $maxAttempts
-     * @param  float|int  $decayMinutes
+     * @param  int  $decayMinutes
      * @return bool
      */
     public function tooManyAttempts($key, $maxAttempts, $decayMinutes = 1)
     {
-        if ($this->cache->has($key.':lockout')) {
-            return true;
-        }
+        $lockedOut = $this->cache->has($key.':lockout');
 
-        if ($this->attempts($key) >= $maxAttempts) {
-            $this->lockout($key, $decayMinutes);
-
-            $this->resetAttempts($key);
+        if ($this->attempts($key) > $maxAttempts || $lockedOut) {
+            if (! $lockedOut) {
+                $this->cache->add($key.':lockout', time() + ($decayMinutes * 60), $decayMinutes);
+            }
 
             return true;
         }
@@ -53,29 +48,15 @@ class RateLimiter
     }
 
     /**
-     * Add the lockout key to the cache.
-     *
-     * @param  string  $key
-     * @param  int  $decayMinutes
-     * @return void
-     */
-    protected function lockout($key, $decayMinutes)
-    {
-        $this->cache->add(
-            $key.':lockout', $this->availableAt($decayMinutes * 60), $decayMinutes
-        );
-    }
-
-    /**
      * Increment the counter for a given key for a given decay time.
      *
      * @param  string  $key
-     * @param  float|int  $decayMinutes
+     * @param  int  $decayMinutes
      * @return int
      */
     public function hit($key, $decayMinutes = 1)
     {
-        $this->cache->add($key, 0, $decayMinutes);
+        $this->cache->add($key, 1, $decayMinutes);
 
         return (int) $this->cache->increment($key);
     }
@@ -92,31 +73,6 @@ class RateLimiter
     }
 
     /**
-     * Reset the number of attempts for the given key.
-     *
-     * @param  string  $key
-     * @return mixed
-     */
-    public function resetAttempts($key)
-    {
-        return $this->cache->forget($key);
-    }
-
-    /**
-     * Get the number of retries left for the given key.
-     *
-     * @param  string  $key
-     * @param  int  $maxAttempts
-     * @return int
-     */
-    public function retriesLeft($key, $maxAttempts)
-    {
-        $attempts = $this->attempts($key);
-
-        return $maxAttempts - $attempts;
-    }
-
-    /**
      * Clear the hits and lockout for the given key.
      *
      * @param  string  $key
@@ -124,7 +80,7 @@ class RateLimiter
      */
     public function clear($key)
     {
-        $this->resetAttempts($key);
+        $this->cache->forget($key);
 
         $this->cache->forget($key.':lockout');
     }
@@ -137,6 +93,6 @@ class RateLimiter
      */
     public function availableIn($key)
     {
-        return $this->cache->get($key.':lockout') - $this->currentTime();
+        return $this->cache->get($key.':lockout') - time();
     }
 }

@@ -46,7 +46,7 @@ class PluginRemove extends Command
      * Execute the console command.
      * @return void
      */
-    public function handle()
+    public function fire()
     {
         $pluginManager = PluginManager::instance();
         $pluginName = $this->argument('name');
@@ -63,8 +63,12 @@ class PluginRemove extends Command
         /*
          * Rollback plugin
          */
-        $manager = UpdateManager::instance()->setNotesOutput($this->output);
+        $manager = UpdateManager::instance()->resetNotes();
         $manager->rollbackPlugin($pluginName);
+
+        foreach ($manager->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
 
         /*
          * Delete from file system

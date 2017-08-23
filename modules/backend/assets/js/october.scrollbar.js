@@ -25,7 +25,6 @@
             self = this,
             options = this.options = options || {},
             sizeName = this.sizeName = options.vertical ? 'height' : 'width',
-            isNative = $('html').hasClass('mobile'),
             isTouch = this.isTouch = Modernizr.touch,
             isScrollable = this.isScrollable = false,
             isLocked = this.isLocked = false,
@@ -38,13 +37,6 @@
         Base.call(this)
 
         this.$el.one('dispose-control', this.proxy(this.dispose))
-
-        /*
-         * Native (mobile) environments use overflow auto in CSS
-         */
-         if (isNative) {
-            return
-         }
 
         /*
          * Create Scrollbar
@@ -61,6 +53,7 @@
         /*
          * Bind events
          */
+
          if (isTouch) {
             this.$el.on('touchstart', function (event){
                 var touchEvent = event.originalEvent;
@@ -123,7 +116,7 @@
                     moveDrag(event)
                     return false
                 })
-
+                
                 $(window).on('mouseup.scrollbar', function(){
                     stopDrag()
                     return false

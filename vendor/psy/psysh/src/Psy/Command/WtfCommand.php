@@ -3,7 +3,7 @@
 /*
  * This file is part of Psy Shell.
  *
- * (c) 2012-2017 Justin Hileman
+ * (c) 2012-2015 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +13,6 @@ namespace Psy\Command;
 
 use Psy\Context;
 use Psy\ContextAware;
-use Psy\Input\FilterOptions;
 use Psy\Output\ShellOutput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -47,18 +46,12 @@ class WtfCommand extends TraceCommand implements ContextAware
      */
     protected function configure()
     {
-        list($grep, $insensitive, $invert) = FilterOptions::getOptions();
-
         $this
             ->setName('wtf')
             ->setAliases(array('last-exception', 'wtf?'))
             ->setDefinition(array(
                 new InputArgument('incredulity', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, 'Number of lines to show'),
-                new InputOption('all', 'a',  InputOption::VALUE_NONE, 'Show entire backtrace.'),
-
-                $grep,
-                $insensitive,
-                $invert,
+                new InputOption('verbose', 'v',  InputOption::VALUE_NONE, 'Show entire backtrace.'),
             ))
             ->setDescription('Show the backtrace of the most recent exception.')
             ->setHelp(
@@ -71,7 +64,7 @@ e.g.
 <return>>>> wtf ?</return>
 <return>>>> wtf ?!???!?!?</return>
 
-To see the entire backtrace, pass the -a/--all flag:
+To see the entire backtrace, pass the -v/--verbose flag:
 
 e.g.
 <return>>>> wtf -v</return>
@@ -81,45 +74,38 @@ HELP
 
     /**
      * {@inheritdoc}
+     *
+     * --verbose is not hidden for this option :)
+     *
+     * @return array
+     */
+    protected function getHiddenOptions()
+    {
+        $options = parent::getHiddenOptions();
+        unset($options[array_search('verbose', $options)]);
+
+        return $options;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->filter->bind($input);
-
         $incredulity = implode('', $input->getArgument('incredulity'));
         if (strlen(preg_replace('/[\\?!]/', '', $incredulity))) {
             throw new \InvalidArgumentException('Incredulity must include only "?" and "!".');
         }
 
         $exception = $this->context->getLastException();
-        $count     = $input->getOption('all') ? PHP_INT_MAX : max(3, pow(2, strlen($incredulity) + 1));
+        $count     = $input->getOption('verbose') ? PHP_INT_MAX : pow(2, max(0, (strlen($incredulity) - 1)));
+        $trace     = $this->getBacktrace($exception, $count);
 
         $shell = $this->getApplication();
-        $output->startPaging();
-        do {
-            $traceCount = count($exception->getTrace());
-            $showLines = $count;
-            // Show the whole trace if we'd only be hiding a few lines
-            if ($traceCount < max($count * 1.2, $count + 2)) {
-                $showLines = PHP_INT_MAX;
-            }
-
-            $trace = $this->getBacktrace($exception, $showLines);
-            $moreLines = $traceCount - count($trace);
-
-            $output->writeln($shell->formatException($exception));
+        $output->page(function ($output) use ($exception, $trace, $shell) {
+            $shell->renderException($exception, $output);
             $output->writeln('--');
             $output->write($trace, true, ShellOutput::NUMBER_LINES);
-            $output->writeln('');
-
-            if ($moreLines > 0) {
-                $output->writeln(sprintf(
-                    '<aside>Use <return>wtf -a</return> to see %d more lines</aside>',
-                    $moreLines
-                ));
-                $output->writeln('');
-            }
-        } while ($exception = $exception->getPrevious());
-        $output->stopPaging();
+        });
     }
 }

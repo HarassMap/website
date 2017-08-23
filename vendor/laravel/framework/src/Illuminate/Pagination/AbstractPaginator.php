@@ -3,14 +3,9 @@
 namespace Illuminate\Pagination;
 
 use Closure;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Support\Htmlable;
+use ArrayIterator;
 
-/**
- * @mixin \Illuminate\Support\Collection
- */
-abstract class AbstractPaginator implements Htmlable
+abstract class AbstractPaginator
 {
     /**
      * All of the items being paginated.
@@ -52,7 +47,7 @@ abstract class AbstractPaginator implements Htmlable
      *
      * @var string|null
      */
-    protected $fragment;
+    protected $fragment = null;
 
     /**
      * The query string variable used to store the page.
@@ -62,7 +57,7 @@ abstract class AbstractPaginator implements Htmlable
     protected $pageName = 'page';
 
     /**
-     * The current path resolver callback.
+     * The current page resolver callback.
      *
      * @var \Closure
      */
@@ -76,25 +71,11 @@ abstract class AbstractPaginator implements Htmlable
     protected static $currentPageResolver;
 
     /**
-     * The view factory resolver callback.
+     * The default presenter resolver.
      *
      * @var \Closure
      */
-    protected static $viewFactoryResolver;
-
-    /**
-     * The default pagination view.
-     *
-     * @var string
-     */
-    public static $defaultView = 'pagination::default';
-
-    /**
-     * The default "simple" pagination view.
-     *
-     * @var string
-     */
-    public static $defaultSimpleView = 'pagination::simple-default';
+    protected static $presenterResolver;
 
     /**
      * Determine if the given value is a valid page number.
@@ -108,33 +89,25 @@ abstract class AbstractPaginator implements Htmlable
     }
 
     /**
-     * Get the URL for the previous page.
-     *
-     * @return string|null
-     */
-    public function previousPageUrl()
-    {
-        if ($this->currentPage() > 1) {
-            return $this->url($this->currentPage() - 1);
-        }
-    }
-
-    /**
      * Create a range of pagination URLs.
      *
      * @param  int  $start
      * @param  int  $end
-     * @return array
+     * @return string
      */
     public function getUrlRange($start, $end)
     {
-        return collect(range($start, $end))->mapWithKeys(function ($page) {
-            return [$page => $this->url($page)];
-        })->all();
+        $urls = [];
+
+        for ($page = $start; $page <= $end; $page++) {
+            $urls[$page] = $this->url($page);
+        }
+
+        return $urls;
     }
 
     /**
-     * Get the URL for a given page number.
+     * Get a URL for a given page number.
      *
      * @param  int  $page
      * @return string
@@ -154,10 +127,21 @@ abstract class AbstractPaginator implements Htmlable
             $parameters = array_merge($this->query, $parameters);
         }
 
-        return $this->path
-                        .(Str::contains($this->path, '?') ? '&' : '?')
+        return $this->path.'?'
                         .http_build_query($parameters, '', '&')
                         .$this->buildFragment();
+    }
+
+    /**
+     * Get the URL for the previous page.
+     *
+     * @return string|null
+     */
+    public function previousPageUrl()
+    {
+        if ($this->currentPage() > 1) {
+            return $this->url($this->currentPage() - 1);
+        }
     }
 
     /**
@@ -215,7 +199,7 @@ abstract class AbstractPaginator implements Htmlable
      * @param  string  $value
      * @return $this
      */
-    protected function addQuery($key, $value)
+    public function addQuery($key, $value)
     {
         if ($key !== $this->pageName) {
             $this->query[$key] = $value;
@@ -251,7 +235,7 @@ abstract class AbstractPaginator implements Htmlable
      */
     public function firstItem()
     {
-        return count($this->items) > 0 ? ($this->currentPage - 1) * $this->perPage + 1 : null;
+        return ($this->currentPage - 1) * $this->perPage + 1;
     }
 
     /**
@@ -261,7 +245,7 @@ abstract class AbstractPaginator implements Htmlable
      */
     public function lastItem()
     {
-        return count($this->items) > 0 ? $this->firstItem() + $this->count() - 1 : null;
+        return $this->firstItem() + $this->count() - 1;
     }
 
     /**
@@ -275,26 +259,6 @@ abstract class AbstractPaginator implements Htmlable
     }
 
     /**
-     * Determine if there are enough items to split into multiple pages.
-     *
-     * @return bool
-     */
-    public function hasPages()
-    {
-        return $this->currentPage() != 1 || $this->hasMorePages();
-    }
-
-    /**
-     * Determine if the paginator is on the first page.
-     *
-     * @return bool
-     */
-    public function onFirstPage()
-    {
-        return $this->currentPage() <= 1;
-    }
-
-    /**
      * Get the current page.
      *
      * @return int
@@ -305,50 +269,13 @@ abstract class AbstractPaginator implements Htmlable
     }
 
     /**
-     * Get the query string variable used to store the page.
+     * Determine if there are enough items to split into multiple pages.
      *
-     * @return string
+     * @return bool
      */
-    public function getPageName()
+    public function hasPages()
     {
-        return $this->pageName;
-    }
-
-    /**
-     * Set the query string variable used to store the page.
-     *
-     * @param  string  $name
-     * @return $this
-     */
-    public function setPageName($name)
-    {
-        $this->pageName = $name;
-
-        return $this;
-    }
-
-    /**
-     * Set the base path to assign to all URLs.
-     *
-     * @param  string  $path
-     * @return $this
-     */
-    public function withPath($path)
-    {
-        return $this->setPath($path);
-    }
-
-    /**
-     * Set the base path to assign to all URLs.
-     *
-     * @param  string  $path
-     * @return $this
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
+        return ! ($this->currentPage() == 1 && ! $this->hasMorePages());
     }
 
     /**
@@ -405,46 +332,50 @@ abstract class AbstractPaginator implements Htmlable
     }
 
     /**
-     * Get an instance of the view factory from the resolver.
-     *
-     * @return \Illuminate\Contracts\View\Factory
-     */
-    public static function viewFactory()
-    {
-        return call_user_func(static::$viewFactoryResolver);
-    }
-
-    /**
-     * Set the view factory resolver callback.
+     * Set the default Presenter resolver.
      *
      * @param  \Closure  $resolver
      * @return void
      */
-    public static function viewFactoryResolver(Closure $resolver)
+    public static function presenter(Closure $resolver)
     {
-        static::$viewFactoryResolver = $resolver;
+        static::$presenterResolver = $resolver;
     }
 
     /**
-     * Set the default pagination view.
+     * Get the query string variable used to store the page.
      *
-     * @param  string  $view
-     * @return void
+     * @return string
      */
-    public static function defaultView($view)
+    public function getPageName()
     {
-        static::$defaultView = $view;
+        return $this->pageName;
     }
 
     /**
-     * Set the default "simple" pagination view.
+     * Set the query string variable used to store the page.
      *
-     * @param  string  $view
-     * @return void
+     * @param  string  $name
+     * @return $this
      */
-    public static function defaultSimpleView($view)
+    public function setPageName($name)
     {
-        static::$defaultSimpleView = $view;
+        $this->pageName = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the base path to assign to all URLs.
+     *
+     * @param  string  $path
+     * @return $this
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
     }
 
     /**
@@ -454,7 +385,7 @@ abstract class AbstractPaginator implements Htmlable
      */
     public function getIterator()
     {
-        return $this->items->getIterator();
+        return new ArrayIterator($this->items->all());
     }
 
     /**
@@ -465,16 +396,6 @@ abstract class AbstractPaginator implements Htmlable
     public function isEmpty()
     {
         return $this->items->isEmpty();
-    }
-
-    /**
-     * Determine if the list of items is not empty.
-     *
-     * @return bool
-     */
-    public function isNotEmpty()
-    {
-        return $this->items->isNotEmpty();
     }
 
     /**
@@ -495,19 +416,6 @@ abstract class AbstractPaginator implements Htmlable
     public function getCollection()
     {
         return $this->items;
-    }
-
-    /**
-     * Set the paginator's underlying collection.
-     *
-     * @param  \Illuminate\Support\Collection  $collection
-     * @return $this
-     */
-    public function setCollection(Collection $collection)
-    {
-        $this->items = $collection;
-
-        return $this;
     }
 
     /**
@@ -556,16 +464,6 @@ abstract class AbstractPaginator implements Htmlable
     }
 
     /**
-     * Render the contents of the paginator to HTML.
-     *
-     * @return string
-     */
-    public function toHtml()
-    {
-        return (string) $this->render();
-    }
-
-    /**
      * Make dynamic calls into the collection.
      *
      * @param  string  $method
@@ -574,7 +472,7 @@ abstract class AbstractPaginator implements Htmlable
      */
     public function __call($method, $parameters)
     {
-        return $this->getCollection()->$method(...$parameters);
+        return call_user_func_array([$this->getCollection(), $method], $parameters);
     }
 
     /**
@@ -584,6 +482,6 @@ abstract class AbstractPaginator implements Htmlable
      */
     public function __toString()
     {
-        return (string) $this->render();
+        return $this->render();
     }
 }

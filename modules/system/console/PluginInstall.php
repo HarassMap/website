@@ -42,10 +42,10 @@ class PluginInstall extends Command
      * Execute the console command.
      * @return void
      */
-    public function handle()
+    public function fire()
     {
         $pluginName = $this->argument('name');
-        $manager = UpdateManager::instance()->setNotesOutput($this->output);
+        $manager = UpdateManager::instance()->resetNotes();
 
         $pluginDetails = $manager->requestPluginDetails($pluginName);
 
@@ -64,6 +64,10 @@ class PluginInstall extends Command
         $this->output->writeln(sprintf('<info>Migrating plugin...</info>', $code));
         PluginManager::instance()->loadPlugins();
         $manager->updatePlugin($code);
+
+        foreach ($manager->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
     }
 
     /**

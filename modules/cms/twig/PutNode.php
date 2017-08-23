@@ -2,6 +2,7 @@
 
 use Twig_Node;
 use Twig_Compiler;
+use Twig_NodeInterface;
 
 /**
  * Represents a put node
@@ -11,7 +12,7 @@ use Twig_Compiler;
  */
 class PutNode extends Twig_Node
 {
-    public function __construct(Twig_Node $body, $name, $endType, $lineno, $tag = 'put')
+    public function __construct(Twig_NodeInterface $body, $name, $endType, $lineno, $tag = 'put')
     {
         parent::__construct(['body' => $body], ['name' => $name, 'endType' => $endType], $lineno, $tag);
     }
@@ -25,7 +26,7 @@ class PutNode extends Twig_Node
     {
         $compiler
             ->addDebugInfo($this)
-            ->write("echo \$this->env->getExtension('Cms\Twig\Extension')->startBlock(")
+            ->write("echo \$this->env->getExtension('CMS')->startBlock(")
             ->raw("'".$this->getAttribute('name')."'")
             ->write(");\n")
         ;
@@ -36,7 +37,7 @@ class PutNode extends Twig_Node
 
         $compiler
             ->addDebugInfo($this)
-            ->write("echo \$this->env->getExtension('Cms\Twig\Extension')->endBlock(")
+            ->write("echo \$this->env->getExtension('CMS')->endBlock(")
             ->raw($isOverwrite ? 'false' : 'true')
             ->write(");\n")
         ;

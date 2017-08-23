@@ -27,7 +27,7 @@ class MailBlocker extends Model
      * @var array Relations
      */
     public $belongsTo = [
-        'user' => User::class
+        'user' => ['RainLab\User\Models\User']
     ];
 
     /**

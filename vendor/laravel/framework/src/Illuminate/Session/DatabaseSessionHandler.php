@@ -2,19 +2,13 @@
 
 namespace Illuminate\Session;
 
-use Illuminate\Support\Arr;
+use Carbon\Carbon;
 use SessionHandlerInterface;
-use Illuminate\Support\Carbon;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\InteractsWithTime;
 use Illuminate\Database\ConnectionInterface;
-use Illuminate\Contracts\Container\Container;
 
 class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareInterface
 {
-    use InteractsWithTime;
-
     /**
      * The database connection instance.
      *
@@ -37,13 +31,6 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     protected $minutes;
 
     /**
-     * The container instance.
-     *
-     * @var \Illuminate\Contracts\Container\Container
-     */
-    protected $container;
-
-    /**
      * The existence state of the session.
      *
      * @var bool
@@ -56,14 +43,12 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
      * @param  \Illuminate\Database\ConnectionInterface  $connection
      * @param  string  $table
      * @param  int  $minutes
-     * @param  \Illuminate\Contracts\Container\Container|null  $container
      * @return void
      */
-    public function __construct(ConnectionInterface $connection, $table, $minutes, Container $container = null)
+    public function __construct(ConnectionInterface $connection, $table, $minutes)
     {
         $this->table = $table;
         $this->minutes = $minutes;
-        $this->container = $container;
         $this->connection = $connection;
     }
 
@@ -90,10 +75,12 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     {
         $session = (object) $this->getQuery()->find($sessionId);
 
-        if ($this->expired($session)) {
-            $this->exists = true;
+        if (isset($session->last_activity)) {
+            if ($session->last_activity < Carbon::now()->subMinutes($this->minutes)->getTimestamp()) {
+                $this->exists = true;
 
-            return;
+                return;
+            }
         }
 
         if (isset($session->payload)) {
@@ -104,50 +91,34 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     }
 
     /**
-     * Determine if the session is expired.
-     *
-     * @param  \stdClass  $session
-     * @return bool
-     */
-    protected function expired($session)
-    {
-        return isset($session->last_activity) &&
-            $session->last_activity < Carbon::now()->subMinutes($this->minutes)->getTimestamp();
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function write($sessionId, $data)
     {
-        $payload = $this->getDefaultPayload($data);
-
-        if (! $this->exists) {
-            $this->read($sessionId);
-        }
-
         if ($this->exists) {
-            $this->performUpdate($sessionId, $payload);
+            $this->performUpdate($sessionId, $data);
         } else {
-            $this->performInsert($sessionId, $payload);
+            $this->performInsert($sessionId, $data);
         }
 
-        return $this->exists = true;
+        $this->exists = true;
     }
 
     /**
      * Perform an insert operation on the session ID.
      *
      * @param  string  $sessionId
-     * @param  string  $payload
-     * @return bool|null
+     * @param  string  $data
+     * @return void
      */
-    protected function performInsert($sessionId, $payload)
+    protected function performInsert($sessionId, $data)
     {
         try {
-            return $this->getQuery()->insert(Arr::set($payload, 'id', $sessionId));
+            return $this->getQuery()->insert([
+                'id' => $sessionId, 'payload' => base64_encode($data), 'last_activity' => time(),
+            ]);
         } catch (QueryException $e) {
-            $this->performUpdate($sessionId, $payload);
+            $this->performUpdate($sessionId, $data);
         }
     }
 
@@ -155,98 +126,14 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
      * Perform an update operation on the session ID.
      *
      * @param  string  $sessionId
-     * @param  string  $payload
+     * @param  string  $data
      * @return int
      */
-    protected function performUpdate($sessionId, $payload)
+    protected function performUpdate($sessionId, $data)
     {
-        return $this->getQuery()->where('id', $sessionId)->update($payload);
-    }
-
-    /**
-     * Get the default payload for the session.
-     *
-     * @param  string  $data
-     * @return array
-     */
-    protected function getDefaultPayload($data)
-    {
-        $payload = [
-            'payload' => base64_encode($data),
-            'last_activity' => $this->currentTime(),
-        ];
-
-        if (! $this->container) {
-            return $payload;
-        }
-
-        return tap($payload, function (&$payload) {
-            $this->addUserInformation($payload)
-                 ->addRequestInformation($payload);
-        });
-    }
-
-    /**
-     * Add the user information to the session payload.
-     *
-     * @param  array  $payload
-     * @return $this
-     */
-    protected function addUserInformation(&$payload)
-    {
-        if ($this->container->bound(Guard::class)) {
-            $payload['user_id'] = $this->userId();
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get the currently authenticated user's ID.
-     *
-     * @return mixed
-     */
-    protected function userId()
-    {
-        return $this->container->make(Guard::class)->id();
-    }
-
-    /**
-     * Add the request information to the session payload.
-     *
-     * @param  array  $payload
-     * @return $this
-     */
-    protected function addRequestInformation(&$payload)
-    {
-        if ($this->container->bound('request')) {
-            $payload = array_merge($payload, [
-                'ip_address' => $this->ipAddress(),
-                'user_agent' => $this->userAgent(),
-            ]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get the IP address for the current request.
-     *
-     * @return string
-     */
-    protected function ipAddress()
-    {
-        return $this->container->make('request')->ip();
-    }
-
-    /**
-     * Get the user agent for the current request.
-     *
-     * @return string
-     */
-    protected function userAgent()
-    {
-        return substr((string) $this->container->make('request')->header('User-Agent'), 0, 500);
+        return $this->getQuery()->where('id', $sessionId)->update([
+            'payload' => base64_encode($data), 'last_activity' => time(),
+        ]);
     }
 
     /**
@@ -255,8 +142,6 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     public function destroy($sessionId)
     {
         $this->getQuery()->where('id', $sessionId)->delete();
-
-        return true;
     }
 
     /**
@@ -264,7 +149,7 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
      */
     public function gc($lifetime)
     {
-        $this->getQuery()->where('last_activity', '<=', $this->currentTime() - $lifetime)->delete();
+        $this->getQuery()->where('last_activity', '<=', time() - $lifetime)->delete();
     }
 
     /**

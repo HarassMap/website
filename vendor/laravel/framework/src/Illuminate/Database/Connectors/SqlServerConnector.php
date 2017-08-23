@@ -45,23 +45,9 @@ class SqlServerConnector extends Connector implements ConnectorInterface
         // need to establish the PDO connections and return them back for use.
         if (in_array('dblib', $this->getAvailableDrivers())) {
             return $this->getDblibDsn($config);
-        } elseif ($this->prefersOdbc($config)) {
-            return $this->getOdbcDsn($config);
         } else {
             return $this->getSqlSrvDsn($config);
         }
-    }
-
-    /**
-     * Determine if the database configuration prefers ODBC.
-     *
-     * @param  array  $config
-     * @return bool
-     */
-    protected function prefersOdbc(array $config)
-    {
-        return in_array('odbc', $this->getAvailableDrivers()) &&
-               ($config['odbc'] ?? null) === true;
     }
 
     /**
@@ -72,22 +58,16 @@ class SqlServerConnector extends Connector implements ConnectorInterface
      */
     protected function getDblibDsn(array $config)
     {
-        return $this->buildConnectString('dblib', array_merge([
+        $arguments = [
             'host' => $this->buildHostString($config, ':'),
             'dbname' => $config['database'],
-        ], Arr::only($config, ['appname', 'charset'])));
-    }
+        ];
 
-    /**
-     * Get the DSN string for an ODBC connection.
-     *
-     * @param  array  $config
-     * @return string
-     */
-    protected function getOdbcDsn(array $config)
-    {
-        return isset($config['odbc_datasource_name'])
-                    ? 'odbc:'.$config['odbc_datasource_name'] : '';
+        $arguments = array_merge(
+            $arguments, Arr::only($config, ['appname', 'charset'])
+        );
+
+        return $this->buildConnectString('dblib', $arguments);
     }
 
     /**
@@ -106,28 +86,8 @@ class SqlServerConnector extends Connector implements ConnectorInterface
             $arguments['Database'] = $config['database'];
         }
 
-        if (isset($config['readonly'])) {
-            $arguments['ApplicationIntent'] = 'ReadOnly';
-        }
-
-        if (isset($config['pooling']) && $config['pooling'] === false) {
-            $arguments['ConnectionPooling'] = '0';
-        }
-
         if (isset($config['appname'])) {
             $arguments['APP'] = $config['appname'];
-        }
-
-        if (isset($config['encrypt'])) {
-            $arguments['Encrypt'] = $config['encrypt'];
-        }
-
-        if (isset($config['trust_server_certificate'])) {
-            $arguments['TrustServerCertificate'] = $config['trust_server_certificate'];
-        }
-
-        if (isset($config['multiple_active_result_sets']) && $config['multiple_active_result_sets'] === false) {
-            $arguments['MultipleActiveResultSets'] = 'false';
         }
 
         return $this->buildConnectString('sqlsrv', $arguments);
@@ -142,9 +102,11 @@ class SqlServerConnector extends Connector implements ConnectorInterface
      */
     protected function buildConnectString($driver, array $arguments)
     {
-        return $driver.':'.implode(';', array_map(function ($key) use ($arguments) {
+        $options = array_map(function ($key) use ($arguments) {
             return sprintf('%s=%s', $key, $arguments[$key]);
-        }, array_keys($arguments)));
+        }, array_keys($arguments));
+
+        return $driver.':'.implode(';', $options);
     }
 
     /**
@@ -156,7 +118,7 @@ class SqlServerConnector extends Connector implements ConnectorInterface
      */
     protected function buildHostString(array $config, $separator)
     {
-        if (isset($config['port']) && ! empty($config['port'])) {
+        if (isset($config['port'])) {
             return $config['host'].$separator.$config['port'];
         } else {
             return $config['host'];

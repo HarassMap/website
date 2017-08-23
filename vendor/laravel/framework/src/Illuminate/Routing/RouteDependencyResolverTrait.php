@@ -2,13 +2,29 @@
 
 namespace Illuminate\Routing;
 
+use ReflectionClass;
 use ReflectionMethod;
 use ReflectionParameter;
 use Illuminate\Support\Arr;
 use ReflectionFunctionAbstract;
+use Illuminate\Database\Eloquent\Model;
 
 trait RouteDependencyResolverTrait
 {
+    /**
+     * Call a class method with the resolved dependencies.
+     *
+     * @param  object  $instance
+     * @param  string  $method
+     * @return mixed
+     */
+    protected function callWithDependencies($instance, $method)
+    {
+        return call_user_func_array(
+            [$instance, $method], $this->resolveClassMethodDependencies([], $instance, $method)
+        );
+    }
+
     /**
      * Resolve the object method's type-hinted dependencies.
      *
@@ -37,22 +53,15 @@ trait RouteDependencyResolverTrait
      */
     public function resolveMethodDependencies(array $parameters, ReflectionFunctionAbstract $reflector)
     {
-        $instanceCount = 0;
-
-        $values = array_values($parameters);
+        $originalParameters = $parameters;
 
         foreach ($reflector->getParameters() as $key => $parameter) {
             $instance = $this->transformDependency(
-                $parameter, $parameters
+                $parameter, $parameters, $originalParameters
             );
 
             if (! is_null($instance)) {
-                $instanceCount++;
-
                 $this->spliceIntoParameters($parameters, $key, $instance);
-            } elseif (! isset($values[$key - $instanceCount]) &&
-                      $parameter->isDefaultValueAvailable()) {
-                $this->spliceIntoParameters($parameters, $key, $parameter->getDefaultValue());
             }
         }
 
@@ -64,9 +73,10 @@ trait RouteDependencyResolverTrait
      *
      * @param  \ReflectionParameter  $parameter
      * @param  array  $parameters
+     * @param  array  $originalParameters
      * @return mixed
      */
-    protected function transformDependency(ReflectionParameter $parameter, $parameters)
+    protected function transformDependency(ReflectionParameter $parameter, $parameters, $originalParameters)
     {
         $class = $parameter->getClass();
 
@@ -74,10 +84,38 @@ trait RouteDependencyResolverTrait
         // the list of parameters. If it is we will just skip it as it is probably a model
         // binding and we do not want to mess with those; otherwise, we resolve it here.
         if ($class && ! $this->alreadyInParameters($class->name, $parameters)) {
-            return $parameter->isDefaultValueAvailable()
-                ? $parameter->getDefaultValue()
-                : $this->container->make($class->name);
+            return $this->container->make($class->name);
         }
+    }
+
+    /**
+     * Determine if the given type-hinted class is an implict Eloquent binding.
+     *
+     * Must not already be resolved in the parameter list by an explicit model binding.
+     *
+     * @param  \ReflectionClass  $class
+     * @param  array  $parameters
+     * @return bool
+     */
+    protected function vacantEloquentParameter(ReflectionClass $class, array $parameters)
+    {
+        return $class->isSubclassOf(Model::class) &&
+             ! $this->alreadyInParameters($class->name, $parameters);
+    }
+
+    /**
+     * Extract an implicit model binding's key out of the parameter list.
+     *
+     * @param  \ReflectionParameter  $parameter
+     * @param  array  $originalParameters
+     *
+     * @return mixed
+     */
+    protected function extractModelIdentifier(ReflectionParameter $parameter, array $originalParameters)
+    {
+        return Arr::first($originalParameters, function ($parameterKey) use ($parameter) {
+            return $parameterKey === $parameter->name;
+        });
     }
 
     /**
@@ -89,7 +127,7 @@ trait RouteDependencyResolverTrait
      */
     protected function alreadyInParameters($class, array $parameters)
     {
-        return ! is_null(Arr::first($parameters, function ($value) use ($class) {
+        return ! is_null(Arr::first($parameters, function ($key, $value) use ($class) {
             return $value instanceof $class;
         }));
     }
@@ -98,14 +136,14 @@ trait RouteDependencyResolverTrait
      * Splice the given value into the parameter list.
      *
      * @param  array  $parameters
-     * @param  string  $offset
-     * @param  mixed  $value
+     * @param  string  $key
+     * @param  mixed  $instance
      * @return void
      */
-    protected function spliceIntoParameters(array &$parameters, $offset, $value)
+    protected function spliceIntoParameters(array &$parameters, $key, $instance)
     {
         array_splice(
-            $parameters, $offset, 0, [$value]
+            $parameters, $key, 0, [$instance]
         );
     }
 }

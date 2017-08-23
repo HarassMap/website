@@ -2,7 +2,7 @@
 
 use Closure;
 use ArrayAccess;
-use Illuminate\Contracts\Config\Repository as RepositoryContract;
+use Illuminate\Contracts\Config\Repository as ConfigContract;
 
 /**
  * October config repository class.
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Config\Repository as RepositoryContract;
  * @package config
  * @author Alexey Bobkov, Samuel Georges
  */
-class Repository implements ArrayAccess, RepositoryContract
+class Repository implements ArrayAccess, ConfigContract
 {
     use \October\Rain\Support\Traits\KeyParser;
 

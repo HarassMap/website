@@ -5,6 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class DbUsers extends Migration
 {
+
     public function up()
     {
         Schema::create('users', function(Blueprint $table)
@@ -23,7 +24,6 @@ class DbUsers extends Migration
             $table->boolean('is_activated')->default(0);
             $table->timestamp('activated_at')->nullable();
             $table->timestamp('last_login')->nullable();
-            $table->integer('role_id')->unsigned()->nullable()->index();
             $table->timestamps();
         });
     }
@@ -32,4 +32,5 @@ class DbUsers extends Migration
     {
         Schema::drop('users');
     }
+
 }

@@ -153,12 +153,12 @@ class Theme
             try {
                 try {
                     $dbResult = Cache::remember(self::ACTIVE_KEY, 1440, function () {
-                        return Parameter::applyKey(self::ACTIVE_KEY)->value('value');
+                        return Parameter::applyKey(self::ACTIVE_KEY)->pluck('value');
                     });
                 }
                 catch (Exception $ex) {
                     // Cache failed
-                    $dbResult = Parameter::applyKey(self::ACTIVE_KEY)->value('value');
+                    $dbResult = Parameter::applyKey(self::ACTIVE_KEY)->pluck('value');
                 }
             }
             catch (Exception $ex) {

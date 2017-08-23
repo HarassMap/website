@@ -2,7 +2,7 @@
     "name": "illuminate/routing",
     "description": "The Illuminate Routing package.",
     "license": "MIT",
-    "homepage": "https://laravel.com",
+    "homepage": "http://laravel.com",
     "support": {
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
@@ -10,21 +10,20 @@
     "authors": [
         {
             "name": "Taylor Otwell",
-            "email": "taylor@laravel.com"
+            "email": "taylorotwell@gmail.com"
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "illuminate/container": "5.5.*",
-        "illuminate/contracts": "5.5.*",
-        "illuminate/http": "5.5.*",
-        "illuminate/pipeline": "5.5.*",
-        "illuminate/session": "5.5.*",
-        "illuminate/support": "5.5.*",
-        "symfony/debug": "~3.3",
-        "symfony/http-foundation": "~3.3",
-        "symfony/http-kernel": "~3.3",
-        "symfony/routing": "~3.3"
+        "php": ">=5.5.9",
+        "illuminate/container": "5.1.*",
+        "illuminate/contracts": "5.1.*",
+        "illuminate/http": "5.1.*",
+        "illuminate/pipeline": "5.1.*",
+        "illuminate/session": "5.1.*",
+        "illuminate/support": "5.1.*",
+        "symfony/http-foundation": "2.7.*",
+        "symfony/http-kernel": "2.7.*",
+        "symfony/routing": "2.7.*"
     },
     "autoload": {
         "psr-4": {
@@ -33,15 +32,12 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.5-dev"
+            "dev-master": "5.1-dev"
         }
     },
     "suggest": {
-        "illuminate/console": "Required to use the make commands (5.5.*).",
+        "illuminate/console": "Required to use the make commands (5.1.*).",
         "symfony/psr-http-message-bridge": "Required to psr7 bridging features (0.2.*)."
-    },
-    "config": {
-        "sort-packages": true
     },
     "minimum-stability": "dev"
 }

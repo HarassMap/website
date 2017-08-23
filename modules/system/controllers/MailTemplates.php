@@ -22,36 +22,16 @@ use Exception;
  */
 class MailTemplates extends Controller
 {
-    /**
-     * @var array Extensions implemented by this controller.
-     */
     public $implement = [
-        \Backend\Behaviors\FormController::class,
-        \Backend\Behaviors\ListController::class
+        'Backend.Behaviors.FormController',
+        'Backend.Behaviors.ListController'
     ];
 
-    /**
-     * @var array `FormController` configuration.
-     */
-    public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var array `ListController` configuration.
-     */
-    public $listConfig = [
-        'templates' => 'config_templates_list.yaml',
-        'layouts' => 'config_layouts_list.yaml',
-        'partials' => 'config_partials_list.yaml'
-    ];
-
-    /**
-     * @var array Permissions required to view this page.
-     */
     public $requiredPermissions = ['system.manage_mail_templates'];
 
-    /**
-     * Constructor.
-     */
+    public $listConfig = ['templates' => 'config_templates_list.yaml', 'layouts' => 'config_layouts_list.yaml'];
+    public $formConfig = 'config_form.yaml';
+
     public function __construct()
     {
         parent::__construct();
@@ -60,13 +40,11 @@ class MailTemplates extends Controller
         SettingsManager::setContext('October.System', 'mail_templates');
     }
 
-    public function index($tab = null)
+    public function index()
     {
         MailTemplate::syncAll();
         $this->asExtension('ListController')->index();
         $this->bodyClass = 'compact-container';
-
-        $this->vars['activeTab'] = $tab ?: 'templates';
     }
 
     public function formBeforeSave($model)

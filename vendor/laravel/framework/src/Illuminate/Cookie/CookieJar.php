@@ -3,14 +3,11 @@
 namespace Illuminate\Cookie;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\InteractsWithTime;
 use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Contracts\Cookie\QueueingFactory as JarContract;
 
 class CookieJar implements JarContract
 {
-    use InteractsWithTime;
-
     /**
      * The default path (if specified).
      *
@@ -23,7 +20,7 @@ class CookieJar implements JarContract
      *
      * @var string
      */
-    protected $domain;
+    protected $domain = null;
 
     /**
      * The default secure setting (defaults to false).
@@ -31,13 +28,6 @@ class CookieJar implements JarContract
      * @var bool
      */
     protected $secure = false;
-
-    /**
-     * The default SameSite option (if specified).
-     *
-     * @var string
-     */
-    protected $sameSite;
 
     /**
      * All of the cookies queued for sending.
@@ -49,42 +39,38 @@ class CookieJar implements JarContract
     /**
      * Create a new cookie instance.
      *
-     * @param  string       $name
-     * @param  string       $value
-     * @param  int          $minutes
-     * @param  string       $path
-     * @param  string       $domain
-     * @param  bool         $secure
-     * @param  bool         $httpOnly
-     * @param  bool         $raw
-     * @param  string|null  $sameSite
+     * @param  string  $name
+     * @param  string  $value
+     * @param  int     $minutes
+     * @param  string  $path
+     * @param  string  $domain
+     * @param  bool    $secure
+     * @param  bool    $httpOnly
      * @return \Symfony\Component\HttpFoundation\Cookie
      */
-    public function make($name, $value, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true, $raw = false, $sameSite = null)
+    public function make($name, $value, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
     {
-        list($path, $domain, $secure, $sameSite) = $this->getPathAndDomain($path, $domain, $secure, $sameSite);
+        list($path, $domain, $secure) = $this->getPathAndDomain($path, $domain, $secure);
 
-        $time = ($minutes == 0) ? 0 : $this->availableAt($minutes * 60);
+        $time = ($minutes == 0) ? 0 : time() + ($minutes * 60);
 
-        return new Cookie($name, $value, $time, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
+        return new Cookie($name, $value, $time, $path, $domain, $secure, $httpOnly);
     }
 
     /**
      * Create a cookie that lasts "forever" (five years).
      *
-     * @param  string       $name
-     * @param  string       $value
-     * @param  string       $path
-     * @param  string       $domain
-     * @param  bool         $secure
-     * @param  bool         $httpOnly
-     * @param  bool         $raw
-     * @param  string|null  $sameSite
+     * @param  string  $name
+     * @param  string  $value
+     * @param  string  $path
+     * @param  string  $domain
+     * @param  bool    $secure
+     * @param  bool    $httpOnly
      * @return \Symfony\Component\HttpFoundation\Cookie
      */
-    public function forever($name, $value, $path = null, $domain = null, $secure = false, $httpOnly = true, $raw = false, $sameSite = null)
+    public function forever($name, $value, $path = null, $domain = null, $secure = false, $httpOnly = true)
     {
-        return $this->make($name, $value, 2628000, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
+        return $this->make($name, $value, 2628000, $path, $domain, $secure, $httpOnly);
     }
 
     /**
@@ -126,15 +112,15 @@ class CookieJar implements JarContract
     /**
      * Queue a cookie to send with the next response.
      *
-     * @param  array  $parameters
+     * @param  mixed
      * @return void
      */
-    public function queue(...$parameters)
+    public function queue()
     {
-        if (head($parameters) instanceof Cookie) {
-            $cookie = head($parameters);
+        if (head(func_get_args()) instanceof Cookie) {
+            $cookie = head(func_get_args());
         } else {
-            $cookie = call_user_func_array([$this, 'make'], $parameters);
+            $cookie = call_user_func_array([$this, 'make'], func_get_args());
         }
 
         $this->queued[$cookie->getName()] = $cookie;
@@ -157,12 +143,11 @@ class CookieJar implements JarContract
      * @param  string  $path
      * @param  string  $domain
      * @param  bool    $secure
-     * @param  string  $sameSite
      * @return array
      */
-    protected function getPathAndDomain($path, $domain, $secure = false, $sameSite = null)
+    protected function getPathAndDomain($path, $domain, $secure = false)
     {
-        return [$path ?: $this->path, $domain ?: $this->domain, $secure ?: $this->secure, $sameSite ?: $this->sameSite];
+        return [$path ?: $this->path, $domain ?: $this->domain, $secure ?: $this->secure];
     }
 
     /**
@@ -171,12 +156,11 @@ class CookieJar implements JarContract
      * @param  string  $path
      * @param  string  $domain
      * @param  bool    $secure
-     * @param  string  $sameSite
      * @return $this
      */
-    public function setDefaultPathAndDomain($path, $domain, $secure = false, $sameSite = null)
+    public function setDefaultPathAndDomain($path, $domain, $secure = false)
     {
-        list($this->path, $this->domain, $this->secure, $this->sameSite) = [$path, $domain, $secure, $sameSite];
+        list($this->path, $this->domain, $this->secure) = [$path, $domain, $secure];
 
         return $this;
     }

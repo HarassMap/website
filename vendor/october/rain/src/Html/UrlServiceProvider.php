@@ -38,11 +38,11 @@ class UrlServiceProvider extends ServiceProvider
                 break;
 
             case 'insecure':
-                $this->app['url']->forceScheme('http');
+                $this->app['url']->forceSchema('http');
                 break;
 
             case 'secure':
-                $this->app['url']->forceScheme('https');
+                $this->app['url']->forceSchema('https');
                 break;
         }
     }

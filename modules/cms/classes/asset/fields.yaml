@@ -13,9 +13,6 @@ fields:
         path: content_toolbar
         cssClass: collapse-visible
 
-tabs:
-    cssClass: master-area
-
 secondaryTabs:
     stretch: true
     fields:

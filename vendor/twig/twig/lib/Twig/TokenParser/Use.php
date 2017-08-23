@@ -22,8 +22,10 @@
  * </pre>
  *
  * @see http://www.twig-project.org/doc/templates.html#horizontal-reuse for details.
+ *
+ * @final
  */
-final class Twig_TokenParser_Use extends Twig_TokenParser
+class Twig_TokenParser_Use extends Twig_TokenParser
 {
     public function parse(Twig_Token $token)
     {
@@ -62,5 +64,3 @@ final class Twig_TokenParser_Use extends Twig_TokenParser
         return 'use';
     }
 }
-
-class_alias('Twig_TokenParser_Use', 'Twig\TokenParser\UseTokenParser', false);

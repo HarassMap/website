@@ -41,10 +41,10 @@ class OctoberUpdate extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function fire()
     {
         $this->output->writeln('<info>Updating October...</info>');
-        $manager = UpdateManager::instance()->setNotesOutput($this->output);
+        $manager = UpdateManager::instance()->resetNotes();
         $forceUpdate = $this->option('force');
 
         /*
@@ -66,7 +66,7 @@ class OctoberUpdate extends Command
          * Perform update
          */
         $updateList = $manager->requestUpdateList($forceUpdate);
-        $updates = (int) array_get($updateList, 'update', 0);
+        $updates = (int)array_get($updateList, 'update', 0);
 
         if ($updates == 0) {
             $this->output->writeln('<info>No new updates found</info>');

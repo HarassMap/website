@@ -123,6 +123,10 @@ class RecordFinder extends FormWidgetBase
             'recordsPerPage',
         ]);
 
+        if ($this->formField->disabled) {
+            $this->previewMode = true;
+        }
+
         if (post('recordfinder_flag')) {
             $this->listWidget = $this->makeListWidget();
             $this->listWidget->bindToController();
@@ -175,10 +179,6 @@ class RecordFinder extends FormWidgetBase
     public function prepareVars()
     {
         $this->relationModel = $this->getLoadValue();
-
-        if ($this->formField->disabled) {
-            $this->previewMode = true;
-        }
 
         $this->vars['value'] = $this->getKeyValue();
         $this->vars['field'] = $this->formField;

@@ -1,6 +1,7 @@
 <?php namespace Backend\Classes;
 
 use App;
+use Str;
 use Lang;
 use View;
 use Flash;
@@ -15,6 +16,7 @@ use BackendAuth;
 use Backend\Models\UserPreference;
 use Backend\Models\Preference as BackendPreference;
 use Cms\Widgets\MediaManager;
+use System\Classes\ErrorHandler;
 use October\Rain\Exception\AjaxException;
 use October\Rain\Exception\SystemException;
 use October\Rain\Exception\ValidationException;
@@ -36,8 +38,12 @@ class Controller extends Extendable
     use \System\Traits\AssetMaker;
     use \System\Traits\ConfigMaker;
     use \System\Traits\EventEmitter;
-    use \Backend\Traits\ErrorMaker;
     use \Backend\Traits\WidgetMaker;
+
+    /**
+     * @var string Object used for storing a fatal error.
+     */
+    protected $fatalError;
 
     /**
      * @var object Reference the logged in admin user.
@@ -605,6 +611,16 @@ class Controller extends Extendable
         return $this;
     }
 
+    /**
+     * Sets standard page variables in the case of a controller error.
+     */
+    public function handleError($exception)
+    {
+        $errorMessage = ErrorHandler::getDetailedMessage($exception);
+        $this->fatalError = $errorMessage;
+        $this->vars['fatalError'] = $errorMessage;
+    }
+
     //
     // Hints
     //
@@ -688,8 +704,8 @@ class Controller extends Extendable
 
         $token = Request::input('_token') ?: Request::header('X-CSRF-TOKEN');
 
-        return hash_equals(
-            Session::token(),
+        return Str::equals(
+            Session::getToken(),
             $token
         );
     }

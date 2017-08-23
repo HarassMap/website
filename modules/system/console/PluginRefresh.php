@@ -43,29 +43,28 @@ class PluginRefresh extends Command
      * Execute the console command.
      * @return void
      */
-    public function handle()
+    public function fire()
     {
-        /*
-         * Lookup plugin
-         */
         $pluginName = $this->argument('name');
         $pluginName = PluginManager::instance()->normalizeIdentifier($pluginName);
         if (!PluginManager::instance()->exists($pluginName)) {
             throw new \InvalidArgumentException(sprintf('Plugin "%s" not found.', $pluginName));
         }
 
-        $manager = UpdateManager::instance()->setNotesOutput($this->output);
+        $manager = UpdateManager::instance()->resetNotes();
 
-        /*
-         * Rollback plugin
-         */
         $manager->rollbackPlugin($pluginName);
+        foreach ($manager->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
 
-        /*
-         * Update plugin
-         */
+        $manager->resetNotes();
         $this->output->writeln('<info>Reinstalling plugin...</info>');
         $manager->updatePlugin($pluginName);
+
+        foreach ($manager->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
     }
 
     /**

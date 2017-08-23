@@ -3,7 +3,7 @@
 /*
  * This file is part of Psy Shell.
  *
- * (c) 2012-2017 Justin Hileman
+ * (c) 2012-2015 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,7 +22,6 @@ use Psy\Command\ListCommand\PropertyEnumerator;
 use Psy\Command\ListCommand\TraitEnumerator;
 use Psy\Command\ListCommand\VariableEnumerator;
 use Psy\Exception\RuntimeException;
-use Psy\Input\FilterOptions;
 use Psy\VarDumper\Presenter;
 use Psy\VarDumper\PresenterAware;
 use Symfony\Component\Console\Formatter\OutputFormatter;
@@ -55,8 +54,6 @@ class ListCommand extends ReflectingCommand implements PresenterAware
      */
     protected function configure()
     {
-        list($grep, $insensitive, $invert) = FilterOptions::getOptions();
-
         $this
             ->setName('ls')
             ->setAliases(array('list', 'dir'))
@@ -70,14 +67,12 @@ class ListCommand extends ReflectingCommand implements PresenterAware
                 new InputOption('interfaces',  'I', InputOption::VALUE_NONE,     'Display declared interfaces.'),
                 new InputOption('traits',      't', InputOption::VALUE_NONE,     'Display declared traits.'),
 
-                new InputOption('no-inherit',  '',  InputOption::VALUE_NONE,     'Exclude inherited methods, properties and constants.'),
-
                 new InputOption('properties',  'p', InputOption::VALUE_NONE,     'Display class or object properties (public properties by default).'),
                 new InputOption('methods',     'm', InputOption::VALUE_NONE,     'Display class or object methods (public methods by default).'),
 
-                $grep,
-                $insensitive,
-                $invert,
+                new InputOption('grep',        'G', InputOption::VALUE_REQUIRED, 'Limit to items matching the given pattern (string or regex).'),
+                new InputOption('insensitive', 'i', InputOption::VALUE_NONE,     'Case-insensitive search (requires --grep).'),
+                new InputOption('invert',      'v', InputOption::VALUE_NONE,     'Inverted search (requires --grep).'),
 
                 new InputOption('globals',     'g', InputOption::VALUE_NONE,     'Include global variables.'),
                 new InputOption('internal',    'n', InputOption::VALUE_NONE,     'Limit to internal functions and classes.'),
@@ -126,7 +121,7 @@ HELP
             $reflector = null;
         }
 
-        // @todo something cleaner than this :-/
+        // TODO: something cleaner than this :-/
         if ($input->getOption('long')) {
             $output->startPaging();
         }
@@ -137,11 +132,6 @@ HELP
 
         if ($input->getOption('long')) {
             $output->stopPaging();
-        }
-
-        // Set some magic local variables
-        if ($reflector !== null) {
-            $this->setCommandScopeVariables($reflector);
         }
     }
 
@@ -172,7 +162,7 @@ HELP
      * Write the list items to $output.
      *
      * @param OutputInterface $output
-     * @param null|array      $result List of enumerated items
+     * @param null|array      $result List of enumerated items.
      */
     protected function write(OutputInterface $output, array $result = null)
     {
@@ -192,7 +182,7 @@ HELP
      * Items are listed one per line, and include the item signature.
      *
      * @param OutputInterface $output
-     * @param null|array      $result List of enumerated items
+     * @param null|array      $result List of enumerated items.
      */
     protected function writeLong(OutputInterface $output, array $result = null)
     {
@@ -234,15 +224,24 @@ HELP
     /**
      * Validate that input options make sense, provide defaults when called without options.
      *
-     * @throws RuntimeException if options are inconsistent
+     * @throws RuntimeException if options are inconsistent.
      *
      * @param InputInterface $input
      */
     private function validateInput(InputInterface $input)
     {
+        // grep, invert and insensitive
+        if (!$input->getOption('grep')) {
+            foreach (array('invert', 'insensitive') as $option) {
+                if ($input->getOption($option)) {
+                    throw new RuntimeException('--' . $option . ' does not make sense without --grep');
+                }
+            }
+        }
+
         if (!$input->getArgument('target')) {
             // if no target is passed, there can be no properties or methods
-            foreach (array('properties', 'methods', 'no-inherit') as $option) {
+            foreach (array('properties', 'methods') as $option) {
                 if ($input->getOption($option)) {
                     throw new RuntimeException('--' . $option . ' does not make sense without a specified target.');
                 }

@@ -42,7 +42,7 @@ class ThemeUse extends Command
      * Execute the console command.
      * @return void
      */
-    public function handle()
+    public function fire()
     {
         if (!$this->confirmToProceed('Change the active theme?')) {
             return;

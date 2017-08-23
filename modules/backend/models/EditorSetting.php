@@ -17,21 +17,10 @@ class EditorSetting extends Model
     use \System\Traits\ViewMaker;
     use \October\Rain\Database\Traits\Validation;
 
-    /**
-     * @var array Behaviors implemented by this model.
-     */
-    public $implement = [
-        \System\Behaviors\SettingsModel::class
-    ];
+    public $implement = ['System.Behaviors.SettingsModel'];
 
-    /**
-     * @var string Unique code
-     */
     public $settingsCode = 'backend_editor_settings';
 
-    /**
-     * @var mixed Settings form field defitions
-     */
     public $settingsFields = 'fields.yaml';
 
     const CACHE_KEY = 'backend::editor.custom_css';
@@ -76,11 +65,6 @@ class EditorSetting extends Model
      */
     public $rules = [];
 
-    /**
-     * Initialize the seed data for this model. This only executes when the
-     * model is first created or reset to default.
-     * @return void
-     */
     public function initSettingsData()
     {
         $this->html_allow_empty_tags = $this->defaultHtmlAllowEmptyTags;

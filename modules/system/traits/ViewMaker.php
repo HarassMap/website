@@ -13,9 +13,10 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
  * View Maker Trait
  * Adds view based methods to a class
  *
- * @package october\system
+ * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
  */
+
 trait ViewMaker
 {
     /**

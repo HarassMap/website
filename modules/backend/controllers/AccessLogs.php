@@ -10,29 +10,18 @@ use System\Classes\SettingsManager;
  *
  * @package october\system
  * @author Alexey Bobkov, Samuel Georges
+ *
  */
 class AccessLogs extends Controller
 {
-    /**
-     * @var array Extensions implemented by this controller.
-     */
     public $implement = [
-        \Backend\Behaviors\ListController::class
+        'Backend.Behaviors.ListController'
     ];
 
-    /**
-     * @var array `ListController` configuration.
-     */
-    public $listConfig = 'config_list.yaml';
-
-    /**
-     * @var array Permissions required to view this page.
-     */
     public $requiredPermissions = ['system.access_logs'];
 
-    /**
-     * Constructor.
-     */
+    public $listConfig = 'config_list.yaml';
+
     public function __construct()
     {
         parent::__construct();

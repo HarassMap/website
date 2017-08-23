@@ -12,12 +12,6 @@ use Cms\Classes\ComponentBase;
 use RainLab\User\Models\UserGroup;
 use ValidationException;
 
-/**
- * User session
- *
- * This will inject the user object to every page and provide the ability for
- * the user to sign out. This can also be used to restrict access to pages.
- */
 class Session extends ComponentBase
 {
     const ALLOW_ALL = 'all';
@@ -96,30 +90,6 @@ class Session extends ComponentBase
     }
 
     /**
-     * Returns the logged in user, if available, and touches
-     * the last seen timestamp.
-     * @return RainLab\User\Models\User
-     */
-    public function user()
-    {
-        if (!$user = Auth::getUser()) {
-            return null;
-        }
-
-        $user->touchLastSeen();
-
-        return $user;
-    }
-
-    /**
-     * Returns the previously signed in user when impersonating.
-     */
-    public function impersonator()
-    {
-        return Auth::getImpersonator();
-    }
-
-    /**
      * Log out the user
      *
      * Usage:
@@ -140,29 +110,25 @@ class Session extends ComponentBase
         }
 
         $url = post('redirect', Request::fullUrl());
-
         Flash::success(Lang::get('rainlab.user::lang.session.logout'));
 
         return Redirect::to($url);
     }
 
     /**
-     * If impersonating, revert back to the previously signed in user.
-     * @return Redirect
+     * Returns the logged in user, if available, and touches
+     * the last seen timestamp.
+     * @return RainLab\User\Models\User
      */
-    public function onStopImpersonating()
+    public function user()
     {
-        if (!Auth::isImpersonator()) {
-            return $this->onLogout();
+        if (!$user = Auth::getUser()) {
+            return null;
         }
 
-        Auth::stopImpersonate();
+        $user->touchLastSeen();
 
-        $url = post('redirect', Request::fullUrl());
-
-        Flash::success(Lang::get('rainlab.user::lang.session.stop_impersonate_success'));
-
-        return Redirect::to($url);
+        return $user;
     }
 
     /**

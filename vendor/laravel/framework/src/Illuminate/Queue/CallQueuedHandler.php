@@ -2,11 +2,8 @@
 
 namespace Illuminate\Queue;
 
-use Exception;
-use ReflectionClass;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CallQueuedHandler
 {
@@ -37,43 +34,17 @@ class CallQueuedHandler
      */
     public function call(Job $job, array $data)
     {
-        try {
-            $command = $this->setJobInstanceIfNecessary(
-                $job, unserialize($data['command'])
-            );
-        } catch (ModelNotFoundException $e) {
-            return $this->handleModelNotFound($job, $e);
-        }
-
-        $this->dispatcher->dispatchNow(
-            $command, $handler = $this->resolveHandler($job, $command)
+        $command = $this->setJobInstanceIfNecessary(
+            $job, unserialize($data['command'])
         );
 
-        if (! $job->hasFailed() && ! $job->isReleased()) {
-            $this->ensureNextJobInChainIsDispatched($command);
-        }
+        $this->dispatcher->dispatchNow($command, function ($handler) use ($job) {
+            $this->setJobInstanceIfNecessary($job, $handler);
+        });
 
         if (! $job->isDeletedOrReleased()) {
             $job->delete();
         }
-    }
-
-    /**
-     * Resolve the handler for the given command.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @param  mixed  $command
-     * @return mixed
-     */
-    protected function resolveHandler($job, $command)
-    {
-        $handler = $this->dispatcher->getCommandHandler($command) ?: null;
-
-        if ($handler) {
-            $this->setJobInstanceIfNecessary($job, $handler);
-        }
-
-        return $handler;
     }
 
     /**
@@ -85,7 +56,7 @@ class CallQueuedHandler
      */
     protected function setJobInstanceIfNecessary(Job $job, $instance)
     {
-        if (in_array(InteractsWithQueue::class, class_uses_recursive(get_class($instance)))) {
+        if (in_array('Illuminate\Queue\InteractsWithQueue', class_uses_recursive(get_class($instance)))) {
             $instance->setJob($job);
         }
 
@@ -93,60 +64,17 @@ class CallQueuedHandler
     }
 
     /**
-     * Ensure the next job in the chain is dispatched if applicable.
-     *
-     * @param  mixed  $command
-     * @return void
-     */
-    protected function ensureNextJobInChainIsDispatched($command)
-    {
-        if (method_exists($command, 'dispatchNextJobInChain')) {
-            $command->dispatchNextJobInChain();
-        }
-    }
-
-    /**
-     * Handle a model not found exception.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @param  \Exception  $e
-     * @return void
-     */
-    protected function handleModelNotFound(Job $job, $e)
-    {
-        $class = $job->resolveName();
-
-        try {
-            $shouldDelete = (new ReflectionClass($class))
-                    ->getDefaultProperties()['deleteWhenMissingModels'] ?? false;
-        } catch (Exception $e) {
-            $shouldDelete = false;
-        }
-
-        if ($shouldDelete) {
-            return $job->delete();
-        }
-
-        return FailingJob::handle(
-            $job->getConnectionName(), $job, $e
-        );
-    }
-
-    /**
      * Call the failed method on the job instance.
      *
-     * The exception that caused the failure will be passed.
-     *
      * @param  array  $data
-     * @param  \Exception  $e
      * @return void
      */
-    public function failed(array $data, $e)
+    public function failed(array $data)
     {
-        $command = unserialize($data['command']);
+        $handler = $this->dispatcher->resolveHandler($command = unserialize($data['command']));
 
-        if (method_exists($command, 'failed')) {
-            $command->failed($e);
+        if (method_exists($handler, 'failed')) {
+            call_user_func([$handler, 'failed'], $command);
         }
     }
 }

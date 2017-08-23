@@ -34,6 +34,15 @@ class Dongle
     }
 
     /**
+     * @deprecated use App::hasDatabase()
+     * Remove this method if year >= 2017
+     */
+    public function hasDatabase()
+    {
+        return \App::hasDatabase();
+    }
+
+    /**
      * Transforms and executes a raw SQL statement
      * @param  string $sql
      * @return mixed

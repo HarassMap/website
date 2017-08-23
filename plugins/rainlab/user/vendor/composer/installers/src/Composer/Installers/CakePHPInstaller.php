@@ -75,6 +75,7 @@ class CakePHPInstaller extends BaseInstaller
                 $installed = new $constraintClass('=', $package->getVersion());
                 if ($cake3->matches($installed)) {
                     return true;
+                    break;
                 }
             }
         }

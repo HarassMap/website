@@ -15,6 +15,7 @@ use October\Rain\Support\Facades\DbDongle;
  */
 class Builder extends BuilderModel
 {
+
     /**
      * Get an array with the values of a given column.
      *
@@ -24,7 +25,17 @@ class Builder extends BuilderModel
      */
     public function lists($column, $key = null)
     {
-        return $this->pluck($column, $key)->all();
+        $results = $this->query->lists($column, $key);
+
+        if ($this->model->hasGetMutator($column)) {
+            foreach ($results as $key => &$value) {
+                $fill = [$column => $value];
+
+                $value = $this->model->newFromBuilder($fill)->$column;
+            }
+        }
+
+        return $results;
     }
 
     /**
@@ -140,7 +151,7 @@ class Builder extends BuilderModel
      * @param  array  $columns
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
-    public function simplePaginate($perPage = null, $currentPage = null, $pageName = 'page', $columns = ['*'])
+    public function simplePaginate($perPage = null, $currentPage = null, $columns = ['*'])
     {
         if (is_array($currentPage)) {
             $columns = $currentPage;
@@ -158,8 +169,7 @@ class Builder extends BuilderModel
         $this->skip(($currentPage - 1) * $perPage)->take($perPage + 1);
 
         return new Paginator($this->get($columns), $perPage, $currentPage, [
-            'path' => Paginator::resolveCurrentPath(),
-            'pageName' => $pageName
+            'path' => Paginator::resolveCurrentPath()
         ]);
     }
 
@@ -172,9 +182,10 @@ class Builder extends BuilderModel
     public function __call($method, $parameters)
     {
         if ($this->model->methodExists($scope = 'scope'.ucfirst($method))) {
-            return $this->callScope([$this->model, $scope], $parameters);
+            return $this->callScope($scope, $parameters);
         }
 
         return parent::__call($method, $parameters);
     }
+
 }

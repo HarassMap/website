@@ -31,29 +31,12 @@ use Exception;
  */
 class Updates extends Controller
 {
-    /**
-     * @var array Extensions implemented by this controller.
-     */
-    public $implement = [
-        \Backend\Behaviors\ListController::class
-    ];
+    public $implement = ['Backend.Behaviors.ListController'];
 
-    /**
-     * @var array `ListController` configuration.
-     */
-    public $listConfig = [
-        'list' => 'config_list.yaml',
-        'manage' => 'config_manage_list.yaml'
-    ];
-
-    /**
-     * @var array Permissions required to view this page.
-     */
     public $requiredPermissions = ['system.manage_updates'];
 
-    /**
-     * Constructor.
-     */
+    public $listConfig = ['list' => 'config_list.yaml', 'manage' => 'config_manage_list.yaml'];
+
     public function __construct()
     {
         parent::__construct();

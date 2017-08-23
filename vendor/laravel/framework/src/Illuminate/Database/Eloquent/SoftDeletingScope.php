@@ -2,14 +2,14 @@
 
 namespace Illuminate\Database\Eloquent;
 
-class SoftDeletingScope implements Scope
+class SoftDeletingScope implements ScopeInterface
 {
     /**
      * All of the extensions to be added to the builder.
      *
      * @var array
      */
-    protected $extensions = ['Restore', 'WithTrashed', 'WithoutTrashed', 'OnlyTrashed'];
+    protected $extensions = ['ForceDelete', 'Restore', 'WithTrashed', 'OnlyTrashed'];
 
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -21,6 +21,26 @@ class SoftDeletingScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $builder->whereNull($model->getQualifiedDeletedAtColumn());
+
+        $this->extend($builder);
+    }
+
+    /**
+     * Remove the scope from the given Eloquent query builder.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return void
+     */
+    public function remove(Builder $builder, Model $model)
+    {
+        $column = $model->getQualifiedDeletedAtColumn();
+
+        $query = $builder->getQuery();
+
+        $query->wheres = collect($query->wheres)->reject(function ($where) use ($column) {
+            return $this->isSoftDeleteConstraint($where, $column);
+        })->values()->all();
     }
 
     /**
@@ -54,9 +74,22 @@ class SoftDeletingScope implements Scope
     {
         if (count($builder->getQuery()->joins) > 0) {
             return $builder->getModel()->getQualifiedDeletedAtColumn();
+        } else {
+            return $builder->getModel()->getDeletedAtColumn();
         }
+    }
 
-        return $builder->getModel()->getDeletedAtColumn();
+    /**
+     * Add the force delete extension to the builder.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @return void
+     */
+    protected function addForceDelete(Builder $builder)
+    {
+        $builder->macro('forceDelete', function (Builder $builder) {
+            return $builder->getQuery()->delete();
+        });
     }
 
     /**
@@ -83,24 +116,7 @@ class SoftDeletingScope implements Scope
     protected function addWithTrashed(Builder $builder)
     {
         $builder->macro('withTrashed', function (Builder $builder) {
-            return $builder->withoutGlobalScope($this);
-        });
-    }
-
-    /**
-     * Add the without-trashed extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addWithoutTrashed(Builder $builder)
-    {
-        $builder->macro('withoutTrashed', function (Builder $builder) {
-            $model = $builder->getModel();
-
-            $builder->withoutGlobalScope($this)->whereNull(
-                $model->getQualifiedDeletedAtColumn()
-            );
+            $this->remove($builder, $builder->getModel());
 
             return $builder;
         });
@@ -117,11 +133,23 @@ class SoftDeletingScope implements Scope
         $builder->macro('onlyTrashed', function (Builder $builder) {
             $model = $builder->getModel();
 
-            $builder->withoutGlobalScope($this)->whereNotNull(
-                $model->getQualifiedDeletedAtColumn()
-            );
+            $this->remove($builder, $model);
+
+            $builder->getQuery()->whereNotNull($model->getQualifiedDeletedAtColumn());
 
             return $builder;
         });
+    }
+
+    /**
+     * Determine if the given where clause is a soft delete constraint.
+     *
+     * @param  array   $where
+     * @param  string  $column
+     * @return bool
+     */
+    protected function isSoftDeleteConstraint(array $where, $column)
+    {
+        return $where['type'] == 'Null' && $where['column'] == $column;
     }
 }

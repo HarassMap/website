@@ -1011,7 +1011,7 @@ class RelationController extends ControllerBehavior
              */
             if (in_array($this->relationType, ['hasOne', 'hasMany'])) {
                 $newModel->setAttribute(
-                    $this->relationObject->getForeignKeyName(),
+                    $this->relationObject->getPlainForeignKey(),
                     $this->relationObject->getParentKey()
                 );
             }

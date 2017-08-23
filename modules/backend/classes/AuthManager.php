@@ -31,7 +31,6 @@ class AuthManager extends RainAuthManager
         'code'    => null,
         'label'   => null,
         'comment' => null,
-        'roles'   => null,
         'order'   => 500
     ];
 
@@ -44,11 +43,6 @@ class AuthManager extends RainAuthManager
      * @var array List of registered permissions.
      */
     protected $permissions = [];
-
-    /**
-     * @var array List of registered permission roles.
-     */
-    protected $permissionRoles = false;
 
     /**
      * @var array Cache of registered permissions.
@@ -162,41 +156,5 @@ class AuthManager extends RainAuthManager
         }
 
         return $tabs;
-    }
-
-    /**
-     * Returns an array of registered permissions belonging to a given role code
-     * @param string $role
-     * @return array
-     */
-    public function listPermissionsForRole($role, $includeOrphans = true)
-    {
-        if ($this->permissionRoles === false) {
-            $this->permissionRoles = [];
-
-            foreach ($this->listPermissions() as $permission) {
-                if ($permission->roles) {
-                    foreach ((array) $permission->roles as $_role) {
-                        $this->permissionRoles[$_role][$permission->code] = 1;
-                    }
-                }
-                else {
-                    $this->permissionRoles['*'][$permission->code] = 1;
-                }
-            }
-        }
-
-        $result = $this->permissionRoles[$role] ?? [];
-
-        if ($includeOrphans) {
-            $result += $this->permissionRoles['*'] ?? [];
-        }
-
-        return $result;
-    }
-
-    public function hasPermissionsForRole($role)
-    {
-        return !!$this->listPermissionsForRole($role, false);
     }
 }

@@ -163,7 +163,6 @@ class Bracket
                 else {
                     $matchedText = $this->parseKey($key, $value, $matchedText);
                     $matchedText = $this->parseKeyFilters($key, $value, $matchedText);
-                    $matchedText = $this->parseKeyBooleans($key, $value, $matchedText);
                 }
             }
 

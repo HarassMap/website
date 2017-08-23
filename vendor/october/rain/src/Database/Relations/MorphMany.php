@@ -35,8 +35,8 @@ class MorphMany extends MorphManyBase
             if ($this->parent->exists) {
                 $this->parent->bindEventOnce('model.afterSave', function() {
                     $this->update([
-                        $this->getForeignKeyName() => null,
-                        $this->getMorphType() => null
+                        $this->getPlainForeignKey() => null,
+                        $this->getPlainMorphType() => null
                     ]);
                 });
             }
@@ -52,8 +52,8 @@ class MorphMany extends MorphManyBase
 
             if ($this->parent->exists) {
                 $collection->each(function($instance) {
-                    $instance->setAttribute($this->getForeignKeyName(), $this->getParentKey());
-                    $instance->setAttribute($this->getMorphType(), $this->morphClass);
+                    $instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
+                    $instance->setAttribute($this->getPlainMorphType(), $this->morphClass);
                 });
             }
         }
@@ -67,12 +67,12 @@ class MorphMany extends MorphManyBase
             $this->parent->bindEventOnce('model.afterSave', function() use ($collection) {
                 $existingIds = $collection->lists($this->localKey);
                 $this->whereNotIn($this->localKey, $existingIds)->update([
-                    $this->getForeignKeyName() => null,
-                    $this->getMorphType() => null
+                    $this->getPlainForeignKey() => null,
+                    $this->getPlainMorphType() => null
                 ]);
                 $collection->each(function($instance) {
-                    $instance->setAttribute($this->getForeignKeyName(), $this->getParentKey());
-                    $instance->setAttribute($this->getMorphType(), $this->morphClass);
+                    $instance->setAttribute($this->getPlainForeignKey(), $this->getParentKey());
+                    $instance->setAttribute($this->getPlainMorphType(), $this->morphClass);
                     $instance->save(['timestamps' => false]);
                 });
             });

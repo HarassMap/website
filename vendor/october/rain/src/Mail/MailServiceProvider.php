@@ -5,33 +5,40 @@ use Illuminate\Mail\MailServiceProvider as MailServiceProviderBase;
 class MailServiceProvider extends MailServiceProviderBase
 {
     /**
-     * Register the Illuminate mailer instance. Carbon copy of Illuminate method.
+     * @var bool Indicates if loading of the provider is deferred.
+     */
+    protected $defer = true;
+
+    /**
+     * Register the service provider.
      * @return void
      */
-    protected function registerIlluminateMailer()
+    public function register()
     {
-        $this->app->singleton('mailer', function ($app) {
+
+        $this->app->singleton('mailer', function($app) {
+
             /*
              * Extensibility
              */
             $this->app['events']->fire('mailer.beforeRegister', [$this]);
 
-            $config = $app->make('config')->get('mail');
-
             /*
-             * October mailer
+             * Inherit logic from Illuminate\Mail\MailServiceProvider
              */
-            $mailer = new Mailer(
-                $app['view'], $app['swift.mailer'], $app['events']
-            );
+            $this->registerSwiftMailer();
 
-            if ($app->bound('queue')) {
-                $mailer->setQueue($app['queue']);
+            $mailer = new Mailer($app['view'], $app['swift.mailer'], $app['events']);
+
+            $this->setMailerDependencies($mailer, $app);
+
+            $from = $app['config']['mail.from'];
+            if (is_array($from) && isset($from['address'])) {
+                $mailer->alwaysFrom($from['address'], $from['name']);
             }
 
-            foreach (['from', 'reply_to', 'to'] as $type) {
-                $this->setGlobalAddress($mailer, $config, $type);
-            }
+            $pretend = $app['config']->get('mail.pretend', false);
+            $mailer->pretend($pretend);
 
             /*
              * Extensibility
@@ -40,5 +47,6 @@ class MailServiceProvider extends MailServiceProviderBase
 
             return $mailer;
         });
+
     }
 }

@@ -40,13 +40,6 @@
     }
 
     /*
-     * Identical to getRecords except using a search query.
-     */
-    Base.prototype.searchRecords = function(query, offset, count, onSuccess) {
-        onSuccess([])
-    }
-
-    /*
      * Creates a record with the passed data and returns the updated page records
      * to the onSuccess callback function.
      * 

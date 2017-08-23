@@ -9,6 +9,7 @@ return [
     Illuminate\Bus\BusServiceProvider::class,
     Illuminate\Cache\CacheServiceProvider::class,
     Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+    Illuminate\Routing\ControllerServiceProvider::class,
     Illuminate\Cookie\CookieServiceProvider::class,
     Illuminate\Encryption\EncryptionServiceProvider::class,
     Illuminate\Foundation\Providers\FoundationServiceProvider::class,
@@ -20,11 +21,11 @@ return [
     Illuminate\Session\SessionServiceProvider::class,
     Illuminate\Validation\ValidationServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
-    Laravel\Tinker\TinkerServiceProvider::class,
 
     /*
      * October Rain providers
      */
+    October\Rain\Foundation\Providers\ArtisanServiceProvider::class,
     October\Rain\Database\DatabaseServiceProvider::class,
     October\Rain\Halcyon\HalcyonServiceProvider::class,
     October\Rain\Filesystem\FilesystemServiceProvider::class,

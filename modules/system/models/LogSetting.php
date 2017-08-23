@@ -13,21 +13,10 @@ class LogSetting extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    /**
-     * @var array Behaviors implemented by this model.
-     */
-    public $implement = [
-        \System\Behaviors\SettingsModel::class
-    ];
+    public $implement = ['System.Behaviors.SettingsModel'];
 
-    /**
-     * @var string Unique code
-     */
     public $settingsCode = 'system_log_settings';
 
-    /**
-     * @var mixed Settings form field defitions
-     */
     public $settingsFields = 'fields.yaml';
 
     /**
@@ -56,11 +45,6 @@ class LogSetting extends Model
         }
     }
 
-    /**
-     * Initialize the seed data for this model. This only executes when the
-     * model is first created or reset to default.
-     * @return void
-     */
     public function initSettingsData()
     {
         $this->log_events = true;

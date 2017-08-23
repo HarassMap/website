@@ -144,17 +144,6 @@ class SlackHandler extends SocketHandler
     protected function write(array $record)
     {
         parent::write($record);
-        $this->finalizeWrite();
-    }
-
-    /**
-     * Finalizes the request by reading some bytes and then closing the socket
-     *
-     * If we do not read some but close the socket too early, slack sometimes
-     * drops the request entirely.
-     */
-    protected function finalizeWrite()
-    {
         $res = $this->getResource();
         if (is_resource($res)) {
             @fread($res, 2048);

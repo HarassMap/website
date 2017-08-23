@@ -5,12 +5,12 @@
 name: system::lang.mail_templates.layout
 form: ~/modules/system/models/maillayout/fields.yaml
 modelClass: System\Models\MailLayout
-defaultRedirect: system/mailtemplates/index/layouts
+defaultRedirect: system/mailtemplates
 
 create:
     redirect: system/maillayouts/update/:id
-    redirectClose: system/mailtemplates/index/layouts
+    redirectClose: system/mailtemplates
 
 update:
     redirect: system/mailtemplates
-    redirectClose: system/mailtemplates/index/layouts
+    redirectClose: system/mailtemplates

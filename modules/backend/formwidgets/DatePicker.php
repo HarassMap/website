@@ -46,12 +46,6 @@ class DatePicker extends FormWidgetBase
      */
     public $yearRange = null;
 
-    /**
-     * @var int first day of the week
-     * eg: 0 (Sunday), 1 (Monday), 2 (Tuesday), etc.
-     */
-    public $firstDay = 0;
-
     //
     // Object properties
     //
@@ -72,7 +66,6 @@ class DatePicker extends FormWidgetBase
             'minDate',
             'maxDate',
             'yearRange',
-            'firstDay',
         ]);
 
         $this->mode = strtolower($this->mode);
@@ -119,7 +112,6 @@ class DatePicker extends FormWidgetBase
         $this->vars['minDate'] = $this->minDate;
         $this->vars['maxDate'] = $this->maxDate;
         $this->vars['yearRange'] = $this->yearRange;
-        $this->vars['firstDay'] = $this->firstDay;
         $this->vars['format'] = $this->format;
         $this->vars['formatMoment'] = $this->getDateFormatMoment();
         $this->vars['formatAlias'] = $this->getDateFormatAlias();

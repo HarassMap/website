@@ -2,16 +2,21 @@
 // Side navigation bar
 // --------------------------------------------------
 
-.layout-sidenav-container {
-    width: 120px;
-}
-
 #layout-sidenav {
     position: absolute;
     height: 100%;
     width: 100%;
     .box-sizing(border-box);
-    font-size: @font-size-base;
+
+    .sidenav-shadow-element() {
+        content: '';
+        position: absolute;
+        height: 100%;
+        top: 0;
+        right: 0;
+        width: 10px;
+        .box-shadow(inset -5px 0 3px rgba(0,0,0,.1));
+    }
 
     ul {
         position: relative;
@@ -20,15 +25,19 @@
         height: 100%;
         overflow: hidden;
 
+        &:after {
+            .sidenav-shadow-element();
+        }
+
         li {
             display: block;
             text-align: center;
             position: relative;
 
             a {
-                padding: 1.429em .714em;
+                padding: 20px 10px;
                 display: block;
-                font-size: .929em;
+                font-size: @font-size-base - 1;
                 color: @color-sidebarnav-inactive-text;
                 font-weight: normal;
                 position: relative;
@@ -46,12 +55,17 @@
                     color: @color-sidebarnav-inactive-icon;
                     display: block;
                     margin-bottom: 5px;
-                    font-size: 2em;
+                    font-size: 28px;
+                }
+
+                .nav-label,
+                .nav-icon {
+                    text-shadow: 0 -1px 0 rgba(0,0,0,.6);
                 }
             }
 
             &:first-child a {
-                padding-top: 2.143em;
+                padding-top: 30px;
             }
 
             &.active a, a:hover {
@@ -59,15 +73,22 @@
                 i { color: @color-sidebarnav-active-icon; }
             }
 
+            &.active a {
+                .nav-label,
+                .nav-icon {
+                    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+                }
+            }
+
             span.counter {
                 display: block;
                 position: absolute;
-                top: 1.071em;
-                right: 1.071em;
-                padding: .143em .429em .214em .286em;
+                top: 15px;
+                right: 15px;
+                padding: 2px 6px 3px 4px;
                 background-color: @color-sidebarnav-counter-bg;
                 color: @color-sidebarnav-counter-text;
-                font-size: .786em;
+                font-size: 11px;
                 line-height: 100%;
                 .border-radius(3px);
                 .opacity(1);
@@ -80,31 +101,6 @@
                 }
             }
         }
-    }
-}
-
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-    #layout-sidenav {
-        font-size: 12px;
-    }
-    .layout-sidenav-container {
-        width: 100px;
-    }
-}
-
-@media (max-width: @screen-xs-max) {
-    #layout-sidenav {
-        font-size: 10px;
-    }
-    .layout-sidenav-container {
-        width: 80px;
-    }
-}
-
-html.mobile {
-    #layout-sidenav ul {
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
     }
 }
 

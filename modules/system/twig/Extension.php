@@ -1,6 +1,6 @@
 <?php namespace System\Twig;
 
-use Url;
+use URL;
 use Twig_Extension;
 use Twig_TokenParser;
 use Twig_SimpleFilter;
@@ -28,6 +28,16 @@ class Extension extends Twig_Extension
     public function __construct()
     {
         $this->markupManager = MarkupManager::instance();
+    }
+
+    /**
+     * Returns the name of the extension.
+     *
+     * @return string The extension name
+     */
+    public function getName()
+    {
+        return 'System';
     }
 
     /**
@@ -90,6 +100,6 @@ class Extension extends Twig_Extension
      */
     public function appFilter($url)
     {
-        return Url::to($url);
+        return URL::to($url);
     }
 }

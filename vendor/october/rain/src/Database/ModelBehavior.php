@@ -10,6 +10,7 @@ use October\Rain\Extension\ExtensionBase;
  */
 class ModelBehavior extends ExtensionBase
 {
+
     /**
      * @var \October\Rain\Database\Model Reference to the extended model.
      */
@@ -23,4 +24,5 @@ class ModelBehavior extends ExtensionBase
     {
         $this->model = $model;
     }
+
 }

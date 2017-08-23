@@ -21,14 +21,8 @@ use Exception;
  */
 class Auth extends Controller
 {
-    /**
-     * @var array Public controller actions
-     */
     protected $publicActions = ['index', 'signin', 'signout', 'restore', 'reset'];
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct();
@@ -75,15 +69,11 @@ class Auth extends Controller
             throw new ValidationException($validation);
         }
 
-        if (is_null($remember = config('cms.backendForceRemember', true))) {
-            $remember = (bool) post('remember');
-        }
-
         // Authenticate user
         $user = BackendAuth::authenticate([
             'login' => post('login'),
             'password' => post('password')
-        ], $remember);
+        ], true);
 
         // Load version updates
         UpdateManager::instance()->update();

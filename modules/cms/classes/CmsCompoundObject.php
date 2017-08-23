@@ -9,7 +9,6 @@ use Cms\Twig\Extension as CmsTwigExtension;
 use Cms\Components\ViewBag;
 use System\Twig\Extension as SystemTwigExtension;
 use October\Rain\Halcyon\Processors\SectionParser;
-use Twig_Source;
 use Twig_Environment;
 use ApplicationException;
 
@@ -414,7 +413,7 @@ class CmsCompoundObject extends CmsObject
         $twig->addExtension(new CmsTwigExtension());
         $twig->addExtension(new SystemTwigExtension);
 
-        $stream = $twig->tokenize(new Twig_Source($markup === false ? $this->markup : $markup, 'getTwigNodeTree'));
+        $stream = $twig->tokenize($markup === false ? $this->markup : $markup, 'getTwigNodeTree');
         return $twig->parse($stream);
     }
 

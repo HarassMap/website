@@ -2,7 +2,7 @@
 
 namespace Illuminate\Foundation\Bus;
 
-use Illuminate\Contracts\Bus\Dispatcher;
+use ArrayAccess;
 
 trait DispatchesJobs
 {
@@ -14,17 +14,31 @@ trait DispatchesJobs
      */
     protected function dispatch($job)
     {
-        return app(Dispatcher::class)->dispatch($job);
+        return app('Illuminate\Contracts\Bus\Dispatcher')->dispatch($job);
     }
 
     /**
-     * Dispatch a job to its appropriate handler in the current process.
+     * Marshal a job and dispatch it to its appropriate handler.
      *
      * @param  mixed  $job
+     * @param  array  $array
      * @return mixed
      */
-    public function dispatchNow($job)
+    protected function dispatchFromArray($job, array $array)
     {
-        return app(Dispatcher::class)->dispatchNow($job);
+        return app('Illuminate\Contracts\Bus\Dispatcher')->dispatchFromArray($job, $array);
+    }
+
+    /**
+     * Marshal a job and dispatch it to its appropriate handler.
+     *
+     * @param  mixed  $job
+     * @param  \ArrayAccess  $source
+     * @param  array  $extras
+     * @return mixed
+     */
+    protected function dispatchFrom($job, ArrayAccess $source, $extras = [])
+    {
+        return app('Illuminate\Contracts\Bus\Dispatcher')->dispatchFrom($job, $source, $extras);
     }
 }

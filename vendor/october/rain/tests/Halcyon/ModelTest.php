@@ -350,7 +350,7 @@ ESC;
 
     protected function setValidatorOnModel()
     {
-        $translator = $this->getMockBuilder('Illuminate\Contracts\Translation\Translator')->setMethods([
+        $translator = $this->getMockBuilder('Symfony\Component\Translation\TranslatorInterface')->setMethods([
             'get',
             'trans',
             'transChoice',

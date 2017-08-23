@@ -27,9 +27,12 @@ use Exception;
  */
 class Themes extends Controller
 {
-    /**
-     * @var array Permissions required to view this page.
-     */
+    public $implement = [
+        'Backend.Behaviors.FormController'
+    ];
+
+    public $formConfig = 'config_form.yaml';
+
     public $requiredPermissions = ['cms.manage_themes'];
 
     /**
@@ -44,15 +47,6 @@ class Themes extends Controller
         $this->pageTitle = 'cms::lang.theme.settings_menu';
         BackendMenu::setContext('October.System', 'system', 'settings');
         SettingsManager::setContext('October.Cms', 'theme');
-
-        /*
-         * Custom redirect for unauthorized request
-         */
-        $this->bindEvent('page.beforeDisplay', function() {
-            if (!$this->user->hasAnyAccess($this->requiredPermissions)) {
-                return Backend::redirect('cms/themeoptions/update');
-            }
-        });
 
         /*
          * Enable AJAX for Form widgets
@@ -215,6 +209,64 @@ class Themes extends Controller
     }
 
     //
+    // Theme customization
+    //
+
+    public function update($dirName)
+    {
+        try {
+            $model = $this->getThemeData($dirName);
+            $this->asExtension('FormController')->update($model->id);
+        }
+        catch (Exception $ex) {
+            $this->handleError($ex);
+        }
+    }
+
+    public function update_onSave($dirName)
+    {
+        $model = $this->getThemeData($dirName);
+        $this->asExtension('FormController')->update_onSave($model->id);
+    }
+
+    public function update_onResetDefault($dirName)
+    {
+        $model = $this->getThemeData($dirName);
+        $model->delete();
+
+        return Backend::redirect('cms/themes/update/'.$dirName);
+    }
+
+    protected function getThemeData($dirName)
+    {
+        $theme = $this->findThemeObject($dirName);
+        $model = ThemeData::forTheme($theme);
+        return $model;
+    }
+
+    /**
+     * Add form fields defined in theme.yaml
+     */
+    public function formExtendFields($form)
+    {
+        $model = $form->model;
+        $theme = $this->findThemeObject($model->theme);
+        $config = $theme->getConfigArray('form');
+
+        if ($fields = array_get($config, 'fields')) {
+            $form->addFields($fields);
+        }
+
+        if ($fields = array_get($config, 'tabs.fields')) {
+            $form->addTabFields($fields);
+        }
+
+        if ($fields = array_get($config, 'secondaryTabs.fields')) {
+            $form->addSecondaryTabFields($fields);
+        }
+    }
+
+    //
     // Theme export
     //
 
@@ -314,4 +366,5 @@ class Themes extends Controller
 
         return $theme;
     }
+
 }

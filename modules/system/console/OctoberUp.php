@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputArgument;
  */
 class OctoberUp extends Command
 {
+
     /**
      * The console command name.
      */
@@ -36,14 +37,15 @@ class OctoberUp extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function fire()
     {
+        $manager = UpdateManager::instance()->resetNotes()->update();
+
         $this->output->writeln('<info>Migrating application and plugins...</info>');
 
-        UpdateManager::instance()
-            ->setNotesOutput($this->output)
-            ->update()
-        ;
+        foreach ($manager->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
     }
 
     /**

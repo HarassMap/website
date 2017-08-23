@@ -6,8 +6,6 @@ use Illuminate\Contracts\Cache\Store;
 
 class TaggedCache extends Repository
 {
-    use RetrievesMultipleKeys;
-
     /**
      * The tag set instance.
      *
@@ -27,6 +25,16 @@ class TaggedCache extends Repository
         parent::__construct($store);
 
         $this->tags = $tags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function fireCacheEvent($event, $payload)
+    {
+        $payload[] = $this->tags->getNames();
+
+        parent::fireCacheEvent($event, $payload);
     }
 
     /**
@@ -80,16 +88,5 @@ class TaggedCache extends Repository
     public function taggedItemKey($key)
     {
         return sha1($this->tags->getNamespace()).':'.$key;
-    }
-
-    /**
-     * Fire an event for this cache instance.
-     *
-     * @param  string  $event
-     * @return void
-     */
-    protected function event($event)
-    {
-        parent::event($event->setTags($this->tags->getNames()));
     }
 }

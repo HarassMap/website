@@ -5,30 +5,13 @@ namespace Illuminate\Auth;
 trait Authenticatable
 {
     /**
-     * The column name of the "remember me" token.
-     *
-     * @var string
-     */
-    protected $rememberTokenName = 'remember_token';
-
-    /**
-     * Get the name of the unique identifier for the user.
-     *
-     * @return string
-     */
-    public function getAuthIdentifierName()
-    {
-        return $this->getKeyName();
-    }
-
-    /**
      * Get the unique identifier for the user.
      *
      * @return mixed
      */
     public function getAuthIdentifier()
     {
-        return $this->{$this->getAuthIdentifierName()};
+        return $this->getKey();
     }
 
     /**
@@ -48,9 +31,7 @@ trait Authenticatable
      */
     public function getRememberToken()
     {
-        if (! empty($this->getRememberTokenName())) {
-            return $this->{$this->getRememberTokenName()};
-        }
+        return $this->{$this->getRememberTokenName()};
     }
 
     /**
@@ -61,9 +42,7 @@ trait Authenticatable
      */
     public function setRememberToken($value)
     {
-        if (! empty($this->getRememberTokenName())) {
-            $this->{$this->getRememberTokenName()} = $value;
-        }
+        $this->{$this->getRememberTokenName()} = $value;
     }
 
     /**
@@ -73,6 +52,6 @@ trait Authenticatable
      */
     public function getRememberTokenName()
     {
-        return $this->rememberTokenName;
+        return 'remember_token';
     }
 }

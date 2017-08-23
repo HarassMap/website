@@ -5,7 +5,6 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\RouteCollection;
-use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 
 class RouteCacheCommand extends Command
 {
@@ -48,7 +47,7 @@ class RouteCacheCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function fire()
     {
         $this->call('route:clear');
 
@@ -76,22 +75,11 @@ class RouteCacheCommand extends Command
      */
     protected function getFreshApplicationRoutes()
     {
-        return tap($this->getFreshApplication()['router']->getRoutes(), function ($routes) {
-            $routes->refreshNameLookups();
-            $routes->refreshActionLookups();
-        });
-    }
+        $app = require $this->laravel->basePath().'/bootstrap/app.php';
 
-    /**
-     * Get a fresh application instance.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    protected function getFreshApplication()
-    {
-        return tap(require $this->laravel->bootstrapPath().'/app.php', function ($app) {
-            $app->make(ConsoleKernelContract::class)->bootstrap();
-        });
+        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+
+        return $app['router']->getRoutes();
     }
 
     /**

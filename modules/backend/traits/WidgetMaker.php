@@ -5,16 +5,17 @@ use Backend\Classes\FormField;
 use SystemException;
 
 /**
- * Widget Maker Trait
+ * Config Maker Trait
  *
- * Adds widget based methods to a controller class, or a class that
- * contains a `$controller` property referencing a controller.
+ * Adds widget based methods to a controller class, or a class that contains a
+ * $controller property referencing a controller.
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
  */
 trait WidgetMaker
 {
+
     /**
      * Makes a widget object with the supplied configuration file.
      * @param string $class Widget class name

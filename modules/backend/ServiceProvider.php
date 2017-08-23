@@ -5,7 +5,7 @@ use Backend;
 use BackendMenu;
 use BackendAuth;
 use Backend\Classes\WidgetManager;
-use System\Classes\MailManager;
+use System\Models\MailTemplate;
 use System\Classes\CombineAssets;
 use System\Classes\SettingsManager;
 use October\Rain\Support\ModuleServiceProvider;
@@ -51,10 +51,10 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerMailer()
     {
-        MailManager::instance()->registerCallback(function ($manager) {
-            $manager->registerMailTemplates([
-                'backend::mail.invite',
-                'backend::mail.restore',
+        MailTemplate::registerCallback(function ($template) {
+            $template->registerMailTemplates([
+                'backend::mail.invite'  => 'Invitation for newly created administrators.',
+                'backend::mail.restore' => 'Password reset instructions for backend-end administrators.',
             ]);
         });
     }
@@ -107,7 +107,7 @@ class ServiceProvider extends ModuleServiceProvider
     protected function registerBackendReportWidgets()
     {
         WidgetManager::instance()->registerReportWidgets(function ($manager) {
-            $manager->registerReportWidget(\Backend\ReportWidgets\Welcome::class, [
+            $manager->registerReportWidget('Backend\ReportWidgets\Welcome', [
                 'label'   => 'backend::lang.dashboard.welcome.widget_title_default',
                 'context' => 'dashboard'
             ]);

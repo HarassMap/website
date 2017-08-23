@@ -79,8 +79,7 @@
         if (title !== null) {
             if (!$.isArray(title)) {
                 option.textContent = title
-            }
-            else {
+            } else {
                 if (title[1].indexOf('.') !== -1) {
                     option.setAttribute('data-image', title[1])
                 }
@@ -108,6 +107,10 @@
     DropdownEditor.prototype.initCustomSelect = function() {
         var select = this.getSelect()
 
+        if (Modernizr.touch) {
+            return
+        }
+
         var options = {
             dropdownCssClass: 'ocInspectorDropdown'
         }
@@ -118,8 +121,8 @@
 
         options.templateResult = this.formatSelectOption
         options.templateSelection = this.formatSelectOption
-        options.escapeMarkup = function(m) {
-            return m
+        options.escapeMarkup = function(m) { 
+            return m 
         }
 
         $(select).select2(options)

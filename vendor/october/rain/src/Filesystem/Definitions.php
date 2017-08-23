@@ -101,7 +101,6 @@ class Definitions
             'jpeg',
             'bmp',
             'png',
-            'webp',
             'gif',
             'svg',
             'js',
@@ -151,7 +150,6 @@ class Definitions
             'jpeg',
             'bmp',
             'png',
-            'webp',
             'gif',
             'ico',
             'css',
@@ -181,7 +179,6 @@ class Definitions
             'jpeg',
             'bmp',
             'png',
-            'webp',
             'gif',
             'svg'
         ];

@@ -21,7 +21,7 @@
         this.options   = options
         this.$el       = $(element)
 
-        this.init()
+        this.init();
     }
 
     SidenavTree.DEFAULTS = {
@@ -32,15 +32,16 @@
         var self = this
 
         $(document.body).addClass('has-sidenav-tree')
-
+    
         this.statusCookieName = this.options.treeName + 'groupStatus'
         this.searchCookieName = this.options.treeName + 'search'
         this.$searchInput = $(this.options.searchInput)
 
         this.$el.on('click', 'li > div.group', function() {
             self.toggleGroup($(this).closest('li'))
-            return false
-        })
+
+            return false;
+        });
 
         this.$searchInput.on('keyup', function(){
             self.handleSearchChange()
@@ -55,44 +56,38 @@
         var scrollbar = $('[data-control=scrollbar]', this.$el).data('oc.scrollbar'),
             active = $('li.active', this.$el)
 
-        if (active.length > 0) {
+        if (active.length > 0)
             scrollbar.gotoElement(active)
-        }
     }
 
     SidenavTree.prototype.toggleGroup = function(group) {
         var $group = $(group),
             status = $group.attr('data-status')
 
-        status === undefined || status == 'expanded'
-            ? this.collapseGroup($group)
-            : this.expandGroup($group)
+        status === undefined || status == 'expanded' ?
+            this.collapseGroup($group) : 
+            this.expandGroup($group)
     }
 
     SidenavTree.prototype.collapseGroup = function(group) {
-        var
+        var 
             $list = $('> ul', group),
-            self = this
+            self = this;
 
         $list.css('overflow', 'hidden')
-        $list.animate({ 'height': 0 }, {
-            duration: 100,
-            queue: false,
-            complete: function() {
-                $list.css({
-                    'overflow': 'visible',
-                    'display': 'none'
-                })
-
-                $(group).attr('data-status', 'collapsed')
-                $(window).trigger('oc.updateUi')
-                self.saveGroupStatus($(group).data('group-code'), true)
-            }
-        })
+        $list.animate({'height': 0}, { duration: 100, queue: false, complete: function() {
+            $list.css({
+                'overflow': 'visible',
+                'display': 'none'
+            })
+            $(group).attr('data-status', 'collapsed')
+            $(window).trigger('oc.updateUi')
+            self.saveGroupStatus($(group).data('group-code'), true)
+        } })
     }
 
     SidenavTree.prototype.expandGroup = function(group, duration) {
-        var
+        var 
             $list = $('> ul', group),
             self = this
 
@@ -100,7 +95,7 @@
 
         $list.css({
             'overflow': 'hidden',
-            'display': '',
+            'display': 'block',
             'height': 0
         })
         $list.animate({'height': $list[0].scrollHeight}, { duration: duration, queue: false, complete: function() {
@@ -118,9 +113,8 @@
         var collapsedGroups = $.cookie(this.statusCookieName),
             updatedGroups = []
 
-        if (collapsedGroups === undefined) {
+        if (collapsedGroups === undefined)
             collapsedGroups = ''
-        }
 
         collapsedGroups = collapsedGroups.split('|')
         $.each(collapsedGroups, function() {
@@ -128,9 +122,8 @@
                 updatedGroups.push(this)
         })
 
-        if (collapsed) {
+        if (collapsed)
             updatedGroups.push(groupCode)
-        }
 
         $.cookie(this.statusCookieName, updatedGroups.join('|'), { expires: 30, path: '/' })
     }
@@ -138,15 +131,13 @@
     SidenavTree.prototype.handleSearchChange = function() {
         var lastValue = this.$searchInput.data('oc.lastvalue');
 
-        if (lastValue !== undefined && lastValue == this.$searchInput.val()) {
+        if (lastValue !== undefined && lastValue == this.$searchInput.val())
             return
-        }
 
         this.$searchInput.data('oc.lastvalue', this.$searchInput.val())
 
-        if (this.dataTrackInputTimer !== undefined) {
-            window.clearTimeout(this.dataTrackInputTimer)
-        }
+        if (this.dataTrackInputTimer !== undefined)
+            window.clearTimeout(this.dataTrackInputTimer);
 
         var self = this
         this.dataTrackInputTimer = window.setTimeout(function(){
@@ -169,9 +160,8 @@
             return
         }
 
-        /*
-         * Find visible groups and items
-         */
+        // Find visible groups and items
+        // 
         $('ul.top-level > li', this.$el).each(function() {
             var $li = $(this)
 
@@ -181,8 +171,7 @@
                 $('ul li', $li).each(function(){
                     visibleItems.push(this)
                 })
-            }
-            else {
+            } else {
                 $('ul li', $li).each(function(){
                     if (self.textContainsWords($(this).text(), words) || self.textContainsWords($(this).data('keywords'), words)) {
                         visibleGroups.push($li.get(0))
@@ -192,9 +181,8 @@
             }
         })
 
-        /*
-         * Hide invisible groups and items
-         */
+        // Hide invisible groups and items
+        // 
         $('ul.top-level > li', this.$el).each(function() {
             var $li = $(this),
                 groupIsVisible = $.inArray(this, visibleGroups) !== -1

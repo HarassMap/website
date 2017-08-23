@@ -2,8 +2,6 @@
 
 namespace Illuminate\Validation;
 
-use Closure;
-use Illuminate\Support\Str;
 use Illuminate\Database\ConnectionResolverInterface;
 
 class DatabasePresenceVerifier implements PresenceVerifierInterface
@@ -20,7 +18,7 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
      *
      * @var string
      */
-    protected $connection;
+    protected $connection = null;
 
     /**
      * Create a new database presence verifier.
@@ -52,7 +50,11 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
             $query->where($idColumn ?: 'id', '<>', $excludeId);
         }
 
-        return $this->addConditions($query, $extra)->count();
+        foreach ($extra as $key => $extraValue) {
+            $this->addWhere($query, $key, $extraValue);
+        }
+
+        return $query->count();
     }
 
     /**
@@ -68,29 +70,11 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
     {
         $query = $this->table($collection)->whereIn($column, $values);
 
-        return $this->addConditions($query, $extra)->count();
-    }
-
-    /**
-     * Add the given conditions to the query.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $conditions
-     * @return \Illuminate\Database\Query\Builder
-     */
-    protected function addConditions($query, $conditions)
-    {
-        foreach ($conditions as $key => $value) {
-            if ($value instanceof Closure) {
-                $query->where(function ($query) use ($value) {
-                    $value($query);
-                });
-            } else {
-                $this->addWhere($query, $key, $value);
-            }
+        foreach ($extra as $key => $extraValue) {
+            $this->addWhere($query, $key, $extraValue);
         }
 
-        return $query;
+        return $query->count();
     }
 
     /**
@@ -107,8 +91,6 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
             $query->whereNull($key);
         } elseif ($extraValue === 'NOT_NULL') {
             $query->whereNotNull($key);
-        } elseif (Str::startsWith($extraValue, '!')) {
-            $query->where($key, '!=', mb_substr($extraValue, 1));
         } else {
             $query->where($key, $extraValue);
         }

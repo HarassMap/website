@@ -22,32 +22,17 @@ use Exception;
  */
 class EventLogs extends Controller
 {
-    /**
-     * @var array Extensions implemented by this controller.
-     */
     public $implement = [
-        \Backend\Behaviors\FormController::class,
-        \Backend\Behaviors\ListController::class
+        'Backend.Behaviors.FormController',
+        'Backend.Behaviors.ListController'
     ];
 
-    /**
-     * @var array `FormController` configuration.
-     */
-    public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var array `ListController` configuration.
-     */
-    public $listConfig = 'config_list.yaml';
-
-    /**
-     * @var array Permissions required to view this page.
-     */
     public $requiredPermissions = ['system.access_logs'];
 
-    /**
-     * Constructor.
-     */
+    public $formConfig = 'config_form.yaml';
+
+    public $listConfig = 'config_list.yaml';
+
     public function __construct()
     {
         parent::__construct();

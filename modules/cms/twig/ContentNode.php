@@ -2,6 +2,7 @@
 
 use Twig_Node;
 use Twig_Compiler;
+use Twig_NodeInterface;
 
 /**
  * Represents a content node
@@ -11,7 +12,7 @@ use Twig_Compiler;
  */
 class ContentNode extends Twig_Node
 {
-    public function __construct(Twig_Node $nodes, $paramNames, $lineno, $tag = 'content')
+    public function __construct(Twig_NodeInterface $nodes, $paramNames, $lineno, $tag = 'content')
     {
         parent::__construct(['nodes' => $nodes], ['names' => $paramNames], $lineno, $tag);
     }
@@ -36,7 +37,7 @@ class ContentNode extends Twig_Node
         }
 
         $compiler
-            ->write("echo \$this->env->getExtension('Cms\Twig\Extension')->contentFunction(")
+            ->write("echo \$this->env->getExtension('CMS')->contentFunction(")
             ->subcompile($this->getNode('nodes')->getNode(0))
             ->write(", \$context['__cms_content_params']")
             ->write(");\n")

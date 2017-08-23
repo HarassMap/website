@@ -21,25 +21,14 @@ class BrandSetting extends Model
     use \System\Traits\ViewMaker;
     use \October\Rain\Database\Traits\Validation;
 
-    /**
-     * @var array Behaviors implemented by this model.
-     */
-    public $implement = [
-        \System\Behaviors\SettingsModel::class
-    ];
+    public $implement = ['System.Behaviors.SettingsModel'];
 
-    /**
-     * @var string Unique code
-     */
     public $settingsCode = 'backend_brand_settings';
 
-    /**
-     * @var mixed Settings form field defitions
-     */
     public $settingsFields = 'fields.yaml';
 
     public $attachOne = [
-        'logo' => \System\Models\File::class
+        'logo' => ['System\Models\File']
     ];
 
     const CACHE_KEY = 'backend::brand.custom_css';
@@ -60,11 +49,6 @@ class BrandSetting extends Model
         'app_tagline'  => 'required',
     ];
 
-    /**
-     * Initialize the seed data for this model. This only executes when the
-     * model is first created or reset to default.
-     * @return void
-     */
     public function initSettingsData()
     {
         $config = App::make('config');

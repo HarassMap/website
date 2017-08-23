@@ -742,8 +742,7 @@ class Filter extends WidgetBase
         }
 
         foreach ($options as $option) {
-            $id = array_get($option, 'id');
-            if ($id === null) {
+            if (!$id = array_get($option, 'id')) {
                 continue;
             }
             $processed[$id] = array_get($option, 'name');

@@ -82,7 +82,7 @@ class OctoberMirror extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function fire()
     {
         $this->getDestinationPath();
 

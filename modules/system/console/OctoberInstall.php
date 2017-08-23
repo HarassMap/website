@@ -60,7 +60,7 @@ class OctoberInstall extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function fire()
     {
         $this->displayIntro();
 
@@ -291,11 +291,7 @@ class OctoberInstall extends Command
 
         try {
             Db::purge();
-
-            UpdateManager::instance()
-                ->setNotesOutput($this->output)
-                ->update()
-            ;
+            UpdateManager::instance()->resetNotes()->update();
         }
         catch (Exception $ex) {
             $this->error($ex->getMessage());

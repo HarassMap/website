@@ -56,9 +56,6 @@ return [
         'weekdays' => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         'weekdaysShort' => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     ],
-    'colorpicker' => [
-        'choose' => 'Ok',
-    ],
     'filter' => [
         'group' => [
             'all' => 'all'

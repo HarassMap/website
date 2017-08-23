@@ -2,7 +2,6 @@
 
 use Str;
 use System\Classes\PluginManager;
-use Event;
 
 /**
  * Widget manager
@@ -189,23 +188,6 @@ class WidgetManager
             }
         }
 
-        /**
-         * @event system.reportwidgets.extendItems
-         * Allows to append or remove a report widget.
-         *
-         * You will have access to the WidgetManager instance and be able to call the appropiated methods
-         * $manager->registerReportWidget();
-         * $manager->removeReportWidget();
-         *
-         * Example usage:
-         *
-         *     Event::listen('system.reportwidgets.extendItems', function($manager) {
-         *          $manager->removeReportWidget('Acme\ReportWidgets\YourWidget');
-         *     });
-         *
-         */
-        Event::fire('system.reportwidgets.extendItems', [$this]);
-
         return $this->reportWidgets;
     }
 
@@ -233,19 +215,4 @@ class WidgetManager
     {
         $this->reportWidgetCallbacks[] = $definitions;
     }
-
-    /**
-     * Remove a registered ReportWidget.
-     * @param string $className Widget class name.
-     * @return void
-     */
-    public function removeReportWidget($className)
-    {
-        if (!$this->reportWidgets) {
-            throw new SystemException('Unable to remove a widget before widgets are loaded.');
-        }
-
-        unset($this->reportWidgets[$className]);
-    }
-
 }

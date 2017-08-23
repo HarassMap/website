@@ -3,7 +3,7 @@
 /*
  * This file is part of Psy Shell.
  *
- * (c) 2012-2017 Justin Hileman
+ * (c) 2012-2015 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,9 +12,9 @@
 namespace Psy\CodeCleaner;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\Class_ as ClassStmt;
 use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Namespace_;
+use PhpParser\Node\Stmt\Namespace_ as NamespaceStmt;
 use Psy\Exception\FatalErrorException;
 
 /**
@@ -45,15 +45,15 @@ class StaticConstructorPass extends CodeCleanerPass
     /**
      * Validate that the old-style constructor function is not static.
      *
-     * @throws FatalErrorException if the old-style constructor function is static
+     * @throws FatalErrorException if the old-style constructor function is static.
      *
      * @param Node $node
      */
     public function enterNode(Node $node)
     {
-        if ($node instanceof Namespace_) {
+        if ($node instanceof NamespaceStmt) {
             $this->namespace = isset($node->name) ? $node->name->parts : array();
-        } elseif ($node instanceof Class_) {
+        } elseif ($node instanceof ClassStmt) {
             // Bail early if this is PHP 5.3.3 and we have a namespaced class
             if (!empty($this->namespace) && $this->isPHP533) {
                 return;
@@ -76,12 +76,11 @@ class StaticConstructorPass extends CodeCleanerPass
             }
 
             if ($constructor && $constructor->isStatic()) {
-                $msg = sprintf(
+                throw new FatalErrorException(sprintf(
                     'Constructor %s::%s() cannot be static',
                     implode('\\', array_merge($this->namespace, (array) $node->name)),
                     $constructor->name
-                );
-                throw new FatalErrorException($msg, 0, E_ERROR, null, $node->getLine());
+                ));
             }
         }
     }

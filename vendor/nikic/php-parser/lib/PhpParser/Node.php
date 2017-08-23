@@ -29,8 +29,6 @@ interface Node
      * Sets line the node started in.
      *
      * @param int $line Line
-     *
-     * @deprecated
      */
     public function setLine($line);
 
@@ -42,15 +40,6 @@ interface Node
      * @return null|Comment\Doc Doc comment object or null
      */
     public function getDocComment();
-
-    /**
-     * Sets the doc comment of the node.
-     *
-     * This will either replace an existing doc comment or add it to the comments array.
-     *
-     * @param Comment\Doc $docComment Doc comment to set
-     */
-    public function setDocComment(Comment\Doc $docComment);
 
     /**
      * Sets an attribute on a node.

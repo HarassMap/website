@@ -34,16 +34,6 @@ class MediaFinder extends FormWidgetBase
      */
     public $mode = 'file';
 
-    /**
-     * @var int Preview image width
-     */
-    public $imageWidth = null;
-
-    /**
-     * @var int Preview image height
-     */
-    public $imageHeight = null;
-
     //
     // Object properties
     //
@@ -60,9 +50,7 @@ class MediaFinder extends FormWidgetBase
     {
         $this->fillFromConfig([
             'mode',
-            'prompt',
-            'imageWidth',
-            'imageHeight'
+            'prompt'
         ]);
 
         if ($this->formField->disabled) {
@@ -76,7 +64,6 @@ class MediaFinder extends FormWidgetBase
     public function render()
     {
         $this->prepareVars();
-
         return $this->makePartial('mediafinder');
     }
 
@@ -91,8 +78,6 @@ class MediaFinder extends FormWidgetBase
         $this->vars['field'] = $this->formField;
         $this->vars['prompt'] = str_replace('%s', '<i class="icon-folder"></i>', trans($this->prompt));
         $this->vars['mode'] = $this->mode;
-        $this->vars['imageWidth'] = $this->imageWidth;
-        $this->vars['imageHeight'] = $this->imageHeight;
     }
 
     /**

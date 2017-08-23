@@ -34,18 +34,6 @@ class QueryBuilder extends QueryBuilderBase
     protected $cachingDuplicateQueries = false;
 
     /**
-     * Get an array with the values of a given column.
-     *
-     * @param  string  $column
-     * @param  string|null  $key
-     * @return \Illuminate\Support\Collection
-     */
-    public function lists($column, $key = null)
-    {
-        return $this->pluck($column, $key)->all();
-    }
-
-    /**
      * Indicate that the query results should be cached.
      *
      * @param  \DateTime|int  $minutes
@@ -114,15 +102,14 @@ class QueryBuilder extends QueryBuilderBase
         $cache = MemoryCache::instance();
 
         if ($cache->has($this)) {
-            $results = collect($cache->get($this));
+            return $cache->get($this);
         }
-        else {
-            $results = !is_null($this->cacheMinutes)
-                ? $this->getCached($columns)
-                : parent::get($columns);
 
-            $cache->put($this, $results->all());
-        }
+        $results = !is_null($this->cacheMinutes)
+            ? $this->getCached($columns)
+            : parent::get($columns);
+
+        $cache->put($this, $results);
 
         return $results;
     }
@@ -152,13 +139,10 @@ class QueryBuilder extends QueryBuilderBase
         // that the value should be remembered values should be stored indefinitely
         // and if we have minutes we will use the typical remember function here.
         if ($minutes < 0) {
-            $results = $cache->rememberForever($key, $callback);
-        }
-        else {
-            $results = $cache->remember($key, $minutes, $callback);
+            return $cache->rememberForever($key, $callback);
         }
 
-        return collect($results);
+        return $cache->remember($key, $minutes, $callback);
     }
 
     /**
@@ -213,7 +197,7 @@ class QueryBuilder extends QueryBuilderBase
      */
     protected function getCacheCallback($columns)
     {
-        return function() use ($columns) { return parent::get($columns)->all(); };
+        return function() use ($columns) { return parent::get($columns); };
     }
 
     /**

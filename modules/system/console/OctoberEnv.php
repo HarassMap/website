@@ -45,7 +45,7 @@ class OctoberEnv extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function fire()
     {
         if (file_exists('.env')) {
             return $this->error('.env file already exists.');

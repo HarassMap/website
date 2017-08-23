@@ -4,7 +4,11 @@
 // and disabled options for all buttons
 .button-variant(@color; @background; @border; @background-hover: @background; @border-hover: @border) {
     color: @color;
+    background-color: @background;
+    //border-color: @border;
     border: none;
+
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);
     background: @background;
 
     &:hover,
@@ -61,6 +65,7 @@
         color: #fff;
         background-color: @color;
         border-color: @color;
+        text-shadow: 0 1px 0 rgba(0,0,0,.2);
     }
 
     &:active,
@@ -69,6 +74,7 @@
         color: #fff;
         background-color: @color;
         border-color: @color;
+        text-shadow: 0 1px 0 rgba(0,0,0,.2);
 
         &:hover,
         &:focus,

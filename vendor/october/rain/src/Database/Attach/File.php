@@ -38,7 +38,7 @@ class File extends Model
     /**
      * @var array Known image extensions.
      */
-    public static $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    public static $imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
     /**
      * @var array Hidden fields from array/json access
@@ -66,7 +66,6 @@ class File extends Model
         'png'  => 'image/png',
         'jpg'  => 'image/jpeg',
         'jpeg' => 'image/jpeg',
-        'webp' => 'image/webp',
         'pdf'  => 'application/pdf'
     ];
 
@@ -119,29 +118,6 @@ class File extends Model
         $this->putFile($file->getRealPath(), $this->disk_name);
 
         return $this;
-    }
-    
-    /**
-     * Creates a file object from raw data.
-     *
-     * @param $data string Raw data
-     * @param $filename string Filename
-     *
-     * @return $this
-     */
-    public function fromData($data, $filename)
-    {
-        if ($data === null) {
-            return;
-        }
-
-        $tempPath = temp_path($filename);
-        FileHelper::put($tempPath, $data);
-
-        $file = $this->fromFile($tempPath);
-        FileHelper::delete($tempPath);
-
-        return $file;
     }
 
     //
@@ -431,7 +407,7 @@ class File extends Model
      */
     protected function getThumbFilename($width, $height, $options)
     {
-        return 'thumb_' . $this->id . '_' . $width . '_' . $height . '_' . $options['offset'][0] . '_' . $options['offset'][1] . '_' . $options['mode'] . '.' . $options['extension'];
+        return 'thumb_' . $this->id . '_' . $width . 'x' . $height . '_' . $options['offset'][0] . '_' . $options['offset'][1] . '_' . $options['mode'] . '.' . $options['extension'];
     }
 
     /**
@@ -445,7 +421,6 @@ class File extends Model
             'offset'    => [0, 0],
             'quality'   => 90,
             'sharpen'   => 0,
-            'interlace' => false,
             'extension' => 'auto',
         ];
 

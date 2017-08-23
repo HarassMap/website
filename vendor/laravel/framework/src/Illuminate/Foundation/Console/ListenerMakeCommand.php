@@ -30,6 +30,20 @@ class ListenerMakeCommand extends GeneratorCommand
     protected $type = 'Listener';
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function fire()
+    {
+        if (! $this->option('event')) {
+            return $this->error('Missing required option: --event');
+        }
+
+        parent::fire();
+    }
+
+    /**
      * Build the class with the given name.
      *
      * @param  string  $name
@@ -37,23 +51,23 @@ class ListenerMakeCommand extends GeneratorCommand
      */
     protected function buildClass($name)
     {
+        $stub = parent::buildClass($name);
+
         $event = $this->option('event');
 
-        if (! Str::startsWith($event, [
-            $this->laravel->getNamespace(),
-            'Illuminate',
-            '\\',
-        ])) {
+        if (! Str::startsWith($event, $this->laravel->getNamespace())) {
             $event = $this->laravel->getNamespace().'Events\\'.$event;
         }
 
         $stub = str_replace(
-            'DummyEvent', class_basename($event), parent::buildClass($name)
+            'DummyEvent', class_basename($event), $stub
         );
 
-        return str_replace(
+        $stub = str_replace(
             'DummyFullEvent', $event, $stub
         );
+
+        return $stub;
     }
 
     /**
@@ -64,25 +78,10 @@ class ListenerMakeCommand extends GeneratorCommand
     protected function getStub()
     {
         if ($this->option('queued')) {
-            return $this->option('event')
-                        ? __DIR__.'/stubs/listener-queued.stub'
-                        : __DIR__.'/stubs/listener-queued-duck.stub';
+            return __DIR__.'/stubs/listener-queued.stub';
         } else {
-            return $this->option('event')
-                        ? __DIR__.'/stubs/listener.stub'
-                        : __DIR__.'/stubs/listener-duck.stub';
+            return __DIR__.'/stubs/listener.stub';
         }
-    }
-
-    /**
-     * Determine if the class already exists.
-     *
-     * @param  string  $rawName
-     * @return bool
-     */
-    protected function alreadyExists($rawName)
-    {
-        return class_exists($rawName);
     }
 
     /**
@@ -104,7 +103,7 @@ class ListenerMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['event', 'e', InputOption::VALUE_OPTIONAL, 'The event class being listened for.'],
+            ['event', null, InputOption::VALUE_REQUIRED, 'The event class being listened for.'],
 
             ['queued', null, InputOption::VALUE_NONE, 'Indicates the event listener should be queued.'],
         ];

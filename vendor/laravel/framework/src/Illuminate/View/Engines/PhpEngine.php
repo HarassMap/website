@@ -56,9 +56,9 @@ class PhpEngine implements EngineInterface
      * @param  int  $obLevel
      * @return void
      *
-     * @throws \Exception
+     * @throws $e
      */
-    protected function handleViewException(Exception $e, $obLevel)
+    protected function handleViewException($e, $obLevel)
     {
         while (ob_get_level() > $obLevel) {
             ob_end_clean();

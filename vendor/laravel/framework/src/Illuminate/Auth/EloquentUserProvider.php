@@ -44,11 +44,7 @@ class EloquentUserProvider implements UserProvider
      */
     public function retrieveById($identifier)
     {
-        $model = $this->createModel();
-
-        return $model->newQuery()
-            ->where($model->getAuthIdentifierName(), $identifier)
-            ->first();
+        return $this->createModel()->newQuery()->find($identifier);
     }
 
     /**
@@ -63,7 +59,7 @@ class EloquentUserProvider implements UserProvider
         $model = $this->createModel();
 
         return $model->newQuery()
-            ->where($model->getAuthIdentifierName(), $identifier)
+            ->where($model->getKeyName(), $identifier)
             ->where($model->getRememberTokenName(), $token)
             ->first();
     }
@@ -79,13 +75,7 @@ class EloquentUserProvider implements UserProvider
     {
         $user->setRememberToken($token);
 
-        $timestamps = $user->timestamps;
-
-        $user->timestamps = false;
-
         $user->save();
-
-        $user->timestamps = $timestamps;
     }
 
     /**
@@ -96,10 +86,6 @@ class EloquentUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        if (empty($credentials)) {
-            return;
-        }
-
         // First we will add each credential element to the query as a where clause.
         // Then we can execute the query and, if we found a user, return it in a
         // Eloquent User "model" that will be utilized by the Guard instances.

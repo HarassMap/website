@@ -2,9 +2,9 @@
 
 namespace Illuminate\Mail\Transport;
 
+use Swift_Mime_Message;
+use Swift_Mime_MimeEntity;
 use Psr\Log\LoggerInterface;
-use Swift_Mime_SimpleMessage;
-use Swift_Mime_SimpleMimeEntity;
 
 class LogTransport extends Transport
 {
@@ -29,24 +29,20 @@ class LogTransport extends Transport
     /**
      * {@inheritdoc}
      */
-    public function send(Swift_Mime_SimpleMessage $message, &$failedRecipients = null)
+    public function send(Swift_Mime_Message $message, &$failedRecipients = null)
     {
         $this->beforeSendPerformed($message);
 
         $this->logger->debug($this->getMimeEntityString($message));
-
-        $this->sendPerformed($message);
-
-        return $this->numberOfRecipients($message);
     }
 
     /**
      * Get a loggable string out of a Swiftmailer entity.
      *
-     * @param  \Swift_Mime_SimpleMimeEntity $entity
+     * @param  \Swift_Mime_MimeEntity $entity
      * @return string
      */
-    protected function getMimeEntityString(Swift_Mime_SimpleMimeEntity $entity)
+    protected function getMimeEntityString(Swift_Mime_MimeEntity $entity)
     {
         $string = (string) $entity->getHeaders().PHP_EOL.$entity->getBody();
 

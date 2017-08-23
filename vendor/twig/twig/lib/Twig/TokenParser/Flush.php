@@ -13,8 +13,10 @@
  * Flushes the output to the client.
  *
  * @see flush()
+ *
+ * @final
  */
-final class Twig_TokenParser_Flush extends Twig_TokenParser
+class Twig_TokenParser_Flush extends Twig_TokenParser
 {
     public function parse(Twig_Token $token)
     {
@@ -28,5 +30,3 @@ final class Twig_TokenParser_Flush extends Twig_TokenParser
         return 'flush';
     }
 }
-
-class_alias('Twig_TokenParser_Flush', 'Twig\TokenParser\FlushTokenParser', false);

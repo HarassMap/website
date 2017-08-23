@@ -81,18 +81,13 @@ class SlackWebhookHandler extends AbstractProcessingHandler
         $postString = json_encode($postData);
 
         $ch = curl_init();
-        $options = array(
-            CURLOPT_URL => $this->webhookUrl,
-            CURLOPT_POST => true,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => array('Content-type: application/json'),
-            CURLOPT_POSTFIELDS => $postString
-        );
+        curl_setopt($ch, CURLOPT_URL, $this->webhookUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if (defined('CURLOPT_SAFE_UPLOAD')) {
-            $options[CURLOPT_SAFE_UPLOAD] = true;
+            curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
         }
-
-        curl_setopt_array($ch, $options);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array('payload' => $postString));
 
         Curl\Util::execute($ch);
     }

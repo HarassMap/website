@@ -16,7 +16,7 @@ class FlashServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('flash', function($app) {
+        $this->app['flash'] = $this->app->share(function($app) {
             return new FlashBag;
         });
     }

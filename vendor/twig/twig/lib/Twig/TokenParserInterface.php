@@ -24,7 +24,7 @@ interface Twig_TokenParserInterface
     /**
      * Parses a token and returns a node.
      *
-     * @return Twig_Node A Twig_Node instance
+     * @return Twig_NodeInterface
      *
      * @throws Twig_Error_Syntax
      */
@@ -37,7 +37,3 @@ interface Twig_TokenParserInterface
      */
     public function getTag();
 }
-
-class_alias('Twig_TokenParserInterface', 'Twig\TokenParser\TokenParserInterface', false);
-class_exists('Twig_Parser');
-class_exists('Twig_Token');

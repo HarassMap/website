@@ -33,11 +33,7 @@ class User extends Model
      * @var array Relations
      */
     public $belongsToMany = [
-        'groups' => [Group::class, 'table' => 'users_groups']
-    ];
-
-    public $belongsTo = [
-        'role' => Role::class
+        'groups' => ['October\Rain\Auth\Models\Group', 'table' => 'users_groups']
     ];
 
     /**
@@ -55,7 +51,7 @@ class User extends Model
     /**
      * @var array The attributes that aren't mass assignable.
      */
-    protected $guarded = ['is_superuser', 'reset_password_code', 'activation_code', 'persist_code', 'role_id'];
+    protected $guarded = ['is_superuser', 'reset_password_code', 'activation_code', 'persist_code'];
 
     /**
      * @var array List of attribute names which should be hashed using the Bcrypt hashing algorithm.
@@ -98,6 +94,11 @@ class User extends Model
      * @var string The login attribute.
      */
     public static $loginAttribute = 'email';
+
+    /**
+     * @var array The user groups.
+     */
+    protected $userGroups;
 
     /**
      * @var array The user merged permissions.
@@ -318,7 +319,7 @@ class User extends Model
     }
 
     //
-    // Permissions, Groups & Role
+    // Permissions & Groups
     //
 
     /**
@@ -327,16 +328,10 @@ class User extends Model
      */
     public function getGroups()
     {
-        return $this->groups;
-    }
+        if (!$this->userGroups)
+            $this->userGroups = $this->groups()->get();
 
-    /**
-     * Returns the role assigned to this user.
-     * @return October\Rain\Auth\Models\Role
-     */
-    public function getRole()
-    {
-        return $this->role;
+        return $this->userGroups;
     }
 
     /**
@@ -348,7 +343,7 @@ class User extends Model
     {
         if (!$this->inGroup($group)) {
             $this->groups()->attach($group);
-            $this->reloadRelations('groups');
+            $this->userGroups = null;
         }
 
         return true;
@@ -363,7 +358,7 @@ class User extends Model
     {
         if ($this->inGroup($group)) {
             $this->groups()->detach($group);
-            $this->reloadRelations('groups');
+            $this->userGroups = null;
         }
 
         return true;
@@ -394,10 +389,12 @@ class User extends Model
         if (!$this->mergedPermissions) {
             $permissions = [];
 
-            if ($role = $this->getRole()) {
-                if (is_array($role->permissions)) {
-                    $permissions = array_merge($permissions, $role->permissions);
+            foreach ($this->getGroups() as $group) {
+                if (!is_array($group->permissions)) {
+                    continue;
                 }
+
+                $permissions = array_merge($permissions, $group->permissions);
             }
 
             if (is_array($this->permissions)) {

@@ -26,45 +26,28 @@ class BelongsToMany extends BelongsToManyBase
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  string  $table
-     * @param  string  $foreignPivotKey
-     * @param  string  $relatedPivotKey
+     * @param  string  $foreignKey
+     * @param  string  $otherKey
      * @param  string  $relationName
      * @return void
      */
-    public function __construct(
-        Builder $query,
-        Model $parent,
-        $table,
-        $foreignPivotKey,
-        $relatedPivotKey,
-        $parentKey,
-        $relatedKey,
-        $relationName = null
-    ) {
-        parent::__construct(
-            $query,
-            $parent,
-            $table,
-            $foreignPivotKey,
-            $relatedPivotKey,
-            $parentKey,
-            $relatedKey,
-            $relationName
-        );
+    public function __construct(Builder $query, Model $parent, $table, $foreignKey, $otherKey, $relationName = null)
+    {
+        parent::__construct($query, $parent, $table, $foreignKey, $otherKey, $relationName);
 
         $this->addDefinedConstraints();
     }
 
     /**
-     * Get the select columns for the relation query.
+     * Set the select clause for the relation query.
      *
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    protected function shouldSelect(array $columns = ['*'])
+    protected function getSelectColumns(array $columns = ['*'])
     {
         if ($this->countMode) {
-            return $this->table.'.'.$this->foreignPivotKey.' as pivot_'.$this->foreignPivotKey;
+            return $this->table.'.'.$this->foreignKey.' as pivot_'.$this->foreignKey;
         }
 
         if ($columns == ['*']) {
@@ -75,7 +58,7 @@ class BelongsToMany extends BelongsToManyBase
             return $columns;
         }
 
-        return array_merge($columns, $this->aliasedPivotColumns());
+        return array_merge($columns, $this->getAliasedPivotColumns());
     }
 
     /**
@@ -144,12 +127,9 @@ class BelongsToMany extends BelongsToManyBase
      */
     public function paginate($perPage = 15, $currentPage = null, $columns = ['*'], $pageName = 'page')
     {
-        $this->query->addSelect($this->shouldSelect($columns));
-
+        $this->query->addSelect($this->getSelectColumns($columns));
         $paginator = $this->query->paginate($perPage, $currentPage, $columns);
-
         $this->hydratePivotRelation($paginator->items());
-
         return $paginator;
     }
 
@@ -174,7 +154,7 @@ class BelongsToMany extends BelongsToManyBase
             $pivot = $this->related->newPivot($this->parent, $attributes, $this->table, $exists);
         }
 
-        return $pivot->setPivotKeys($this->foreignPivotKey, $this->relatedPivotKey);
+        return $pivot->setPivotKeys($this->foreignKey, $this->otherKey);
     }
 
     /**
@@ -213,7 +193,7 @@ class BelongsToMany extends BelongsToManyBase
             }
         }
 
-        if (!is_array($value)) {
+        if (is_string($value)) {
             $value = [$value];
         }
 
@@ -251,7 +231,7 @@ class BelongsToMany extends BelongsToManyBase
             $value = $this->parent->getRelation($relationName)->lists($related->getKeyName());
         }
         else {
-            $value = $this->allRelatedIds($sessionKey)->all();
+            $value = $this->getRelatedIds($sessionKey);
         }
 
         return $value;
@@ -263,7 +243,7 @@ class BelongsToMany extends BelongsToManyBase
      * @param string $sessionKey
      * @return \October\Rain\Support\Collection
      */
-    public function allRelatedIds($sessionKey = null)
+    public function getRelatedIds($sessionKey = null)
     {
         $related = $this->getRelated();
 
@@ -271,35 +251,7 @@ class BelongsToMany extends BelongsToManyBase
 
         $query = $sessionKey ? $this->withDeferred($sessionKey) : $this;
 
-        return $query->getQuery()->select($fullKey)->pluck($related->getKeyName());
+        return $query->getQuery()->select($fullKey)->lists($related->getKeyName());
     }
 
-    /**
-     * Get the fully qualified foreign key for the relation.
-     *
-     * @return string
-     */
-    public function getForeignKey()
-    {
-        return $this->table.'.'.$this->foreignPivotKey;
-    }
-
-    /**
-     * Get the fully qualified "other key" for the relation.
-     *
-     * @return string
-     */
-    public function getOtherKey()
-    {
-        return $this->table.'.'.$this->relatedPivotKey;
-    }
-
-    /**
-     * @deprecated Use allRelatedIds instead. Remove if year >= 2018.
-     */
-    public function getRelatedIds($sessionKey = null)
-    {
-        traceLog('Method BelongsToMany::allRelatedIds has been deprecated, use BelongsToMany::allRelatedIds instead.');
-        return $this->allRelatedIds($sessionKey)->all();
-    }
 }

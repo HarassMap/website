@@ -48,7 +48,7 @@ abstract class Compiler
      */
     public function getCompiledPath($path)
     {
-        return $this->cachePath.'/'.sha1($path).'.php';
+        return $this->cachePath.'/'.md5($path);
     }
 
     /**
@@ -68,7 +68,8 @@ abstract class Compiler
             return true;
         }
 
-        return $this->files->lastModified($path) >=
-               $this->files->lastModified($compiled);
+        $lastModified = $this->files->lastModified($path);
+
+        return $lastModified >= $this->files->lastModified($compiled);
     }
 }

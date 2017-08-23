@@ -35,14 +35,6 @@ class SessionHandlerProxy extends AbstractProxy implements \SessionHandlerInterf
         $this->saveHandlerName = $this->wrapper ? ini_get('session.save_handler') : 'user';
     }
 
-    /**
-     * @return \SessionHandlerInterface
-     */
-    public function getHandler()
-    {
-        return $this->handler;
-    }
-
     // \SessionHandlerInterface
 
     /**
@@ -50,7 +42,13 @@ class SessionHandlerProxy extends AbstractProxy implements \SessionHandlerInterf
      */
     public function open($savePath, $sessionName)
     {
-        return (bool) $this->handler->open($savePath, $sessionName);
+        $return = (bool) $this->handler->open($savePath, $sessionName);
+
+        if (true === $return) {
+            $this->active = true;
+        }
+
+        return $return;
     }
 
     /**
@@ -58,6 +56,8 @@ class SessionHandlerProxy extends AbstractProxy implements \SessionHandlerInterf
      */
     public function close()
     {
+        $this->active = false;
+
         return (bool) $this->handler->close();
     }
 

@@ -2,7 +2,6 @@
 
 use App;
 use File;
-use Twig_Source;
 use Twig_LoaderInterface;
 use Exception;
 
@@ -50,9 +49,9 @@ class Loader implements Twig_LoaderInterface
         return $this->cache[$name] = $path;
     }
 
-    public function getSourceContext($name)
+    public function getSource($name)
     {
-        return new Twig_Source(File::get($this->findTemplate($name)), $name);
+        return File::get($this->findTemplate($name));
     }
 
     public function getCacheKey($name)

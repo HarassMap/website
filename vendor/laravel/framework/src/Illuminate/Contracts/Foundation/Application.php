@@ -23,16 +23,10 @@ interface Application extends Container
     /**
      * Get or check the current application environment.
      *
+     * @param  mixed
      * @return string
      */
     public function environment();
-
-    /**
-     * Determine if we are running in the console.
-     *
-     * @return bool
-     */
-    public function runningInConsole();
 
     /**
      * Determine if the application is currently down for maintenance.
@@ -91,16 +85,16 @@ interface Application extends Container
     public function booted($callback);
 
     /**
-     * Get the path to the cached services.php file.
+     * Get the path to the cached "compiled.php" file.
+     *
+     * @return string
+     */
+    public function getCachedCompilePath();
+
+    /**
+     * Get the path to the cached services.json file.
      *
      * @return string
      */
     public function getCachedServicesPath();
-
-    /**
-     * Get the path to the cached packages.php file.
-     *
-     * @return string
-     */
-    public function getCachedPackagesPath();
 }

@@ -1,8 +1,8 @@
 <?php namespace October\Rain\Database\Traits;
 
-use App;
 use Lang;
 use Input;
+use App;
 use October\Rain\Database\ModelException;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Validator;
@@ -86,21 +86,6 @@ trait Validation
     }
 
     /**
-     * Attachments validate differently to their simple values.
-     */
-    protected function getRelationValidationValue($relationName)
-    {
-        $relationType = $this->getRelationType($relationName);
-
-        if ($relationType == 'attachOne') {
-            return $this->$relationName()->getValidationValue();
-        }
-        else {
-            return $this->getRelationValue($relationName);
-        }
-    }
-
-    /**
      * Instantiates the validator used by the validation process, depending if the class
      * is being used inside or outside of Laravel. Optional connection string to make
      * the validator use a different database connection than the default connection.
@@ -159,7 +144,7 @@ trait Validation
         /*
          * Perform validation
          */
-        $rules = is_null($rules) ? $this->rules : $rules;
+        $rules = (is_null($rules)) ? $this->rules : $rules;
         $rules = $this->processValidationRules($rules);
         $success = true;
 
@@ -178,14 +163,9 @@ trait Validation
              * Add relation values, if specified.
              */
             foreach ($rules as $attribute => $rule) {
-                if (
-                    !$this->hasRelation($attribute) ||
-                    array_key_exists($attribute, $data)
-                ) {
-                    continue;
-                }
-
-                $data[$attribute] = $this->getRelationValidationValue($attribute);
+                if (!$this->hasRelation($attribute)) continue;
+                if (array_key_exists($attribute, $data)) continue;
+                $data[$attribute] = $this->getRelationValue($attribute);
             }
 
             /*
@@ -273,9 +253,7 @@ trait Validation
             }
             else {
                 $this->validationErrors = $validator->messages();
-                if (Input::hasSession()) {
-                    Input::flash();
-                }
+                if (Input::hasSession()) Input::flash();
             }
         }
 
@@ -438,4 +416,5 @@ trait Validation
     {
         static::registerModelEvent('validated', $callback);
     }
+
 }

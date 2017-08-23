@@ -46,8 +46,6 @@ trait DeferOneOrMany
                     $this->query = $query;
                     $this->addConstraints();
                 }
-
-                $this->addDefinedConstraintsToQuery($this);
             }
 
             /*
@@ -93,12 +91,7 @@ trait DeferOneOrMany
 
         $modelQuery->setQuery($newQuery);
 
-        /*
-         * Apply global scopes
-         */
-        foreach ($this->related->getGlobalScopes() as $identifier => $scope) {
-            $modelQuery->withGlobalScope($identifier, $scope);
-        }
+        $modelQuery = $this->related->applyGlobalScopes($modelQuery);
 
         return $this->query = $modelQuery;
     }

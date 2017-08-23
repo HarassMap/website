@@ -2,7 +2,7 @@
 
 namespace Illuminate\Database\Console\Seeds;
 
-use Illuminate\Support\Composer;
+use Illuminate\Foundation\Composer;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Console\GeneratorCommand;
 
@@ -32,7 +32,7 @@ class SeederMakeCommand extends GeneratorCommand
     /**
      * The Composer instance.
      *
-     * @var \Illuminate\Support\Composer
+     * @var \Illuminate\Foundation\Composer
      */
     protected $composer;
 
@@ -40,7 +40,7 @@ class SeederMakeCommand extends GeneratorCommand
      * Create a new command instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Illuminate\Support\Composer  $composer
+     * @param  \Illuminate\Foundation\Composer  $composer
      * @return void
      */
     public function __construct(Filesystem $files, Composer $composer)
@@ -55,9 +55,9 @@ class SeederMakeCommand extends GeneratorCommand
      *
      * @return void
      */
-    public function handle()
+    public function fire()
     {
-        parent::handle();
+        parent::fire();
 
         $this->composer->dumpAutoloads();
     }
@@ -84,12 +84,12 @@ class SeederMakeCommand extends GeneratorCommand
     }
 
     /**
-     * Parse the class name and format according to the root namespace.
+     * Parse the name and format according to the root namespace.
      *
      * @param  string  $name
      * @return string
      */
-    protected function qualifyClass($name)
+    protected function parseName($name)
     {
         return $name;
     }

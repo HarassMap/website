@@ -20,7 +20,7 @@ class AccessLog extends Model
      * @var array Relations
      */
     public $belongsTo = [
-        'user' => User::class
+        'user' => ['Backend\Models\User']
     ];
 
     /**

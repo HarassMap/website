@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 use Symfony\Component\Translation\MessageSelector;
-use Illuminate\Contracts\Translation\Translator as TranslatorContract;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * October translator class.
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Translation\Translator as TranslatorContract;
  * @package translation
  * @author Alexey Bobkov, Samuel Georges
  */
-class Translator implements TranslatorContract
+class Translator implements TranslatorInterface
 {
     use \October\Rain\Support\Traits\KeyParser;
 

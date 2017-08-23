@@ -13,6 +13,6 @@ class Throttle extends ThrottleBase
      * @var array Relations
      */
     public $belongsTo = [
-        'user' => User::class
+        'user' => ['RainLab\User\Models\User']
     ];
 }

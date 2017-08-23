@@ -91,10 +91,6 @@ class Repeater extends FormWidgetBase
             'maxItems',
         ]);
 
-        if ($this->formField->disabled) {
-            $this->previewMode = true;
-        }
-
         $fieldName = $this->formField->getName(false);
         $this->indexInputName = self::INDEX_PREFIX.$fieldName;
         $this->groupInputName = self::GROUP_PREFIX.$fieldName;
@@ -120,12 +116,6 @@ class Repeater extends FormWidgetBase
      */
     public function prepareVars()
     {
-        if ($this->previewMode) {
-            foreach ($this->formWidgets as $widget) {
-                $widget->previewMode = true;
-            }
-        }
-
         $this->vars['indexInputName'] = $this->indexInputName;
         $this->vars['groupInputName'] = $this->groupInputName;
 

@@ -16,37 +16,18 @@ use System\Classes\SettingsManager;
  */
 class Users extends Controller
 {
-    /**
-     * @var array Extensions implemented by this controller.
-     */
     public $implement = [
-        \Backend\Behaviors\FormController::class,
-        \Backend\Behaviors\ListController::class
+        'Backend.Behaviors.FormController',
+        'Backend.Behaviors.ListController'
     ];
 
-    /**
-     * @var array `FormController` configuration.
-     */
     public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var array `ListController` configuration.
-     */
     public $listConfig = 'config_list.yaml';
 
-    /**
-     * @var array Permissions required to view this page.
-     */
     public $requiredPermissions = ['backend.manage_users'];
 
-    /**
-     * @var string HTML body tag class
-     */
     public $bodyClass = 'compact-container';
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct();
@@ -114,7 +95,6 @@ class Users extends Controller
 
         if (!$this->user->isSuperUser()) {
             $form->removeField('is_superuser');
-            $form->removeField('role');
         }
 
         /*

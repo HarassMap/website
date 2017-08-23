@@ -11,8 +11,10 @@
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * @final
  */
-final class Twig_Profiler_Dumper_Blackfire
+class Twig_Profiler_Dumper_Blackfire
 {
     public function dump(Twig_Profiler_Profile $profile)
     {
@@ -66,5 +68,3 @@ EOF;
         }
     }
 }
-
-class_alias('Twig_Profiler_Dumper_Blackfire', 'Twig\Profiler\Dumper\BlackfireDumper', false);

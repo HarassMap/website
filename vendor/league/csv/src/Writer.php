@@ -4,7 +4,7 @@
 *
 * @license http://opensource.org/licenses/MIT
 * @link https://github.com/thephpleague/csv/
-* @version 8.2.2
+* @version 8.2.0
 * @package League.csv
 *
 * For the full copyright and license information, please view the LICENSE
@@ -16,7 +16,6 @@ use InvalidArgumentException;
 use League\Csv\Modifier\RowFilter;
 use League\Csv\Modifier\StreamIterator;
 use ReflectionMethod;
-use RuntimeException;
 use SplFileObject;
 use Traversable;
 
@@ -110,10 +109,7 @@ class Writer extends AbstractCsv
     protected function addRow(array $row)
     {
         $this->initCsv();
-        if (!$this->fputcsv->invokeArgs($this->csv, $this->getFputcsvParameters($row))) {
-            throw new RuntimeException('Unable to write record to the CSV document.');
-        }
-
+        $this->fputcsv->invokeArgs($this->csv, $this->getFputcsvParameters($row));
         if ("\n" !== $this->newline) {
             $this->csv->fseek(-1, SEEK_CUR);
             $this->csv->fwrite($this->newline, strlen($this->newline));

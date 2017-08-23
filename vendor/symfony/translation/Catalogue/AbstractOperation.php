@@ -13,73 +13,49 @@ namespace Symfony\Component\Translation\Catalogue;
 
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\MessageCatalogueInterface;
-use Symfony\Component\Translation\Exception\InvalidArgumentException;
-use Symfony\Component\Translation\Exception\LogicException;
 
 /**
  * Base catalogues binary operation class.
- *
- * A catalogue binary operation performs operation on
- * source (the left argument) and target (the right argument) catalogues.
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
 abstract class AbstractOperation implements OperationInterface
 {
     /**
-     * @var MessageCatalogueInterface The source catalogue
+     * @var MessageCatalogueInterface
      */
     protected $source;
 
     /**
-     * @var MessageCatalogueInterface The target catalogue
+     * @var MessageCatalogueInterface
      */
     protected $target;
 
     /**
-     * @var MessageCatalogue The result catalogue
+     * @var MessageCatalogue
      */
     protected $result;
 
     /**
-     * @var null|array The domains affected by this operation
+     * @var null|array
      */
     private $domains;
 
     /**
-     * This array stores 'all', 'new' and 'obsolete' messages for all valid domains.
-     *
-     * The data structure of this array is as follows:
-     * ```php
-     * array(
-     *     'domain 1' => array(
-     *         'all' => array(...),
-     *         'new' => array(...),
-     *         'obsolete' => array(...)
-     *     ),
-     *     'domain 2' => array(
-     *         'all' => array(...),
-     *         'new' => array(...),
-     *         'obsolete' => array(...)
-     *     ),
-     *     ...
-     * )
-     * ```
-     *
-     * @var array The array that stores 'all', 'new' and 'obsolete' messages
+     * @var array
      */
     protected $messages;
 
     /**
-     * @param MessageCatalogueInterface $source The source catalogue
-     * @param MessageCatalogueInterface $target The target catalogue
+     * @param MessageCatalogueInterface $source
+     * @param MessageCatalogueInterface $target
      *
-     * @throws LogicException
+     * @throws \LogicException
      */
     public function __construct(MessageCatalogueInterface $source, MessageCatalogueInterface $target)
     {
         if ($source->getLocale() !== $target->getLocale()) {
-            throw new LogicException('Operated catalogues must belong to the same locale.');
+            throw new \LogicException('Operated catalogues must belong to the same locale.');
         }
 
         $this->source = $source;
@@ -106,7 +82,7 @@ abstract class AbstractOperation implements OperationInterface
     public function getMessages($domain)
     {
         if (!in_array($domain, $this->getDomains())) {
-            throw new InvalidArgumentException(sprintf('Invalid domain: %s.', $domain));
+            throw new \InvalidArgumentException(sprintf('Invalid domain: %s.', $domain));
         }
 
         if (!isset($this->messages[$domain]['all'])) {
@@ -122,7 +98,7 @@ abstract class AbstractOperation implements OperationInterface
     public function getNewMessages($domain)
     {
         if (!in_array($domain, $this->getDomains())) {
-            throw new InvalidArgumentException(sprintf('Invalid domain: %s.', $domain));
+            throw new \InvalidArgumentException(sprintf('Invalid domain: %s.', $domain));
         }
 
         if (!isset($this->messages[$domain]['new'])) {
@@ -138,7 +114,7 @@ abstract class AbstractOperation implements OperationInterface
     public function getObsoleteMessages($domain)
     {
         if (!in_array($domain, $this->getDomains())) {
-            throw new InvalidArgumentException(sprintf('Invalid domain: %s.', $domain));
+            throw new \InvalidArgumentException(sprintf('Invalid domain: %s.', $domain));
         }
 
         if (!isset($this->messages[$domain]['obsolete'])) {
@@ -163,10 +139,7 @@ abstract class AbstractOperation implements OperationInterface
     }
 
     /**
-     * Performs operation on source and target catalogues for the given domain and
-     * stores the results.
-     *
-     * @param string $domain The domain which the operation will be performed for
+     * @param string $domain
      */
     abstract protected function processDomain($domain);
 }

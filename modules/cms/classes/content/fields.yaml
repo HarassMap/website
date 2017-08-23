@@ -15,9 +15,6 @@ fields:
 
     components: Cms\FormWidgets\Components
 
-tabs:
-    cssClass: master-area
-
 secondaryTabs:
     stretch: true
     fields:

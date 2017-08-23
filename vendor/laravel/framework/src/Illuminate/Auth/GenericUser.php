@@ -25,25 +25,13 @@ class GenericUser implements UserContract
     }
 
     /**
-     * Get the name of the unique identifier for the user.
-     *
-     * @return string
-     */
-    public function getAuthIdentifierName()
-    {
-        return 'id';
-    }
-
-    /**
      * Get the unique identifier for the user.
      *
      * @return mixed
      */
     public function getAuthIdentifier()
     {
-        $name = $this->getAuthIdentifierName();
-
-        return $this->attributes[$name];
+        return $this->attributes['id'];
     }
 
     /**

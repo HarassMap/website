@@ -16,6 +16,6 @@ class Collection extends CollectionBase
      */
     public function lists($value, $key = null)
     {
-        return $this->pluck($value, $key)->all();
+        return array_pluck($this->items, $value, $key);
     }
 }

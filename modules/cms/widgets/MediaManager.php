@@ -50,9 +50,6 @@ class MediaManager extends WidgetBase
      */
     public $cropAndInsertButton = false;
 
-    /**
-     * Constructor.
-     */
     public function __construct($controller, $alias)
     {
         $this->alias = $alias;
@@ -750,12 +747,12 @@ class MediaManager extends WidgetBase
 
     protected function setSidebarVisible($visible)
     {
-        return $this->putSession('sidebar_visible', !!$visible);
+        return $this->putSession('sideba_visible', !!$visible);
     }
 
     protected function getSidebarVisible()
     {
-        return $this->getSession('sidebar_visible', true);
+        return $this->getSession('sideba_visible', true);
     }
 
     protected function itemTypeToIconClass($item, $itemType)
@@ -787,7 +784,7 @@ class MediaManager extends WidgetBase
             }
         }
 
-        return array_reverse($result, true);
+        return array_reverse($result);
     }
 
     protected function setViewMode($viewMode)

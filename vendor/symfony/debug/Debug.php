@@ -31,7 +31,7 @@ class Debug
      * @param int  $errorReportingLevel The level of error reporting you want
      * @param bool $displayErrors       Whether to display errors (for development) or just log them (for production)
      */
-    public static function enable($errorReportingLevel = E_ALL, $displayErrors = true)
+    public static function enable($errorReportingLevel = null, $displayErrors = true)
     {
         if (static::$enabled) {
             return;
@@ -42,7 +42,7 @@ class Debug
         if (null !== $errorReportingLevel) {
             error_reporting($errorReportingLevel);
         } else {
-            error_reporting(E_ALL);
+            error_reporting(-1);
         }
 
         if ('cli' !== PHP_SAPI) {
@@ -52,10 +52,9 @@ class Debug
             // CLI - display errors only if they're not already logged to STDERR
             ini_set('display_errors', 1);
         }
-        if ($displayErrors) {
-            ErrorHandler::register(new ErrorHandler(new BufferingLogger()));
-        } else {
-            ErrorHandler::register()->throwAt(0, true);
+        $handler = ErrorHandler::register();
+        if (!$displayErrors) {
+            $handler->throwAt(0, true);
         }
 
         DebugClassLoader::enable();

@@ -1,17 +1,17 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045"
+            "reference": "d78064c68299743e0161004f2de3a0204e33b804"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/79ad876c7498c0bbfe7eed065b8651c93bfd6045",
-            "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045",
+            "url": "https://api.github.com/repos/composer/installers/zipball/d78064c68299743e0161004f2de3a0204e33b804",
+            "reference": "d78064c68299743e0161004f2de3a0204e33b804",
             "shasum": ""
         },
         "require": {
@@ -25,7 +25,7 @@
             "composer/composer": "1.0.*@dev",
             "phpunit/phpunit": "4.1.*"
         },
-        "time": "2017-04-24 06:37:16",
+        "time": "2016-08-13 20:53:52",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -55,16 +55,12 @@
         "keywords": [
             "Craft",
             "Dolibarr",
-            "Eliasis",
             "Hurad",
             "ImageCMS",
-            "Kanboard",
             "MODX Evo",
             "Mautic",
-            "Maya",
             "OXID",
             "Plentymarkets",
-            "Porto",
             "RadPHP",
             "SMF",
             "Thelia",
@@ -87,11 +83,9 @@
             "fuelphp",
             "grav",
             "installer",
-            "itop",
             "joomla",
             "kohana",
             "laravel",
-            "lavalite",
             "lithium",
             "magento",
             "mako",
@@ -106,7 +100,6 @@
             "roundcube",
             "shopware",
             "silverstripe",
-            "sydes",
             "symfony",
             "typo3",
             "wordpress",

@@ -32,6 +32,15 @@
 @custom-dark-primary: mix(black, saturate(@brand-primary, 5%), 15%);
 
 //
+// Sidenav
+//
+
+#layout-sidenav ul li a .nav-label,
+#layout-sidenav ul li a .nav-icon {
+    text-shadow: 0 -1px 0 fade(darken(@brand-primary, 20%), 60%);
+}
+
+//
 // Sidenav Tree
 //
 
@@ -118,7 +127,7 @@ table.table.data {
 
 .fancy-layout .control-tabs.primary-tabs,
 .fancy-layout.control-tabs.primary-tabs {
-    &.master-area > div > ul.nav-tabs {
+    > div > ul.nav-tabs.master-area {
         background: @brand-secondary;
     }
 }
