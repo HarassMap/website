@@ -57,7 +57,7 @@ id = "footer.about"
                     </div>
                     <div class="col-4">
                         <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"
-                             src="{% if domain.footerLogo %}{{ domain.footerLogo.path }}{% else %}{{ 'assets/img/logo-footer.svg' | theme }}{% endif %}">
+                             src="{% if domain.footerLogo %}{{ domain.footerLogo | media }}{% else %}{{ 'assets/img/logo-footer.svg' | theme }}{% endif %}">
                     </div>
                 </div>
             </div>

@@ -162,19 +162,16 @@
 </script>
 <script id="info-template" type="text/x-handlebars-template">
     <div class="infowindow">
-        {% raw %}
-
         <div class="info info--time">
             <span class="icon icon--time"></span>
-            {{ time }}
+            {{ '{{ time }}' }}
         </div>
         <div class="info info--address">
             <span class="icon icon--address"></span>
-            {{ address }}
+            {{ '{{ address }}' }}
         </div>
 
         <a class="read-more" href="{{ link }}">
-            {% endraw %}
             {{ 'Read more' | _ }}
         </a>
     </div>

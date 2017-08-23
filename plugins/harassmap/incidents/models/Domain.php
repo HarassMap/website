@@ -78,9 +78,10 @@ class Domain extends Model
         'tagline',
         'about',
         'twitter_message',
+        'logos'
     ];
 
-    protected $jsonable = ['colours'];
+    protected $jsonable = ['colours', 'logos'];
 
     public $rules = [
         'name' => 'required',
@@ -96,11 +97,6 @@ class Domain extends Model
         'instagram' => 'max:100',
         'youtube' => 'max:100',
         'blogger' => 'max:100',
-    ];
-
-    public $attachOne = [
-        'headerLogo' => 'System\Models\File',
-        'footerLogo' => 'System\Models\File'
     ];
 
     public $hasMany = [
@@ -242,5 +238,20 @@ class Domain extends Model
     public function afterDelete()
     {
         Analytics::domainDeleted($this);
+    }
+
+    public function getHeaderLogo()
+    {
+        return $this->logos[0]['header'];
+    }
+
+    public function getMobileLogo()
+    {
+        return $this->logos[0]['mobile'];
+    }
+
+    public function getFooterLogo()
+    {
+        return $this->logos[0]['footer'];
     }
 }
