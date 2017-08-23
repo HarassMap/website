@@ -31,6 +31,10 @@ h4 {
 
   @include merriweather();
   @include rem((font-size: 20px, line-height: 30px, padding: 0 0 20px, margin: 0));
+
+  .ar & {
+    @include rem((font-size: 22px));
+  }
 }
 
 p {
@@ -38,6 +42,10 @@ p {
 
   @include merriweather();
   @include rem((font-size: 14px, padding: 30px 0, margin: 0));
+
+  .ar & {
+    @include rem((font-size: 16px));
+  }
 
   .static-content & {
     @include rem((padding: 15px 0));
