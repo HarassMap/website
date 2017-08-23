@@ -2,8 +2,8 @@ scopes:
     domain:
         label: 'harassmap.incidents::lang.form.domain'
         modelClass: Harassmap\Incidents\Models\Domain
-        conditions: domain_id in (:filtered)
         nameFrom: host
+        conditions: domain_id in (:filtered)
     intervention:
         label: Intervention?
         type: switch

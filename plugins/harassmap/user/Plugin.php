@@ -127,6 +127,17 @@ class Plugin extends PluginBase
             ]);
         });
 
+        UsersController::extendListFilterScopes(function ($filter) {
+            $filter->addScopes([
+                'my_scope' => [
+                    'label' => 'harassmap.incidents::lang.form.domain',
+                    'modelClass' => Domain::class,
+                    'nameFrom' => 'host',
+                    'conditions' => 'domain_id in (:filtered)'
+                ]
+            ]);
+        });
+
     }
 
 }
