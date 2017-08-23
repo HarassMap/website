@@ -3,7 +3,14 @@ columns:
         label: 'harassmap.incidents::lang.form.title'
         type: text
         sortable: false
+        searchable: true
     description:
         label: 'harassmap.incidents::lang.form.description'
         type: text
+        sortable: false
+        searchable: true
+    domains:
+        label: 'harassmap.incidents::lang.form.domains'
+        select: host
+        relation: domains
         sortable: false

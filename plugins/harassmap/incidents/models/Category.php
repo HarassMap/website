@@ -37,8 +37,14 @@ class Category extends Model
     public $translatable = ['title', 'description'];
 
     public $belongsToMany = [
-        'incidents' => [Incident::class, 'table' => 'harassmap_incidents_incident_category'],
-        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_category'],
+        'incidents' => [
+            Incident::class,
+            'table' => 'harassmap_incidents_incident_category'
+        ],
+        'domains' => [
+            Domain::class,
+            'table' => 'harassmap_incidents_domain_category'
+        ],
     ];
 
     public $rules = [
@@ -47,9 +53,7 @@ class Category extends Model
         'color' => 'required',
     ];
 
-    protected $fillable = [
-        'title', 'description', 'color'
-    ];
+    protected $fillable = ['title', 'description', 'color'];
 
     public $hidden = ['id', 'color', 'sort_order', 'pivot', 'created_at', 'updated_at'];
 
@@ -60,5 +64,12 @@ class Category extends Model
         if (!$this->sort_order) {
             $this->sort_order = 0;
         }
+    }
+
+    public function scopeDomain($query, $status)
+    {
+        $query->whereHas('domains', function ($query) use ($status) {
+            $query->whereIn('domain_id', $status);
+        });
     }
 }

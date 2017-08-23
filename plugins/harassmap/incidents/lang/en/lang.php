@@ -42,6 +42,7 @@
         'description_approved' => 'Description Approved',
         'color' => 'Color',
         'domain' => 'Domain',
+        'domains' => 'Domains',
         'host' => 'Host',
         'host_help' => 'Pattern for matching the domain name.',
         'name' => 'Name',

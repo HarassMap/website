@@ -9,7 +9,7 @@ use October\Rain\Database\Traits\Sluggable;
 use October\Rain\Database\Traits\Validation;
 
 /**
- * Model
+ * Harassmap\News\Models\Posts
  *
  * @property int $id
  * @property int $domain_id
@@ -17,21 +17,21 @@ use October\Rain\Database\Traits\Validation;
  * @property string $slug
  * @property string $intro
  * @property string $content
- * @property string $published_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereContent($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereDomainId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereIntro($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts wherePublishedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\News\Models\Posts whereUpdatedAt($value)
- * @mixin \Eloquent
  * @property int $hide_image
+ * @property string|null $published_at
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereDomainId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereHideImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereIntro($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\News\Models\Posts whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Posts extends Model
 {
