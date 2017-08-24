@@ -1,0 +1,61 @@
+<div id="report-map" class="banner banner--map">
+    <div class="map map--home" data-map="homepage"
+         data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}" data-zoom="{{ domain.zoom }}"
+         data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
+
+    <div class="toolbar">
+        <div id="filter" class="container container--filter">
+            <div class="filter">
+                <form id="filter-form">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    {{ form_text('date_from', '', {'id': 'date_from', 'class': 'form-control', 'placeholder': 'Date From' | _}) }}
+                                </div>
+                                <div class="col-6">
+                                    {{ form_text('date_to', '', {'id': 'date_to', 'class': 'form-control', 'placeholder': 'Date To' | _}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <select class="form-control form-control-range" name="type">
+                                <option value="">{{ 'View All' | _ }}</option>
+                                <option value="incident">{{ 'Incident' | _ }}</option>
+                                <option value="intervention">{{ 'Intervention' | _ }}</option>
+                            </select>
+                        </div>
+                        <div class="col-3 text-center">
+                            <button class="btn btn--inverse btn-block">{{ 'Go' | _ }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="legend--container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="legend">
+                                <span class="key key--incident">
+                                    <span class="icon"></span>
+                                    {{ 'Incident' | _ }}
+                                </span>
+                            <span class="key key--intervention">
+                                <span class="icon"></span>
+                                {{ 'Incident with intervention' | _ }}
+                                </span>
+                        </div>
+
+                        <a href="#" id="map-fullscreen" class="btn float-right btn--fullscreen ml-2">
+                            &nbsp;
+                            <span class="sr-only">{{ 'Full Screen' | _ }}</span>
+                        </a>
+
+                        <a href="#" id="map-filter" class="btn btn--inverse float-right">{{ 'Filter' | _ }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
