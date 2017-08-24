@@ -1,12 +1,17 @@
 fields:
     code:
-        label: 'Mail Code'
+        label: 'Template'
         span: auto
         type: dropdown
         emptyOption: 'Choose a template to override'
+    layout:
+        label: 'Layout'
+        span: auto
+        type: relation
+        nameFrom: name
     domain_id:
         label: 'harassmap.incidents::lang.form.domain'
-        span: auto
+        span: full
         type: dropdown
     subject:
         label: Subject

@@ -20,7 +20,7 @@ class MailTemplates extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Harassmap.Mail', 'harassmap.mail');
+        BackendMenu::setContext('Harassmap.Mail', 'harassmap.mail', 'harassmap.mail.templates');
     }
 
     public function formExtendRefreshData($host, $saveData)

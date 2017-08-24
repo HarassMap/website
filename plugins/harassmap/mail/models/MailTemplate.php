@@ -45,6 +45,9 @@ class MailTemplate extends Model
     ];
 
     public $rules = [
+        'code' => 'required',
+        'layout' => 'required',
+        'domain' => 'required'
     ];
 
     public $belongsTo = [

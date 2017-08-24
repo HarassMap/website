@@ -8,4 +8,13 @@ navigation:
     harassmap.mail:
         label: Mail
         url: harassmap/mail/mailtemplates
-        icon: icon-envelope-square
+        icon: icon-envelope-o
+        sideMenu:
+            harassmap.mail.templates:
+                label: Templates
+                url: harassmap/mail/mailtemplates
+                icon: icon-envelope-o
+            harassmap.mail.layouts:
+                label: Layouts
+                url: harassmap/mail/maillayouts
+                icon: icon-envelope-square

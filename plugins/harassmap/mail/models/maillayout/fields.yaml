@@ -1,0 +1,22 @@
+fields:
+    name:
+        label: Name
+        span: full
+        type: text
+tabs:
+    fields:
+        content_html:
+            size: giant
+            span: full
+            type: textarea
+            tab: HTML
+        content_text:
+            size: giant
+            span: full
+            type: textarea
+            tab: Text
+        content_css:
+            size: giant
+            span: full
+            type: textarea
+            tab: CSS

@@ -1,0 +1,10 @@
+name: MailLayouts
+form: $/harassmap/mail/models/maillayout/fields.yaml
+modelClass: Harassmap\Mail\Models\MailLayout
+defaultRedirect: harassmap/mail/maillayouts
+create:
+    redirect: 'harassmap/mail/maillayouts/update/:id'
+    redirectClose: harassmap/mail/maillayouts
+update:
+    redirect: harassmap/mail/maillayouts
+    redirectClose: harassmap/mail/maillayouts
