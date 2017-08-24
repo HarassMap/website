@@ -7,10 +7,14 @@ fields:
         label: 'harassmap.incidents::lang.form.domain'
         span: auto
         type: dropdown
+    subject:
+        label: Subject
+        span: full
+        type: text
 tabs:
     fields:
         content_html:
-            type: codeeditor
+            type: richeditor
             language: html
             size: giant
             tab: HTML

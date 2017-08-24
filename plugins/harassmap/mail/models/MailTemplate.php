@@ -39,6 +39,7 @@ class MailTemplate extends Model
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = [
+        'subject',
         'content_html',
         'content_text'
     ];
