@@ -1,28 +1,16 @@
 {
-    "name": "october/october",
-    "description": "October CMS",
+    "name": "harassmap",
+    "description": "HarassMap CMS",
     "homepage": "http://octobercms.com",
     "keywords": ["october", "cms", "octobercms", "laravel"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Alexey Bobkov",
-            "email": "aleksey.bobkov@gmail.com",
-            "role": "Co-founder"
-        },
-        {
-            "name": "Samuel Georges",
-            "email": "daftspunky@gmail.com",
-            "role": "Co-founder"
+            "name": "Paul Barton",
+            "email": "info@thisispaul.co.uk"
         }
     ],
-    "support": {
-        "issues": "https://github.com/octobercms/october/issues",
-        "forum": "http://octobercms.com/forum/",
-        "docs": "http://octobercms.com/docs/",
-        "irc": "irc://irc.freenode.net/october",
-        "source": "https://github.com/octobercms/october"
-    },
+    "support": {},
     "require": {
         "php": ">=5.5.9",
         "october/rain": "~1.0",
@@ -49,14 +37,8 @@
             "tests/PluginTestCase.php"
         ]
     },
-    "scripts": {
-        "post-create-project-cmd": [
-            "php artisan key:generate"
-        ]
-    },
     "config": {
         "preferred-install": "dist"
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }
