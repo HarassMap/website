@@ -4,17 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec
+class ComposerStaticInitd8ac633146dbbf0a530b2f2220d82c0e
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
         '9ab6c0b43d4b818d98f088285310c9d9' => __DIR__ . '/..' . '/october/rain/src/Support/helpers.php',
         '97af4f586841c1bd9dd1f8710561ecaa' => __DIR__ . '/..' . '/october/rain/src/Html/helpers.php',
@@ -88,6 +88,7 @@ class ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec
             'OwenIt\\Auditing\\' => 16,
             'October\\Rain\\' => 13,
             'October\\Drivers\\' => 16,
+            'October\\Demo\\' => 13,
         ),
         'M' => 
         array (
@@ -289,6 +290,10 @@ class ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec
         'October\\Drivers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/plugins/october/drivers',
+        ),
+        'October\\Demo\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/plugins/october/demo',
         ),
         'Monolog\\' => 
         array (
@@ -1009,10 +1014,10 @@ class ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit7f82092ec868b4ab4fcbad4c544633ec::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd8ac633146dbbf0a530b2f2220d82c0e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd8ac633146dbbf0a530b2f2220d82c0e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd8ac633146dbbf0a530b2f2220d82c0e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd8ac633146dbbf0a530b2f2220d82c0e::$classMap;
 
         }, null, ClassLoader::class);
     }
