@@ -3,6 +3,7 @@ fields:
         label: 'Mail Code'
         span: auto
         type: dropdown
+        emptyOption: 'Choose a template to override'
     domain_id:
         label: 'harassmap.incidents::lang.form.domain'
         span: auto
@@ -11,14 +12,16 @@ fields:
         label: Subject
         span: full
         type: text
+        dependsOn: code
 tabs:
     fields:
         content_html:
-            type: richeditor
-            language: html
+            type: textarea
             size: giant
             tab: HTML
+            dependsOn: code
         content_text:
             type: textarea
             size: giant
             tab: Text
+            dependsOn: code

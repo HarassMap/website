@@ -8,4 +8,4 @@ navigation:
     harassmap.mail:
         label: Mail
         url: harassmap/mail/mailtemplates
-        icon: icon-life-ring
+        icon: icon-envelope-square
