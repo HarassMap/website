@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'User',
+        'name' => 'HarassMap User',
         'description' => ''
     ]
 ];
