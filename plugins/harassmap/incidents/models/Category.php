@@ -24,6 +24,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Category whereTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Category whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category domain($status)
  */
 class Category extends Model
 {

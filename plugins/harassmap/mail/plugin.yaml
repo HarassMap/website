@@ -4,3 +4,8 @@ plugin:
     author: HarassMap
     icon: oc-icon-envelope-square
     homepage: ''
+navigation:
+    harassmap.mail:
+        label: Mail
+        url: harassmap/mail/mailtemplates
+        icon: icon-life-ring

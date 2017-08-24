@@ -1,0 +1,20 @@
+fields:
+    code:
+        label: 'Mail Code'
+        span: auto
+        type: dropdown
+    domain_id:
+        label: 'harassmap.incidents::lang.form.domain'
+        span: auto
+        type: dropdown
+tabs:
+    fields:
+        content_html:
+            type: codeeditor
+            language: html
+            size: giant
+            tab: HTML
+        content_text:
+            type: textarea
+            size: giant
+            tab: Text

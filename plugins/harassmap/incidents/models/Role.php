@@ -11,6 +11,7 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Role whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Role whereName($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Role domain($status)
  */
 class Role extends Model
 {

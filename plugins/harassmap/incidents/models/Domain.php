@@ -63,6 +63,8 @@ use Request;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereYoutube($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereZoom($value)
  * @mixin \Eloquent
+ * @property string|null $logos
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLogos($value)
  */
 class Domain extends Model
 {

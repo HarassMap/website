@@ -1,0 +1,10 @@
+name: MailTemplates
+form: $/harassmap/mail/models/mailtemplate/fields.yaml
+modelClass: Harassmap\Mail\Models\MailTemplate
+defaultRedirect: harassmap/mail/mailtemplates
+create:
+    redirect: 'harassmap/mail/mailtemplates/update/:id'
+    redirectClose: harassmap/mail/mailtemplates
+update:
+    redirect: harassmap/mail/mailtemplates
+    redirectClose: harassmap/mail/mailtemplates
