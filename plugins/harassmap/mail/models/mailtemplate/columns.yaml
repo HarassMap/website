@@ -5,5 +5,7 @@ columns:
         select: host
         width: '250px'
     code:
-        label: code
+        label: Code
         type: text
+    created_at:
+        label: Created At

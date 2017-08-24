@@ -1,8 +1,8 @@
 <?php namespace Harassmap\Mail;
 
+use Harassmap\Mail\Models\MailTemplate;
 use System\Classes\PluginBase;
 use Event;
-use System\Models\MailTemplate;
 
 class Plugin extends PluginBase
 {

@@ -48,7 +48,8 @@ class MailTemplate extends Model
     ];
 
     public $belongsTo = [
-        'domain' => Domain::class
+        'domain' => Domain::class,
+        'layout' => MailLayout::class
     ];
 
     public function getCodeOptions()
@@ -56,5 +57,17 @@ class MailTemplate extends Model
         $templates = SystemMailTemplate::listAllTemplates();
 
         return $templates;
+    }
+
+    /**
+     * Check to see if we have a domain specific mail template
+     * if not then just defer to the normal mailer
+     * @param $message
+     * @param $view
+     * @param $data
+     */
+    public static function addContentToMailer($message, $view, $data)
+    {
+        SystemMailTemplate::addContentToMailer($message, $view, $data);
     }
 }

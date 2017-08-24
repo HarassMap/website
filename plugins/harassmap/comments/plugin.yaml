@@ -6,6 +6,6 @@ plugin:
     homepage: ''
 navigation:
     harassmap.comments.menu:
-        label: 'harassmap.comments::lang.plugin.name'
+        label: Comments
         url: harassmap/comments/comments
         icon: icon-comments-o
