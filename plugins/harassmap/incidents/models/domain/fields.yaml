@@ -48,19 +48,22 @@ tabs:
                         mode: image
                         type: mediafinder
                         imageWidth: 390
-                        imageHeight: 110
+                        imageHeight: 65
+                        commentAbove: '390x65'
                     mobile:
                         label: Mobile Logo
                         mode: image
                         type: mediafinder
-                        imageWidth: 390
-                        imageHeight: 110
+                        imageWidth: 280
+                        imageHeight: 75
+                        commentAbove: '280x75'
                     footer:
                         label: Footer Logo
                         mode: image
                         type: mediafinder
                         imageWidth: 150
                         imageHeight: 150
+                        commentAbove: '150x150'
         incident:
             label: 'Enable Incident'
             span: auto
