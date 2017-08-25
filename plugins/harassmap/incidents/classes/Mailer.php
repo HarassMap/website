@@ -73,7 +73,9 @@ class Mailer
                 $data = [
                     'name' => $user->name,
                     'count' => $notifications->count(),
-                    'notifications' => $reports
+                    'notifications' => $reports,
+                    'domain' => $user->domain,
+                    'user' => $user
                 ];
 
                 Mail::send('harassmap.incidents::mail.user.notifications', $data, function ($message) use ($user) {

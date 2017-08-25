@@ -129,6 +129,12 @@ class MailTemplate extends Model
             $data = (array)$data + $globalVars;
         }
 
+        // add the domain to the
+        // TODO: Add logo to the data
+        $data['domain'] = [
+            'name' => $domain->name
+        ];
+
         $customSubject = $message->getSwiftMessage()->getSubject();
         if (empty($customSubject)) {
             $message->subject(Twig::parse($template->subject, $data));
