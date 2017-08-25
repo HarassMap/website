@@ -18,6 +18,14 @@
 
     @include rem((padding: 20px 15px 0 0));
 
+    @include media-breakpoint-down(sm) {
+      position: relative;
+      padding: 0;
+      margin-right: -15px;
+      margin-left: -15px;
+      display: flex;
+    }
+
     .control {
       border: 1px solid $alto;
       background-color: $white;
@@ -42,6 +50,12 @@
         width: 20px;
 
         @include rem((left: 20px));
+      }
+
+      @include media-breakpoint-down(sm) {
+        display: inline-block;
+        margin: 0;
+        width: 33.3333%;
       }
     }
 
