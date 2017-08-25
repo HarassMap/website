@@ -35,8 +35,6 @@ const initBannerSwitcher = () => {
 const initFullscreenMap = () => {
     let $map = $('#report-map');
 
-    alert("initFullscreenMap");
-
     screenfull.on('change', () => {
 
         if (screenfull.isFullscreen) {
@@ -47,8 +45,6 @@ const initFullscreenMap = () => {
     });
 
     $('#map-fullscreen').on('click', function (event) {
-        alert("on click");
-
         event.preventDefault();
 
         if (screenfull.enabled) {
