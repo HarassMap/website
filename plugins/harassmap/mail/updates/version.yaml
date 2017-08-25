@@ -6,3 +6,6 @@
 1.0.3:
     - 'Created table harassmap_mail_templates'
     - builder_table_create_harassmap_mail_templates.php
+1.0.4:
+    - 'Updated table users'
+    - update_frontend_user.php
