@@ -5,6 +5,8 @@ use Harassmap\Incidents\Models\Domain;
 use RainLab\User\Controllers\Users as UsersController;
 use RainLab\User\Models\User;
 use System\Classes\PluginBase;
+use Event;
+use BackendAuth;
 
 class Plugin extends PluginBase
 {
@@ -136,6 +138,32 @@ class Plugin extends PluginBase
                     'conditions' => 'domain_id in (:filtered)'
                 ]
             ]);
+        });
+
+        Event::listen('backend.list.extendQuery', function ($widget, $query) {
+
+            if (!$widget->getController() instanceof UsersController) {
+                return;
+            }
+
+            $user = BackendAuth::getUser();
+
+            // if the user is a super use then stop here
+            if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains'])) {
+                return;
+            }
+
+            $domains = $user->domains;
+
+            // if the user has no domains then show nothing
+            if ($domains->isEmpty()) {
+                $query->where('id', '=', -1);
+            }
+
+            foreach ($domains as $domain) {
+                $query->orWhere('domain_id', '=', $domain->id);
+            }
+
         });
 
     }
