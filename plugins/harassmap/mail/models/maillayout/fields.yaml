@@ -1,8 +1,12 @@
 fields:
     name:
         label: Name
-        span: full
+        span: auto
         type: text
+    domain_id:
+        label: 'harassmap.incidents::lang.form.domain'
+        span: auto
+        type: dropdown
 tabs:
     fields:
         content_html:

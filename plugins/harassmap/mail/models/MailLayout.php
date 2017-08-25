@@ -1,6 +1,7 @@
 <?php namespace Harassmap\Mail\Models;
 
 use Harassmap\Incidents\Models\Domain;
+use Harassmap\Incidents\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -27,6 +28,7 @@ use October\Rain\Database\Traits\Validation;
 class MailLayout extends Model
 {
     use Validation;
+    use DomainOptions;
 
     public $table = 'harassmap_mail_layout';
 

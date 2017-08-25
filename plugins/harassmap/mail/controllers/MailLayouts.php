@@ -2,9 +2,12 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Harassmap\Incidents\Traits\FilterDomain;
 
 class MailLayouts extends Controller
 {
+    use FilterDomain;
+
     public $implement = ['Backend\Behaviors\ListController','Backend\Behaviors\FormController'];
     
     public $listConfig = 'config_list.yaml';
