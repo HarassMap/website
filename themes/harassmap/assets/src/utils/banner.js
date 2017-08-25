@@ -44,7 +44,7 @@ const initFullscreenMap = () => {
         }
     });
 
-    $('#map-fullscreen').on('click touchstart', (event) => {
+    $('#map-fullscreen').on('click', function (event) {
         event.preventDefault();
 
         if (screenfull.enabled) {
@@ -61,14 +61,14 @@ const initMapFilter = () => {
     createDatePicker('date_from');
     createDatePicker('date_to');
 
-    $filterButton.on('click touchstart', (event) => {
+    $filterButton.on('click', function (event) {
         event.preventDefault();
 
         $filter.fadeToggle();
         $filterButton.toggleClass('active');
     });
 
-    $filterForm.on('submit', (event) => {
+    $filterForm.on('submit', function (event) {
         event.preventDefault();
 
         let data = $filterForm.serializeJSON();
