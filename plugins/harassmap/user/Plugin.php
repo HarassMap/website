@@ -130,14 +130,18 @@ class Plugin extends PluginBase
         });
 
         UsersController::extendListFilterScopes(function ($filter) {
-            $filter->addScopes([
-                'domain' => [
-                    'label' => 'harassmap.incidents::lang.form.domain',
-                    'modelClass' => Domain::class,
-                    'nameFrom' => 'host',
-                    'conditions' => 'domain_id in (:filtered)'
-                ]
-            ]);
+            $user = BackendAuth::getUser();
+
+            if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains'])) {
+                $filter->addScopes([
+                    'domain' => [
+                        'label' => 'harassmap.incidents::lang.form.domain',
+                        'modelClass' => Domain::class,
+                        'nameFrom' => 'host',
+                        'conditions' => 'domain_id in (:filtered)'
+                    ]
+                ]);
+            }
         });
 
         Event::listen('backend.list.extendQuery', function ($widget, $query) {
