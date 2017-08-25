@@ -4,6 +4,7 @@ use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Validation;
+use RainLab\User\Facades\Auth;
 use System\Models\MailTemplate as SystemMailTemplate;
 
 /**
@@ -71,6 +72,49 @@ class MailTemplate extends Model
      */
     public static function addContentToMailer($message, $view, $data)
     {
-        SystemMailTemplate::addContentToMailer($message, $view, $data);
+        // TODO:
+
+        // defer to the system mailer?
+        $defer = false;
+
+        // if we didn't get sent a user then use the one logged in
+        if (array_key_exists('domain', $data)) {
+            $domain = $data['domain'];
+        } else {
+            $domain = Domain::getBestMatchingDomain();
+        }
+
+        // if we have a domain then check to see if we have a template
+        if ($domain) {
+            $template = self
+                ::where('code', '=', $view)
+                ->where('domain_id', '=', $domain->id);
+
+            if (!$template) {
+                $defer = true;
+            }
+        } else {
+            $defer = true;
+        }
+
+        // if we didn't get sent a user then use the one logged in
+        if (array_key_exists('user', $data)) {
+            $user = $data['user'];
+        } else {
+            $user = Auth::getUser();
+        }
+
+        // if there is no user then
+        if (!$user) {
+            $defer = true;
+        }
+
+        if ($defer) {
+            SystemMailTemplate::addContentToMailer($message, $view, $data);
+        } else {
+
+
+        }
+
     }
 }
