@@ -160,9 +160,13 @@ class Plugin extends PluginBase
                 $query->where('id', '=', -1);
             }
 
+            $domain_ids = [];
+
             foreach ($domains as $domain) {
-                $query->orWhere('domain_id', '=', $domain->id);
+                $domain_ids[] = $domain->id;
             }
+
+            $query->whereIn($this->domain_id, $domain_ids);
 
         });
 

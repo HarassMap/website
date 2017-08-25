@@ -29,9 +29,13 @@ trait FilterDomain
             $query->where('id', '=', -1);
         }
 
+        $domain_ids = [];
+
         foreach ($domains as $domain) {
-            $query->orWhere($this->domain_id, '=', $domain->id);
+            $domain_ids[] = $domain->id;
         }
+
+        $query->whereIn($this->domain_id, $domain_ids);
 
     }
 
