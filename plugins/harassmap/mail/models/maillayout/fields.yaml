@@ -14,13 +14,16 @@ tabs:
             span: full
             type: textarea
             tab: HTML
+            commentAbove: 'harassmap.mail::lang.form.layout.twig_help'
         content_text:
             size: giant
             span: full
             type: textarea
             tab: Text
+            commentAbove: 'harassmap.mail::lang.form.layout.twig_help'
         content_css:
             size: giant
             span: full
             type: textarea
             tab: CSS
+            commentAbove: 'harassmap.mail::lang.form.layout.twig_help'
