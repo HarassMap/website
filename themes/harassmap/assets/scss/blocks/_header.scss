@@ -107,6 +107,11 @@
       background-color: $white;
       border: none;
       right: 0;
+
+      .ar & {
+        right: auto;
+        left: 0;
+      }
     }
 
     .navbar-brand {

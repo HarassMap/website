@@ -72,8 +72,6 @@ class MailTemplate extends Model
      */
     public static function addContentToMailer($message, $view, $data)
     {
-        // TODO:
-
         // defer to the system mailer?
         $defer = false;
 
@@ -108,6 +106,9 @@ class MailTemplate extends Model
         if (!$user) {
             $defer = true;
         }
+
+        // todo: always defer until we complete this functionality
+        $defer = true;
 
         if ($defer) {
             SystemMailTemplate::addContentToMailer($message, $view, $data);
