@@ -131,7 +131,7 @@ class Plugin extends PluginBase
 
         UsersController::extendListFilterScopes(function ($filter) {
             $filter->addScopes([
-                'my_scope' => [
+                'domain' => [
                     'label' => 'harassmap.incidents::lang.form.domain',
                     'modelClass' => Domain::class,
                     'nameFrom' => 'host',
