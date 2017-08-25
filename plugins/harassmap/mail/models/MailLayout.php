@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Mail\Models;
 
+use Harassmap\Incidents\Models\Domain;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -39,5 +40,9 @@ class MailLayout extends Model
 
     public $rules = [
         'name' => 'required'
+    ];
+
+    public $belongsTo = [
+        'domain' => Domain::class
     ];
 }
