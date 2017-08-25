@@ -1,4 +1,4 @@
-<div id="report-map" class="banner banner--map active">
+<div id="reportMap" class="banner banner--map active">
     <div class="map map--home" data-map="homepage"
          data-lat="{{ domain.lat }}" data-lng="{{ domain.lng }}" data-zoom="{{ domain.zoom }}"
          data-link="{{ 'reports/view' | page({id: 'REPORT_ID'}) }}"></div>
@@ -6,7 +6,7 @@
     <div class="toolbar">
         <div id="filter" class="container container--filter">
             <div class="filter">
-                <form id="filter-form">
+                <form id="filterForm">
                     <div class="row">
                         <div class="col-6">
                             <div class="row">
@@ -47,12 +47,12 @@
                                 </span>
                         </div>
 
-                        <a href="#" id="map-fullscreen" class="btn float-right btn--fullscreen ml-2">
+                        <a href="#" id="mapFullscreen" class="btn float-right btn--fullscreen ml-2">
                             &nbsp;
                             <span class="sr-only">{{ 'Full Screen' | _ }}</span>
                         </a>
 
-                        <a href="#" id="map-filter" class="btn btn--inverse float-right">{{ 'Filter' | _ }}</a>
+                        <a href="#" id="mapFilter" class="btn btn--inverse float-right">{{ 'Filter' | _ }}</a>
                     </div>
                 </div>
             </div>

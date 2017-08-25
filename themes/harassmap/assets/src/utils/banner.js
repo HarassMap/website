@@ -6,8 +6,8 @@ import { createDatePicker } from "./datePicker";
 
 export const initBanner = () => {
     initBannerSwitcher();
-    initFullscreenMap();
     initMapFilter();
+    initFullscreenMap();
 };
 
 const initBannerSwitcher = () => {
@@ -32,31 +32,10 @@ const initBannerSwitcher = () => {
     });
 };
 
-const initFullscreenMap = () => {
-    let $map = $('#report-map');
-
-    screenfull.on('change', () => {
-
-        if (screenfull.isFullscreen) {
-            $map.addClass('full-screen');
-        } else {
-            $map.removeClass('full-screen');
-        }
-    });
-
-    $('#map-fullscreen').on('click', function (event) {
-        event.preventDefault();
-
-        if (screenfull.enabled) {
-            screenfull.toggle($map[0]);
-        }
-    });
-};
-
 const initMapFilter = () => {
-    let $filterButton = $('#map-filter'),
+    let $filterButton = $('#mapFilter'),
         $filter = $('#filter'),
-        $filterForm = $('#filter-form');
+        $filterForm = $('#filterForm');
 
     createDatePicker('date_from');
     createDatePicker('date_to');
@@ -74,5 +53,26 @@ const initMapFilter = () => {
         let data = $filterForm.serializeJSON();
 
         emitter.emit(FILTER_MAP, data);
+    });
+};
+
+const initFullscreenMap = () => {
+    let $map = $('#reportMap');
+
+    screenfull.on('change', () => {
+
+        if (screenfull.isFullscreen) {
+            $map.addClass('full-screen');
+        } else {
+            $map.removeClass('full-screen');
+        }
+    });
+
+    $('#mapFullscreen').on('click', function (event) {
+        event.preventDefault();
+
+        if (screenfull.enabled) {
+            screenfull.toggle($map[0]);
+        }
     });
 };
