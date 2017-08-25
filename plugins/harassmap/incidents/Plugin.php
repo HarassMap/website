@@ -11,8 +11,6 @@ use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\IncidentResetPassword;
 use Harassmap\Incidents\Components\Notifications;
 use Harassmap\Incidents\Components\Report;
-use Harassmap\Incidents\Components\ReportComments;
-use Harassmap\Incidents\Components\ReportCommentsTopic;
 use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\ReportMap;
@@ -20,7 +18,6 @@ use Harassmap\Incidents\Components\ReportStory;
 use Harassmap\Incidents\Components\ReportTable;
 use Harassmap\Incidents\Components\ReportView;
 use Harassmap\Incidents\Components\Tip;
-use Harassmap\Incidents\Components\Tips;
 use Harassmap\Incidents\Components\UserAPI;
 use Harassmap\Incidents\Components\UserMenu;
 use Harassmap\Incidents\Components\UserReports;
@@ -30,10 +27,10 @@ use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
-use Harassmap\Incidents\Models\Support;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
+use Event;
 
 class Plugin extends PluginBase
 {
@@ -66,6 +63,16 @@ class Plugin extends PluginBase
                         'tab' => 'Domain'
                     ]
                 ]);
+            }
+
+        });
+
+        // remove the domain filter if the user doesn't have the permission for it
+        Event::listen('backend.filter.extendScopes', function ($widget) {
+            $user = BackendAuth::getUser();
+
+            if (!($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_user_domains']))) {
+                $widget->removeScope('domain');
             }
 
         });
