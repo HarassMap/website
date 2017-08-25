@@ -9,12 +9,27 @@ import { initMenu } from './utils/menu';
 import { createTimePicker } from "./utils/timePicker";
 import { initToggleIntervention } from "./utils/toggleIntervention";
 
-$('body').addClass('js');
+$(document).ready(() => {
+    $('body').addClass('js');
 
-initMenu();
+    initMenu();
+
+    $('.row-link').each((index, element) => {
+        let href = element.dataset.href;
+
+        if (href) {
+            $(element).on('click', () => {
+                window.location = href;
+            });
+        }
+    });
+
+    $('.floating').addClass('js-float-label-wrapper');
+    $('.js-float-label-wrapper').FloatLabel();
 
 // enable all tooltips
-$('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
+});
 
 window.initMap = () => {
     $('.map').each(function () {
@@ -36,19 +51,6 @@ window.initReportTablePage = () => {
     createDatePicker('date_from');
     createDatePicker('date_to');
 };
-
-$('.row-link').each((index, element) => {
-    let href = element.dataset.href;
-
-    if (href) {
-        $(element).on('click', () => {
-            window.location = href;
-        });
-    }
-});
-
-$('.floating').addClass('js-float-label-wrapper');
-$('.js-float-label-wrapper').FloatLabel();
 
 // facebook
 window.fbAsyncInit = () => {
