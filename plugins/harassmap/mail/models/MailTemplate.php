@@ -2,10 +2,13 @@
 
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
+use Illuminate\Mail\Message;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Facades\Auth;
 use System\Models\MailTemplate as SystemMailTemplate;
+use System\Helpers\View as ViewHelper;
+use Twig;
 
 /**
  * Harassmap\Mail\Models\MailTemplate
@@ -86,7 +89,9 @@ class MailTemplate extends Model
         if ($domain) {
             $template = self
                 ::where('code', '=', $view)
-                ->where('domain_id', '=', $domain->id);
+                ->where('domain_id', '=', $domain->id)
+                ->orderBy('created_at', 'desc')
+                ->first();
 
             if (!$template) {
                 $defer = true;
@@ -95,6 +100,16 @@ class MailTemplate extends Model
             $defer = true;
         }
 
+        if ($defer) {
+            SystemMailTemplate::addContentToMailer($message, $view, $data);
+        } else {
+            self::addDomainContent($message, $view, $data, $template, $domain);
+        }
+
+    }
+
+    public static function addDomainContent(Message $message, $view, array $data, MailTemplate $template, Domain $domain)
+    {
         // if we didn't get sent a user then use the one logged in
         if (array_key_exists('user', $data)) {
             $user = $data['user'];
@@ -102,20 +117,44 @@ class MailTemplate extends Model
             $user = Auth::getUser();
         }
 
-        // if there is no user then
-        if (!$user) {
-            $defer = true;
+        if ($user) {
+            $locale = $user->locale;
+
+            // set the mail in the users locale
+            $template->translateContext($locale);
         }
 
-        // todo: always defer until we complete this functionality
-        $defer = true;
-
-        if ($defer) {
-            SystemMailTemplate::addContentToMailer($message, $view, $data);
-        } else {
-
-
+        $globalVars = ViewHelper::getGlobalVars();
+        if (!empty($globalVars)) {
+            $data = (array)$data + $globalVars;
         }
 
+        $customSubject = $message->getSwiftMessage()->getSubject();
+        if (empty($customSubject)) {
+            $message->subject(Twig::parse($template->subject, $data));
+        }
+        $html = Twig::parse($template->content_html, $data);
+        if ($template->layout) {
+            $html = Twig::parse($template->layout->content_html, [
+                    'content' => $html,
+                    'css' => $template->layout->content_css
+                ] + (array)$data);
+        }
+
+        $message->setBody($html, 'text/html');
+
+        /*
+         * Text contents
+         */
+        if (strlen($template->content_text)) {
+            $text = Twig::parse($template->content_text, $data);
+            if ($template->layout) {
+                $text = Twig::parse($template->layout->content_text, [
+                        'content' => $text
+                    ] + (array)$data);
+            }
+
+            $message->addPart($text, 'text/plain');
+        }
     }
 }
