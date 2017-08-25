@@ -5,8 +5,8 @@ import { emitter, REFRESH_MAP, FILTER_MAP } from './events';
 import { createDatePicker } from "./datePicker";
 
 export const initBanner = () => {
-    initFullscreenMap();
     initBannerSwitcher();
+    initFullscreenMap();
     initMapFilter();
 };
 
