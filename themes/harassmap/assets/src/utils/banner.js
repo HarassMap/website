@@ -57,22 +57,26 @@ const initMapFilter = () => {
 };
 
 const initFullscreenMap = () => {
-    let $map = $('#reportMap');
+    let $map = $('#reportMap'),
+        $button = $('#mapFullscreen');
 
-    screenfull.on('change', () => {
+    if (screenfull.enabled) {
+        $button.on('click', function (event) {
+            event.preventDefault();
 
-        if (screenfull.isFullscreen) {
-            $map.addClass('full-screen');
-        } else {
-            $map.removeClass('full-screen');
-        }
-    });
-
-    $('#mapFullscreen').on('click', function (event) {
-        event.preventDefault();
-
-        if (screenfull.enabled) {
             screenfull.toggle($map[0]);
-        }
-    });
+        });
+
+        screenfull.on('change', () => {
+
+            if (screenfull.isFullscreen) {
+                $map.addClass('full-screen');
+            } else {
+                $map.removeClass('full-screen');
+            }
+        });
+
+    } else {
+        $button.hide();
+    }
 };
