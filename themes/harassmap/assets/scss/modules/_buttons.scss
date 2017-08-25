@@ -44,6 +44,10 @@
 
 .btn--large {
   @include rem((font-size: 20px, margin: 0 0 30px, padding: 18px));
+
+  @include media-breakpoint-down(sm) {
+    @include rem((font-size: 18px, padding: 18px 10px));
+  }
 }
 
 .btn--red {
