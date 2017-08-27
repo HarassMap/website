@@ -6,6 +6,11 @@ tabs:
             type: text
             comment: 'harassmap.incidents::lang.form.host_help'
             tab: 'harassmap.incidents::lang.form.tab.site'
+        name:
+            label: 'harassmap.incidents::lang.form.name'
+            span: full
+            type: text
+            tab: 'harassmap.incidents::lang.form.tab.site'
         about:
             label: 'harassmap.incidents::lang.form.about'
             span: full
@@ -36,11 +41,6 @@ tabs:
             span: full
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
-        name:
-            label: 'harassmap.incidents::lang.form.name'
-            span: full
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.logo'
         logos:
             type: repeater
             tab: 'harassmap.incidents::lang.form.tab.logo'

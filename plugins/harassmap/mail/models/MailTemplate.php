@@ -87,8 +87,11 @@ class MailTemplate extends Model
 
         // if we have a domain then check to see if we have a template
         if ($domain) {
-            // TODO: Set the sender from the domain
-            // $message->sender();
+
+            // if the domain has an email then send it from there
+            if ($domain->email) {
+                $message->sender($domain->email, $domain->name);
+            }
 
             $template = self
                 ::where('code', '=', $view)
