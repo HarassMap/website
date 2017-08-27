@@ -5,7 +5,9 @@ namespace Harassmap\Incidents\Components;
 use App;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Facades\Auth;
+use Harassmap\Incidents\Models\Domain;
 
 class UserReports extends ComponentBase
 {
@@ -43,8 +45,14 @@ class UserReports extends ComponentBase
             App::abort(404);
         }
 
+        $domain = Domain::getBestMatchingDomain();
+
         // get the users incidents
-        $this->page['reports'] = $user->incidents()->orderBy('created_at', 'desc')->paginate(10);
+        $this->page['reports'] = Incident
+            ::where('domain_id', '=', $domain->id)
+            ->where('user_id', '=', $user->id)
+            ->orderBy('created_at', 'desc')->paginate(10);
+
         $this->page['viewPage'] = $this->property('viewPage');
     }
 
