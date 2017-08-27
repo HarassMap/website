@@ -9,7 +9,7 @@ class BuilderTableUpdateHarassmapIncidentsDomain12 extends Migration
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->string('email', 100)->nullable();
+            $table->text('logos')->nullable();
         });
     }
     
@@ -17,7 +17,7 @@ class BuilderTableUpdateHarassmapIncidentsDomain12 extends Migration
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->dropColumn('email');
+            $table->dropColumn('logos');
         });
     }
 }

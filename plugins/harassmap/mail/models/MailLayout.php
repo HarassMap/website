@@ -24,6 +24,8 @@ use October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Mail\Models\MailLayout whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Mail\Models\MailLayout whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $domain_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Mail\Models\MailLayout whereDomainId($value)
  */
 class MailLayout extends Model
 {

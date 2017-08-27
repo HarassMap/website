@@ -3,13 +3,13 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableUpdateHarassmapIncidentsDomain12 extends Migration
+class BuilderTableUpdateHarassmapIncidentsDomain13 extends Migration
 {
     public function up()
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->text('logos')->nullable();
+            $table->string('email', 100)->nullable();
         });
     }
     
@@ -17,7 +17,7 @@ class BuilderTableUpdateHarassmapIncidentsDomain12 extends Migration
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->dropColumn('logos');
+            $table->dropColumn('email');
         });
     }
 }

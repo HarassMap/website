@@ -65,6 +65,8 @@ use Request;
  * @mixin \Eloquent
  * @property string|null $logos
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLogos($value)
+ * @property string|null $email
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereEmail($value)
  */
 class Domain extends Model
 {
