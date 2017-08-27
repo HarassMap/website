@@ -1,4 +1,9 @@
 columns:
+    domain:
+        label: Domain
+        type: partial
+        path: $/harassmap/comments/models/comment/_domain.htm
+        sortable: false
     id:
         label: id
         type: number
