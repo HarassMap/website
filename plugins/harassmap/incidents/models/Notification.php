@@ -163,6 +163,10 @@ class Notification extends Model
             case self::INCIDENT_COMMENT:
                 $description = $this->content['count'] > 1 ? 'You have :count new comments on one of your reports.' : 'You have :count new comment on one of your reports.';
                 break;
+
+            case self::COMMENT_REPLY:
+                $description = $this->content['count'] > 1 ? 'There are :count new comments on a report you have commented on.' : 'There is :count new comment on a report you have commented on.';
+                break;
             default;
                 $description = $this->content['count'] > 1 ? 'You have :count new expressions of support on one of your reports.' : 'You have :count new expression of support on one of your reports.';
         }
