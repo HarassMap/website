@@ -76,12 +76,18 @@ export class HomePageMap {
             ...filters
         };
 
+        console.time("HOME_MAP_REQUEST");
+
         $.request('onGetReports', {
             data: {
                 bounds,
                 filters: this.filters
             },
-            success: (data) => this.addMarkers(data)
+            success: (data) => {
+                console.timeEnd("HOME_MAP_REQUEST");
+                console.time("MARKERS_ADD");
+                this.addMarkers(data);
+            }
         });
     }
 
@@ -116,6 +122,8 @@ export class HomePageMap {
             }
         });
         this.markerCluster.addMarkers(new_markers);
+
+        console.timeEnd("MARKERS_ADD");
     }
 
     addMarker(report) {
