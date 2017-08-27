@@ -8,18 +8,20 @@ tabs:
             tab: 'harassmap.incidents::lang.form.tab.site'
         name:
             label: 'harassmap.incidents::lang.form.name'
-            span: full
+            span: auto
             type: text
+            commentAbove: Used in logo alt text and emails.
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        email:
+            label: 'harassmap.incidents::lang.form.email'
+            span: auto
+            commentAbove: Email address that automated emails will be sent from.
             tab: 'harassmap.incidents::lang.form.tab.site'
         about:
             label: 'harassmap.incidents::lang.form.about'
             span: full
             type: textarea
             commentAbove: 'harassmap.incidents::lang.form.about_help'
-            tab: 'harassmap.incidents::lang.form.tab.site'
-        email:
-            label: 'harassmap.incidents::lang.form.email'
-            span: auto
             tab: 'harassmap.incidents::lang.form.tab.site'
         timezone:
             label: 'harassmap.incidents::lang.form.timezone'
