@@ -87,6 +87,9 @@ class MailTemplate extends Model
 
         // if we have a domain then check to see if we have a template
         if ($domain) {
+            // TODO: Set the sender from the domain
+            // $message->sender();
+
             $template = self
                 ::where('code', '=', $view)
                 ->where('domain_id', '=', $domain->id)
@@ -110,6 +113,8 @@ class MailTemplate extends Model
 
     public static function addDomainContent(Message $message, $view, array $data, MailTemplate $template, Domain $domain)
     {
+
+
         // if we didn't get sent a user then use the one logged in
         if (array_key_exists('user', $data)) {
             $user = $data['user'];
