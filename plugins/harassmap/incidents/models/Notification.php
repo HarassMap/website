@@ -90,7 +90,7 @@ class Notification extends Model
         $topic = $comment->topic;
         $incident = $topic->incident;
 
-        if ($incident->user_id && $incident->user_id != $comment->user_id) {
+        if ($incident->user_id && $incident->user_id !== (int) $comment->user_id) {
             $notification = self::getNotification($incident->user_id, $incident->id, self::INCIDENT_COMMENT);
             self::increaseCommentNotification($notification, $incident);
         }
@@ -107,7 +107,7 @@ class Notification extends Model
             if (
                 !array_search($otherComment->user_id, $notified)
                 && $otherComment->user_id !== $incident->user_id
-                && $otherComment->user_id !== $comment->user_id
+                && $otherComment->user_id !== (int) $comment->user_id
             ) {
                 $notified[] = $otherComment->user_id;
 
@@ -163,7 +163,6 @@ class Notification extends Model
             case self::INCIDENT_COMMENT:
                 $description = $this->content['count'] > 1 ? 'You have :count new comments on one of your reports.' : 'You have :count new comment on one of your reports.';
                 break;
-
             case self::COMMENT_REPLY:
                 $description = $this->content['count'] > 1 ? 'There are :count new comments on a report you have commented on.' : 'There is :count new comment on a report you have commented on.';
                 break;
