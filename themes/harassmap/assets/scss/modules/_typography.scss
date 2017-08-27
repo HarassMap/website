@@ -15,6 +15,10 @@ h2 {
   .bg--dark & {
     color: $white;
   }
+
+  .ar & {
+    @include rem((line-height: 50px));
+  }
 }
 
 h3 {
