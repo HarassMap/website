@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    {{ form_label('username', 'Username' | _) }}
+                    {{ form_label('account_username', 'Username' | _) }}
                     {{ form_text('account_username', user.username, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
                     <p class="small">{{ 'Your username is visible to other users on the site.' | _ }}</p>
                 </div>
@@ -58,8 +58,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    {{ form_label('email', 'Email' | _) }}
-                    {{ form_email('email', user.email, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
+                    {{ form_label('account_email', 'Email' | _) }}
+                    {{ form_email('account_email', user.email, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
                 </div>
             </div>
         </div>

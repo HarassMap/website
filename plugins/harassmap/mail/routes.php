@@ -17,7 +17,7 @@ App::before(function ($request) {
     $user = Auth::getUser();
 
     // if there is a user
-    if ($user && $user->locale !== $locale) {
+    if ($locale && $user && $user->locale !== $locale) {
         $user->locale = $locale;
         $user->save();
     }

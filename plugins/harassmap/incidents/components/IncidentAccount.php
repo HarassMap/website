@@ -59,6 +59,12 @@ class IncidentAccount extends Account
             unset($_POST['account_username']);
         }
 
+        // switch the username
+        if (array_key_exists('account_email', $_POST)) {
+            $_POST['email'] = $_POST['account_email'];
+            unset($_POST['account_email']);
+        }
+
         return $this->onUpdate();
     }
 
