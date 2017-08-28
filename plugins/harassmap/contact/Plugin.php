@@ -64,7 +64,7 @@ class Plugin extends PluginBase
                 $domain_ids[] = $domain->id;
             }
 
-            $query->whereIn($this->domain_id, $domain_ids);
+            $query->whereIn('domain_id', $domain_ids);
 
         });
     }
