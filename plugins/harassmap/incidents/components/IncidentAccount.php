@@ -46,6 +46,22 @@ class IncidentAccount extends Account
         $this->page['loginAttributeLabel'] = $this->loginAttributeLabel();
     }
 
+    public function onAccountUpdate()
+    {
+
+        if (!$user = $this->user()) {
+            return;
+        }
+
+        // switch the username
+        if (array_key_exists('account_username', $_POST)) {
+            $_POST['username'] = $_POST['account_username'];
+            unset($_POST['account_username']);
+        }
+
+        return $this->onUpdate();
+    }
+
     public function onIncidentRegister()
     {
 

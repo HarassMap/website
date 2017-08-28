@@ -14,7 +14,7 @@
             {% endflash %}
         </div>
 
-        {{ form_ajax('onUpdate', { model: user }) }}
+        {{ form_ajax('onAccountUpdate', { model: user }) }}
 
         <div class="row">
             <div class="col-12">
@@ -49,7 +49,7 @@
             <div class="col-12">
                 <div class="form-group">
                     {{ form_label('username', 'Username' | _) }}
-                    {{ form_text('username', user.username, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
+                    {{ form_text('account_username', user.username, {'class' : 'form-control', 'autocomplete' : 'off'}) }}
                     <p class="small">{{ 'Your username is visible to other users on the site.' | _ }}</p>
                 </div>
             </div>
