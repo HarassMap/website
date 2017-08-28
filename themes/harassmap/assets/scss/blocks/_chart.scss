@@ -15,6 +15,22 @@
   .base_line {
     stroke: $dusty-gray;
     fill: $dusty-gray;
+
+    &.base_line--y {
+      stroke-width: 3;
+    }
+  }
+
+  .line {
+
+    &.line--intervention {
+      fill: $green;
+    }
+
+    &.line--incident {
+      stroke: $red;
+    }
+
   }
 
 }

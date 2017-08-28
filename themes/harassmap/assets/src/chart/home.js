@@ -83,11 +83,15 @@ class HomeChart {
         this.data = padYears(this.data);
         this.max = _.max(_.flatten(_.map(this.data, _.values)));
 
-        this.x = d3.scaleTime().domain([new Date(new Date().setFullYear(new Date().getFullYear() - 1)), new Date()]).range([0, this.width]);
+        this.incidents = getIncidents(this.data);
+        this.interventions = getInterventions(this.data);
+
+        this.x = d3.scaleTime().domain([new Date(new Date().setFullYear(new Date().getFullYear() - 1)), new Date().setDate(1)]).range([0, this.width]);
         this.y = d3.scaleLinear().domain([0, this.max]).range([this.bottom, this.top]);
 
         this.drawAxis();
         this.drawBaseLines();
+        this.drawGraph();
 
     }
 
@@ -124,15 +128,64 @@ class HomeChart {
 
         this.svg.append('path')
             .datum([0, this.width])
-            .attr('class', 'base_line')
-            .attr('fill', 'none')
+            .attr('class', 'base_line base_line--x')
             .attr('d', this.baselineY);
 
         this.svg.append('path')
             .datum(_.times(this.max + 1))
-            .attr('class', 'base_line')
-            .attr('fill', 'none')
+            .attr('class', 'base_line base_line--y')
             .attr('d', this.baselineX);
     }
 
+    drawGraph() {
+        this.area = d3.area()
+            .x((data) => this.x(data.date))
+            .y0(this.bottom)
+            .y1((data) => this.y(data.count))
+            .curve(d3.curveBasis);
+
+        this.svg.append('g').append('path')
+            .datum(this.interventions)
+            .attr('class', 'line line--intervention')
+            .attr('d', this.area);
+
+        this.line = d3.line()
+            .x((data) => this.x(data.date))
+            .y((data) => this.y(data.count))
+            .curve(d3.curveBasis);
+
+        this.svg.append('path')
+            .datum(this.incidents)
+            .attr('class', 'line line--incident')
+            .attr('d', this.line)
+            .attr('fill', 'none');
+    }
 }
+
+const getIncidents = (data) => {
+    return getResults(data['incident']);
+};
+
+const getInterventions = (data) => {
+    return getResults(data['intervention']);
+};
+
+const getResults = (incidents) => {
+    let month = new Date().getMonth() + 1;
+    let results = [];
+
+    _.forEach(incidents, (count, index) => {
+        index = parseInt(index);
+        let date = new Date();
+
+        if (index > month) {
+            date = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+        }
+
+        date.setMonth(index - 2);
+
+        results.push({count, date});
+    });
+
+    return _.orderBy(results, 'date');
+};

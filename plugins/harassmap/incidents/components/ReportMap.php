@@ -86,8 +86,8 @@ class ReportMap extends ComponentBase
 
         // default reports [empty]
         $reports = [
-            'incidents' => [],
-            'interventions' => []
+            'incident' => [],
+            'intervention' => []
         ];
 
         if (array_key_exists('time', $data)) {
@@ -97,11 +97,11 @@ class ReportMap extends ComponentBase
             $interventions = $this->getChartReports($domain, $data['time'])->has('intervention')->get();
 
             foreach ($incidents as $incident) {
-                $reports['incidents'][$incident->month] = $incident->count;
+                $reports['incident'][$incident->month] = $incident->count;
             };
 
             foreach ($interventions as $intervention) {
-                $reports['interventions'][$intervention->month] = $intervention->count;
+                $reports['intervention'][$intervention->month] = $intervention->count;
             };
 
         }
