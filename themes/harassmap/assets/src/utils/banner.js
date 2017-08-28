@@ -1,7 +1,7 @@
 'use strict';
 
 import screenfull from 'screenfull';
-import { emitter, REFRESH_MAP, FILTER_MAP } from './events';
+import { emitter, REFRESH_MAP, FILTER_MAP, BANNER_SWITCH } from './events';
 import { createDatePicker } from "./datePicker";
 
 export const initBanner = () => {
@@ -29,6 +29,7 @@ const initBannerSwitcher = () => {
         $(href).show();
 
         emitter.emit(REFRESH_MAP);
+        emitter.emit(BANNER_SWITCH);
     });
 };
 
