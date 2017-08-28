@@ -58,8 +58,6 @@ class ReportMap extends ComponentBase
 
         $this->page['viewPage'] = $this->property('viewPage');
         $this->page['tablePage'] = $this->property('tablePage');
-
-        $this->onGetChartReports();
     }
 
     public function onGetReports()
@@ -99,11 +97,11 @@ class ReportMap extends ComponentBase
             $interventions = $this->getChartReports($domain, $data['time'])->has('intervention')->get();
 
             foreach ($incidents as $incident) {
-                $reports['incidents'][$incident->key] = $incident->count;
+                $reports['incidents'][$incident->month] = $incident->count;
             };
 
             foreach ($interventions as $intervention) {
-                $reports['interventions'][$intervention->key] = $intervention->count;
+                $reports['interventions'][$intervention->month] = $intervention->count;
             };
 
         }
@@ -123,22 +121,22 @@ class ReportMap extends ComponentBase
         // get the date we are getting results from
         switch ($time) {
             case 'week':
-                $since = Carbon::today()->subWeek();
-                $select = DB::raw('HOUR(date) as key');
+                $since = Carbon::today()->subYear()->subWeek();
+                $select = DB::raw('HOUR(date) as month');
                 break;
             case 'month':
-                $since = Carbon::today()->subMonth();
-                $select = DB::raw('DATE(date) as key');
+                $since = Carbon::today()->subYear()->subMonth();
+                $select = DB::raw('DATE(date) as month');
                 break;
             default:
-                $since = Carbon::today()->subYear();
-                $select = DB::raw('MONTH(date) as key');
+                $since = Carbon::today()->subYear()->subYear();
+                $select = DB::raw('MONTH(date) as month');
         }
 
         // add where clause for the date
         return $incidents
             ->addSelect($select)
-            ->groupBy('key')
+            ->groupBy('month')
             ->where('date', '>', $since);
     }
 

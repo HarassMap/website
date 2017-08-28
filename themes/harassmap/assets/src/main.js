@@ -1,5 +1,6 @@
 'use strict';
 
+import { initHomeChart } from './chart/home';
 import MapFactory from "./map/map.factory";
 import { initBanner } from './utils/banner';
 
@@ -37,7 +38,10 @@ window.initMap = () => {
     });
 };
 
-window.initBanner = initBanner;
+window.initReportBanner = () => {
+    initBanner();
+    initHomeChart();
+};
 
 window.initReportIncidentPage = () => {
     createDatePicker('date');
