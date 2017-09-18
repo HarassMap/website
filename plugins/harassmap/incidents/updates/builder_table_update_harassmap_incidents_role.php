@@ -11,7 +11,7 @@ class BuilderTableUpdateHarassmapIncidentsRole extends Migration
     {
         Schema::table('harassmap_incidents_role', function ($table) {
             $table->string('name', 100)->change();
-            $table->integer('domain_id')->unsigned();
+            $table->integer('domain_id')->unsigned()->nullable();
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
         });
     }

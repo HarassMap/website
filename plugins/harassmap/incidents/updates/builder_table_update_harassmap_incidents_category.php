@@ -9,7 +9,7 @@ class BuilderTableUpdateHarassmapIncidentsCategory extends Migration
     {
         Schema::table('harassmap_incidents_category', function($table)
         {
-            $table->integer('domain_id')->unsigned();
+            $table->integer('domain_id')->unsigned()->nullable();
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
         });
     }
