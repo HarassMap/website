@@ -56,7 +56,7 @@ class Category extends Model
         'color' => 'required',
     ];
 
-    protected $fillable = ['title', 'description', 'color'];
+    protected $fillable = ['title', 'description', 'color', 'domain_id'];
 
     public $hidden = ['id', 'color', 'sort_order', 'pivot', 'created_at', 'updated_at'];
 

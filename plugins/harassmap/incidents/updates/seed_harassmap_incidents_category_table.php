@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Updates;
 
 use Harassmap\Incidents\Models\Category;
+use Harassmap\Incidents\Models\Domain;
 use Seeder;
 use Symfony\Component\Yaml\Yaml;
 
@@ -10,6 +11,8 @@ class SeedHarassmapIncidentsCategoryTable extends Seeder
 {
     public function run()
     {
+        $domain = Domain::where('host', '=', '*')->first();
+
         $filename = __DIR__ . '/data/categories.yml';
         $fixtures = Yaml::parse(file_get_contents($filename));
 
@@ -22,6 +25,7 @@ class SeedHarassmapIncidentsCategoryTable extends Seeder
                 'description' => $categoryData['category_description'],
                 'color' => $categoryData['category_color'],
                 'sort_order' => $categoryData['category_position'],
+                'domain_id' => $domain->id,
             ]);
         }
     }

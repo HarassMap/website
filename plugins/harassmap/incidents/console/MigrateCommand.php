@@ -104,7 +104,8 @@ class MigrateCommand extends Command
                         $category = Category::create([
                             'title' => $title,
                             'description' => $title,
-                            'color' => str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT)
+                            'color' => str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT),
+                            'domain_id' => $domain->id
                         ]);
                     }
 
