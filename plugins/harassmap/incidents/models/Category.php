@@ -68,11 +68,4 @@ class Category extends Model
             $this->sort_order = 0;
         }
     }
-
-    public function scopeDomain($query, $status)
-    {
-        $query->whereHas('domains', function ($query) use ($status) {
-            $query->whereIn('domain_id', $status);
-        });
-    }
 }

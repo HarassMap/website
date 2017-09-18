@@ -42,11 +42,4 @@ class Assistance extends Model
     public $belongsTo = [
         'domain' => Domain::class,
     ];
-
-    public function scopeDomain($query, $status)
-    {
-        $query->whereHas('domains', function ($query) use ($status) {
-            $query->whereIn('domain_id', $status);
-        });
-    }
 }
