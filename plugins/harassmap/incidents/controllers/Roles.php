@@ -2,9 +2,13 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Harassmap\Incidents\Traits\FilterDomain;
 
 class Roles extends Controller
 {
+    use FilterDomain;
+    protected $domain_id = 'domain_id';
+
     public $implement = ['Backend\Behaviors\ListController','Backend\Behaviors\FormController'];
     
     public $listConfig = 'config_list.yaml';

@@ -33,19 +33,12 @@ class ReportIntervention extends ComponentBase
     {
         $domain = Domain::getBestMatchingDomain();
 
-        $this->page['categories'] = Category::whereHas('domains', function ($query) use ($domain) {
-            $query->where('id', '=', $domain->id);
-        })->get();
+        $this->page['categories'] = Category::where('domain_id', '=', $domain->id)->get();
+        $this->page['assistance'] = Assistance::where('domain_id', '=', $domain->id)->get();
 
-        $roles = Role::whereHas('domains', function ($query) use ($domain) {
-            $query->where('id', '=', $domain->id);
-        })->get()->lists('name', 'id');
-
+        $roles = Role::where('domain_id', '=', $domain->id)
+            ->get()->lists('name', 'id');
         $this->page['roles'] = ['' => Message::get('My role was...')] + $roles;
-
-        $this->page['assistance'] = Assistance::whereHas('domains', function ($query) use ($domain) {
-            $query->where('id', '=', $domain->id);
-        })->get()->lists('title', 'id');
 
         // timezones
         $zones = timezone_identifiers_list();

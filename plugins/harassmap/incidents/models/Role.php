@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Incidents\Models;
 
+use Harassmap\Incidents\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Validation;
 
@@ -16,6 +17,7 @@ use October\Rain\Database\Traits\Validation;
 class Role extends Model
 {
     use Validation;
+    use DomainOptions;
 
     public $table = 'harassmap_incidents_role';
 
@@ -33,8 +35,8 @@ class Role extends Model
         'incidents' => Incident::class,
     ];
 
-    public $belongsToMany = [
-        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_role'],
+    public $belongsTo = [
+        'domain' => Domain::class,
     ];
 
     public $hidden = ['id'];

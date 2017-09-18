@@ -1,8 +1,12 @@
 fields:
     title:
         label: 'harassmap.incidents::lang.form.title'
-        span: full
+        span: auto
         type: text
+    domain_id:
+        label: 'harassmap.incidents::lang.form.domain'
+        span: auto
+        type: dropdown
     description:
         label: 'harassmap.incidents::lang.form.description'
         span: full
@@ -11,8 +15,3 @@ fields:
         label: 'harassmap.incidents::lang.form.color'
         span: full
         type: colorpicker
-    domains:
-        label: 'harassmap.incidents::lang.form.domain'
-        nameFrom: host
-        span: full
-        type: relation

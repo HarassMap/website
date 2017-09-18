@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Models;
 
+use Harassmap\Incidents\Traits\DomainOptions;
 use Model;
 use October\Rain\Database\Traits\Sortable;
 use October\Rain\Database\Traits\Validation;
@@ -30,6 +31,7 @@ class Category extends Model
 {
     use Validation;
     use Sortable;
+    use DomainOptions;
 
     public $table = 'harassmap_incidents_category';
 
@@ -42,10 +44,10 @@ class Category extends Model
             Incident::class,
             'table' => 'harassmap_incidents_incident_category'
         ],
-        'domains' => [
-            Domain::class,
-            'table' => 'harassmap_incidents_domain_category'
-        ],
+    ];
+
+    public $belongsTo = [
+        'domain' => Domain::class,
     ];
 
     public $rules = [

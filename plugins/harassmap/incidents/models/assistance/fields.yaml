@@ -2,10 +2,9 @@ fields:
     title:
         label: 'harassmap.incidents::lang.form.title'
         oc.commentPosition: ''
-        span: full
+        span: auto
         type: text
-    domains:
+    domain_id:
         label: 'harassmap.incidents::lang.form.domain'
-        nameFrom: host
-        span: full
-        type: relation
+        span: auto
+        type: dropdown

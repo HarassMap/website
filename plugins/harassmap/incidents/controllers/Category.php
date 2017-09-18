@@ -4,9 +4,13 @@ namespace Harassmap\Incidents\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Harassmap\Incidents\Traits\FilterDomain;
 
 class Category extends Controller
 {
+    use FilterDomain;
+    protected $domain_id = 'domain_id';
+
     public $implement = [
         'Backend\Behaviors\ListController',
         'Backend\Behaviors\FormController',

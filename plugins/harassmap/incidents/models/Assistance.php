@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Models;
 
+use Harassmap\Incidents\Traits\DomainOptions;
 use Model;
 use \October\Rain\Database\Traits\Validation;
 
@@ -22,6 +23,7 @@ use \October\Rain\Database\Traits\Validation;
 class Assistance extends Model
 {
     use Validation;
+    use DomainOptions;
 
     public $table = 'harassmap_incidents_assistance';
 
@@ -35,7 +37,10 @@ class Assistance extends Model
 
     public $belongsToMany = [
         'interventions' => [Intervention::class, 'table' => 'harassmap_incidents_intervention_assistance'],
-        'domains' => [Domain::class, 'table' => 'harassmap_incidents_domain_assistance'],
+    ];
+
+    public $belongsTo = [
+        'domain' => Domain::class,
     ];
 
     public function scopeDomain($query, $status)
