@@ -51,7 +51,6 @@
     - seed_harassmap_incidents_category_table.php
 1.0.19:
     - 'Created table harassmap_incidents_domain_category'
-    - builder_table_create_harassmap_incidents_domain_category.php
 1.0.20:
     - 'Created table harassmap_incidents_role'
     - builder_table_create_harassmap_incidents_role.php
@@ -66,10 +65,8 @@
     - seed_harassmap_incidents_assistance_table.php
 1.0.24:
     - 'Created table harassmap_incidents_domain_role'
-    - builder_table_create_harassmap_incidents_domain_role.php
 1.0.25:
     - 'Created table harassmap_incidents_domain_assistance'
-    - builder_table_create_harassmap_incidents_domain_assistance.php
 1.0.26:
     - 'Created table harassmap_incidents_intervention'
     - builder_table_create_harassmap_incidents_intervention.php
@@ -156,7 +153,6 @@
     - builder_table_update_harassmap_incidents_content.php
 1.0.54:
     - 'Updated table harassmap_incidents_role'
-    - builder_table_update_harassmap_incidents_role.php
 1.0.55:
     - 'Created table harassmap_incidents_support'
 1.0.56:
@@ -182,3 +178,12 @@
 1.0.63:
     - 'Updated table harassmap_incidents_domain'
     - builder_table_update_harassmap_incidents_domain_13.php
+1.0.64:
+    - 'Updated table harassmap_incidents_category'
+    - builder_table_update_harassmap_incidents_category.php
+1.0.65:
+    - 'Updated table harassmap_incidents_assistance'
+    - builder_table_update_harassmap_incidents_assistance.php
+1.0.66:
+    - 'Updated table harassmap_incidents_role'
+    - builder_table_update_harassmap_incidents_role.php
