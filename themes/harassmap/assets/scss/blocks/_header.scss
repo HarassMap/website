@@ -295,6 +295,10 @@
 
           @include rem((padding: 5px 0, font-size: 15px));
         }
+
+        .ar & {
+          text-align: right;
+        }
       }
     }
 
