@@ -3,6 +3,7 @@
 use Backend\Classes\Controller;
 use BackendMenu;
 use Harassmap\Incidents\Traits\FilterDomain;
+use Harassmap\News\Models\Posts as PostModel;
 
 class Posts extends Controller
 {
@@ -22,4 +23,11 @@ class Posts extends Controller
     }
 
     protected $domain_id = 'domain_id';
+
+    protected function findDomain($id)
+    {
+        $post = PostModel::find($id);
+
+        return $post->domain;
+    }
 }
