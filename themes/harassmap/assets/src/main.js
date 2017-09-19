@@ -28,8 +28,10 @@ $(document).ready(() => {
     $('.floating').addClass('js-float-label-wrapper');
     $('.js-float-label-wrapper').FloatLabel();
 
-// enable all tooltips
+    // enable all tooltips
     $('[data-toggle="tooltip"]').tooltip();
+
+    $('.match-height').matchHeight();
 });
 
 window.initMap = () => {
