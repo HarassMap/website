@@ -9,12 +9,14 @@
   text-align: center;
   text-transform: uppercase;
 
+  @include oswald();
+  @include rem((padding: 8px 50px, letter-spacing: 1px));
+}
+
+.btn--middle {
   display: flex;
   justify-content: center;
   flex-direction: column;
-
-  @include oswald();
-  @include rem((padding: 8px 50px, letter-spacing: 1px));
 }
 
 .btn-block {
