@@ -63,4 +63,18 @@
 
     @include rem((margin-left: 10px));
   }
+
+  .footer-about {
+    a {
+      color: $white;
+    }
+  }
+
+  .footer__about {
+    @include rem((padding-right: 40px));
+
+    .ar & {
+      @include rem((padding: 0 0 0 40px));
+    }
+  }
 }
