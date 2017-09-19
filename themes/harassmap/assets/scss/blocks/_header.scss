@@ -255,12 +255,17 @@
 
       @include rem((padding: 5px 20px 5px 10px, min-width: 200px));
 
+      .ar & {
+        left: auto;
+        margin: 0 -1px 0 0;
+        right: 0;
+      }
+
       @include media-breakpoint-up(md) {
         background-color: $white;
         border: 1px solid $green;
         float: left;
         position: absolute;
-
       }
 
       a {
