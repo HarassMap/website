@@ -19,6 +19,8 @@ use \October\Rain\Database\Traits\Validation;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereUpdatedAt($value)
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance domain($status)
+ * @property int|null $domain_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereDomainId($value)
  */
 class Assistance extends Model
 {

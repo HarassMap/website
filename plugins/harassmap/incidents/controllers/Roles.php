@@ -2,6 +2,7 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Harassmap\Incidents\Models\Role;
 use Harassmap\Incidents\Traits\FilterDomain;
 
 class Roles extends Controller
@@ -18,5 +19,12 @@ class Roles extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents', 'harassmap.incidents.roles');
+    }
+
+    protected function findDomain($id)
+    {
+        $role = Role::find($id);
+
+        return $role->domain;
     }
 }

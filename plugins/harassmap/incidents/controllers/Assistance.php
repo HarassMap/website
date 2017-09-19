@@ -3,6 +3,7 @@
 use Backend\Classes\Controller;
 use BackendMenu;
 use Harassmap\Incidents\Traits\FilterDomain;
+use Harassmap\Incidents\Models\Assistance as AssistanceModel;
 
 class Assistance extends Controller
 {
@@ -18,5 +19,12 @@ class Assistance extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents', 'harassmap.incidents.assistance');
+    }
+
+    protected function findDomain($id)
+    {
+        $assistance = AssistanceModel::find($id);
+
+        return $assistance->domain;
     }
 }

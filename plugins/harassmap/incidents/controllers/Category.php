@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Harassmap\Incidents\Models\Category as CategoryModel;
 use Harassmap\Incidents\Traits\FilterDomain;
 
 class Category extends Controller
@@ -25,5 +26,12 @@ class Category extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents', 'harassmap.incidents.categories');
+    }
+
+    protected function findDomain($id)
+    {
+        $category = CategoryModel::find($id);
+
+        return $category->domain;
     }
 }
