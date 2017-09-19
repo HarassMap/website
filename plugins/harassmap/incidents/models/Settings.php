@@ -8,11 +8,11 @@ use Model;
  * Harassmap\Incidents\Models\Settings
  *
  * @property int $id
- * @property string $item
- * @property string $value
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Settings whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Settings whereItem($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Settings whereValue($value)
+ * @property string|null $item
+ * @property string|null $value
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Settings whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Settings whereItem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Settings whereValue($value)
  * @mixin \Eloquent
  */
 class Settings extends Model

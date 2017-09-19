@@ -26,6 +26,8 @@ use Request;
  * @property string $name
  * @property int $incident
  * @property int $intervention
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  * @property string|null $facebook_app_id
  * @property string $timezone
  * @property string $nameend
@@ -35,13 +37,14 @@ use Request;
  * @property string|null $twitter_message
  * @property int $need_approval
  * @property string|null $colours
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $logos
+ * @property string|null $email
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereAbout($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereAttributableKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereBlogger($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereColours($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereFacebook($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereFacebookAppId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereGaKey($value)
@@ -52,6 +55,7 @@ use Request;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereIntervention($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLng($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLogos($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereNameend($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereNeedApproval($value)
@@ -63,10 +67,6 @@ use Request;
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereYoutube($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereZoom($value)
  * @mixin \Eloquent
- * @property string|null $logos
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLogos($value)
- * @property string|null $email
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereEmail($value)
  */
 class Domain extends Model
 {
@@ -166,6 +166,11 @@ class Domain extends Model
             'selector' => ['.btn--green' => ['background-color']],
             'label' => 'Green Button Color',
             'help' => 'Default: #00b8b0'
+        ],
+        'polar_bg' => [
+            'selector' => ['.bg--polar' => ['background-color']],
+            'label' => 'Polar Background Colour',
+            'help' => 'Default: #e6f9f8'
         ],
     ];
 

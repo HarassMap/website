@@ -13,14 +13,13 @@ use \October\Rain\Database\Traits\Validation;
  * @property string $title
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property int|null $domain_id
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereDomainId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereUpdatedAt($value)
  * @mixin \Eloquent
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance domain($status)
- * @property int|null $domain_id
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Assistance whereDomainId($value)
  */
 class Assistance extends Model
 {
