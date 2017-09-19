@@ -47,6 +47,12 @@ forceSecure = 0
                         <a href="{{ 'reports/view' | page }}" class="btn btn--default">{{ 'View Report' | _ }}</a>
                     </div>
                 </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <a href="{{ 'contact' | page }}" class="btn btn--default">{{ 'Contact Us' | _ }}</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 mt-4 mt-md-0">
@@ -54,15 +60,16 @@ forceSecure = 0
             <p>{{ 'Number of submissions on HarassMap website in the last 30 days.' | _ }}</p>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3 class="hr">
-                <span class="hr__line"></span>
-            </h3>
-        </div>
-    </div>
 
     {% if not user %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="hr">
+                    <span class="hr__line"></span>
+                </h3>
+            </div>
+        </div>
+
         <div class="row mt-4">
             <div class="col-12">
                 <h3>{{ 'Do you want to receive updates on this incident?' | _ }}</h3>
