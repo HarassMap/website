@@ -26,9 +26,4 @@ class Category extends Controller
         parent::__construct();
         BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents', 'harassmap.incidents.categories');
     }
-
-    public function listExtendQuery($query)
-    {
-        $query->orderBy('sort_order');
-    }
 }
