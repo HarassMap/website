@@ -59,8 +59,13 @@
 
     .flag {
       text-decoration: underline;
+      float: right;
 
       @include rem((font-size: 14px));
+
+      .ar & {
+        float: left;
+      }
     }
 
   }

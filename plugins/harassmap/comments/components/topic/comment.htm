@@ -16,7 +16,7 @@
 
                 {% if comment.canEdit == false and comment.approved == false %}
                     <a href="#"
-                       class="flag float-right"
+                       class="flag"
                        data-request="onFlag"
                        data-request-confirm="{{ 'Are you sure you want to flag this comment to a moderator?' | _ }}"
                        data-request-data="comment: {{ comment.id }}">
