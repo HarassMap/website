@@ -35,7 +35,7 @@ class ReportIncident extends ComponentBase
         $domain = Domain::getBestMatchingDomain();
 
         $this->page['categories'] = Category::where('domain_id', '=', $domain->id)->get();
-        $this->page['assistance'] = Assistance::where('domain_id', '=', $domain->id)->get();
+        $this->page['assistance'] = Assistance::where('domain_id', '=', $domain->id)->get()->lists('title', 'id');
 
         $roles = Role::where('domain_id', '=', $domain->id)
             ->get()->lists('name', 'id');
