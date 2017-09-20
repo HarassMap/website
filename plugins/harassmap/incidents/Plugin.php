@@ -29,9 +29,11 @@ use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
 use RainLab\Pages\Controllers\Index;
+use RainLab\Translate\Classes\EventRegistry as TranslateEventRegistry;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
+use Harassmap\Incidents\Classes\EventRegistry;
 
 class Plugin extends PluginBase
 {
@@ -80,7 +82,7 @@ class Plugin extends PluginBase
 
         Event::listen('backend.form.extendFields', function ($widget) {
 
-            if(!($widget->getController() instanceof Index)) {
+            if (!($widget->getController() instanceof Index)) {
                 return;
             }
 
@@ -94,6 +96,11 @@ class Plugin extends PluginBase
             ]);
 
         });
+
+        Event::listen('pages.content.templateList', function ($widget, $templates) {
+            $templates = EventRegistry::instance()->pruneDomainContentTemplates($templates);
+            return TranslateEventRegistry::instance()->pruneTranslatedContentTemplates($templates);
+        }, 1);
 
     }
 
