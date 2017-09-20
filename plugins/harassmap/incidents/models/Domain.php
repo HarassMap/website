@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Models;
 
 use Backend\Models\User as BackendUserModel;
+use BackendAuth;
 use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\News\Models\Posts;
 use Model;
@@ -174,34 +175,6 @@ class Domain extends Model
         ],
     ];
 
-    /**
-     *
-     */
-    static function getMatchingDomains()
-    {
-        $requestHost = Request::getHost();
-        $domains = self::orderBy('created_at', 'desc')->get();
-        $matches = [];
-
-        foreach ($domains as $domain) {
-            $host = $domain->host;
-
-            if (fnmatch($host, $requestHost)) {
-                array_push($matches, $domain);
-            }
-        }
-
-        return $matches;
-    }
-
-    /**
-     * @return Domain
-     */
-    static function getBestMatchingDomain()
-    {
-        return self::getMatchingDomains()[0];
-    }
-
     public function getTimezoneOptions()
     {
         $zones = timezone_identifiers_list();
@@ -263,5 +236,54 @@ class Domain extends Model
     public function getFooterLogo()
     {
         return $this->logos[0]['footer'];
+    }
+
+    /**
+     *
+     */
+    static function getMatchingDomains()
+    {
+        $requestHost = Request::getHost();
+        $domains = self::orderBy('created_at', 'desc')->get();
+        $matches = [];
+
+        foreach ($domains as $domain) {
+            $host = $domain->host;
+
+            if (fnmatch($host, $requestHost)) {
+                array_push($matches, $domain);
+            }
+        }
+
+        return $matches;
+    }
+
+    /**
+     * @return Domain
+     */
+    static function getBestMatchingDomain()
+    {
+        return self::getMatchingDomains()[0];
+    }
+
+    static function getDomainIdOptions()
+    {
+
+        $user = BackendAuth::getUser();
+
+        $choices = [];
+
+        // if the user is a super use then return all the domains
+        if ($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_domains'])) {
+            $domains = self::get();
+        } else {
+            $domains = $user->domains;
+        }
+
+        foreach ($domains as $domain) {
+            $choices[$domain->id] = $domain->host;
+        }
+
+        return $choices;
     }
 }

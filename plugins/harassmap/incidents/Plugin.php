@@ -3,6 +3,7 @@
 use Backend\Controllers\Users as BackendUsersController;
 use Backend\Models\User as BackendUserModel;
 use BackendAuth;
+use Event;
 use Harassmap\Incidents\Classes\Mailer;
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
@@ -27,10 +28,10 @@ use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
+use RainLab\Pages\Controllers\Index;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
-use Event;
 
 class Plugin extends PluginBase
 {
@@ -74,6 +75,23 @@ class Plugin extends PluginBase
             if (!($user->isSuperUser() || $user->hasPermission(['harassmap.incidents.domain.manage_user_domains']))) {
                 $widget->removeScope('domain');
             }
+
+        });
+
+        Event::listen('backend.form.extendFields', function ($widget) {
+
+            if(!($widget->getController() instanceof Index)) {
+                return;
+            }
+
+            $widget->addTabFields([
+                'viewBag[domain]' => [
+                    'label' => 'Domain',
+                    'tab' => 'cms::lang.editor.settings',
+                    'type' => 'dropdown',
+                    'options' => DomainModel::getDomainIdOptions()
+                ]
+            ]);
 
         });
 

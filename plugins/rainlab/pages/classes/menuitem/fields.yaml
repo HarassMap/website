@@ -10,6 +10,7 @@ fields:
     title:
         span: left
         label: rainlab.pages::lang.menuitem.title
+        type: text
 
     type:
         span: right
