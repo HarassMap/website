@@ -28,12 +28,11 @@ use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
+use Harassmap\Incidents\Widgets\PageList;
 use RainLab\Pages\Controllers\Index;
-use RainLab\Translate\Classes\EventRegistry as TranslateEventRegistry;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
-use Harassmap\Incidents\Classes\EventRegistry;
 
 class Plugin extends PluginBase
 {
@@ -97,10 +96,11 @@ class Plugin extends PluginBase
 
         });
 
-        Event::listen('pages.content.templateList', function ($widget, $templates) {
-            $templates = EventRegistry::instance()->pruneDomainContentTemplates($templates);
-            return TranslateEventRegistry::instance()->pruneTranslatedContentTemplates($templates);
-        }, 1);
+        // extend the static page index to create a new PageList widget
+        Index::extend(function ($controller) {
+            $controller->addViewPath(__DIR__ . '/views/rainlab/pages/index');
+            new PageList($controller, 'domainPageList');
+        });
 
     }
 

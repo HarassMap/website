@@ -56,7 +56,7 @@ return [
             'driver'    => 'mysql',
             'host'      => 'localhost',
             'port'      => '',
-            'database'  => 'october',
+            'database'  => 'harassmap',
             'username'  => 'root',
             'password'  => 'corset535',
             'charset'   => 'utf8',

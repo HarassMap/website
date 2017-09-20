@@ -3,7 +3,6 @@
 namespace Harassmap\Incidents\Classes;
 
 use BackendAuth;
-use Cms\Classes\CmsObjectCollection;
 use October\Rain\Support\Traits\Singleton;
 
 class EventRegistry
@@ -11,10 +10,10 @@ class EventRegistry
     use Singleton;
 
     /**
-     * @param CmsObjectCollection $templates
-     * @return CmsObjectCollection
+     * @param array $templates
+     * @return array
      */
-    public function pruneDomainContentTemplates($templates)
+    public function pruneDomainPages($templates)
     {
         $user = BackendAuth::getUser();
 
@@ -26,14 +25,32 @@ class EventRegistry
         $domains = $user->domains;
 
         if ($domains->isEmpty()) {
-            return $templates->filter(function () {
-                return false;
-            });
+            return [];
         }
 
-        return $templates->filter(function ($template) use ($domains) {
+        $domain_ids = [];
 
+        foreach ($domains as $domain) {
+            $domain_ids[] = $domain->id;
+        }
 
-        });
+        $iterator = function ($pages) use (&$iterator, $domain_ids) {
+            $result = [];
+
+            foreach ($pages as $page) {
+                $domain = $page->page->getViewBag()->property('domain');
+
+                if (array_search($domain, $domain_ids) !== FALSE) {
+                    $result[] = (object)[
+                        'page' => $page->page,
+                        'subpages' => $iterator($page->subpages)
+                    ];
+                }
+            }
+
+            return $result;
+        };
+
+        return $iterator($templates);
     }
 }
