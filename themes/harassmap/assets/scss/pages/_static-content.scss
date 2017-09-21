@@ -3,17 +3,21 @@
 
 .static-content {
 
-  img {
-    max-width: 100%;
-    height: auto;
+  .site-content {
 
-    &.img--full {
-      width: 100% !important;
+    img {
+      max-width: 100%;
+      height: auto;
+
+      &.img--full {
+        width: 100% !important;
+      }
     }
-  }
 
-  a {
-    text-decoration: underline;
+    a {
+      text-decoration: underline;
+    }
+    
   }
 
 }
