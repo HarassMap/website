@@ -173,6 +173,11 @@ class Domain extends Model
             'label' => 'Polar Background Colour',
             'help' => 'Default: #e6f9f8'
         ],
+        'droplet_bg' => [
+            'selector' => ['.bg--green' => ['background-color']],
+            'label' => 'Droplet Background Colour',
+            'help' => 'Default: #00b8b0'
+        ]
     ];
 
     public function getTimezoneOptions()
