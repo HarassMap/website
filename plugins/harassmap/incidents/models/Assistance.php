@@ -43,4 +43,11 @@ class Assistance extends Model
     public $belongsTo = [
         'domain' => Domain::class,
     ];
+
+    public function beforeSave()
+    {
+        if($this->domain_id === '') {
+            $this->domain_id = NULL;
+        }
+    }
 }

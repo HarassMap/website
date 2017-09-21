@@ -41,4 +41,11 @@ class Role extends Model
     ];
 
     public $hidden = ['id'];
+
+    public function beforeSave()
+    {
+        if($this->domain_id === '') {
+            $this->domain_id = NULL;
+        }
+    }
 }

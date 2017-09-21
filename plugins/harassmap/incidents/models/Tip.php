@@ -46,6 +46,7 @@ class Tip extends Model
         'tip' => 'required',
         'read_more' => 'max:50',
         'link' => 'max:100',
+        'domain' => 'required',
     ];
 
     public $belongsTo = [

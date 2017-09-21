@@ -58,6 +58,7 @@ class Content extends Model
     public $rules = [
         'content_id' => 'required|max:50',
         'content' => 'required',
+        'domain' => 'required',
     ];
 
     public $belongsTo = [

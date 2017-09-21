@@ -289,6 +289,6 @@ class Domain extends Model
             $choices[$domain->id] = $domain->host;
         }
 
-        return $choices;
+        return [NULL => 'No Domain'] + $choices;
     }
 }

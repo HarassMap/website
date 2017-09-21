@@ -68,5 +68,9 @@ class Category extends Model
         if (!$this->sort_order) {
             $this->sort_order = 0;
         }
+
+        if($this->domain_id === '') {
+            $this->domain_id = NULL;
+        }
     }
 }
