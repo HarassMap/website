@@ -28,7 +28,7 @@ tabs:
         link:
             label: 'harassmap.incidents::lang.form.link'
             span: full
-            type: text
+            type: page_link
             tab: 'harassmap.incidents::lang.form.tab.extra'
             trigger:
                 action: show
