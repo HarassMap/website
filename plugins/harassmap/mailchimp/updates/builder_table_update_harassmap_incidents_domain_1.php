@@ -5,13 +5,13 @@ namespace Harassmap\MailChimp\Updates;
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableUpdateHarassmapIncidentsDomain extends Migration
+class BuilderTableUpdateHarassmapIncidentsDomain1 extends Migration
 {
     public function up()
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->string('mailchimp_api', 100)->nullable();
+            $table->string('mailchimp_list', 100)->nullable();
         });
     }
     
@@ -19,7 +19,7 @@ class BuilderTableUpdateHarassmapIncidentsDomain extends Migration
     {
         Schema::table('harassmap_incidents_domain', function($table)
         {
-            $table->dropColumn('mailchimp_api');
+            $table->dropColumn('mailchimp_list');
         });
     }
 }

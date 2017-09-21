@@ -5,8 +5,7 @@ forceUrl = 0
 
 [harassmapDomain]
 
-[mailSignup mailchimpsignup]
-list = "de5e71e5b9"
+[harassmapMailChimp]
 
 [session]
 security = "all"
@@ -53,7 +52,7 @@ id = "footer.about"
                     <div class="col-8">
                         <h6 class="priority-2">{{ 'Stay Connected' | _ }}</h6>
                         <p>{{ 'Subscribe to our mailing list:' | _ }}</p>
-                        {% component 'mailchimpsignup' %}
+                        {% component 'harassmapMailChimp' %}
                     </div>
                     <div class="col-4">
                         <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"

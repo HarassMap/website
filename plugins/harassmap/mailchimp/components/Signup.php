@@ -2,37 +2,28 @@
 
 namespace Harassmap\MailChimp\Components;
 
-use Validator;
-use ValidationException;
 use ApplicationException;
 use Cms\Classes\ComponentBase;
-use RainLab\MailChimp\Models\Settings;
+use Harassmap\Incidents\Models\Domain;
+use ValidationException;
+use Validator;
 
 class Signup extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name'        => 'Signup Form',
+            'name' => 'Signup Form',
             'description' => 'Sign up a new person to a mailing list.'
-        ];
-    }
-
-    public function defineProperties()
-    {
-        return [
-            'list' => [
-                'title'       => 'MailChimp List ID',
-                'description' => 'In MailChimp account, select List > Tools and look for a List ID.',
-                'type'        => 'string'
-            ]
         ];
     }
 
     public function onSignup()
     {
-        $settings = Settings::instance();
-        if (!$settings->api_key) {
+        // get the domain
+        $domain = Domain::getBestMatchingDomain();
+
+        if (!$domain->mailchimp_api) {
             throw new ApplicationException('MailChimp API key is not configured.');
         }
 
@@ -46,6 +37,7 @@ class Signup extends ComponentBase
         ];
 
         $validation = Validator::make($data, $rules);
+
         if ($validation->fails()) {
             throw new ValidationException($validation);
         }
@@ -53,9 +45,9 @@ class Signup extends ComponentBase
         /*
          * Sign up to Mailchimp via the API
          */
-        require_once(plugins_path() . '/rainlab/mailchimp/vendor/MCAPI.class.php');
+        require_once(plugins_path() . '/harassmap/mailchimp/vendor/MCAPI.class.php');
 
-        $api = new \MCAPI($settings->api_key);
+        $api = new \MCAPI($domain->mailchimp_api);
 
         $this->page['error'] = null;
 
@@ -64,7 +56,7 @@ class Signup extends ComponentBase
             $mergeVars = $data['merge'];
         }
 
-        if ($api->listSubscribe($this->property('list'), post('email'), $mergeVars) !== true) {
+        if ($api->listSubscribe($domain->mailchimp_list, post('email'), $mergeVars) !== true) {
             $this->page['error'] = $api->errorMessage;
         }
     }

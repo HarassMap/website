@@ -3,3 +3,6 @@
 1.0.2:
     - Updating domain with mailchimp api key
     - builder_table_update_harassmap_incidents_domain.php
+1.0.3:
+    - Updating domain with mailchimp list
+    - builder_table_update_harassmap_incidents_domain_1.php
