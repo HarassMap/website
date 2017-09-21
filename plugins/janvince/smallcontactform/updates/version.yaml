@@ -66,3 +66,17 @@
     - Updated default autoreply mail templates to include fieldsDetail array
     - Added function to detect non-defined fields in sent data
     - Updated README.md file
+1.5.0:
+    - Added some component hacking options (override autoreply and notification emails and template, disable fields)
+    - Fixed some typos
+    - Updated README.md file
+1.5.1:
+    - Fixed flash message visibility when where are some errors
+1.5.2:
+    - Fixed flash error for IP protection visibility
+1.5.3:
+    - Added option for notification emails to have FROM address set from contact form email field
+1.5.4:
+    - Added option to mark selected messages as read
+1.5.5:
+    - Changed JSON type for repeater DB column

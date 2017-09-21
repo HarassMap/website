@@ -38,6 +38,9 @@ return [
       'all_count' => 'Celkem',
       'all_description' => 'Zpráv',
       'settings_btn' => 'Nastavení formuláře',
+      'mark_read' => 'Označit jako přečtené',
+      'mark_read_confirm' => 'Opravdu chcete vybrané zprávy označit jako přečtené?',
+      'mark_read_success' => 'Zprávy byly označeny jako přečtené.',
     ],
 
     'preview' => [
@@ -259,6 +262,9 @@ return [
 
       'notification_address_to' => 'Upozornění posílat na adresu:',
       'notification_address_to_placeholder' => 'notifications@domain.com',
+
+      'notification_address_from_form' => 'Adresa odesílatele upozornění z emailu formuláře',
+      'notification_address_from_form_comment' => 'Nastaví adresu odesílatele upozornění na tu, která byla zadána ve formuláři (sloupec email musí mít nastavenou vazbu), takže můžete na upozornění přímo odpovědět.',
 
       'allow_autoreply' => 'Povolit automatickou odpověď',
       'allow_autoreply_comment' => 'Poslat automatickou odpověď odesílateli formuláře',
