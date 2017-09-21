@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.mailchimp::lang.plugin.name'
+    description: 'harassmap.mailchimp::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-envelope
+    homepage: ''

@@ -1,0 +1,5 @@
+1.0.1:
+    - Initialize plugin.
+1.0.2:
+    - Updating domain with mailchimp api key
+    - builder_table_update_harassmap_incidents_domain.php
