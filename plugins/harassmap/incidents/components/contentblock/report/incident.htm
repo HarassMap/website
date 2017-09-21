@@ -11,7 +11,7 @@
 {% if __SELF__.block.link %}
     <div class="row mt-4">
         <div class="col-7">
-            <a href="{{ __SELF__.block.link }}">
+            <a href="{{ __SELF__.block.link | pageLink }}">
                 {{ 'Learn more' | _ }}
             </a>
         </div>

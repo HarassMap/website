@@ -178,4 +178,12 @@ class Plugin extends PluginBase
             PageLink::class => 'page_link'
         ];
     }
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'pageLink' => ['Harassmap\Incidents\Classes\PageLink', 'url']
+            ]
+        ];
+    }
 }
