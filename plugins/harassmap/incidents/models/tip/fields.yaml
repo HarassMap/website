@@ -21,7 +21,7 @@ tabs:
         link:
             label: 'harassmap.incidents::lang.form.read_more_link'
             span: full
-            type: text
+            type: page_link
             tab: 'harassmap.incidents::lang.form.tab.read_more'
 secondaryTabs:
     fields:
