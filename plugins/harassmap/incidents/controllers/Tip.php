@@ -3,11 +3,9 @@
 namespace Harassmap\Incidents\Controllers;
 
 use Backend\Classes\Controller;
-use BackendAuth;
 use BackendMenu;
 use Harassmap\Incidents\Models\Tip as TipModel;
 use Harassmap\Incidents\Traits\FilterDomain;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Tip extends Controller
 {
@@ -28,30 +26,10 @@ class Tip extends Controller
         BackendMenu::setContext('harassmap.incidents.domain', 'harassmap.incidents.domain', 'harassmap.incidents.domain.tips');
     }
 
-    public function update($recordId, $context = null)
+    protected function findDomain($id)
     {
-        $user = BackendAuth::getUser();
+        $tip = TipModel::find($id);
 
-        // if the user is a super use then stop here
-        if (!$user->isSuperUser()) {
-
-            $content = TipModel::find($recordId);
-            $id = $content->domain->id;
-            $domains = $user->domains;
-            $found = false;
-
-            foreach ($domains as $domain) {
-                if ($domain->id === $id) {
-                    $found = true;
-                    break;
-                }
-            }
-
-            if (!$found) {
-                throw new AccessDeniedHttpException();
-            }
-        }
-
-        return $this->asExtension('FormController')->update($recordId, $context);
+        return $tip->domain;
     }
 }

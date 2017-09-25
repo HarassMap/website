@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Harassmap\Incidents\Traits\FilterDomain;
 use Harassmap\MenuManager\Models\Menu;
 use Illuminate\Support\Facades\Input;
 use Lang;
@@ -11,6 +12,9 @@ use Lang;
  */
 class Menus extends Controller
 {
+    use FilterDomain;
+    protected $domain_id = 'domain_id';
+
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController'
@@ -102,5 +106,12 @@ class Menus extends Controller
                 $sourceNode->makeRoot();
                 break;
         }
+    }
+
+    protected function findDomain($id)
+    {
+        $menu = Menu::find($id);
+
+        return $menu->domain;
     }
 }
