@@ -19,9 +19,9 @@ class UpdateMenusTable extends Migration
 
     public function down()
     {
-        Schema::table('harassmap_incidents_domain', function($table)
+        Schema::table('benfreke_menumanager_menus', function($table)
         {
-            $table->dropForeign('harassmap_incidents_category_domain_id_foreign');
+            $table->dropForeign('benfreke_menumanager_menus_domain_id_foreign');
             $table->dropColumn('domain_id');
             $table->dropColumn('code');
         });
