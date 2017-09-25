@@ -3,6 +3,14 @@
 # ===================================
 
 fields:
+    domain_id:
+        label: harassmap.menumanager::lang.modeldataform.domain
+        span: auto
+        type: dropdown
+    code:
+        label: harassmap.menumanager::lang.modeldataform.code
+        span: auto
+        type: dropdown
     title:
         label: harassmap.menumanager::lang.modeldataform.title
         span: left

@@ -1,7 +1,8 @@
 <?php namespace Harassmap\MenuManager\Components;
 
 use App;
-use Harassmap\MenuManager\Models\Menu as menuModel;
+use Harassmap\Incidents\Models\Domain;
+use Harassmap\MenuManager\Models\Menu as MenuModel;
 use Cms\Classes\ComponentBase;
 use DB;
 use Lang;
@@ -94,9 +95,9 @@ class Menu extends ComponentBase
      */
     public function getStartOptions()
     {
-        $menuModel = new menuModel();
+        $MenuModel = new MenuModel();
 
-        return $menuModel->getSelectList();
+        return $MenuModel->getCodeOptions();
     }
 
     /**
@@ -106,8 +107,15 @@ class Menu extends ComponentBase
      */
     public function onRender()
     {
-        // Set the parentNode for the component output
-        $topNode = menuModel::find($this->getIdFromProperty($this->property('start')));
+        $domain = Domain::getBestMatchingDomain();
+        $code = $this->property('start');
+
+        // get the top node based on the code and domain we are on
+        $topNode = MenuModel
+            ::where('domain_id', '=', $domain->id)
+            ->where('code', '=', $code)
+            ->first();
+
         $this->page['parentNode'] = $topNode;
 
         // What page is active?
@@ -118,7 +126,7 @@ class Menu extends ComponentBase
         if ($activeNode) {
 
             // It's been set by the user, so use what they've set it as
-            $activeNode = menuModel::find($activeNode);
+            $activeNode = MenuModel::find($activeNode);
         } elseif ($topNode) {
 
             // Go and find the page we're on
@@ -128,7 +136,7 @@ class Menu extends ComponentBase
             $params = $this->page->controller->getRouter()->getParameters();
 
             // And make sure the active page is a child of the parentNode
-            $activeNode = menuModel::where('url', $baseFileName)
+            $activeNode = MenuModel::where('url', $baseFileName)
                 ->where('nest_left', '>', $topNode->nest_left)
                 ->where('nest_right', '<', $topNode->nest_right);
 
@@ -136,7 +144,7 @@ class Menu extends ComponentBase
         }
 
         // If I've got a result that is a node
-        if ($activeNode && menuModel::getClassName() === get_class($activeNode)) {
+        if ($activeNode && MenuModel::getClassName() === get_class($activeNode)) {
             $this->page['activeLeft'] = (int)$activeNode->nest_left;
             $this->page['activeRight'] = (int)$activeNode->nest_right;
         }

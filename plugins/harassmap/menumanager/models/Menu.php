@@ -2,6 +2,8 @@
 
 use Cms\Classes\Controller as BaseController;
 use Cms\Classes\Page;
+use Harassmap\Incidents\Models\Domain;
+use Harassmap\Incidents\Traits\DomainOptions;
 use Lang;
 use Model;
 use RainLab\Pages\Classes\Page as StaticPage;
@@ -18,6 +20,7 @@ class Menu extends Model
     use NestedTree;
     use Validation;
     use Purgeable;
+    use DomainOptions;
 
     /**
      * @var string The database table used by the model.
@@ -35,6 +38,10 @@ class Menu extends Model
     public $rules = [
         'title' => 'required',
         'parameters' => 'json'
+    ];
+
+    public $belongsTo = [
+        'domain' => Domain::class,
     ];
 
     /**
@@ -271,6 +278,14 @@ class Menu extends Model
         if ($this->parameters != '') {
             $this->parameters = json_encode(json_decode($this->parameters));
         }
+
+        if($this->domain_id === '') {
+            $this->domain_id = NULL;
+        }
+
+        if($this->code === '') {
+            $this->code = NULL;
+        }
     }
 
     /**
@@ -310,6 +325,15 @@ class Menu extends Model
     public function getIsExternalAttribute($attribute)
     {
         return (int)$attribute;
+    }
+
+    public function getCodeOptions()
+    {
+        return [
+            null => 'No Code',
+            'main-menu' => 'Main Menu',
+            'footer-menu' => 'Footer Menu',
+        ];
     }
 
 }

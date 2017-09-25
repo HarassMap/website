@@ -28,7 +28,7 @@ class Menus extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('BenFreke.MenuManager', 'menumanager', 'edit');
+        BackendMenu::setContext('Harassmap.MenuManager', 'menumanager', 'edit');
 
         // Add my assets
         $this->addJs('/plugins/harassmap/menumanager/assets/js/harassmap.menumanager.js');
@@ -65,7 +65,7 @@ class Menus extends Controller
     public function reorder()
     {
         // Ensure the correct sidemenu is active
-        BackendMenu::setContext('BenFreke.MenuManager', 'menumanager', 'reorder');
+        BackendMenu::setContext('Harassmap.MenuManager', 'menumanager', 'reorder');
 
         $this->pageTitle = Lang::get('harassmap.menumanager::lang.menu.reordermenu');
 

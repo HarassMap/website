@@ -6,6 +6,11 @@ columns:
   title:
     label: harassmap.menumanager::lang.modeldata.title
     searchable: true
+  domain:
+    label: harassmap.incidents::lang.form.domain
+    relation: domain
+    select: host
+    width: '250px'
   enabled:
     label: harassmap.menumanager::lang.modeldata.enabled
     type: switch
