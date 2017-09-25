@@ -1,16 +1,16 @@
-<?php namespace BenFreke\MenuManager\Updates;
+<?php namespace Harassmap\MenuManager\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class AddEnabledParametersQueryFields2 extends Migration
+class AddEnabledParametersQueryFields1 extends Migration
 {
 
     public function up()
     {
         Schema::table('benfreke_menumanager_menus', function($table)
         {
-            $table->string('parameters')->nullable();
+            $table->integer('enabled')->default(1);
         });
     }
 
@@ -18,7 +18,7 @@ class AddEnabledParametersQueryFields2 extends Migration
     {
         Schema::table('benfreke_menumanager_menus', function($table)
         {
-            $table->dropColumn('parameters');
+            $table->dropColumn('enabled');
         });
     }
 

@@ -1,7 +1,7 @@
-<?php namespace BenFreke\MenuManager\Components;
+<?php namespace Harassmap\MenuManager\Components;
 
 use App;
-use BenFreke\MenuManager\Models\Menu as menuModel;
+use Harassmap\MenuManager\Models\Menu as menuModel;
 use Cms\Classes\ComponentBase;
 use DB;
 use Lang;
@@ -12,8 +12,8 @@ class Menu extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'benfreke.menumanager::lang.menu.name',
-            'description' => 'benfreke.menumanager::lang.menu.description'
+            'name'        => 'harassmap.menumanager::lang.menu.name',
+            'description' => 'harassmap.menumanager::lang.menu.description'
         ];
     }
 
@@ -25,44 +25,44 @@ class Menu extends ComponentBase
     {
         return [
             'start'            => [
-                'description' => 'benfreke.menumanager::lang.component.start.description',
-                'title'       => 'benfreke.menumanager::lang.component.start.title',
+                'description' => 'harassmap.menumanager::lang.component.start.description',
+                'title'       => 'harassmap.menumanager::lang.component.start.title',
                 'default'     => 1,
                 'type'        => 'dropdown'
             ],
             'activeNode'       => [
-                'description' => 'benfreke.menumanager::lang.component.activenode.description',
-                'title'       => 'benfreke.menumanager::lang.component.activenode.title',
+                'description' => 'harassmap.menumanager::lang.component.activenode.description',
+                'title'       => 'harassmap.menumanager::lang.component.activenode.title',
                 'default'     => 0,
                 'type'        => 'dropdown'
             ],
             'listItemClasses'  => [
-                'description' => 'benfreke.menumanager::lang.component.listitemclasses.description',
-                'title'       => 'benfreke.menumanager::lang.component.listitemclasses.title',
+                'description' => 'harassmap.menumanager::lang.component.listitemclasses.description',
+                'title'       => 'harassmap.menumanager::lang.component.listitemclasses.title',
                 'default'     => 'item',
                 'type'        => 'string'
             ],
             'primaryClasses'   => [
-                'description' => 'benfreke.menumanager::lang.component.primaryclasses.description',
-                'title'       => 'benfreke.menumanager::lang.component.primaryclasses.title',
+                'description' => 'harassmap.menumanager::lang.component.primaryclasses.description',
+                'title'       => 'harassmap.menumanager::lang.component.primaryclasses.title',
                 'default'     => 'nav nav-pills',
                 'type'        => 'string'
             ],
             'secondaryClasses' => [
-                'description' => 'benfreke.menumanager::lang.component.secondaryclasses.description',
-                'title'       => 'benfreke.menumanager::lang.component.secondaryclasses.title',
+                'description' => 'harassmap.menumanager::lang.component.secondaryclasses.description',
+                'title'       => 'harassmap.menumanager::lang.component.secondaryclasses.title',
                 'default'     => 'dropdown-menu',
                 'type'        => 'string'
             ],
             'tertiaryClasses'  => [
-                'description' => 'benfreke.menumanager::lang.component.tertiaryclasses.description',
-                'title'       => 'benfreke.menumanager::lang.component.tertiaryclasses.title',
+                'description' => 'harassmap.menumanager::lang.component.tertiaryclasses.description',
+                'title'       => 'harassmap.menumanager::lang.component.tertiaryclasses.title',
                 'default'     => '',
                 'type'        => 'string'
             ],
             'numberOfLevels'   => [
-                'description' => 'benfreke.menumanager::lang.component.numberoflevels.description',
-                'title'       => 'benfreke.menumanager::lang.component.numberoflevels.title',
+                'description' => 'harassmap.menumanager::lang.component.numberoflevels.description',
+                'title'       => 'harassmap.menumanager::lang.component.numberoflevels.title',
                 'default'     => '2', // This is the array key, not the value itself
                 'type'        => 'dropdown',
                 'options'     => [

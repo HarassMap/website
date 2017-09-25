@@ -1,8 +1,8 @@
-<?php namespace BenFreke\MenuManager\Controllers;
+<?php namespace Harassmap\MenuManager\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use BenFreke\MenuManager\Models\Menu;
+use Harassmap\MenuManager\Models\Menu;
 use Illuminate\Support\Facades\Input;
 use Lang;
 
@@ -19,7 +19,7 @@ class Menus extends Controller
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
 
-    public $requiredPermissions = ['benfreke.menumanager.access_menumanager'];
+    public $requiredPermissions = ['harassmap.menumanager.access_menumanager'];
 
     /**
      * Ensure that by default our edit menu sidebar is active
@@ -31,7 +31,7 @@ class Menus extends Controller
         BackendMenu::setContext('BenFreke.MenuManager', 'menumanager', 'edit');
 
         // Add my assets
-        $this->addJs('/plugins/benfreke/menumanager/assets/js/benfreke.menumanager.js');
+        $this->addJs('/plugins/harassmap/menumanager/assets/js/harassmap.menumanager.js');
     }
 
     /**
@@ -67,10 +67,10 @@ class Menus extends Controller
         // Ensure the correct sidemenu is active
         BackendMenu::setContext('BenFreke.MenuManager', 'menumanager', 'reorder');
 
-        $this->pageTitle = Lang::get('benfreke.menumanager::lang.menu.reordermenu');
+        $this->pageTitle = Lang::get('harassmap.menumanager::lang.menu.reordermenu');
 
         $toolbarConfig = $this->makeConfig();
-        $toolbarConfig->buttons = '$/benfreke/menumanager/controllers/menus/_reorder_toolbar.htm';
+        $toolbarConfig->buttons = '$/harassmap/menumanager/controllers/menus/_reorder_toolbar.htm';
 
         $this->vars['toolbar'] = $this->makeWidget('Backend\Widgets\Toolbar', $toolbarConfig);
         $this->vars['records'] = Menu::make()->getEagerRoot();

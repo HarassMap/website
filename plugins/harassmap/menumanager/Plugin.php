@@ -1,4 +1,4 @@
-<?php namespace BenFreke\MenuManager;
+<?php namespace Harassmap\MenuManager;
 
 use Backend;
 use Controller;
@@ -17,8 +17,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'benfreke.menumanager::lang.plugin.name',
-            'description' => 'benfreke.menumanager::lang.plugin.description',
+            'name' => 'harassmap.menumanager::lang.plugin.name',
+            'description' => 'harassmap.menumanager::lang.plugin.description',
             'author' => 'Ben Freke',
             'icon' => 'icon-list-alt',
             'homepage' => 'https://github.com/benfreke/oc-menumanager-plugin',
@@ -34,23 +34,23 @@ class Plugin extends PluginBase
     {
         return [
             'menumanager' => [
-                'label' => 'benfreke.menumanager::lang.menu.name',
-                'url' => Backend::url('benfreke/menumanager/menus'),
+                'label' => 'harassmap.menumanager::lang.menu.name',
+                'url' => Backend::url('harassmap/menumanager/menus'),
                 'icon' => 'icon-list-alt',
-                'permissions' => ['benfreke.menumanager.*'],
+                'permissions' => ['harassmap.menumanager.*'],
                 'order' => 500,
                 'sideMenu' => [
                     'edit' => [
-                        'label' => 'benfreke.menumanager::lang.menu.editmenu',
+                        'label' => 'harassmap.menumanager::lang.menu.editmenu',
                         'icon' => 'icon-list-alt',
-                        'url' => Backend::url('benfreke/menumanager/menus'),
-                        'permissions' => ['benfreke.menumanager.access_menumanager'],
+                        'url' => Backend::url('harassmap/menumanager/menus'),
+                        'permissions' => ['harassmap.menumanager.access_menumanager'],
                     ],
                     'reorder' => [
-                        'label' => 'benfreke.menumanager::lang.menu.reordermenu',
+                        'label' => 'harassmap.menumanager::lang.menu.reordermenu',
                         'icon' => 'icon-exchange',
-                        'url' => Backend::url('benfreke/menumanager/menus/reorder'),
-                        'permissions' => ['benfreke.menumanager.access_menumanager'],
+                        'url' => Backend::url('harassmap/menumanager/menus/reorder'),
+                        'permissions' => ['harassmap.menumanager.access_menumanager'],
                     ],
                 ],
             ],
@@ -60,9 +60,9 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'benfreke.menumanager.access_menumanager' => [
-                'label' => 'benfreke.menumanager::lang.access.label',
-                'tab' => 'benfreke.menumanager::lang.plugin.name',
+            'harassmap.menumanager.access_menumanager' => [
+                'label' => 'harassmap.menumanager::lang.access.label',
+                'tab' => 'harassmap.menumanager::lang.plugin.name',
             ],
         ];
     }
@@ -75,7 +75,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            '\BenFreke\MenuManager\Components\Menu' => 'menu',
+            '\Harassmap\MenuManager\Components\Menu' => 'menu',
         ];
     }
 }

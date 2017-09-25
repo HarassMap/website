@@ -1,8 +1,8 @@
-<?php namespace BenFreke\MenuManager\Updates;
+<?php namespace Harassmap\MenuManager\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Seeder;
-use BenFreke\MenuManager\Models\Menu;
+use Harassmap\MenuManager\Models\Menu;
 
 class SeedAllTables extends Seeder
 {

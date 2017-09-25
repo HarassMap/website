@@ -1,0 +1,24 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+  title:
+    label: harassmap.menumanager::lang.modeldata.title
+    searchable: true
+  enabled:
+    label: harassmap.menumanager::lang.modeldata.enabled
+    type: switch
+  url:
+    label: harassmap.menumanager::lang.modeldata.url
+    searchable: true
+    options: getUrlOptions
+  parameters:
+    label: harassmap.menumanager::lang.modeldata.parameters
+    searchable: true
+  query_string:
+    label: harassmap.menumanager::lang.modeldata.query
+    searchable: true
+  description:
+    label: harassmap.menumanager::lang.modeldata.description
+    searchable: true

@@ -1,16 +1,16 @@
-<?php namespace BenFreke\MenuManager\Updates;
+<?php namespace Harassmap\MenuManager\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class AddIsExternalField extends Migration
+class AddEnabledParametersQueryFields3 extends Migration
 {
 
     public function up()
     {
         Schema::table('benfreke_menumanager_menus', function($table)
         {
-            $table->boolean('is_external')->default(false);
+            $table->string('query_string')->nullable();
         });
     }
 
@@ -18,7 +18,7 @@ class AddIsExternalField extends Migration
     {
         Schema::table('benfreke_menumanager_menus', function($table)
         {
-            $table->dropColumn(array('is_external'));
+            $table->dropColumn('query_string');
         });
     }
 

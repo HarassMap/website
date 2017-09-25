@@ -1,21 +1,23 @@
-<?php namespace BenFreke\MenuManager\Models;
+<?php namespace Harassmap\MenuManager\Models;
 
 use Cms\Classes\Controller as BaseController;
 use Cms\Classes\Page;
 use Lang;
 use Model;
 use RainLab\Pages\Classes\Page as StaticPage;
-use System\Classes\ApplicationException;
 use Validator;
+use October\Rain\Database\Traits\NestedTree;
+use October\Rain\Database\Traits\Validation;
+use October\Rain\Database\Traits\Purgeable;
 
 /**
  * Menu Model
  */
 class Menu extends Model
 {
-    use \October\Rain\Database\Traits\NestedTree;
-    use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\Purgeable;
+    use NestedTree;
+    use Validation;
+    use Purgeable;
 
     /**
      * @var string The database table used by the model.
@@ -132,7 +134,7 @@ class Menu extends Model
     {
         $allPages = Page::sortBy('baseFileName')->lists('title', 'baseFileName');
         $pages = array(
-            '' => Lang::get('benfreke.menumanager::lang.create.nolink')
+            '' => Lang::get('harassmap.menumanager::lang.create.nolink')
         );
         foreach ($allPages as $key => $value) {
             $pages[$key] = "{$value} - (File: $key)";
@@ -146,7 +148,7 @@ class Menu extends Model
         $allPages = StaticPage::listInTheme('harassmap')->lists('title', 'baseFileName');
 
         $pages = array(
-            '' => Lang::get('benfreke.menumanager::lang.create.nolink')
+            '' => Lang::get('harassmap.menumanager::lang.create.nolink')
         );
         foreach ($allPages as $key => $value) {
             $pages[$key] = "{$value} - (File: $key)";

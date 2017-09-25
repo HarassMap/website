@@ -1,4 +1,4 @@
-<?php namespace BenFreke\MenuManager\Updates;
+<?php namespace Harassmap\MenuManager\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
