@@ -17,7 +17,7 @@ return [
     'misc' => [
         'menu' => 'Menu',
         'newmenu' => 'New Menu',
-        'manageorder' => 'Manage Menu Order',
+        'manageorder' => 'Reorder',
         'returntomenus' => 'Return to Menus',
     ],
     'form' => [
@@ -77,6 +77,8 @@ return [
         'querystr' => 'Extra non-OctoberCMS query string parameters (they will be automatically escaped)',
         'querystrcomment' => 'e.g "param1=foo&amp;param2=http://www.google.com"',
         'url' => 'URL',
+        'domain' => 'Domain',
+        'code' => 'Code',
     ],
     'component' => [
         'start' => [

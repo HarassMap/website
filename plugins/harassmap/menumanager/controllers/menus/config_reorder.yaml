@@ -1,0 +1,5 @@
+title: Reorder Categories
+modelClass: Harassmap\MenuManager\Models\Menu
+nameFrom: title
+toolbar:
+    buttons: reorder_toolbar

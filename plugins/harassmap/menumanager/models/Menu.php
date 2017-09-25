@@ -37,7 +37,8 @@ class Menu extends Model
      */
     public $rules = [
         'title' => 'required',
-        'parameters' => 'json'
+        'parameters' => 'json',
+        'domain' => 'required',
     ];
 
     public $belongsTo = [

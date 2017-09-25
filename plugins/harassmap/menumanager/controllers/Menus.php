@@ -1,10 +1,9 @@
 <?php namespace Harassmap\MenuManager\Controllers;
 
-use BackendMenu;
 use Backend\Classes\Controller;
+use BackendMenu;
 use Harassmap\Incidents\Traits\FilterDomain;
 use Harassmap\MenuManager\Models\Menu;
-use Illuminate\Support\Facades\Input;
 use Lang;
 
 /**
@@ -17,11 +16,13 @@ class Menus extends Controller
 
     public $implement = [
         'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
+        'Backend.Behaviors.ListController',
+        'Backend\Behaviors\ReorderController'
     ];
 
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
+    public $reorderConfig = 'config_reorder.yaml';
 
     public $requiredPermissions = ['harassmap.menumanager.access_menumanager'];
 
@@ -59,51 +60,6 @@ class Menus extends Controller
                 $allFields['static_url']->value = $allFields['url']->value;
                 break;
             default:
-                break;
-        }
-    }
-
-    /**
-     * Displays the menu items in a tree list view so they can be reordered
-     */
-    public function reorder()
-    {
-        // Ensure the correct sidemenu is active
-        BackendMenu::setContext('Harassmap.MenuManager', 'menumanager', 'reorder');
-
-        $this->pageTitle = Lang::get('harassmap.menumanager::lang.menu.reordermenu');
-
-        $toolbarConfig = $this->makeConfig();
-        $toolbarConfig->buttons = '$/harassmap/menumanager/controllers/menus/_reorder_toolbar.htm';
-
-        $this->vars['toolbar'] = $this->makeWidget('Backend\Widgets\Toolbar', $toolbarConfig);
-        $this->vars['records'] = Menu::make()->getEagerRoot();
-    }
-
-    /**
-     * Update the menu item position
-     */
-    public function reorder_onMove()
-    {
-        $sourceNode = Menu::find(post('sourceNode'));
-        $targetNode = post('targetNode') ? Menu::find(post('targetNode')) : null;
-
-        if ($sourceNode == $targetNode) {
-            return;
-        }
-
-        switch (post('position')) {
-            case 'before':
-                $sourceNode->moveBefore($targetNode);
-                break;
-            case 'after':
-                $sourceNode->moveAfter($targetNode);
-                break;
-            case 'child':
-                $sourceNode->makeChildOf($targetNode);
-                break;
-            default:
-                $sourceNode->makeRoot();
                 break;
         }
     }

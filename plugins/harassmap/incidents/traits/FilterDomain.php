@@ -36,7 +36,11 @@ trait FilterDomain
         }
 
         $query->whereIn($this->domain_id, $domain_ids);
+    }
 
+    public function reorderExtendQuery($query)
+    {
+        $this->listExtendQuery($query);
     }
 
     public function update($recordId, $context = null)

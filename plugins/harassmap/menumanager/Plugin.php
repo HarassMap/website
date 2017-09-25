@@ -39,20 +39,6 @@ class Plugin extends PluginBase
                 'icon' => 'icon-list-alt',
                 'permissions' => ['harassmap.menumanager.*'],
                 'order' => 500,
-                'sideMenu' => [
-                    'edit' => [
-                        'label' => 'harassmap.menumanager::lang.menu.editmenu',
-                        'icon' => 'icon-list-alt',
-                        'url' => Backend::url('harassmap/menumanager/menus'),
-                        'permissions' => ['harassmap.menumanager.access_menumanager'],
-                    ],
-                    'reorder' => [
-                        'label' => 'harassmap.menumanager::lang.menu.reordermenu',
-                        'icon' => 'icon-exchange',
-                        'url' => Backend::url('harassmap/menumanager/menus/reorder'),
-                        'permissions' => ['harassmap.menumanager.access_menumanager'],
-                    ],
-                ],
             ],
         ];
     }
