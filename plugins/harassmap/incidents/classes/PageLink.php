@@ -9,7 +9,7 @@ use RainLab\Pages\Classes\Page as StaticPage;
 class PageLink
 {
 
-    public static function url($name)
+    public static function url($name, $parameters = [])
     {
         $parts = explode('||', $name);
 
@@ -21,7 +21,7 @@ class PageLink
 
         switch ($parts[0]) {
             case '2';
-                $value = Page::url($parts[1]);
+                $value = Page::url($parts[1], $parameters);
                 break;
             case '3';
                 $value = StaticPage::url($parts[1]);

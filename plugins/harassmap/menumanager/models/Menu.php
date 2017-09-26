@@ -152,7 +152,9 @@ class Menu extends Model
      */
     public function getLinkHref()
     {
-        $url = PageLink::url($this->url);
+        $parameters = (array)json_decode($this->parameters);
+
+        $url = PageLink::url($this->url, $parameters);
 
         if (!empty($this->query_string)) {
             if (substr($this->query_string, 0, 1) == '#') {
