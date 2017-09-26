@@ -25,37 +25,10 @@ fields:
             1: harassmap.menumanager::lang.modeldataform.optenabled
         default: 1
         span: left
-    is_external:
-        label: harassmap.menumanager::lang.modeldataform.external
-        type: dropdown
-        placeholder: harassmap.menumanager::lang.modeldataform.selectmenutype
-        options:
-            0: harassmap.menumanager::lang.modeldataform.optinternal
-            1: harassmap.menumanager::lang.modeldataform.optexternal
-            2: harassmap.menumanager::lang.modeldataform.optpages
-        default: 0
-        cssClass: menumanager-type-controller
-        span: left
-    internal_url:
-        label: harassmap.menumanager::lang.modeldataform.internalurl
-        type: dropdown
-        placeholder: harassmap.menumanager::lang.modeldataform.internalurlplaceholder
-        options: getUrlOptions
-        cssClass: menumanager-type type-0
-        span: right
-    static_url:
-        label: harassmap.menumanager::lang.modeldataform.internalurl
-        type: dropdown
-        placeholder: harassmap.menumanager::lang.modeldataform.internalurlplaceholder
-        options: getStaticOptions
-        cssClass: menumanager-type type-2
-        span: right
-    external_url:
-        label: Url
-        placeholder: harassmap.menumanager::lang.modeldataform.externalurl
-        cssClass: menumanager-type type-1
-        comment: harassmap.menumanager::lang.modeldataform.externalurlcomment
-        span: right
+    url:
+        label: harassmap.menumanager::lang.modeldataform.url
+        span: full
+        type: page_link
     link_target:
         label: harassmap.menumanager::lang.modeldataform.linktarget
         type: radio
@@ -63,16 +36,3 @@ fields:
             _self: harassmap.menumanager::lang.modeldataform.self
             _blank: harassmap.menumanager::lang.modeldataform.blank
         default: _self
-    parameters:
-        label: harassmap.menumanager::lang.modeldataform.parameters
-        commentAbove: harassmap.menumanager::lang.modeldataform.parameterscomment
-        type: text
-        size: tiny
-    query_string:
-        label: harassmap.menumanager::lang.modeldataform.querystr
-        commentAbove: harassmap.menumanager::lang.modeldataform.querystrcomment
-        type: text
-        size: tiny
-    url:
-        label: harassmap.menumanager::lang.modeldataform.url
-        cssClass: hidden

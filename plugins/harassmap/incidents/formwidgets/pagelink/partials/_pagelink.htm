@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col col-xs-12 col-sm-6">
-        <select class="form-control page-link-select" name="<?= $name ?>[0]">
+        <select class="form-control custom-select page-link-select" name="<?= $name ?>[0]">
             <option <?= $type === '1' ? 'selected' : '' ?> value="1">External URL</option>
             <option <?= $type === '2' ? 'selected' : '' ?> value="2">CMS Page</option>
             <option <?= $type === '3' ? 'selected' : '' ?> value="3">Static Page</option>
@@ -11,16 +11,16 @@
             <input class="form-control" id="<?= $id ?>" name="<?= $name ?>[1]" value="<?= e($value) ?>"/>
         </div>
         <div class="control control-2">
-            <select class="form-control" name="<?= $name ?>[2]">
+            <select class="form-control custom-select" name="<?= $name ?>[2]">
                 <?php foreach($urls as $key => $label): ?>
-                    <option <?= $value === $key ? 'selected' : '' ?> value="<?= $key ?>"><?= $label ?></option>
+                    <option <?= $value == $key ? 'selected' : '' ?> value="<?= $key ?>"><?= $label ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
         <div class="control control-3">
-            <select class="form-control" name="<?= $name ?>[3]">
+            <select class="form-control custom-select" name="<?= $name ?>[3]">
                 <?php foreach($pages as $key => $label): ?>
-                    <option <?= $value === $key ? 'selected' : '' ?> value="<?= $key ?>"><?= $label ?></option>
+                    <option <?= $value == $key ? 'selected' : '' ?> value="<?= $key ?>"><?= $label ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

@@ -39,31 +39,6 @@ class Menus extends Controller
         $this->addJs('/plugins/harassmap/menumanager/assets/js/harassmap.menumanager.js');
     }
 
-    /**
-     * As external_url and internal_url doesn't exist in database, we need fill with url value.
-     *
-     * @param $host
-     *
-     * @return void
-     */
-    public function formExtendFields($host)
-    {
-        $allFields = $host->getFields();
-        switch ($allFields['is_external']->value) {
-            case 0:
-                $allFields['internal_url']->value = $allFields['url']->value;
-                break;
-            case 1:
-                $allFields['external_url']->value = $allFields['url']->value;
-                break;
-            case 2:
-                $allFields['static_url']->value = $allFields['url']->value;
-                break;
-            default:
-                break;
-        }
-    }
-
     protected function findDomain($id)
     {
         $menu = Menu::find($id);

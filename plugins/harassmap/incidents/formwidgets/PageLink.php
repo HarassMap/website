@@ -82,7 +82,7 @@ class PageLink extends FormWidgetBase
     {
         $allPages = Page::sortBy('baseFileName')->lists('title', 'baseFileName');
         $pages = array(
-            '' => Lang::get('benfreke.menumanager::lang.create.nolink')
+            '' => Lang::get('harassmap.menumanager::lang.create.nolink')
         );
         foreach ($allPages as $key => $value) {
             $pages[$key] = "{$value} - (File: $key)";
@@ -96,7 +96,7 @@ class PageLink extends FormWidgetBase
         $allPages = StaticPage::listInTheme('harassmap')->lists('title', 'baseFileName');
 
         $pages = array(
-            '' => Lang::get('benfreke.menumanager::lang.create.nolink')
+            '' => Lang::get('harassmap.menumanager::lang.create.nolink')
         );
         foreach ($allPages as $key => $value) {
             $pages[$key] = "{$value} - (File: $key)";

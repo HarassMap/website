@@ -134,38 +134,6 @@ class Menu extends Model
     }
 
     /**
-     * Get a list of all pages. Prepend an empty option to the start
-     *
-     * @return array
-     */
-    public function getUrlOptions()
-    {
-        $allPages = Page::sortBy('baseFileName')->lists('title', 'baseFileName');
-        $pages = array(
-            '' => Lang::get('harassmap.menumanager::lang.create.nolink')
-        );
-        foreach ($allPages as $key => $value) {
-            $pages[$key] = "{$value} - (File: $key)";
-        }
-
-        return $pages;
-    }
-
-    public function getStaticOptions()
-    {
-        $allPages = StaticPage::listInTheme('harassmap')->lists('title', 'baseFileName');
-
-        $pages = array(
-            '' => Lang::get('harassmap.menumanager::lang.create.nolink')
-        );
-        foreach ($allPages as $key => $value) {
-            $pages[$key] = "{$value} - (File: $key)";
-        }
-
-        return $pages;
-    }
-
-    /**
      * Returns the class name so I can compare
      *
      * @return string
@@ -173,48 +141,6 @@ class Menu extends Model
     public static function getClassName()
     {
         return get_called_class();
-    }
-
-    /**
-     * Returns the correct url for this menu item.
-     * It will either be the full page URL or '#' if no link was provided
-     *
-     * @param bool $routePersistence
-     *
-     * @return string
-     */
-    public function getLinkHref($routePersistence = true)
-    {
-        $this->controller = new BaseController;
-
-        $url = '#';
-
-        $parameters = (array)json_decode($this->parameters);
-
-        if ($this->url) {
-
-            switch ($this->is_external) {
-                case 0:
-                    $url = $this->controller->pageUrl($this->url, $parameters, $routePersistence);
-                    break;
-                case 1:
-                    $url = $this->url;
-                    break;
-                case 2:
-                    $url = StaticPage::url($this->url);
-                    break;
-            }
-        }
-
-        if (!empty($this->query_string)) {
-            if (substr($this->query_string, 0, 1) == '#') {
-                $url .= $this->query_string;
-            } else {
-                $url .= '?' . $this->createQueryString($this->query_string);
-            }
-        }
-
-        return $url;
     }
 
     /**
