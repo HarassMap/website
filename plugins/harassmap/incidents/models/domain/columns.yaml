@@ -1,5 +1,5 @@
 columns:
     host:
-        label: 'harassmap.incidents::lang.form.host'
+        label: 'harassmap.incidents::lang.model.domain.host'
         type: text
         searchable: true
