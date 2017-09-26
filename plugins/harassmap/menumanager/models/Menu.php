@@ -140,6 +140,11 @@ class Menu extends Model
         return get_called_class();
     }
 
+    public function afterFetch()
+    {
+        $this->resolved_url = $this->getLinkHref();
+    }
+
     /**
      * Returns the correct url for this menu item.
      * It will either be the full page URL or '#' if no link was provided

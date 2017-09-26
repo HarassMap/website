@@ -14,10 +14,10 @@ columns:
   enabled:
     label: harassmap.menumanager::lang.modeldata.enabled
     type: switch
-  url:
+  resolved_url:
     label: harassmap.menumanager::lang.modeldata.url
     searchable: true
-    options: getUrlOptions
+    valueFrom: resolved_url
   parameters:
     label: harassmap.menumanager::lang.modeldata.parameters
     searchable: true
