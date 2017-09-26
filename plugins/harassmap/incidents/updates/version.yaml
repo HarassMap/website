@@ -135,10 +135,10 @@
     - builder_table_create_harassmap_incidents_api.php
 1.0.48:
     - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident8.php
+    - builder_table_update_harassmap_incidents_incident_8.php
 1.0.49:
     - 'Updated table harassmap_incidents_location'
-    - builder_table_update_harassmap_incidents_location5.php
+    - builder_table_update_harassmap_incidents_location_5.php
 1.0.50:
     - 'Updated table harassmap_incidents_domain'
     - builder_table_update_harassmap_incidents_domain_8.php
@@ -185,3 +185,6 @@
 1.0.66:
     - 'Updated table harassmap_incidents_role'
     - builder_table_update_harassmap_incidents_role.php
+1.0.67:
+    - 'Updated table harassmap_incidents_domain'
+    - builder_table_update_harassmap_incidents_domain_14.php
