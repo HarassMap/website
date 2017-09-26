@@ -36,3 +36,13 @@ fields:
             _self: harassmap.menumanager::lang.modeldataform.self
             _blank: harassmap.menumanager::lang.modeldataform.blank
         default: _self
+    parameters:
+        label: harassmap.menumanager::lang.modeldataform.parameters
+        commentAbove: harassmap.menumanager::lang.modeldataform.parameterscomment
+        type: text
+        size: tiny
+    query_string:
+        label: harassmap.menumanager::lang.modeldataform.querystr
+        commentAbove: harassmap.menumanager::lang.modeldataform.querystrcomment
+        type: text
+        size: tiny

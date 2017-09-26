@@ -2,6 +2,7 @@
 
 use Cms\Classes\Controller as BaseController;
 use Cms\Classes\Page;
+use Harassmap\Incidents\Classes\PageLink;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
 use Lang;
@@ -141,6 +142,27 @@ class Menu extends Model
     public static function getClassName()
     {
         return get_called_class();
+    }
+
+    /**
+     * Returns the correct url for this menu item.
+     * It will either be the full page URL or '#' if no link was provided
+     *
+     * @return string
+     */
+    public function getLinkHref()
+    {
+        $url = PageLink::url($this->url);
+
+        if (!empty($this->query_string)) {
+            if (substr($this->query_string, 0, 1) == '#') {
+                $url .= $this->query_string;
+            } else {
+                $url .= '?' . $this->createQueryString($this->query_string);
+            }
+        }
+
+        return $url;
     }
 
     /**
