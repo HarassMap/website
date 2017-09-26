@@ -21,6 +21,16 @@
         'countries' => 'Countries',
         'cities' => 'Cities',
     ],
+    'model' => [
+        'domain' => [
+            'host' => 'Host',
+            'host_comment' => 'Pattern for matching the domain name.',
+            'name' => 'Name',
+            'name_comment' => 'Used in logo alt text and emails.',
+            'languages' => 'Languages',
+            'timezone' => 'Timezone',
+        ]
+    ],
     'form' => [
         'tab' => [
             'site' => 'Site',
@@ -43,8 +53,6 @@
         'color' => 'Color',
         'domain' => 'Domain',
         'domains' => 'Domains',
-        'host' => 'Host',
-        'host_help' => 'Pattern for matching the domain name.',
         'name' => 'Name',
         'namestart' => 'Name Start',
         'nameend' => 'Name End',
@@ -82,7 +90,6 @@
         'user' => 'User',
         'id' => 'ID',
         'public_id' => 'Public ID',
-        'timezone' => 'Timezone',
         'support' => 'Support',
         'attributable_key' => 'Attributable API Key',
         'ga_key' => 'Google Analytics Key',

@@ -8,6 +8,7 @@ use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
+use RainLab\Translate\Models\Locale;
 use Request;
 
 /**
@@ -290,5 +291,10 @@ class Domain extends Model
         }
 
         return [NULL => 'No Domain'] + $choices;
+    }
+
+    public function getLanguages()
+    {
+        return Locale::isEnabled()->lists('code', 'code');
     }
 }

@@ -1,16 +1,16 @@
 tabs:
     fields:
         host:
-            label: 'harassmap.incidents::lang.form.host'
+            label: 'harassmap.incidents::lang.model.domain.host'
             span: full
             type: text
-            comment: 'harassmap.incidents::lang.form.host_help'
+            comment: 'harassmap.incidents::lang.model.domain.host_comment'
             tab: 'harassmap.incidents::lang.form.tab.site'
         name:
-            label: 'harassmap.incidents::lang.form.name'
+            label: 'harassmap.incidents::lang.model.domain.name'
             span: auto
             type: text
-            commentAbove: Used in logo alt text and emails.
+            commentAbove: 'harassmap.incidents::lang.model.domain.name_comment'
             tab: 'harassmap.incidents::lang.form.tab.site'
         email:
             label: 'harassmap.incidents::lang.form.email'
@@ -24,10 +24,16 @@ tabs:
             commentAbove: 'harassmap.incidents::lang.form.about_help'
             tab: 'harassmap.incidents::lang.form.tab.site'
         timezone:
-            label: 'harassmap.incidents::lang.form.timezone'
+            label: 'harassmap.incidents::lang.model.domain.timezone'
             span: auto
             type: dropdown
             tab: 'harassmap.incidents::lang.form.tab.site'
+        languages:
+            label: 'harassmap.incidents::lang.model.domain.languages'
+            span: auto
+            type: taglist
+            tab: 'harassmap.incidents::lang.form.tab.site'
+            options: getLanguages
         incident:
             label: 'Enable Incident'
             span: full
