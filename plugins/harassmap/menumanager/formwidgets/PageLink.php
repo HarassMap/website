@@ -3,9 +3,12 @@
 namespace Harassmap\MenuManager\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
+use BackendAuth;
 use Cms\Classes\Page;
+use Harassmap\Incidents\Classes\EventRegistry;
 use Lang;
 use RainLab\Pages\Classes\Page as StaticPage;
+use RainLab\Pages\Classes\PageList as StaticPageList;
 
 /**
  * PageLink Form Widget
@@ -97,13 +100,18 @@ class PageLink extends FormWidgetBase
 
     public function getStaticOptions()
     {
-        $allPages = StaticPage::listInTheme('harassmap')->lists('title', 'baseFileName');
+        $allPages = StaticPage::listInTheme('harassmap');
+        $allPages = EventRegistry::instance()->pruneDomainPages($allPages);
 
         $pages = array(
             '' => Lang::get('harassmap.menumanager::lang.create.nolink')
         );
-        foreach ($allPages as $key => $value) {
-            $pages[$key] = "{$value} - (File: $key)";
+
+        foreach ($allPages as $page) {
+            $page = $page->page;
+            $baseName = $page->getBaseFileName();
+
+            $pages[$baseName] = "{$page->title} - (File: $baseName)";
         }
 
         return $pages;

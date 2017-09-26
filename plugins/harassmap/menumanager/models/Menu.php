@@ -236,34 +236,6 @@ class Menu extends Model
     }
 
     /**
-     * Sets the URL attribute, based on whether it is internal or external
-     *
-     * @param $value
-     */
-    public function setUrlAttribute($value)
-    {
-        $urlValue = null;
-
-        switch ($this->is_external) {
-            case 0:
-                $urlValue = $this->internal_url;
-                break;
-            case 1:
-                $urlValue = $this->external_url;
-                break;
-            case 2:
-                $urlValue = $this->static_url;
-                break;
-        }
-
-        // Allow seeding via the 'url' value
-        if (empty($urlValue) && !empty($value)) {
-            $urlValue = $value;
-        }
-        $this->attributes['url'] = $urlValue;
-    }
-
-    /**
      * Postgres returns these as boolean. The admin screen needs this to be an integer
      *
      * @param int|boolean $attribute The is_external value saved in the database
@@ -277,7 +249,7 @@ class Menu extends Model
     public function getCodeOptions()
     {
         return [
-            null => 'No Code',
+            '' => 'No Code',
             'main-menu' => 'Main Menu',
             'footer-menu' => 'Footer Menu',
         ];

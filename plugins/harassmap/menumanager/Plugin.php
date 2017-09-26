@@ -1,7 +1,6 @@
 <?php namespace Harassmap\MenuManager;
 
 use Backend;
-use Controller;
 use Harassmap\MenuManager\FormWidgets\PageLink;
 use System\Classes\PluginBase;
 

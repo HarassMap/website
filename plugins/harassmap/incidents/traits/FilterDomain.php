@@ -3,7 +3,6 @@
 namespace Harassmap\Incidents\Traits;
 
 use BackendAuth;
-use Harassmap\Incidents\Models\Domain;
 
 trait FilterDomain
 {

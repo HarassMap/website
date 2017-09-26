@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Classes;
 
 use BackendAuth;
 use October\Rain\Support\Traits\Singleton;
+use RainLab\Pages\Classes\Page;
 
 class EventRegistry
 {
@@ -38,12 +39,21 @@ class EventRegistry
             $result = [];
 
             foreach ($pages as $page) {
-                $domain = $page->page->getViewBag()->property('domain');
+
+                $subPages = [];
+
+                // get the page
+                if(!($page instanceof Page)) {
+                    $subPages = $page->subpages;
+                    $page = $page->page;
+                }
+
+                $domain = $page->getViewBag()->property('domain');
 
                 if (array_search($domain, $domain_ids) !== FALSE) {
                     $result[] = (object)[
-                        'page' => $page->page,
-                        'subpages' => $iterator($page->subpages)
+                        'page' => $page,
+                        'subpages' => $iterator($subPages)
                     ];
                 }
             }
