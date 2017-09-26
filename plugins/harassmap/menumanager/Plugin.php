@@ -2,6 +2,7 @@
 
 use Backend;
 use Controller;
+use Harassmap\MenuManager\FormWidgets\PageLink;
 use System\Classes\PluginBase;
 
 /**
@@ -62,6 +63,22 @@ class Plugin extends PluginBase
     {
         return [
             '\Harassmap\MenuManager\Components\Menu' => 'menu',
+        ];
+    }
+
+    public function registerFormWidgets()
+    {
+        return [
+            PageLink::class => 'page_link'
+        ];
+    }
+
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'pageLink' => ['Harassmap\MenuManager\Classes\PageLink', 'url']
+            ]
         ];
     }
 }

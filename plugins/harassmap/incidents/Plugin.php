@@ -23,7 +23,6 @@ use Harassmap\Incidents\Components\UserAPI;
 use Harassmap\Incidents\Components\UserMenu;
 use Harassmap\Incidents\Components\UserReports;
 use Harassmap\Incidents\Console\MigrateCommand;
-use Harassmap\Incidents\FormWidgets\PageLink;
 use Harassmap\Incidents\FormWidgets\RelationLink;
 use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
@@ -174,16 +173,7 @@ class Plugin extends PluginBase
     public function registerFormWidgets()
     {
         return [
-            RelationLink::class => 'relation_link',
-            PageLink::class => 'page_link'
-        ];
-    }
-    public function registerMarkupTags()
-    {
-        return [
-            'filters' => [
-                'pageLink' => ['Harassmap\Incidents\Classes\PageLink', 'url']
-            ]
+            RelationLink::class => 'relation_link'
         ];
     }
 }

@@ -1,4 +1,6 @@
-<?php namespace Harassmap\Incidents\FormWidgets;
+<?php
+
+namespace Harassmap\MenuManager\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
 use Cms\Classes\Page;
@@ -81,9 +83,11 @@ class PageLink extends FormWidgetBase
     public function getUrlOptions()
     {
         $allPages = Page::sortBy('baseFileName')->lists('title', 'baseFileName');
+
         $pages = array(
             '' => Lang::get('harassmap.menumanager::lang.create.nolink')
         );
+
         foreach ($allPages as $key => $value) {
             $pages[$key] = "{$value} - (File: $key)";
         }

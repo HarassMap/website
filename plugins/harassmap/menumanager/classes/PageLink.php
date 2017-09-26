@@ -1,6 +1,6 @@
 <?php
 
-namespace Harassmap\Incidents\Classes;
+namespace Harassmap\MenuManager\Classes;
 
 
 use Cms\Classes\Page;

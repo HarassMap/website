@@ -1,17 +1,13 @@
 <?php namespace Harassmap\MenuManager\Models;
 
-use Cms\Classes\Controller as BaseController;
-use Cms\Classes\Page;
-use Harassmap\Incidents\Classes\PageLink;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
-use Lang;
+use Harassmap\MenuManager\Classes\PageLink;
 use Model;
-use RainLab\Pages\Classes\Page as StaticPage;
-use Validator;
 use October\Rain\Database\Traits\NestedTree;
-use October\Rain\Database\Traits\Validation;
 use October\Rain\Database\Traits\Purgeable;
+use October\Rain\Database\Traits\Validation;
+use Validator;
 
 /**
  * Menu Model
@@ -230,11 +226,11 @@ class Menu extends Model
             $this->parameters = json_encode(json_decode($this->parameters));
         }
 
-        if($this->domain_id === '') {
+        if ($this->domain_id === '') {
             $this->domain_id = NULL;
         }
 
-        if($this->code === '') {
+        if ($this->code === '') {
             $this->code = NULL;
         }
     }
