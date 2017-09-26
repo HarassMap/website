@@ -3,12 +3,10 @@
 namespace Harassmap\MenuManager\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
-use BackendAuth;
 use Cms\Classes\Page;
 use Harassmap\Incidents\Classes\EventRegistry;
 use Lang;
 use RainLab\Pages\Classes\Page as StaticPage;
-use RainLab\Pages\Classes\PageList as StaticPageList;
 
 /**
  * PageLink Form Widget
@@ -108,7 +106,11 @@ class PageLink extends FormWidgetBase
         );
 
         foreach ($allPages as $page) {
-            $page = $page->page;
+
+            if (!($page instanceof StaticPage)) {
+                $page = $page->page;
+            }
+
             $baseName = $page->getBaseFileName();
 
             $pages[$baseName] = "{$page->title} - (File: $baseName)";
