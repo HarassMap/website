@@ -146,22 +146,6 @@
       }
     }
 
-    &.open {
-      background-color: $tundora;
-
-      @include media-breakpoint-up(md) {
-        background-color: $white;
-      }
-
-      .navbar-toggler-right {
-        background-color: $tundora;
-
-        @include media-breakpoint-up(md) {
-          background-color: $white;
-        }
-      }
-    }
-
   }
 
   .nav {
@@ -188,8 +172,8 @@
       }
 
       > a {
-        border-bottom: 1px solid $white;
-        color: $white;
+        border-bottom: 1px solid $black;
+        color: $black;
         display: block;
         font-weight: $light;
 
@@ -197,7 +181,6 @@
 
         @include media-breakpoint-up(md) {
           border: none;
-          color: $black;
           font-weight: $normal;
 
           @include rem((padding: 10px 15px, font-size: 16px));
@@ -269,7 +252,7 @@
       }
 
       a {
-        color: $white;
+        color: $black;
         padding: 0;
 
         @include media-breakpoint-up(md) {
