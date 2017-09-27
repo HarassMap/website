@@ -9,3 +9,7 @@ navigation:
         label: Translate
         url: harassmap/translate/messages
         icon: icon-language
+permissions:
+    harassmap.translate.manage_messages:
+        tab: 'HarassMap Translate'
+        label: 'Manage Messages'

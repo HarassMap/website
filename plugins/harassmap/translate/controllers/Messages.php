@@ -17,7 +17,7 @@ use System\Helpers\Cache as CacheHelper;
  */
 class Messages extends Controller
 {
-    public $requiredPermissions = ['rainlab.translate.manage_messages'];
+    public $requiredPermissions = ['harassmap.translate.manage_messages'];
 
     protected $hideTranslated = false;
 
