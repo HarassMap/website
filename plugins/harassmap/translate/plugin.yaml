@@ -4,3 +4,8 @@ plugin:
     author: Harassmap
     icon: oc-icon-language
     homepage: ''
+navigation:
+    harassmap.translate:
+        label: Translate
+        url: harassmap/translate/messages
+        icon: icon-language
