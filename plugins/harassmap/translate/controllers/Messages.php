@@ -2,16 +2,15 @@
 
 namespace Harassmap\Translate\Controllers;
 
-use Lang;
-use Flash;
-use Request;
-use BackendMenu;
 use Backend\Classes\Controller;
-use RainLab\Translate\Models\Message;
-use RainLab\Translate\Models\Locale;
+use BackendMenu;
+use Flash;
+use Harassmap\Incidents\Models\Domain;
+use Lang;
 use RainLab\Translate\Classes\ThemeScanner;
+use RainLab\Translate\Models\Locale;
+use RainLab\Translate\Models\Message;
 use System\Helpers\Cache as CacheHelper;
-use System\Classes\SettingsManager;
 
 /**
  * Messages Back-end Controller
@@ -49,24 +48,6 @@ class Messages extends Controller
         CacheHelper::clear();
 
         Flash::success(Lang::get('rainlab.translate::lang.messages.clear_cache_success'));
-    }
-
-    public function onLoadScanMessagesForm()
-    {
-        return $this->makePartial('scan_messages_form');
-    }
-
-    public function onScanMessages()
-    {
-        if (post('purge_messages', false)) {
-            Message::truncate();
-        }
-
-        ThemeScanner::scan();
-
-        Flash::success(Lang::get('rainlab.translate::lang.messages.scan_messages_success'));
-
-        return $this->onRefresh();
     }
 
     public function prepareTable()
@@ -107,7 +88,7 @@ class Messages extends Controller
          */
         $dataSource = $widget->getDataSource();
 
-        $dataSource->bindEvent('data.getRecords', function($offset, $count) use ($selectedFrom, $selectedTo) {
+        $dataSource->bindEvent('data.getRecords', function ($offset, $count) use ($selectedFrom, $selectedTo) {
             $messages = $this->listMessagesForDatasource([
                 'offset' => $offset,
                 'count' => $count
@@ -116,7 +97,7 @@ class Messages extends Controller
             return $this->processTableData($messages, $selectedFrom, $selectedTo);
         });
 
-        $dataSource->bindEvent('data.searchRecords', function($search, $offset, $count) use ($selectedFrom, $selectedTo) {
+        $dataSource->bindEvent('data.searchRecords', function ($search, $offset, $count) use ($selectedFrom, $selectedTo) {
             $messages = $this->listMessagesForDatasource([
                 'search' => $search,
                 'offset' => $offset,
@@ -126,17 +107,17 @@ class Messages extends Controller
             return $this->processTableData($messages, $selectedFrom, $selectedTo);
         });
 
-        $dataSource->bindEvent('data.getCount', function() {
+        $dataSource->bindEvent('data.getCount', function () {
             return Message::count();
         });
 
-        $dataSource->bindEvent('data.updateRecord', function($key, $data) {
+        $dataSource->bindEvent('data.updateRecord', function ($key, $data) {
             $message = Message::find($key);
             $this->updateTableData($message, $data);
             CacheHelper::clear();
         });
 
-        $dataSource->bindEvent('data.deleteRecord', function($key) {
+        $dataSource->bindEvent('data.deleteRecord', function ($key) {
             if ($message = Message::find($key)) {
                 $message->delete();
             }
@@ -152,13 +133,15 @@ class Messages extends Controller
 
     protected function listMessagesForDatasource($options = [])
     {
+        $domain = Domain::getBestMatchingDomain();
+
         extract(array_merge([
             'search' => null,
             'offset' => null,
             'count' => null,
         ], $options));
 
-        $query = Message::orderBy('message_data','asc');
+        $query = Message::orderBy('message_data', 'asc');
 
         if ($search) {
             $query = $query->searchWhere($search, ['message_data']);
@@ -167,6 +150,8 @@ class Messages extends Controller
         if ($count) {
             $query = $query->limit($count)->offset($offset);
         }
+
+        $query->where('domain_id', '=', $domain->id);
 
         return $query->get();
     }

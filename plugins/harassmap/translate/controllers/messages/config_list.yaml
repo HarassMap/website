@@ -1,0 +1,10 @@
+list: $/harassmap/translate/models/message/columns.yaml
+modelClass: Harassmap\Translate\Models\Message
+title: Messages
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
