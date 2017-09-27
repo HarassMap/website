@@ -2,7 +2,7 @@
 
 return [
     'plugin' => [
-        'name' => 'Menu Manager',
+        'name' => 'HarassMap Menu Manager',
         'description' => 'Plugin to enable management of menus within October CMS.',
     ],
     'access' => [

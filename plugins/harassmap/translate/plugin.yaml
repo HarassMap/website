@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.translate::lang.plugin.name'
+    description: 'harassmap.translate::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-language
+    homepage: ''
