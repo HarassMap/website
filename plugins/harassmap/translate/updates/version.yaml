@@ -1,2 +1,5 @@
 1.0.1:
     - Initialize plugin.
+1.0.2:
+    - Adding domain to messages table
+    - update_messages_table.php
