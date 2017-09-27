@@ -4,7 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use App;
 use Cms\Classes\ComponentBase;
-use Harassmap\Incidents\Classes\Mailer;
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
 use Harassmap\Incidents\Models\Support;
@@ -24,9 +24,13 @@ class ReportView extends ComponentBase
     public function onRender()
     {
         $id = $this->param('id');
+        $domain = Domain::getBestMatchingDomain();
 
         // find the incident with the public id
-        $report = Incident::wherePublicId($id)->first();
+        $report = Incident
+            ::where('public_id', '=', $id)
+            ->where('domain_id', '=', $domain->id)
+            ->first();
 
         if (!$report) {
             App::abort(404);
