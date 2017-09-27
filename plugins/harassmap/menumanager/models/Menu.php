@@ -238,7 +238,7 @@ class Menu extends Model
         if ($this->code === '') {
             $this->code = NULL;
         }
-        
+
         unset($this->resolved_url);
     }
 
