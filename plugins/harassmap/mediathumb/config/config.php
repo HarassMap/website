@@ -1,7 +1,5 @@
 <?php
 
-
-
 return [
 
     // Set the mediathumb fold inside your media directory

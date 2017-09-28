@@ -6,9 +6,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 if (!function_exists('mediathumbResize')) {
     function mediathumbResize($img, $mode = null, $size = null, $quality = null)
     {
-
-
-
         // return empty String if $img is falsy
         if (!$img) {
             return '';
@@ -37,18 +34,18 @@ if (!function_exists('mediathumbResize')) {
 
 
         if (!$mode) {
-            $mode = config('manogi.mediathumb::default.mode');
+            $mode = config('harassmap.mediathumb::default.mode');
         }
         if (!$size) {
-            $size = config('manogi.mediathumb::default.size');
+            $size = config('harassmap.mediathumb::default.size');
         }
         if (!$quality) {
-            $quality = config('manogi.mediathumb::default.quality');
+            $quality = config('harassmap.mediathumb::default.quality');
         }
 
         // get folder inside media directory from config
 
-        $mediathumb_folder = config('manogi.mediathumb::folder');
+        $mediathumb_folder = config('harassmap.mediathumb::folder');
 
         
 
@@ -157,7 +154,6 @@ if (!function_exists('mediathumbResize')) {
         return asset(config('cms.storage.'.$resource.'.path').'/'.$mediathumb_folder.'/'.$new_filename);
     }
 }
-
 
 // Alias for mediathumbResize()
 if (!function_exists('mediathumbGetThumb')) {
