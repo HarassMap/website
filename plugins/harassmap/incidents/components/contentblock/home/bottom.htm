@@ -4,7 +4,7 @@
             <div class="img">
                 {% if __SELF__.block.image %}
                     <img class="img-fluid mx-auto d-block"
-                         src="{{ __SELF__.block.image.path | mediathumb_resize('width', 350) }}">
+                         src="{{ __SELF__.block.image.path }}">
                 {% endif %}
             </div>
             <div class="text">
