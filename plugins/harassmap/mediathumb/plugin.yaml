@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.mediathumb::lang.plugin.name'
+    description: 'harassmap.mediathumb::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-image
+    homepage: ''
