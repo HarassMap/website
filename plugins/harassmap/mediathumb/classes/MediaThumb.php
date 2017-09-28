@@ -29,7 +29,7 @@ class MediaThumb
                 $path = self::resize($img, $mode, $size, $quality);
             }
 
-            Cache::put($cacheKey, $path, 1440);
+            Cache::put($cacheKey, $path, 10080);
         }
 
         return $path;
