@@ -19,6 +19,6 @@ class Plugin extends PluginBase
 
     public function mediathumb_resize($img, $mode = null, $size = null, $quality = null)
     {
-        return MediaThumb::resize($img, $mode, $size, $quality);
+        return MediaThumb::getThumb($img, $mode, $size, $quality);
     }
 }
