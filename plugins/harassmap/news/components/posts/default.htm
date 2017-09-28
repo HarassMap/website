@@ -5,7 +5,7 @@
                class="col-12 col-sm-6 col-lg-3{% if loop.index > 2 %} hidden-md-down{% endif %}">
                 {% if post.image %}
                     <div class="text-center">
-                        <img class="img-fluid" src="{{ post.image.path  | resize(255, 170, {mode: 'crop'}) }}">
+                        <img class="img-fluid" src="{{ post.image.path | mediathumb_resize('width', 255) }}">
                     </div>
                 {% endif %}
                 <h4 class="mt-4">{{ post.title }}</h4>

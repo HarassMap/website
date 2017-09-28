@@ -11,7 +11,7 @@
         <div class="col-12">
             {% if post.image and not post.hide_image %}
                 <div class="news-post__image">
-                    <img src="{{ post.image.path | resize(510, 340, {mode: 'crop'}) }}">
+                    <img src="{{ post.image.path | mediathumb_resize('width', 510) }}">
                 </div>
             {% endif %}
             {{ post.content | raw }}
