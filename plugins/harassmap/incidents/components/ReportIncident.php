@@ -89,7 +89,7 @@ class ReportIncident extends ComponentBase
             // get the date and time from the form in the users timezone
             $date = new Carbon($data['date'], new DateTimeZone($data['timezone']));
             $time = new Carbon($data['time'], new DateTimeZone($data['timezone']));
-            $date->setTime($time->format('h'), $time->format('i'), $time->format('s'));
+            $date->setTime($time->format('H'), $time->format('i'), $time->format('s'));
 
             // get the server timezone and store it in that timezone
             $serverTimeZone = date_default_timezone_get();
