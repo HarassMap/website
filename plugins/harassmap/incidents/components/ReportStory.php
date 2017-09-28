@@ -5,6 +5,7 @@ namespace Harassmap\Incidents\Components;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Domain;
 
 class ReportStory extends ComponentBase
 {
@@ -36,7 +37,11 @@ class ReportStory extends ComponentBase
 
     public function onRender()
     {
-        $incident = Incident::whereApproved(true)
+        $domain = Domain::getBestMatchingDomain();
+
+        $incident = Incident
+            ::whereApproved(true)
+            ->where('domain_id', '=', $domain->id)
             ->orderBy('created_at', 'desc')
             ->first();
 

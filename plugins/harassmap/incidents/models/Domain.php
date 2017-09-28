@@ -244,11 +244,19 @@ class Domain extends Model
         return $this->logos[0]['footer'];
     }
 
+    // cache the domains
+    public static $domains = [];
+
     /**
      *
      */
     static function getMatchingDomains()
     {
+        // return the cached domains if we have them
+        if (count(self::$domains) > 0) {
+            return self::$domains;
+        }
+
         $requestHost = Request::getHost();
         $domains = self::orderBy('created_at', 'desc')->get();
         $matches = [];
@@ -261,7 +269,11 @@ class Domain extends Model
             }
         }
 
-        return $matches;
+        // cache the matches
+        self::$domains = $matches;
+
+        // return the domains
+        return self::$domains;
     }
 
     /**
