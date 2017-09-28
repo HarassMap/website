@@ -13,7 +13,7 @@
 
                 {% if post.image %}
                     <div class="text-center">
-                        <img class="img-fluid" src="{{ post.image.path }}">
+                        <img class="img-fluid" src="{{ post.image.path | mediathumb_resize('crop', 350, 220) }}">
                     </div>
                 {% endif %}
 
