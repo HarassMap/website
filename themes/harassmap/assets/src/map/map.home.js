@@ -37,8 +37,12 @@ export class HomePageMap {
             fullscreenControl: false
         });
 
+        this.infowindow = new google.maps.InfoWindow({
+            content: '',
+            maxHeight: 200
+        });
+
         this.markers = [];
-        this.windows = [];
         this.filters = {};
 
         this.markerCluster = new MarkerClusterer(
@@ -55,7 +59,18 @@ export class HomePageMap {
             console.debug(this.map.getZoom());
             if (this.map.getZoom() >= this.markerCluster.getMaxZoom()) {
                 let markers = cluster.getMarkers();
+                let content = '<div class="cluster-info">';
 
+                _.forEach(markers, (marker) => {
+                    content += marker.info;
+                });
+
+                content += '</div>';
+
+                this.infowindow.close();
+                this.infowindow.setContent(content);
+                this.infowindow.setPosition(cluster.getCenter());
+                this.infowindow.open(this.map);
 
             }
         });
@@ -121,7 +136,6 @@ export class HomePageMap {
         this.markerCluster.removeMarkers(old_markers);
 
         // remove the marker/windows that have been removed from the map
-        this.windows = _.filter(this.windows, (window) => _.indexOf(remove_ids, window.id) === -1);
         this.markers = _.filter(this.markers, (marker) => !marker.remove);
 
         // add all the markers that need to be added
@@ -145,38 +159,27 @@ export class HomePageMap {
         let source = $("#info-template").html();
         let template = Handlebars.compile(source);
 
-        let infowindow = new google.maps.InfoWindow({
+        let marker = new google.maps.Marker({
+            position: centre,
+            icon: icon,
             id: report.public_id,
-            content: template({
+            remove: false,
+            info: template({
                 time: date.format("L, LT"),
                 address: _.truncate(address),
                 link: this.link.replace('REPORT_ID', report.public_id)
             })
         });
 
-        let marker = new google.maps.Marker({
-            position: centre,
-            icon: icon,
-            id: report.public_id,
-            remove: false,
-            info: infowindow
-        });
-
         google.maps.event.addListener(marker, 'click', () => {
-            this.closeWindows();
-            infowindow.open(this.map, marker);
+            this.infowindow.close();
+            this.infowindow.setContent(marker.info);
+            this.infowindow.open(this.map, marker);
         });
 
-        this.windows.push(infowindow);
         this.markers.push(marker);
 
         return marker;
-    }
-
-    closeWindows() {
-        _.forEach(this.windows, (window) => {
-            window.close();
-        });
     }
 
 }

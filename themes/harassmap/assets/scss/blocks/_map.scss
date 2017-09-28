@@ -58,3 +58,11 @@
   }
 
 }
+
+.cluster-info {
+  max-height: 200px;
+
+  .infowindow {
+    @include rem((padding: 0 5px 15px 0));
+  }
+}
