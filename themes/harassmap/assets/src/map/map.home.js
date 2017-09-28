@@ -46,9 +46,19 @@ export class HomePageMap {
             [],
             {
                 imagePath: '/themes/harassmap/assets/img/markers/m',
-                imageExtension: 'svg'
+                imageExtension: 'svg',
+                maxZoom: 22
             }
         );
+
+        google.maps.event.addListener(this.markerCluster, 'clusterclick', (cluster) => {
+            console.debug(this.map.getZoom());
+            if (this.map.getZoom() >= this.markerCluster.getMaxZoom()) {
+                let markers = cluster.getMarkers();
+
+
+            }
+        });
 
         google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
             this.center = this.map.getCenter();
@@ -148,10 +158,11 @@ export class HomePageMap {
             position: centre,
             icon: icon,
             id: report.public_id,
-            remove: false
+            remove: false,
+            info: infowindow
         });
 
-        marker.addListener('click', () => {
+        google.maps.event.addListener(marker, 'click', () => {
             this.closeWindows();
             infowindow.open(this.map, marker);
         });
