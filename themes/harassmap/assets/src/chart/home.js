@@ -175,8 +175,10 @@ class HomeChart {
             .enter().append("circle")
             .attr("r", 3.5)
             .attr('class', 'circle circle--incident')
-            .attr('data-toggle', 'tooltip')
-            .attr('title', data => template({total: data.count, incident: true}))
+            .attr('data-toggle', 'popover')
+            .attr('data-content', data => template({total: data.count, incident: true}))
+            .attr('data-placement', 'top')
+            .attr('data-trigger', 'hover')
             .attr("cx", data =>  this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
@@ -185,12 +187,14 @@ class HomeChart {
             .enter().append("circle")
             .attr("r", 3.5)
             .attr('class', 'circle circle--intervention')
-            .attr('data-toggle', 'tooltip')
-            .attr('title', data => template({total: data.count, incident: false}))
+            .attr('data-toggle', 'popover')
+            .attr('data-content', data => template({total: data.count, incident: false}))
+            .attr('data-placement', 'top')
+            .attr('data-trigger', 'hover')
             .attr("cx", data =>  this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
-        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
     }
 }
 

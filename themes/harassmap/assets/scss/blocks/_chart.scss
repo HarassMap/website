@@ -19,14 +19,41 @@
 
   .line {
 
-    &.line--intervention {
-      fill: $green;
-    }
-
     &.line--incident {
       stroke: $red;
     }
 
+    &.line--intervention {
+      fill: $green;
+    }
+
+  }
+
+  .circle {
+    cursor: pointer;
+    fill: $white;
+    transition: transform 0.5s, fill 0.5s;
+    transform-origin: 50% 50%;
+
+    &.circle--incident {
+      stroke: $red;
+
+      &:hover {
+        fill: $red;
+      }
+    }
+
+    &.circle--intervention {
+      stroke: $green;
+
+      &:hover {
+        fill: $green;
+      }
+    }
+
+    &:hover {
+      transform: scale(2);
+    }
   }
 
 }
