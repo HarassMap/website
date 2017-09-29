@@ -1,5 +1,7 @@
 'use strict';
 
+import moment from "moment";
+import "moment/min/locales";
 import { initHomeChart } from './chart/home';
 import MapFactory from "./map/map.factory";
 import { initBanner } from './utils/banner';
@@ -33,6 +35,10 @@ $(document).ready(() => {
 
     $('.match-height').matchHeight();
 });
+
+window.setLocale = (locale) => {
+    moment.locale(locale);
+};
 
 window.initMap = () => {
     $('.map').each(function () {

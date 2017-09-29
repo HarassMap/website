@@ -19,6 +19,10 @@
 
 {% framework extras %}
 
+<script>
+    setLocale("{{ activeLocale }}");
+</script>
+
 {% scripts %}
 
 <script>
@@ -41,5 +45,4 @@
     ga('create', '{{ domain.ga_key }}', 'auto', 'domainTracker');
     ga('domainTracker.send', 'pageview');
     {% endif %}
-
 </script>
