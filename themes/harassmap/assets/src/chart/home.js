@@ -2,9 +2,9 @@
 
 import * as d3 from 'd3';
 import debounce from 'debounce';
+import Handlebars from "handlebars";
 import _ from 'lodash';
 import { BANNER_SWITCH, emitter } from '../utils/events';
-import Handlebars from "handlebars";
 
 export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
@@ -38,6 +38,7 @@ class HomeChart {
 
     constructor(id) {
         this.svg = d3.select('#' + id);
+        this.html = $('.report-chart-html');
 
         this.addListeners();
 
@@ -109,15 +110,15 @@ class HomeChart {
             .scale(this.x)
             .ticks(d3.timeMonth)
             .tickSize(10, 0)
-            .tickFormat(d3.timeFormat("%b"));
+            .tickFormat(data => _.toUpper(d3.timeFormat("%b")(data)));
 
         this.svg.append("g")
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + this.bottom + ")")
             .call(xAxis)
-            .call((g) => {
-                g.select('.domain').remove();
-            })
+            // .call((g) => {
+            //     g.select('.domain').remove();
+            // })
             .selectAll(".tick text")
             .style("text-anchor", "middle")
             .attr("x", 0)
@@ -181,7 +182,7 @@ class HomeChart {
             .attr('data-content', data => template({total: data.count, incident: true}))
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
-            .attr("cx", data =>  this.x(data.date))
+            .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
         this.svg.selectAll("dot")
@@ -193,7 +194,7 @@ class HomeChart {
             .attr('data-content', data => template({total: data.count, incident: false}))
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
-            .attr("cx", data =>  this.x(data.date))
+            .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
         $('[data-toggle="popover"]').popover();

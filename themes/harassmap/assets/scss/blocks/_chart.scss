@@ -2,6 +2,12 @@
 @import "rem";
 
 .report-chart {
+  position: relative;
+}
+
+.report-chart-svg {
+  width: 100%;
+  height: 395px;
 
   .axis {
     line {
