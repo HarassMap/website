@@ -5,7 +5,6 @@ namespace Harassmap\Incidents\Components;
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use DateTimeZone;
-use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Models\Assistance;
 use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Domain;
@@ -14,10 +13,12 @@ use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
 use Illuminate\Support\MessageBag;
+use Lang;
+use RainLab\Translate\Classes\Translator;
+use RainLab\Translate\Models\Locale;
 use RainLab\Translate\Models\Message;
 use RainLab\User\Facades\Auth;
 use Redirect;
-use DateTime;
 
 class ReportIncident extends ComponentBase
 {
@@ -43,7 +44,12 @@ class ReportIncident extends ComponentBase
 
         // timezones
         $zones = timezone_identifiers_list();
-        $this->page['timezones'] = array_combine($zones, $zones);
+
+        $locale = Translator::instance()->getLocale();
+
+        $this->page['timezones'] = array_combine($zones, array_map(function ($zone) use ($locale) {
+            return Lang::get('harassmap.translate::lang.timezones.' . strtolower($zone), array(), $locale);
+        }, $zones));
     }
 
     public function onSubmit()
