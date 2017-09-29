@@ -6,30 +6,9 @@
 </div>
 
 {% put scripts %}
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         initReportBanner();
     });
-</script>
-<script id="info-template" type="text/x-handlebars-template">
-    <div class="infowindow">
-        {% raw %}
-
-        <div class="info info--time">
-            <span class="icon icon--time"></span>
-            {{ time }}
-        </div>
-        <div class="info info--address">
-            <span class="icon icon--address"></span>
-            {{ address }}
-        </div>
-
-        <a class="read-more" href="{{ link }}">
-            {% endraw %}
-            {{ 'Read more' | _ }}
-        </a>
-    </div>
 </script>
 {% endput %}
