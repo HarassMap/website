@@ -72,7 +72,16 @@
     font-weight: $light;
 
     @include oswald();
-    @include rem((font-size: 20px, top:20px, left: 20px));
+    @include rem((font-size: 20px, top: 20px, left: 10px));
+  }
+
+  .chart-y-label {
+    color: $dusty-gray;
+    position: absolute;
+    font-weight: $light;
+
+    @include oswald();
+    @include rem((font-size: 13px, top: 65px, left: 10px, width: 90px));
   }
 
 }

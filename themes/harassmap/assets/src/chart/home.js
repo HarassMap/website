@@ -79,7 +79,7 @@ class HomeChart {
 
         this.height = parseInt(this.svg.style('height'));
         this.width = parseInt(this.svg.style('width'));
-        this.top = 100;
+        this.top = 110;
         this.bottom = this.height - 40.5;
         this.left = 10;
         this.right = this.width - 10;
