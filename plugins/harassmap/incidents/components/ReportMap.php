@@ -123,15 +123,15 @@ class ReportMap extends ComponentBase
         // get the date we are getting results from
         switch ($time) {
             case 'week':
-                $since = $since->subYear()->subWeek();
+                $since = $since->subWeek();
                 $select = DB::raw('HOUR(date) as month');
                 break;
             case 'month':
-                $since = $since->subYear()->subMonth();
+                $since = $since->subMonth();
                 $select = DB::raw('DATE(date) as month');
                 break;
             default:
-                $since = $since->subYear()->subYear();
+                $since = $since->subYear();
                 $select = DB::raw('MONTH(date) as month');
         }
 

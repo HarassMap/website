@@ -91,7 +91,9 @@ class HomeChart {
 
         let now = new Date();
         let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
+        yearStart.setHours(0, 0, 0, 0);
         let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
+        yearEnd.setHours(0, 0, 0, 0);
 
         this.x = d3.scaleTime().domain([yearStart, yearEnd]).range([this.left, this.right]);
         this.y = d3.scaleLinear().domain([0, this.max]).range([this.bottom, this.top]);
@@ -214,6 +216,7 @@ const getResults = (incidents) => {
         index = parseInt(index);
         let date = new Date();
         date.setDate(1);
+        date.setHours(0, 0, 0, 0);
 
         if (index > month) {
             date.setFullYear(new Date().getFullYear() - 1);
