@@ -18,13 +18,25 @@
 <script id="chart-popover" type="text/x-handlebars-template">
     {% raw %}
         {{#if incident}}
+        {{#if plural}}
     {% endraw %}
     {{ ':total incidents' | _({total: "{{ total }}"}) }}
     {% raw %}
         {{else}}
     {% endraw %}
+    {{ ':total incident' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{/if}}
+        {{else}}
+        {{#if plural}}
+    {% endraw %}
     {{ ':total interventions' | _({total: "{{ total }}"}) }}
     {% raw %}
+        {{else}}
+    {% endraw %}
+    {{ ':total intervention' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{/if}}
         {{/if}}
     {% endraw %}
 </script>
