@@ -24,7 +24,7 @@ tabs:
             trigger:
                 action: show
                 field: content_id
-                condition: 'value[homepage.basics] | value[homepage.share] | value[homepage.active] | value[homepage.bottomLeft] | value[homepage.bottomCenter] | value[homepage.bottomRight]'
+                condition: 'value[homepage.droplet] | value[homepage.basics] | value[homepage.share] | value[homepage.active] | value[homepage.bottomLeft] | value[homepage.bottomCenter] | value[homepage.bottomRight]'
         link:
             label: 'harassmap.incidents::lang.form.link'
             span: full

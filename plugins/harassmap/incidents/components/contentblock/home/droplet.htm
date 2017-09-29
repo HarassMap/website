@@ -1,7 +1,19 @@
-{% if __SELF__.block.content %}
-    {{ __SELF__.block.content | raw }}
+<div class="bg--drop">
+    <div class="col-12 col-lg-4">
+        {% if __SELF__.block.content %}
+            {{ __SELF__.block.content | raw }}
 
-    <a href="{{ __SELF__.block.link | pageLink }}" class="btn btn--default">{{ 'Read More' | _ }}</a>
-{% else %}
-    <!-- No content -->
+            <a href="{{ __SELF__.block.link | pageLink }}" class="btn btn--default">{{ 'Read More' | _ }}</a>
+        {% else %}
+            <!-- No content -->
+        {% endif %}
+    </div>
+</div>
+
+{% if __SELF__.block.image %}
+    <style>
+        .bg--drop {
+            background-image: url("{{ __SELF__.block.image.path | mediathumb_resize('crop', 613, 298) }}");
+        }
+    </style>
 {% endif %}
