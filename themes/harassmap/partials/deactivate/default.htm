@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-12 col-md-8">
+        <h3 class="hr">
+            <span class="hr__line"></span>
+            <span class="hr__text">{{ 'Deactivate your account?' | _ }}</span>
+        </h3>
+
+        <div class="alerts">
+            {% flash %}
+            <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
+            {% endflash %}
+        </div>
+
+        {{ form_ajax('onDeactivate') }}
+
+        <p class="pt-0">
+            {{ 'Your account will be disabled and your details removed from the site. You can reactivate your account any time by signing back in.' | _ }}
+        </p>
+
+        <div class="form-group">
+            <label for="accountDeletePassword">{{ 'To continue, please enter your password:' | _ }}</label>
+            <input name="password" type="password" class="form-control" id="accountDeletePassword"/>
+        </div>
+
+        <button type="submit" class="btn btn-danger">
+            {{ 'Confirm Deactivate Account' | _ }}
+        </button>
+        <a class="ml-0 ml-md-4" href="{{ 'user/account' | page }}">
+            {{ 'I changed my mind' | _ }}
+        </a>
+        {{ form_close() }}
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+    $(window).on('ajaxErrorMessage', function (event, message) {
+        event.preventDefault();
+
+        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+    });
+</script>
+{% endput %}

@@ -84,14 +84,12 @@
         </div>
 
         <button class="btn btn-default">{{ 'Update' | _ }}</button>
+        <a class="ml-0 ml-md-4" href="{{ 'user/deactivate' | page }}" >
+            {{ 'Deactivate account' | _ }}
+        </a>
 
         {{ form_close() }}
 
-    </div>
-</div>
-<div class="row mt-4">
-    <div class="col-12 col-md-8">
-        {% partial __SELF__ ~ '::deactivate_link' %}
     </div>
 </div>
 

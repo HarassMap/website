@@ -1,0 +1,16 @@
+title = "Account"
+url = "/dashboard/account/deactivate"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "security/login"
+
+[harassmapIncidentAccount deactivate]
+paramCode = "code"
+forceSecure = 0
+==
+<div class="container account">
+    {% component 'deactivate' %}
+</div>
