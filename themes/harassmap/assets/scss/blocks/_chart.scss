@@ -63,3 +63,16 @@
   }
 
 }
+
+.report-chart-html {
+
+  .chart-title {
+    color: $tundora;
+    position: absolute;
+    font-weight: $light;
+
+    @include oswald();
+    @include rem((font-size: 20px, top:20px, left: 20px));
+  }
+
+}

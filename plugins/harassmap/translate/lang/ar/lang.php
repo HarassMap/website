@@ -1,8 +1,4 @@
 <?php return [
-    'plugin' => [
-        'name' => 'HarassMap Translate',
-        'description' => ''
-    ],
     'timezones' => [
         "africa/abidjan" => "Africa/Abidjan",
         "africa/accra" => "Africa/Accra",
