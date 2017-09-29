@@ -79,6 +79,8 @@ class HomeChart {
         this.width = parseInt(this.svg.style('width'));
         this.top = 100;
         this.bottom = this.height - 40.5;
+        this.left = 100;
+        this.right = this.width - 100;
 
         this.data = padYears(this.data);
         this.max = _.max(_.flatten(_.map(this.data, _.values)));
@@ -90,7 +92,7 @@ class HomeChart {
         let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
         let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
 
-        this.x = d3.scaleTime().domain([yearStart, yearEnd]).range([0, this.width]);
+        this.x = d3.scaleTime().domain([yearStart, yearEnd]).range([this.left, this.right]);
         this.y = d3.scaleLinear().domain([0, this.max]).range([this.bottom, this.top]);
 
         this.drawAxis();
@@ -120,25 +122,25 @@ class HomeChart {
     }
 
     drawBaseLines() {
-        this.baselineY = d3.line()
+        this.baselineX = d3.line()
             .x((d) => d)
             .y((d) => this.bottom)
-            .curve(d3.curveMonotoneX);
+            .curve(d3.curveLinear);
 
-        this.baselineX = d3.line()
-            .x((d) => 0)
+        this.baselineY = d3.line()
+            .x((d) => this.left + 0.5)
             .y((d) => this.y(d))
-            .curve(d3.curveMonotoneX);
+            .curve(d3.curveLinear);
 
         this.svg.append('path')
-            .datum([0, this.width])
+            .datum([this.left, this.right])
             .attr('class', 'base_line base_line--x')
-            .attr('d', this.baselineY);
+            .attr('d', this.baselineX);
 
         this.svg.append('path')
-            .datum(_.times(this.max + 1))
+            .datum(_.times(this.max + 2))
             .attr('class', 'base_line base_line--y')
-            .attr('d', this.baselineX);
+            .attr('d', this.baselineY);
     }
 
     drawGraph() {
