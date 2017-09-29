@@ -86,7 +86,11 @@ class HomeChart {
         this.incidents = getIncidents(this.data);
         this.interventions = getInterventions(this.data);
 
-        this.x = d3.scaleTime().domain([new Date(new Date().setFullYear(new Date().getFullYear() - 1)), new Date().setDate(1)]).range([0, this.width]);
+        let now = new Date();
+        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
+        let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        this.x = d3.scaleTime().domain([yearStart, yearEnd]).range([0, this.width]);
         this.y = d3.scaleLinear().domain([0, this.max]).range([this.bottom, this.top]);
 
         this.drawAxis();
@@ -142,7 +146,7 @@ class HomeChart {
             .x((data) => this.x(data.date))
             .y0(this.bottom)
             .y1((data) => this.y(data.count))
-            .curve(d3.curveBasis);
+            .curve(d3.curveMonotoneX);
 
         this.svg.append('g').append('path')
             .datum(this.interventions)
@@ -152,7 +156,7 @@ class HomeChart {
         this.line = d3.line()
             .x((data) => this.x(data.date))
             .y((data) => this.y(data.count))
-            .curve(d3.curveBasis);
+            .curve(d3.curveMonotoneX);
 
         this.svg.append('path')
             .datum(this.incidents)
@@ -177,12 +181,13 @@ const getResults = (incidents) => {
     _.forEach(incidents, (count, index) => {
         index = parseInt(index);
         let date = new Date();
+        date.setDate(1);
 
         if (index > month) {
-            date = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+            date.setFullYear(new Date().getFullYear() - 1);
         }
 
-        date.setMonth(index - 2);
+        date.setMonth(index - 1);
 
         results.push({count, date});
     });

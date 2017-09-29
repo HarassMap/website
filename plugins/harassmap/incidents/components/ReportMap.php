@@ -118,18 +118,20 @@ class ReportMap extends ComponentBase
             ])
             ->where('domain_id', '=', $domain->id);
 
+        $since = new Carbon('first day of this month');
+
         // get the date we are getting results from
         switch ($time) {
             case 'week':
-                $since = Carbon::today()->subYear()->subWeek();
+                $since = $since->subYear()->subWeek();
                 $select = DB::raw('HOUR(date) as month');
                 break;
             case 'month':
-                $since = Carbon::today()->subYear()->subMonth();
+                $since = $since->subYear()->subMonth();
                 $select = DB::raw('DATE(date) as month');
                 break;
             default:
-                $since = Carbon::today()->subYear()->subYear();
+                $since = $since->subYear()->subYear();
                 $select = DB::raw('MONTH(date) as month');
         }
 
