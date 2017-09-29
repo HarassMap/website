@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import debounce from 'debounce';
 import _ from 'lodash';
 import { BANNER_SWITCH, emitter } from '../utils/events';
+import Handlebars from "handlebars";
 
 export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
@@ -79,8 +80,8 @@ class HomeChart {
         this.width = parseInt(this.svg.style('width'));
         this.top = 100;
         this.bottom = this.height - 40.5;
-        this.left = 100;
-        this.right = this.width - 100;
+        this.left = 10;
+        this.right = this.width - 10;
 
         this.data = padYears(this.data);
         this.max = _.max(_.flatten(_.map(this.data, _.values)));
@@ -138,7 +139,7 @@ class HomeChart {
             .attr('d', this.baselineX);
 
         this.svg.append('path')
-            .datum(_.times(this.max + 2))
+            .datum(_.times(this.max + 1))
             .attr('class', 'base_line base_line--y')
             .attr('d', this.baselineY);
     }
@@ -165,6 +166,31 @@ class HomeChart {
             .attr('class', 'line line--incident')
             .attr('d', this.line)
             .attr('fill', 'none');
+
+        let source = $("#chart-popover").html();
+        let template = Handlebars.compile(source);
+
+        this.svg.selectAll("dot")
+            .data(this.incidents)
+            .enter().append("circle")
+            .attr("r", 3.5)
+            .attr('class', 'circle circle--incident')
+            .attr('data-toggle', 'tooltip')
+            .attr('title', data => template({total: data.count, incident: true}))
+            .attr("cx", data =>  this.x(data.date))
+            .attr("cy", data => this.y(data.count));
+
+        this.svg.selectAll("dot")
+            .data(this.interventions)
+            .enter().append("circle")
+            .attr("r", 3.5)
+            .attr('class', 'circle circle--intervention')
+            .attr('data-toggle', 'tooltip')
+            .attr('title', data => template({total: data.count, incident: false}))
+            .attr("cx", data =>  this.x(data.date))
+            .attr("cy", data => this.y(data.count));
+
+        $('[data-toggle="tooltip"]').tooltip();
     }
 }
 

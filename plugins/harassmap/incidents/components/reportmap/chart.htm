@@ -3,3 +3,19 @@
         <svg id="reportChartSvg" class="report-chart"></svg>
     </div>
 </div>
+
+{% put scripts %}
+<script id="chart-popover" type="text/x-handlebars-template">
+    {% raw %}
+        {{#if incident}}
+    {% endraw %}
+    {{ ':total incidents' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{else}}
+    {% endraw %}
+    {{ ':total interventions' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{/if}}
+    {% endraw %}
+</script>
+{% endput %}
