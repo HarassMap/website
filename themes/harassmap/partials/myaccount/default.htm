@@ -1,4 +1,4 @@
-<div class="row mb-5">
+<div class="row">
     <div class="col-12 col-md-8">
         <h3 class="hr">
             <span class="hr__line"></span>
@@ -87,6 +87,11 @@
 
         {{ form_close() }}
 
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12 col-md-8">
+        {% partial __SELF__ ~ '::deactivate_link' %}
     </div>
 </div>
 
