@@ -14,7 +14,6 @@ export const initHomeChart = () => {
 const ZOOM_YEAR = 1;
 const ZOOM_MONTH = 2;
 const ZOOM_WEEK = 23;
-const ZOOM_DAY = 100;
 
 const cache = {
     incidents: {},
@@ -238,11 +237,10 @@ class HomeChart {
 
             this.dotsIncidents.attr("cx", (data) => xTransform(data.date));
             this.dotsInterventions.attr("cx", (data) => xTransform(data.date));
-
         };
 
         this.zoom = d3.zoom()
-            .scaleExtent([1, 1000])
+            .scaleExtent([1, 250])
             .translateExtent([[0, 0], [this.width, this.height]])
             .on("zoom", zoomed);
 
@@ -259,8 +257,12 @@ class HomeChart {
         yearEnd.setHours(0, 0, 0, 0);
 
         this.svg
-            .call(this.zoom.transform, d3.zoomIdentity.scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
-                .translate(-this.x(yearStart), 0));
+            .call(
+                this.zoom.transform,
+                d3.zoomIdentity
+                    .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                    .translate(-this.x(yearStart), 0)
+            );
     }
 
     getZoom() {
@@ -276,11 +278,8 @@ class HomeChart {
         } else if ((zoom > ZOOM_MONTH && zoom < ZOOM_WEEK) && this.currentZoom !== ZOOM_MONTH) {
             this.currentZoom = ZOOM_MONTH;
             return true;
-        } else if ((zoom > ZOOM_WEEK && zoom < ZOOM_DAY) && this.currentZoom !== ZOOM_WEEK) {
+        } else if ((zoom > ZOOM_WEEK) && this.currentZoom !== ZOOM_WEEK) {
             this.currentZoom = ZOOM_WEEK;
-            return true;
-        } else if ((zoom > ZOOM_DAY) && this.currentZoom !== ZOOM_DAY) {
-            this.currentZoom = ZOOM_DAY;
             return true;
         }
 
@@ -367,6 +366,7 @@ class HomeChart {
         let data = [];
 
         if (cache.incidents[this.currentZoom]) {
+            console.debug('getting from cache');
             data = cache.incidents[this.currentZoom];
         } else {
             data = cache.incidents[this.currentZoom] = this.getDataPoints(this.incidents);
