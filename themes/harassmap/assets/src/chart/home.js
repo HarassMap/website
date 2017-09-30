@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import debounce from 'debounce';
 import Handlebars from "handlebars";
 import _ from 'lodash';
-import { BANNER_SWITCH, emitter } from '../utils/events';
+import { BANNER_SWITCH, CHART_RESET, emitter } from '../utils/events';
 
 export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
@@ -20,6 +20,7 @@ class HomeChart {
         this.svg = d3.select('#' + id);
         this.html = $('.report-chart-html');
         this.mode = YEAR;
+        this.ready = false;
 
         this.addListeners();
 
@@ -33,6 +34,11 @@ class HomeChart {
         window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
+            this.animate();
+        });
+        emitter.on(CHART_RESET, () => {
+            this.render();
+            this.animate();
         });
     }
 
@@ -42,8 +48,7 @@ class HomeChart {
     request() {
         $.request('onGetChartReports', {
             success: (data) => {
-                this.data = data;
-                this.render();
+                this.parseData(data);
             }
         });
     }
@@ -52,7 +57,26 @@ class HomeChart {
         this.svg.selectAll("*").remove();
     }
 
+    parseData(data) {
+        this.data = data;
+
+        this.max = 0;
+        this.incidents = this.getIncidents();
+        this.interventions = this.getInterventions();
+        this.extent = d3.extent(_.concat(this.incidents, this.interventions), (data) => data.date);
+
+        this.ready = true;
+        this.render();
+    }
+
     render() {
+
+        // if the data isn't ready then just stop here
+        if (!this.ready) {
+            return;
+        }
+
+        // clear the canvas
         this.clear();
 
         this.height = parseInt(this.svg.style('height'));
@@ -62,20 +86,8 @@ class HomeChart {
         this.left = 30;
         this.right = this.width - 10;
 
-        this.max = 0;
-
-        this.incidents = this.getIncidents();
-        this.interventions = this.getInterventions();
-        this.all = _.concat(this.incidents, this.interventions);
-
-        let now = new Date();
-        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
-        yearStart.setHours(0, 0, 0, 0);
-        let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
-        yearEnd.setHours(0, 0, 0, 0);
-
         this.x = d3.scaleTime()
-            .domain(d3.extent(this.all, (data) => data.date))
+            .domain(this.extent)
             .range([this.left, this.right]);
 
         this.y = d3.scaleLinear()
@@ -195,12 +207,28 @@ class HomeChart {
             this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
         };
 
-        let zoom = d3.zoom()
+        this.zoom = d3.zoom()
             .scaleExtent([1, Infinity])
             .translateExtent([[0, 0], [this.width, this.height]])
             .on("zoom", zoomed);
 
-        this.svg.call(zoom);
+        this.svg.call(this.zoom);
+    }
+
+    animate() {
+        let now = new Date();
+
+        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
+        yearStart.setHours(0, 0, 0, 0);
+
+        let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        yearEnd.setHours(0, 0, 0, 0);
+
+        this.svg.transition()
+            .delay(500)
+            .duration(1500)
+            .call(this.zoom.transform, d3.zoomIdentity.scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                .translate(-this.x(yearStart), 0));
     }
 
     getIncidents() {
@@ -213,13 +241,14 @@ class HomeChart {
 
     getResults(data) {
         let results = [];
+        // new Date(first.date.getFullYear(), first.date.getMonth(), first.date.getDate() - 1)
 
         _.forEach(data, (count, date) => {
             let total = 0;
 
             date = parseDate(date);
 
-            let index = _.findIndex(results, {'date': date})
+            let index = _.findIndex(results, {'date': date});
 
             if (index !== -1) {
                 total = results[index].count += count;
@@ -239,6 +268,10 @@ class HomeChart {
         });
 
         return _.orderBy(results, 'date');
+    }
+
+    padDates(data) {
+
     }
 }
 
