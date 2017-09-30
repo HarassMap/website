@@ -16,6 +16,11 @@ const ZOOM_MONTH = 2;
 const ZOOM_WEEK = 23;
 const ZOOM_DAY = 100;
 
+const cache = {
+    incidents: {},
+    interventions: {}
+};
+
 class HomeChart {
 
     constructor(id) {
@@ -56,7 +61,6 @@ class HomeChart {
 
     parseData(data) {
         this.data = data;
-        this.max = 0;
 
         this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
         this.incidents = this.getIncidents();
@@ -87,7 +91,7 @@ class HomeChart {
             .range([this.left, this.right]);
 
         this.y = d3.scaleLinear()
-            .domain([0, this.max + 1])
+            .domain([0, 0])
             .range([this.bottom, this.top]);
 
         this.drawClip();
@@ -134,20 +138,48 @@ class HomeChart {
     }
 
     redraw() {
-        this.max = 0;
+        let incidentData = this.getIncidentData();
+        let interventionData = this.getInterventionData();
 
-        this.normalIncidents = this.getDataPoints(this.incidents);
-        this.normalInterventions = this.getDataPoints(this.interventions);
+        this.normalIncidents = incidentData.results;
+        this.normalInterventions = interventionData.results;
 
-        this.y.domain([0, (this.max + Math.ceil(this.max / 50))]);
+        let max = Math.max(incidentData.max, interventionData.max);
+
+        this.y.domain([0, (max + Math.ceil(max / 50))]);
 
         this.drawGraph();
         this.drawMarkers();
         this.drawAxis();
     }
 
+    getIncidentData() {
+        let data = [];
+
+        if (cache.incidents[this.currentZoom]) {
+            data = cache.incidents[this.currentZoom];
+        } else {
+            data = cache.incidents[this.currentZoom] = this.getDataPoints(this.incidents);
+        }
+
+        return data;
+    }
+
+    getInterventionData() {
+        let data = [];
+
+        if (cache.interventions[this.currentZoom]) {
+            data = cache.interventions[this.currentZoom];
+        } else {
+            data = cache.interventions[this.currentZoom] = this.getDataPoints(this.interventions);
+        }
+
+        return data;
+    }
+
     getDataPoints(data) {
         let results = [];
+        let max = 0;
 
         _.forEach(data, (item) => {
             let total = 0;
@@ -165,12 +197,15 @@ class HomeChart {
                 total = results[index].count += item.count;
             }
 
-            if (total > this.max) {
-                this.max = total;
+            if (total > max) {
+                max = total;
             }
         });
 
-        return results;
+        return {
+            results,
+            max
+        };
     }
 
     drawGraph() {
@@ -317,10 +352,8 @@ class HomeChart {
 
     getResults(data) {
         let results = [];
-        // new Date(first.date.getFullYear(), first.date.getMonth(), first.date.getDate() - 1)
 
         _.forEach(data, (count, date) => {
-            let total = 0;
 
             date = new Date(date);
             date.setHours(0, 0, 0, 0);
@@ -328,18 +361,12 @@ class HomeChart {
             let index = _.findIndex(results, {'date': date});
 
             if (index !== -1) {
-                total = results[index].count += count;
+                results[index].count += count;
             } else {
-                total = count;
-
                 results.push({
                     'date': date,
                     'count': count
                 });
-            }
-
-            if (total > this.max) {
-                this.max = total;
             }
 
         });
@@ -396,7 +423,7 @@ class HomeChart {
         newDate.setHours(0, 0, 0, 0);
 
         if (this.currentZoom === ZOOM_YEAR) {
-            newDate.setFullYear(newDate.getFullYear());
+            newDate.setFullYear(newDate.getFullYear() + 1);
             newDate.setMonth(0);
             newDate.setDate(1);
         } else if (this.currentZoom === ZOOM_MONTH) {
