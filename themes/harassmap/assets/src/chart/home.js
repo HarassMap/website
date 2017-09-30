@@ -59,13 +59,14 @@ class HomeChart {
         this.width = parseInt(this.svg.style('width'));
         this.top = 110;
         this.bottom = this.height - 40.5;
-        this.left = 10;
+        this.left = 30;
         this.right = this.width - 10;
 
-        this.incidents = getIncidents(this.data);
-        this.interventions = getInterventions(this.data);
+        this.max = 0;
 
-        this.max = _.max(_.flatten(_.map(this.data, _.values)));
+        this.incidents = this.getIncidents();
+        this.interventions = this.getInterventions();
+
 
         let now = new Date();
         let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
@@ -80,9 +81,20 @@ class HomeChart {
             .domain([0, this.max])
             .range([this.bottom, this.top]);
 
-        this.drawAxis();
+        this.drawClip();
         this.drawGraph();
+        this.drawAxis();
         this.addBehaviours();
+    }
+
+    drawClip() {
+        this.clip = this.svg.append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("x", this.left)
+            .attr("y", this.top)
+            .attr("width", this.right - this.left)
+            .attr("height", this.bottom - this.top);
     }
 
     drawAxis() {
@@ -93,21 +105,22 @@ class HomeChart {
             .tickFormat(data => _.toUpper(d3.timeFormat("%b")(data)));
 
         this.yAxis = d3.axisLeft()
-            .ticks(0)
+            .ticks(5)
+            .tickSize(10, 0)
             .scale(this.y);
 
         this.gX = this.svg.append("g")
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + this.bottom + ")")
-            .call(this.xAxis)
-            .selectAll(".tick text")
+            .call(this.xAxis);
+        this.gX.selectAll(".tick text")
             .style("text-anchor", "middle")
             .attr("x", 0)
             .attr("y", 15);
 
         this.gY = this.svg.append("g")
             .attr("class", "axis axis--y")
-            .attr("transform", "translate(" + this.left +  ",0)")
+            .attr("transform", "translate(" + this.left + ",0)")
             .call(this.yAxis);
     }
 
@@ -119,25 +132,29 @@ class HomeChart {
             this.dotsIncidents.attr("transform", d3.event.transform);
             this.dotsInterventions.attr("transform", d3.event.transform);
 
-            this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
+            this.gX.call(this.xAxis);
+            this.gY.call(this.yAxis);
         };
 
         let zoom = d3.zoom()
-            .scaleExtent([1, 1])
-            .translateExtent([[-100, 0], [this.width , this.height]])
+            .scaleExtent([1, 10])
+            .translateExtent([[-10000, 0], [this.width, this.height]])
             .on("zoom", zoomed);
 
         this.svg.call(zoom);
     }
 
     drawGraph() {
+        this.chartBody = this.svg.append("g")
+            .attr("clip-path", "url(#clip)");
+
         this.area = d3.area()
             .x((data) => this.x(data.date))
             .y0(this.bottom)
             .y1((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.areaG = this.svg.append('g').append('path')
+        this.areaG = this.chartBody.append('g').append('path')
             .datum(this.interventions)
             .attr('class', 'line line--intervention')
             .attr('d', this.area);
@@ -147,7 +164,7 @@ class HomeChart {
             .y((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.lineG = this.svg.append('path')
+        this.lineG = this.chartBody.append('path')
             .datum(this.incidents)
             .attr('class', 'line line--incident')
             .attr('d', this.line)
@@ -156,7 +173,7 @@ class HomeChart {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
 
-        this.dotsIncidents = this.svg.append('g');
+        this.dotsIncidents = this.chartBody.append('g');
         this.dotsIncidents.selectAll("dot")
             .data(this.incidents)
             .enter().append("circle")
@@ -169,7 +186,7 @@ class HomeChart {
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
-        this.dotsInterventions = this.svg.append('g');
+        this.dotsInterventions = this.chartBody.append('g');
         this.dotsInterventions.selectAll("dot")
             .data(this.interventions)
             .enter().append("circle")
@@ -184,40 +201,45 @@ class HomeChart {
 
         $('[data-toggle="popover"]').popover();
     }
+
+    getIncidents(data) {
+        return this.getResults(this.data['incident']);
+    };
+
+    getInterventions(data) {
+        return this.getResults(this.data['intervention']);
+    };
+
+    getResults(data) {
+        let results = [];
+
+        _.forEach(data, (count, date) => {
+            let total = 0;
+
+            date = parseDate(date);
+
+            let index = _.findIndex(results, {'date': date})
+
+            if (index !== -1) {
+                total = results[index].count += count;
+            } else {
+                total = count;
+
+                results.push({
+                    'date': date,
+                    'count': count
+                });
+            }
+
+            if (total > this.max) {
+                this.max = total;
+            }
+
+        });
+
+        return _.orderBy(results, 'date');
+    }
 }
-
-const getIncidents = (data) => {
-    return getResults(data['incident']);
-};
-
-const getInterventions = (data) => {
-    return getResults(data['intervention']);
-};
-
-const getResults = (data) => {
-    let results = [];
-
-    _.forEach(data, (count, date) => {
-        let total = 0;
-
-        date = parseDate(date);
-
-        let index = _.findIndex(results, {'date': date})
-
-        if (index !== -1) {
-            total = results[index].count += count;
-        } else {
-            results.push({
-                'date': date,
-                'count': count
-            });
-        }
-
-
-    });
-
-    return _.orderBy(results, 'date');
-};
 
 const parseDate = (dateString) => {
     let date = new Date(dateString);
