@@ -1,12 +1,16 @@
-<?php namespace Harassmap\User;
+<?php
 
+namespace Harassmap\User;
+
+use App;
+use BackendAuth;
+use Event;
 use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Models\Domain;
+use Harassmap\User\Classes\AuthManager;
 use RainLab\User\Controllers\Users as UsersController;
 use RainLab\User\Models\User;
 use System\Classes\PluginBase;
-use Event;
-use BackendAuth;
 
 class Plugin extends PluginBase
 {
@@ -174,6 +178,9 @@ class Plugin extends PluginBase
 
         });
 
+        App::singleton('user.auth', function () {
+            return AuthManager::instance();
+        });
     }
 
 }
