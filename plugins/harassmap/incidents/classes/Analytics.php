@@ -62,10 +62,13 @@ class Analytics
                 'email' => $user->email,
                 "is_whitelisted" => true
             ];
-
         }
 
-        $attributable->capture($event, $occurred_on->toDateTimeString(), $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
+        $domain = Domain::getBestMatchingDomain();
+
+        $tags['domain_id'] = $domain->id;
+
+        $attributable->capture($event . ' on ' . $domain->name, $occurred_on->toDateTimeString(), $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
     }
 
     public static function measure($metric, $value, $occurred_on = null)
@@ -108,7 +111,7 @@ class Analytics
 
     public static function getLastName($user)
     {
-        $name = $user->last_aname;
+        $name = $user->last_name;
 
         if ($user instanceof User) {
             $name = $user->surname;
@@ -129,15 +132,15 @@ class Analytics
         return $event . $message;
     }
 
-    public static function report(Incident $incident, $type = 'created')
+    public static function report(Incident $incident, $type = 'Created')
     {
-        $message = 'incident';
+        $message = 'Incident';
         $tags = [
             'incident_id' => $incident->id
         ];
 
         if ($incident->is_intervention) {
-            $message = 'intervention';
+            $message = 'Intervention';
             $tags['intervention_id'] = $incident->id;
         }
 
@@ -190,18 +193,18 @@ class Analytics
 
     public static function commentEdited(Comment $comment)
     {
-        self::comment($comment, 'edited comment');
+        self::comment($comment, 'edited a comment');
     }
 
     public static function commentDeleted(Comment $comment)
     {
-        self::comment($comment, 'deleted comment');
+        self::comment($comment, 'deleted a comment');
         self::measureComments($comment);
     }
 
     public static function commentReported(Comment $comment)
     {
-        self::comment($comment, 'reported comment');
+        self::comment($comment, 'reported a comment');
     }
 
     public static function domain(Domain $domain, $message)
@@ -250,7 +253,7 @@ class Analytics
 
     public static function userDeleted(User $user)
     {
-        self::user($user, 'edited');
+        self::user($user, 'deleted');
         self::measureUsers($user);
     }
 
