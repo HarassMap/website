@@ -66,7 +66,7 @@ class HomeChart {
 
         this.incidents = this.getIncidents();
         this.interventions = this.getInterventions();
-
+        this.all = _.concat(this.incidents, this.interventions);
 
         let now = new Date();
         let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
@@ -75,10 +75,11 @@ class HomeChart {
         yearEnd.setHours(0, 0, 0, 0);
 
         this.x = d3.scaleTime()
-            .domain([yearStart, yearEnd])
+            .domain(d3.extent(this.all, (data) => data.date))
             .range([this.left, this.right]);
+
         this.y = d3.scaleLinear()
-            .domain([0, this.max])
+            .domain([0, this.max + 1])
             .range([this.bottom, this.top]);
 
         this.drawClip();
@@ -100,13 +101,10 @@ class HomeChart {
     drawAxis() {
         this.xAxis = d3.axisBottom()
             .scale(this.x)
-            .ticks(d3.timeMonth)
-            .tickSize(10, 0)
-            .tickFormat(data => _.toUpper(d3.timeFormat("%b")(data)));
+            .ticks(12);
 
         this.yAxis = d3.axisLeft()
             .ticks(5)
-            .tickSize(10, 0)
             .scale(this.y);
 
         this.gX = this.svg.append("g")
@@ -124,26 +122,6 @@ class HomeChart {
             .call(this.yAxis);
     }
 
-    addBehaviours() {
-        const zoomed = () => {
-            this.areaG.attr("transform", d3.event.transform);
-            this.lineG.attr("transform", d3.event.transform);
-
-            this.dotsIncidents.attr("transform", d3.event.transform);
-            this.dotsInterventions.attr("transform", d3.event.transform);
-
-            this.gX.call(this.xAxis);
-            this.gY.call(this.yAxis);
-        };
-
-        let zoom = d3.zoom()
-            .scaleExtent([1, 10])
-            .translateExtent([[-10000, 0], [this.width, this.height]])
-            .on("zoom", zoomed);
-
-        this.svg.call(zoom);
-    }
-
     drawGraph() {
         this.chartBody = this.svg.append("g")
             .attr("clip-path", "url(#clip)");
@@ -154,7 +132,8 @@ class HomeChart {
             .y1((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.areaG = this.chartBody.append('g').append('path')
+        this.areaG = this.chartBody
+            .append('path')
             .datum(this.interventions)
             .attr('class', 'line line--intervention')
             .attr('d', this.area);
@@ -173,8 +152,8 @@ class HomeChart {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
 
-        this.dotsIncidents = this.chartBody.append('g');
-        this.dotsIncidents.selectAll("dot")
+        this.dotsIncidents = this.chartBody.append('g')
+            .selectAll("dot")
             .data(this.incidents)
             .enter().append("circle")
             .attr("r", 3.5)
@@ -186,8 +165,8 @@ class HomeChart {
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
-        this.dotsInterventions = this.chartBody.append('g');
-        this.dotsInterventions.selectAll("dot")
+        this.dotsInterventions = this.chartBody.append('g')
+            .selectAll("dot")
             .data(this.interventions)
             .enter().append("circle")
             .attr("r", 3.5)
@@ -202,11 +181,33 @@ class HomeChart {
         $('[data-toggle="popover"]').popover();
     }
 
-    getIncidents(data) {
+    addBehaviours() {
+        const zoomed = () => {
+            let xTransform = d3.event.transform.rescaleX(this.x);
+
+            this.areaG.attr("d", this.area.x((data) => xTransform(data.date)));
+            this.lineG.attr("d", this.line.x((data) => xTransform(data.date)));
+
+            this.dotsIncidents.attr("cx", (data) => xTransform(data.date));
+            this.dotsInterventions.attr("cx", (data) => xTransform(data.date));
+
+            // this.gY.call(this.yAxis.scale(d3.event.transform.rescaleY(this.y)));
+            this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
+        };
+
+        let zoom = d3.zoom()
+            .scaleExtent([1, Infinity])
+            .translateExtent([[0, 0], [this.width, this.height]])
+            .on("zoom", zoomed);
+
+        this.svg.call(zoom);
+    }
+
+    getIncidents() {
         return this.getResults(this.data['incident']);
     };
 
-    getInterventions(data) {
+    getInterventions() {
         return this.getResults(this.data['intervention']);
     };
 
@@ -244,7 +245,6 @@ class HomeChart {
 const parseDate = (dateString) => {
     let date = new Date(dateString);
 
-    date.setDate(1);
     date.setHours(0, 0, 0, 0);
 
     return date;
