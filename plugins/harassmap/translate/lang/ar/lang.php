@@ -12,7 +12,7 @@
         "africa/blantyre" => "Africa/Blantyre",
         "africa/brazzaville" => "Africa/Brazzaville",
         "africa/bujumbura" => "Africa/Bujumbura",
-        "africa/cairo" => "Africa/Cairo",
+        "africa/cairo" => "إفريقيا‫/‬القاهرة",
         "africa/casablanca" => "Africa/Casablanca",
         "africa/ceuta" => "Africa/Ceuta",
         "africa/conakry" => "Africa/Conakry",
