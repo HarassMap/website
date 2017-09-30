@@ -10,35 +10,16 @@ export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
 };
 
-// pads the data with all the indexes for a year
-const padYears = (data) => {
-    _.forEach(data, (months, key) => {
-        _.times(12, (index) => {
-            let month = index + 1;
-
-            if (_.isUndefined(months[month])) {
-                months = {
-                    ...months,
-                    [month]: 0
-                };
-            }
-        });
-
-        data = {
-            ...data,
-            [key]: months
-        };
-
-    });
-
-    return data;
-};
+const YEAR = 'year';
+const MONTH = 'month';
+const DAY = 'day';
 
 class HomeChart {
 
     constructor(id) {
         this.svg = d3.select('#' + id);
         this.html = $('.report-chart-html');
+        this.mode = YEAR;
 
         this.addListeners();
 
@@ -49,7 +30,7 @@ class HomeChart {
      * Listen to resize events
      */
     addListeners() {
-        window.addEventListener('resize', debounce(() => this.request(), 500));
+        window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
         });
@@ -60,9 +41,6 @@ class HomeChart {
      */
     request() {
         $.request('onGetChartReports', {
-            data: {
-                time: 'year'
-            },
             success: (data) => {
                 this.data = data;
                 this.render();
@@ -84,45 +62,65 @@ class HomeChart {
         this.left = 10;
         this.right = this.width - 10;
 
-        this.data = padYears(this.data);
-        this.max = _.max(_.flatten(_.map(this.data, _.values)));
+        this.max = 0;
 
         this.incidents = getIncidents(this.data);
         this.interventions = getInterventions(this.data);
 
         let now = new Date();
-        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
-        yearStart.setHours(0, 0, 0, 0);
+
+        let start = _.first(this.incidents);
+
         let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
         yearEnd.setHours(0, 0, 0, 0);
 
-        this.x = d3.scaleTime().domain([yearStart, yearEnd]).range([this.left, this.right]);
-        this.y = d3.scaleLinear().domain([0, this.max]).range([this.bottom, this.top]);
+        this.x = d3.scaleTime()
+            .domain([start.date, yearEnd])
+            .range([this.left, this.right]);
+        this.y = d3.scaleLinear()
+            .domain([0, this.max])
+            .range([this.bottom, this.top]);
 
         this.drawAxis();
         this.drawBaseLines();
         this.drawGraph();
-
+        this.addBehaviours();
     }
 
     drawAxis() {
-        let xAxis = d3.axisBottom()
+        this.xAxis = d3.axisBottom()
             .scale(this.x)
             .ticks(d3.timeMonth)
             .tickSize(10, 0)
             .tickFormat(data => _.toUpper(d3.timeFormat("%b")(data)));
 
-        this.svg.append("g")
+        this.gX = this.svg.append("g")
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + this.bottom + ")")
-            .call(xAxis)
-            // .call((g) => {
-            //     g.select('.domain').remove();
-            // })
+            .call(this.xAxis)
             .selectAll(".tick text")
             .style("text-anchor", "middle")
             .attr("x", 0)
             .attr("y", 15);
+    }
+
+    addBehaviours() {
+        const zoomed = () => {
+            this.areaG.attr("transform", d3.event.transform);
+            this.lineG.attr("transform", d3.event.transform);
+            this.gX.attr("transform", d3.event.transform);
+            this.dotsIncidents.attr("transform", d3.event.transform);
+            this.dotsInterventions.attr("transform", d3.event.transform);
+
+            this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
+        };
+
+        let zoom = d3.zoom()
+            .scaleExtent([1, 1])
+            .translateExtent([[-100, 0], [this.width , this.height]])
+            .on("zoom", zoomed);
+
+        this.svg.call(zoom);
     }
 
     drawBaseLines() {
@@ -154,7 +152,7 @@ class HomeChart {
             .y1((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.svg.append('g').append('path')
+        this.areaG = this.svg.append('g').append('path')
             .datum(this.interventions)
             .attr('class', 'line line--intervention')
             .attr('d', this.area);
@@ -164,7 +162,7 @@ class HomeChart {
             .y((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.svg.append('path')
+        this.lineG = this.svg.append('path')
             .datum(this.incidents)
             .attr('class', 'line line--incident')
             .attr('d', this.line)
@@ -173,7 +171,8 @@ class HomeChart {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
 
-        this.svg.selectAll("dot")
+        this.dotsIncidents = this.svg.append('g');
+        this.dotsIncidents.selectAll("dot")
             .data(this.incidents)
             .enter().append("circle")
             .attr("r", 3.5)
@@ -185,7 +184,8 @@ class HomeChart {
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
-        this.svg.selectAll("dot")
+        this.dotsInterventions = this.svg.append('g');
+        this.dotsInterventions.selectAll("dot")
             .data(this.interventions)
             .enter().append("circle")
             .attr("r", 3.5)
@@ -209,24 +209,36 @@ const getInterventions = (data) => {
     return getResults(data['intervention']);
 };
 
-const getResults = (incidents) => {
-    let month = new Date().getMonth() + 1;
+const getResults = (data) => {
     let results = [];
 
-    _.forEach(incidents, (count, index) => {
-        index = parseInt(index);
-        let date = new Date();
-        date.setDate(1);
-        date.setHours(0, 0, 0, 0);
+    _.forEach(data, (count, date) => {
+        let total = 0;
 
-        if (index > month) {
-            date.setFullYear(new Date().getFullYear() - 1);
+        date = parseDate(date);
+
+        let index = _.findIndex(results, {'date': date})
+
+        if (index !== -1) {
+            total = results[index].count += count;
+        } else {
+            results.push({
+                'date': date,
+                'count': count
+            });
         }
 
-        date.setMonth(index - 1);
 
-        results.push({count, date});
     });
 
     return _.orderBy(results, 'date');
+};
+
+const parseDate = (dateString) => {
+    let date = new Date(dateString);
+
+    date.setDate(1);
+    date.setHours(0, 0, 0, 0);
+
+    return date;
 };
