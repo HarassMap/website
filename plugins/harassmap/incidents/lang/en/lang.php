@@ -25,6 +25,8 @@
         'domain' => [
             'host' => 'Host',
             'host_comment' => 'Pattern for matching the domain name.',
+            'url' => 'Url',
+            'url_comment' => 'This URL is used by the console to properly generate URLs',
             'name' => 'Name',
             'name_comment' => 'Used in logo alt text and emails.',
             'languages' => 'Languages',

@@ -2,9 +2,15 @@ tabs:
     fields:
         host:
             label: 'harassmap.incidents::lang.model.domain.host'
-            span: full
+            span: auto
             type: text
             comment: 'harassmap.incidents::lang.model.domain.host_comment'
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        url:
+            label: 'harassmap.incidents::lang.model.domain.url'
+            span: auto
+            type: text
+            comment: 'harassmap.incidents::lang.model.domain.url_comment'
             tab: 'harassmap.incidents::lang.form.tab.site'
         name:
             label: 'harassmap.incidents::lang.model.domain.name'
