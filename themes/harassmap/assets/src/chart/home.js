@@ -4,41 +4,23 @@ import * as d3 from 'd3';
 import debounce from 'debounce';
 import Handlebars from "handlebars";
 import _ from 'lodash';
-import { BANNER_SWITCH, emitter } from '../utils/events';
+import { BANNER_SWITCH, CHART_RESET, emitter } from '../utils/events';
 
 export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
 };
 
-// pads the data with all the indexes for a year
-const padYears = (data) => {
-    _.forEach(data, (months, key) => {
-        _.times(12, (index) => {
-            let month = index + 1;
-
-            if (_.isUndefined(months[month])) {
-                months = {
-                    ...months,
-                    [month]: 0
-                };
-            }
-        });
-
-        data = {
-            ...data,
-            [key]: months
-        };
-
-    });
-
-    return data;
-};
+const YEAR = 'year';
+const MONTH = 'month';
+const DAY = 'day';
 
 class HomeChart {
 
     constructor(id) {
         this.svg = d3.select('#' + id);
         this.html = $('.report-chart-html');
+        this.mode = YEAR;
+        this.ready = false;
 
         this.addListeners();
 
@@ -49,9 +31,14 @@ class HomeChart {
      * Listen to resize events
      */
     addListeners() {
-        window.addEventListener('resize', debounce(() => this.request(), 500));
+        window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
+            this.animate();
+        });
+        emitter.on(CHART_RESET, () => {
+            this.render();
+            this.animate();
         });
     }
 
@@ -60,12 +47,8 @@ class HomeChart {
      */
     request() {
         $.request('onGetChartReports', {
-            data: {
-                time: 'year'
-            },
             success: (data) => {
-                this.data = data;
-                this.render();
+                this.parseData(data);
             }
         });
     }
@@ -74,87 +57,95 @@ class HomeChart {
         this.svg.selectAll("*").remove();
     }
 
+    parseData(data) {
+        this.data = data;
+
+        this.max = 0;
+        this.incidents = this.getIncidents();
+        this.interventions = this.getInterventions();
+        this.extent = d3.extent(_.concat(this.incidents, this.interventions), (data) => data.date);
+
+        this.ready = true;
+        this.render();
+    }
+
     render() {
+
+        // if the data isn't ready then just stop here
+        if (!this.ready) {
+            return;
+        }
+
+        // clear the canvas
         this.clear();
 
         this.height = parseInt(this.svg.style('height'));
         this.width = parseInt(this.svg.style('width'));
         this.top = 110;
         this.bottom = this.height - 40.5;
-        this.left = 10;
+        this.left = 30;
         this.right = this.width - 10;
 
-        this.data = padYears(this.data);
-        this.max = _.max(_.flatten(_.map(this.data, _.values)));
+        this.x = d3.scaleTime()
+            .domain(this.extent)
+            .range([this.left, this.right]);
 
-        this.incidents = getIncidents(this.data);
-        this.interventions = getInterventions(this.data);
+        this.y = d3.scaleLinear()
+            .domain([0, this.max + 1])
+            .range([this.bottom, this.top]);
 
-        let now = new Date();
-        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
-        yearStart.setHours(0, 0, 0, 0);
-        let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
-        yearEnd.setHours(0, 0, 0, 0);
-
-        this.x = d3.scaleTime().domain([yearStart, yearEnd]).range([this.left, this.right]);
-        this.y = d3.scaleLinear().domain([0, this.max]).range([this.bottom, this.top]);
-
-        this.drawAxis();
-        this.drawBaseLines();
+        this.drawClip();
         this.drawGraph();
+        this.drawAxis();
+        this.addBehaviours();
+    }
 
+    drawClip() {
+        this.clip = this.svg.append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("x", this.left)
+            .attr("y", this.top)
+            .attr("width", this.right - this.left)
+            .attr("height", this.bottom - this.top);
     }
 
     drawAxis() {
-        let xAxis = d3.axisBottom()
+        this.xAxis = d3.axisBottom()
             .scale(this.x)
-            .ticks(d3.timeMonth)
-            .tickSize(10, 0)
-            .tickFormat(data => _.toUpper(d3.timeFormat("%b")(data)));
+            .ticks(12);
 
-        this.svg.append("g")
+        this.yAxis = d3.axisLeft()
+            .ticks(5)
+            .scale(this.y);
+
+        this.gX = this.svg.append("g")
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + this.bottom + ")")
-            .call(xAxis)
-            // .call((g) => {
-            //     g.select('.domain').remove();
-            // })
-            .selectAll(".tick text")
+            .call(this.xAxis);
+        this.gX.selectAll(".tick text")
             .style("text-anchor", "middle")
             .attr("x", 0)
             .attr("y", 15);
-    }
 
-    drawBaseLines() {
-        this.baselineX = d3.line()
-            .x((d) => d)
-            .y((d) => this.bottom)
-            .curve(d3.curveLinear);
-
-        this.baselineY = d3.line()
-            .x((d) => this.left + 0.5)
-            .y((d) => this.y(d))
-            .curve(d3.curveLinear);
-
-        this.svg.append('path')
-            .datum([this.left, this.right])
-            .attr('class', 'base_line base_line--x')
-            .attr('d', this.baselineX);
-
-        this.svg.append('path')
-            .datum(_.times(this.max + 1))
-            .attr('class', 'base_line base_line--y')
-            .attr('d', this.baselineY);
+        this.gY = this.svg.append("g")
+            .attr("class", "axis axis--y")
+            .attr("transform", "translate(" + this.left + ",0)")
+            .call(this.yAxis);
     }
 
     drawGraph() {
+        this.chartBody = this.svg.append("g")
+            .attr("clip-path", "url(#clip)");
+
         this.area = d3.area()
             .x((data) => this.x(data.date))
             .y0(this.bottom)
             .y1((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.svg.append('g').append('path')
+        this.areaG = this.chartBody
+            .append('path')
             .datum(this.interventions)
             .attr('class', 'line line--intervention')
             .attr('d', this.area);
@@ -164,7 +155,7 @@ class HomeChart {
             .y((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.svg.append('path')
+        this.lineG = this.chartBody.append('path')
             .datum(this.incidents)
             .attr('class', 'line line--incident')
             .attr('d', this.line)
@@ -173,7 +164,8 @@ class HomeChart {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
 
-        this.svg.selectAll("dot")
+        this.dotsIncidents = this.chartBody.append('g')
+            .selectAll("dot")
             .data(this.incidents)
             .enter().append("circle")
             .attr("r", 3.5)
@@ -185,7 +177,8 @@ class HomeChart {
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.count));
 
-        this.svg.selectAll("dot")
+        this.dotsInterventions = this.chartBody.append('g')
+            .selectAll("dot")
             .data(this.interventions)
             .enter().append("circle")
             .attr("r", 3.5)
@@ -199,34 +192,93 @@ class HomeChart {
 
         $('[data-toggle="popover"]').popover();
     }
+
+    addBehaviours() {
+        const zoomed = () => {
+            let xTransform = d3.event.transform.rescaleX(this.x);
+
+            this.areaG.attr("d", this.area.x((data) => xTransform(data.date)));
+            this.lineG.attr("d", this.line.x((data) => xTransform(data.date)));
+
+            this.dotsIncidents.attr("cx", (data) => xTransform(data.date));
+            this.dotsInterventions.attr("cx", (data) => xTransform(data.date));
+
+            // this.gY.call(this.yAxis.scale(d3.event.transform.rescaleY(this.y)));
+            this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
+        };
+
+        this.zoom = d3.zoom()
+            .scaleExtent([1, Infinity])
+            .translateExtent([[0, 0], [this.width, this.height]])
+            .on("zoom", zoomed);
+
+        this.svg.call(this.zoom);
+    }
+
+    animate() {
+        let now = new Date();
+
+        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
+        yearStart.setHours(0, 0, 0, 0);
+
+        let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        yearEnd.setHours(0, 0, 0, 0);
+
+        this.svg.transition()
+            .delay(500)
+            .duration(1500)
+            .call(this.zoom.transform, d3.zoomIdentity.scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                .translate(-this.x(yearStart), 0));
+    }
+
+    getIncidents() {
+        return this.getResults(this.data['incident']);
+    };
+
+    getInterventions() {
+        return this.getResults(this.data['intervention']);
+    };
+
+    getResults(data) {
+        let results = [];
+        // new Date(first.date.getFullYear(), first.date.getMonth(), first.date.getDate() - 1)
+
+        _.forEach(data, (count, date) => {
+            let total = 0;
+
+            date = parseDate(date);
+
+            let index = _.findIndex(results, {'date': date});
+
+            if (index !== -1) {
+                total = results[index].count += count;
+            } else {
+                total = count;
+
+                results.push({
+                    'date': date,
+                    'count': count
+                });
+            }
+
+            if (total > this.max) {
+                this.max = total;
+            }
+
+        });
+
+        return _.orderBy(results, 'date');
+    }
+
+    padDates(data) {
+
+    }
 }
 
-const getIncidents = (data) => {
-    return getResults(data['incident']);
-};
+const parseDate = (dateString) => {
+    let date = new Date(dateString);
 
-const getInterventions = (data) => {
-    return getResults(data['intervention']);
-};
+    date.setHours(0, 0, 0, 0);
 
-const getResults = (incidents) => {
-    let month = new Date().getMonth() + 1;
-    let results = [];
-
-    _.forEach(incidents, (count, index) => {
-        index = parseInt(index);
-        let date = new Date();
-        date.setDate(1);
-        date.setHours(0, 0, 0, 0);
-
-        if (index > month) {
-            date.setFullYear(new Date().getFullYear() - 1);
-        }
-
-        date.setMonth(index - 1);
-
-        results.push({count, date});
-    });
-
-    return _.orderBy(results, 'date');
+    return date;
 };

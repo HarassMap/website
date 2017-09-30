@@ -2,7 +2,6 @@
 
 namespace Harassmap\Incidents\Components;
 
-use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use DB;
@@ -90,56 +89,31 @@ class ReportMap extends ComponentBase
             'intervention' => []
         ];
 
-        if (array_key_exists('time', $data)) {
-            $domain = Domain::getBestMatchingDomain();
+        $domain = Domain::getBestMatchingDomain();
 
-            $incidents = $this->getChartReports($domain, $data['time'])->doesntHave('intervention')->get();
-            $interventions = $this->getChartReports($domain, $data['time'])->has('intervention')->get();
+        $incidents = $this->getChartReports($domain)->doesntHave('intervention')->get();
+        $interventions = $this->getChartReports($domain)->has('intervention')->get();
 
-            foreach ($incidents as $incident) {
-                $reports['incident'][$incident->month] = $incident->count;
-            };
+        foreach ($incidents as $incident) {
+            $reports['incident'][$incident->day] = $incident->count;
+        };
 
-            foreach ($interventions as $intervention) {
-                $reports['intervention'][$intervention->month] = $intervention->count;
-            };
-
-        }
+        foreach ($interventions as $intervention) {
+            $reports['intervention'][$intervention->day] = $intervention->count;
+        };
 
         return $reports;
     }
 
-    protected function getChartReports(Domain $domain, $time)
+    protected function getChartReports(Domain $domain)
     {
-
-        $incidents = Incident
+        return Incident
             ::select([
-                DB::raw('count(id) as `count`')
+                DB::raw('count(id) as `count`'),
+                DB::raw('DATE(date) as `day`')
             ])
-            ->where('domain_id', '=', $domain->id);
-
-        $since = new Carbon('first day of this month');
-
-        // get the date we are getting results from
-        switch ($time) {
-            case 'week':
-                $since = $since->subWeek();
-                $select = DB::raw('HOUR(date) as month');
-                break;
-            case 'month':
-                $since = $since->subMonth();
-                $select = DB::raw('DATE(date) as month');
-                break;
-            default:
-                $since = $since->subYear();
-                $select = DB::raw('MONTH(date) as month');
-        }
-
-        // add where clause for the date
-        return $incidents
-            ->addSelect($select)
-            ->groupBy('month')
-            ->where('date', '>', $since);
+            ->where('domain_id', '=', $domain->id)
+            ->groupBy('day');
     }
 
 }

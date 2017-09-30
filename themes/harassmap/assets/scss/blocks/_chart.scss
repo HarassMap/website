@@ -10,17 +10,22 @@
   height: 395px;
 
   .axis {
-    line {
+
+    .domain {
       stroke: $dusty-gray;
+      shape-rendering: crispedges;
     }
+
+    .tick {
+      line {
+        stroke: $dusty-gray;
+        shape-rendering: crispedges;
+      }
+    }
+
     text {
       fill: $dusty-gray;
     }
-  }
-
-  .base_line {
-    stroke: $dusty-gray;
-    fill: $dusty-gray;
   }
 
   .line {
