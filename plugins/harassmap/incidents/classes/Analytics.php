@@ -77,9 +77,11 @@ class Analytics
             return;
         }
 
+        $domain = Domain::getBestMatchingDomain();
+
         $attributable = self::getInstance();
 
-        $attributable->measure($metric, $value, $occurred_on);
+        $attributable->measure($domain->name . ' ' . $metric, $value, $occurred_on);
     }
 
     public static function getUser()
@@ -149,6 +151,7 @@ class Analytics
     public static function reportCreated(Incident $incident)
     {
         self::report($incident, 'created');
+        self::measureReports($incident);
     }
 
     public static function reportEdited(Incident $incident)
@@ -164,6 +167,7 @@ class Analytics
     public static function reportDeleted(Incident $incident)
     {
         self::report($incident, 'deleted');
+        self::measureReports($incident);
     }
 
     public static function comment(Comment $comment, $message)
@@ -181,6 +185,7 @@ class Analytics
     public static function commentCreated(Comment $comment)
     {
         self::comment($comment, 'commented');
+        self::measureComments($comment);
     }
 
     public static function commentEdited(Comment $comment)
@@ -191,6 +196,7 @@ class Analytics
     public static function commentDeleted(Comment $comment)
     {
         self::comment($comment, 'deleted comment');
+        self::measureComments($comment);
     }
 
     public static function commentReported(Comment $comment)
@@ -234,6 +240,7 @@ class Analytics
     public static function userCreated(User $user)
     {
         self::user($user, 'created');
+        self::measureUsers($user);
     }
 
     public static function userEdited(User $user)
@@ -244,6 +251,46 @@ class Analytics
     public static function userDeleted(User $user)
     {
         self::user($user, 'edited');
+        self::measureUsers($user);
+    }
+
+    public static function measureReports(Incident $incident)
+    {
+        $domain = Domain::getBestMatchingDomain();
+
+        $metric = 'Incidents';
+        $query = Incident::where('domain_id', '=', $domain->id);
+
+        if ($incident->is_intervention) {
+            $metric = 'Interventions';
+            $query->where('is_intervention', '=', true);
+        } else {
+            $query->where('is_intervention', '=', false);
+        }
+
+        $count = $query->count();
+
+        self::measure($metric, $count);
+    }
+
+    public static function measureComments(Comment $comment)
+    {
+        $topic = $comment->topic;
+
+        $metric = 'Report Comments (' . $topic->code . ')';
+        $count = Comment::where('topic_id', '=', $topic->id)->count();
+
+        self::measure($metric, $count);
+    }
+
+    public static function measureUsers(User $user)
+    {
+        $domain = Domain::getBestMatchingDomain();
+
+        $metric = 'Users';
+        $count = User::where('domain_id', '=', $domain->id)->count();
+
+        self::measure($metric, $count);
     }
 
 }
