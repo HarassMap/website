@@ -4,22 +4,23 @@ import * as d3 from 'd3';
 import debounce from 'debounce';
 import Handlebars from "handlebars";
 import _ from 'lodash';
-import { BANNER_SWITCH, CHART_RESET, emitter } from '../utils/events';
+import { BANNER_SWITCH, emitter } from '../utils/events';
 
 export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
 };
 
-const YEAR = 'year';
-const MONTH = 'month';
-const DAY = 'day';
+// zoom levels for the different markers
+const ZOOM_YEAR = 1;
+const ZOOM_MONTH = 2;
+const ZOOM_WEEK = 23;
+const ZOOM_DAY = 100;
 
 class HomeChart {
 
     constructor(id) {
         this.svg = d3.select('#' + id);
         this.html = $('.report-chart-html');
-        this.mode = YEAR;
         this.ready = false;
 
         this.addListeners();
@@ -34,11 +35,7 @@ class HomeChart {
         window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
-            this.animate();
-        });
-        emitter.on(CHART_RESET, () => {
-            this.render();
-            this.animate();
+            // this.animate();
         });
     }
 
@@ -61,16 +58,18 @@ class HomeChart {
         this.data = data;
 
         this.max = 0;
+
+        this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
         this.incidents = this.getIncidents();
         this.interventions = this.getInterventions();
-        this.extent = d3.extent(_.concat(this.incidents, this.interventions), (data) => data.date);
+
+        console.debug(this.incidents);
 
         this.ready = true;
         this.render();
     }
 
     render() {
-
         // if the data isn't ready then just stop here
         if (!this.ready) {
             return;
@@ -97,7 +96,12 @@ class HomeChart {
         this.drawClip();
         this.drawGraph();
         this.drawAxis();
+        this.drawMarkers();
         this.addBehaviours();
+    }
+
+    redraw() {
+
     }
 
     drawClip() {
@@ -160,9 +164,18 @@ class HomeChart {
             .attr('class', 'line line--incident')
             .attr('d', this.line)
             .attr('fill', 'none');
+    }
 
+    drawMarkers() {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
+
+        if (this.dotsIncidents) {
+            this.dotsIncidents.remove();
+        }
+        if (this.dotsInterventions) {
+            this.dotsInterventions.remove();
+        }
 
         this.dotsIncidents = this.chartBody.append('g')
             .selectAll("dot")
@@ -197,18 +210,18 @@ class HomeChart {
         const zoomed = () => {
             let xTransform = d3.event.transform.rescaleX(this.x);
 
+            this.redraw();
+
             this.areaG.attr("d", this.area.x((data) => xTransform(data.date)));
             this.lineG.attr("d", this.line.x((data) => xTransform(data.date)));
-
             this.dotsIncidents.attr("cx", (data) => xTransform(data.date));
             this.dotsInterventions.attr("cx", (data) => xTransform(data.date));
 
-            // this.gY.call(this.yAxis.scale(d3.event.transform.rescaleY(this.y)));
             this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
         };
 
         this.zoom = d3.zoom()
-            .scaleExtent([1, Infinity])
+            .scaleExtent([1, 1000])
             .translateExtent([[0, 0], [this.width, this.height]])
             .on("zoom", zoomed);
 
@@ -224,11 +237,13 @@ class HomeChart {
         let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
         yearEnd.setHours(0, 0, 0, 0);
 
-        this.svg.transition()
-            .delay(500)
-            .duration(1500)
+        this.svg
             .call(this.zoom.transform, d3.zoomIdentity.scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
                 .translate(-this.x(yearStart), 0));
+    }
+
+    getZoom() {
+        return d3.zoomTransform(this.svg.node()).k;
     }
 
     getIncidents() {
@@ -267,11 +282,51 @@ class HomeChart {
 
         });
 
-        return _.orderBy(results, 'date');
+        return this.padDates(results);
     }
 
     padDates(data) {
+        data = _.orderBy(data, 'date');
+        let first = _.first(data);
 
+        // add a super old date
+        let lastDate = new Date(first.date.getTime());
+        lastDate.setFullYear(lastDate.getFullYear() - 10);
+        data = [{count: 0, date: lastDate}, ...data];
+
+        // add the day before the first item
+        lastDate = new Date(first.date.getTime());
+        lastDate.setDate(lastDate.getDate() - 1);
+        data = [{count: 0, date: lastDate}, ...data];
+
+        const addDays = (date) => {
+            // get yesterday
+            let yesterday = new Date(date.getTime());
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            if (lastDate.getTime() !== date.getTime() && lastDate.getTime() !== yesterday.getTime()) {
+                let dayAfter = new Date(lastDate.getTime());
+                dayAfter.setDate(dayAfter.getDate() + 1);
+                data = [
+                    ...data,
+                    {count: 0, date: dayAfter}
+                ];
+
+                lastDate = dayAfter;
+
+                addDays(date);
+            } else {
+                lastDate = date;
+            }
+        };
+
+        _.forEach(data, ({date}, index) => {
+            if (index > 1) {
+                addDays(date);
+            }
+        });
+
+        return _.orderBy(data, 'date');
     }
 }
 
