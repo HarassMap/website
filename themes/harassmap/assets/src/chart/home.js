@@ -56,15 +56,11 @@ class HomeChart {
 
     parseData(data) {
         this.data = data;
-
         this.max = 0;
 
         this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
         this.incidents = this.getIncidents();
         this.interventions = this.getInterventions();
-
-        console.debug(this.incidents);
-
         this.ready = true;
         this.render();
     }
@@ -78,6 +74,7 @@ class HomeChart {
         // clear the canvas
         this.clear();
 
+        this.currentZoom = ZOOM_YEAR;
         this.height = parseInt(this.svg.style('height'));
         this.width = parseInt(this.svg.style('width'));
         this.top = 110;
@@ -94,14 +91,8 @@ class HomeChart {
             .range([this.bottom, this.top]);
 
         this.drawClip();
-        this.drawGraph();
-        this.drawAxis();
-        this.drawMarkers();
+        this.redraw();
         this.addBehaviours();
-    }
-
-    redraw() {
-
     }
 
     drawClip() {
@@ -115,6 +106,10 @@ class HomeChart {
     }
 
     drawAxis() {
+
+        if (this.gX) this.gX.remove();
+        if (this.gY) this.gY.remove();
+
         this.xAxis = d3.axisBottom()
             .scale(this.x)
             .ticks(12);
@@ -138,9 +133,64 @@ class HomeChart {
             .call(this.yAxis);
     }
 
+    redraw() {
+        this.max = 0;
+
+        this.normalIncidents = this.getDataPoints(this.incidents);
+        this.normalInterventions = this.getDataPoints(this.interventions);
+
+        this.y.domain([0, (this.max + Math.ceil(this.max / 50))]);
+
+        this.drawGraph();
+        this.drawMarkers();
+        this.drawAxis();
+    }
+
+    getDataPoints(data) {
+        let results = [];
+
+        _.forEach(data, (item) => {
+            let total = 0;
+            let date = this.parseDate(item.date);
+            let index = _.findIndex(results, {date});
+
+            if (index === -1) {
+                total = item.count;
+
+                results.push({
+                    count: item.count,
+                    date: date
+                });
+            } else {
+                total = results[index].count += item.count;
+            }
+
+            if (total > this.max) {
+                this.max = total;
+            }
+        });
+
+        return results;
+    }
+
     drawGraph() {
         this.chartBody = this.svg.append("g")
             .attr("clip-path", "url(#clip)");
+
+        // remove old lines
+        if (this.lineG) this.lineG.remove();
+        if (this.areaG) this.areaG.remove();
+
+        this.line = d3.line()
+            .x((data) => this.x(data.date))
+            .y((data) => this.y(data.count))
+            .curve(d3.curveMonotoneX);
+
+        this.lineG = this.chartBody.append('path')
+            .datum(this.normalIncidents)
+            .attr('class', 'line line--incident')
+            .attr('d', this.line)
+            .attr('fill', 'none');
 
         this.area = d3.area()
             .x((data) => this.x(data.date))
@@ -150,36 +200,21 @@ class HomeChart {
 
         this.areaG = this.chartBody
             .append('path')
-            .datum(this.interventions)
+            .datum(this.normalInterventions)
             .attr('class', 'line line--intervention')
             .attr('d', this.area);
-
-        this.line = d3.line()
-            .x((data) => this.x(data.date))
-            .y((data) => this.y(data.count))
-            .curve(d3.curveMonotoneX);
-
-        this.lineG = this.chartBody.append('path')
-            .datum(this.incidents)
-            .attr('class', 'line line--incident')
-            .attr('d', this.line)
-            .attr('fill', 'none');
     }
 
     drawMarkers() {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
 
-        if (this.dotsIncidents) {
-            this.dotsIncidents.remove();
-        }
-        if (this.dotsInterventions) {
-            this.dotsInterventions.remove();
-        }
+        if (this.dotsIncidents) this.dotsIncidents.remove();
+        if (this.dotsInterventions) this.dotsInterventions.remove();
 
         this.dotsIncidents = this.chartBody.append('g')
             .selectAll("dot")
-            .data(this.incidents)
+            .data(this.normalIncidents)
             .enter().append("circle")
             .attr("r", 3.5)
             .attr('class', 'circle circle--incident')
@@ -192,7 +227,7 @@ class HomeChart {
 
         this.dotsInterventions = this.chartBody.append('g')
             .selectAll("dot")
-            .data(this.interventions)
+            .data(this.normalInterventions)
             .enter().append("circle")
             .attr("r", 3.5)
             .attr('class', 'circle circle--intervention')
@@ -210,14 +245,20 @@ class HomeChart {
         const zoomed = () => {
             let xTransform = d3.event.transform.rescaleX(this.x);
 
-            this.redraw();
+            // redraw if we need to
+            if (this.shouldRedraw()) {
+                console.debug('redraw');
+                this.redraw();
+            }
+
+            this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
 
             this.areaG.attr("d", this.area.x((data) => xTransform(data.date)));
             this.lineG.attr("d", this.line.x((data) => xTransform(data.date)));
+
             this.dotsIncidents.attr("cx", (data) => xTransform(data.date));
             this.dotsInterventions.attr("cx", (data) => xTransform(data.date));
 
-            this.gX.call(this.xAxis.scale(d3.event.transform.rescaleX(this.x)));
         };
 
         this.zoom = d3.zoom()
@@ -246,6 +287,26 @@ class HomeChart {
         return d3.zoomTransform(this.svg.node()).k;
     }
 
+    shouldRedraw() {
+        let zoom = this.getZoom();
+
+        if ((zoom > ZOOM_YEAR && zoom < ZOOM_MONTH) && this.currentZoom !== ZOOM_YEAR) {
+            this.currentZoom = ZOOM_YEAR;
+            return true;
+        } else if ((zoom > ZOOM_MONTH && zoom < ZOOM_WEEK) && this.currentZoom !== ZOOM_MONTH) {
+            this.currentZoom = ZOOM_MONTH;
+            return true;
+        } else if ((zoom > ZOOM_WEEK && zoom < ZOOM_DAY) && this.currentZoom !== ZOOM_WEEK) {
+            this.currentZoom = ZOOM_WEEK;
+            return true;
+        } else if ((zoom > ZOOM_DAY) && this.currentZoom !== ZOOM_DAY) {
+            this.currentZoom = ZOOM_DAY;
+            return true;
+        }
+
+        return false;
+    }
+
     getIncidents() {
         return this.getResults(this.data['incident']);
     };
@@ -261,7 +322,8 @@ class HomeChart {
         _.forEach(data, (count, date) => {
             let total = 0;
 
-            date = parseDate(date);
+            date = new Date(date);
+            date.setHours(0, 0, 0, 0);
 
             let index = _.findIndex(results, {'date': date});
 
@@ -328,12 +390,22 @@ class HomeChart {
 
         return _.orderBy(data, 'date');
     }
+
+    parseDate(date) {
+        let newDate = new Date(date.getTime());
+        newDate.setHours(0, 0, 0, 0);
+
+        if (this.currentZoom === ZOOM_YEAR) {
+            newDate.setFullYear(newDate.getFullYear());
+            newDate.setMonth(0);
+            newDate.setDate(1);
+        } else if (this.currentZoom === ZOOM_MONTH) {
+            newDate.setDate(1);
+        } else if (this.currentZoom === ZOOM_WEEK) {
+            let day = date.getDay();
+            newDate.setDate(date.getDate() - day + (day === 0 ? -6 : 1));
+        }
+
+        return newDate;
+    }
 }
-
-const parseDate = (dateString) => {
-    let date = new Date(dateString);
-
-    date.setHours(0, 0, 0, 0);
-
-    return date;
-};
