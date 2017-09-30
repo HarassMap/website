@@ -153,61 +153,6 @@ class HomeChart {
         this.drawAxis();
     }
 
-    getIncidentData() {
-        let data = [];
-
-        if (cache.incidents[this.currentZoom]) {
-            data = cache.incidents[this.currentZoom];
-        } else {
-            data = cache.incidents[this.currentZoom] = this.getDataPoints(this.incidents);
-        }
-
-        return data;
-    }
-
-    getInterventionData() {
-        let data = [];
-
-        if (cache.interventions[this.currentZoom]) {
-            data = cache.interventions[this.currentZoom];
-        } else {
-            data = cache.interventions[this.currentZoom] = this.getDataPoints(this.interventions);
-        }
-
-        return data;
-    }
-
-    getDataPoints(data) {
-        let results = [];
-        let max = 0;
-
-        _.forEach(data, (item) => {
-            let total = 0;
-            let date = this.parseDate(item.date);
-            let index = _.findIndex(results, {date});
-
-            if (index === -1) {
-                total = item.count;
-
-                results.push({
-                    count: item.count,
-                    date: date
-                });
-            } else {
-                total = results[index].count += item.count;
-            }
-
-            if (total > max) {
-                max = total;
-            }
-        });
-
-        return {
-            results,
-            max
-        };
-    }
-
     drawGraph() {
         this.chartBody = this.svg.append("g")
             .attr("clip-path", "url(#clip)");
@@ -221,12 +166,6 @@ class HomeChart {
             .y((data) => this.y(data.count))
             .curve(d3.curveMonotoneX);
 
-        this.lineG = this.chartBody.append('path')
-            .datum(this.normalIncidents)
-            .attr('class', 'line line--incident')
-            .attr('d', this.line)
-            .attr('fill', 'none');
-
         this.area = d3.area()
             .x((data) => this.x(data.date))
             .y0(this.bottom)
@@ -238,6 +177,12 @@ class HomeChart {
             .datum(this.normalInterventions)
             .attr('class', 'line line--intervention')
             .attr('d', this.area);
+
+        this.lineG = this.chartBody.append('path')
+            .datum(this.normalIncidents)
+            .attr('class', 'line line--incident')
+            .attr('d', this.line)
+            .attr('fill', 'none');
     }
 
     drawMarkers() {
@@ -418,12 +363,67 @@ class HomeChart {
         return _.orderBy(data, 'date');
     }
 
+    getIncidentData() {
+        let data = [];
+
+        if (cache.incidents[this.currentZoom]) {
+            data = cache.incidents[this.currentZoom];
+        } else {
+            data = cache.incidents[this.currentZoom] = this.getDataPoints(this.incidents);
+        }
+
+        return data;
+    }
+
+    getInterventionData() {
+        let data = [];
+
+        if (cache.interventions[this.currentZoom]) {
+            data = cache.interventions[this.currentZoom];
+        } else {
+            data = cache.interventions[this.currentZoom] = this.getDataPoints(this.interventions);
+        }
+
+        return data;
+    }
+
+    getDataPoints(data) {
+        let results = [];
+        let max = 0;
+
+        _.forEach(data, (item) => {
+            let total = 0;
+            let date = this.parseDate(item.date);
+            let index = _.findIndex(results, {date});
+
+            if (index === -1) {
+                total = item.count;
+
+                results.push({
+                    count: item.count,
+                    date: date
+                });
+            } else {
+                total = results[index].count += item.count;
+            }
+
+            if (total > max) {
+                max = total;
+            }
+        });
+
+        return {
+            results,
+            max
+        };
+    }
+
     parseDate(date) {
         let newDate = new Date(date.getTime());
         newDate.setHours(0, 0, 0, 0);
 
         if (this.currentZoom === ZOOM_YEAR) {
-            newDate.setFullYear(newDate.getFullYear() + 1);
+            newDate.setFullYear(newDate.getFullYear());
             newDate.setMonth(0);
             newDate.setDate(1);
         } else if (this.currentZoom === ZOOM_MONTH) {
