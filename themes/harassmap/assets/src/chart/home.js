@@ -62,27 +62,25 @@ class HomeChart {
         this.left = 10;
         this.right = this.width - 10;
 
-        this.max = 0;
-
         this.incidents = getIncidents(this.data);
         this.interventions = getInterventions(this.data);
 
+        this.max = _.max(_.flatten(_.map(this.data, _.values)));
+
         let now = new Date();
-
-        let start = _.first(this.incidents);
-
+        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
+        yearStart.setHours(0, 0, 0, 0);
         let yearEnd = new Date(now.getFullYear(), now.getMonth(), 1);
         yearEnd.setHours(0, 0, 0, 0);
 
         this.x = d3.scaleTime()
-            .domain([start.date, yearEnd])
+            .domain([yearStart, yearEnd])
             .range([this.left, this.right]);
         this.y = d3.scaleLinear()
             .domain([0, this.max])
             .range([this.bottom, this.top]);
 
         this.drawAxis();
-        this.drawBaseLines();
         this.drawGraph();
         this.addBehaviours();
     }
@@ -94,6 +92,10 @@ class HomeChart {
             .tickSize(10, 0)
             .tickFormat(data => _.toUpper(d3.timeFormat("%b")(data)));
 
+        this.yAxis = d3.axisLeft()
+            .ticks(0)
+            .scale(this.y);
+
         this.gX = this.svg.append("g")
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + this.bottom + ")")
@@ -102,13 +104,18 @@ class HomeChart {
             .style("text-anchor", "middle")
             .attr("x", 0)
             .attr("y", 15);
+
+        this.gY = this.svg.append("g")
+            .attr("class", "axis axis--y")
+            .attr("transform", "translate(" + this.left +  ",0)")
+            .call(this.yAxis);
     }
 
     addBehaviours() {
         const zoomed = () => {
             this.areaG.attr("transform", d3.event.transform);
             this.lineG.attr("transform", d3.event.transform);
-            this.gX.attr("transform", d3.event.transform);
+
             this.dotsIncidents.attr("transform", d3.event.transform);
             this.dotsInterventions.attr("transform", d3.event.transform);
 
@@ -121,28 +128,6 @@ class HomeChart {
             .on("zoom", zoomed);
 
         this.svg.call(zoom);
-    }
-
-    drawBaseLines() {
-        this.baselineX = d3.line()
-            .x((d) => d)
-            .y((d) => this.bottom)
-            .curve(d3.curveLinear);
-
-        this.baselineY = d3.line()
-            .x((d) => this.left + 0.5)
-            .y((d) => this.y(d))
-            .curve(d3.curveLinear);
-
-        this.svg.append('path')
-            .datum([this.left, this.right])
-            .attr('class', 'base_line base_line--x')
-            .attr('d', this.baselineX);
-
-        this.svg.append('path')
-            .datum(_.times(this.max + 1))
-            .attr('class', 'base_line base_line--y')
-            .attr('d', this.baselineY);
     }
 
     drawGraph() {
