@@ -98,7 +98,10 @@ class MigrateCommand extends Command
 
                 if (!empty($title)) {
 
-                    $category = Category::whereTitle($title)->first();
+                    $category = Category
+                        ::where('title','=',$title)
+                        ->where('domain_id', '=', $domain->id)
+                        ->first();
 
                     if (!$category) {
                         $category = Category::create([

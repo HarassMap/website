@@ -70,6 +70,13 @@ class Analytics
 
     public static function measure($metric, $value, $occurred_on = null)
     {
+        $isCLI = (php_sapi_name() === 'cli');
+
+        // end early if we are in the cli
+        if ($isCLI) {
+            return;
+        }
+
         $attributable = self::getInstance();
 
         $attributable->measure($metric, $value, $occurred_on);
