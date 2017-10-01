@@ -41,7 +41,7 @@ class HomeChart {
         window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
-            // this.animate();
+            this.animate();
         });
     }
 
