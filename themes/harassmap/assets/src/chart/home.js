@@ -15,6 +15,13 @@ const ZOOM_YEAR = 1;
 const ZOOM_MONTH = 2;
 const ZOOM_WEEK = 23;
 
+const INITIAL_YEAR = 2009;
+
+const PADDING_TOP = 90;
+const PADDING_BOTTOM = 40;
+const PADDING_LEFT = 30;
+const PADDING_RIGHT = 10;
+
 const cache = {
     incidents: {},
     interventions: {}
@@ -39,7 +46,7 @@ class HomeChart {
         window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
-            // this.animate();
+            this.animate();
         });
     }
 
@@ -80,10 +87,10 @@ class HomeChart {
         this.currentZoom = ZOOM_YEAR;
         this.height = parseInt(this.svg.style('height'));
         this.width = parseInt(this.svg.style('width'));
-        this.top = 110;
-        this.bottom = this.height - 40.5;
-        this.left = 30;
-        this.right = this.width - 10;
+        this.top = PADDING_TOP;
+        this.bottom = this.height - PADDING_BOTTOM;
+        this.left = PADDING_LEFT;
+        this.right = this.width - PADDING_RIGHT;
 
         this.x = d3.scaleTime()
             .domain(this.extent)
@@ -250,10 +257,10 @@ class HomeChart {
     animate() {
         let now = new Date();
 
-        let yearStart = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
+        let yearStart = new Date(INITIAL_YEAR, 0, 1);
         yearStart.setHours(0, 0, 0, 0);
 
-        let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
         yearEnd.setHours(0, 0, 0, 0);
 
         this.svg
