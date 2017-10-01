@@ -99,12 +99,6 @@ class MailTemplate extends Model
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-            $data['domain'] = [
-                'name' => $domain->name,
-                'headerLogo' => MediaLibrary::url($domain->getHeaderLogo()),
-                'mobileLogo' => MediaLibrary::url($domain->getMobileLogo()),
-            ];
-
         } else {
             $defer = true;
         }
@@ -112,12 +106,12 @@ class MailTemplate extends Model
         if ($defer || !$template) {
             SystemMailTemplate::addContentToMailer($message, $view, $data);
         } else {
-            self::addDomainContent($message, $view, $data, $template);
+            self::addDomainContent($message, $view, $data, $template, $domain);
         }
 
     }
 
-    public static function addDomainContent(Message $message, $view, array $data, MailTemplate $template)
+    public static function addDomainContent(Message $message, $view, array $data, MailTemplate $template, Domain $domain)
     {
         // if we didn't get sent a user then use the one logged in
         if (array_key_exists('user', $data)) {
@@ -129,11 +123,20 @@ class MailTemplate extends Model
         if ($user) {
             $locale = $user->locale;
 
-            // set the mail in the users locale
-            $template->translateContext($locale);
+            if($locale) {
+                // set the mail in the users locale
+                $template->translateContext($locale);
+            }
         }
 
+        $data['domain'] = [
+            'name' => $domain->name,
+            'headerLogo' => MediaLibrary::url($domain->getHeaderLogo()),
+            'mobileLogo' => MediaLibrary::url($domain->getMobileLogo()),
+        ];
+
         $globalVars = ViewHelper::getGlobalVars();
+
         if (!empty($globalVars)) {
             $data = (array)$data + $globalVars;
         }
