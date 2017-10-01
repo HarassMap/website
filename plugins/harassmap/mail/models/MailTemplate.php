@@ -123,16 +123,19 @@ class MailTemplate extends Model
         if ($user) {
             $locale = $user->locale;
 
-            if($locale) {
+            if ($locale) {
                 // set the mail in the users locale
                 $template->translateContext($locale);
             }
         }
 
         $data['domain'] = [
-            'name' => $domain->name,
-            'logo' => MediaLibrary::url($domain->getEmailLogo()),
+            'name' => $domain->name
         ];
+
+        if ($domain->getEmailLogo()) {
+            $data['domain']['logo'] = $message->embed(MediaLibrary::url($domain->getEmailLogo()));
+        }
 
         $globalVars = ViewHelper::getGlobalVars();
 
