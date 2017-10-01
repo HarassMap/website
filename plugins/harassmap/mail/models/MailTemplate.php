@@ -7,8 +7,8 @@ use Illuminate\Mail\Message;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Facades\Auth;
-use System\Models\MailTemplate as SystemMailTemplate;
 use System\Helpers\View as ViewHelper;
+use System\Models\MailTemplate as SystemMailTemplate;
 use Twig;
 
 /**
@@ -62,9 +62,7 @@ class MailTemplate extends Model
 
     public function getCodeOptions()
     {
-        $templates = SystemMailTemplate::listAllTemplates();
-
-        return $templates;
+        return SystemMailTemplate::listAllTemplates();
     }
 
     /**
@@ -95,36 +93,32 @@ class MailTemplate extends Model
                 $message->sender($domain->email, $domain->name);
             }
 
-            $data['domainName'] = $domain->name;
-            $data['headerLogo'] = MediaLibrary::url($domain->getHeaderLogo());
-            $data['mobileLogo'] = MediaLibrary::url($domain->getMobileLogo());
-
             $template = self
                 ::where('code', '=', $view)
                 ->where('domain_id', '=', $domain->id)
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-            if (!$template) {
-                $defer = true;
-            }
+            $data['domain'] = [
+                'name' => $domain->name,
+                'headerLogo' => MediaLibrary::url($domain->getHeaderLogo()),
+                'mobileLogo' => MediaLibrary::url($domain->getMobileLogo()),
+            ];
 
         } else {
             $defer = true;
         }
 
-        if ($defer) {
+        if ($defer || !$template) {
             SystemMailTemplate::addContentToMailer($message, $view, $data);
         } else {
-            self::addDomainContent($message, $view, $data, $template, $domain);
+            self::addDomainContent($message, $view, $data, $template);
         }
 
     }
 
-    public static function addDomainContent(Message $message, $view, array $data, MailTemplate $template, Domain $domain)
+    public static function addDomainContent(Message $message, $view, array $data, MailTemplate $template)
     {
-
-
         // if we didn't get sent a user then use the one logged in
         if (array_key_exists('user', $data)) {
             $user = $data['user'];
@@ -143,12 +137,6 @@ class MailTemplate extends Model
         if (!empty($globalVars)) {
             $data = (array)$data + $globalVars;
         }
-
-        // add the domain to the
-        // TODO: Add logo to the data
-        $data['domain'] = [
-            'name' => $domain->name
-        ];
 
         $customSubject = $message->getSwiftMessage()->getSubject();
         if (empty($customSubject)) {

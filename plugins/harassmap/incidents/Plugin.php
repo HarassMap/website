@@ -47,8 +47,8 @@ class Plugin extends PluginBase
 
         UserModel::extend(function ($model) {
             $model->hasMany['incidents'] = Incident::class;
-            $model->hasMany['notifications'] = Notification::class;
-            $model->hasOne['api'] = API::class;
+            $model->hasMany['notifications'] = [Notification::class, 'delete' => true];
+            $model->hasOne['api'] = [API::class, 'delete' => true];
         });
 
         // extend the user edit form to allow domain allocation

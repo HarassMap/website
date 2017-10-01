@@ -13,7 +13,7 @@ class BuilderTableCreateHarassmapCommentsComments extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('topic_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->text('content');
             $table->integer('flags')->unsigned()->default(0);
             $table->boolean('approved')->default(false);
