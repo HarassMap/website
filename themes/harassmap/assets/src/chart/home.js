@@ -12,8 +12,8 @@ export const initHomeChart = () => {
 
 // zoom levels for the different markers
 const ZOOM_YEAR = 1;
-const ZOOM_MONTH = 2;
-const ZOOM_WEEK = 23;
+const ZOOM_MONTH = 1.3;
+const ZOOM_WEEK = 10;
 
 const INITIAL_YEAR = 2009;
 
@@ -21,11 +21,6 @@ const PADDING_TOP = 90;
 const PADDING_BOTTOM = 40;
 const PADDING_LEFT = 30;
 const PADDING_RIGHT = 10;
-
-const cache = {
-    incidents: {},
-    interventions: {}
-};
 
 class HomeChart {
 
@@ -46,7 +41,7 @@ class HomeChart {
         window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
-            this.animate();
+            // this.animate();
         });
     }
 
@@ -71,8 +66,31 @@ class HomeChart {
         this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
         this.incidents = this.getIncidents();
         this.interventions = this.getInterventions();
+
+        this.yearly = {
+            incidents: d3.nest().key((data) => d3.timeYear.floor(data.date)).entries(this.incidents).map(this.meanValues),
+            interventions: d3.nest().key((data) => d3.timeYear.floor(data.date)).entries(this.interventions).map(this.meanValues)
+        };
+
+        this.monthly = {
+            incidents: d3.nest().key((data) => d3.timeMonth.floor(data.date)).entries(this.incidents).map(this.meanValues),
+            interventions: d3.nest().key((data) => d3.timeMonth.floor(data.date)).entries(this.interventions).map(this.meanValues)
+        };
+
+        this.weekly = {
+            incidents: d3.nest().key((data) => d3.timeWeek.floor(data.date)).entries(this.incidents).map(this.meanValues),
+            interventions: d3.nest().key((data) => d3.timeWeek.floor(data.date)).entries(this.interventions).map(this.meanValues)
+        };
+
         this.ready = true;
         this.render();
+    }
+
+    meanValues({key, values}) {
+        return {
+            date: new Date(key),
+            value: d3.sum(values, (data) => data.count)
+        }
     }
 
     render() {
@@ -101,8 +119,24 @@ class HomeChart {
             .range([this.bottom, this.top]);
 
         this.drawClip();
-        this.redraw();
+
+        this.drawGraph();
+        this.drawAxis();
         this.addBehaviours();
+
+        this.markers = this.chartBody.append('g');
+
+        this.redraw();
+    }
+
+    redraw() {
+        let {incidents, interventions} = this.getData();
+
+        let max = d3.max(_.concat(incidents, interventions), (data) => data.value);
+
+        this.y.domain([0, (max + Math.ceil(max / 50))]);
+
+        this.draw(incidents, interventions);
     }
 
     drawClip() {
@@ -113,13 +147,12 @@ class HomeChart {
             .attr("y", this.top)
             .attr("width", this.right - this.left)
             .attr("height", this.bottom - this.top);
+
+        this.chartBody = this.svg.append("g")
+            .attr("clip-path", "url(#clip)");
     }
 
     drawAxis() {
-
-        if (this.gX) this.gX.remove();
-        if (this.gY) this.gY.remove();
-
         this.xAxis = d3.axisBottom()
             .scale(this.x)
             .ticks(12);
@@ -132,6 +165,7 @@ class HomeChart {
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + this.bottom + ")")
             .call(this.xAxis);
+
         this.gX.selectAll(".tick text")
             .style("text-anchor", "middle")
             .attr("x", 0)
@@ -143,86 +177,87 @@ class HomeChart {
             .call(this.yAxis);
     }
 
-    redraw() {
-        let incidentData = this.getIncidentData();
-        let interventionData = this.getInterventionData();
+    getData() {
+        let data = this.yearly;
 
-        this.normalIncidents = incidentData.results;
-        this.normalInterventions = interventionData.results;
+        switch (this.currentZoom) {
+            case ZOOM_MONTH:
+                data = this.monthly;
+                break;
+            case ZOOM_WEEK:
+                data = this.weekly;
+                break;
+        }
 
-        let max = Math.max(incidentData.max, interventionData.max);
-
-        this.y.domain([0, (max + Math.ceil(max / 50))]);
-
-        this.drawGraph();
-        this.drawMarkers();
-        this.drawAxis();
+        return data;
     }
 
     drawGraph() {
-        this.chartBody = this.svg.append("g")
-            .attr("clip-path", "url(#clip)");
-
-        // remove old lines
-        if (this.lineG) this.lineG.remove();
-        if (this.areaG) this.areaG.remove();
 
         this.line = d3.line()
             .x((data) => this.x(data.date))
-            .y((data) => this.y(data.count))
+            .y((data) => this.y(data.value))
             .curve(d3.curveMonotoneX);
 
         this.area = d3.area()
             .x((data) => this.x(data.date))
             .y0(this.bottom)
-            .y1((data) => this.y(data.count))
+            .y1((data) => this.y(data.value))
             .curve(d3.curveMonotoneX);
 
         this.areaG = this.chartBody
             .append('path')
-            .datum(this.normalInterventions)
-            .attr('class', 'line line--intervention')
-            .attr('d', this.area);
+            .attr('class', 'line line--intervention');
 
         this.lineG = this.chartBody.append('path')
-            .datum(this.normalIncidents)
             .attr('class', 'line line--incident')
-            .attr('d', this.line)
             .attr('fill', 'none');
     }
 
-    drawMarkers() {
+    draw(incidents, interventions) {
+
+        // axis
+        this.xAxis.scale(this.x);
+        this.gX.call(this.xAxis);
+        this.yAxis.scale(this.y);
+        this.gY.call(this.yAxis);
+
+        // draw
+        this.lineG.datum(incidents).attr('d', this.line);
+        this.areaG.datum(interventions).attr('d', this.area);
+
+        this.drawMarkers(incidents, interventions);
+    }
+
+    drawMarkers(incidents, interventions) {
         let source = $("#chart-popover").html();
         let template = Handlebars.compile(source);
 
-        if (this.dotsIncidents) this.dotsIncidents.remove();
-        if (this.dotsInterventions) this.dotsInterventions.remove();
-
-        this.dotsIncidents = this.chartBody.append('g')
-            .selectAll("dot")
-            .data(this.normalIncidents)
-            .enter().append("circle")
+        let dotsIncidents = this.markers.selectAll(".circle--incident").data(incidents);
+        dotsIncidents.enter().append("circle")
             .attr("r", 3.5)
             .attr('class', 'circle circle--incident')
             .attr('data-toggle', 'popover')
-            .attr('data-content', data => template({total: data.count, incident: true, plural: data.count !== 1}))
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
+            .merge(dotsIncidents)
+            .attr('data-content', data => template({total: data.value, incident: true, plural: data.value !== 1}))
             .attr("cx", data => this.x(data.date))
-            .attr("cy", data => this.y(data.count));
+            .attr("cy", data => this.y(data.value));
+        dotsIncidents.exit().remove();
 
-        this.dotsInterventions = this.chartBody.append('g')
-            .selectAll("dot")
-            .data(this.normalInterventions)
-            .enter().append("circle")
+        let dotsInterventions = this.markers.selectAll(".circle--intervention").data(interventions);
+        dotsInterventions.enter().append("circle")
             .attr("r", 3.5)
             .attr('class', 'circle circle--intervention')
             .attr('data-toggle', 'popover')
-            .attr('data-content', data => template({total: data.count, incident: false, plural: data.count !== 1}))
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
+            .merge(dotsInterventions)
+            .attr('data-content', data => template({total: data.value, incident: false, plural: data.value !== 1}))
             .attr("cx", data => this.x(data.date))
-            .attr("cy", data => this.y(data.count));
+            .attr("cy", data => this.y(data.value));
+        dotsInterventions.exit().remove();
 
         $('[data-toggle="popover"]').popover();
     }
@@ -233,7 +268,6 @@ class HomeChart {
 
             // redraw if we need to
             if (this.shouldRedraw()) {
-                console.debug('redraw');
                 this.redraw();
             }
 
@@ -242,8 +276,9 @@ class HomeChart {
             this.areaG.attr("d", this.area.x((data) => xTransform(data.date)));
             this.lineG.attr("d", this.line.x((data) => xTransform(data.date)));
 
-            this.dotsIncidents.attr("cx", (data) => xTransform(data.date));
-            this.dotsInterventions.attr("cx", (data) => xTransform(data.date));
+            // move the markers
+            this.markers.selectAll(".circle--incident").attr("cx", (data) => xTransform(data.date));
+            this.markers.selectAll(".circle--intervention").attr("cx", (data) => xTransform(data.date));
         };
 
         this.zoom = d3.zoom()
@@ -367,79 +402,5 @@ class HomeChart {
         });
 
         return _.orderBy(data, 'date');
-    }
-
-    getIncidentData() {
-        let data = [];
-
-        if (cache.incidents[this.currentZoom]) {
-            console.debug('getting from cache');
-            data = cache.incidents[this.currentZoom];
-        } else {
-            data = cache.incidents[this.currentZoom] = this.getDataPoints(this.incidents);
-        }
-
-        return data;
-    }
-
-    getInterventionData() {
-        let data = [];
-
-        if (cache.interventions[this.currentZoom]) {
-            data = cache.interventions[this.currentZoom];
-        } else {
-            data = cache.interventions[this.currentZoom] = this.getDataPoints(this.interventions);
-        }
-
-        return data;
-    }
-
-    getDataPoints(data) {
-        let results = [];
-        let max = 0;
-
-        _.forEach(data, (item) => {
-            let total = 0;
-            let date = this.parseDate(item.date);
-            let index = _.findIndex(results, {date});
-
-            if (index === -1) {
-                total = item.count;
-
-                results.push({
-                    count: item.count,
-                    date: date
-                });
-            } else {
-                total = results[index].count += item.count;
-            }
-
-            if (total > max) {
-                max = total;
-            }
-        });
-
-        return {
-            results,
-            max
-        };
-    }
-
-    parseDate(date) {
-        let newDate = new Date(date.getTime());
-        newDate.setHours(0, 0, 0, 0);
-
-        if (this.currentZoom === ZOOM_YEAR) {
-            newDate.setFullYear(newDate.getFullYear());
-            newDate.setMonth(0);
-            newDate.setDate(1);
-        } else if (this.currentZoom === ZOOM_MONTH) {
-            newDate.setDate(1);
-        } else if (this.currentZoom === ZOOM_WEEK) {
-            let day = date.getDay();
-            newDate.setDate(date.getDate() - day + (day === 0 ? -6 : 1));
-        }
-
-        return newDate;
     }
 }
