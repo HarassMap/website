@@ -12,20 +12,22 @@ class Plugin extends PluginBase
         // extend the user edit form to allow domain allocation
         DomainController::extendFormFields(function ($form, $model, $context) {
 
-            $form->addTabFields([
-                'mailchimp_api' => [
-                    'label' => 'MailChimp API key',
-                    'commentAbove' => 'Get an API Key from http://admin.mailchimp.com/account/api/',
-                    'tab' => 'MailChimp',
-                    'span' => 'auto',
-                ],
-                'mailchimp_list' => [
-                    'label' => 'MailChimp List ID',
-                    'commentAbove' => 'The ID for your mailchimp list',
-                    'tab' => 'MailChimp',
-                    'span' => 'auto',
-                ],
-            ]);
+            if ($form->arrayName === 'Domain') {
+                $form->addTabFields([
+                    'mailchimp_api' => [
+                        'label' => 'MailChimp API key',
+                        'commentAbove' => 'Get an API Key from http://admin.mailchimp.com/account/api/',
+                        'tab' => 'MailChimp',
+                        'span' => 'auto',
+                    ],
+                    'mailchimp_list' => [
+                        'label' => 'MailChimp List ID',
+                        'commentAbove' => 'The ID for your mailchimp list',
+                        'tab' => 'MailChimp',
+                        'span' => 'auto',
+                    ],
+                ]);
+            }
 
         });
     }
