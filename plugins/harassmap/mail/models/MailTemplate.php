@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Mail\Models;
 
+use Cms\Classes\MediaLibrary;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
 use Illuminate\Mail\Message;
@@ -83,6 +84,7 @@ class MailTemplate extends Model
             $domain = $data['domain'];
         } else {
             $domain = Domain::getBestMatchingDomain();
+            $data['domain'] = $domain;
         }
 
         // if we have a domain then check to see if we have a template
@@ -93,6 +95,10 @@ class MailTemplate extends Model
                 $message->sender($domain->email, $domain->name);
             }
 
+            $data['domainName'] = $domain->name;
+            $data['headerLogo'] = MediaLibrary::url($domain->getHeaderLogo());
+            $data['mobileLogo'] = MediaLibrary::url($domain->getMobileLogo());
+
             $template = self
                 ::where('code', '=', $view)
                 ->where('domain_id', '=', $domain->id)
@@ -102,6 +108,7 @@ class MailTemplate extends Model
             if (!$template) {
                 $defer = true;
             }
+
         } else {
             $defer = true;
         }
