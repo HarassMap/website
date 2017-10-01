@@ -1,8 +1,8 @@
 'use strict';
 
 import moment from "moment";
-import "moment/min/locales";
 import { initHomeChart } from './chart/home';
+import "./locale/moment";
 import MapFactory from "./map/map.factory";
 import { initBanner } from './utils/banner';
 
