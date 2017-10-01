@@ -245,6 +245,11 @@ class Domain extends Model
         return $this->logos[0]['footer'];
     }
 
+    public function getEmailLogo()
+    {
+        return $this->logos[0]['email'];
+    }
+
     // cache the domains
     public static $domains = [];
 

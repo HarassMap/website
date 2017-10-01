@@ -131,8 +131,7 @@ class MailTemplate extends Model
 
         $data['domain'] = [
             'name' => $domain->name,
-            'headerLogo' => MediaLibrary::url($domain->getHeaderLogo()),
-            'mobileLogo' => MediaLibrary::url($domain->getMobileLogo()),
+            'logo' => MediaLibrary::url($domain->getEmailLogo()),
         ];
 
         $globalVars = ViewHelper::getGlobalVars();
