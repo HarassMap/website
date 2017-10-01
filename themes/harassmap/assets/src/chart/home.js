@@ -134,7 +134,7 @@ class HomeChart {
 
         let max = d3.max(_.concat(incidents, interventions), (data) => data.value);
 
-        this.y.domain([0, (max + Math.ceil(max / 50))]);
+        this.y.domain([0, (max + Math.ceil(max / 10))]);
 
         this.draw(incidents, interventions);
     }
