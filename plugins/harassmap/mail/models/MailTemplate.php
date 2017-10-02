@@ -10,6 +10,8 @@ use RainLab\User\Facades\Auth;
 use System\Helpers\View as ViewHelper;
 use System\Models\MailTemplate as SystemMailTemplate;
 use Twig;
+use Log;
+use Exception;
 
 /**
  * Harassmap\Mail\Models\MailTemplate
@@ -134,7 +136,11 @@ class MailTemplate extends Model
         ];
 
         if ($domain->getEmailLogo()) {
-            $data['domain']['logo'] = $message->embed(MediaLibrary::url($domain->getEmailLogo()));
+            try {
+                $data['domain']['logo'] = $message->embed(MediaLibrary::url($domain->getEmailLogo()));
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+            }
         }
 
         $globalVars = ViewHelper::getGlobalVars();

@@ -2,11 +2,10 @@
 
 namespace Harassmap\Incidents\Components;
 
-use App;
 use Exception;
+use Log;
 use RainLab\User\Components\ResetPassword;
 use RainLab\User\Models\User;
-use Log;
 
 class IncidentResetPassword extends ResetPassword
 {
@@ -30,7 +29,6 @@ class IncidentResetPassword extends ResetPassword
 
     public function onRestorePassword()
     {
-        Log::info('Requesting Password Reset');
         try {
             parent::onRestorePassword();
         } catch (Exception $e) {

@@ -9,6 +9,8 @@ use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
+use Log;
+use Exception;
 
 class Analytics
 {
@@ -68,7 +70,11 @@ class Analytics
 
         $tags['domain_id'] = $domain->id;
 
-        $attributable->capture($event . ' on ' . $domain->name, $occurred_on->toDateTimeString(), $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
+        try {
+            $attributable->capture($event . ' on ' . $domain->name, $occurred_on->toDateTimeString(), $author, $tags, $is_error, $is_resolved, $execution_time_in_seconds, $comments);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     public static function measure($metric, $value, $occurred_on = null)
@@ -84,7 +90,11 @@ class Analytics
 
         $attributable = self::getInstance();
 
-        $attributable->measure($domain->name . ' ' . $metric, $value, $occurred_on);
+        try {
+            $attributable->measure($domain->name . ' ' . $metric, $value, $occurred_on);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     public static function getUser()
