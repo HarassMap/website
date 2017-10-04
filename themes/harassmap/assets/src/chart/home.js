@@ -154,11 +154,14 @@ class HomeChart {
 
     drawAxis() {
         this.xAxis = d3.axisBottom()
-            .scale(this.x)
-            .ticks(12);
+            .scale(this.x);
+
+        console.debug(this.width);
 
         if (this.width < 500) {
-            this.xAxis.ticks(6);
+            this.xAxis.ticks(3);
+        } else {
+            this.xAxis.ticks(12);
         }
 
         this.yAxis = d3.axisLeft()
