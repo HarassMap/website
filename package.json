@@ -44,6 +44,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "d3": "^4.10.0",
+    "d3-interpolate-path": "^2.0.0",
     "debounce": "^1.0.2",
     "event-emitter": "^0.3.5",
     "float-labels.js": "^2.0.1",

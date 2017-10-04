@@ -2,10 +2,10 @@
 
 import * as d3 from 'd3';
 import debounce from 'debounce';
+import { interpolate } from "flubber"
 import Handlebars from "handlebars";
 import _ from 'lodash';
 import { BANNER_SWITCH, emitter } from '../utils/events';
-import { interpolate } from "flubber"
 
 export const initHomeChart = () => {
     let chart = new HomeChart('reportChartSvg');
@@ -87,7 +87,7 @@ class HomeChart {
         this.render();
     }
 
-    meanValues({ key, values }) {
+    meanValues({key, values}) {
         return {
             date: new Date(key),
             value: d3.sum(values, (data) => data.count)
@@ -131,7 +131,7 @@ class HomeChart {
     }
 
     redraw() {
-        let { incidents, interventions } = this.getData();
+        let {incidents, interventions} = this.getData();
 
         let max = d3.max(_.concat(incidents, interventions), (data) => data.value);
 
@@ -156,8 +156,6 @@ class HomeChart {
     drawAxis() {
         this.xAxis = d3.axisBottom()
             .scale(this.x);
-
-        console.debug(this.width);
 
         if (this.width < 500) {
             this.xAxis.ticks(3);
@@ -231,25 +229,30 @@ class HomeChart {
         this.gY.call(this.yAxis);
 
         // draw
-        // this.lineG.datum(incidents).attr('d', this.line);
-        // this.areaG.datum(interventions).attr('d', this.area);
+        this.lineG.datum(incidents).attr('d', this.line);
+        this.areaG.datum(interventions).attr('d', this.area);
 
-        this.lineG.datum(incidents)
-            .transition()
-            .duration(500)
-            .attrTween('d', (data) => {
-                let previous = this.lineG.attr('d');
-                let current = this.line(data);
-                return interpolate(previous, current);
-            });
-        this.areaG.datum(interventions)
-            .transition()
-            .duration(500)
-            .attrTween('d', (data) => {
-                let previous = this.areaG.attr('d');
-                let current = this.area(data);
-                return interpolate(previous, current);
-            });
+        // let previousLine = this.lineG.attr("d");
+        // if (previousLine) {
+        //     this.lineG
+        //         .datum(incidents)
+        //         .transition()
+        //         .duration(2000)
+        //         .attrTween('d', () => interpolate(previousLine, this.line(incidents)));
+        // } else {
+        //     this.lineG.datum(incidents).attr('d', this.line);
+        // }
+        //
+        // let previousArea = this.areaG.attr("d");
+        // if (previousArea) {
+        //     this.areaG
+        //         .datum(interventions)
+        //         .transition()
+        //         .duration(2000)
+        //         .attrTween('d', () => interpolate(previousArea, this.area(interventions)));
+        // } else {
+        //     this.areaG.datum(interventions).attr('d', this.line);
+        // }
 
         this.drawMarkers(incidents, interventions);
     }
@@ -266,7 +269,7 @@ class HomeChart {
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
             .merge(dotsIncidents)
-            .attr('data-content', data => template({ total: data.value, incident: true, plural: data.value !== 1 }))
+            .attr('data-content', data => template({total: data.value, incident: true, plural: data.value !== 1}))
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.value));
         dotsIncidents.exit().remove();
@@ -279,7 +282,7 @@ class HomeChart {
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
             .merge(dotsInterventions)
-            .attr('data-content', data => template({ total: data.value, incident: false, plural: data.value !== 1 }))
+            .attr('data-content', data => template({total: data.value, incident: false, plural: data.value !== 1}))
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.value));
         dotsInterventions.exit().remove();
@@ -330,8 +333,8 @@ class HomeChart {
             .call(
                 this.zoom.transform,
                 d3.zoomIdentity
-                .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
-                .translate(-this.x(yearStart), 0)
+                    .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                    .translate(-this.x(yearStart), 0)
             );
     }
 
@@ -372,7 +375,7 @@ class HomeChart {
             date = new Date(date);
             date.setHours(0, 0, 0, 0);
 
-            let index = _.findIndex(results, { 'date': date });
+            let index = _.findIndex(results, {'date': date});
 
             if (index !== -1) {
                 results[index].count += count;
@@ -395,12 +398,12 @@ class HomeChart {
         // add a super old date
         let lastDate = new Date(first.date.getTime());
         lastDate.setFullYear(lastDate.getFullYear() - 10);
-        data = [{ count: 0, date: lastDate }, ...data];
+        data = [{count: 0, date: lastDate}, ...data];
 
         // add the day before the first item
         lastDate = new Date(first.date.getTime());
         lastDate.setDate(lastDate.getDate() - 1);
-        data = [{ count: 0, date: lastDate }, ...data];
+        data = [{count: 0, date: lastDate}, ...data];
 
         const addDays = (date) => {
             // get yesterday
@@ -412,7 +415,7 @@ class HomeChart {
                 dayAfter.setDate(dayAfter.getDate() + 1);
                 data = [
                     ...data,
-                    { count: 0, date: dayAfter }
+                    {count: 0, date: dayAfter}
                 ];
 
                 lastDate = dayAfter;
@@ -423,7 +426,7 @@ class HomeChart {
             }
         };
 
-        _.forEach(data, ({ date }, index) => {
+        _.forEach(data, ({date}, index) => {
             if (index > 1) {
                 addDays(date);
             }
