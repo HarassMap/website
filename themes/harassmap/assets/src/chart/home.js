@@ -86,7 +86,7 @@ class HomeChart {
         this.render();
     }
 
-    meanValues({key, values}) {
+    meanValues({ key, values }) {
         return {
             date: new Date(key),
             value: d3.sum(values, (data) => data.count)
@@ -130,7 +130,7 @@ class HomeChart {
     }
 
     redraw() {
-        let {incidents, interventions} = this.getData();
+        let { incidents, interventions } = this.getData();
 
         let max = d3.max(_.concat(incidents, interventions), (data) => data.value);
 
@@ -156,6 +156,10 @@ class HomeChart {
         this.xAxis = d3.axisBottom()
             .scale(this.x)
             .ticks(12);
+
+        if (this.width < 500) {
+            this.xAxis.ticks(6);
+        }
 
         this.yAxis = d3.axisLeft()
             .ticks(5)
@@ -241,7 +245,7 @@ class HomeChart {
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
             .merge(dotsIncidents)
-            .attr('data-content', data => template({total: data.value, incident: true, plural: data.value !== 1}))
+            .attr('data-content', data => template({ total: data.value, incident: true, plural: data.value !== 1 }))
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.value));
         dotsIncidents.exit().remove();
@@ -254,7 +258,7 @@ class HomeChart {
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
             .merge(dotsInterventions)
-            .attr('data-content', data => template({total: data.value, incident: false, plural: data.value !== 1}))
+            .attr('data-content', data => template({ total: data.value, incident: false, plural: data.value !== 1 }))
             .attr("cx", data => this.x(data.date))
             .attr("cy", data => this.y(data.value));
         dotsInterventions.exit().remove();
@@ -283,7 +287,10 @@ class HomeChart {
 
         this.zoom = d3.zoom()
             .scaleExtent([1, 250])
-            .translateExtent([[0, 0], [this.width, this.height]])
+            .translateExtent([
+                [0, 0],
+                [this.width, this.height]
+            ])
             .on("zoom", zoomed);
 
         this.svg.call(this.zoom);
@@ -302,8 +309,8 @@ class HomeChart {
             .call(
                 this.zoom.transform,
                 d3.zoomIdentity
-                    .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
-                    .translate(-this.x(yearStart), 0)
+                .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                .translate(-this.x(yearStart), 0)
             );
     }
 
@@ -344,7 +351,7 @@ class HomeChart {
             date = new Date(date);
             date.setHours(0, 0, 0, 0);
 
-            let index = _.findIndex(results, {'date': date});
+            let index = _.findIndex(results, { 'date': date });
 
             if (index !== -1) {
                 results[index].count += count;
@@ -367,12 +374,12 @@ class HomeChart {
         // add a super old date
         let lastDate = new Date(first.date.getTime());
         lastDate.setFullYear(lastDate.getFullYear() - 10);
-        data = [{count: 0, date: lastDate}, ...data];
+        data = [{ count: 0, date: lastDate }, ...data];
 
         // add the day before the first item
         lastDate = new Date(first.date.getTime());
         lastDate.setDate(lastDate.getDate() - 1);
-        data = [{count: 0, date: lastDate}, ...data];
+        data = [{ count: 0, date: lastDate }, ...data];
 
         const addDays = (date) => {
             // get yesterday
@@ -384,7 +391,7 @@ class HomeChart {
                 dayAfter.setDate(dayAfter.getDate() + 1);
                 data = [
                     ...data,
-                    {count: 0, date: dayAfter}
+                    { count: 0, date: dayAfter }
                 ];
 
                 lastDate = dayAfter;
@@ -395,7 +402,7 @@ class HomeChart {
             }
         };
 
-        _.forEach(data, ({date}, index) => {
+        _.forEach(data, ({ date }, index) => {
             if (index > 1) {
                 addDays(date);
             }
