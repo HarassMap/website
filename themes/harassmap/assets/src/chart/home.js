@@ -231,16 +231,25 @@ class HomeChart {
         this.gY.call(this.yAxis);
 
         // draw
-        this.lineG.datum(incidents).attrTween('d', (data) => {
-            let previous = this.lineG.attr('d');
-            let current = this.line(data);
-            return interpolate(previous, current);
-        });
-        this.areaG.datum(interventions).attrTween('d', (data) => {
-            let previous = this.areaG.attr('d');
-            let current = this.area(data);
-            return interpolate(previous, current);
-        });
+        // this.lineG.datum(incidents).attr('d', this.line);
+        // this.areaG.datum(interventions).attr('d', this.area);
+
+        this.lineG.datum(incidents)
+            .transition()
+            .duration(500)
+            .attrTween('d', (data) => {
+                let previous = this.lineG.attr('d');
+                let current = this.line(data);
+                return interpolate(previous, current);
+            });
+        this.areaG.datum(interventions)
+            .transition()
+            .duration(500)
+            .attrTween('d', (data) => {
+                let previous = this.areaG.attr('d');
+                let current = this.area(data);
+                return interpolate(previous, current);
+            });
 
         this.drawMarkers(incidents, interventions);
     }
