@@ -43,7 +43,7 @@
                         {{ form_label('address', 'Address/Description' | _) }}
                         {{ form_text('address', '', {'class': 'form-control'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('address') }}
+                            {{ errors.first('address') | _  }}
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         {{ form_label('city', 'City/Town/Country' | _) }}
                         {{ form_text('city', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('city') }}
+                            {{ errors.first('city') | _  }}
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         {{ form_label('date', 'Date' | _) }}
                         {{ form_text('date', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('date') }}
+                            {{ errors.first('date') | _  }}
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         {{ form_label('time', 'Time' | _) }}
                         {{ form_text('time', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('date') }}
+                            {{ errors.first('date') | _  }}
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                         {{ form_label('timezone', 'Timezone' | _) }}
                         {{ form_select('timezone', timezones, domain.timezone, {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('timezone') }}
+                            {{ errors.first('timezone') | _  }}
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                 {% endfor %}
 
                 <div class="form-control-feedback">
-                    {{ errors.first('assistance') }}
+                    {{ errors.first('assistance') | _  }}
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <div class="form-group {{ (errors.has('description')) ? 'has-danger' : '' }}">
                 {{ form_textarea('description', '', {'class': 'form-control', 'required': 'required', 'placeholder' : 'Describe what happened...' | _}) }}
                 <div class="form-control-feedback">
-                    {{ errors.first('description') }}
+                    {{ errors.first('description') | _ }}
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
                     {% endfor %}
                 </div>
                 <div class="form-control-feedback">
-                    {{ errors.first('categories') }}
+                    {{ errors.first('categories') | _  }}
                 </div>
             </div>
         </div>
@@ -182,7 +182,7 @@
                 {{ form_label('role', 'Your role' | _) }}
                 {{ form_select('role', roles, '', {'class': 'form-control', 'required': 'required'}) }}
                 <div class="form-control-feedback">
-                    {{ errors.first('role') }}
+                    {{ errors.first('role') | _  }}
                 </div>
             </div>
         </div>
