@@ -1,9 +1,13 @@
 columns:
     domain:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.logo.domain'
         relation: domain
         select: host
         width: '250px'
     language:
-        label: language
+        label: 'harassmap.incidents::lang.model.logo.language'
+        type: text
+        width: '250px'
+    position:
+        label: 'harassmap.incidents::lang.model.logo.position'
         type: text
