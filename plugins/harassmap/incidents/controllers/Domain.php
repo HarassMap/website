@@ -22,7 +22,7 @@ class Domain extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents.domain', 'harassmap.incidents.domain.domain');
+        BackendMenu::setContext('Harassmap.Incidents', 'harassmap.incidents.domain', 'harassmap.incidents.domain.domains');
     }
 
     protected function findDomain($id)

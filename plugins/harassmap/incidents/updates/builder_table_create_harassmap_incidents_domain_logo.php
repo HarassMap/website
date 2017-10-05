@@ -18,7 +18,7 @@ class BuilderTableCreateHarassmapIncidentsDomainLogo extends Migration
             $table->timestamp('updated_at')->nullable();
 
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
-            $table->unique(['domain_id', 'language']);
+            $table->unique(['domain_id', 'language', 'position']);
         });
     }
     
