@@ -4,7 +4,6 @@ namespace Harassmap\User\Models;
 
 use Event;
 use Flash;
-use Harassmap\Translate\Models\Message;
 use RainLab\User\Models\User as BaseUser;
 
 class User extends BaseUser
@@ -17,7 +16,7 @@ class User extends BaseUser
     public function afterLogin()
     {
         if ($this->trashed()) {
-            Flash::success(Message::trans('This account has been deleted. Please contact us for more information.'));
+            Flash::error('This account has been deleted. Please contact us for more information.');
         } else {
             parent::afterLogin();
 

@@ -8,13 +8,13 @@
         <div class="alerts">
             {% flash %}
             <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
-                {{ message }}
+                {{ message | _ }}
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             </div>
             {% endflash %}
         </div>
 
-        {{ form_ajax('onDeactivate') }}
+        {{ form_open({ request: 'onDeactivate' }) }}
 
         <p class="pt-0">
             {{ 'Your account will be disabled and your details removed from the site.' | _ }}
@@ -34,13 +34,3 @@
         {{ form_close() }}
     </div>
 </div>
-
-{% put scripts %}
-<script>
-    $(window).on('ajaxErrorMessage', function (event, message) {
-        event.preventDefault();
-
-        $('.alerts').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
-    });
-</script>
-{% endput %}

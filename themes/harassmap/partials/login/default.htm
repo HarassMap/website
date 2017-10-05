@@ -15,22 +15,24 @@
             {% endflash %}
         </div>
 
-        <form id="signin" data-request="onSignin">
-            <div class="form-group">
-                <label for="userSigninLogin">{{ 'Email' | _ }}</label>
-                <input name="login" type="text" class="form-control" id="userSigninLogin"
-                       required placeholder="{{ 'Enter your email' | _ }}"/>
-            </div>
+        {{ form_open({ request: 'onSignIn' }) }}
+        <div class="form-group">
+            <label for="userSigninLogin">{{ 'Email' | _ }}</label>
+            <input name="login" type="text" class="form-control" id="userSigninLogin"
+                   required placeholder="{{ 'Enter your email' | _ }}"
+                   value="{{ form_value("login") }}"/>
+        </div>
 
-            <div class="form-group">
-                <label for="userSigninPassword">{{ 'Password' | _ }}</label>
-                <input name="password" type="password" class="form-control" id="userSigninPassword"
-                       required placeholder="{{ 'Enter your password' | _ }}"/>
-            </div>
+        <div class="form-group">
+            <label for="userSigninPassword">{{ 'Password' | _ }}</label>
+            <input name="password" type="password" class="form-control" id="userSigninPassword"
+                   required placeholder="{{ 'Enter your password' | _ }}"/>
+        </div>
 
-            <button class="btn btn-default mt-4 mt-sm-0">{{ 'Login' | _ }}</button>
-            <a class="btn btn-default mt-4 mt-sm-0" href="{{ 'security/register' | page }}">{{ 'I don\'t have an account' | _ }}</a>
-        </form>
+        <button class="btn btn-default mt-4 mt-sm-0">{{ 'Login' | _ }}</button>
+        <a class="btn btn-default mt-4 mt-sm-0"
+           href="{{ 'security/register' | page }}">{{ 'I don\'t have an account' | _ }}</a>
+        {{ form_close() }}
 
     </div>
 </div>
@@ -44,12 +46,6 @@
 <script>
     $('#signin').on('submit', function () {
         $('.alerts').html('');
-    });
-
-    $(window).on('ajaxErrorMessage', function (event, message) {
-        event.preventDefault();
-
-        $('.alerts').html('<div class="alert alert-danger" role="alert">{{ 'A user was not found with the given credentials.' | _ }}</div>');
     });
 </script>
 {% endput %}
