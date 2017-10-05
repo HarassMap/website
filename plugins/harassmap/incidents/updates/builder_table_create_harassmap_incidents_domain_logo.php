@@ -13,6 +13,7 @@ class BuilderTableCreateHarassmapIncidentsDomainLogo extends Migration
             $table->increments('id')->unsigned();
             $table->integer('domain_id')->unsigned();
             $table->string('language', 10);
+            $table->string('position', 50);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 

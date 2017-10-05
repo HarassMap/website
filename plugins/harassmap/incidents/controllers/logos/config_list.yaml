@@ -9,3 +9,5 @@ toolbar:
     search:
         prompt: 'backend::lang.list.search_prompt'
 recordUrl: 'harassmap/incidents/logos/update/:id'
+recordsPerPage: 20
+filter: config_filter.yaml

@@ -1,17 +1,16 @@
 <?php namespace Harassmap\Mail\Models;
 
-use Cms\Classes\MediaLibrary;
+use Exception;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
 use Illuminate\Mail\Message;
+use Log;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Facades\Auth;
 use System\Helpers\View as ViewHelper;
 use System\Models\MailTemplate as SystemMailTemplate;
 use Twig;
-use Log;
-use Exception;
 
 /**
  * Harassmap\Mail\Models\MailTemplate
@@ -135,9 +134,11 @@ class MailTemplate extends Model
             'name' => $domain->name
         ];
 
-        if ($domain->getEmailLogo()) {
+        $logo = $domain->getEmailLogo();
+
+        if ($logo) {
             try {
-                $data['domain']['logo'] = $message->embed(MediaLibrary::url($domain->getEmailLogo()));
+                $data['domain']['logo'] = $message->embed($logo);
             } catch (Exception $e) {
                 Log::error($e->getMessage());
             }

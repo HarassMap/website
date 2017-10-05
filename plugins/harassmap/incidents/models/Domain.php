@@ -8,6 +8,7 @@ use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
+use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
 use Request;
 
@@ -112,6 +113,7 @@ class Domain extends Model
         'tips' => [Tip::class, 'delete' => true],
         'posts' => [Posts::class, 'delete' => true],
         'incidents' => Incident::class,
+        'logos' => [Logo::class, 'delete' => true]
     ];
 
     public $belongsToMany = [
@@ -230,24 +232,36 @@ class Domain extends Model
         Analytics::domainDeleted($this);
     }
 
-    public function getHeaderLogo()
+    public function getLogo($position)
     {
-        return $this->logos[0]['header'];
+        $locale = Translator::instance()->getLocale();
+        $logo = Logo
+            ::where('domain_id', '=', $this->id)
+            ->where('language', '=', $locale)
+            ->where('position', '=', $position)
+            ->first();
+
+        return ($logo && $logo->image) ? $logo->image->path : '';
+    }
+
+    public function getDesktopLogo()
+    {
+        return $this->getLogo('desktop');
     }
 
     public function getMobileLogo()
     {
-        return $this->logos[0]['mobile'];
+        return $this->getLogo('mobile');
     }
 
     public function getFooterLogo()
     {
-        return $this->logos[0]['footer'];
+        return $this->getLogo('footer');
     }
 
     public function getEmailLogo()
     {
-        return $this->logos[0]['email'];
+        return $this->getLogo('email');
     }
 
     // cache the domains

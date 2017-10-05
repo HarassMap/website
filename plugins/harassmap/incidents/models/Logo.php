@@ -20,12 +20,28 @@ class Logo extends Model
     public $rules = [
     ];
 
+    public $belongsTo = [
+        'domain' => Domain::class
+    ];
+
     public $attachOne = [
         'image' => 'System\Models\File'
+    ];
+
+    const LOGO_IDS = [
+        'desktop' => 'Desktop',
+        'mobile' => 'Mobile',
+        'footer' => 'Footer',
+        'email' => 'Email',
     ];
 
     public function getLanguageOptions()
     {
         return Locale::isEnabled()->lists('code', 'code');
+    }
+
+    public function getPositionOptions()
+    {
+        return self::LOGO_IDS;
     }
 }

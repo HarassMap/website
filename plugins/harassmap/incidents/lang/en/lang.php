@@ -36,6 +36,7 @@
             'domain' => 'Domain',
             'language' => 'Language',
             'image' => 'Logo Image',
+            'position' => 'Logo Position',
         ]
     ],
     'form' => [
