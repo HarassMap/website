@@ -1,0 +1,9 @@
+columns:
+    domain:
+        label: 'harassmap.incidents::lang.form.domain'
+        relation: domain
+        select: host
+        width: '250px'
+    language:
+        label: language
+        type: text

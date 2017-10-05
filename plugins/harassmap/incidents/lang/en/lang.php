@@ -31,6 +31,11 @@
             'name_comment' => 'Used in logo alt text and emails.',
             'languages' => 'Languages',
             'timezone' => 'Timezone',
+        ],
+        'logo' => [
+            'domain' => 'Domain',
+            'language' => 'Language',
+            'image' => 'Logo Image',
         ]
     ],
     'form' => [

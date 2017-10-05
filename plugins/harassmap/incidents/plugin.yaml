@@ -37,6 +37,15 @@ navigation:
         permissions:
             - harassmap.incidents.domain.access_content
             - harassmap.incidents.domain.access_domain
+        sideMenu:
+            harassmap.incidents.domain.domains:
+                label: Domains
+                url: harassmap/incidents/domain
+                icon: icon-square-o
+            harassmap.incidents.domain.logos:
+                label: Logos
+                url: harassmap/incidents/logos
+                icon: icon-image
     harassmap.incidents.domain.content:
         label: 'harassmap.incidents::lang.menu.content'
         url: harassmap/incidents/content

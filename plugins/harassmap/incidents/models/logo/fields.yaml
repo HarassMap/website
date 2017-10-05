@@ -1,0 +1,18 @@
+fields:
+    domain_id:
+        label: 'harassmap.incidents::lang.model.logo.domain'
+        span: auto
+        type: dropdown
+    language:
+        label: 'harassmap.incidents::lang.model.logo.language'
+        span: auto
+        type: dropdown
+    image:
+        label: 'harassmap.incidents::lang.model.logo.image'
+        mode: file
+        useCaption: false
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload

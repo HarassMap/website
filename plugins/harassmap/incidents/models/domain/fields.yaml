@@ -55,40 +55,6 @@ tabs:
             span: full
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
-        logos:
-            type: repeater
-            tab: 'harassmap.incidents::lang.form.tab.logo'
-            maxItems: 1
-            form:
-                fields:
-                    header:
-                        label: Header Logo
-                        mode: image
-                        type: mediafinder
-                        imageWidth: 390
-                        imageHeight: 65
-                        commentAbove: '390x65'
-                    mobile:
-                        label: Mobile Logo
-                        mode: image
-                        type: mediafinder
-                        imageWidth: 280
-                        imageHeight: 75
-                        commentAbove: '280x75'
-                    footer:
-                        label: Footer Logo
-                        mode: image
-                        type: mediafinder
-                        imageWidth: 150
-                        imageHeight: 150
-                        commentAbove: '150x150'
-                    email:
-                        label: Email Logo
-                        mode: image
-                        type: mediafinder
-                        imageWidth: 390
-                        imageHeight: 65
-                        commentAbove: 'This must be a PNG or JPG. Used in emails. 390x65'
         incident:
             label: 'Enable Incident'
             span: auto

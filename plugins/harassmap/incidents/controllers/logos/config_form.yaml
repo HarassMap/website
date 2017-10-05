@@ -1,0 +1,10 @@
+name: Logos
+form: $/harassmap/incidents/models/logo/fields.yaml
+modelClass: Harassmap\Incidents\Models\Logo
+defaultRedirect: harassmap/incidents/logos
+create:
+    redirect: 'harassmap/incidents/logos/update/:id'
+    redirectClose: harassmap/incidents/logos
+update:
+    redirect: harassmap/incidents/logos
+    redirectClose: harassmap/incidents/logos
