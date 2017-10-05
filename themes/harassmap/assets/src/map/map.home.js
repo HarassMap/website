@@ -55,6 +55,13 @@ export class HomePageMap {
             }
         );
 
+        this.markerCluster.styles_ = _.map(this.markerCluster.styles_, (style) => {
+            return {
+                ...style,
+                textColor: "#FFFFFF"
+            }
+        });
+
         google.maps.event.addListener(this.markerCluster, 'clusterclick', (cluster) => {
             console.debug(this.map.getZoom());
             if (this.map.getZoom() >= this.markerCluster.getMaxZoom()) {
