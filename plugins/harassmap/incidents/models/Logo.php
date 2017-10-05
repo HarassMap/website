@@ -18,6 +18,10 @@ class Logo extends Model
     public $table = 'harassmap_incidents_domain_logo';
 
     public $rules = [
+        'domain' => 'required',
+        'language' => 'required',
+        'position' => 'required',
+        'image' => 'required',
     ];
 
     public $belongsTo = [
