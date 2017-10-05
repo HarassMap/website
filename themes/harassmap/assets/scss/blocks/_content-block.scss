@@ -20,4 +20,10 @@
     }
   }
 
+  &.register-terms {
+    p {
+      @include rem((padding: 0 0 16px));
+    }
+  }
+
 }

@@ -34,7 +34,8 @@ class Content extends Model
 
     const CONTENT_IDS = [
         'login' => 'Login',
-        'register' => 'Register',
+        'register' => 'Register (Footer)',
+        'register.terms' => 'Register (Terms)',
         'homepage.basics' => 'Homepage (Learn)',
         'homepage.share' => 'Homepage (Share)',
         'homepage.active' => 'Homepage (Active)',
