@@ -2,7 +2,9 @@
 
 namespace Harassmap\Incidents\Components;
 
+use Exception;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Translate\Models\Message;
 use RainLab\User\Components\Account;
 use RainLab\User\Facades\Auth;
 use Redirect;

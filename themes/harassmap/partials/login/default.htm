@@ -9,7 +9,7 @@
         <div class="alerts">
             {% flash %}
             <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
-                {{ message }}
+                {{ message | _ }}
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             </div>
             {% endflash %}
