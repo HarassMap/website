@@ -3,7 +3,7 @@ url = "/contact"
 layout = "default"
 is_hidden = 0
 
-[contactForm]
+[contactForm contact]
 
 [harassmapDomainContentBlock]
 id = "contact"
@@ -18,15 +18,9 @@ id = "contact"
         </div>
     </div>
 
-    <div class="row mb-4">
-        <div class="col-12">
-            {% component 'harassmapDomainContentBlock' %}
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-12 col-md-7">
-            {% component 'contactForm' %}
+            {% component 'contact' %}
         </div>
     </div>
 </div>
