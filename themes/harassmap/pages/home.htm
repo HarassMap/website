@@ -40,7 +40,6 @@ listPage = "news/index"
 
 [harassmapReportMap]
 viewPage = "reports/view"
-tablePage = "reports/index"
 ==
 
 {% flash %}
@@ -56,7 +55,33 @@ tablePage = "reports/index"
     {% partial 'site/report' %}
 </div>
 
-{% component 'harassmapReportMap' %}
+<div class="banner-container">
+    <div class="container">
+        <div class="controls">
+            <a class="control control--map active" href="#bannerMap">
+                <span class="icon"></span>
+                {{ 'Map' | _ }}
+            </a>
+            <a class="control control--chart" href="#bannerChart">
+                <span class="icon"></span>
+                {{ 'Chart' | _ }}
+            </a>
+            <a class="control control--table" href="#bannerTable">
+                <span class="icon"></span>
+                {{ 'Table' | _ }}
+            </a>
+        </div>
+    </div>
+    <div id="reportMap" class="banner banner--map active">
+        {% component 'harassmapReportMap' %}
+    </div>
+    <div id="bannerChart" class="banner banner--chart sep--top">
+    </div>
+    <div id="bannerTable" class="banner banner--table sep--top">
+    </div>
+</div>
+
+{#{% component 'banner' %}#}
 
 <div class="hidden-xs-down">
     {% partial 'site/report' %}
@@ -119,3 +144,11 @@ tablePage = "reports/index"
         </div>
     </div>
 </div>
+
+{% put scripts %}
+<script>
+    $(document).ready(function () {
+        initReportBanner();
+    });
+</script>
+{% endput %}

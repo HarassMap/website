@@ -47,7 +47,6 @@ window.initMap = () => {
 
 window.initReportBanner = () => {
     initBanner();
-    initHomeChart();
 };
 
 window.initReportIncidentPage = () => {

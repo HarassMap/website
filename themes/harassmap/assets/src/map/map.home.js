@@ -5,6 +5,7 @@ import Handlebars from "handlebars";
 import _ from "lodash";
 import moment from "moment";
 import { CENTER_MAP, emitter, FILTER_MAP, REFRESH_MAP } from '../utils/events';
+import { initFullscreenMap, initMapFilter } from '../utils/mapHome';
 import mapStyle from "./map.style.json";
 
 export class HomePageMap {
@@ -13,6 +14,9 @@ export class HomePageMap {
         let lat = element.dataset.lat,
             lng = element.dataset.lng,
             zoom = element.dataset.zoom;
+
+        initFullscreenMap();
+        initMapFilter();
 
         // get the link for the read more
         this.link = element.dataset.link;

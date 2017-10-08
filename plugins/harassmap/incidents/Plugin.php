@@ -13,6 +13,7 @@ use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\IncidentResetPassword;
 use Harassmap\Incidents\Components\Notifications;
 use Harassmap\Incidents\Components\Report;
+use Harassmap\Incidents\Components\ReportChart;
 use Harassmap\Incidents\Components\ReportIncident;
 use Harassmap\Incidents\Components\ReportIntervention;
 use Harassmap\Incidents\Components\ReportMap;
@@ -119,6 +120,7 @@ class Plugin extends PluginBase
             ReportView::class => 'harassmapUserReport',
             ExpressSupport::class => 'harassmapExpressSupport',
             ReportMap::class => 'harassmapReportMap',
+            ReportChart::class => 'harassmapReportChart',
             Report::class => 'harassmapReport',
             ReportTable::class => 'harassmapReportTable',
             UserAPI::class => 'harassmapUserAPI',
