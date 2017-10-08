@@ -9,12 +9,14 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-6">
-            <a href="#" id="geolocate" class="btn btn--middle btn--hover-green btn--large btn--white btn-block btn--wrap match-height">
+            <a href="#" id="geolocate"
+               class="btn btn--middle btn--hover-green btn--large btn--white btn-block btn--wrap match-height">
                 {{ 'It just happened here' | _ }}
             </a>
         </div>
         <div class="col-6">
-            <a href="#" id="elsewhere" class="btn btn--middle btn--hover-green btn--large btn--white btn-block btn--wrap match-height">
+            <a href="#" id="elsewhere"
+               class="btn btn--middle btn--hover-green btn--large btn--white btn-block btn--wrap match-height">
                 {{ 'It happened earlier / elsewhere' | _ }}
             </a>
         </div>
@@ -43,7 +45,7 @@
                         {{ form_label('address', 'Address/Description' | _) }}
                         {{ form_text('address', '', {'class': 'form-control'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('address') | _  }}
+                            {{ errors.first('address') | _ }}
                         </div>
                     </div>
                 </div>
@@ -52,7 +54,7 @@
                         {{ form_label('city', 'City/Town/Country' | _) }}
                         {{ form_text('city', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('city') | _  }}
+                            {{ errors.first('city') | _ }}
                         </div>
                     </div>
                 </div>
@@ -73,7 +75,7 @@
                         {{ form_label('date', 'Date' | _) }}
                         {{ form_text('date', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('date') | _  }}
+                            {{ errors.first('date') | _ }}
                         </div>
                     </div>
                 </div>
@@ -82,7 +84,7 @@
                         {{ form_label('time', 'Time' | _) }}
                         {{ form_text('time', '', {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('date') | _  }}
+                            {{ errors.first('date') | _ }}
                         </div>
                     </div>
                 </div>
@@ -93,7 +95,7 @@
                         {{ form_label('timezone', 'Timezone' | _) }}
                         {{ form_select('timezone', timezones, domain.timezone, {'class': 'form-control', 'required': 'required'}) }}
                         <div class="form-control-feedback">
-                            {{ errors.first('timezone') | _  }}
+                            {{ errors.first('timezone') | _ }}
                         </div>
                     </div>
                 </div>
@@ -127,7 +129,7 @@
                 {% endfor %}
 
                 <div class="form-control-feedback">
-                    {{ errors.first('assistance') | _  }}
+                    {{ errors.first('assistance') | _ }}
                 </div>
             </div>
         </div>
@@ -170,7 +172,7 @@
                     {% endfor %}
                 </div>
                 <div class="form-control-feedback">
-                    {{ errors.first('categories') | _  }}
+                    {{ errors.first('categories') | _ }}
                 </div>
             </div>
         </div>
@@ -182,7 +184,7 @@
                 {{ form_label('role', 'Your role' | _) }}
                 {{ form_select('role', roles, '', {'class': 'form-control', 'required': 'required'}) }}
                 <div class="form-control-feedback">
-                    {{ errors.first('role') | _  }}
+                    {{ errors.first('role') | _ }}
                 </div>
             </div>
         </div>
@@ -203,7 +205,9 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmPliZYFcKVjG_aJ6AMSYyHCWkmSlNpc&callback=initMap"></script>
 <script id="alert-template" type="text/x-handlebars-template">
-    <div class="alert alert-danger" role="alert">{{ 'We noticed you haven\'t moved the map marker, are you sure the location is correct?' | _ }}</div>
+    <div class="alert alert-danger" role="alert">
+        {{ 'We noticed you haven\'t moved the map marker, are you sure the location is correct?' | _ }}
+    </div>
 </script>
 <script>
     initReportIncidentPage();
