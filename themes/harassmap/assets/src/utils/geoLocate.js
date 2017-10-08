@@ -17,15 +17,23 @@ const initMarkerListener = () => {
     let source = $("#alert-template").html();
     let template = Handlebars.compile(source);
 
+    let submitted = false;
+
     $('#report').on('submit', (event) => {
         let moved = $moved.val();
 
         if (moved !== 'true') {
             event.preventDefault();
 
+            submitted = false;
+
             $moved.val(true);
 
             $('.alerts').html(template());
+        } else if (submitted) {
+            event.preventDefault();
+        } else {
+            submitted = true;
         }
     });
 };

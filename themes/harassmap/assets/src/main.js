@@ -6,7 +6,6 @@ import "./locale/moment";
 import MapFactory from "./map/map.factory";
 import { initBanner } from './utils/banner';
 import { createDatePicker } from "./utils/datePicker";
-import { stopMultipleSubmits } from './utils/form';
 import { initGeolocate } from "./utils/geoLocate";
 import { initMenu } from './utils/menu';
 import { createTimePicker } from "./utils/timePicker";
@@ -56,7 +55,6 @@ window.initReportIncidentPage = () => {
     createTimePicker('time');
     initGeolocate();
     initToggleIntervention();
-    stopMultipleSubmits('report');
     $('#timezone').select2({width: '100%'});
 };
 
