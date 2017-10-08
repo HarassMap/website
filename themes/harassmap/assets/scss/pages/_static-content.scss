@@ -40,4 +40,12 @@
     }
   }
 
+  .btn {
+    @include rem((margin-right: 10px));
+
+    @include media-breakpoint-down(md) {
+      @include rem((margin-top: 10px));
+    }
+  }
+
 }
