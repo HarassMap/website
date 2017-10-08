@@ -18,7 +18,10 @@ const arMonths = [
     'ديسمبر',
 ];
 
+const enData = moment().locale('en').localeData();
+
 moment.updateLocale('ar', {
     months : arMonths,
     monthsShort : arMonths,
+    postformat: enData.postformat
 });
