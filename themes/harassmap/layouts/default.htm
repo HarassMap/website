@@ -55,8 +55,10 @@ id = "footer.about"
                         {% component 'harassmapMailChimp' %}
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"
-                             src="{% if domain.footerLogo %}{{ domain.footerLogo }}{% else %}{{ 'assets/img/logo-footer.svg' | theme }}{% endif %}">
+                        {% if domain.footerLogo %}
+                            <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"
+                                 src="{{ domain.footerLogo }}">
+                        {% endif %}
                     </div>
                 </div>
             </div>
