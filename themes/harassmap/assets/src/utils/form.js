@@ -6,7 +6,6 @@ export const stopMultipleSubmits = (id) => {
     $('#' + id).on('submit', (event) => {
         if (submitted) {
             event.preventDefault();
-            console.debug("stopping");
         }
 
         submitted = true;
