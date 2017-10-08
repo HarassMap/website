@@ -39,7 +39,8 @@ listPage = "news/index"
 [harassmapDomain]
 
 [harassmapReportMap]
-viewPage = "reports/view"
+
+[harassmapReportChart]
 ==
 
 {% flash %}
@@ -76,6 +77,7 @@ viewPage = "reports/view"
         {% component 'harassmapReportMap' %}
     </div>
     <div id="bannerChart" class="banner banner--chart sep--top">
+        {% component 'harassmapReportChart' %}
     </div>
     <div id="bannerTable" class="banner banner--table sep--top">
     </div>

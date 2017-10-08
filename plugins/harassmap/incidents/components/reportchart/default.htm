@@ -34,6 +34,11 @@
 </div>
 
 {% put scripts %}
+<script>
+    $(document).ready(function () {
+        initHomeChart();
+    });
+</script>
 <script id="chart-popover" type="text/x-handlebars-template">
     {% raw %}
         {{#if incident}}

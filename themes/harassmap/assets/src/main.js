@@ -45,6 +45,8 @@ window.initMap = () => {
     });
 };
 
+window.initHomeChart = initHomeChart;
+
 window.initReportBanner = () => {
     initBanner();
 };
