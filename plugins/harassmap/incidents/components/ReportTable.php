@@ -22,10 +22,24 @@ class ReportTable extends ComponentBase
     {
         return [
             'viewPage' => [
-                'title' => 'harassmap.incidents::lang.tip.list.page_name',
-                'description' => 'harassmap.incidents::lang.tip.list.page_help',
+                'title' => 'View Page',
                 'type' => 'dropdown',
                 'group' => 'Links',
+            ],
+            'filter' => [
+                'title' => 'Show Filter?',
+                'type' => 'checkbox',
+                'default' => true,
+            ],
+            'pagination' => [
+                'title' => 'Show Pagination?',
+                'type' => 'checkbox',
+                'default' => true,
+            ],
+            'perPage' => [
+                'title' => 'Results Per Page',
+                'type' => 'string',
+                'default' => '10',
             ],
         ];
     }
@@ -38,14 +52,17 @@ class ReportTable extends ComponentBase
     public function onRender()
     {
         $domain = Domain::getBestMatchingDomain();
+        $perPage = (int)$this->property('perPage');
 
         // get the users incidents
         $this->page['reports'] = Incident
             ::where('domain_id', $domain->id)
             ->orderBy('date', 'desc')
-            ->paginate(10);
+            ->paginate($perPage);
 
         $this->page['viewPage'] = $this->property('viewPage');
+        $this->page['filter'] = $this->property('filter');
+        $this->page['pagination'] = $this->property('pagination');
     }
 
     public function onFilter()

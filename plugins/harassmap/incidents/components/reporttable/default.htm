@@ -1,49 +1,19 @@
-<div class="report-table">
-    <div class="row mb-4">
-        <div class="col-12">
-            <h3 class="hr">
-                <span class="hr__line"></span>
-                <span class="hr__text">{{ 'Reports' | _ }}</span>
-            </h3>
-        </div>
-    </div>
-
+<div class="container">
     {% if reports.empty %}
         <p>{{ 'There doesn\'t seem to be any reports' | _ }}</p>
     {% else %}
-        <div class="row">
-            <div class="col-12">
-                <form class="table-filter"
-                      data-request="onFilter"
-                      data-request-update="'{{ __SELF__ }}::table': '#report-table'">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-6">
-                                    {{ form_text('date_from', '', {'id': 'date_from', 'class': 'form-control', 'placeholder': 'Date From' | _}) }}
-                                </div>
-                                <div class="col-6">
-                                    {{ form_text('date_to', '', {'id': 'date_to', 'class': 'form-control', 'placeholder': 'Date To' | _}) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <select class="form-control form-control-range" name="type">
-                                <option value="">{{ 'View All' | _ }}</option>
-                                <option value="incident">{{ 'Incident' | _ }}</option>
-                                <option value="intervention">{{ 'Intervention' | _ }}</option>
-                            </select>
-                        </div>
-                        <div class="col-3 text-center">
-                            <button class="btn btn--default btn-block">{{ 'Filter' | _ }}</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
 
+        {% if filter %}
+            {% partial "@filter" %}
+        {% endif %}
         <div id="report-table">
             {% partial "@table" %}
+
+            {% if pagination %}
+                <div class="pagination--container mt-4">
+                    {{ reports | raw }}
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 </div>

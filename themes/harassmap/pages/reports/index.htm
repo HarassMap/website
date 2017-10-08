@@ -8,7 +8,21 @@ localeUrl[ar] = "/reports"
 
 [harassmapReportTable]
 viewPage = "reports/view"
+filter = 1
+pagination = 1
+perPage = 10
 ==
 <div class="container">
-    {% component 'harassmapReportTable' %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="hr">
+                <span class="hr__line"></span>
+                <span class="hr__text">{{ 'Reports' | _ }}</span>
+            </h3>
+        </div>
+    </div>
+
+    <div class="report-table">
+        {% component 'harassmapReportTable' %}
+    </div>
 </div>

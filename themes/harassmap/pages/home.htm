@@ -41,6 +41,12 @@ listPage = "news/index"
 [harassmapReportMap]
 
 [harassmapReportChart]
+
+[harassmapReportTable]
+viewPage = "reports/view"
+filter = 0
+pagination = 0
+perPage = 4
 ==
 
 {% flash %}
@@ -73,7 +79,7 @@ listPage = "news/index"
             </a>
         </div>
     </div>
-    <div id="reportMap" class="banner banner--map active">
+    <div id="bannerMap" class="banner banner--map active">
         {% component 'harassmapReportMap' %}
     </div>
     <div id="bannerChart" class="banner banner--chart sep--top">
@@ -104,7 +110,11 @@ listPage = "news/index"
         </div>
     </div>
     <div id="bannerTable" class="banner banner--table sep--top">
-        {#{% component 'harassmapReportTable' %}#}
+        <div class="container">
+            <h3>{{ 'Reports' | _ }}</h3>
+        </div>
+
+        {% component 'harassmapReportTable' %}
 
         <div class="toolbar">
             <div class="legend--container">
@@ -131,8 +141,6 @@ listPage = "news/index"
         </div>
     </div>
 </div>
-
-{#{% component 'banner' %}#}
 
 <div class="hidden-xs-down">
     {% partial 'site/report' %}
