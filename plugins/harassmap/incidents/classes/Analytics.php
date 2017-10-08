@@ -221,7 +221,7 @@ class Analytics
     {
         $event = self::getEventName($message);
 
-        self::capture($event, new Carbon(), [
+        self::capture($event . ' a Domain', new Carbon(), [
             'domain_id' => $domain->id
         ]);
     }
@@ -245,7 +245,7 @@ class Analytics
     {
         $event = self::getEventName($message);
 
-        self::capture($event, new Carbon(), [
+        self::capture($event . ' a User', new Carbon(), [
             'user_id' => $user->id
         ]);
     }
