@@ -13,7 +13,7 @@ export const initCircleChart = (data) => {
 };
 
 export const initLineChart = () => {
-    $('.report-common-line-svg').each(function() {
-        new LineChart(this);
+    $('.report-common-line-svg').each(function(index) {
+        new LineChart(this, index);
     });
 };

@@ -2,6 +2,7 @@
 
 namespace Harassmap\Incidents\Components;
 
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use DB;
 use Harassmap\Incidents\Models\Category;
@@ -62,6 +63,10 @@ class ChartCommonReports extends ComponentBase
 
         $results = [];
 
+        $yearAgo = new Carbon();
+        $yearAgo->subYear()->subYear();
+        $yearAgo->startOfMonth();
+
         foreach ($sorted as $item) {
             $incidents = Incident
                 ::select([
@@ -72,6 +77,7 @@ class ChartCommonReports extends ComponentBase
                 ->whereHas('categories', function ($query) use ($item) {
                     $query->where('id', '=', $item['id']);
                 })
+                ->where('date', '>', $yearAgo)
                 ->groupBy(['year', 'month'])
                 ->get()
                 ->map(function($item) {
