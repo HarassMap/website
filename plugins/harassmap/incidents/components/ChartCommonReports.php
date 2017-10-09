@@ -3,9 +3,8 @@
 namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
-use DB;
+use Harassmap\Incidents\Models\Category;
 use Harassmap\Incidents\Models\Domain;
-use Harassmap\Incidents\Models\Incident;
 
 class ChartCommonReports extends ComponentBase
 {
@@ -19,42 +18,25 @@ class ChartCommonReports extends ComponentBase
 
     public function onRender()
     {
-        $this->page['chartReports'] = $this->onGetChartReports();
+        $this->page['chartReports'] = $this->getChartReports();
     }
 
-    public function onGetChartReports()
+    protected function getChartReports()
     {
-        // default reports [empty]
-        $reports = [
-            'incident' => [],
-            'intervention' => []
-        ];
-
         $domain = Domain::getBestMatchingDomain();
+        $results = [];
 
-        $incidents = $this->getChartReports($domain)->doesntHave('intervention')->get();
-        $interventions = $this->getChartReports($domain)->has('intervention')->get();
+        $categories = Category
+            ::where('domain_id', '=', $domain->id)->get();
 
-        foreach ($incidents as $incident) {
-            $reports['incident'][$incident->day] = $incident->count;
-        };
+        foreach ($categories as $category) {
+            array_push($results, [
+                'title' => $category->title,
+                'count' => $category->incidents()->count()
+            ]);
+        }
 
-        foreach ($interventions as $intervention) {
-            $reports['intervention'][$intervention->day] = $intervention->count;
-        };
-
-        return $reports;
-    }
-
-    protected function getChartReports(Domain $domain)
-    {
-        return Incident
-            ::select([
-                DB::raw('count(id) as `count`'),
-                DB::raw('DATE(date) as `day`')
-            ])
-            ->where('domain_id', '=', $domain->id)
-            ->groupBy('day');
+        return $results;
     }
 
 }

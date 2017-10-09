@@ -1,18 +1,39 @@
-<div class="row">
-    <div class="col-12 col-md-6">
+<div class="row mt-5">
+    <div class="col-12 col-md-6 common-reports">
+        <div class="report-chart-html">
+            <div class="chart-title">
+                {{ 'Most common reports' | _ }}
+            </div>
+        </div>
         <svg id="commonReportsCircleSvg" class="report-common-circle-svg"></svg>
-        <div class="report-chart-html">
-            <div class="chart-title">
-                {{ 'Most common reports' | _ }}
-            </div>
-        </div>
     </div>
-    <div class="col-12 col-md-6">
-        <svg id="commonReportsLineSvg" class="report-common-line-svg"></svg>
+    <div class="col-12 col-md-6 common-reports">
         <div class="report-chart-html">
             <div class="chart-title">
                 {{ 'Most common reports' | _ }}
             </div>
         </div>
+        <svg id="commonReportsLineSvg" class="report-common-line-svg"></svg>
     </div>
 </div>
+
+{% put scripts %}
+<script>
+    $(document).ready(function () {
+        initCircleChart({{ chartReports | json_encode | raw }});
+    });
+</script>
+<script id="circle-chart-popover" type="text/x-handlebars-template">
+    {% raw %}
+        {{#if plural}}
+    {% endraw %}
+    {{ ':category: :total reports' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {% raw %}
+        {{else}}
+    {% endraw %}
+    {{ ':category: :total report' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {% raw %}
+        {{/if}}
+    {% endraw %}
+</script>
+{% endput %}

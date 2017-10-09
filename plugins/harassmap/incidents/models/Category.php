@@ -41,10 +41,7 @@ class Category extends Model
     public $translatable = ['title', 'description'];
 
     public $belongsToMany = [
-        'incidents' => [
-            Incident::class,
-            'table' => 'harassmap_incidents_incident_category'
-        ],
+        'incidents' => [Incident::class, 'table' => 'harassmap_incidents_incident_category'],
     ];
 
     public $belongsTo = [
@@ -69,7 +66,7 @@ class Category extends Model
             $this->sort_order = 0;
         }
 
-        if($this->domain_id === '') {
+        if ($this->domain_id === '') {
             $this->domain_id = NULL;
         }
     }

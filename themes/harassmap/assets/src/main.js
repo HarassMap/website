@@ -1,7 +1,7 @@
 'use strict';
 
 import moment from "moment";
-import { initHomeChart } from './chart/home';
+import { initCircleChart, initHomeChart } from './chart/charts';
 import "./locale/moment";
 import MapFactory from "./map/map.factory";
 import { initBanner } from './utils/banner';
@@ -46,6 +46,7 @@ window.initMap = () => {
 };
 
 window.initHomeChart = initHomeChart;
+window.initCircleChart = initCircleChart;
 
 window.initReportBanner = () => {
     initBanner();

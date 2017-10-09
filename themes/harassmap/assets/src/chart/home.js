@@ -2,14 +2,9 @@
 
 import * as d3 from 'd3';
 import debounce from 'debounce';
-import { interpolate } from "flubber"
 import Handlebars from "handlebars";
 import _ from 'lodash';
 import { BANNER_SWITCH, emitter } from '../utils/events';
-
-export const initHomeChart = (data) => {
-    let chart = new HomeChart('reportChartSvg', data);
-};
 
 // zoom levels for the different markers
 const ZOOM_YEAR = 1;
@@ -23,11 +18,10 @@ const PADDING_BOTTOM = 40;
 const PADDING_LEFT = 30;
 const PADDING_RIGHT = 10;
 
-class HomeChart {
+export class HomeChart {
 
     constructor(id, data) {
         this.svg = d3.select('#' + id);
-        this.html = $('.report-chart-html');
         this.ready = false;
 
         this.addListeners();
