@@ -186,13 +186,13 @@ export class HomeChart {
         this.line = d3.line()
             .x((data) => this.x(data.date))
             .y((data) => this.y(data.value))
-            .curve(d3.curveMonotoneX);
+            .curve(d3.curveCardinal);
 
         this.area = d3.area()
             .x((data) => this.x(data.date))
             .y0(this.bottom)
             .y1((data) => this.y(data.value))
-            .curve(d3.curveMonotoneX);
+            .curve(d3.curveCardinal);
 
         this.areaG = this.chartBody
             .append('path')
@@ -214,28 +214,6 @@ export class HomeChart {
         // draw
         this.lineG.datum(incidents).attr('d', this.line);
         this.areaG.datum(interventions).attr('d', this.area);
-
-        // let previousLine = this.lineG.attr("d");
-        // if (previousLine) {
-        //     this.lineG
-        //         .datum(incidents)
-        //         .transition()
-        //         .duration(2000)
-        //         .attrTween('d', () => interpolate(previousLine, this.line(incidents)));
-        // } else {
-        //     this.lineG.datum(incidents).attr('d', this.line);
-        // }
-        //
-        // let previousArea = this.areaG.attr("d");
-        // if (previousArea) {
-        //     this.areaG
-        //         .datum(interventions)
-        //         .transition()
-        //         .duration(2000)
-        //         .attrTween('d', () => interpolate(previousArea, this.area(interventions)));
-        // } else {
-        //     this.areaG.datum(interventions).attr('d', this.line);
-        // }
 
         this.drawMarkers(incidents, interventions);
     }

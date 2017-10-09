@@ -13,7 +13,14 @@
                 {{ 'Most common reports' | _ }}
             </div>
         </div>
-        <svg id="commonReportsLineSvg" class="report-common-line-svg"></svg>
+        {% for chart in lineReports %}
+            <div class="chart-container">
+                <span class="title">
+                    {{ chart.title }}
+                </span>
+                <svg class="report-common-line-svg" data-items="{{ chart.items | json_encode }}"></svg>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
@@ -21,7 +28,7 @@
 <script>
     $(document).ready(function () {
         initCircleChart({{ circleReports | json_encode | raw }});
-        initLineChart({{ lineReports | json_encode | raw }});
+        initLineChart();
     });
 </script>
 <script id="circle-chart-popover" type="text/x-handlebars-template">
