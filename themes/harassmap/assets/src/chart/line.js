@@ -40,10 +40,14 @@ export class LineChart {
             }
         });
 
+        console.debug(this.data);
+
         this.render();
     }
 
     render() {
+        this.clear();
+
         this.height = parseInt(this.svg.style('height'));
         this.width = parseInt(this.svg.style('width'));
         this.top = PADDING_TOP;
@@ -98,7 +102,7 @@ export class LineChart {
     drawAxis() {
         this.xAxis = d3.axisBottom()
             .scale(this.x)
-            .ticks(3);
+            .ticks(0);
 
         this.gX = this.svg.append("g")
             .attr("class", "axis axis--x")
@@ -116,6 +120,16 @@ export class LineChart {
             date: new Date(year, month),
             count: count
         })), 'date');
+
+        let nextMonth = new Date();
+        nextMonth.setMonth(nextMonth.getMonth() + 1);
+        nextMonth.setDate(1);
+        nextMonth.setHours(0, 0, 0, 0);
+
+        data.push({
+            date: nextMonth,
+            count: 0
+        });
 
         // get 2 years ago
         let lastDate = new Date();
