@@ -7,8 +7,8 @@ import Handlebars from "handlebars";
 import _ from 'lodash';
 import { BANNER_SWITCH, emitter } from '../utils/events';
 
-export const initHomeChart = () => {
-    let chart = new HomeChart('reportChartSvg');
+export const initHomeChart = (data) => {
+    let chart = new HomeChart('reportChartSvg', data);
 };
 
 // zoom levels for the different markers
@@ -25,14 +25,14 @@ const PADDING_RIGHT = 10;
 
 class HomeChart {
 
-    constructor(id) {
+    constructor(id, data) {
         this.svg = d3.select('#' + id);
         this.html = $('.report-chart-html');
         this.ready = false;
 
         this.addListeners();
 
-        this.request();
+        this.parseData(data);
     }
 
     /**
@@ -43,17 +43,6 @@ class HomeChart {
         emitter.on(BANNER_SWITCH, () => {
             this.render();
             this.animate();
-        });
-    }
-
-    /**
-     * Request the data from the server then render it
-     */
-    request() {
-        $.request('onGetChartReports', {
-            success: (data) => {
-                this.parseData(data);
-            }
         });
     }
 

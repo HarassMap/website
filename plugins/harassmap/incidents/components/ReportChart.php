@@ -18,6 +18,11 @@ class ReportChart extends ComponentBase
         ];
     }
 
+    public function onRender()
+    {
+        $this->page['chartReports'] = $this->onGetChartReports();
+    }
+
     public function onGetChartReports()
     {
         // default reports [empty]

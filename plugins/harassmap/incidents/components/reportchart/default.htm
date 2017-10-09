@@ -15,7 +15,7 @@
 {% put scripts %}
 <script>
     $(document).ready(function () {
-        initHomeChart();
+        initHomeChart({{ chartReports | json_encode | raw }});
     });
 </script>
 <script id="chart-popover" type="text/x-handlebars-template">
