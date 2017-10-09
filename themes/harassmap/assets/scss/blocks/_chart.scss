@@ -130,5 +130,15 @@
     &:hover {
       background-color: $light-gray;
     }
+
+    .line {
+      stroke: $red;
+    }
+
+    .axis {
+      .domain {
+        stroke: $dusty-gray;
+      }
+    }
   }
 }

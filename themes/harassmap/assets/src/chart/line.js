@@ -94,7 +94,6 @@ export class LineChart {
         this.lineG = this.chartBody.append('path')
             .datum(this.data)
             .attr('class', 'line')
-            .attr('stroke', '#000')
             .attr('fill', 'none')
             .attr('d', this.line);
     }
