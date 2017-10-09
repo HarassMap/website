@@ -10,3 +10,7 @@ export const initHomeChart = (data) => {
 export const initCircleChart = (data) => {
     new CircleChart('commonReportsCircleSvg', data);
 };
+
+export const initLineChart = (data) => {
+    console.debug(data);
+};

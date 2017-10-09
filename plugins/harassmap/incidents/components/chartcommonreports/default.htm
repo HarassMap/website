@@ -20,7 +20,8 @@
 {% put scripts %}
 <script>
     $(document).ready(function () {
-        initCircleChart({{ chartReports | json_encode | raw }});
+        initCircleChart({{ circleReports | json_encode | raw }});
+        initLineChart({{ lineReports | json_encode | raw }});
     });
 </script>
 <script id="circle-chart-popover" type="text/x-handlebars-template">
