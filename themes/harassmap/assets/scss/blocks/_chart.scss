@@ -72,6 +72,10 @@
 .report-common-circle-svg {
   width: 100%;
   height: 400px;
+
+  .bubble {
+    cursor: pointer;
+  }
 }
 
 .report-chart-html {
