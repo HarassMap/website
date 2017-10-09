@@ -5,6 +5,7 @@ use Backend\Models\User as BackendUserModel;
 use BackendAuth;
 use Event;
 use Harassmap\Incidents\Classes\Mailer;
+use Harassmap\Incidents\Components\ChartCommonReports;
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
@@ -120,7 +121,7 @@ class Plugin extends PluginBase
             ReportView::class => 'harassmapUserReport',
             ExpressSupport::class => 'harassmapExpressSupport',
             ReportMap::class => 'harassmapReportMap',
-            ReportChart::class => 'harassmapReportChart',
+            ReportChart::class => 'harassmapChartReportsOverTime',
             Report::class => 'harassmapReport',
             ReportTable::class => 'harassmapReportTable',
             UserAPI::class => 'harassmapUserAPI',
@@ -128,6 +129,7 @@ class Plugin extends PluginBase
             Notifications::class => 'harassmapNotifications',
             UserMenu::class => 'harassmapUserMenu',
             ExtendedLocalePicker::class => 'harassmapLocalePicker',
+            ChartCommonReports::class => 'harassmapChartCommonReports',
         ];
     }
 

@@ -6,11 +6,13 @@ is_hidden = 0
 [viewBag]
 localeUrl[ar] = "/charts"
 
-[harassmapReportChart]
+[harassmapChartReportsOverTime]
+
+[harassmapChartCommonReports]
 ==
 <div class="sep--top banner-container">
     <div class="container">
-        {% component 'harassmapReportChart' %}
+        {% component 'harassmapChartReportsOverTime' %}
     </div>
     <div class="toolbar">
         <div class="legend--container">
@@ -18,18 +20,21 @@ localeUrl[ar] = "/charts"
                 <div class="row">
                     <div class="col-12">
                         <div class="legend">
-                                <span class="key key--incident">
-                                    <span class="icon"></span>
-                                    {{ 'Incident' | _ }}
-                                </span>
+                            <span class="key key--incident">
+                                <span class="icon"></span>
+                                {{ 'Incident' | _ }}
+                            </span>
                             <span class="key key--intervention">
                                 <span class="icon"></span>
                                 {{ 'Incident with intervention' | _ }}
-                                </span>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    {% component 'harassmapChartCommonReports' %}
 </div>
