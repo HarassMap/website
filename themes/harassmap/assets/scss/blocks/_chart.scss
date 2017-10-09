@@ -125,5 +125,10 @@
     height: 50px;
     width: 300px;
     overflow: visible;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $light-gray;
+    }
   }
 }
