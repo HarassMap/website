@@ -127,6 +127,10 @@
         @include rem((margin: 0 0 0 30px));
       }
 
+      @include media-breakpoint-down(sm) {
+        @include rem((margin: 0 0 0 15px));
+      }
+
       &:hover {
         color: $green;
       }
