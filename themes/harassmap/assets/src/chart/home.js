@@ -342,8 +342,7 @@ export class HomeChart {
 
         this.svg.call(this.zoom)
             .on("wheel.zoom", null)
-            .on("dblclick.zoom", null)
-            .on("touchmove.zoom", null);
+            .on("dblclick.zoom", null);
     }
 
     animate() {

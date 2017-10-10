@@ -167,6 +167,10 @@
     overflow: visible;
     transition: background-color 0.3s;
 
+    @include media-breakpoint-down(sm) {
+      width: 200px;
+    }
+
     &:hover {
       background-color: $light-gray;
     }
