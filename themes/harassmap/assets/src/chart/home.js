@@ -5,6 +5,7 @@ import debounce from 'debounce';
 import Handlebars from "handlebars";
 import _ from 'lodash';
 import { BANNER_SWITCH, emitter } from '../utils/events';
+import { getD3LocaleConfig } from "../locale/d3";
 
 // zoom levels for the different markers
 const ZOOM_YEAR = 1;
@@ -171,6 +172,16 @@ export class HomeChart {
         let max = d3.max(_.concat(incidents, interventions), (data) => data.value);
 
         this.y.domain([0, (max + Math.ceil(max / 10))]);
+
+        let locale = d3.timeFormatLocale(getD3LocaleConfig());
+
+        if(this.currentZoom === ZOOM_WEEK) {
+            this.xAxis.tickFormat((data) =>  _.toUpper(locale.format("%b %d")(data)));
+        } else if (this.currentZoom === ZOOM_MONTH) {
+            this.xAxis.tickFormat((data) =>  _.toUpper(locale.format("%b")(data)));
+        } else {
+            this.xAxis.tickFormat(locale.format("%Y"));
+        }
 
         this.draw(incidents, interventions);
     }

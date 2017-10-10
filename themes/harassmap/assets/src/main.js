@@ -2,6 +2,7 @@
 
 import moment from "moment";
 import { initCircleChart, initHomeChart, initLineChart } from './chart/charts';
+import { changeD3Locale } from "./locale/d3";
 import "./locale/moment";
 import MapFactory from "./map/map.factory";
 import { initBanner } from './utils/banner';
@@ -37,6 +38,7 @@ $(document).ready(() => {
 
 window.setLocale = (locale) => {
     moment.locale(locale);
+    changeD3Locale(locale);
 };
 
 window.initMap = () => {

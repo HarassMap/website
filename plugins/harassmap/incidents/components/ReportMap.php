@@ -44,6 +44,9 @@ class ReportMap extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    /**
+     * TODO: Cache this result and remove the cache when a new incident is added
+     */
     public function onRender()
     {
         $domain = Domain::getBestMatchingDomain();
