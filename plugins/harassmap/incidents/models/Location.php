@@ -42,4 +42,15 @@ class Location extends Model
     ];
 
     public $hidden = ['id', 'incident_id'];
+
+    public function getFullAddress()
+    {
+        $address = $this->address;
+
+        if(!empty($address)) {
+            $address .= ', ';
+        }
+
+        return $address . $this->city;
+    }
 }
