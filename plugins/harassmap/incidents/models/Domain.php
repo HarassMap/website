@@ -104,7 +104,7 @@ class Domain extends Model
         'instagram' => 'max:100',
         'youtube' => 'max:100',
         'blogger' => 'max:100',
-        'email' => 'max:100|email'
+        'email' => 'max:100|email|required'
     ];
 
     public $hasMany = [
