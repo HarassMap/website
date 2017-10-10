@@ -120,7 +120,6 @@ export class HomeChart {
 
         this.ready = true;
         this.render();
-        this.animate();
     }
 
     meanValues({key, values}) {
@@ -164,6 +163,7 @@ export class HomeChart {
         this.markers = this.chartBody.append('g');
 
         this.redraw();
+        this.animate();
     }
 
     redraw() {
