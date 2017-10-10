@@ -50,6 +50,7 @@ class Content extends Model
         'footer.about' => 'Footer (About)',
         'tips' => 'Tips',
         'contact' => 'Contact',
+        'chart' => 'Chart Page',
     ];
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
