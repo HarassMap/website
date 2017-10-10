@@ -4,7 +4,6 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
-use DB;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 
@@ -63,18 +62,11 @@ class ReportMap extends ComponentBase
     {
         $data = post();
 
-        // default reports [empty]
-        $reports = [];
-
-        // if the bounds exist
-        if (array_key_exists('bounds', $data)) {
-
-            if (!array_key_exists('filters', $data)) {
-                $data['filters'] = [];
-            }
-
-            $reports = Incident::whereInsideBounds($data['bounds'], $data['filters']);
+        if (!array_key_exists('filters', $data)) {
+            $data['filters'] = [];
         }
+
+        $reports = Incident::withFilters($data['filters']);
 
         return $reports;
     }

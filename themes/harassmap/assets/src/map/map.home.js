@@ -67,7 +67,6 @@ export class HomePageMap {
         });
 
         google.maps.event.addListener(this.markerCluster, 'clusterclick', (cluster) => {
-            console.debug(this.map.getZoom());
             if (this.map.getZoom() >= this.markerCluster.getMaxZoom()) {
                 let markers = cluster.getMarkers();
                 let content = '<div class="cluster-info">';
@@ -86,15 +85,9 @@ export class HomePageMap {
             }
         });
 
-        google.maps.event.addListener(this.map, 'bounds_changed', debounce(() => {
-            this.center = this.map.getCenter();
-
+        google.maps.event.addListenerOnce(this.map, 'bounds_changed', debounce(() => {
             this.getReports();
         }, 500));
-
-        google.maps.event.addDomListener(window, 'resize', () => {
-            this.map.setCenter(this.center);
-        });
 
         emitter.on(REFRESH_MAP, () => google.maps.event.trigger(this.map, 'resize'));
         emitter.on(FILTER_MAP, (filters) => this.getReports(filters));
@@ -112,16 +105,12 @@ export class HomePageMap {
             ...filters
         };
 
-        console.time("HOME_MAP_REQUEST");
-
         $.request('onGetReports', {
             data: {
                 bounds,
                 filters: this.filters
             },
             success: (data) => {
-                console.timeEnd("HOME_MAP_REQUEST");
-                console.time("MARKERS_ADD");
                 this.addMarkers(data);
             }
         });
@@ -157,8 +146,6 @@ export class HomePageMap {
             }
         });
         this.markerCluster.addMarkers(new_markers);
-
-        console.timeEnd("MARKERS_ADD");
     }
 
     addMarker(report) {

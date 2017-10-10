@@ -155,16 +155,15 @@ class Incident extends Model
     }
 
     /**
-     * @param $bounds
+     * @param $filters
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public static function whereInsideBounds($bounds, $filters)
+    public static function withFilters($filters)
     {
         $domain = Domain::getBestMatchingDomain();
 
         $reports = self::where('domain_id', $domain->id);
 
-        self::filterBounds($reports, [$bounds['south'], $bounds['north']], [$bounds['west'], $bounds['east']]);
         self::applyFilters($reports, $filters);
 
         return $reports->with('location')->with('intervention')->get();
@@ -189,17 +188,6 @@ class Incident extends Model
             $to = new Carbon($filters['date_to']);
             $query->where('date', '<', $to->toDateString());
         }
-
-        return $query;
-    }
-
-    public static function filterBounds($query, $lat, $lng)
-    {
-        $query->whereHas('location', function ($query) use ($lat, $lng) {
-            $query
-                ->whereBetween('lat', [floatval($lat[0]), floatval($lat[1])])
-                ->whereBetween('lng', [floatval($lng[0]), floatval($lng[1])]);
-        });
 
         return $query;
     }
