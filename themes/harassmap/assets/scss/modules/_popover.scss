@@ -1,0 +1,6 @@
+@import '../variables';
+@import "rem";
+
+.popover-content {
+  @include oswald();
+}

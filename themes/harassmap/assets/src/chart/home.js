@@ -8,8 +8,8 @@ import { BANNER_SWITCH, emitter } from '../utils/events';
 
 // zoom levels for the different markers
 const ZOOM_YEAR = 1;
-const ZOOM_MONTH = 1.3;
-const ZOOM_WEEK = 10;
+const ZOOM_MONTH = 2;
+const ZOOM_WEEK = 40;
 
 const INITIAL_YEAR = 2009;
 
@@ -36,17 +36,50 @@ export class HomeChart {
         window.addEventListener('resize', debounce(() => this.render(), 200));
         emitter.on(BANNER_SWITCH, () => {
             this.render();
-            this.animate();
         });
 
-        $('.report-chart-html .filter-year').on('click', (event) => {
+        const $filters = $('.report-chart-html .filter');
+
+        $filters.on('click', (event) => {
             event.preventDefault();
             let now = new Date();
+            let yearStart = new Date();
+            let yearEnd = new Date();
 
-            let yearStart = new Date(now.getFullYear() - 1, now.getMonth(), 1);
+            const $target = $(event.target);
+
+            $filters.removeClass('active');
+            $target.addClass('active');
+
+            if($target.hasClass('filter-year')) {
+
+                yearStart.setFullYear(INITIAL_YEAR);
+                yearStart.setMonth(0);
+                yearStart.setDate(1);
+
+                yearEnd.setMonth(now.getMonth() + 1);
+                yearEnd.setDate(0);
+
+            } else if ($target.hasClass('filter-month')) {
+
+                yearStart.setFullYear(now.getFullYear() - 1);
+                yearStart.setDate(1);
+
+                yearEnd.setMonth(now.getMonth() + 1);
+                yearEnd.setDate(0);
+
+            } else if ($target.hasClass('filter-week')) {
+
+                yearStart.setFullYear(now.getFullYear());
+                yearStart.setMonth(now.getMonth() - 1);
+                yearStart.setDate(1);
+
+                yearEnd.setMonth(now.getMonth() + 1);
+                yearEnd.setDate(0);
+
+            }
+
             yearStart.setHours(0, 0, 0, 0);
-
-            let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
             yearEnd.setHours(0, 0, 0, 0);
 
             this.svg.call(
@@ -86,6 +119,7 @@ export class HomeChart {
 
         this.ready = true;
         this.render();
+        this.animate();
     }
 
     meanValues({key, values}) {
@@ -246,7 +280,7 @@ export class HomeChart {
             .attr('class', 'circle circle--incident')
             .attr('data-toggle', 'popover')
             .attr('data-placement', 'top')
-            .attr('data-trigger', 'hover')
+            .attr('data-trigger', 'click')
             .merge(dotsIncidents)
             .attr('data-content', ({value}) => template({
                 total: value,
@@ -305,8 +339,6 @@ export class HomeChart {
                 [this.width, this.height]
             ])
             .on("zoom", zoomed);
-
-        console.debug(this.zoom);
 
         this.svg.call(this.zoom)
             .on("wheel.zoom", null)

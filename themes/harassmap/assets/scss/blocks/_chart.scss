@@ -102,6 +102,42 @@
     @include rem((font-size: 13px, top: 65px, left: 10px, width: 90px));
   }
 
+  .buttons {
+    position: absolute;
+
+    @include oswald();
+    @include rem((font-size: 14px, top: 20px, left: 250px));
+
+    @include media-breakpoint-down(md) {
+      @include rem((top: 60px, left: auto, right: 0px));
+    }
+
+    @include media-breakpoint-down(sm) {
+      @include rem((top: 20px));
+    }
+
+    .filter {
+      color: $tundora;
+      text-transform: uppercase;
+      transition: all 0.3s;
+
+      @include rem((margin-right: 30px));
+
+      @include media-breakpoint-down(md) {
+        @include rem((margin: 0 0 0 30px));
+      }
+
+      &:hover {
+        color: $green;
+      }
+
+      &.active {
+        color: $green;
+        text-decoration: underline;
+      }
+    }
+  }
+
 }
 
 .chart-container {
