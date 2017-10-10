@@ -94,7 +94,6 @@ class Domain extends Model
         'name' => 'required',
         'about' => 'required',
         'host' => 'required|max:50',
-        'url' => 'required',
         'lat' => 'required',
         'lng' => 'required',
         'zoom' => 'required',
