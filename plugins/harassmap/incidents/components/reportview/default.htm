@@ -68,7 +68,7 @@
                 <p class="pt-1 pb-1 tick">
                     {% if report.support == 1 %}
                         {{ ':support expression of support.'|_({ support: report.support }) }}
-                    {% else if report.support > 10 %}
+                    {% elseif report.support > 10 %}
                         {{ ':support expression of support 11.'|_({ support: report.support }) }}
                     {% else %}
                         {{ ':support expressions of support.'|_({ support: report.support }) }}
