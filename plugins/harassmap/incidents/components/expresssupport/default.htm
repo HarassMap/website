@@ -21,6 +21,8 @@
                 <strong>
                     {% if report.support == 1 %}
                         {{ 'This incident has :support expression of support.' | _({support: report.support}) }}
+                    {% elseif report.support > 10 %}
+                        {{ 'This incident has :support expression of support 11.' | _({support: report.support}) }}
                     {% elseif report.support > 1 %}
                         {{ 'This incident has :support expressions of support.' | _({support: report.support}) }}
                     {% else %}

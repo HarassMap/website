@@ -230,9 +230,14 @@ export class HomeChart {
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
             .merge(dotsIncidents)
-            .attr('data-content', data => template({total: data.value, incident: true, plural: data.value !== 1}))
-            .attr("cx", data => this.x(data.date))
-            .attr("cy", data => this.y(data.value));
+            .attr('data-content', ({value}) => template({
+                total: value,
+                incident: true,
+                single: value === 1,
+                plural: value < 11
+            }))
+            .attr("cx", ({date}) => this.x(date))
+            .attr("cy", ({value}) => this.y(value));
         dotsIncidents.exit().remove();
 
         let dotsInterventions = this.markers.selectAll(".circle--intervention").data(interventions);
@@ -243,9 +248,14 @@ export class HomeChart {
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')
             .merge(dotsInterventions)
-            .attr('data-content', data => template({total: data.value, incident: false, plural: data.value !== 1}))
-            .attr("cx", data => this.x(data.date))
-            .attr("cy", data => this.y(data.value));
+            .attr('data-content', ({value}) => template({
+                total: value,
+                incident: false,
+                single: value === 1,
+                plural: value < 11
+            }))
+            .attr("cx", ({date}) => this.x(date))
+            .attr("cy", ({value}) => this.y(value));
         dotsInterventions.exit().remove();
 
         $('[data-toggle="popover"]').popover();
