@@ -3,6 +3,7 @@ columns:
         label: 'harassmap.incidents::lang.form.id'
     public_id:
         label: 'harassmap.incidents::lang.form.public_id'
+        searchable: true
     date:
         label: 'harassmap.incidents::lang.form.date_report'
         type: datetime
