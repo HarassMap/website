@@ -1,0 +1,13 @@
+{
+    "name": "harassmap/mailchimp",
+    "type": "project",
+    "require": {
+        "thinkshout/mailchimp-api-php": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Paul Barton",
+            "email": "info@thisispaul.co.uk"
+        }
+    ]
+}

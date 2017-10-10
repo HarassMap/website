@@ -5,6 +5,8 @@ namespace Harassmap\MailChimp\Components;
 use ApplicationException;
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Domain;
+use Mailchimp\Mailchimp;
+use Mailchimp\MailchimpAPIException;
 use ValidationException;
 use Validator;
 
@@ -45,19 +47,21 @@ class Signup extends ComponentBase
         /*
          * Sign up to Mailchimp via the API
          */
-        require_once(plugins_path() . '/harassmap/mailchimp/vendor/MCAPI.class.php');
-
-        $api = new \MCAPI($domain->mailchimp_api);
+        $api = new Mailchimp($domain->mailchimp_api);
 
         $this->page['error'] = null;
 
-        $mergeVars = '';
-        if (isset($data['merge']) && is_array($data['merge']) && count($data['merge'])) {
-            $mergeVars = $data['merge'];
-        }
+        try {
+            $api->request('POST', '/lists/{list_id}/members', ['list_id' => $domain->mailchimp_list], ['email_address' => post('email')]);
+        } catch (MailchimpAPIException $e) {
+            $message = $e->getMessage();
 
-        if ($api->listSubscribe($domain->mailchimp_list, post('email'), $mergeVars) !== true) {
-            $this->page['error'] = $api->errorMessage;
+            if (str_contains($message, 'Member Exists')) {
+                $this->page['error'] = "You are already a member of our mailing list.";
+            } else {
+                $this->page['error'] = "Something went wrong, please try again later";
+            }
+
         }
     }
 }
