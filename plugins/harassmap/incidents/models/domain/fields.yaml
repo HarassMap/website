@@ -21,41 +21,30 @@ tabs:
             label: 'harassmap.incidents::lang.model.domain.timezone'
             span: auto
             type: dropdown
+            commentAbove: This is the default timezone for this domain. Dates will be shown in this timezone.
             tab: 'harassmap.incidents::lang.form.tab.site'
         languages:
             label: 'harassmap.incidents::lang.model.domain.languages'
             span: auto
             type: taglist
             tab: 'harassmap.incidents::lang.form.tab.site'
+            commentAbove: Which languages are enabled on this domain?
             options: getLanguages
         incident:
             label: 'Enable Incident'
             span: full
             type: checkbox
+            commentAbove: Can users report Incidents?
             tab: 'harassmap.incidents::lang.form.tab.site'
         intervention:
             label: 'Enable Intervention'
             span: full
             type: checkbox
+            commentAbove: Can users report Interventions?
             tab: 'harassmap.incidents::lang.form.tab.site'
         need_approval:
             label: 'Do descriptions require approval?'
             span: full
-            type: checkbox
-            tab: 'harassmap.incidents::lang.form.tab.site'
-        incident:
-            label: 'Enable Incident'
-            span: auto
-            type: checkbox
-            tab: 'harassmap.incidents::lang.form.tab.site'
-        intervention:
-            label: 'Enable Intervention'
-            span: auto
-            type: checkbox
-            tab: 'harassmap.incidents::lang.form.tab.site'
-        need_approval:
-            label: 'Do descriptions require approval?'
-            span: auto
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
         twitter_message:
