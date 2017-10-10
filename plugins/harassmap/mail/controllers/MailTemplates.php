@@ -2,8 +2,11 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Exception;
+use Flash;
 use Harassmap\Incidents\Traits\FilterDomain;
 use Harassmap\Mail\Models\MailTemplate;
+use Mail;
 use System\Models\MailTemplate as SystemMailTemplate;
 
 class MailTemplates extends Controller
@@ -39,5 +42,21 @@ class MailTemplates extends Controller
         $saveData['content_text'] = $template->content_text;
 
         return $saveData;
+    }
+
+    public function onTest($recordId)
+    {
+        try {
+            $model = $this->formFindModelObject($recordId);
+            $user = $this->user;
+
+            if(true);
+
+            Mail::sendTo([$user->email => $user->full_name], $model->code);
+
+            Flash::success(trans('system::lang.mail_templates.test_success'));
+        } catch (Exception $ex) {
+            Flash::error($ex->getMessage());
+        }
     }
 }
