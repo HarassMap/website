@@ -17,12 +17,6 @@ tabs:
             span: auto
             commentAbove: Email address that automated emails will be sent from.
             tab: 'harassmap.incidents::lang.form.tab.site'
-        about:
-            label: 'harassmap.incidents::lang.form.about'
-            span: full
-            type: textarea
-            commentAbove: 'harassmap.incidents::lang.form.about_help'
-            tab: 'harassmap.incidents::lang.form.tab.site'
         timezone:
             label: 'harassmap.incidents::lang.model.domain.timezone'
             span: auto

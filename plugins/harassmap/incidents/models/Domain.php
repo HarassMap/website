@@ -92,7 +92,6 @@ class Domain extends Model
 
     public $rules = [
         'name' => 'required',
-        'about' => 'required',
         'host' => 'required|max:50',
         'lat' => 'required',
         'lng' => 'required',
