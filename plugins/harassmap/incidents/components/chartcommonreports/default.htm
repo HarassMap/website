@@ -2,7 +2,7 @@
     <div class="col-12 col-md-6 border-md-right common-reports">
         <div class="report-chart-html">
             <div class="chart-title">
-                {{ 'Most common reports' | _ }}
+                {{ 'Most common incidents' | _ }}
             </div>
         </div>
         <svg id="commonReportsCircleSvg" class="report-common-circle-svg"></svg>
@@ -10,7 +10,7 @@
     <div class="col-12 col-md-6 common-reports">
         <div class="report-chart-html">
             <div class="chart-title">
-                {{ 'Most common reports' | _ }}
+                {{ 'Most common incidents over time' | _ }}
             </div>
         </div>
         {% for chart in lineReports %}
@@ -33,13 +33,17 @@
 </script>
 <script id="circle-chart-popover" type="text/x-handlebars-template">
     {% raw %}
-        {{#if plural}}
+        {{#if single}}
+    {% endraw %}
+    {{ ':category: :total report' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {% raw %}
+        {{else if plural}}
     {% endraw %}
     {{ ':category: :total reports' | _({total: "{{ total }}", category: "{{ title }}"}) }}
     {% raw %}
         {{else}}
     {% endraw %}
-    {{ ':category: :total report' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {{ ':category: :total reports 11' | _({total: "{{ total }}", category: "{{ title }}"}) }}
     {% raw %}
         {{/if}}
     {% endraw %}

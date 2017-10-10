@@ -27,13 +27,6 @@ class ChartCommonReports extends ComponentBase
         $this->page['lineReports'] = $this->getLineChartReports();
     }
 
-    protected function getCategories()
-    {
-        $domain = Domain::getBestMatchingDomain();
-
-        return Category::where('domain_id', '=', $domain->id)->get();
-    }
-
     protected function getCircleReports()
     {
         // simple static cache
@@ -41,13 +34,17 @@ class ChartCommonReports extends ComponentBase
             return self::$results;
         }
 
-        $categories = $this->getCategories();
+        $domain = Domain::getBestMatchingDomain();
+
+        $categories = Category
+            ::where('domain_id', '=', $domain->id)
+            ->get();
 
         foreach ($categories as $category) {
             array_push(self::$results, [
                 'id' => $category->id,
                 'title' => $category->title,
-                'count' => $category->incidents()->count()
+                'count' => $category->incidents()->doesntHave('intervention')->count()
             ]);
         }
 
@@ -78,6 +75,7 @@ class ChartCommonReports extends ComponentBase
                     $query->where('id', '=', $item['id']);
                 })
                 ->where('date', '>', $yearAgo)
+                ->doesntHave('intervention')
                 ->groupBy(['year', 'month'])
                 ->get()
                 ->map(function($item) {

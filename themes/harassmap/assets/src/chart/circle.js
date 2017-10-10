@@ -74,7 +74,8 @@ export class CircleChart {
             .attr('data-content', ({data}) => template({
                 title: data.title,
                 total: data.count,
-                plural: data.count !== 1
+                single: data.count === 1,
+                plural: data.count < 11
             }));
 
         $('[data-toggle="popover"]').popover();

@@ -79,41 +79,4 @@ class ReportMap extends ComponentBase
         return $reports;
     }
 
-    public function onGetChartReports()
-    {
-        $data = post();
-
-        // default reports [empty]
-        $reports = [
-            'incident' => [],
-            'intervention' => []
-        ];
-
-        $domain = Domain::getBestMatchingDomain();
-
-        $incidents = $this->getChartReports($domain)->doesntHave('intervention')->get();
-        $interventions = $this->getChartReports($domain)->has('intervention')->get();
-
-        foreach ($incidents as $incident) {
-            $reports['incident'][$incident->day] = $incident->count;
-        };
-
-        foreach ($interventions as $intervention) {
-            $reports['intervention'][$intervention->day] = $intervention->count;
-        };
-
-        return $reports;
-    }
-
-    protected function getChartReports(Domain $domain)
-    {
-        return Incident
-            ::select([
-                DB::raw('count(id) as `count`'),
-                DB::raw('DATE(date) as `day`')
-            ])
-            ->where('domain_id', '=', $domain->id)
-            ->groupBy('day');
-    }
-
 }
