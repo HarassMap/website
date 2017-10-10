@@ -3,7 +3,3 @@ columns:
         label: 'harassmap.incidents::lang.model.domain.host'
         type: text
         searchable: true
-    url:
-        label: 'harassmap.incidents::lang.model.domain.url'
-        type: text
-        searchable: true
