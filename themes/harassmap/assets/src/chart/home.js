@@ -333,7 +333,7 @@ export class HomeChart {
         };
 
         this.zoom = d3.zoom()
-            .scaleExtent([1, 250])
+            .scaleExtent([0, 0])
             .translateExtent([
                 [0, 0],
                 [this.width, this.height]
