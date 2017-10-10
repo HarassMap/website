@@ -280,7 +280,7 @@ export class HomeChart {
             .attr('class', 'circle circle--incident')
             .attr('data-toggle', 'popover')
             .attr('data-placement', 'top')
-            .attr('data-trigger', 'click')
+            .attr('data-trigger', 'hover')
             .merge(dotsIncidents)
             .attr('data-content', ({value}) => template({
                 total: value,
