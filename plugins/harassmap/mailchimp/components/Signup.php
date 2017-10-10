@@ -5,6 +5,7 @@ namespace Harassmap\MailChimp\Components;
 use ApplicationException;
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Domain;
+use Log;
 use Mailchimp\Mailchimp;
 use Mailchimp\MailchimpAPIException;
 use ValidationException;
@@ -59,6 +60,7 @@ class Signup extends ComponentBase
             if (str_contains($message, 'Member Exists')) {
                 $this->page['error'] = "You are already a member of our mailing list.";
             } else {
+                Log::error($e->getMessage());
                 $this->page['error'] = "Something went wrong, please try again later";
             }
 
