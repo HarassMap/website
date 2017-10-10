@@ -38,6 +38,24 @@ export class HomeChart {
             this.render();
             this.animate();
         });
+
+        $('.report-chart-html .filter-year').on('click', (event) => {
+            event.preventDefault();
+            let now = new Date();
+
+            let yearStart = new Date(now.getFullYear() - 1, now.getMonth(), 1);
+            yearStart.setHours(0, 0, 0, 0);
+
+            let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+            yearEnd.setHours(0, 0, 0, 0);
+
+            this.svg.call(
+                this.zoom.transform,
+                d3.zoomIdentity
+                    .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                    .translate(-this.x(yearStart), 0)
+            );
+        });
     }
 
     clear() {
@@ -288,7 +306,12 @@ export class HomeChart {
             ])
             .on("zoom", zoomed);
 
-        this.svg.call(this.zoom);
+        console.debug(this.zoom);
+
+        this.svg.call(this.zoom)
+            .on("wheel.zoom", null)
+            .on("dblclick.zoom", null)
+            .on("touchmove.zoom", null);
     }
 
     animate() {
@@ -300,13 +323,12 @@ export class HomeChart {
         let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
         yearEnd.setHours(0, 0, 0, 0);
 
-        this.svg
-            .call(
-                this.zoom.transform,
-                d3.zoomIdentity
-                    .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
-                    .translate(-this.x(yearStart), 0)
-            );
+        this.svg.call(
+            this.zoom.transform,
+            d3.zoomIdentity
+                .scale(this.width / (this.x(yearEnd) - this.x(yearStart)))
+                .translate(-this.x(yearStart), 0)
+        );
     }
 
     getZoom() {
