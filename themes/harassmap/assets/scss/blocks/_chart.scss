@@ -114,10 +114,6 @@
       @include rem((top: 60px, left: auto, right: 0px));
     }
 
-    @include media-breakpoint-down(sm) {
-      @include rem((top: 20px));
-    }
-
     .filter {
       color: $tundora;
       text-transform: uppercase;
