@@ -40,8 +40,6 @@ export class LineChart {
             }
         });
 
-        console.debug(this.data);
-
         this.render();
     }
 

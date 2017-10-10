@@ -15,5 +15,10 @@
 .border-md-right {
   @include media-breakpoint-up(md) {
     border-right: 1px solid $dusty-gray;
+
+    .ar & {
+      border-right: none;
+      border-left: 1px solid $dusty-gray;
+    }
   }
 }
