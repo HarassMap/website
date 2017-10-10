@@ -146,7 +146,12 @@ class MailTemplate extends Model
 
         if ($logo) {
             try {
-                $data['domain']['logo'] = $message->embed($logo);
+                $cid = $message->embed($logo);
+
+                // if the image embedded then set the domain logo
+                if (!empty($cid)) {
+                    $data['domain']['logo'] = "<img src='$cid'>";
+                }
             } catch (Exception $e) {
                 Log::error($e->getMessage());
             }
