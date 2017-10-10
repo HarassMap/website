@@ -29,7 +29,7 @@ export const initMapFilter = () => {
 };
 
 export const initFullscreenMap = () => {
-    let $map = $('#reportMap'),
+    let $map = $('#bannerMap'),
         $button = $('#mapFullscreen');
 
     if (screenfull.enabled) {
