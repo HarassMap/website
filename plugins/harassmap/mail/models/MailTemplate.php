@@ -66,7 +66,7 @@ class MailTemplate extends Model
         $options = Domain::getDomainIdOptions(false);
         $ids = array_keys($options);
 
-        return MailLayout::whereIn('domain_id', $ids)->get()->lists('host', 'id');
+        return MailLayout::whereIn('domain_id', $ids)->get()->lists('name', 'id');
     }
 
     public function getCodeOptions()
