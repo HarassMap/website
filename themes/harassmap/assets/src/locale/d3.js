@@ -22,8 +22,8 @@ const locales = {
         "periods": ["AM", "PM"],
         "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        "shortMonths": ["JanAr", "FebAr", "MarAr", "AprAr", "MayAr", "JunAr", "JulAr", "AugAr", "SepAr", "OctAr", "NovAr", "DecAr"]
+        "months": ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر"],
+        "shortMonths": ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر"]
     },
     'fr': {
         "dateTime": "%A, le %e %B %Y, %X",
