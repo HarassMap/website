@@ -61,6 +61,14 @@ class MailTemplate extends Model
         'layout' => MailLayout::class
     ];
 
+    public function getLayoutIdOptions()
+    {
+        $options = Domain::getDomainIdOptions(false);
+        $ids = array_keys($options);
+
+        return MailLayout::whereIn('domain_id', $ids)->get()->lists('host', 'id');
+    }
+
     public function getCodeOptions()
     {
         return SystemMailTemplate::listAllTemplates();

@@ -4,11 +4,10 @@ fields:
         span: auto
         type: dropdown
         emptyOption: 'Choose a template to override'
-    layout:
+    layout_id:
         label: 'Layout'
         span: auto
-        type: relation
-        nameFrom: name
+        type: dropdown
     domain_id:
         label: 'harassmap.incidents::lang.form.domain'
         span: full

@@ -302,7 +302,7 @@ class Domain extends Model
         return self::getMatchingDomains()[0];
     }
 
-    static function getDomainIdOptions()
+    static function getDomainIdOptions($empty = true)
     {
 
         $user = BackendAuth::getUser();
@@ -320,7 +320,11 @@ class Domain extends Model
             $choices[$domain->id] = $domain->host;
         }
 
-        return [NULL => 'No Domain'] + $choices;
+        if ($empty) {
+            $choices = [NULL => 'No Domain'] + $choices;
+        }
+
+        return $choices;
     }
 
     public function getLanguages()

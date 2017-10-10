@@ -2,20 +2,20 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
-use Harassmap\Incidents\Traits\DomainOptions;
 use Harassmap\Incidents\Traits\FilterDomain;
-use System\Models\MailTemplate;
+use Harassmap\Mail\Models\MailTemplate;
+use System\Models\MailTemplate as SystemMailTemplate;
 
 class MailTemplates extends Controller
 {
     use FilterDomain;
+    protected $domain_id = 'domain_id';
 
     public $implement = ['Backend\Behaviors\ListController', 'Backend\Behaviors\FormController'];
 
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
 
-    protected $domain_id = 'domain_id';
 
     public function __construct()
     {
@@ -23,9 +23,16 @@ class MailTemplates extends Controller
         BackendMenu::setContext('Harassmap.Mail', 'harassmap.mail', 'harassmap.mail.templates');
     }
 
+    protected function findDomain($id)
+    {
+        $content = MailTemplate::find($id);
+
+        return $content->domain;
+    }
+
     public function formExtendRefreshData($host, $saveData)
     {
-        $template = MailTemplate::findOrMakeTemplate($saveData['code']);
+        $template = SystemMailTemplate::findOrMakeTemplate($saveData['code']);
 
         $saveData['subject'] = $template->subject;
         $saveData['content_html'] = $template->content_html;
