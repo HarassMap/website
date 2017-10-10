@@ -58,8 +58,9 @@ export class CircleChart {
         this.nodes = this.pack(this.hier);
 
         this.bubbles = this.svg.append("g")
-            .attr("transform", "translate(0,0)")
-            .selectAll(".bubble")
+            .attr("class", "bubbles");
+
+        this.bubbles.selectAll(".bubble")
             .data(this.nodes.children)
             .enter()
             .append("circle")
@@ -77,6 +78,9 @@ export class CircleChart {
                 single: data.count === 1,
                 plural: data.count < 11
             }));
+
+        const {x, y, width, height} = this.bubbles.node().getBBox();
+        this.svg.attr("viewBox", `${x} ${y} ${width} ${height}`);
 
         $('[data-toggle="popover"]').popover();
 
