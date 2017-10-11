@@ -101,6 +101,7 @@ export class LineChart {
     drawAxis() {
         this.xAxis = d3.axisBottom()
             .scale(this.x)
+            .tickSizeOuter(0)
             .ticks(0);
 
         this.gX = this.svg.append("g")
