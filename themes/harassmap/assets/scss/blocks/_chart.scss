@@ -11,6 +11,14 @@
 
   .axis {
 
+    &.axis--y {
+      .ar & {
+        text {
+          text-anchor: start;
+        }
+      }
+    }
+
     .domain {
       stroke: $dusty-gray;
       shape-rendering: crispedges;
