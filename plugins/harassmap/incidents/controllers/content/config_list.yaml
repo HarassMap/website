@@ -11,3 +11,6 @@ toolbar:
 recordUrl: 'harassmap/incidents/content/update/:id'
 recordsPerPage: 20
 filter: config_filter.yaml
+defaultSort:
+    column: created_at
+    direction: desc
