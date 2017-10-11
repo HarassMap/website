@@ -1,5 +1,6 @@
 <?php namespace Harassmap\Incidents\Models;
 
+use Cache;
 use Carbon\Carbon;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic;
@@ -9,7 +10,6 @@ use Harassmap\Incidents\Components\ReportMap;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
-use Cache;
 
 /**
  * Harassmap\Incidents\Models\Incident
@@ -122,11 +122,14 @@ class Incident extends Model
 
     public function afterCreate()
     {
-        Mailer::incidentCreated($this);
+        // dont clear the cache of we are in the cli
+        if (!(php_sapi_name() === 'cli')) {
+            Mailer::incidentCreated($this);
 
-        Analytics::reportCreated($this);
+            Analytics::reportCreated($this);
 
-        Cache::forget(ReportMap::cacheKey);
+            Cache::forget(ReportMap::cacheKey);
+        }
     }
 
     public function afterUpdate()
@@ -134,7 +137,7 @@ class Incident extends Model
         // get which attributes have changed
         $changed = $this->getDirty();
 
-        if(array_key_exists('support', $changed)) {
+        if (array_key_exists('support', $changed)) {
             Analytics::reportSupportAdded($this);
         } else {
             Analytics::reportEdited($this);
