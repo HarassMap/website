@@ -3,6 +3,7 @@
 import * as d3 from 'd3';
 import debounce from 'debounce';
 import Handlebars from "handlebars";
+import _ from 'lodash';
 
 export class CircleChart {
 
@@ -60,15 +61,17 @@ export class CircleChart {
         this.bubbles = this.svg.append("g")
             .attr("class", "bubbles");
 
+        console.debug(this.nodes);
+
         this.bubbles.selectAll(".bubble")
             .data(this.nodes.children)
             .enter()
             .append("circle")
             .attr("class", "bubble")
-            .attr("r", (d) => d.r)
-            .attr("cx", (d) => d.x)
-            .attr("cy", (d) => d.y)
-            .style("fill", (d) => this.color(d.value))
+            .attr("r", (data) => _.isNaN(data.r) ? 0 : data.r)
+            .attr("cx", (data) => data.x)
+            .attr("cy", (data) => data.y)
+            .style("fill", (data) => this.color(data.value))
             .attr('data-toggle', 'popover')
             .attr('data-placement', 'top')
             .attr('data-trigger', 'hover')

@@ -428,6 +428,11 @@ export class HomeChart {
 
     padDates(data) {
         data = _.orderBy(data, 'date');
+
+        if(_.isEmpty(data)) {
+            return data;
+        }
+
         let first = _.first(data);
 
         // add a super old date

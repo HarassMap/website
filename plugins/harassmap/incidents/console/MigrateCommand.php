@@ -33,7 +33,7 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
-        $csv = new parseCSV(__DIR__ . '/harassmap_data.csv');
+        $csv = new parseCSV(__DIR__ . '/final_data.csv');
 
         $assistance = Assistance::whereTitle('other')->first();
         $domain = Domain::whereHost('*')->first();
@@ -89,6 +89,7 @@ class MigrateCommand extends Command
 
             // save the date to the incident
             $incident->date = $date;
+            $incident->created_at = new Carbon($data['report_date_time']);
 
             $categoriesData = explode(',', $data['categories']);
             $categories = [];
