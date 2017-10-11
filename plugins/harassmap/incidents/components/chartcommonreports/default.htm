@@ -35,15 +35,32 @@
     {% raw %}
         {{#if single}}
     {% endraw %}
-    {{ ':category: :total report' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {{ ':category: :total incident' | _({total: "{{ total }}", category: "{{ title }}"}) }}
     {% raw %}
         {{else if plural}}
     {% endraw %}
-    {{ ':category: :total reports' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {{ ':category: :total incidents' | _({total: "{{ total }}", category: "{{ title }}"}) }}
     {% raw %}
         {{else}}
     {% endraw %}
-    {{ ':category: :total reports 11' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {{ ':category: :total incidents 11' | _({total: "{{ total }}", category: "{{ title }}"}) }}
+    {% raw %}
+        {{/if}}
+    {% endraw %}
+</script>
+<script id="line-chart-popover" type="text/x-handlebars-template">
+    {% raw %}
+        {{#if single}}
+    {% endraw %}
+    {{ ':total incident' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{else if plural}}
+    {% endraw %}
+    {{ ':total incidents' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{else}}
+    {% endraw %}
+    {{ ':total incidents 11' | _({total: "{{ total }}"}) }}
     {% raw %}
         {{/if}}
     {% endraw %}

@@ -2,6 +2,7 @@
 
 import * as d3 from 'd3';
 import debounce from 'debounce';
+import Handlebars from "handlebars";
 import _ from 'lodash';
 
 const PADDING_TOP = 0;
@@ -68,6 +69,7 @@ export class LineChart {
         this.drawClip();
         this.drawGraph();
         this.drawAxis();
+        this.drawLabels();
     }
 
     drawClip() {
@@ -87,7 +89,7 @@ export class LineChart {
         this.line = d3.line()
             .x(({date}) => this.x(date))
             .y(({value}) => this.y(value))
-            .curve(d3.curveBasis);
+            .curve(d3.curveCardinal);
 
         this.lineG = this.chartBody.append('path')
             .datum(this.data)
@@ -110,6 +112,65 @@ export class LineChart {
             .style("text-anchor", "middle")
             .attr("x", 0)
             .attr("y", 15);
+    }
+
+    drawLabels() {
+        let source = $("#line-chart-popover").html();
+        let template = Handlebars.compile(source);
+
+        this.focus = this.svg
+            .append("g")
+            .attr("class", "focus line-popover")
+            .style("display", "none")
+            .attr('data-toggle', 'popover')
+            .attr('data-placement', 'top')
+            .attr('data-trigger', 'manual');
+
+        this.focus
+            .append("circle")
+            .attr("r", 4.5);
+
+        this.mouseRect = this.svg
+            .append("rect")
+            .attr("class", "overlay")
+            .attr("fill", "none")
+            .attr("pointer-events", "all")
+            .attr("width", this.width)
+            .attr("height", this.height)
+            .on("mouseover", () => this.focus.style("display", null))
+            .on("mouseout", () => mouseout())
+            .on("mousemove", () => mousemove());
+
+        let oldData = {};
+        let $focus = $(this.focus.node());
+
+        const mouseout = () => {
+            this.focus.style("display", "none");
+            $focus.popover('hide');
+            oldData = {};
+        };
+        const mousemove = () => {
+            const bisectDate = d3.bisector(({date}) => date).left;
+            let x0 = this.x.invert(d3.mouse(this.mouseRect.node())[0]),
+                i = bisectDate(this.data, x0, 1),
+                d0 = this.data[i - 1],
+                d1 = this.data[i],
+                d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+            this.focus
+                .attr("transform", "translate(" + this.x(d.date) + "," + this.y(d.value) + ")")
+                .attr('data-content', () => template({
+                    total: d.value,
+                    single: d.value === 1,
+                    plural: d.value < 11
+                }));
+
+            if (oldData !== d) {
+                oldData = d;
+                $focus.popover('show');
+            }
+
+        };
     }
 
     padDates(data) {
