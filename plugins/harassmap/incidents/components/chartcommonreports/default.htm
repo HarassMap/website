@@ -18,7 +18,9 @@
                 <span class="title">
                     {{ chart.title }}
                 </span>
-                <svg class="report-common-line-svg" data-items="{{ chart.items | json_encode }}"></svg>
+                <div class="report-common-line-svg-container">
+                    <svg class="report-common-line-svg" data-items="{{ chart.items | json_encode }}"></svg>
+                </div>
             </div>
         {% endfor %}
     </div>

@@ -121,14 +121,15 @@ export class LineChart {
         this.focus = this.svg
             .append("g")
             .attr("class", "focus line-popover")
-            .style("display", "none")
-            .attr('data-toggle', 'popover')
-            .attr('data-placement', 'top')
-            .attr('data-trigger', 'manual');
+            .style("display", "none");
 
         this.focus
             .append("circle")
             .attr("r", 4.5);
+
+        this.tether = this.svg
+            .append("g")
+            .attr("class", "tether");
 
         this.mouseRect = this.svg
             .append("rect")
@@ -142,7 +143,11 @@ export class LineChart {
             .on("mousemove", () => mousemove());
 
         let oldData = {};
-        let $focus = $(this.focus.node());
+        let $focus = $(this.tether.node());
+        $focus.popover({
+            placement: 'top',
+            trigger: 'manual'
+        });
 
         const mouseout = () => {
             this.focus.style("display", "none");
@@ -158,7 +163,10 @@ export class LineChart {
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
             this.focus
-                .attr("transform", "translate(" + this.x(d.date) + "," + this.y(d.value) + ")")
+                .attr("transform", "translate(" + this.x(d.date) + "," + this.y(d.value) + ")");
+
+            this.tether
+                .attr("transform", "translate(" + this.x(d.date) + ",0)")
                 .attr('data-content', () => template({
                     total: d.value,
                     single: d.value === 1,

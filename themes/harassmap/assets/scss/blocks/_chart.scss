@@ -159,27 +159,33 @@
     @include rem((font-size: 14px));
   }
 
-  .report-common-line-svg {
+  .report-common-line-svg-container {
     height: 50px;
     width: 300px;
-    overflow: visible;
-    transition: background-color 0.3s;
+    position: relative;
 
-    @include media-breakpoint-down(sm) {
-      width: 200px;
-    }
+    .report-common-line-svg {
+      height: 100%;
+      width: 100%;
+      overflow: visible;
+      transition: background-color 0.3s;
 
-    &:hover {
-      background-color: $light-gray;
-    }
+      @include media-breakpoint-down(sm) {
+        width: 200px;
+      }
 
-    .line {
-      stroke: $red;
-    }
+      &:hover {
+        background-color: $light-gray;
+      }
 
-    .axis {
-      .domain {
-        stroke: $dusty-gray;
+      .line {
+        stroke: $red;
+      }
+
+      .axis {
+        .domain {
+          stroke: $dusty-gray;
+        }
       }
     }
   }
