@@ -6,6 +6,7 @@ use BackendAuth;
 use Carbon\Carbon;
 use Exception;
 use Harassmap\Comments\Models\Comment;
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Settings;
 use Log;
