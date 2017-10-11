@@ -7,6 +7,7 @@ use Illuminate\Mail\Message;
 use Log;
 use Model;
 use October\Rain\Database\Traits\Validation;
+use RainLab\Translate\Models\Locale;
 use RainLab\User\Facades\Auth;
 use System\Helpers\View as ViewHelper;
 use System\Models\MailTemplate as SystemMailTemplate;
@@ -39,6 +40,8 @@ class MailTemplate extends Model
 {
     use Validation;
     use DomainOptions;
+
+    public static $testLocale = '';
 
     public $table = 'harassmap_mail_templates';
 
@@ -129,7 +132,10 @@ class MailTemplate extends Model
             $user = Auth::getUser();
         }
 
-        if ($user) {
+        // check if there is a test locale
+        if(!empty(self::$testLocale) && Locale::isValid(self::$testLocale)) {
+            $template->translateContext(self::$testLocale);
+        } else if ($user) {
             $locale = $user->locale;
 
             if ($locale) {

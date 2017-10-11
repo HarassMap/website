@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Traits;
 
 use BackendAuth;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 trait FilterDomain
 {

@@ -7,6 +7,7 @@ use Flash;
 use Harassmap\Incidents\Traits\FilterDomain;
 use Harassmap\Mail\Models\MailTemplate;
 use Mail;
+use RainLab\Translate\Models\Locale;
 use System\Models\MailTemplate as SystemMailTemplate;
 
 class MailTemplates extends Controller
@@ -19,11 +20,12 @@ class MailTemplates extends Controller
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
 
-
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('Harassmap.Mail', 'harassmap.mail', 'harassmap.mail.templates');
+
+        $this->vars['locales'] = Locale::listEnabled();
     }
 
     protected function findDomain($id)
@@ -50,7 +52,7 @@ class MailTemplates extends Controller
             $model = $this->formFindModelObject($recordId);
             $user = $this->user;
 
-            if(true);
+            MailTemplate::$testLocale = post('locale');
 
             Mail::sendTo([$user->email => $user->full_name], $model->code);
 
