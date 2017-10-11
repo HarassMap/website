@@ -4,13 +4,13 @@ namespace Harassmap\Incidents\Classes;
 
 use BackendAuth;
 use Carbon\Carbon;
+use Exception;
 use Harassmap\Comments\Models\Comment;
-use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Settings;
+use Log;
 use RainLab\User\Facades\Auth;
 use RainLab\User\Models\User;
-use Log;
-use Exception;
 
 class Analytics
 {
@@ -23,10 +23,10 @@ class Analytics
     public static function getInstance()
     {
         if (is_null(self::$attributable)) {
-            $domain = Domain::getBestMatchingDomain();
+            $api_key = Settings::get('attributable_api_key');
 
             self::$attributable = new Attributable();
-            self::$attributable->key = $domain->attributable_key;
+            self::$attributable->key = $api_key;
         }
 
         return self::$attributable;

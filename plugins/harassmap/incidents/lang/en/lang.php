@@ -99,7 +99,6 @@
         'id' => 'ID',
         'public_id' => 'Public ID',
         'support' => 'Support',
-        'attributable_key' => 'Attributable API Key',
         'ga_key' => 'Google Analytics Key',
         'twitter_message' => 'Twitter Message',
         'read_more_label' => 'Label',

@@ -4,8 +4,13 @@
 
 tabs:
     fields:
+        attributable_api_key:
+            label: Attributable API Key
+            span: full
+            type: text
+            tab: Analytics
         api_day_limit:
             label: API Limit (Per Day)
-            span: left
+            span: auto
             type: number
             tab: API

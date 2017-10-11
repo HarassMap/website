@@ -197,3 +197,6 @@
 1.0.70:
     - 'Updated table harassmap_incidents_domain'
     - builder_table_update_harassmap_incidents_domain_16.php
+1.0.71:
+    - 'Removing attributable key from domain'
+    - builder_table_update_harassmap_incidents_domain_17.php

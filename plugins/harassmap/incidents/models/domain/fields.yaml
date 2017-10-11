@@ -112,8 +112,3 @@ tabs:
             span: full
             type: text
             tab: 'harassmap.incidents::lang.form.tab.analytics'
-        attributable_key:
-            label: 'harassmap.incidents::lang.form.attributable_key'
-            span: full
-            type: text
-            tab: 'harassmap.incidents::lang.form.tab.analytics'

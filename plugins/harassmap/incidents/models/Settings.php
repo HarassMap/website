@@ -26,5 +26,6 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->api_day_limit = 200;
+        $this->attributable_api_key = '';
     }
 }
