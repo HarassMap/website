@@ -37,7 +37,7 @@ class Topic extends Model
     ];
 
     public $hasMany = [
-        'comments' => [Comment::class, 'delete' => true]
+        'comments' => Comment::class
     ];
 
     public $belongsTo = [
@@ -55,5 +55,13 @@ class Topic extends Model
         $topic->save();
 
         return $topic;
+    }
+
+    /**
+     * When the Topic is deleted force delete all the comments in it
+     */
+    public function beforeDelete()
+    {
+        $this->comments()->withTrashed()->forceDelete();
     }
 }
