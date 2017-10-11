@@ -4,11 +4,13 @@ import * as d3 from 'd3';
 import debounce from 'debounce';
 import Handlebars from "handlebars";
 import _ from 'lodash';
+import { getD3LocaleConfig } from "../locale/d3";
 
 const PADDING_TOP = 0;
-const PADDING_BOTTOM = 10;
+const PADDING_BOTTOM = 0;
 const PADDING_LEFT = 0;
 const PADDING_RIGHT = 0;
+const TEXT_PADDING = 20;
 
 export class LineChart {
 
@@ -126,11 +128,18 @@ export class LineChart {
 
         this.focus
             .append("circle")
-            .attr("r", 4.5);
+            .attr("r", 6);
 
         this.tether = this.svg
             .append("g")
             .attr("class", "tether");
+
+        this.textG = this.svg
+            .append("g");
+
+        this.text = this.textG
+            .append("text")
+            .attr("text-anchor", "middle");
 
         this.mouseRect = this.svg
             .append("rect")
@@ -139,7 +148,7 @@ export class LineChart {
             .attr("pointer-events", "all")
             .attr("width", this.width)
             .attr("height", this.height)
-            .on("mouseover", () => this.focus.style("display", null))
+            .on("mouseover", () => mouseover())
             .on("mouseout", () => mouseout())
             .on("mousemove", () => mousemove());
 
@@ -150,8 +159,14 @@ export class LineChart {
             trigger: 'manual'
         });
 
+        const mouseover = () => {
+            this.focus.style("display", null);
+            this.textG.style("display", null);
+        };
+
         const mouseout = () => {
             this.focus.style("display", "none");
+            this.textG.style("display", "none");
             $focus.popover('hide');
             oldData = {};
         };
@@ -163,8 +178,11 @@ export class LineChart {
                 d1 = this.data[i],
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
-            this.focus
-                .attr("transform", "translate(" + this.x(d.date) + "," + this.y(d.value) + ")");
+            this.focus.attr("transform", "translate(" + this.x(d.date) + "," + this.y(d.value) + ")");
+            this.textG.attr("transform", "translate(" + this.x(d.date) + "," + (this.height + TEXT_PADDING) + ")");
+
+            let locale = d3.timeFormatLocale(getD3LocaleConfig());
+            this.text.text(_.toUpper(locale.format("%b")(d.date)));
 
             this.tether
                 .attr("transform", "translate(" + this.x(d.date) + ",0)")

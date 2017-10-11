@@ -25,6 +25,10 @@
 
     text {
       fill: $dusty-gray;
+      font-weight: $light;
+
+      @include oswald();
+      @include rem((font-size: 13px));
     }
   }
 
@@ -186,6 +190,18 @@
         .domain {
           stroke: $dusty-gray;
         }
+      }
+
+      circle {
+        fill: $red;
+      }
+
+      text {
+        fill: $dusty-gray;
+        font-weight: $light;
+
+        @include oswald();
+        @include rem((font-size: 13px));
       }
     }
   }
