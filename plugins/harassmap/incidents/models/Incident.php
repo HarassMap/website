@@ -1,14 +1,15 @@
 <?php namespace Harassmap\Incidents\Models;
 
-use BackendAuth;
 use Carbon\Carbon;
 use Harassmap\Comments\Models\Comment;
 use Harassmap\Comments\Models\Topic;
 use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Classes\Mailer;
+use Harassmap\Incidents\Components\ReportMap;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
+use Cache;
 
 /**
  * Harassmap\Incidents\Models\Incident
@@ -124,6 +125,8 @@ class Incident extends Model
         Mailer::incidentCreated($this);
 
         Analytics::reportCreated($this);
+
+        Cache::forget(ReportMap::cacheKey);
     }
 
     public function afterUpdate()
@@ -141,6 +144,8 @@ class Incident extends Model
     public function afterDelete()
     {
         Analytics::reportDeleted($this);
+
+        Cache::forget(ReportMap::cacheKey);
     }
 
     public function scopeIntervention($query, $status)

@@ -98,8 +98,6 @@ export class HomePageMap {
      *
      */
     getReports(filters = {}) {
-        let bounds = this.map.getBounds().toJSON();
-
         this.filters = {
             ...this.filters,
             ...filters
@@ -107,7 +105,6 @@ export class HomePageMap {
 
         $.request('onGetReports', {
             data: {
-                bounds,
                 filters: this.filters
             },
             success: (data) => {
