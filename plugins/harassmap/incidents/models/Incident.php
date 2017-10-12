@@ -199,4 +199,15 @@ class Incident extends Model
 
         return $query;
     }
+
+    public static function filterBounds($query, $lat, $lng)
+    {
+        $query->whereHas('location', function ($query) use ($lat, $lng) {
+            $query
+                ->whereBetween('lat', [floatval($lat[0]), floatval($lat[1])])
+                ->whereBetween('lng', [floatval($lng[0]), floatval($lng[1])]);
+        });
+
+        return $query;
+    }
 }
