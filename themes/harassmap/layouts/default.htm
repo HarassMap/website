@@ -21,15 +21,14 @@ id = "footer.about"
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="HarassMap">
 
-    <title>{{ ('meta_title_' ~ this.page.id) | _ }}</title>
-
+    <title>{{ this.page.title }}</title>
     {% if this.page.meta_description %}
         <meta name="description" content="{{ this.page.meta_description }}">
     {% else %}
         <meta name="description" content="{{ domain.meta_description }}">
     {% endif %}
 
-    <meta name="title" content="{{ ('meta_title_' ~ this.page.id) | _ }}">
+    <meta name="title" content="{{ this.page.title }}">
     <meta property="fb:app_id" content="{{ domain.facebook_app_id }}"/>
 
     {% placeholder meta default %}
