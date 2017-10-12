@@ -39,6 +39,12 @@ class Definition
      */
     protected $xmlObject;
 
+    protected $languages = [];
+
+    protected $defaultLocale = 'en';
+
+    protected $translator;
+
     protected $pages = [
         'home',
         'contact',
@@ -53,33 +59,45 @@ class Definition
     public function generateSitemap()
     {
         $domain = Domain::getBestMatchingDomain();
-        $languages = explode(',', $domain->languages);
+        $this->languages = explode(',', $domain->languages);
 
         // get the default locale
-        $defaultLocale = $domain->default_language;
-        if (!Locale::isValid($defaultLocale)) {
-            $defaultLocale = 'en';
+        $this->defaultLocale = $domain->default_language;
+        if (!Locale::isValid($this->defaultLocale)) {
+            $this->defaultLocale = 'en';
         }
 
-        $translator = Translator::instance();
-        if (!$translator->isConfigured()) {
+        $this->translator = Translator::instance();
+        if (!$this->translator->isConfigured()) {
             return;
         }
 
+        // create the cms page links
+        $this->createPageLinks();
+
+        $urlSet = $this->makeUrlSet();
+        $xml = $this->makeXmlObject();
+        $xml->appendChild($urlSet);
+
+        return $xml->saveXML();
+    }
+
+    protected function createPageLinks()
+    {
         $list = Page::sortBy('baseFileName')->all();
 
         // get every cms page
         foreach ($list as $page) {
             if (in_array($page->getBaseFileName(), $this->pages)) {
 
-                $this->forceRouterLocale($defaultLocale);
+                $this->forceRouterLocale($this->defaultLocale);
 
                 $url = Page::url($page->getBaseFileName());
                 $alternate = [];
 
                 // generate urls for all the alternate languages
-                foreach ($languages as $language) {
-                    if($language !== $defaultLocale) {
+                foreach ($this->languages as $language) {
+                    if($language !== $this->defaultLocale) {
                         $this->forceRouterLocale($language);
                         $alternate[$language] = Page::url($page->getBaseFileName());
                     }
@@ -88,12 +106,6 @@ class Definition
                 $this->addItemToSet($url, $alternate, $page->mtime);
             }
         }
-
-        $urlSet = $this->makeUrlSet();
-        $xml = $this->makeXmlObject();
-        $xml->appendChild($urlSet);
-
-        return $xml->saveXML();
     }
 
     protected function forceRouterLocale($locale)
