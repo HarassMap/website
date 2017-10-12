@@ -20,3 +20,7 @@ fields:
             extension: auto
         span: auto
         type: fileupload
+    hint:
+        span: full
+        path: logo_hint
+        type: partial
