@@ -17,6 +17,14 @@ class Logo extends Model
 
     public $table = 'harassmap_incidents_domain_logo';
 
+    const LOGO_IDS = [
+        'desktop' => 'Desktop',
+        'mobile' => 'Mobile',
+        'footer' => 'Footer',
+        'email' => 'Email',
+        'meta' => 'Meta (Open Graph)',
+    ];
+
     public $rules = [
         'domain' => 'required',
         'language' => 'required',
@@ -30,13 +38,6 @@ class Logo extends Model
 
     public $attachOne = [
         'image' => 'System\Models\File'
-    ];
-
-    const LOGO_IDS = [
-        'desktop' => 'Desktop',
-        'mobile' => 'Mobile',
-        'footer' => 'Footer',
-        'email' => 'Email',
     ];
 
     public function getLanguageOptions()

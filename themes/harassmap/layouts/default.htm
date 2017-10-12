@@ -27,9 +27,27 @@ id = "footer.about"
     {% else %}
         <meta name="description" content="{{ domain.meta_description }}">
     {% endif %}
-    <meta name="title" content="{{ this.page.meta_title }}">
 
-    {% placeholder meta %}
+    <meta name="title" content="{{ this.page.title }}">
+    <meta property="fb:app_id" content="{{ domain.facebook_app_id }}"/>
+
+    {% placeholder meta default %}
+
+    {% if domain.getMetaImage %}
+        <meta property="og:image" content="{{ domain.getMetaImage }}"/>
+    {% endif %}
+
+    <meta property="og:url" content="{{ this.page.id | page }}"/>
+    <meta name="og:title" content="{{ this.page.meta_title }}">
+
+    {% if this.page.meta_description %}
+        <meta name="og:description" content="{{ this.page.meta_description }}">
+    {% else %}
+        <meta name="og:description" content="{{ domain.meta_description }}">
+    {% endif %}
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    {% endplaceholder %}
 
     {% partial 'site/styles' %}
 </head>

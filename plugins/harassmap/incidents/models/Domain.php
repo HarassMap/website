@@ -211,6 +211,11 @@ class Domain extends Model
         return $this->getLogo('email');
     }
 
+    public function getMetaImage()
+    {
+        return $this->getLogo('meta');
+    }
+
     // cache the domains
     public static $domains = [];
 
