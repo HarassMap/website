@@ -4,6 +4,7 @@ namespace Harassmap\Incidents\Components;
 
 use Cms\Classes\ComponentBase;
 use Harassmap\Incidents\Models\Domain as DomainModel;
+use Harassmap\Incidents\Models\Settings;
 
 class Domain extends ComponentBase
 {
@@ -24,6 +25,7 @@ class Domain extends ComponentBase
     public function onRun()
     {
         $this->page['domain'] = DomainModel::getBestMatchingDomain();
+        $this->page['ga_key'] = Settings::get('ga_key');
     }
 
 }

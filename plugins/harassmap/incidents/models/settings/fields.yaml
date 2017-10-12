@@ -9,6 +9,11 @@ tabs:
             span: full
             type: text
             tab: Analytics
+        ga_key:
+            label: Google Analytics
+            span: full
+            type: text
+            tab: Analytics
         api_day_limit:
             label: API Limit (Per Day)
             span: auto

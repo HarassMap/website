@@ -149,7 +149,7 @@ class Plugin extends PluginBase
             'settings' => [
                 'label' => 'HarassMap Settings',
                 'description' => '',
-                'category' => SettingsManager::CATEGORY_MISC,
+                'category' => 'HarassMap',
                 'icon' => 'icon-cog',
                 'class' => 'Harassmap\Incidents\Models\Settings',
                 'order' => 500,
