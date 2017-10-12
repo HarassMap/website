@@ -21,7 +21,7 @@ id = "footer.about"
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="HarassMap">
 
-    <title>{{ this.page.title }}</title>
+    <title>{{ ('meta_title_' ~ this.page.id ) | _ }}</title>
     {% if this.page.meta_description %}
         <meta name="description" content="{{ this.page.meta_description }}">
     {% else %}
