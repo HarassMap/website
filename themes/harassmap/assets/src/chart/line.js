@@ -175,8 +175,17 @@ export class LineChart {
             let x0 = this.x.invert(d3.mouse(this.mouseRect.node())[0]),
                 i = bisectDate(this.data, x0, 1),
                 d0 = this.data[i - 1],
-                d1 = this.data[i],
+                d1 = this.data[i];
+
+            let d = d0;
+
+            if (_.isUndefined(d0)) {
+                d = d1;
+            } else if (_.isUndefined(d1)) {
+                d = d0;
+            } else {
                 d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+            }
 
             this.focus.attr("transform", "translate(" + this.x(d.date) + "," + this.y(d.value) + ")");
             this.textG.attr("transform", "translate(" + this.x(d.date) + "," + (this.height + TEXT_PADDING) + ")");
