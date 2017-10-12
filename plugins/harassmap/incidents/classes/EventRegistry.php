@@ -35,6 +35,15 @@ class EventRegistry
             $domain_ids[] = $domain->id;
         }
 
+        return $this->removeDomainPages($templates, $domain_ids);
+    }
+
+    /**
+     * @param $templates
+     * @param $domain_ids
+     * @return array
+     */
+    public function removeDomainPages($templates, $domain_ids) {
         $iterator = function ($pages) use (&$iterator, $domain_ids) {
             $result = [];
 
@@ -43,7 +52,7 @@ class EventRegistry
                 $subPages = [];
 
                 // get the page
-                if(!($page instanceof Page)) {
+                if (!($page instanceof Page)) {
                     $subPages = $page->subpages;
                     $page = $page->page;
                 }

@@ -3,10 +3,13 @@
 namespace Harassmap\Sitemap\Classes;
 
 use Cms\Classes\Page;
+use Cms\Classes\Theme;
 use DOMDocument;
+use Harassmap\Incidents\Classes\EventRegistry;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use October\Rain\Support\Traits\Singleton;
+use RainLab\Pages\Classes\Page as StaticPage;
 use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
 use Route;
@@ -80,6 +83,7 @@ class Definition
 
         // create the cms page links
         $this->createPageLinks();
+        $this->createStaticPageLinks();
         $this->createReportLinks();
 
         $urlSet = $this->makeUrlSet();
@@ -103,7 +107,7 @@ class Definition
 
                 // generate urls for all the alternate languages
                 foreach ($this->languages as $language) {
-                    if($language !== $this->defaultLocale) {
+                    if ($language !== $this->defaultLocale) {
                         $this->forceRouterLocale($language);
                         $alternate[$language] = Page::url($page->getBaseFileName());
                     }
@@ -111,6 +115,32 @@ class Definition
 
                 $this->addItemToSet($url, $alternate, $page->mtime);
             }
+        }
+    }
+
+    protected function createStaticPageLinks()
+    {
+        $themeActive = Theme::getActiveTheme()->getDirName();
+
+        $list = StaticPage::listInTheme($themeActive);
+        $pages = EventRegistry::instance()->removeDomainPages($list, [$this->domain->id]);
+
+        // get every cms page
+        foreach ($pages as $page) {
+            $this->forceRouterLocale($this->defaultLocale);
+
+            $url = StaticPage::url($page->page->getBaseFileName());
+            $alternate = [];
+
+            // generate urls for all the alternate languages
+            foreach ($this->languages as $language) {
+                if ($language !== $this->defaultLocale) {
+                    $this->forceRouterLocale($language);
+                    $alternate[$language] = StaticPage::url($page->page->getBaseFileName());
+                }
+            }
+
+            $this->addItemToSet($url, $alternate, $page->page->mtime);
         }
     }
 
@@ -124,7 +154,7 @@ class Definition
             $url = Page::url('reports/view', ['id' => $incident->public_id]);
             $alternate = [];
             foreach ($this->languages as $language) {
-                if($language !== $this->defaultLocale) {
+                if ($language !== $this->defaultLocale) {
                     $this->forceRouterLocale($language);
                     $alternate[$language] = Page::url('reports/view', ['id' => $incident->public_id]);
                 }
@@ -207,7 +237,7 @@ class Definition
         $url->appendChild($xml->createElement('changefreq', $frequency));
         $url->appendChild($xml->createElement('priority', $priority));
 
-        foreach($languages as $code => $path) {
+        foreach ($languages as $code => $path) {
             $link = $url->appendChild($xml->createElement('xhtml:link'));
             $link->setAttribute('rel', 'alternate');
             $link->setAttribute('hreflang', $code);
