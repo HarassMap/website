@@ -44,7 +44,7 @@ class ChartCommonReports extends ComponentBase
             array_push(self::$results, [
                 'id' => $category->id,
                 'title' => $category->title,
-                'count' => $category->incidents()->doesntHave('intervention')->count()
+                'count' => $category->incidents()->count()
             ]);
         }
 
@@ -75,7 +75,6 @@ class ChartCommonReports extends ComponentBase
                     $query->where('id', '=', $item['id']);
                 })
                 ->where('date', '>', $yearAgo)
-                ->doesntHave('intervention')
                 ->groupBy(['year', 'month'])
                 ->get()
                 ->map(function($item) {
