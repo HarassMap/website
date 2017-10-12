@@ -1,7 +1,8 @@
 <?php
 
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\Translate\Models\Message;
-use Excodus\TranslateExtended\Models\Settings;
+use Harassmap\Translate\Models\Settings;
 use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
 
@@ -14,7 +15,7 @@ App::after(function ($request) {
     }
 });
 
-App::before(function($request) {
+App::before(function ($request) {
 
     if (App::runningInBackend()) {
         return;
@@ -40,10 +41,11 @@ App::before(function($request) {
      * Behavior when there is no locale in the Request URL, first check in session and then try to match with default browser language
      */
     if (!$locale || !Locale::isValid($locale)) {
-        if (Settings::get('prefer_user_session',true) && $localeSession) {
+        if (Settings::get('prefer_user_session', true) && $localeSession) {
+            $locale = $localeSession;
             $translator->setLocale($localeSession);
         } else {
-            if(Settings::get('browser_language_detection',true) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            if (Settings::get('browser_language_detection', true) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
                 // get the list of browser languages
                 $accepted = parseLanguageList($_SERVER['HTTP_ACCEPT_LANGUAGE']);
                 $available = Locale::listEnabled();
@@ -62,27 +64,38 @@ App::before(function($request) {
     /*
       * If it was unable to retrieve locale from session, route url or browser matching, just roll back to default locale
     */
-    $locale = $translator->getLocale();
 
+    if (!Locale::isValid($locale)) {
+        $domain = Domain::getBestMatchingDomain();
+        $locale = $domain->default_language;
+    }
+
+    // if we don't have a locale then get the domains locale
+    if (!Locale::isValid($locale)) {
+        $locale = $translator->getLocale();
+    }
+
+
+    // if the domain doesn't have a locale then fallback to the default locale
     if (!Locale::isValid($locale)) {
         $translator->setLocale($translator->getDefaultLocale());
     }
 
-    if(Settings::get('route_prefixing', true)) {
-        Route::group(['prefix' => $locale], function() {
+    if (Settings::get('route_prefixing', true)) {
+        Route::group(['prefix' => $locale], function () {
             Route::any('{slug}', 'Cms\Classes\CmsController@run')->where('slug', '(.*)?');
         });
 
         Route::any($locale, 'Cms\Classes\CmsController@run');
 
-        Event::listen('cms.route', function() use ($locale) {
-            Route::group(['prefix' => $locale], function() {
+        Event::listen('cms.route', function () use ($locale) {
+            Route::group(['prefix' => $locale], function () {
                 Route::any('{slug}', 'Cms\Classes\CmsController@run')->where('slug', '(.*)?');
             });
         });
 
-        if(Settings::get('homepage_redirect', true)) {
-            Route::get('/', function() use ($locale) {
+        if (Settings::get('homepage_redirect', true)) {
+            Route::get('/', function () use ($locale) {
                 return redirect($locale);
             });
         }
@@ -94,7 +107,8 @@ App::before(function($request) {
 // http://stackoverflow.com/a/3771447/3704886
 
 // parse list of comma separated language tags and sort it by the quality value
-function parseLanguageList($languageList) {
+function parseLanguageList($languageList)
+{
     if (is_null($languageList)) {
         if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             return array();
@@ -108,7 +122,7 @@ function parseLanguageList($languageList) {
             if (!isset($match[2])) {
                 $match[2] = '1.0';
             } else {
-                $match[2] = (string) floatval($match[2]);
+                $match[2] = (string)floatval($match[2]);
             }
             if (!isset($languages[$match[2]])) {
                 $languages[$match[2]] = strtolower($match[1]);
@@ -120,7 +134,8 @@ function parseLanguageList($languageList) {
 }
 
 // compare two parsed arrays of language tags and find the matches
-function findMatches($accepted, $available) {
+function findMatches($accepted, $available)
+{
     $matches = array();
     $any = false;
     foreach ($available as $availableLocale => $availableName) {
@@ -154,19 +169,20 @@ function findMatches($accepted, $available) {
  * @param $b [] backend-available
  * @return float|int
  */
-function matchLanguage($a, $b) {
+function matchLanguage($a, $b)
+{
     // convert 'en-US' to 'en-us'
     $b = strtolower($b);
     $a = explode('-', $a);
     $b = explode('-', $b);
     $perfect_match = false;
-    for ($i=0, $n=min(count($a), count($b)); $i<$n; $i++) {
+    for ($i = 0, $n = min(count($a), count($b)); $i < $n; $i++) {
         if ($a[$i] !== $b[$i]) break;
-        if (count($a) == count($b) && $i == $n-1) {
+        if (count($a) == count($b) && $i == $n - 1) {
             $perfect_match = true;
         }
     }
 
-    $val = $i === 0 ? 0 : (float) $i / count($a);
+    $val = $i === 0 ? 0 : (float)$i / count($a);
     return $perfect_match ? 2 : $val;
 }

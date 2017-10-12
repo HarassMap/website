@@ -29,7 +29,10 @@
             'url_comment' => 'This URL is used by the console to properly generate URLs',
             'name' => 'Name',
             'name_comment' => 'Used in logo alt text and emails.',
+            'default_language' => 'Default Language',
+            'default_language_comment' => 'The default language for this domain',
             'languages' => 'Languages',
+            'languages_comment' => 'Which languages are enabled on this domain?',
             'timezone' => 'Timezone',
         ],
         'logo' => [

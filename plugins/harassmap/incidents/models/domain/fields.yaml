@@ -19,17 +19,23 @@ tabs:
             tab: 'harassmap.incidents::lang.form.tab.site'
         timezone:
             label: 'harassmap.incidents::lang.model.domain.timezone'
-            span: auto
+            span: full
             type: dropdown
             commentAbove: This is the default timezone for this domain. Dates will be shown in this timezone.
+            tab: 'harassmap.incidents::lang.form.tab.site'
+        default_language:
+            label: 'harassmap.incidents::lang.model.domain.default_language'
+            span: auto
+            type: dropdown
+            commentAbove: 'harassmap.incidents::lang.model.domain.default_language_comment'
             tab: 'harassmap.incidents::lang.form.tab.site'
         languages:
             label: 'harassmap.incidents::lang.model.domain.languages'
             span: auto
             type: taglist
-            tab: 'harassmap.incidents::lang.form.tab.site'
-            commentAbove: Which languages are enabled on this domain?
+            commentAbove: 'harassmap.incidents::lang.model.domain.languages_comment'
             options: getLanguages
+            tab: 'harassmap.incidents::lang.form.tab.site'
         incident:
             label: 'Enable Incident'
             span: full

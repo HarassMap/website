@@ -134,6 +134,11 @@ class Domain extends Model
         return array_combine($zones, $zones);
     }
 
+    public function getDefaultLanguageOptions()
+    {
+        return Locale::isEnabled()->lists('code', 'code');
+    }
+
     public function beforeSave()
     {
         $colours = [];
