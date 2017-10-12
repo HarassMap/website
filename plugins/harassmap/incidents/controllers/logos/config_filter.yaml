@@ -1,6 +1,18 @@
 scopes:
     domain:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.logo.domain'
         modelClass: Harassmap\Incidents\Models\Domain
         conditions: domain_id in (:filtered)
         nameFrom: host
+    language:
+        label: 'harassmap.incidents::lang.model.logo.language'
+        modelClass: Harassmap\Incidents\Models\Logo
+        type: group
+        conditions: language in (:filtered)
+        options: getLanguageOptions
+    position:
+        label: 'harassmap.incidents::lang.model.logo.position'
+        modelClass: Harassmap\Incidents\Models\Logo
+        type: group
+        conditions: position in (:filtered)
+        options: getPositionOptions
