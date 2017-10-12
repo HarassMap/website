@@ -5,6 +5,7 @@ namespace Harassmap\Sitemap\Classes;
 use Cms\Classes\Page;
 use DOMDocument;
 use Harassmap\Incidents\Models\Domain;
+use Harassmap\Incidents\Models\Incident;
 use October\Rain\Support\Traits\Singleton;
 use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
@@ -39,6 +40,11 @@ class Definition
      */
     protected $xmlObject;
 
+    /**
+     * @var Domain
+     */
+    protected $domain;
+
     protected $languages = [];
 
     protected $defaultLocale = 'en';
@@ -58,11 +64,11 @@ class Definition
 
     public function generateSitemap()
     {
-        $domain = Domain::getBestMatchingDomain();
-        $this->languages = explode(',', $domain->languages);
+        $this->domain = Domain::getBestMatchingDomain();
+        $this->languages = explode(',', $this->domain->languages);
 
         // get the default locale
-        $this->defaultLocale = $domain->default_language;
+        $this->defaultLocale = $this->domain->default_language;
         if (!Locale::isValid($this->defaultLocale)) {
             $this->defaultLocale = 'en';
         }
@@ -74,6 +80,7 @@ class Definition
 
         // create the cms page links
         $this->createPageLinks();
+        $this->createReportLinks();
 
         $urlSet = $this->makeUrlSet();
         $xml = $this->makeXmlObject();
@@ -89,7 +96,6 @@ class Definition
         // get every cms page
         foreach ($list as $page) {
             if (in_array($page->getBaseFileName(), $this->pages)) {
-
                 $this->forceRouterLocale($this->defaultLocale);
 
                 $url = Page::url($page->getBaseFileName());
@@ -105,6 +111,26 @@ class Definition
 
                 $this->addItemToSet($url, $alternate, $page->mtime);
             }
+        }
+    }
+
+    protected function createReportLinks()
+    {
+        $incidents = Incident::where('domain_id', '=', $this->domain->id)->get();
+
+        foreach ($incidents as $incident) {
+            $this->forceRouterLocale($this->defaultLocale);
+
+            $url = Page::url('reports/view', ['id' => $incident->public_id]);
+            $alternate = [];
+            foreach ($this->languages as $language) {
+                if($language !== $this->defaultLocale) {
+                    $this->forceRouterLocale($language);
+                    $alternate[$language] = Page::url('reports/view', ['id' => $incident->public_id]);
+                }
+            }
+
+            $this->addItemToSet($url, $alternate, $incident->updated_at);
         }
     }
 
