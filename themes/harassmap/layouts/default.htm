@@ -29,7 +29,7 @@ id = "footer.about"
         <meta name="description" content="{{ domain.meta_description }}">
     {% endif %}
 
-    <meta name="title" content="{{ this.page.title }}">
+    <meta name="title" content="{{ ('meta_title_' ~ this.page.id) | _ }}">
     <meta property="fb:app_id" content="{{ domain.facebook_app_id }}"/>
 
     {% placeholder meta default %}
