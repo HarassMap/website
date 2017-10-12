@@ -54,6 +54,12 @@ tabs:
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
 
+        meta_description:
+            label: 'Meta Description?'
+            span: full
+            type: textarea
+            tab: 'harassmap.incidents::lang.form.tab.meta'
+
         lat:
             label: 'harassmap.incidents::lang.form.lat'
             span: auto

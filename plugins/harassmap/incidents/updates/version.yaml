@@ -203,3 +203,6 @@
 1.0.72:
     - 'Adding default language picker to domain'
     - builder_table_update_harassmap_incidents_domain_18.php
+1.0.73:
+    - 'Updated table harassmap_incidents_domain'
+    - builder_table_update_harassmap_incidents_domain_19.php

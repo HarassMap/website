@@ -27,9 +27,9 @@ class Domain extends Model
         'name',
         'nameend',
         'tagline',
-        'about',
         'twitter_message',
-        'logos'
+        'logos',
+        'meta_description',
     ];
 
     protected $jsonable = ['colours', 'logos'];

@@ -24,79 +24,84 @@ id = "footer.about"
     <meta name="author" content="HarassMap">
 
     <title>{{ this.page.title }}</title>
-    <meta name="description" content="{{ this.page.meta_description }}">
+
+    {% if this.page.meta_description %}
+        <meta name="description" content="{{ this.page.meta_description }}">
+    {% else %}
+        <meta name="description" content="{{ domain.meta_description }}">
+    {% endif %}
     <meta name="title" content="{{ this.page.meta_title }}">
 
     {% partial 'site/styles' %}
 </head>
 <body class="{{ activeLocale }} static-content">
 
-{% partial 'site/header' %}
+    {% partial 'site/header' %}
 
-{% set sidebar = false %}
-{% if placeholder('column') %}
-    {% set sidebar = true %}
-{% endif %}
+    {% set sidebar = false %}
+    {% if placeholder('column') %}
+        {% set sidebar = true %}
+    {% endif %}
 
-<!-- Content -->
-<div class="site-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="hr">
-                    <span class="hr__line"></span>
-                    <span class="hr__text">{{ this.page.title }}</span>
-                </h3>
-            </div>
-        </div>
-        <div class="row">
-            {% if sidebar %}
-                <div class="col-12 col-md-4">
-                    {% placeholder column title="Sidebar" %}
-                </div>
-            {% endif %}
-            <div class="col-12 pl-md-5 pr-md-5 {% if sidebar %}col-md-8{% endif %}">
-                {% page %}
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12">
-                {% placeholder bottom title="Bottom" %}
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="footer bg--dark">
-    <div class="container">
-        <div class="row pb-4">
-            <div class="col-12 col-md-5">
-                <div class="footer__about">
-                    <h6 class="priority-2">{{ 'About Us' | _ }}</h6>
-                    {% component 'about' %}
+    <!-- Content -->
+    <div class="site-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="hr">
+                        <span class="hr__line"></span>
+                        <span class="hr__text">{{ this.page.title }}</span>
+                    </h3>
                 </div>
             </div>
-            <div class="col-12 col-md-7 pt-4 pt-md-0">
-                <div class="row">
-                    <div class="col-8">
-                        <h6 class="priority-2">{{ 'Stay Connected' | _ }}</h6>
-                        <p>{{ 'Subscribe to our mailing list:' | _ }}</p>
-                        {% component 'harassmapMailChimp' %}
+            <div class="row">
+                {% if sidebar %}
+                    <div class="col-12 col-md-4">
+                        {% placeholder column title="Sidebar" %}
                     </div>
-                    <div class="col-4">
-                        {% if domain.footerLogo %}
-                            <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"
-                                 src="{{ domain.footerLogo }}">
-                        {% endif %}
-                    </div>
+                {% endif %}
+                <div class="col-12 pl-md-5 pr-md-5 {% if sidebar %}col-md-8{% endif %}">
+                    {% page %}
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    {% placeholder bottom title="Bottom" %}
                 </div>
             </div>
         </div>
     </div>
 
-    {% partial 'site/footer' %}
-</footer>
+    <footer class="footer bg--dark">
+        <div class="container">
+            <div class="row pb-4">
+                <div class="col-12 col-md-5">
+                    <div class="footer__about">
+                        <h6 class="priority-2">{{ 'About Us' | _ }}</h6>
+                        {% component 'about' %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 pt-4 pt-md-0">
+                    <div class="row">
+                        <div class="col-8">
+                            <h6 class="priority-2">{{ 'Stay Connected' | _ }}</h6>
+                            <p>{{ 'Subscribe to our mailing list:' | _ }}</p>
+                            {% component 'harassmapMailChimp' %}
+                        </div>
+                        <div class="col-4">
+                            {% if domain.footerLogo %}
+                                <img class="img-fluid" alt="{{ domain.name }}" title="{{ domain.name }}"
+                                     src="{{ domain.footerLogo }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% partial 'site/scripts' %}
+        {% partial 'site/footer' %}
+    </footer>
+
+    {% partial 'site/scripts' %}
 </body>
 </html>

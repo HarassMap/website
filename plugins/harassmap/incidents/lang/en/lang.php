@@ -57,6 +57,7 @@
             'analytics' => 'Analytics',
             'tip' => 'Tip',
             'read_more' => 'Read More Button',
+            'meta' => 'Meta'
         ],
         'title' => 'Title',
         'description' => 'Description',
