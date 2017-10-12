@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    status_code:
+        type: balloon-selector
+        required: true
+        span: full
+        default: 301
+        options:
+            301: adrenth.redirectlite::lang.redirect.permanent
+            302: adrenth.redirectlite::lang.redirect.temporary
+            303: adrenth.redirectlite::lang.redirect.see_other
+            404: adrenth.redirectlite::lang.redirect.not_found
+            410: adrenth.redirectlite::lang.redirect.gone
+        commentHtml: true
+        commentAbove: '<label>HTTP Status Code <span class="status-code-info icon-question-circle"data-control="popup" data-handler="onShowStatusCodeInfo" data-keyboard="true" data-size="huge"></span></label>'
+    from_url:
+        label: adrenth.redirectlite::lang.redirect.from_url
+        placeholder: adrenth.redirectlite::lang.redirect.from_url_placeholder
+        type: text
+        span: left
+        comment: adrenth.redirectlite::lang.redirect.from_url_comment
+        required: true
+        attributes:
+            autofocus: ''
+    to_url:
+        label: adrenth.redirectlite::lang.redirect.to_url
+        placeholder: adrenth.redirectlite::lang.redirect.to_url_placeholder
+        type: text
+        span: right
+        comment: adrenth.redirectlite::lang.redirect.to_url_comment
+        dependsOn:
+            - status_code

@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    from_url:
+        label: adrenth.redirectlite::lang.redirect.from_url
+        type: redirectlite_from_url
+        searchable: true
+    to_url:
+        label: adrenth.redirectlite::lang.redirect.to_url
+        type: redirectlite_from_url
+        searchable: true
+        default: '-'
+    status_code:
+        label: adrenth.redirectlite::lang.redirect.status_code
+        type: redirectlite_status_code
+    hits:
+        label: adrenth.redirectlite::lang.redirect.hits
+        type: number
+    sort_order:
+        label: adrenth.redirectlite::lang.redirect.priority

@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: adrenth.redirectlite::lang.redirect.redirect
+
+# Model Form Field configuration
+form: $/adrenth/redirectlite/models/redirect/fields.yaml
+
+# Model Class name
+modelClass: Adrenth\RedirectLite\Models\Redirect
+
+# Default redirect location
+defaultRedirect: adrenth/redirectlite/redirects
+
+# Create page
+create:
+    title: adrenth.redirectlite::lang.title.create_redirect
+    redirect: adrenth/redirectlite/redirects/update/:id
+    redirectClose: adrenth/redirectlite/redirects
+
+# Update page
+update:
+    title: adrenth.redirectlite::lang.title.edit_redirect
+    redirect: adrenth/redirectlite/redirects
+    redirectClose: adrenth/redirectlite/redirects

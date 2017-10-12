@@ -1,0 +1,5 @@
+1.0.1:
+    - First version of RedirectLite
+    - 20170517_0001_create_redirects_table.php
+1.0.2: Fix redirect validation when saving a redirect
+1.0.3: Fix error Undefined class constant TYPE_EXACT

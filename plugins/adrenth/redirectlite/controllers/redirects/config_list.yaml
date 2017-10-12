@@ -1,0 +1,44 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: $/adrenth/redirectlite/models/redirect/columns.yaml
+
+# Model Class name
+modelClass: Adrenth\RedirectLite\Models\Redirect
+
+# List Title
+title: adrenth.redirectlite::lang.title.redirects
+
+# Link URL for each record
+recordUrl: adrenth/redirectlite/redirects/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: adrenth.redirectlite::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 20
+
+# Displays the list column set up button
+showSetup: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Default sorting column
+defaultSort:
+    column: sort_order
+    direction: asc
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: list_toolbar
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt
