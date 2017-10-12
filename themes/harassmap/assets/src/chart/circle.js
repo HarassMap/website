@@ -61,8 +61,6 @@ export class CircleChart {
         this.bubbles = this.svg.append("g")
             .attr("class", "bubbles");
 
-        console.debug(this.nodes);
-
         this.bubbles.selectAll(".bubble")
             .data(this.nodes.children)
             .enter()

@@ -202,7 +202,7 @@ export class LineChart {
 
     padDates(data) {
         data = _.orderBy(_.map(data, ({count, year, month}) => ({
-            date: new Date(year, month),
+            date: new Date(year, month - 1),
             count: count
         })), 'date');
 
