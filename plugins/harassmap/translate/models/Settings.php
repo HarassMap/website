@@ -1,7 +1,9 @@
 <?php
-namespace Excodus\TranslateExtended\Models;
+
+namespace Harassmap\Translate\Models;
 
 use Model;
+
 class Settings extends Model{
 
     public $implement = [

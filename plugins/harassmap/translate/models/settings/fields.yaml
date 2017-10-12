@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  browser_language_detection:
+    label: harassmap.translate::lang.strings.browser_language_detection
+    comment: harassmap.translate::lang.strings.browser_language_detection_comment
+    type: switch
+    default: true
+  prefer_user_session:
+    label: harassmap.translate::lang.strings.prefer_user_session
+    comment: harassmap.translate::lang.strings.prefer_user_session_comment
+    type: switch
+    default: true
+  route_prefixing:
+    label: harassmap.translate::lang.strings.route_prefixing
+    comment: harassmap.translate::lang.strings.route_prefixing_comment
+    type: switch
+    default: true
+  homepage_redirect:
+    label: harassmap.translate::lang.strings.homepage_redirect
+    comment: harassmap.translate::lang.strings.homepage_redirect_comment
+    type: switch
+    default: true

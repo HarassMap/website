@@ -9,7 +9,6 @@ use Harassmap\Incidents\Components\ChartCommonReports;
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
 use Harassmap\Incidents\Components\ExpressSupport;
-use Harassmap\Incidents\Components\ExtendedLocalePicker;
 use Harassmap\Incidents\Components\IncidentAccount;
 use Harassmap\Incidents\Components\IncidentResetPassword;
 use Harassmap\Incidents\Components\Notifications;
@@ -128,7 +127,6 @@ class Plugin extends PluginBase
             ReportStory::class => 'harassmapStory',
             Notifications::class => 'harassmapNotifications',
             UserMenu::class => 'harassmapUserMenu',
-            ExtendedLocalePicker::class => 'harassmapLocalePicker',
             ChartCommonReports::class => 'harassmapChartCommonReports',
         ];
     }
