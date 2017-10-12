@@ -1,0 +1,6 @@
+plugin:
+    name: 'harassmap.sitemap::lang.plugin.name'
+    description: 'harassmap.sitemap::lang.plugin.description'
+    author: Harassmap
+    icon: oc-icon-sitemap
+    homepage: ''
