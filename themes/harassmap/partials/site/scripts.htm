@@ -21,6 +21,15 @@
 
 <script>
     setLocale("{{ activeLocale }}");
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '{{ domain.facebook_app_id }}',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v2.9'
+        });
+    };
 </script>
 
 {% scripts %}

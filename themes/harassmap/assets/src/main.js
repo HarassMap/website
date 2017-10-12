@@ -68,16 +68,6 @@ window.initReportTablePage = () => {
     createDatePicker('date_to');
 };
 
-// facebook
-window.fbAsyncInit = () => {
-    FB.init({
-        appId: '{{ domain.facebook_app_id }}',
-        autoLogAppEvents: true,
-        xfbml: true,
-        version: 'v2.9'
-    });
-};
-
 window.initShareButtons = (shareUrl) => {
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
