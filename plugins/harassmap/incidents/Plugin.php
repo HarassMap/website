@@ -113,10 +113,22 @@ class Plugin extends PluginBase
             $page->bindEvent('model.beforeValidate', function() use ($page) {
 
                 $pages = Page::listInTheme($page->theme, true);
+                $pages = EventRegistry::instance()->removeDomainPages($pages, [$page->domain]);
 
-                Validator::extend('uniqueDomainUrl', function($attribute, $value, $parameters) use ($pages) {
+                Validator::extend('uniqueDomainUrl', function($attribute, $value, $parameters) use ($page, $pages) {
+                    $value = trim(strtolower($value));
+
+                    foreach ($pages as $existingPage) {
+                        if (
+                            $existingPage->page->getBaseFileName() !== $page->getBaseFileName() &&
+                            strtolower($existingPage->page->getViewBag()->property('url')) == $value
+                        ) {
+                            return false;
+                        }
+                    }
+
                     return true;
-                });
+                }, "This URL is already in use on this domain.");
             });
         });
 
