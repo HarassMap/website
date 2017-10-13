@@ -152,9 +152,9 @@
 {% endif %}
 
 {% if report.intervention %}
-    <meta property="og:title" content="{{ 'SOMEONE INTERVENED AGAINST SEXUAL HARASSMENT' }}"/>
+    <meta property="og:title" content="{{ 'SOMEONE INTERVENED AGAINST SEXUAL HARASSMENT' | _ }}"/>
 {% else %}
-    <meta property="og:title" content="{{ 'SEXUAL HARASSMENT REPORTED' }}"/>
+    <meta property="og:title" content="{{ 'SEXUAL HARASSMENT REPORTED' | _ }}"/>
 {% endif %}
 
 <meta name="twitter:card" content="summary_large_image"/>
