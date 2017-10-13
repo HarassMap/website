@@ -15,7 +15,7 @@ class IncidentsController extends BaseController
         // get the base incident list
         $incidents = Incident
             ::orderBy('date', 'desc')
-            ->with('location')->with('intervention')->with('role')->with('categories');
+            ->with('location')->with(['intervention', 'intervention.assistance'])->with('role')->with('categories');
 
         try {
             $this->filterBounds($incidents);

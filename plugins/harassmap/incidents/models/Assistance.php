@@ -44,6 +44,8 @@ class Assistance extends Model
         'domain' => Domain::class,
     ];
 
+    public $hidden = ['id', 'created_at', 'updated_at', 'domain_id', 'pivot'];
+
     public function beforeSave()
     {
         if($this->domain_id === '') {

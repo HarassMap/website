@@ -39,4 +39,6 @@ class Intervention extends Model
             'table' => 'harassmap_incidents_intervention_assistance'
         ]
     ];
+
+    public $hidden = ['id', 'incident_id', 'created_at', 'updated_at'];
 }
