@@ -73,10 +73,19 @@
                 <strong>{{ 'Boundries' | _ }}</strong>
 
                 <p class="card-text">
-                    {{ 'You can specify boundries for the incidents with latitude and longitude coordinates.' }}
+                    {{ 'You can specify boundries for the incidents with latitude and longitude coordinates.' | _ }}
                 </p>
 
                 <pre>{{ route('incidents', {'bounds' : '30.044420-30.045842,31.208840-31.241598'}) }}</pre>
+            </div>
+            <div class="card-block">
+                <strong>{{ 'Date Filters' | _ }}</strong>
+
+                <p class="card-text">
+                    {{ 'You can specify date filters to specify when the incidents occured. You can specify a since and a before date.' | _ }}
+                </p>
+
+                <pre>{{ route('incidents', {'since' : '2017-01-01', 'before' : '2018-02-01'}) }}</pre>
             </div>
         </div>
     </div>
