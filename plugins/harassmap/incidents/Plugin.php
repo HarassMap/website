@@ -103,8 +103,9 @@ class Plugin extends PluginBase
 
         // extend the static page index to create a new PageList widget
         Index::extend(function ($controller) {
-            $controller->addViewPath(__DIR__ . '/views/rainlab/pages/index');
-            new PageList($controller, 'domainPageList');
+            Event::listen('backend.page.beforeDisplay', function () use ($controller) {
+                new PageList($controller, 'pageList');
+            });
         });
 
         // add new rules
