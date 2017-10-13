@@ -174,7 +174,7 @@ class Incident extends Model
 
         self::applyFilters($reports, $filters);
 
-        return $reports->with('location')->with('intervention')->get();
+        return $reports->with(['location', 'intervention', 'intervention.assistance'])->get();
     }
 
     public static function applyFilters($query, $filters)
