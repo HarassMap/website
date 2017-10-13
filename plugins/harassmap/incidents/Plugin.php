@@ -120,13 +120,13 @@ class Plugin extends PluginBase
 
                 $pages = Page::listInTheme($page->theme);
                 $staticPages = StaticPage::listInTheme($page->theme, true);
-                $staticPages = EventRegistry::instance()->removeDomainPages($staticPages, [$page->domain]);
+//                $staticPages = EventRegistry::instance()->removeDomainPages($staticPages, [$page->domain]);
 
                 Validator::extend('uniqueDomainUrl', function ($attribute, $value, $parameters) use ($page, $pages, $staticPages) {
                     $value = trim(strtolower($value));
 
                     foreach ($staticPages as $existingPage) {
-                        if ($existingPage->page->getBaseFileName() !== $page->getBaseFileName() && strtolower($existingPage->page->getViewBag()->property('url')) == $value) {
+                        if ($existingPage->getBaseFileName() !== $page->getBaseFileName() && strtolower($existingPage->getViewBag()->property('url')) == $value) {
                             return false;
                         }
                     }
@@ -141,6 +141,10 @@ class Plugin extends PluginBase
                 }, "This URL is already in use on this domain.");
             });
         });
+
+        Event::listen('cms.router.beforeRoute', function($url) {
+            return EventRegistry::instance()->routeCmsPage($url);
+        }, 100);
 
     }
 
