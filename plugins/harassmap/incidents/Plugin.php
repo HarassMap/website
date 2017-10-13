@@ -3,6 +3,7 @@
 use Backend\Controllers\Users as BackendUsersController;
 use Backend\Models\User as BackendUserModel;
 use BackendAuth;
+use Cms\Classes\Page;
 use Event;
 use Harassmap\Incidents\Classes\EventRegistry;
 use Harassmap\Incidents\Classes\Mailer;
@@ -32,7 +33,7 @@ use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
 use Harassmap\Incidents\Widgets\PageList;
-use RainLab\Pages\Classes\Page;
+use RainLab\Pages\Classes\Page as StaticPage;
 use RainLab\Pages\Controllers\Index;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
@@ -106,23 +107,31 @@ class Plugin extends PluginBase
             new PageList($controller, 'domainPageList');
         });
 
-        Page::extend(function ($page) {
+        // add new rules
+        StaticPage::extend(function ($page) {
             $page->rules['domain'] = 'required';
             $page->rules['url'] = ['required', 'regex:/^\/[a-z0-9\/_\-\.]*$/i', 'uniqueDomainUrl'];
+        });
 
-            $page->bindEvent('model.beforeValidate', function() use ($page) {
+        // add custom validations
+        StaticPage::extend(function ($page) {
+            $page->bindEvent('model.beforeValidate', function () use ($page) {
 
-                $pages = Page::listInTheme($page->theme, true);
-                $pages = EventRegistry::instance()->removeDomainPages($pages, [$page->domain]);
+                $pages = Page::listInTheme($page->theme);
+                $staticPages = StaticPage::listInTheme($page->theme, true);
+                $staticPages = EventRegistry::instance()->removeDomainPages($staticPages, [$page->domain]);
 
-                Validator::extend('uniqueDomainUrl', function($attribute, $value, $parameters) use ($page, $pages) {
+                Validator::extend('uniqueDomainUrl', function ($attribute, $value, $parameters) use ($page, $pages, $staticPages) {
                     $value = trim(strtolower($value));
 
-                    foreach ($pages as $existingPage) {
-                        if (
-                            $existingPage->page->getBaseFileName() !== $page->getBaseFileName() &&
-                            strtolower($existingPage->page->getViewBag()->property('url')) == $value
-                        ) {
+                    foreach ($staticPages as $existingPage) {
+                        if ($existingPage->page->getBaseFileName() !== $page->getBaseFileName() && strtolower($existingPage->page->getViewBag()->property('url')) == $value) {
+                            return false;
+                        }
+                    }
+
+                    foreach($pages as $existingPage) {
+                        if ($existingPage->getBaseFileName() !== $page->getBaseFileName() && strtolower($existingPage->url) == $value) {
                             return false;
                         }
                     }
