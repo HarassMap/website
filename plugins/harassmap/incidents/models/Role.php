@@ -40,7 +40,7 @@ class Role extends Model
         'domain' => Domain::class,
     ];
 
-    public $hidden = ['id'];
+    public $hidden = ['id', 'domain_id'];
 
     public function beforeSave()
     {

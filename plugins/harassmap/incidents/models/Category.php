@@ -56,7 +56,7 @@ class Category extends Model
 
     protected $fillable = ['title', 'description', 'color', 'domain_id'];
 
-    public $hidden = ['id', 'color', 'sort_order', 'pivot', 'created_at', 'updated_at'];
+    public $hidden = ['id', 'color', 'sort_order', 'pivot', 'created_at', 'updated_at', 'domain_id'];
 
     public function beforeSave()
     {
