@@ -4,6 +4,7 @@ use Backend\Controllers\Users as BackendUsersController;
 use Backend\Models\User as BackendUserModel;
 use BackendAuth;
 use Event;
+use Harassmap\Incidents\Classes\EventRegistry;
 use Harassmap\Incidents\Classes\Mailer;
 use Harassmap\Incidents\Components\ChartCommonReports;
 use Harassmap\Incidents\Components\ContentBlock;
@@ -31,10 +32,11 @@ use Harassmap\Incidents\Models\Domain as DomainModel;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Notification;
 use Harassmap\Incidents\Widgets\PageList;
+use RainLab\Pages\Classes\Page;
 use RainLab\Pages\Controllers\Index;
 use RainLab\User\Models\User as UserModel;
 use System\Classes\PluginBase;
-use System\Classes\SettingsManager;
+use Validator;
 
 class Plugin extends PluginBase
 {
@@ -102,6 +104,20 @@ class Plugin extends PluginBase
         Index::extend(function ($controller) {
             $controller->addViewPath(__DIR__ . '/views/rainlab/pages/index');
             new PageList($controller, 'domainPageList');
+        });
+
+        Page::extend(function ($page) {
+            $page->rules['domain'] = 'required';
+            $page->rules['url'] = ['required', 'regex:/^\/[a-z0-9\/_\-\.]*$/i', 'uniqueDomainUrl'];
+
+            $page->bindEvent('model.beforeValidate', function() use ($page) {
+
+                $pages = Page::listInTheme($page->theme, true);
+
+                Validator::extend('uniqueDomainUrl', function($attribute, $value, $parameters) use ($pages) {
+                    return true;
+                });
+            });
         });
 
     }
