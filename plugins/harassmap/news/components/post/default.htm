@@ -20,12 +20,13 @@
     <div class="row mt-4">
         <div class="col-12">
             <a href="{{ listPage | page }}" class="btn btn--default">
-                {{ 'More News' | _}}
+                {{ 'More News' | _ }}
             </a>
         </div>
     </div>
 </div>
 
 {% put pageTitle %}
-    {{ post.title }} | {{ 'meta_title_news-view' | _ }}
+<title>{{ post.title }} | {{ 'meta_title_news-view' | _ }}</title>
+<meta name="og:title" content="{{ post.title }} | {{ 'meta_title_news-view' | _ }}">
 {% endput %}

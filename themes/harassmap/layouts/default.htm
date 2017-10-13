@@ -21,11 +21,10 @@ id = "footer.about"
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="HarassMap">
 
-    <title>
-        {% placeholder pageTitle default %}
-        {{ ('meta_title_' ~ this.page.id ) | _ }}
-        {% endplaceholder %}
-    </title>
+    {% placeholder pageTitle default %}
+    <title>{{ ('meta_title_' ~ this.page.id ) | _ }}</title>
+    <meta name="og:title" content="{{ ('meta_title_' ~ this.page.id ) | _ }}">
+    {% endplaceholder %}
 
 
     {% if this.page.meta_description %}
@@ -35,6 +34,7 @@ id = "footer.about"
     {% endif %}
 
     <meta property="fb:app_id" content="{{ domain.facebook_app_id }}"/>
+    <meta property="og:url" content="{{ '' | page }}"/>
 
     {% placeholder meta default %}
 
@@ -42,8 +42,6 @@ id = "footer.about"
         <meta property="og:image" content="{{ domain.getMetaImage }}"/>
     {% endif %}
 
-    <meta property="og:url" content="{{ this.page.id | page }}"/>
-    <meta name="og:title" content="{{ this.page.title }}">
 
     {% if this.page.meta_description %}
         <meta name="og:description" content="{{ this.page.meta_description }}">
