@@ -6,6 +6,7 @@ use Cache;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Domain;
 
 class ReportMap extends ComponentBase
 {
@@ -36,7 +37,7 @@ class ReportMap extends ComponentBase
         $cacheable = empty($filters);
 
         if ($cacheable) {
-            $cache = Cache::get(self::cacheKey);
+            $cache = Cache::get(self::getCacheKey());
 
             if ($cache) {
                 return unserialize($cache);
@@ -46,10 +47,17 @@ class ReportMap extends ComponentBase
         $reports = Incident::withFilters($filters)->toArray();
 
         if ($cacheable) {
-            Cache::put(self::cacheKey, serialize($reports), 10080);
+            Cache::put(self::getCacheKey(), serialize($reports), 10080);
         }
 
         return $reports;
+    }
+
+    public static function getCacheKey()
+    {
+        $domain = Domain::getBestMatchingDomain();
+
+        return self::cacheKey . $domain->id;
     }
 
 }

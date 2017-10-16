@@ -128,7 +128,7 @@ class Incident extends Model
 
             Analytics::reportCreated($this);
 
-            Cache::forget(ReportMap::cacheKey);
+            Cache::forget(ReportMap::getCacheKey());
         }
     }
 
@@ -148,7 +148,7 @@ class Incident extends Model
     {
         Analytics::reportDeleted($this);
 
-        Cache::forget(ReportMap::cacheKey);
+        Cache::forget(ReportMap::getCacheKey());
     }
 
     public function scopeIntervention($query, $status)
@@ -170,11 +170,13 @@ class Incident extends Model
     {
         $domain = Domain::getBestMatchingDomain();
 
-        $reports = self::where('domain_id', $domain->id);
+        $reports = self
+            ::select(['id', 'public_id', 'date'])
+            ->where('domain_id', $domain->id);
 
         self::applyFilters($reports, $filters);
 
-        return $reports->with(['location', 'intervention', 'intervention.assistance'])->get();
+        return $reports->with(['location', 'intervention'])->get();
     }
 
     public static function applyFilters($query, $filters)
