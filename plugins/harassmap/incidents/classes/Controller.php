@@ -9,7 +9,8 @@ use Harassmap\Incidents\Models\Domain;
 use Lang;
 use October\Rain\Support\Traits\Singleton;
 use RainLab\Pages\Classes\Router as PagesRouter;
-use App;
+use Response;
+use View;
 
 class Controller
 {
@@ -54,7 +55,7 @@ class Controller
         if (!$staticPage && !$page) {
             return null;
         } else if (!$page && $staticPage) {
-            App::abort(404);
+            return false;
         }
 
         $viewBag = $page->viewBag;
