@@ -178,7 +178,16 @@ export class HomeChart {
         if(this.currentZoom === ZOOM_WEEK) {
             this.xAxis.tickFormat((data) =>  _.toUpper(locale.format("%b %d")(data)));
         } else if (this.currentZoom === ZOOM_MONTH) {
-            this.xAxis.tickFormat((data) =>  _.toUpper(locale.format("%b")(data)));
+            this.xAxis.tickFormat((data) =>  {
+                let format = "%b";
+
+                if(data.getMonth() === 0) {
+                    format = "%b %Y";
+                }
+
+                return _.toUpper(locale.format(format)(data));
+            });
+
         } else {
             this.xAxis.tickFormat(locale.format("%Y"));
         }
