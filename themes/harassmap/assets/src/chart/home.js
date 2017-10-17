@@ -176,7 +176,15 @@ export class HomeChart {
         let locale = d3.timeFormatLocale(getD3LocaleConfig());
 
         if(this.currentZoom === ZOOM_WEEK) {
-            this.xAxis.tickFormat((data) =>  _.toUpper(locale.format("%b %d")(data)));
+            this.xAxis.tickFormat((data, index) =>  {
+                let format = "%b %d";
+
+                if(index === 0) {
+                    format = "%b %d %Y";
+                }
+
+                return _.toUpper(locale.format(format)(data));
+            });
         } else if (this.currentZoom === ZOOM_MONTH) {
             this.xAxis.tickFormat((data) =>  {
                 let format = "%b";
