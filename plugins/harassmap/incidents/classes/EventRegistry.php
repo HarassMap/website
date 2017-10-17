@@ -4,7 +4,6 @@ namespace Harassmap\Incidents\Classes;
 
 use BackendAuth;
 use October\Rain\Support\Traits\Singleton;
-use RainLab\Pages\Classes\Controller;
 use RainLab\Pages\Classes\Page;
 
 class EventRegistry
@@ -44,7 +43,8 @@ class EventRegistry
      * @param $domain_ids
      * @return array
      */
-    public function removeDomainPages($templates, $domain_ids) {
+    public function removeDomainPages($templates, $domain_ids)
+    {
         $iterator = function ($pages) use (&$iterator, $domain_ids) {
             $result = [];
 
@@ -72,15 +72,5 @@ class EventRegistry
         };
 
         return $iterator($templates);
-    }
-
-    /**
-     * TODO: use this to find the correct cms page for the current domain
-     * @param $url
-     * @return \Cms\Classes\Page
-     */
-    public function routeCmsPage($url)
-    {
-        return Controller::instance()->initCmsPage($url);
     }
 }

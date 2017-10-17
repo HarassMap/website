@@ -1,0 +1,76 @@
+<?php
+
+namespace Harassmap\Incidents\Classes;
+
+use Cms\Classes\CmsException;
+use Cms\Classes\Page as CmsPage;
+use Cms\Classes\Theme;
+use Harassmap\Incidents\Models\Domain;
+use Lang;
+use October\Rain\Support\Traits\Singleton;
+use RainLab\Pages\Classes\Router as PagesRouter;
+
+class Controller
+{
+    use Singleton;
+
+    /**
+     * @var Theme
+     */
+    protected $theme;
+
+    /**
+     * @var Domain
+     */
+    protected $domain;
+
+    /**
+     * Initialize this singleton.
+     */
+    protected function init()
+    {
+        $this->theme = Theme::getActiveTheme();
+
+        $this->domain = Domain::getBestMatchingDomain();
+
+        if (!$this->theme) {
+            throw new CmsException(Lang::get('cms::lang.theme.active.not_found'));
+        }
+    }
+
+    /**
+     * @param $url
+     * @return \Cms\Classes\Page|bool
+     */
+    public function initCmsPage($url)
+    {
+        $domainRouter = new Router($this->theme, $this->domain);
+        $domainPage = $domainRouter->findByUrl($url);
+
+        $router = new PagesRouter($this->theme);
+        $page = $router->findByUrl($url);
+
+        if (!$domainPage && !$page) {
+            return null;
+        } else if (!$domainPage && $page) {
+            return false;
+        }
+
+        $viewBag = $page->viewBag;
+
+        $cmsPage = CmsPage::inTheme($this->theme);
+        $cmsPage->url = $url;
+        $cmsPage->apiBag['staticPage'] = $page;
+
+        /*
+         * Transfer specific values from the content view bag to the page settings object.
+         */
+        $viewBagToSettings = ['title', 'layout', 'meta_title', 'meta_description', 'is_hidden'];
+
+        foreach ($viewBagToSettings as $property) {
+            $cmsPage->settings[$property] = array_get($viewBag, $property);
+        }
+
+        return $cmsPage;
+    }
+}
