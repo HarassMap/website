@@ -44,15 +44,15 @@ class Controller
      */
     public function initCmsPage($url)
     {
-        $domainRouter = new Router($this->theme, $this->domain);
-        $domainPage = $domainRouter->findByUrl($url);
-
-        $router = new PagesRouter($this->theme);
+        $router = new Router($this->theme, $this->domain);
         $page = $router->findByUrl($url);
 
-        if (!$domainPage && !$page) {
+        $staticRouter = new PagesRouter($this->theme);
+        $staticPage = $staticRouter->findByUrl($url);
+
+        if (!$staticPage && !$page) {
             return null;
-        } else if (!$domainPage && $page) {
+        } else if (!$staticPage && $page) {
             return false;
         }
 
