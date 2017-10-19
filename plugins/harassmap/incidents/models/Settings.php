@@ -6,14 +6,6 @@ use Model;
 
 /**
  * Harassmap\Incidents\Models\Settings
- *
- * @property int $id
- * @property string|null $item
- * @property string|null $value
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Settings whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Settings whereItem($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Settings whereValue($value)
- * @mixin \Eloquent
  */
 class Settings extends Model
 {

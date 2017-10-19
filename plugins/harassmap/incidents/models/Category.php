@@ -9,24 +9,6 @@ use October\Rain\Database\Traits\Validation;
 
 /**
  * Harassmap\Incidents\Models\Category
- *
- * @property int $id
- * @property string $title
- * @property string $description
- * @property string $color
- * @property int $sort_order
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property int|null $domain_id
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereDomainId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereSortOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Category whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 class Category extends Model
 {

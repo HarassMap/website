@@ -1,4 +1,6 @@
-<?php namespace Harassmap\Incidents\Models;
+<?php
+
+namespace Harassmap\Incidents\Models;
 
 use Cms\Classes\Page;
 use Harassmap\Comments\Models\Comment;
@@ -9,24 +11,6 @@ use RainLab\User\Models\User;
 
 /**
  * Harassmap\Incidents\Models\Notification
- *
- * @property int $id
- * @property string $type
- * @property string $reference
- * @property int $user_id
- * @property string $content
- * @property int $read
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereRead($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereReference($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Notification whereUserId($value)
- * @mixin \Eloquent
  */
 class Notification extends Model
 {

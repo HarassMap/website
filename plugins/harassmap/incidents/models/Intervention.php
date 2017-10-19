@@ -1,21 +1,13 @@
-<?php namespace Harassmap\Incidents\Models;
+<?php
+
+namespace Harassmap\Incidents\Models;
 
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
 
 /**
- * Model
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int $incident_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereIncidentId($value)
- * @method static \Illuminate\Database\Query\Builder|\Harassmap\Incidents\Models\Intervention whereUpdatedAt($value)
+ * Harassmap\Incidents\Models\Model
  */
 class Intervention extends Model
 {

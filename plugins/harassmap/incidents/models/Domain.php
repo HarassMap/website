@@ -9,78 +9,16 @@ use Harassmap\Mail\Models\MailLayout;
 use Harassmap\Mail\Models\MailTemplate;
 use Harassmap\MenuManager\Models\Menu;
 use Harassmap\News\Models\Posts;
+use JanVince\SmallContactForm\Models\Message;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
-use Request;
-use JanVince\SmallContactForm\Models\Message;
 use RainLab\Translate\Models\Message as LocaleMessage;
+use Request;
 
 /**
  * Harassmap\Incidents\Models\Domain
- *
- * @property int $id
- * @property string $host
- * @property string|null $facebook
- * @property string|null $twitter
- * @property string|null $instagram
- * @property string|null $youtube
- * @property string|null $blogger
- * @property string $lat
- * @property string $lng
- * @property int $zoom
- * @property string $name
- * @property int $incident
- * @property int $intervention
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property string|null $facebook_app_id
- * @property string $timezone
- * @property string $nameend
- * @property string $tagline
- * @property string|null $ga_key
- * @property string|null $twitter_message
- * @property int $need_approval
- * @property string|null $colours
- * @property string|null $logos
- * @property string|null $email
- * @property string|null $mailchimp_api
- * @property string|null $mailchimp_list
- * @property string|null $languages
- * @property string|null $default_language
- * @property string|null $meta_description
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereBlogger($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereColours($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereDefaultLanguage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereFacebook($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereFacebookAppId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereGaKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereHost($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereIncident($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereInstagram($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereIntervention($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLanguages($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLat($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLng($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereLogos($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereMailchimpApi($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereMailchimpList($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereNameend($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereNeedApproval($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereTagline($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereTimezone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereTwitter($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereTwitterMessage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereYoutube($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Domain whereZoom($value)
- * @mixin \Eloquent
  */
 class Domain extends Model
 {
@@ -92,14 +30,12 @@ class Domain extends Model
 
     public $translatable = [
         'name',
-        'nameend',
         'tagline',
         'twitter_message',
-        'logos',
         'meta_description',
     ];
 
-    protected $jsonable = ['colours', 'logos'];
+    protected $jsonable = ['colours'];
 
     public $rules = [
         'name' => 'required',
@@ -118,11 +54,11 @@ class Domain extends Model
     ];
 
     public $hasMany = [
+        'logos' => [Logo::class, 'delete' => true],
         'content' => [Content::class, 'delete' => true],
         'tips' => [Tip::class, 'delete' => true],
         'posts' => [Posts::class, 'delete' => true],
         'incidents' => [Incident::class, 'delete' => true],
-        'logos' => [Logo::class, 'delete' => true],
         'menus' => [Menu::class, 'delete' => true],
         'categories' => [Category::class, 'delete' => true],
         'assistance' => [Assistance::class, 'delete' => true],
@@ -246,6 +182,13 @@ class Domain extends Model
     public function afterUpdate()
     {
         Analytics::domainEdited($this);
+    }
+
+    public function beforeDelete()
+    {
+        // for some reason the logos wont auto delete
+        // but this works
+        $this->logos()->delete();
     }
 
     public function afterDelete()

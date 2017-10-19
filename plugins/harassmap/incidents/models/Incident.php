@@ -1,4 +1,6 @@
-<?php namespace Harassmap\Incidents\Models;
+<?php
+
+namespace Harassmap\Incidents\Models;
 
 use Cache;
 use Carbon\Carbon;
@@ -13,35 +15,6 @@ use RainLab\User\Models\User;
 
 /**
  * Harassmap\Incidents\Models\Incident
- *
- * @property int $id
- * @property string $public_id
- * @property string $description
- * @property string $date
- * @property int|null $user_id
- * @property int $domain_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property int $role_id
- * @property int $verified
- * @property int $support
- * @property int $is_intervention
- * @property int $approved
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident intervention($status)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereApproved($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereDomainId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereIsIntervention($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident wherePublicId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereRoleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereSupport($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Harassmap\Incidents\Models\Incident whereVerified($value)
- * @mixin \Eloquent
  */
 class Incident extends Model
 {
