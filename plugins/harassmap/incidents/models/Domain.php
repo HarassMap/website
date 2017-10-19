@@ -5,12 +5,17 @@ namespace Harassmap\Incidents\Models;
 use Backend\Models\User as BackendUserModel;
 use BackendAuth;
 use Harassmap\Incidents\Classes\Analytics;
+use Harassmap\Mail\Models\MailLayout;
+use Harassmap\Mail\Models\MailTemplate;
+use Harassmap\MenuManager\Models\Menu;
 use Harassmap\News\Models\Posts;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\Translate\Classes\Translator;
 use RainLab\Translate\Models\Locale;
 use Request;
+use JanVince\SmallContactForm\Models\Message;
+use RainLab\Translate\Models\Message as LocaleMessage;
 
 /**
  * Harassmap\Incidents\Models\Domain
@@ -116,13 +121,20 @@ class Domain extends Model
         'content' => [Content::class, 'delete' => true],
         'tips' => [Tip::class, 'delete' => true],
         'posts' => [Posts::class, 'delete' => true],
-        'incidents' => Incident::class,
-        'logos' => [Logo::class, 'delete' => true]
+        'incidents' => [Incident::class, 'delete' => true],
+        'logos' => [Logo::class, 'delete' => true],
+        'menus' => [Menu::class, 'delete' => true],
+        'categories' => [Category::class, 'delete' => true],
+        'assistance' => [Assistance::class, 'delete' => true],
+        'roles' => [Role::class, 'delete' => true],
+        'maillayouts' => [MailLayout::class, 'delete' => true],
+        'mailtemplates' => [MailTemplate::class, 'delete' => true],
+        'contacts' => [Message::class, 'delete' => true],
+        'messages' => [LocaleMessage::class, 'delete' => true],
     ];
 
     public $belongsToMany = [
         'users' => [BackendUserModel::class, 'table' => 'harassmap_incidents_domain_user'],
-        'categories' => [Category::class, 'table' => 'harassmap_incidents_domain_category']
     ];
 
     public $colourTypes = [

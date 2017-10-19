@@ -1,4 +1,6 @@
-<?php namespace Harassmap\MenuManager\Models;
+<?php
+
+namespace Harassmap\MenuManager\Models;
 
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Traits\DomainOptions;
