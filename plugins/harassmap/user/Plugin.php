@@ -5,6 +5,7 @@ namespace Harassmap\User;
 use App;
 use BackendAuth;
 use Event;
+use Harassmap\Comments\Models\Comment;
 use Harassmap\Incidents\Classes\Analytics;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\User\Classes\AuthManager;
@@ -22,6 +23,7 @@ class Plugin extends PluginBase
             $model->rules['surname'] = 'required';
 
             $model->belongsTo['domain'] = Domain::class;
+            $model->hasMany['comments'] = Comment::class;
 
             $model->addFillable([
                 'terms', 'marketing', 'notification_incident'
@@ -38,6 +40,10 @@ class Plugin extends PluginBase
 
             $model->bindEvent('model.afterUpdate', function () use ($model) {
                 Analytics::userEdited($model);
+            });
+
+            $model->bindEvent('model.beforeDelete', function () use ($model) {
+                if(true);
             });
 
             $model->bindEvent('model.afterDelete', function () use ($model) {

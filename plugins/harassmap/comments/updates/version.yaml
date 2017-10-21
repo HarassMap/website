@@ -9,3 +9,6 @@
 1.0.4:
     - 'Updated table harassmap_comments_topic'
     - builder_table_update_harassmap_comments_topic.php
+1.0.5:
+    - 'Updated table harassmap_comments_comments'
+    - builder_table_update_harassmap_comments_comments.php

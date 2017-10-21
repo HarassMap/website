@@ -12,7 +12,13 @@
             </div>
         {% else %}
             <div class="comment__meta">
-                <strong>{{ comment.user.username }}</strong>
+                <strong>
+                    {% if comment.user %}
+                        {{ comment.user.username }}
+                    {% else %}
+                        [{{ 'deleted' | _ }}]
+                    {% endif %}
+                </strong>
 
                 {% if comment.canEdit == false and comment.approved == false %}
                     <a href="#"
