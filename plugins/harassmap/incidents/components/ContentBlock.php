@@ -87,6 +87,7 @@ class ContentBlock extends ComponentBase
                 $partial = 'home/droplet';
                 break;
             case 'report.incident':
+            case 'report.intervention':
                 $partial = 'report/incident';
                 break;
         }
