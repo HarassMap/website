@@ -72,12 +72,6 @@ tabs:
             tab: 'harassmap.incidents::lang.form.tab.map'
         zoom:
             label: 'harassmap.incidents::lang.form.zoom'
-            options:
-                6: '6'
-                7: '7'
-                8: '8'
-                9: '9'
-                10: '10'
             span: full
             type: dropdown
             tab: 'harassmap.incidents::lang.form.tab.map'

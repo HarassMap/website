@@ -233,6 +233,11 @@ class Domain extends Model
         return $this->getLogo('meta');
     }
 
+    public function getZoomOptions()
+    {
+        return range(1,23);
+    }
+
     // cache the domains
     public static $domains = [];
 
