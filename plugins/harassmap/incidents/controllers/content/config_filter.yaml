@@ -1,14 +1,20 @@
 scopes:
     domain:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.content.domain'
         modelClass: Harassmap\Incidents\Models\Domain
         conditions: domain_id in (:filtered)
         nameFrom: host
+    content_id:
+        label: 'harassmap.incidents::lang.model.content.content_id'
+        modelClass: Harassmap\Incidents\Models\Content
+        type: group
+        conditions: content_id in (:filtered)
+        options: getContentIdOptions
     updated_at:
-        label: 'harassmap.incidents::lang.form.updated_at'
+        label: 'harassmap.incidents::lang.model.common.updated_at'
         type: daterange
         conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'
     created_at:
-        label: 'harassmap.incidents::lang.form.created_at'
+        label: 'harassmap.incidents::lang.model.common.created_at'
         type: daterange
         conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'

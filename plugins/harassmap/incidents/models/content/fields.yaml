@@ -1,22 +1,22 @@
 fields:
     domain_id:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.content.domain'
         span: auto
         type: dropdown
     content_id:
-        label: 'harassmap.incidents::lang.form.content_id'
+        label: 'harassmap.incidents::lang.model.content.content_id'
         span: auto
         type: dropdown
 tabs:
     fields:
         content:
-            label: 'harassmap.incidents::lang.form.content'
+            label: 'harassmap.incidents::lang.model.content.content'
             size: giant
             span: full
             type: richeditor
             tab: 'harassmap.incidents::lang.form.tab.content'
         image:
-            label: 'harassmap.incidents::lang.form.image'
+            label: 'harassmap.incidents::lang.model.content.image'
             mode: file
             span: full
             type: fileupload
@@ -26,7 +26,7 @@ tabs:
                 field: content_id
                 condition: 'value[homepage.droplet] | value[homepage.basics] | value[homepage.share] | value[homepage.active] | value[homepage.bottomLeft] | value[homepage.bottomCenter] | value[homepage.bottomRight]'
         link:
-            label: 'harassmap.incidents::lang.form.link'
+            label: 'harassmap.incidents::lang.model.content.link'
             span: full
             type: page_link
             tab: 'harassmap.incidents::lang.form.tab.extra'

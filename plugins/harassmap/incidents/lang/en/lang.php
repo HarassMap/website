@@ -40,6 +40,17 @@
             'language' => 'Language',
             'image' => 'Logo Image',
             'position' => 'Logo Position',
+        ],
+        'content' => [
+            'domain' => 'Domain',
+            'content_id' => 'Content ID',
+            'content' => 'Content',
+            'image' => 'Image',
+            'link' => 'Link',
+        ],
+        'common' => [
+            'updated_at' => 'Updated',
+            'created_at' => 'Created',
         ]
     ],
     'form' => [

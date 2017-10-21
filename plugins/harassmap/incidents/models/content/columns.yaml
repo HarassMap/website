@@ -1,25 +1,25 @@
 columns:
     domain:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.content.domain'
         relation: domain
         select: host
         width: '250px'
     content_id:
-        label: 'harassmap.incidents::lang.form.content_id'
+        label: 'harassmap.incidents::lang.model.content.content_id'
         type: text
         sortable: false
     content:
-        label: 'harassmap.incidents::lang.form.content'
+        label: 'harassmap.incidents::lang.model.content.content'
         type: text
         searchable: true
         invisible: true
     updated_at:
-        label: 'harassmap.incidents::lang.form.updated_at'
+        label: 'harassmap.incidents::lang.model.common.updated_at'
         type: datetime
         sortable: true
         width: '200px'
     created_at:
-        label: 'harassmap.incidents::lang.form.created_at'
+        label: 'harassmap.incidents::lang.model.common.created_at'
         type: datetime
         sortable: true
         width: '200px'
