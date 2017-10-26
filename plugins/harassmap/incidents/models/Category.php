@@ -32,8 +32,7 @@ class Category extends Model
 
     public $rules = [
         'title' => 'required',
-        'description' => 'required',
-        'color' => 'required',
+        'description' => 'required'
     ];
 
     protected $fillable = ['title', 'description', 'color', 'domain_id'];

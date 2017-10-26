@@ -11,7 +11,3 @@ fields:
         label: 'harassmap.incidents::lang.form.description'
         span: full
         type: textarea
-    color:
-        label: 'harassmap.incidents::lang.form.color'
-        span: full
-        type: colorpicker
