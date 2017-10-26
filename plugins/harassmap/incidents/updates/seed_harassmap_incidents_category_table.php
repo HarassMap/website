@@ -23,7 +23,6 @@ class SeedHarassmapIncidentsCategoryTable extends Seeder
             Category::create([
                 'title' => $categoryData['category_title'],
                 'description' => $categoryData['category_description'],
-                'color' => $categoryData['category_color'],
                 'sort_order' => $categoryData['category_position'],
                 'domain_id' => $domain->id,
             ]);
