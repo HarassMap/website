@@ -57,6 +57,7 @@ class ReportTable extends ComponentBase
         // get the users incidents
         $this->page['reports'] = Incident
             ::where('domain_id', $domain->id)
+            ->where('is_hidden', '=', false)
             ->orderBy('date', 'desc')
             ->paginate($perPage);
 

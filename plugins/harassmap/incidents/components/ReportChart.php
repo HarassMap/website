@@ -55,6 +55,7 @@ class ReportChart extends ComponentBase
                 DB::raw('DATE(date) as `day`')
             ])
             ->where('domain_id', '=', $domain->id)
+            ->where('is_hidden', '=', false)
             ->groupBy('day');
     }
 

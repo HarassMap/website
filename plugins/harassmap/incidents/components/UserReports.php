@@ -50,6 +50,7 @@ class UserReports extends ComponentBase
         // get the users incidents
         $this->page['reports'] = Incident
             ::where('domain_id', '=', $domain->id)
+            ->where('is_hidden', '=', false)
             ->where('user_id', '=', $user->id)
             ->orderBy('created_at', 'desc')->paginate(10);
 

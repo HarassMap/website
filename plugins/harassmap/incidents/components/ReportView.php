@@ -30,6 +30,7 @@ class ReportView extends ComponentBase
         $report = Incident
             ::where('public_id', '=', $id)
             ->where('domain_id', '=', $domain->id)
+            ->where('is_hidden', '=', false)
             ->first();
 
         if (!$report) {

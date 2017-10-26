@@ -145,7 +145,8 @@ class Incident extends Model
 
         $reports = self
             ::select(['id', 'public_id', 'date'])
-            ->where('domain_id', $domain->id);
+            ->where('domain_id', $domain->id)
+            ->where('is_hidden', '=', false);
 
         self::applyFilters($reports, $filters);
 

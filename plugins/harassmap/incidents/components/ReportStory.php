@@ -42,6 +42,7 @@ class ReportStory extends ComponentBase
         $incident = Incident
             ::whereApproved(true)
             ->where('domain_id', '=', $domain->id)
+            ->where('is_hidden', '=', false)
             ->orderBy('created_at', 'desc')
             ->first();
 

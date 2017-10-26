@@ -15,6 +15,7 @@ class IncidentsController extends BaseController
         // get the base incident list
         $incidents = Incident
             ::orderBy('date', 'desc')
+            ->where('is_hidden', '=', false)
             ->with('location')->with(['intervention', 'intervention.assistance'])->with('role')->with('categories');
 
         try {

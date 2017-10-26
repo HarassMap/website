@@ -12,8 +12,8 @@ class Report extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'View Report',
-            'description' => 'Shows a single report'
+            'name' => 'Report Component',
+            'description' => 'Exposes the report to the page.'
         ];
     }
 
@@ -22,7 +22,10 @@ class Report extends ComponentBase
         $id = $this->param('id');
 
         // find the incident with the public id
-        $report = Incident::wherePublicId($id)->first();
+        $report = Incident
+            ::wherePublicId($id)
+            ->where('is_hidden', '=', false)
+            ->first();
 
         if (!$report) {
             App::abort(404);

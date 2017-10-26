@@ -23,7 +23,10 @@ class ExpressSupport extends ComponentBase
         $id = $this->param('id');
 
         // find the incident with the public id
-        $report = Incident::wherePublicId($id)->first();
+        $report = Incident
+            ::wherePublicId($id)
+            ->where('is_hidden', '=', false)
+            ->first();
 
         if (!$report) {
             App::abort(404);
