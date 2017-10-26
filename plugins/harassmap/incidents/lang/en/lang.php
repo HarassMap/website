@@ -35,6 +35,19 @@
             'languages_comment' => 'Which languages are enabled on this domain?',
             'timezone' => 'Timezone',
         ],
+        'incident' => [
+            'id' => 'ID',
+            'public_id' => 'Public ID',
+            'date' => 'Date Of Incident',
+            'created_at' => 'Date Reported',
+            'is_hidden' => 'Hidden',
+            'verified' => 'Verified',
+            'is_intervention' => 'Is Intervention',
+            'support' => 'Support',
+            'domain' => 'Domain',
+            'description' => 'Description',
+            'user' => 'User',
+        ],
         'logo' => [
             'domain' => 'Domain',
             'language' => 'Language',
@@ -51,7 +64,7 @@
         'common' => [
             'updated_at' => 'Updated',
             'created_at' => 'Created',
-        ]
+        ],
     ],
     'form' => [
         'tab' => [

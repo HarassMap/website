@@ -1,30 +1,34 @@
 fields:
     public_id:
-        label: 'Public ID'
+        label: 'harassmap.incidents::lang.model.incident.public_id'
         span: auto
         disabled: 1
         type: text
     domain:
-        label: Domain
+        label: 'harassmap.incidents::lang.model.incident.domain'
         nameFrom: host
         span: auto
         disabled: 1
         type: relation
     user:
-        label: User
+        label: 'harassmap.incidents::lang.model.incident.user'
         select: 'concat(name, '' '', surname)'
         span: full
         disabled: 1
         type: relation
         emptyOption: 'No User'
     verified:
-        label: 'harassmap.incidents::lang.form.verified'
+        label: 'harassmap.incidents::lang.model.incident.verified'
+        span: full
+        type: checkbox
+    is_hidden:
+        label: 'harassmap.incidents::lang.model.incident.is_hidden'
         span: full
         type: checkbox
 tabs:
     fields:
         description:
-            label: 'harassmap.incidents::lang.form.description'
+            label: 'harassmap.incidents::lang.model.incident.description'
             size: large
             span: full
             type: textarea

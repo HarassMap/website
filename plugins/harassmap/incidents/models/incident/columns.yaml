@@ -1,32 +1,35 @@
 columns:
     id:
-        label: 'harassmap.incidents::lang.form.id'
+        label: 'harassmap.incidents::lang.model.incident.id'
     public_id:
-        label: 'harassmap.incidents::lang.form.public_id'
+        label: 'harassmap.incidents::lang.model.incident.public_id'
         searchable: true
     date:
-        label: 'harassmap.incidents::lang.form.date_report'
+        label: 'harassmap.incidents::lang.model.incident.date'
         type: datetime
     created_at:
-        label: 'harassmap.incidents::lang.form.date_reported'
+        label: 'harassmap.incidents::lang.model.incident.created_at'
         type: datetime
     verified:
-        label: 'harassmap.incidents::lang.form.verified'
+        label: 'harassmap.incidents::lang.model.incident.verified'
+        type: switch
+    is_hidden:
+        label: 'harassmap.incidents::lang.model.incident.is_hidden'
         type: switch
     is_intervention:
-        label: 'harassmap.incidents::lang.form.intervention'
+        label: 'harassmap.incidents::lang.model.incident.is_intervention'
         type: switch
     user:
-        label: 'harassmap.incidents::lang.form.user'
+        label: 'harassmap.incidents::lang.model.incident.user'
         relation: user
         select: 'concat(name, '' '', surname)'
     support:
-        label: 'harassmap.incidents::lang.form.support'
+        label: 'harassmap.incidents::lang.model.incident.support'
     domain_id:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.incident.domain'
         select: host
         relation: domain
     description:
-        label: Description
+        label: 'harassmap.incidents::lang.model.incident.description'
         searchable: true
         invisible: true
