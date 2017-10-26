@@ -1,30 +1,36 @@
 scopes:
     domain:
-        label: 'harassmap.incidents::lang.form.domain'
+        label: 'harassmap.incidents::lang.model.incident.domain'
         modelClass: Harassmap\Incidents\Models\Domain
         nameFrom: host
         conditions: domain_id in (:filtered)
-    intervention:
-        label: Intervention?
-        type: switch
-        scope: intervention
     date:
-        label: Incident Date
+        label: 'harassmap.incidents::lang.model.incident.date'
         type: daterange
         conditions: date >= ':afterDate' AND date <= ':beforeDate'
+    created_at:
+        label: 'harassmap.incidents::lang.model.incident.created_at'
+        type: daterange
+        conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'
+    intervention:
+        label: 'harassmap.incidents::lang.model.incident.is_intervention'
+        type: switch
+        scope: intervention
     verified:
         label: Verified
         type: switch
         conditions:
             - verified <> true
             - verified = true
+    is_hidden:
+        label: 'harassmap.incidents::lang.model.incident.is_hidden'
+        type: switch
+        conditions:
+            - is_hidden <> true
+            - is_hidden = true
     approved:
-        label: Approved
+        label: 'harassmap.incidents::lang.model.incident.approved'
         type: switch
         conditions:
             - approved <> true
             - approved = true
-    created_at:
-        label: Reported Date
-        type: daterange
-        conditions: created_at >= ':afterDate' AND created_at <= ':beforeDate'

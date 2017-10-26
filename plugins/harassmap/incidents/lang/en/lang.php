@@ -42,6 +42,7 @@
             'created_at' => 'Date Reported',
             'is_hidden' => 'Hidden',
             'verified' => 'Verified',
+            'approved' => 'Approved',
             'is_intervention' => 'Is Intervention',
             'support' => 'Support',
             'domain' => 'Domain',

@@ -16,13 +16,6 @@ columns:
     is_hidden:
         label: 'harassmap.incidents::lang.model.incident.is_hidden'
         type: switch
-    is_intervention:
-        label: 'harassmap.incidents::lang.model.incident.is_intervention'
-        type: switch
-    user:
-        label: 'harassmap.incidents::lang.model.incident.user'
-        relation: user
-        select: 'concat(name, '' '', surname)'
     support:
         label: 'harassmap.incidents::lang.model.incident.support'
     domain_id:
