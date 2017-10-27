@@ -106,7 +106,7 @@ export class ActivityChart {
             this.textG.attr("transform", "translate(" + this.x(date) + "," + (this.height + TEXT_PADDING) + ")");
 
             this.tether
-                .attr("transform", "translate(" + this.x(date) + ",0)")
+                .attr("transform", "translate(" + this.x(date) + "," + (this.y(value) - 5) + ")")
                 .attr('data-content', () => template({
                     total: value,
                     single: value === 1,
@@ -121,16 +121,18 @@ export class ActivityChart {
             $focus.popover('hide');
         };
 
+        const width = (this.width / this.data.length) - BAR_PADDING;
+
         this.svg.selectAll(".bar")
             .data(this.data)
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", ({date}) => this.x(date) - (BAR_PADDING / 2))
+            .attr("x", ({date}) => this.x(date) - (width / 2))
             .attr("y", ({value}) => this.y(value))
             .attr("rx", 10)
             .attr("ry", 10)
-            .attr("width", ((this.width / this.data.length) - BAR_PADDING))
+            .attr("width", width)
             .attr("height", ({value}) => Math.max((this.bottom - this.y(value) - AXIS_PADDING), 0))
             .on('mouseover', function (data) {
                 show(this, data);
