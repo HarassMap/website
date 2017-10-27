@@ -36,12 +36,14 @@ export class LineChart {
     }
 
     parseData(data) {
-        this.data = d3.nest().key(({date}) => d3.timeMonth.floor(date)).entries(this.padDates(data)).map(({key, values}) => {
-            return {
+        this.data = d3
+            .nest()
+            .key(({date}) => d3.timeMonth.floor(date))
+            .entries(this.padDates(data))
+            .map(({key, values}) => ({
                 date: new Date(key),
                 value: d3.sum(values, (data) => data.count)
-            }
-        });
+            }));
 
         this.render();
     }

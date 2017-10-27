@@ -8,6 +8,7 @@ use Event;
 use Harassmap\Incidents\Classes\Controller;
 use Harassmap\Incidents\Classes\EventRegistry;
 use Harassmap\Incidents\Classes\Mailer;
+use Harassmap\Incidents\Components\ActivityChart;
 use Harassmap\Incidents\Components\ChartCommonReports;
 use Harassmap\Incidents\Components\ContentBlock;
 use Harassmap\Incidents\Components\Domain;
@@ -171,6 +172,7 @@ class Plugin extends PluginBase
             Notifications::class => 'harassmapNotifications',
             UserMenu::class => 'harassmapUserMenu',
             ChartCommonReports::class => 'harassmapChartCommonReports',
+            ActivityChart::class => 'harassmapChartActivity',
         ];
     }
 

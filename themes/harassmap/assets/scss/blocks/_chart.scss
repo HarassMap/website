@@ -214,3 +214,27 @@
     }
   }
 }
+
+.activity-chart {
+  width: 100%;
+  height: 200px;
+
+  @include rem((margin-bottom: 30px));
+
+  .activity-chart-svg {
+    width: 100%;
+    height: 100%;
+
+    .bar {
+      fill: $alto;
+    }
+
+    .axis {
+      .domain {
+        stroke: $dusty-gray;
+      }
+    }
+
+  }
+
+}

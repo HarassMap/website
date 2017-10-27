@@ -1,0 +1,16 @@
+<h3>{{ 'Overall Activity' | _ }}</h3>
+<p>{{ 'Number of submissions on HarassMap website in the last 30 days.' | _ }}</p>
+
+<div class="activity-chart">
+    <svg id="activityChartSvg" class="activity-chart-svg"></svg>
+</div>
+
+<a href="{{ 'chart/index' | page }}" class="btn btn--inverse">
+    {{ 'Read More' | _ }}
+</a>
+
+{% put scripts %}
+<script>
+    initActivityChart({{ activityChartReports | json_encode | raw }});
+</script>
+{% endput %}

@@ -1,7 +1,7 @@
 'use strict';
 
 import moment from "moment";
-import { initCircleChart, initHomeChart, initLineChart } from './chart/charts';
+import { initActivityChart, initCircleChart, initHomeChart, initLineChart } from './chart/charts';
 import { changeD3Locale } from "./locale/d3";
 import "./locale/moment";
 import MapFactory from "./map/map.factory";
@@ -50,6 +50,7 @@ window.initMap = () => {
 window.initHomeChart = initHomeChart;
 window.initCircleChart = initCircleChart;
 window.initLineChart = initLineChart;
+window.initActivityChart = initActivityChart;
 
 window.initReportBanner = () => {
     initBanner();
