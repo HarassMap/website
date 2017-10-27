@@ -10,7 +10,26 @@
 </a>
 
 {% put scripts %}
+<script id="activity-chart-popover" type="text/x-handlebars-template">
+    {% raw %}
+        {{#if single}}
+    {% endraw %}
+    {{ ':total submission' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{else if plural}}
+    {% endraw %}
+    {{ ':total submissions' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{else}}
+    {% endraw %}
+    {{ ':total submissions 11' | _({total: "{{ total }}"}) }}
+    {% raw %}
+        {{/if}}
+    {% endraw %}
+</script>
 <script>
-    initActivityChart({{ activityChartReports | json_encode | raw }});
+    $(document).ready(function () {
+        initActivityChart({{ activityChartReports | json_encode | raw }});
+    });
 </script>
 {% endput %}

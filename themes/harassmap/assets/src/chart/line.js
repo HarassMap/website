@@ -10,7 +10,7 @@ const PADDING_TOP = 0;
 const PADDING_BOTTOM = 0;
 const PADDING_LEFT = 0;
 const PADDING_RIGHT = 0;
-const TEXT_PADDING = 20;
+const TEXT_PADDING = 10;
 
 export class LineChart {
 
@@ -158,7 +158,8 @@ export class LineChart {
         let $focus = $(this.tether.node());
         $focus.popover({
             placement: 'top',
-            trigger: 'manual'
+            trigger: 'manual',
+            animation: false
         });
 
         const mouseover = () => {

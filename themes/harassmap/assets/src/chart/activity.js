@@ -2,13 +2,15 @@
 
 import * as d3 from 'd3';
 import debounce from 'debounce';
+import Handlebars from "handlebars";
 import _ from 'lodash';
+import { getD3LocaleConfig } from "../locale/d3";
 
 const PADDING_TOP = 10;
 const PADDING_BOTTOM = 10;
-const PADDING_LEFT = 0;
-const PADDING_RIGHT = 0;
-const TEXT_PADDING = 20;
+const PADDING_LEFT = 10;
+const PADDING_RIGHT = 10;
+const TEXT_PADDING = 10;
 const BAR_PADDING = 4;
 const AXIS_PADDING = 5;
 
@@ -56,7 +58,7 @@ export class ActivityChart {
         this.top = PADDING_TOP;
         this.bottom = this.height - PADDING_BOTTOM;
         this.left = PADDING_LEFT;
-        this.right = this.width - PADDING_RIGHT;
+        this.right = this.width - PADDING_RIGHT - PADDING_LEFT;
 
         this.extent = d3.extent(this.data, ({date}) => date);
 
@@ -75,17 +77,67 @@ export class ActivityChart {
     }
 
     drawGraph() {
+        let source = $("#activity-chart-popover").html();
+        let template = Handlebars.compile(source);
+
+        this.tether = this.svg
+            .append("g")
+            .attr("class", "tether");
+
+        this.textG = this.svg
+            .append("g");
+
+        this.text = this.textG
+            .append("text")
+            .attr("text-anchor", "middle");
+
+        let $focus = $(this.tether.node());
+        $focus.popover({
+            placement: 'top',
+            trigger: 'manual',
+            animation: false
+        });
+
+        const show = (bar, {date, value}) => {
+            this.textG.style("display", null);
+
+            let locale = d3.timeFormatLocale(getD3LocaleConfig());
+            this.text.text(_.toUpper(locale.format("%d/%m")(date)));
+            this.textG.attr("transform", "translate(" + this.x(date) + "," + (this.height + TEXT_PADDING) + ")");
+
+            this.tether
+                .attr("transform", "translate(" + this.x(date) + ",0)")
+                .attr('data-content', () => template({
+                    total: value,
+                    single: value === 1,
+                    plural: value < 11
+                }));
+
+            $focus.popover('show');
+        };
+
+        const hide = () => {
+            this.textG.style("display", "none");
+            $focus.popover('hide');
+        };
+
         this.svg.selectAll(".bar")
             .data(this.data)
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", ({date}) => this.x(date))
+            .attr("x", ({date}) => this.x(date) - (BAR_PADDING / 2))
             .attr("y", ({value}) => this.y(value))
             .attr("rx", 10)
             .attr("ry", 10)
             .attr("width", ((this.width / this.data.length) - BAR_PADDING))
-            .attr("height", ({value}) => (this.bottom - this.y(value) - AXIS_PADDING));
+            .attr("height", ({value}) => Math.max((this.bottom - this.y(value) - AXIS_PADDING), 0))
+            .on('mouseover', function (data) {
+                show(this, data);
+            })
+            .on('mouseout', function () {
+                hide();
+            });
     }
 
     drawAxis() {
@@ -133,7 +185,7 @@ export class ActivityChart {
             lastDate = new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate());
             lastDate.setDate(lastDate.getDate() + 1);
             lastDate.setHours(0, 0, 0, 0);
-        } while (lastDate.getTime() <= today.getTime());
+        } while (lastDate.getTime() < today.getTime());
 
         return _.orderBy(data, 'date');
 
