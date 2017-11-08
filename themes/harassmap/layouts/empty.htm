@@ -1,0 +1,42 @@
+description = "Empty layout"
+
+[staticPage]
+
+[session]
+security = "all"
+==
+<!DOCTYPE html>
+<html {% if activeLocale == 'ar' %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="HarassMap">
+
+    <title>{{ this.page.title }}</title>
+
+    {% if this.page.meta_description %}
+        <meta name="description" content="{{ this.page.meta_description }}">
+    {% else %}
+        <meta name="description" content="{{ domain.meta_description }}">
+    {% endif %}
+    <meta name="title" content="{{ this.page.meta_title }}">
+
+    {% partial 'site/styles' %}
+</head>
+<body class=" static-content">
+
+    <!-- Content -->
+    <div class="site-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pl-md-5 pr-md-5">
+                    {% page %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% partial 'site/scripts' %}
+</body>
+</html>
