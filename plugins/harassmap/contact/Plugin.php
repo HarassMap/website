@@ -11,7 +11,7 @@ use System\Classes\PluginBase;
 class Plugin extends PluginBase
 {
 
-    public $require = ['Harassmap.Incidents'];
+    public $require = ['Harassmap.Incidents', 'JanVince.SmallContactForm'];
 
     public function boot()
     {

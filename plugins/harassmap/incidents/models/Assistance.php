@@ -20,6 +20,8 @@ class Assistance extends Model
 
     public $translatable = ['title'];
 
+    protected $fillable = ['title', 'domain_id'];
+
     public $rules = [
         'title' => 'required',
     ];

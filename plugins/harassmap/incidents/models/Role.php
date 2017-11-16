@@ -20,6 +20,8 @@ class Role extends Model
 
     public $translatable = ['name'];
 
+    protected $fillable = ['name', 'domain_id'];
+
     public $timestamps = false;
 
     public $rules = [

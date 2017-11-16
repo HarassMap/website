@@ -11,7 +11,7 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('public_id', '100');
+            $table->string('public_id', 20);
 
             $table->text('description');
             $table->dateTime('date');
@@ -24,6 +24,7 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
             $table->timestamp('updated_at')->nullable();
 
             // foreign keys
+            $table->unique('public_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
             $table->foreign('location_id')->references('id')->on('harassmap_incidents_location');

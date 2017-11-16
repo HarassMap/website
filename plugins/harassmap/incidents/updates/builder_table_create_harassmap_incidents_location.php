@@ -16,9 +16,6 @@ class BuilderTableCreateHarassmapIncidentsLocation extends Migration
             $table->string('address');
             $table->string('lat');
             $table->string('lng');
-            $table->integer('country_id')->unsigned();
-
-            $table->foreign('country_id')->references('id')->on('harassmap_incidents_country');
         });
     }
     

@@ -1,11 +1,9 @@
 1.0.1:
     - 'Initialize plugin.'
 1.0.2:
-    - 'Created table harassmap_incidents_country'
-    - builder_table_create_harassmap_incidents_country.php
+    - 'Update Removed'
 1.0.3:
-    - 'Created table harassmap_incidents_city'
-    - builder_table_create_harassmap_incidents_city.php
+    - 'Update Removed'
 1.0.4:
     - 'Created table harassmap_incidents_domain'
     - builder_table_create_harassmap_incidents_domain.php
@@ -84,8 +82,7 @@
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_2.php
 1.0.34:
-    - 'Updated table harassmap_incidents_city'
-    - builder_table_update_harassmap_incidents_city.php
+    - 'Update Removed'
 1.0.35:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_6.php
@@ -98,16 +95,13 @@
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_3.php
 1.0.39:
-    - 'Updated table harassmap_incidents_location'
-    - builder_table_update_harassmap_incidents_location_4.php
+    - 'Update Removed'
 1.0.40:
     - 'Update Removed'
 1.0.41:
-    - 'Drop table harassmap_incidents_city'
-    - builder_table_delete_harassmap_incidents_city.php
+    - 'Update Removed'
 1.0.42:
-    - 'Drop table harassmap_incidents_country'
-    - builder_table_delete_harassmap_incidents_country.php
+    - 'Update Removed'
 1.0.43:
     - 'Update removed'
 1.0.44:
@@ -120,8 +114,7 @@
     - 'Created table harassmap_incidents_api'
     - builder_table_create_harassmap_incidents_api.php
 1.0.48:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_8.php
+    - 'Update Removed'
 1.0.49:
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_5.php
