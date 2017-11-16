@@ -6,7 +6,6 @@
 1.0.3:
     - 'Created table harassmap_comments_comments'
     - builder_table_create_harassmap_comments_comments.php
-1.0.4:
-    - 'Update removed'
-1.0.5:
-    - 'Update removed'
+
+1.1.0:
+    - 'Site has gone live'
