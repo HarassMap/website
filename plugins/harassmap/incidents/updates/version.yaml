@@ -1,9 +1,5 @@
 1.0.1:
     - 'Initialize plugin.'
-1.0.2:
-    - 'Update Removed'
-1.0.3:
-    - 'Update Removed'
 1.0.4:
     - 'Created table harassmap_incidents_domain'
     - builder_table_create_harassmap_incidents_domain.php
@@ -23,51 +19,26 @@
     - 'Created table harassmap_incidents_assistance'
     - builder_table_create_harassmap_incidents_assistance.php
 1.0.10:
-    - 'Created table harassmap_incidents_location'
-    - builder_table_create_harassmap_incidents_location.php
-1.0.11:
     - 'Created table harassmap_incidents_incident'
     - builder_table_create_harassmap_incidents_incident.php
+1.0.11:
+    - 'Created table harassmap_incidents_location'
+    - builder_table_create_harassmap_incidents_location.php
 1.0.12:
     - 'Created table harassmap_incidents_incident_category'
     - builder_table_create_harassmap_incidents_incident_category.php
 1.0.13:
     - 'Created table harassmap_incidents_intervention_assistance'
     - builder_table_create_harassmap_incidents_intervention_assistance.php
-1.0.14:
-    - 'Update removed'
-1.0.15:
-    - 'Update removed'
-1.0.16:
-    - 'Update removed'
-1.0.17:
-    - 'Update removed'
-1.0.18:
-    - 'Update removed'
-1.0.19:
-    - 'Created table harassmap_incidents_domain_category'
 1.0.20:
     - 'Created table harassmap_incidents_role'
     - builder_table_create_harassmap_incidents_role.php
-1.0.21:
-    - 'Updated table harassmap_incidents_incident'
-1.0.22:
-    - 'Update removed'
-1.0.23:
-    - 'Update removed'
-1.0.24:
-    - 'Created table harassmap_incidents_domain_role'
-1.0.25:
-    - 'Created table harassmap_incidents_domain_assistance'
 1.0.26:
     - 'Created table harassmap_incidents_intervention'
     - builder_table_create_harassmap_incidents_intervention.php
 1.0.27:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_2.php
-1.0.28:
-    - 'Updated table harassmap_incidents_location'
-    - builder_table_update_harassmap_incidents_location.php
 1.0.29:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_3.php
@@ -77,102 +48,33 @@
 1.0.31:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_5.php
-1.0.32:
-    - 'Update Removed'
-1.0.33:
-    - 'Updated table harassmap_incidents_location'
-    - builder_table_update_harassmap_incidents_location_2.php
-1.0.34:
-    - 'Update Removed'
 1.0.35:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_6.php
 1.0.36:
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_7.php
-1.0.37:
-    - 'Update Removed'
-1.0.38:
-    - 'Updated table harassmap_incidents_location'
-    - builder_table_update_harassmap_incidents_location_3.php
-1.0.39:
-    - 'Update Removed'
-1.0.40:
-    - 'Update Removed'
-1.0.41:
-    - 'Update Removed'
-1.0.42:
-    - 'Update Removed'
-1.0.43:
-    - 'Update removed'
-1.0.44:
-    - 'Update Removed'
-1.0.45:
-    - 'Update Removed'
-1.0.46:
-    - 'Update Removed'
 1.0.47:
     - 'Created table harassmap_incidents_api'
     - builder_table_create_harassmap_incidents_api.php
-1.0.48:
-    - 'Update Removed'
-1.0.49:
-    - 'Updated table harassmap_incidents_location'
-    - builder_table_update_harassmap_incidents_location_5.php
-1.0.50:
-    - 'Update Removed'
-1.0.51:
-    - 'Update Removed'
-1.0.52:
-    - 'Update Removed'
 1.0.53:
     - 'Updated table harassmap_incidents_content'
     - builder_table_update_harassmap_incidents_content.php
-1.0.54:
-    - 'Update Removed'
-1.0.55:
-    - 'Update Removed'
-1.0.56:
-    - 'Update Removed'
 1.0.57:
     - 'Updated table harassmap_incidents_tip'
     - builder_table_update_harassmap_incidents_tip.php
-1.0.58:
-    - 'Update Removed'
 1.0.59:
     - 'Created table harassmap_incidents_notifications'
     - builder_table_create_harassmap_incidents_notifications.php
-1.0.60:
-    - 'Update Removed'
-1.0.61:
-    - 'Update Removed'
-1.0.62:
-    - 'Update Removed'
-1.0.63:
-    - 'Update Removed'
 1.0.64:
     - 'Updated table harassmap_incidents_category'
     - builder_table_update_harassmap_incidents_category.php
 1.0.65:
     - 'Updated table harassmap_incidents_assistance'
     - builder_table_update_harassmap_incidents_assistance.php
-1.0.66:
-    - 'Update removed'
-1.0.67:
-    - 'Update Removed'
-1.0.68:
-    - 'Update Removed'
 1.0.69:
     - 'Created table harassmap_incidents_domain_logo'
     - builder_table_create_harassmap_incidents_domain_logo.php
-1.0.70:
-    - 'Update Removed'
-1.0.71:
-    - 'Update Removed'
-1.0.72:
-    - 'Update Removed'
-1.0.73:
-    - 'Update Removed'
 1.0.74:
     - 'Updated table harassmap_incidents_category'
     - builder_table_update_harassmap_incidents_category_2.php

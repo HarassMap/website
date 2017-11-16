@@ -12,10 +12,12 @@ class BuilderTableCreateHarassmapIncidentsLocation extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('city');
-            $table->string('region');
-            $table->string('address');
-            $table->string('lat');
-            $table->string('lng');
+            $table->string('address', 255)->nullable();
+            $table->decimal('lat', 10, 6)->nullable(false)->unsigned(false)->default(null);
+            $table->decimal('lng', 10, 6)->nullable(false)->unsigned(false)->default(null);
+            $table->integer('incident_id')->unsigned();
+
+            $table->foreign('incident_id')->references('id')->on('harassmap_incidents_incident');
         });
     }
     

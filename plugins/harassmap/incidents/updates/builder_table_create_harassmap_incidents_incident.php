@@ -17,7 +17,6 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
             $table->dateTime('date');
 
             $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('location_id')->unsigned();
             $table->integer('domain_id')->unsigned();
 
             $table->timestamp('created_at')->nullable();
@@ -27,7 +26,6 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
             $table->unique('public_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
-            $table->foreign('location_id')->references('id')->on('harassmap_incidents_location');
         });
     }
     
