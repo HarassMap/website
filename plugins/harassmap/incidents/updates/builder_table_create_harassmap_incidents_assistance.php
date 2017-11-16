@@ -12,8 +12,12 @@ class BuilderTableCreateHarassmapIncidentsAssistance extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('title', 255);
+            $table->integer('domain_id')->unsigned()->nullable();
+
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+
+            $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
         });
     }
     

@@ -15,10 +15,13 @@ class BuilderTableCreateHarassmapIncidentsCategory extends Migration
             $table->increments('id')->unsigned();
             $table->string('title', 255);
             $table->text('description');
-            $table->string('color', 20);
             $table->integer('sort_order');
+            $table->integer('domain_id')->unsigned()->nullable();
+
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+
+            $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
         });
     }
     

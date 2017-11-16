@@ -14,7 +14,7 @@ class BuilderTableCreateHarassmapDomainContent extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('domain_id')->unsigned();
-            $table->string('content_id');
+            $table->string('content_id', 50);
             $table->text('content');
             $table->string('link', 255)->nullable();
 
