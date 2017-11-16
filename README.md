@@ -16,7 +16,7 @@ Set up a local database:
 * Database User: **harassmap**
 * Database Pass: **harassmap**
 
-Run `php artisan october:up` to build the database tables.
+Run `php artisan october:up` to build the database tables.  
 Run `php artisan harassmap:up` to seed the tables with data needed to run the site.
 
 ## Running the site
