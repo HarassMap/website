@@ -29,6 +29,7 @@ use Harassmap\Incidents\Components\UserAPI;
 use Harassmap\Incidents\Components\UserMenu;
 use Harassmap\Incidents\Components\UserReports;
 use Harassmap\Incidents\Console\MigrateCommand;
+use Harassmap\Incidents\Console\UpCommand;
 use Harassmap\Incidents\FormWidgets\RelationLink;
 use Harassmap\Incidents\Models\API;
 use Harassmap\Incidents\Models\Domain as DomainModel;
@@ -188,6 +189,7 @@ class Plugin extends PluginBase
     public function register()
     {
         $this->registerConsoleCommand('harassmap.migrate', MigrateCommand::class);
+        $this->registerConsoleCommand('harassmap.up', UpCommand::class);
     }
 
     public function registerSettings()

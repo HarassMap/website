@@ -35,6 +35,8 @@ class Domain extends Model
         'meta_description',
     ];
 
+    public $fillable = ['name', 'host', 'lat', 'lng', 'zoom', 'email'];
+
     protected $jsonable = ['colours'];
 
     public $rules = [

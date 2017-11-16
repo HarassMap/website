@@ -79,8 +79,7 @@
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_5.php
 1.0.32:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain.php
+    - 'Update Removed'
 1.0.33:
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_2.php
@@ -94,8 +93,7 @@
     - 'Updated table harassmap_incidents_incident'
     - builder_table_update_harassmap_incidents_incident_7.php
 1.0.37:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_2.php
+    - 'Update Removed'
 1.0.38:
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_3.php
@@ -103,8 +101,7 @@
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_4.php
 1.0.40:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_3.php
+    - 'Update Removed'
 1.0.41:
     - 'Drop table harassmap_incidents_city'
     - builder_table_delete_harassmap_incidents_city.php
@@ -112,17 +109,13 @@
     - 'Drop table harassmap_incidents_country'
     - builder_table_delete_harassmap_incidents_country.php
 1.0.43:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_4.php
+    - 'Update removed'
 1.0.44:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_5.php
+    - 'Update Removed'
 1.0.45:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_6.php
+    - 'Update Removed'
 1.0.46:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_7.php
+    - 'Update Removed'
 1.0.47:
     - 'Created table harassmap_incidents_api'
     - builder_table_create_harassmap_incidents_api.php
@@ -133,14 +126,11 @@
     - 'Updated table harassmap_incidents_location'
     - builder_table_update_harassmap_incidents_location_5.php
 1.0.50:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_8.php
+    - 'Update Removed'
 1.0.51:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_9.php
+    - 'Update Removed'
 1.0.52:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_10.php
+    - 'Update Removed'
 1.0.53:
     - 'Updated table harassmap_incidents_content'
     - builder_table_update_harassmap_incidents_content.php
@@ -154,8 +144,7 @@
     - 'Updated table harassmap_incidents_tip'
     - builder_table_update_harassmap_incidents_tip.php
 1.0.58:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_11.php
+    - 'Update Removed'
 1.0.59:
     - 'Created table harassmap_incidents_notifications'
     - builder_table_create_harassmap_incidents_notifications.php
@@ -164,11 +153,9 @@
 1.0.61:
     - 'Updated table harassmap_incidents_incident_category'
 1.0.62:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_12.php
+    - 'Update Removed'
 1.0.63:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_13.php
+    - 'Update Removed'
 1.0.64:
     - 'Updated table harassmap_incidents_category'
     - builder_table_update_harassmap_incidents_category.php
@@ -178,26 +165,20 @@
 1.0.66:
     - 'Update removed'
 1.0.67:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_14.php
+    - 'Update Removed'
 1.0.68:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_15.php
+    - 'Update Removed'
 1.0.69:
     - 'Created table harassmap_incidents_domain_logo'
     - builder_table_create_harassmap_incidents_domain_logo.php
 1.0.70:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_16.php
+    - 'Update Removed'
 1.0.71:
-    - 'Removing attributable key from domain'
-    - builder_table_update_harassmap_incidents_domain_17.php
+    - 'Update Removed'
 1.0.72:
-    - 'Adding default language picker to domain'
-    - builder_table_update_harassmap_incidents_domain_18.php
+    - 'Update Removed'
 1.0.73:
-    - 'Updated table harassmap_incidents_domain'
-    - builder_table_update_harassmap_incidents_domain_19.php
+    - 'Update Removed'
 1.0.74:
     - 'Updated table harassmap_incidents_category'
     - builder_table_update_harassmap_incidents_category_2.php

@@ -33,7 +33,7 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
-        $csv = new parseCSV(__DIR__ . '/final_data.csv');
+        $csv = new parseCSV(__DIR__ . '/data/final_data.csv');
 
         $assistance = Assistance::whereTitle('other')->first();
         $domain = Domain::whereHost('*')->first();

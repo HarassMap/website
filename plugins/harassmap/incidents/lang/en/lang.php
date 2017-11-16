@@ -91,8 +91,6 @@
         'domain' => 'Domain',
         'domains' => 'Domains',
         'name' => 'Name',
-        'namestart' => 'Name Start',
-        'nameend' => 'Name End',
         'tagline' => 'Tagline',
         'about' => 'About',
         'about_help' => 'A short description of the site.',
