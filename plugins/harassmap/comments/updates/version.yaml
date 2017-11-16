@@ -9,3 +9,6 @@
 
 1.1.0:
     - 'Site has gone live'
+1.1.1:
+    - 'Removing foreign key on topics table'
+    - builder_table_update_harassmap_comments_topic.php
