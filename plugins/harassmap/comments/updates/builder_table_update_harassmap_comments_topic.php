@@ -10,14 +10,12 @@ class BuilderTableUpdateHarassmapCommentsTopic extends Migration
     public function up()
     {
         Schema::table('harassmap_comments_topic', function ($table) {
-            $table->dropForeign('harassmap_comments_topic_code_foreign');
+            $table->dropForeign(['code']);
         });
     }
 
     public function down()
     {
-        Schema::table('harassmap_comments_topic', function ($table) {
-            $table->foreign('code')->references('public_id')->on('harassmap_incidents_incident');
-        });
+        // do nothing we really don't want this foreign key
     }
 }
