@@ -18,7 +18,7 @@ module.exports = function () {
         .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(sass(config.sass))
         .pipe(autoprefixer(config.autoprefixer))
-        .pipe(cssnano({ autoprefixer: config.autoprefixer }))
+        .pipe(gulpif(production, cssnano({ autoprefixer: config.autoprefixer })))
         .pipe(gulpif(!production, sourcemaps.write()))
         .pipe(concat('styles.css'))
         .pipe(gulp.dest(config.css.dist))
