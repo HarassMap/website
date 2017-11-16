@@ -25,4 +25,4 @@ You can also run `php artisan october:down` to completely remove the database ta
 
 * Run `php artisan serve` to start the development server
 * Run `gulp` to build any JS and CSS files
-* You can log into the admin by navigating to **/admin** and using admin:admin as the username:password.
+* You can log into the admin by navigating to **/admin** and using **admin:admin** as the **username:password**.
