@@ -18,14 +18,21 @@ class BuilderTableCreateHarassmapIncidentsIncident extends Migration
 
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('domain_id')->unsigned();
+            $table->integer('role_id')->unsigned();
+            $table->boolean('verified')->default(0);
+            $table->integer('support')->default(0);
+            $table->boolean('is_intervention')->default(0);
+            $table->boolean('approved')->default(0);
+            $table->boolean('is_hidden')->default(0);
 
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 
             // foreign keys
             $table->unique('public_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
+            $table->foreign('role_id')->references('id')->on('harassmap_incidents_role');
         });
     }
     

@@ -36,24 +36,6 @@
 1.0.26:
     - 'Created table harassmap_incidents_intervention'
     - builder_table_create_harassmap_incidents_intervention.php
-1.0.27:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_2.php
-1.0.29:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_3.php
-1.0.30:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_4.php
-1.0.31:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_5.php
-1.0.35:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_6.php
-1.0.36:
-    - 'Updated table harassmap_incidents_incident'
-    - builder_table_update_harassmap_incidents_incident_7.php
 1.0.47:
     - 'Created table harassmap_incidents_api'
     - builder_table_create_harassmap_incidents_api.php
@@ -78,9 +60,6 @@
 1.0.74:
     - 'Updated table harassmap_incidents_category'
     - builder_table_update_harassmap_incidents_category_2.php
-1.0.75:
-    - 'Adding is_hidden property to incidents'
-    - builder_table_update_harassmap_incidents_incident_9.php
 1.0.76:
     - 'Removing tagline and nameend from the domain'
     - builder_table_update_harassmap_incidents_domain.php
