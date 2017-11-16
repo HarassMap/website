@@ -6,6 +6,9 @@ use Event;
 
 class Plugin extends PluginBase
 {
+
+    public $require = ['Harassmap.Incidents'];
+
     public function register()
     {
         Event::listen('mailer.beforeAddContent', function($mailer, $message, $view, $data) {

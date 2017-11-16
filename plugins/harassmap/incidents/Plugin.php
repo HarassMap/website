@@ -44,6 +44,8 @@ use Validator;
 class Plugin extends PluginBase
 {
 
+    public $require = ['RainLab.User'];
+
     public function boot()
     {
         // extend the user class to give it a list of domains

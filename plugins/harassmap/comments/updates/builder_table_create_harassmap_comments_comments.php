@@ -25,7 +25,7 @@ class BuilderTableCreateHarassmapCommentsComments extends Migration
             $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('topic_id')->references('id')->on('harassmap_comments_topic');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

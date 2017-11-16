@@ -9,6 +9,9 @@ use System\Classes\PluginBase;
  */
 class Plugin extends PluginBase
 {
+
+    public $require = ['Harassmap.Incidents'];
+
     /**
      * Returns information about this plugin.
      *

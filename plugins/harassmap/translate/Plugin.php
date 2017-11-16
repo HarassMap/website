@@ -9,6 +9,8 @@ use System\Classes\PluginBase;
 class Plugin extends PluginBase
 {
 
+    public $require = ['RainLab.Translate', 'Harassmap.Incidents'];
+
     public function boot()
     {
 
