@@ -1,5 +1,10 @@
 # HarassMap
 
+## Prerequisites
+
+* [Composer](https://getcomposer.org/doc/00-intro.md)
+* [NodeJs](https://nodejs.org/en/download/)
+
 ## Setting up the site
 
 * `composer install` to install php dependencies.
