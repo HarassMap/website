@@ -29,6 +29,7 @@ class BuilderTableCreateHarassmapIncidentsDomain extends Migration
             $table->string('facebook_app_id', 32)->nullable();
             $table->string('timezone', 64)->default('UTC');
             $table->string('tagline', 100);
+            $table->string('nameend', 100);
             $table->string('ga_key', 40)->nullable();
             $table->string('twitter_message', 100)->nullable();
             $table->boolean('need_approval')->default(1);

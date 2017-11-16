@@ -185,3 +185,6 @@
 1.0.75:
     - 'Adding is_hidden property to incidents'
     - builder_table_update_harassmap_incidents_incident_9.php
+1.0.76:
+    - 'Removing tagline and nameend from the domain'
+    - builder_table_update_harassmap_incidents_domain.php

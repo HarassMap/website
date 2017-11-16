@@ -30,7 +30,6 @@ class Domain extends Model
 
     public $translatable = [
         'name',
-        'tagline',
         'twitter_message',
         'meta_description',
     ];
