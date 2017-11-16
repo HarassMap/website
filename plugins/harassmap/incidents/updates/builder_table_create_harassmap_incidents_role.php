@@ -13,6 +13,7 @@ class BuilderTableCreateHarassmapIncidentsRole extends Migration
             $table->increments('id')->unsigned();
             $table->string('name', 100);
             $table->integer('domain_id')->unsigned()->nullable();
+
             $table->foreign('domain_id')->references('id')->on('harassmap_incidents_domain');
         });
     }
