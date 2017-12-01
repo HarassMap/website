@@ -2,13 +2,26 @@
 
 namespace Harassmap\Incidents\Widgets;
 
+use Input;
 use Harassmap\Incidents\Classes\EventRegistry;
-use RainLab\Pages\Classes\PageList as StaticPageList;
+use Harassmap\Incidents\Classes\PageList as StaticPageList;
 use RainLab\Pages\Widgets\PageList as BasePageList;
 use Str;
 
 class PageList extends BasePageList
 {
+
+    public function onReorder()
+    {
+        $structure = json_decode(Input::get('structure'), true);
+
+        if (!$structure) {
+            throw new SystemException('Invalid structure data posted.');
+        }
+
+        $pageList = new StaticPageList($this->theme);
+        $pageList->updateStructurePart($structure);
+    }
 
     protected function getData()
     {
