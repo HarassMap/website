@@ -1,29 +1,30 @@
 'use strict';
 
-import moment from "moment";
+import moment from 'moment';
 import { initActivityChart, initCircleChart, initHomeChart, initLineChart } from './chart/charts';
-import { changeD3Locale } from "./locale/d3";
-import "./locale/moment";
-import MapFactory from "./map/map.factory";
+import { changeD3Locale } from './locale/d3';
+import './locale/moment';
+import MapFactory from './map/map.factory';
 import { initBanner } from './utils/banner';
-import { createDatePicker } from "./utils/datePicker";
-import { initGeolocate } from "./utils/geoLocate";
+import { createDatePicker } from './utils/datePicker';
+import { initGeolocate } from './utils/geoLocate';
 import { initMenu } from './utils/menu';
-import { createTimePicker } from "./utils/timePicker";
-import { initToggleIntervention } from "./utils/toggleIntervention";
+import { createTimePicker } from './utils/timePicker';
+import { initToggleIntervention } from './utils/toggleIntervention';
 
 $(document).ready(() => {
-    $('body').addClass('js');
+    const $body = $('body');
+
+    $body.addClass('js');
 
     initMenu();
 
-    $('.row-link').each((index, element) => {
-        let href = element.dataset.href;
+    $body.on('click', '.row-link', (event) => {
+        const element = event.currentTarget;
+        const href = element.dataset.href;
 
         if (href) {
-            $(element).on('click', () => {
-                window.location = href;
-            });
+            window.location = href;
         }
     });
 
@@ -61,7 +62,7 @@ window.initReportIncidentPage = () => {
     createTimePicker('time');
     initGeolocate();
     initToggleIntervention();
-    $('#timezone').select2({width: '100%'});
+    $('#timezone').select2({ width: '100%' });
 };
 
 window.initReportTablePage = () => {
@@ -77,7 +78,7 @@ window.initShareButtons = (shareUrl) => {
         }
         js = d.createElement(s);
         js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
+        js.src = '//connect.facebook.net/en_US/sdk.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
