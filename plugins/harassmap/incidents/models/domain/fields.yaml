@@ -53,6 +53,11 @@ tabs:
             span: full
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
+        news_enabled:
+            label: 'Enable the news section.'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.site'
 
         meta_description:
             label: 'Meta Description?'

@@ -2,8 +2,10 @@
 
 namespace Harassmap\News\Components;
 
+use App;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use Harassmap\Incidents\Models\Domain;
 use Harassmap\News\Models\Posts as PostsModel;
 
 class Post extends ComponentBase
@@ -34,9 +36,17 @@ class Post extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function onRun()
+    {
+        $domain = Domain::getBestMatchingDomain();
+
+        if (!$domain->news_enabled) {
+            return $this->controller->run('404');
+        }
+    }
+
     public function onRender()
     {
-
         // get the slug from the url
         $slug = $this->param('slug');
 

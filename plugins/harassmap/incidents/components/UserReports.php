@@ -37,12 +37,12 @@ class UserReports extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
-    public function onRender()
+    public function onRun()
     {
         $user = Auth::getUser();
 
         if (!$user) {
-            App::abort(404);
+            return $this->controller->run('404');
         }
 
         $domain = Domain::getBestMatchingDomain();

@@ -2,6 +2,7 @@
 
 namespace Harassmap\News\Components;
 
+use App;
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
@@ -41,9 +42,17 @@ class PostList extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function onRun()
+    {
+        $domain = Domain::getBestMatchingDomain();
+
+        if (!$domain->news_enabled) {
+            return $this->controller->run('404');
+        }
+    }
+
     public function onRender()
     {
-
         $domain = Domain::getBestMatchingDomain();
 
         $this->page['postPage'] = $this->property('postPage');
@@ -57,8 +66,6 @@ class PostList extends ComponentBase
                 ->orderBy('published_at', 'desc')
                 ->paginate(intval($limit));
         }
-
-        if (true) ;
     }
 
 }

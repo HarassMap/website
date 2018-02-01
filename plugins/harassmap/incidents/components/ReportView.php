@@ -21,7 +21,7 @@ class ReportView extends ComponentBase
         ];
     }
 
-    public function onRender()
+    public function onRun()
     {
         $id = $this->param('id');
         $domain = Domain::getBestMatchingDomain();
@@ -34,7 +34,7 @@ class ReportView extends ComponentBase
             ->first();
 
         if (!$report) {
-            App::abort(404);
+            return $this->controller->run('404');
         }
 
         $this->page['report'] = $report;

@@ -28,7 +28,7 @@ class Report extends ComponentBase
             ->first();
 
         if (!$report) {
-            App::abort(404);
+            return $this->controller->run('404');
         }
 
         $this->page['report'] = $report;
