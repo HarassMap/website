@@ -45,9 +45,11 @@
 1.0.18:
     - 'Created table harassmap_incidents_domain_logo'
     - builder_table_create_harassmap_incidents_domain_logo.php
-
 1.1.0:
     - 'Site has gone live.'
 1.1.1:
     - 'Removing tagline and nameend from the domain'
     - builder_table_update_harassmap_incidents_domain.php
+1.1.2:
+    - 'Adding boolean switch to allow disabling of news section'
+    - builder_table_update_harassmap_incidents_domain_2.php
