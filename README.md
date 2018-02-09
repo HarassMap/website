@@ -26,3 +26,9 @@ You can also run `php artisan october:down` to completely remove the database ta
 * Run `php artisan serve` to start the development server
 * Run `gulp` to build any JS and CSS files
 * You can log into the admin by navigating to **/admin** and using **admin:admin** as the **username:password**.
+
+## Contributing
+
+The main bulk of the code for the site is in the **plugins** folder. This is where all third party plugins are and also the custom **harassmap** plugins.
+
+The **theme** folder also contains the main pages of the application. This is where the HTML/CSS of the site is and the HTML is written in [twig](https://twig.symfony.com/) which allows php code to be used inside the HTML.
