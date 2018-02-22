@@ -32,3 +32,17 @@ You can also run `php artisan october:down` to completely remove the database ta
 The main bulk of the code for the site is in the **plugins** folder. This is where all third party plugins are and also the custom **harassmap** plugins.
 
 The **theme** folder also contains the main pages of the application. This is where the HTML/CSS of the site is and the HTML is written in [twig](https://twig.symfony.com/) which allows php code to be used inside the HTML.
+
+## Deployment
+
+To deploy the site to the production server you can add a new remote to your git repo:
+
+```
+git remote add live ssh://ubuntu@54.200.246.55/var/repo/harassmap.git
+```
+
+Then you can push to the production server:
+
+```
+git push live master
+```
