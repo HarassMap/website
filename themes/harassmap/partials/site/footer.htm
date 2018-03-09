@@ -13,10 +13,12 @@ numberOfLevels = 2
 <div class="footer-contact">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-8">
-                <a href="{{ 'contact' | page }}" class="priority-2 d-inline contact__link">{{ 'Contact Us' | _ }}</a>
-                {% component 'footermenu' %}
-            </div>
+            {% if domain.contact_form_enabled %}
+                <div class="col-12 col-lg-8">
+                    <a href="{{ 'contact' | page }}" class="priority-2 d-inline contact__link">{{ 'Contact Us' | _ }}</a>
+                    {% component 'footermenu' %}
+                </div>
+            {% endif %}
             <div class="col-12 col-lg-4">
                 <div class="social-links pt-4 pt-md-0">
                     {% if domain.facebook %}
