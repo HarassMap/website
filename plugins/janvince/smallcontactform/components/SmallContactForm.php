@@ -3,6 +3,7 @@
 use Cms\Classes\ComponentBase;
 use JanVince\SmallContactForm\Models\Settings;
 use JanVince\SmallContactForm\Models\Message;
+use Harassmap\Incidents\Models\Domain;
 
 use Validator;
 use Illuminate\Support\MessageBag;
@@ -41,6 +42,12 @@ class SmallContactForm extends ComponentBase
     }
 
     public function onRun() {
+
+        $domain = Domain::getBestMatchingDomain();
+
+        if (!$domain->contact_form_enabled) {
+            return $this->controller->run('404');
+        }
 
         if ( Session::get('flashSuccess') ) {
 
