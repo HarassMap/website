@@ -58,6 +58,11 @@ tabs:
             span: full
             type: checkbox
             tab: 'harassmap.incidents::lang.form.tab.site'
+        contact_form_enabled:
+            label: 'Enable the contact form section.'
+            span: full
+            type: checkbox
+            tab: 'harassmap.incidents::lang.form.tab.site'
 
         meta_description:
             label: 'Meta Description?'

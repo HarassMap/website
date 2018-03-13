@@ -4,6 +4,7 @@ use BackendAuth;
 use Event;
 use Harassmap\Contact\Classes\Mailer;
 use Harassmap\Incidents\Models\Domain;
+use Harassmap\Contact\Components\ContactForm;
 use Janvince\SmallContactform\Controllers\Messages;
 use JanVince\SmallContactForm\Models\Message;
 use System\Classes\PluginBase;
@@ -12,6 +13,13 @@ class Plugin extends PluginBase
 {
 
     public $require = ['Harassmap.Incidents', 'JanVince.SmallContactForm'];
+
+    public function registerComponents()
+        {
+            return [
+                ContactForm::class => 'harassmapContactContactForm'
+            ];
+        }
 
     public function boot()
     {
