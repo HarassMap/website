@@ -11,12 +11,12 @@ class ContactForm extends ComponentBase
 {
 
     public function componentDetails()
-        {
-            return [
-                'name' => 'Contact Form',
-                'description' => 'Displays contact form'
-            ];
-        }
+    {
+        return [
+            'name' => 'Contact Form',
+            'description' => 'Displays contact form'
+        ];
+    }
 
     public function onRun()
     {
