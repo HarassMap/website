@@ -8,7 +8,7 @@
             {% if primaryNav.enabled %}
                 <li class="nav-item {{ listItemClasses }} {{ primaryNav.getListItemClasses(activeLeft, activeRight) }}">
                     <a href="{{ primaryNav.getLinkHref }}"
-                       target="{{ primaryNav.getLinkTarget }}">meo</a>
+                       target="{{ primaryNav.getLinkTarget }}">{{ primaryNav.title }}</a>
                 </li>
             {% endif %}
         {% endfor %}
