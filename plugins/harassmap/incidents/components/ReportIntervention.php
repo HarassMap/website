@@ -12,10 +12,10 @@ use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Intervention;
 use Harassmap\Incidents\Models\Location;
 use Harassmap\Incidents\Models\Role;
+use Harassmap\Translate\Models\Message;
 use Illuminate\Support\MessageBag;
 use Lang;
 use RainLab\Translate\Classes\Translator;
-use RainLab\Translate\Models\Message;
 use RainLab\User\Facades\Auth;
 use Redirect;
 
@@ -39,7 +39,7 @@ class ReportIntervention extends ComponentBase
 
         $roles = Role::where('domain_id', '=', $domain->id)
             ->get()->lists('name', 'id');
-        $this->page['roles'] = ['' => Message::get('My role was...')] + $roles;
+        $this->page['roles'] = ['' => Message::trans('My role was...')] + $roles;
 
         // timezones
         $zones = timezone_identifiers_list();
