@@ -77,4 +77,12 @@
       }
     }
   }
+
+  .no-contact {
+    padding-left: 0 !important;
+
+    li:first-child {
+      margin-left: 0;
+    }
+  }
 }

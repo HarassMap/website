@@ -1,10 +1,14 @@
+{% if not domain.contact_form_enabled %}
+    {% set className = "no-contact" %}
+{% endif %}
+
 {% if parentNode and parentNode.getChildCount %}
-    <ul class="footer-nav {{ primaryClasses }}">
+    <ul class="footer-nav {{ primaryClasses }} {{ className }}">
         {% for primaryNav in parentNode.getChildren %}
             {% if primaryNav.enabled %}
                 <li class="nav-item {{ listItemClasses }} {{ primaryNav.getListItemClasses(activeLeft, activeRight) }}">
                     <a href="{{ primaryNav.getLinkHref }}"
-                       target="{{ primaryNav.getLinkTarget }}">{{ primaryNav.title }}</a>
+                       target="{{ primaryNav.getLinkTarget }}">meo</a>
                 </li>
             {% endif %}
         {% endfor %}
