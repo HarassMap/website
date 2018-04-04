@@ -36,7 +36,7 @@ class Signup extends ComponentBase
         $data = post();
 
         $rules = [
-            'email' => 'required|email|min:2|max:64',
+            'email' => 'required|email|min:2|max:64'
         ];
 
         $validation = Validator::make($data, $rules);
@@ -53,7 +53,7 @@ class Signup extends ComponentBase
         $this->page['error'] = null;
 
         try {
-            $api->request('POST', '/lists/{list_id}/members', ['list_id' => $domain->mailchimp_list], ['email_address' => post('email')]);
+            $api->request('POST', '/lists/{list_id}/members', ['list_id' => $domain->mailchimp_list], ['email_address' => post('email')], ['status' => 'subscribed']);
         } catch (MailchimpAPIException $e) {
             $message = $e->getMessage();
 
