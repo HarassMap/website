@@ -71,6 +71,7 @@ class ReportTable extends ComponentBase
         $data = post();
 
         $reports = Incident::applyFilters(Incident::orderBy('date', 'desc'), $data);
+        $reports = Incident::withFilters($reports)->toArray();
 
         $this->page['reports'] = $reports->paginate(10);
         $this->page['viewPage'] = $this->property('viewPage');
