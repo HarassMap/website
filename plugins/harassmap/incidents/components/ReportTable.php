@@ -69,10 +69,13 @@ class ReportTable extends ComponentBase
     public function onFilter()
     {
         $data = post();
+        $domain = Domain::getBestMatchingDomain();
 
         $reports = Incident::applyFilters(Incident::orderBy('date', 'desc'), $data);
 
-        $this->page['reports'] = $reports->paginate(10);
+         $this->page['reports'] = Incident
+                    ::where('domain_id', $domain->id)
+                    ->paginate(10);
         $this->page['viewPage'] = $this->property('viewPage');
     }
 
