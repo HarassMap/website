@@ -140,8 +140,10 @@ export class HomePageMap {
         _.forEach(data, (report) => {
             if (_.indexOf(old_ids, report.public_id) === -1) {
                 // if the report has a location then add it to the map
-                console.log(!_.isUndefined(report.location));
-                console.log(!_.isNull(report.location));
+                console.log('report', report);
+                console.log('location', report.location);
+                console.log('defined?', !_.isUndefined(report.location));
+                console.log('not null?', !_.isNull(report.location));
                 if (!_.isUndefined(report.location) || !_.isNull(report.location)) {
                     new_markers.push(this.addMarker(report));
                 }
