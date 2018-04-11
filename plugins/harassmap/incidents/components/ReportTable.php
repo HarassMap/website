@@ -68,14 +68,23 @@ class ReportTable extends ComponentBase
 
     public function onFilter()
     {
-        $data = post();
         $domain = Domain::getBestMatchingDomain();
+        $perPage = (int)$this->property('perPage');
 
-        $reports = Incident::applyFilters(Incident::orderBy('date', 'desc'), $data);
+        // get the form data from the POST
+        $data = post();
 
-         $this->page['reports'] = Incident
-                    ::where('domain_id', $domain->id)
-                    ->paginate(10);
+        // create a base query
+        $query = Incident
+            ::orderBy('date', 'desc')
+            ->where('domain_id', $domain->id)
+            ->where('is_hidden', '=', false);
+
+        // apply the filters to the query
+        $reports = Incident::applyFilters($query, $data);
+
+        // paginate the results
+        $this->page['reports'] = $reports->paginate($perPage);
         $this->page['viewPage'] = $this->property('viewPage');
     }
 
