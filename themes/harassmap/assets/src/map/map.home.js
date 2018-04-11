@@ -139,7 +139,10 @@ export class HomePageMap {
         let new_markers = [];
         _.forEach(data, (report) => {
             if (_.indexOf(old_ids, report.public_id) === -1) {
-                new_markers.push(this.addMarker(report));
+                // if the report has a location then add it to the map
+                if (!_.isUndefined(report.location)) {
+                    new_markers.push(this.addMarker(report));
+                }
             }
         });
         this.markerCluster.addMarkers(new_markers);
