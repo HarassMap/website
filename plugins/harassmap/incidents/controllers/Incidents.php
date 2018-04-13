@@ -101,7 +101,6 @@ class Incidents extends Controller
                 'domain' => $item->domain->host,
                 'description' => $item->description,
                 'date' => $item->date,
-                'city' => $item->location->city,
                 'position' => $item->location->lat . ',' . $item->location->lng,
                 'role' => $item->role->name,
                 'categories' => $categories,
