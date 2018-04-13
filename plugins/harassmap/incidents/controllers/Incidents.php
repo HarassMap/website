@@ -45,11 +45,13 @@ class Incidents extends Controller
             ->with('categories')
             ->with('intervention.assistance');
 
+
         if (!empty($checked)) {
             $results = $results->whereIn('id', explode(',', $checked));
+        } else {
+            $results = $results;
         }
 
-        echo(gettype($results));
         $result = $this->createCsv($results->get());
 
         return new Response($result, 200, array(
