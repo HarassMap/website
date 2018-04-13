@@ -95,8 +95,6 @@ class Incidents extends Controller
                 $intervention = '';
             }
 
-            echo($item);
-
             $writer->insertOne([
                 'id' => $item->id,
                 'public_id' => $item->public_id,
