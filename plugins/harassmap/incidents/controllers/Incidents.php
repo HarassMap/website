@@ -49,6 +49,7 @@ class Incidents extends Controller
             $results = $results->whereIn('id', explode(',', $checked));
         }
 
+        echo(gettype($results)
         $result = $this->createCsv($results->get());
 
         return new Response($result, 200, array(
