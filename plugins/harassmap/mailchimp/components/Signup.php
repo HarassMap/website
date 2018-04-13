@@ -53,7 +53,9 @@ class Signup extends ComponentBase
         $this->page['error'] = null;
 
         try {
-            $api->request('POST', '/lists/{list_id}/members', ['list_id' => $domain->mailchimp_list], ['email_address' => post('email')], ['status' => 'subscribed']);
+            $api->request('POST', '/lists/{list_id}/members',
+                ['list_id' => $domain->mailchimp_list],
+                ['email_address' => post('email'), 'status' => 'subscribed']);
         } catch (MailchimpAPIException $e) {
             $message = $e->getMessage();
 
