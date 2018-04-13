@@ -48,8 +48,6 @@ class Incidents extends Controller
 
         if (!empty($checked)) {
             $results = $results->whereIn('id', explode(',', $checked));
-        } else {
-            $results = $results;
         }
 
         $result = $this->createCsv($results->get());
@@ -97,13 +95,14 @@ class Incidents extends Controller
                 $intervention = '';
             }
 
+            echo($item);
+
             $writer->insertOne([
                 'id' => $item->id,
                 'public_id' => $item->public_id,
                 'domain' => $item->domain->host,
                 'description' => $item->description,
                 'date' => $item->date,
-                'address' => $item->location->address,
                 'city' => $item->location->city,
                 'position' => $item->location->lat . ',' . $item->location->lng,
                 'role' => $item->role->name,
