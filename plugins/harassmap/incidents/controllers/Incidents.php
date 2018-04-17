@@ -101,14 +101,14 @@ class Incidents extends Controller
                 'domain' => $item->domain->host,
                 'description' => $item->description,
                 'date' => $item->date,
-                'address' => !empty($item->location->address) ? $item->location->address : 'nil',
-                'city' => !empty($item->location->city) ? $item->location->city : 'nil',
-                'position' => !empty($item->location->lat) ? $item->location->lat . ',' . $item->location->lng : 'nil',
+                'address' => !empty($item->location->address) ? ($item->location->address) : 'nil',
+                'city' => !empty($item->location->city) ? ($item->location->city) : 'nil',
+                'position' => (!empty($item->location->lat) && !empty($item->location->lng)) ? ($item->location->lat . ',' . $item->location->lng) : 'nil',
                 'role' => $item->role->name,
                 'categories' => $categories,
-                'intervention' => $intervention,
+                'intervention' => !empty($intervention) ? ($intervention) : 'nil',
                 'form' => $item->is_intervention ? 'intervention' : 'incident',
-                'date_reported' => $item->created_at,
+                'date_reported' => $item->created_at
             ]);
         }
 
