@@ -7,8 +7,8 @@ import { LineChart } from './line';
 
 export const initHomeChart = (data) => {
     console.log(data);
-    new HomeChart('reportChartSvg', data);
     console.log(new HomeChart('reportChartSvg', data));
+    new HomeChart('reportChartSvg', data);
 };
 
 export const initCircleChart = (data) => {
