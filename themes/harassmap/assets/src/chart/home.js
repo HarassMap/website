@@ -102,10 +102,14 @@ export class HomeChart {
     parseData(data) {
         console.log('parseData fxn');
         this.data = data;
+        console.log('data is valid');
 
         this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
+        console.log('extent?', this.extent);
         this.incidents = this.getIncidents();
+        console.log('incidents?', this.incidents);
         this.interventions = this.getInterventions();
+        console.log('interventions?', this.interventions);
 
         console.log('before yearly');
         this.yearly = {
