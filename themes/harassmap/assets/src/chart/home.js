@@ -22,12 +22,15 @@ const PADDING_RIGHT = 10;
 export class HomeChart {
 
     constructor(id, data) {
+        console.log('in constructor');
         this.svg = d3.select('#' + id);
         this.ready = false;
 
         this.addListeners();
 
+        console.log('before data parse');
         this.parseData(data);
+        console.log('after data parse');
     }
 
     /**
@@ -97,26 +100,33 @@ export class HomeChart {
     }
 
     parseData(data) {
+        console.log('parseData fxn');
         this.data = data;
 
         this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
         this.incidents = this.getIncidents();
         this.interventions = this.getInterventions();
 
+        console.log('before yearly');
         this.yearly = {
             incidents: d3.nest().key((data) => d3.timeYear.floor(data.date)).entries(this.incidents).map(this.meanValues),
             interventions: d3.nest().key((data) => d3.timeYear.floor(data.date)).entries(this.interventions).map(this.meanValues)
         };
+        console.log('yearly', this.yearly);
 
+        console.log('before monthly');
         this.monthly = {
             incidents: d3.nest().key((data) => d3.timeMonth.floor(data.date)).entries(this.incidents).map(this.meanValues),
             interventions: d3.nest().key((data) => d3.timeMonth.floor(data.date)).entries(this.interventions).map(this.meanValues)
         };
+        console.log('monthly', this.monthly);
 
+        console.log('before weekly');
         this.weekly = {
             incidents: d3.nest().key((data) => d3.timeWeek.floor(data.date)).entries(this.incidents).map(this.meanValues),
             interventions: d3.nest().key((data) => d3.timeWeek.floor(data.date)).entries(this.interventions).map(this.meanValues)
         };
+        console.log('weekly', this.weekly);
 
         this.ready = true;
         this.render();
@@ -146,14 +156,22 @@ export class HomeChart {
         this.left = PADDING_LEFT;
         this.right = this.width - PADDING_RIGHT;
 
+        console.log('before range');
+        console.log('left', this.left);
+        console.log('right', this.right);
+        console.log('top', this.top);
+        console.log('bottom', this.bottom);
         this.x = d3.scaleTime()
             .domain(this.extent)
             .range([this.left, this.right]);
 
+        console.log('x range', this.x);
         this.y = d3.scaleLinear()
             .domain([0, 0])
             .range([this.bottom, this.top]);
 
+        console.log('y range', this.y);
+        console.log('after range');
         this.drawClip();
 
         this.drawGraph();
