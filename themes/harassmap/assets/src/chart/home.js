@@ -438,6 +438,7 @@ export class HomeChart {
     };
 
     getInterventions() {
+        console.log('data intervention', this.data['intervention']);
         return this.getResults(this.data['intervention']);
     };
 
