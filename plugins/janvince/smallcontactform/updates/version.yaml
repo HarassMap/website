@@ -80,3 +80,50 @@
     - Added option to mark selected messages as read
 1.5.5:
     - Changed JSON type for repeater DB column
+1.5.6:
+    - Removed value attribute in textarea field
+1.5.7:
+    - Added component alias to id attributes for multi-form usage
+1.5.8:
+    - Fixed typo in lang files
+1.5.9:
+    - Added direct link to messages list from dashboard widget
+1.6.0:
+    - Added Google reCAPTCHA validation
+1.6.1:
+    - Changed All messages large indicator to New messages in scoreboard
+1.6.2:
+    - Removed reCAPTCHA hard coded locale string (thx kuzyk). Added settings option to allow locale detection.
+1.7.0:
+    - Added option to specify <label> custom CSS class
+1.7.1:
+    - Fixed 'text_preview' list field type truncate function (thx kuzyk)
+1.7.2:
+    - Changed count() to mb_strlen() function in custom list type definition
+1.8.0:
+    - Added option to disable built-in browser form validation. Added class 'is-invalid' for fields with error (as used Bootstrap 4).
+1.9.0:
+    - Form registered as Page snippet to be used in Rainlab.Page content (thx BtzLeon)
+1.9.1:
+    - REPLY TO address is now used for notification email by default. You can still force FROM address to be used (but this is not supported by all email systems!).
+1.9.2:
+    - Fix problem when ReCaptcha field was logged as an undefined field to system log (thx LukeTowers)
+1.9.3:
+    - Fixed label 'for' attribute to point to input ID (as required by specification)
+1.10.0:
+    - Added form component hacks group (now only for disabling notification emails, more will come)
+1.11.0:
+    - Added form fields alias and description (can be used to distinquish between more forms or to save extra data). More info in README file.
+    - scf_tables_03.php
+1.11.1:
+    - Added form description field to message preview
+1.12.0:
+    - Added Russian translation (thank Dinver)
+1.12.1:
+    - Chanded input custom list column type for switch to prevent interaction with toolbar JS
+1.13.1:
+    - Added form_alias and form_description variables to email (notification and autoreply) templates
+1.13.2:
+    - Disabled placeholder attribute for checkbox
+1.14.0:
+    - Added option to export messages list

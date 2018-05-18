@@ -8,9 +8,9 @@ return [
   ],
 
   'permissions' => [
-    'access_messages' => 'Zobrazit zprávy',
+    'access_messages' => 'Přístup k seznamu zpráv',
+    'access_settings' => 'Přístup k nastavení',
     'delete_messages' => 'Smazat vybrané zprávy',
-    'access_settings' => 'Zobrazit nastavení',
   ],
 
   'navigation' => [
@@ -34,6 +34,7 @@ return [
       'records_count' => 'Zprávy',
       'latest_record' => 'nejnovější od',
       'new_count' => 'Nové',
+      'new_description' => 'Zpráv',
       'read_count' => 'Přečtené',
       'all_count' => 'Celkem',
       'all_description' => 'Zpráv',
@@ -54,6 +55,7 @@ return [
     'message' => [
 
       'columns' => [
+        'id' => 'ID',
         'datetime' => 'Datum a čas',
         'form_data' => 'Data formuláře',
         'name' => 'Jméno',
@@ -63,6 +65,8 @@ return [
         'new' => 'Nová',
         'read' => 'Přečtená',
         'remote_ip' => 'IP odesílatele',
+        'created_at' => 'Datum vytvoření',
+        'updated_at' => 'Datum aktualizace',
       ]
 
     ],
@@ -80,6 +84,9 @@ return [
       'preview_date' => 'Ze dne:',
       'preview_content_title' => 'Obsah:',
       'remote_ip' => 'odesláno z ip',
+      'form_alias' => 'Alias',
+      'form_description' => 'Popisek',   
+      'export' => 'Export', 
     ],
 
     'index' => [
@@ -129,6 +136,9 @@ return [
 
       'use_placeholders' => 'Používat zástupný text (placeholder)',
       'use_placeholders_comment' => 'Místo popisků nad formulářovými poli bude použitý zástupný text',
+
+      'disable_browser_validation' => 'Zakázat validaci prohlížečem',
+      'disable_browser_validation_comment' => 'Nepovolit prohlížeči použít vlastní validaci a zobrazovat výstrahy.',
 
       'success_msg' => 'Zpráva po úspěšném odeslání',
       'success_msg_placeholder' => 'Formulář byl v pořádku odeslán.',
@@ -203,11 +213,14 @@ return [
       'autofocus' => 'Automaticky zvýraznit (autofocus)',
       'autofocus_comment' => 'Po zobrazení nastavit na poli kurzor',
 
-      'wrapper_css' => 'CSS třídy kontejneru',
+      'wrapper_css' => 'CSS třída kontejneru',
       'wrapper_css_placeholder' => 'form-group',
 
-      'field_css' => 'CSS třidy pole',
+      'field_css' => 'CSS třida pole',
       'field_css_placeholder' => 'form-control',
+
+      'label_css' => 'CSS třída popisku (label)',
+      'label_css_placeholder' => '',
 
       'field_validation' => 'Validační pravidla pole',
       'field_validation_comment' => 'Povolí nastavení vlastních validačních pravidel',
@@ -258,13 +271,13 @@ return [
       'allow_email_queue_comment' => 'Přidat emaily do fronty místo okamžitého odeslání. Musíte ale nejdříve správně nakonfigurovat frontu systému OctoberCMS!',
 
       'allow_notifications' => 'Povolit odesílání upozornění',
-      'allow_notifications_comment' => 'Odesílat upozornění, pokud někdo odešle formulář',
+      'allow_notifications_comment' => 'Odesílat upozornění, pokud někdo odešle formulář.',
 
       'notification_address_to' => 'Upozornění posílat na adresu:',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
-      'notification_address_from_form' => 'Adresa odesílatele upozornění z emailu formuláře',
-      'notification_address_from_form_comment' => 'Nastaví adresu odesílatele upozornění na tu, která byla zadána ve formuláři (sloupec email musí mít nastavenou vazbu), takže můžete na upozornění přímo odpovědět.',
+      'notification_address_from_form' => 'Nastavit adresu Od na email z formuláře (NEMUSÍ PODPOROVAT váš emailový systém!)',
+      'notification_address_from_form_comment' => 'Nastaví u odesílaného upozornění adresu Od (From) na tu, která byla zadána ve formuláři (sloupec email musí mít nastavenou vazbu).',
 
       'allow_autoreply' => 'Povolit automatickou odpověď',
       'allow_autoreply_comment' => 'Poslat automatickou odpověď odesílateli formuláře',
@@ -287,7 +300,7 @@ return [
     ],
 
     'antispam' => [
-      'add_antispam' => 'Přidat ochranu proti spamu',
+      'add_antispam' => 'Přidat pasivní ochranu proti spamu',
       'add_antispam_comment' => 'Přidá jednoduchou ale efektivní pasivní ochranu proti robotům (více informací v souboru README.md)',
 
       'antispam_delay' => 'Zpoždění formuláře (s)',
@@ -305,6 +318,25 @@ return [
       'antispam_delay_error_msg' => 'Chybová zprávy při rychlém odeslání',
       'antispam_delay_error_msg_comment' => 'Zpráva, která se zobrazí při příliš rychlém odeslání formuláře',
       'antispam_delay_error_msg_placeholder' => 'Příliš rychlé odeslání formuláře! Prosím zkuste to za pár vteřin znovu!',
+
+      'add_google_recaptcha' => 'Přidat Google reCaptcha',
+      'add_google_recaptcha_comment' => 'Přidá reCaptcha do kontaktního formuláře (více informací v souboru README.md). <br>API klíče můžete získat na <a href="https://www.google.com/recaptcha/admin#list" target="_blank">stránce Google reCaptcha</a>.',
+
+      'google_recaptcha_site_key' => 'Site key',
+      'google_recaptcha_site_key_comment' => 'Vložte svůj "site key"',
+
+      'google_recaptcha_secret_key' => 'Secret key',
+      'google_recaptcha_secret_key_comment' => 'Vložte svůj "secret key"',
+
+      'google_recaptcha_error_msg' => 'Chybová zpráva',
+      'google_recaptcha_error_msg_comment' => 'Zpráva, která se zobrazí, pokud dojde chybě při ověření reCAPTCHA.',
+      'google_recaptcha_error_msg_placeholder' => 'Chyba při ověření pomocí Google reCAPTCHA!',
+
+      'google_recaptcha_scripts_allow' => 'Automaticky přidat Google reCAPTCHA sckript',
+      'google_recaptcha_scripts_allow_comment' => 'Vloží odkaz na JavaScriptový soubor potřebný pro fungování reCAPTCHA.',
+
+      'google_recaptcha_locale_allow' => 'Povolit detekci jazyka',
+      'google_recaptcha_locale_allow_comment' => 'Přidá k reCAPTCHA skriptu kód jazyka stránky, takže ověřovací box bude mluvit jazykem návštěvníka webu.',
 
       'add_ip_protection' => 'Testovat IP adresu odesílatele',
       'add_ip_protection_comment' => 'Nepovolí příliš mnoho odeslání formuláře z jedné IP adresy',
@@ -354,8 +386,23 @@ return [
 
   ],
 
-  'permissions' => [
-    'access_messages' => 'Přístup k seznamu zpráv',
-    'access_settings' => 'Přístup k nastavení',
+  'components' => [
+
+      'groups' => [
+
+          'hacks' => 'Hacks',
+
+      ],
+      'properties' => [
+
+          'disable_notifications' => 'Zakázat odesílání notifikačních emailů',
+          'disable_notifications_comment' => 'Zakáže odeslání notifikáčních emailů (bez ohledu na systémová nastavení formuláře)',
+
+          'form_description' => 'Popisek formuláře',
+          'form_description_comment' => 'Volitelně můžete přidat popisek formuláře, který se uloží společně s odeslanými daty do seznamu zpráv. Můžete použít i {{ :slug }}.',
+
+      ]
+
   ],
+
 ];

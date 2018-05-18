@@ -32,6 +32,8 @@ class SmallContactForm extends ComponentBase
 
   private $errorAutofocus;
 
+  private $formDescription;
+  private $formDescriptionOverride;
 
     public function componentDetails() {
         return [
@@ -40,7 +42,35 @@ class SmallContactForm extends ComponentBase
         ];
     }
 
+    public function defineProperties()
+    {
+
+        return [
+
+            'form_description'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.form_description',
+                'description' => 'janvince.smallcontactform::lang.components.properties.form_description_comment',
+                'type'        => 'text',
+                'default'     => null,
+            ],
+            'disable_notifications'      => [
+                'title'       => 'janvince.smallcontactform::lang.components.properties.disable_notifications',
+                'description' => 'janvince.smallcontactform::lang.components.properties.disable_notifications_comment',
+                'type'        => 'checkbox',
+                'default'     => false,
+                'group'       => 'janvince.smallcontactform::lang.components.groups.hacks',
+            ]
+
+        ];
+
+    }
+
+
     public function onRun() {
+
+        $this->formDescription = $this->property('form_description');
+
+        $this->page['currentLocale'] = App::getLocale();
 
         if ( Session::get('flashSuccess') ) {
 
@@ -62,6 +92,13 @@ class SmallContactForm extends ComponentBase
           $this->addJs('/modules/system/assets/js/framework.extras.js');
         }
 
+    }
+
+    public function onRender() {
+
+        if($this->formDescription != $this->property('form_description') ) {
+            $this->formDescriptionOverride = $this->property('form_description');
+        }
     }
 
   /**
@@ -124,6 +161,22 @@ class SmallContactForm extends ComponentBase
 
     }
 
+    //  reCaptcha validation if enabled
+    if( Settings::getTranslated('add_google_recaptcha') ) {
+
+        try {
+            $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('google_recaptcha_secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
+        } catch(\Exception $e) {
+            Log::error($e->getMessage());
+            $errors[] = e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'));
+        }
+
+        if(empty($response['success'])) {
+            $errors[] = ( Settings::getTranslated('google_recaptcha_error_msg') ? Settings::getTranslated('google_recaptcha_error_msg') : e(trans('janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder')));
+        }
+
+    }
+
     // Validate
     $validator = Validator::make($this->post, $this->validationRules, $this->validationMessages);
     $validator->valid();
@@ -143,6 +196,8 @@ class SmallContactForm extends ComponentBase
       Flash::error(implode(PHP_EOL, $errors));
       Session::flash('flashSuccess', $this->alias);
       $this->page['flashSuccess'] = $this->alias;
+      Session::flash('flashError', true);
+      $this->page['flashError'] = true;
 
     } else {
 
@@ -155,13 +210,14 @@ class SmallContactForm extends ComponentBase
       $message = new Message;
 
       // Store data in DB
-      $message->storeFormData($this->postData);
+      $formDescription = !empty($this->post['_form_description']) ? e($this->post['_form_description']) : $this->property('form_description');
+      $message->storeFormData($this->postData, $this->alias, $formDescription);
 
       // Send autoreply
-      $message->sendAutoreplyEmail($this->postData, $this->getProperties());
+      $message->sendAutoreplyEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
       // Send notification
-      $message->sendNotificationEmail($this->postData, $this->getProperties());
+      $message->sendNotificationEmail($this->postData, $this->getProperties(), $this->alias, $formDescription);
 
       // Redirect to prevent repeated sending of form
       // Clear data after success AJAX send
@@ -228,7 +284,6 @@ class SmallContactForm extends ComponentBase
 
     $attributes = [];
 
-    $attributes['class'] = Settings::getTranslated('form_css_class');
     $attributes['request'] = $this->alias . '::onFormSend';
     $attributes['method'] = 'POST';
 
@@ -238,6 +293,10 @@ class SmallContactForm extends ComponentBase
       $attributes['data-request-validate'] = NULL;
       $attributes['data-request-update'] = "'". $this->alias ."::scf-message':'#scf-message-". $this->alias ."','". $this->alias ."::scf-form':'#scf-form-". $this->alias ."'";
 
+    }
+
+    if( Settings::getTranslated('form_css_class') ) {
+        $attributes['class'] = Settings::getTranslated('form_css_class');
     }
 
     if( Settings::getTranslated('allow_redirect') and !empty(Settings::getTranslated('redirect_url')) ) {
@@ -254,6 +313,11 @@ class SmallContactForm extends ComponentBase
 
       $attributes['data-request-confirm'] = Settings::getTranslated('form_send_confirm_msg');
 
+    }
+
+    // Disable browser validation if enabled
+    if(!empty(Settings::getTranslated('form_disable_browser_validation'))){
+      $attributes['novalidate'] = "novalidate";
     }
 
     return $attributes;
@@ -286,33 +350,35 @@ class SmallContactForm extends ComponentBase
 
       // Label classic
       if( !empty($fieldSettings['label']) and !Settings::getTranslated('form_use_placeholders') and !empty($fieldType['label']) ){
-        $output[] = '<label class="control-label ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . $fieldSettings['name'] . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
+        $output[] = '<label class="control-label ' . ( !empty($fieldSettings['label_css']) ? $fieldSettings['label_css'] : '' ) . ' ' . ( $fieldRequired ? 'required' : '' ) . '" for="' . ($this->alias . '-' . $fieldSettings['name']) . '">' . Settings::getDictionaryTranslated($fieldSettings['label']) . '</label>';
       }
 
       // Label as container
       if( empty($fieldType['label']) ){
-        $output[] = '<label>';
+        $output[] = '<label class="' . ( !empty($fieldSettings['label_css']) ? $fieldSettings['label_css'] : '' ) . '">';
       }
 
 
       // Add help-block if there are errors
       if(!empty($this->postData[$fieldSettings['name']]['error'])){
-        $output[] = '<small class="help-block">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
+        $output[] = '<small class=" invalid-feedback">' . Settings::getDictionaryTranslated($this->postData[$fieldSettings['name']]['error']) . "</small>";
       }
 
       // Field attributes
       $attributes = [
-        'id' => $fieldSettings['name'],
+        'id' => $this->alias . '-' . $fieldSettings['name'],
         'name' => $fieldSettings['name'],
         'class' => ($fieldSettings['field_css'] ? $fieldSettings['field_css'] : $fieldType['field_class'] ),
-        'value' => (!empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ? $this->postData[$fieldSettings['name']]['value'] : '' ),
       ];
 
-      // Placeholders if enabled
-      if(Settings::getTranslated('form_use_placeholders')){
-        $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
+      if ( !empty($this->postData[$fieldSettings['name']]['value']) && empty($fieldType['html_close']) ) {
+          $attributes['value'] = $this->postData[$fieldSettings['name']]['value'];
       }
 
+      // Placeholders if enabled
+      if(Settings::getTranslated('form_use_placeholders') and $fieldSettings['type'] <> 'checkbox'){
+        $attributes['placeholder'] = Settings::getDictionaryTranslated($fieldSettings['label']);
+      }
 
       // Autofocus only when no error
       if(!empty($fieldSettings['autofocus']) && !Flash::error()){
@@ -326,7 +392,7 @@ class SmallContactForm extends ComponentBase
 
       // Add error class if there are any and autofocus field
       if(!empty($this->postData[$fieldSettings['name']]['error'])){
-        $attributes['class'] = $attributes['class'] . ' error';
+        $attributes['class'] = $attributes['class'] . ' error is-invalid';
 
         if(empty($this->errorAutofocus)){
           $attributes['autofocus'] = NULL;
@@ -426,7 +492,35 @@ class SmallContactForm extends ComponentBase
 
 
   /**
-   * Generate antispam field HTML code
+   * Generate description field HTML code
+   * @return string
+   */
+  public function getDescriptionFieldHtmlCode(){
+
+    if( !$this->formDescriptionOverride ){
+      return NULL;
+    }
+
+    $output = [];
+
+    // Field attributes
+    $attributes = [
+        'id' => '_form_description-'.$this->alias,
+        'type' => 'hidden',
+        'name' => '_form_description',
+        'class' => '_form_description form-control',
+        'value' => $this->formDescriptionOverride,
+      ];
+
+    $output[] = '<input ' . $this->formatAttributes($attributes) . '>';
+
+    return(implode('', $output));
+
+  }
+
+
+  /**
+   * Generate submit button field HTML code
    * @return string
    */
   public function getSubmitButtonHtmlCode(){
@@ -439,7 +533,7 @@ class SmallContactForm extends ComponentBase
 
     $wrapperCss = ( Settings::getTranslated('send_btn_wrapper_css') ? Settings::getTranslated('send_btn_wrapper_css') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_wrapper_css_placeholder')) );
 
-    $output[] = '<div id="submit-wrapper" class="' . $wrapperCss . '">';
+    $output[] = '<div id="submit-wrapper-' . $this->alias . '" class="' . $wrapperCss . '">';
 
       $output[] = '<button type="submit" data-attach-loading class="oc-loader ' . ( Settings::getTranslated('send_btn_css_class') ? Settings::getTranslated('send_btn_css_class') : e(trans('janvince.smallcontactform::lang.settings.buttons.send_btn_css_class_placeholder')) ) . '">';
 

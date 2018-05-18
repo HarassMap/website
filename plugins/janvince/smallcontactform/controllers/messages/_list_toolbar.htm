@@ -8,9 +8,9 @@
         </div>
 
         <div class="scoreboard-item title-value">
-            <h4><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.all_count')) ?></h4>
-            <p><?= $this->getRecordsStats('all_count'); ?></p>
-            <p class="description"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.all_description')) ?></p>
+            <h4><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.new_count')) ?></h4>
+            <p><?= $this->getRecordsStats('new_count'); ?></p>
+            <p class="description"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.new_description')) ?></p>
         </div>
 
 
@@ -60,4 +60,10 @@
       </button>
 
         <a href="<?= Backend::url('system/settings/update/janvince/smallcontactform/settings'); ?>" class="btn btn-info oc-icon-cogs"><?= e(trans('janvince.smallcontactform::lang.controller.scoreboard.settings_btn')) ?></a>
+
+        <a
+            href="<?= Backend::url('janvince/smallcontactform/messages/export/') ?>"
+            class="btn btn-default oc-icon-download">
+            <?= e(trans('janvince.smallcontactform::lang.controllers.messages.export')) ?>
+        </a>
     </div>

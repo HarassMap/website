@@ -22,6 +22,23 @@ Just look for 'Small Contact Form' in search field in:
 You can set permissions to restrict access to *Settings > Small plugins > Contact form* and to messages list.
 
 
+### Installation with composer
+
+* Edit composer.json by adding new repository
+```json
+"repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/jan-vince/smallcontactform"
+    }
+]
+```
+* run in command line
+```sh
+composer require janvince/smallcontactform
+```
+
+
 ## Setup new Contact form
 
 > Settings > Small Contact form
@@ -118,6 +135,8 @@ These mappings are also used for autoreply emails where at least Email field map
 
 ### ANTISPAM
 
+#### Passive antispam
+
 Very simple implementation of passive antispam (inspired by [Nette AntiSpam Control](https://gist.github.com/Michal-Mikolas/2388131)).
 
 The idea behind this is to check how fast is form send and if robots-catching field is filled.
@@ -125,6 +144,20 @@ The idea behind this is to check how fast is form send and if robots-catching fi
 * When allowed, you can set form delay (in seconds) to prevent too fast form sending (mostly by robots). You can add custom error message (will be shown in general error message box above form).
 * You can add antispam field label and error message for non JavaScript enabled browsers.
  * If JavaScript is working, antispam field is automatically hidden and cleared.
+
+#### Google reCaptcha
+
+Implementation of Google reCaptcha antispam protection.
+
+##### Setup
+
+First you have to create new API keys pair in reCaptcha admin panel.
+
+Hit **Get reCAPTCHA** button on [reCaptcha wellcome page](https://www.google.com/recaptcha). Set label and check reCAPTCHA v2 option and hit button Register.
+
+Copy Site key and Secret key to Contact Form's settings fields.
+
+If you want Contact Form to automatically include server scripts in your layout, check the button in Form settings.
 
 #### Check sender's IP
 
@@ -157,7 +190,11 @@ Email can be send to form sender as confirmation.
 
 #### Allow notifications
 
-A notification of sent form can be send to provided email address.
+Once a Contact form is sent a notification can be immediately send to a provided email address.
+
+*A **Reply to** address of notification email will be set to an email address from Contact form (if this field is used).*
+
+You can also force **From** address to be set to the one entered in Contact form - but not all email systems support this!
 
 
 ## TRANSLATION
@@ -215,6 +252,40 @@ You can simply click widget to open Messages list.
 
 Sometimes there is a need to have more than one contact form. As this plugin is meant to be as simple as possible, these multiform functions are little hacks :)
 
+####  Set form description
+
+You can add a form description. This can be used to distinquish between more forms or to add extra info to sent form data.
+
+Form description is saved to Messages list and there is a separate column (invisible by default).
+
+*There is also an Alias column that contain component's alias of the used form.*
+
+````
+[contactForm myForm]
+form_description = 'Form used in home page'
+````
+
+You can override form's property in Twig component tag:
+
+````
+{% component 'myForm' form_description = 'My other description' %}
+````
+
+This can be more complex:
+````
+{% set myVar = 12345 %}
+{% component 'myForm' form_description = ('Current value: ' ~ myVar) %}
+````
+
+In email template you can access these variables like this:
+````
+Form alias: {{fields.form_alias}}
+Form description: {{fields.form_description}}
+````
+
+
+> When you override form description in ````{% component form_description = 'My description' %}````, description will be added as a **hidden field** into a form. Do not use this to store private data as this is easily visible in page HTML code!
+
 #### Override notification email options
 You can set different email address to which notification about Contact Form sent will be delivered and also change a notification template.
 
@@ -255,6 +326,13 @@ Several fields can be added while separated with pipe ````|````.
 ````
 [contactForm]
 disable_fields = 'phone|name|confirmation'
+````
+
+Or you can disable some of functions:
+
+````
+[contactForm]
+disable_notifications = true
 ````
 
 

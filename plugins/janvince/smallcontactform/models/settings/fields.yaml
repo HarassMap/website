@@ -38,6 +38,13 @@ tabs:
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.form'
 
+        form_disable_browser_validation:
+            label: 'janvince.smallcontactform::lang.settings.form.disable_browser_validation'
+            comment: 'janvince.smallcontactform::lang.settings.form.disable_browser_validation_comment'
+            span: left
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.form'
+
 
         section_ajax:
             type: section
@@ -231,6 +238,17 @@ tabs:
                             field: field_styling
                             condition: checked
 
+                    label_css:
+                        span: left
+                        label: 'janvince.smallcontactform::lang.settings.form_fields.label_css'
+                        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_css_placeholder'
+                        type: text
+                        cssClass: field-indent
+                        trigger:
+                            action: show
+                            field: field_styling
+                            condition: checked
+
                     field_css:
                         span: right
                         label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'
@@ -389,13 +407,92 @@ tabs:
                 field: add_antispam
                 condition: checked
 
-
         section_ip_protection:
             type: section
             tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
             trigger:
                 action: show
                 field: add_antispam
+                condition: checked
+
+        add_google_recaptcha:
+            label: 'janvince.smallcontactform::lang.settings.antispam.add_google_recaptcha'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.add_google_recaptcha_comment'
+            commentHtml: true
+            span: full
+            type: checkbox
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+
+        google_recaptcha_site_key:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_site_key'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_site_key_comment'
+            commentHtml: true
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_secret_key:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_secret_key'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_secret_key_comment'
+            span: right
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_error_msg:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_comment'
+            placeholder: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_error_msg_placeholder'
+            span: left
+            type: text
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_scripts_allow:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_scripts_allow_comment'
+            span: left
+            type: checkbox
+            default: true
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        google_recaptcha_locale_allow:
+            label: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_locale_allow'
+            comment: 'janvince.smallcontactform::lang.settings.antispam.google_recaptcha_locale_allow_comment'
+            span: left
+            type: checkbox
+            default: true
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            cssClass: field-indent
+            trigger:
+                action: show
+                field: add_google_recaptcha
+                condition: checked
+
+        section_google_recaptcha:
+            type: section
+            tab: 'janvince.smallcontactform::lang.settings.tabs.antispam'
+            trigger:
+                action: show
+                field: add_google_recaptcha
                 condition: checked
 
         add_ip_protection:
@@ -524,7 +621,7 @@ tabs:
         notification_address_from_form:
             label: 'janvince.smallcontactform::lang.settings.email.notification_address_from_form'
             comment: 'janvince.smallcontactform::lang.settings.email.notification_address_from_form_comment'
-            span: left
+            span: full
             type: checkbox
             tab: 'janvince.smallcontactform::lang.settings.tabs.email'
             cssClass: field-indent

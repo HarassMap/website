@@ -8,9 +8,9 @@ return [
   ],
 
   'permissions' => [
-    'access_messages' => 'Show form messages',
+    'access_messages' => 'Access messages list',
+    'access_settings' => 'Manage backend preferences',
     'delete_messages' => 'Delete stored messages',
-    'access_settings' => 'Show form settings',
   ],
 
   'navigation' => [
@@ -34,6 +34,7 @@ return [
       'records_count' => 'Messages',
       'latest_record' => 'Latest from',
       'new_count' => 'New',
+      'new_description' => 'Messages',
       'read_count' => 'Read',
       'all_count' => 'Total',
       'all_description' => 'Messages',
@@ -54,6 +55,7 @@ return [
     'message' => [
 
       'columns' => [
+        'id' => 'ID',
         'datetime' => 'Date and time',
         'form_data' => 'Form data',
         'name' => 'Name',
@@ -63,7 +65,10 @@ return [
         'new' => 'New',
         'read' => 'Read',
         'remote_ip' => 'Sender\'s IP',
-
+        'form_alias' => 'Alias',
+        'form_description' => 'Description',
+        'created_at' => 'Created at',
+        'updated_at' => 'Updated at',
       ]
 
     ],
@@ -80,8 +85,8 @@ return [
       'preview_title' => 'Contact form message',
       'preview_date' => 'From date:',
       'preview_content_title' => 'Content:',
-      'remote_ip' => 'sent from ip',
-
+      'remote_ip' => 'Sent from ip',
+      'export' => 'Export',
     ],
 
     'index' => [
@@ -134,6 +139,9 @@ return [
 
       'use_placeholders' => 'Use placeholders',
       'use_placeholders_comment' => 'Placeholders will be shown instead of field labels',
+
+      'disable_browser_validation' => 'Disable browser validation',
+      'disable_browser_validation_comment' => 'Do not allow browser built-in validation and popups.',
 
       'success_msg' => 'Form success message',
       'success_msg_placeholder' => 'Your data was sent.',
@@ -214,6 +222,9 @@ return [
       'field_css' => 'Field CSS class',
       'field_css_placeholder' => 'form-control',
 
+      'label_css' => 'Label CSS class',
+      'label_css_placeholder' => '',
+
       'field_validation' => 'Field validation',
       'field_validation_comment' => 'Add field validation rules',
 
@@ -268,8 +279,8 @@ return [
       'notification_address_to' => 'Send notification to email',
       'notification_address_to_placeholder' => 'notifications@domain.com',
 
-      'notification_address_from_form' => 'Form email field as notification FROM address',
-      'notification_address_from_form_comment' => 'Set from address to email entered in contact form (the field must be set in column mapping), so you can directly reply to notification.',
+      'notification_address_from_form' => 'Force notification From address (NOT SUPPORTED by all email systems!)',
+      'notification_address_from_form_comment' => 'Set notification From address to an email entered in contact form (the field must be set in column mapping).',
 
       'allow_autoreply' => 'Allow autoreply',
       'allow_autoreply_comment' => 'Send a form content copy to author',
@@ -292,7 +303,7 @@ return [
     ],
 
     'antispam' => [
-      'add_antispam' => 'Add antispam protection',
+      'add_antispam' => 'Add passive antispam protection',
       'add_antispam_comment' => 'Add simple but effective passive antispam control (more info in README.md file)',
 
       'antispam_delay' => 'Antispam delay (s)',
@@ -310,6 +321,25 @@ return [
       'antispam_delay_error_msg' => 'Delay error message',
       'antispam_delay_error_msg_comment' => 'Message to show to user when form was sent too fast',
       'antispam_delay_error_msg_placeholder' => 'Form sent too fast! Please wait few seconds and try again!',
+
+      'add_google_recaptcha' => 'Add Google reCaptcha',
+      'add_google_recaptcha_comment' => 'Add reCaptcha to Contact Form (more info in README.md file).<br>You can get API keys on <a href="https://www.google.com/recaptcha/admin#list" target="_blank">Google reCaptcha site</a>.',
+
+      'google_recaptcha_site_key' => 'Site key',
+      'google_recaptcha_site_key_comment' => 'Put your site key',
+
+      'google_recaptcha_secret_key' => 'Secret key',
+      'google_recaptcha_secret_key_comment' => 'Put your secret key',
+
+      'google_recaptcha_error_msg' => 'Error message',
+      'google_recaptcha_error_msg_comment' => 'Message to show to user when reCAPTCHA is not validated.',
+      'google_recaptcha_error_msg_placeholder' => 'Google reCAPTCHA validation error!',
+
+      'google_recaptcha_scripts_allow' => 'Automatically add necessary JS scripts',
+      'google_recaptcha_scripts_allow_comment' => 'This will add link to JS scripts to your site.',
+
+      'google_recaptcha_locale_allow' => 'Allow locale detection',
+      'google_recaptcha_locale_allow_comment' => 'This will add curent web page locale to reCAPTCHA script, so it will translated.',
 
       'add_ip_protection' => 'Check sender\'s IP',
       'add_ip_protection_comment' => 'Do not allow too many form submits from one IP address',
@@ -359,8 +389,23 @@ return [
 
   ],
 
-  'permissions' => [
-    'access_messages' => 'Access messages list',
-    'access_settings' => 'Manage backend preferences',
+  'components' => [
+
+      'groups' => [
+
+          'hacks' => 'Hacks',
+
+      ],
+      'properties' => [
+
+          'disable_notifications' => 'Disable notification mails',
+          'disable_notifications_comment' => 'This will disable notification emails (overrides form settings)',
+
+        'form_description' => 'Form description',
+        'form_description_comment' => 'You can add optional form description, that will be saved with other sent data in the messages list. You can also use {{ :slug }} here.',
+
+      ]
+
   ],
+
 ];
