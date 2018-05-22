@@ -101,7 +101,7 @@ class MailTemplate extends Model
         if ($domain) {
 
             // if the domain has an email then send it from there
-            Log::info($domain->email)
+            Log::info($domain->email);
             if ($domain->email) {
                 $message->sender($domain->email, $domain->name);
             }
