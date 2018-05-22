@@ -90,12 +90,14 @@ class MailTemplate extends Model
         $defer = false;
 
         // if we didn't get sent a user then use the one logged in
+        if (array_key_exists('domain', $data)) {
             $domain = $data['domain'];
-            Log::info($domain);
         } else {
+            Log::info("domain does not exist");
             $domain = Domain::getBestMatchingDomain();
-            Log::info($domain);
+            Log::info("domain is ". $domain);
             $data['domain'] = $domain;
+            Log::info("data is ", $data);
         }
 
         // if we have a domain then check to see if we have a template
