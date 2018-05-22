@@ -3,6 +3,7 @@
 use Harassmap\Mail\Models\MailTemplate;
 use System\Classes\PluginBase;
 use Event;
+use Harassmap\Mail\Log;
 
 class Plugin extends PluginBase
 {
