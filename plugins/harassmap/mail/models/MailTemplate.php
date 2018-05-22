@@ -95,13 +95,13 @@ class MailTemplate extends Model
         } else {
             $domain = Domain::getBestMatchingDomain();
             $data['domain'] = $domain;
-            Log::info($data['domain']);
         }
 
         // if we have a domain then check to see if we have a template
         if ($domain) {
 
             // if the domain has an email then send it from there
+            Log::info($domain->email)
             if ($domain->email) {
                 $message->sender($domain->email, $domain->name);
             }
