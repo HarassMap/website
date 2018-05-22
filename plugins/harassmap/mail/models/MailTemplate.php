@@ -94,9 +94,8 @@ class MailTemplate extends Model
             Log::info($domain);
         } else {
             $domain = Domain::getBestMatchingDomain();
-            Log::info("domain is ", $domain);
+            Log::info($domain);
             $data['domain'] = $domain;
-            Log::info("data is ", $data);
         }
 
         // if we have a domain then check to see if we have a template
