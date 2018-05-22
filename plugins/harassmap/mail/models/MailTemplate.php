@@ -103,7 +103,6 @@ class MailTemplate extends Model
             // if the domain has an email then send it from there
             if ($domain->email) {
                 $message->sender($domain->email, $domain->name);
-                Log::info($message->sender);
             }
 
             $template = self
@@ -112,6 +111,7 @@ class MailTemplate extends Model
                 ->orderBy('created_at', 'desc')
                 ->first();
 
+            Log::info($template);
         } else {
             $defer = true;
         }
