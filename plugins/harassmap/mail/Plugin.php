@@ -14,7 +14,7 @@ class Plugin extends PluginBase
     public function register()
     {
         Event::listen('mailer.beforeAddContent', function($mailer, $message, $view, $data) {
-            Log::error(MailTemplate::addContentToMailer($message, $view, $data););
+            Log::error($data);
             MailTemplate::addContentToMailer($message, $view, $data);
             return false;
         });
