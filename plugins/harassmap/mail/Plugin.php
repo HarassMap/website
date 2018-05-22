@@ -14,7 +14,6 @@ class Plugin extends PluginBase
     public function register()
     {
         Event::listen('mailer.beforeAddContent', function($mailer, $message, $view, $data) {
-            Log::error($mailer);
             Log::error($message);
             Log::error($view);
             Log::error($data);
