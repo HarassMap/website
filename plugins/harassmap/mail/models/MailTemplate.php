@@ -93,11 +93,9 @@ class MailTemplate extends Model
         if (array_key_exists('domain', $data)) {
             $domain = $data['domain'];
         } else {
-            Log::info("domain does not exist");
             $domain = Domain::getBestMatchingDomain();
-            Log::info("domain is ". $domain);
             $data['domain'] = $domain;
-            Log::info("data is ", $data);
+            Log::info("data is ", $data['domain']);
         }
 
         // if we have a domain then check to see if we have a template
