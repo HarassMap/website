@@ -6,6 +6,7 @@ use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Traits\FilterDomain;
 use Illuminate\Http\Response;
 use League\Csv\Writer;
+use Log;
 
 class Incidents extends Controller
 {
@@ -43,6 +44,7 @@ class Incidents extends Controller
         $results = Incident::with('location')
             ->with('intervention')
             ->with('categories')
+            ->with('domain')
             ->with('intervention.assistance');
 
 
