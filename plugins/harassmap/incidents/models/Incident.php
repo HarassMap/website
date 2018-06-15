@@ -12,6 +12,7 @@ use Harassmap\Incidents\Components\ReportMap;
 use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
+use Harassmap\Incidents\Models\Domain;
 
 /**
  * Harassmap\Incidents\Models\Incident

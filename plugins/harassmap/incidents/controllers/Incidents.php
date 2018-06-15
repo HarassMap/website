@@ -6,6 +6,7 @@ use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Traits\FilterDomain;
 use Illuminate\Http\Response;
 use League\Csv\Writer;
+use Harassmap\Incidents\Models\Domain;
 use Log;
 
 class Incidents extends Controller
@@ -116,4 +117,10 @@ class Incidents extends Controller
 
         return (string)$writer;
     }
+
+     public function listExtendQuery($query)
+     {
+        $domain = Domain::getBestMatchingDomain();
+        $query->where('domain_id', $domain->id);
+     }
 }
