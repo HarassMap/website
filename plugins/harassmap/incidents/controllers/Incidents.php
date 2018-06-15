@@ -121,6 +121,9 @@ class Incidents extends Controller
      public function listExtendQuery($query)
      {
         $domain = Domain::getBestMatchingDomain();
-        $query->where('domain_id', $domain->id);
+
+        if ($domain->host != '*') {
+            $query->where('domain_id', $domain->id);
+        }
      }
 }
