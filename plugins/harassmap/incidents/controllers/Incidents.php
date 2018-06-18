@@ -41,6 +41,7 @@ class Incidents extends Controller
     public function download()
     {
         $checked = get('checked');
+        $domain = Domain::getBestMatchingDomain();
 
         $results = Incident::with('location')
             ->with('intervention')
@@ -50,7 +51,7 @@ class Incidents extends Controller
 
 
         if (!empty($checked)) {
-            $results = $results->whereIn('id', explode(',', $checked));
+            $results = $results->where('domain_id', $domain->id)->whereIn('id', explode(',', $checked));
         }
 
         $result = $this->createCsv($results->get());
