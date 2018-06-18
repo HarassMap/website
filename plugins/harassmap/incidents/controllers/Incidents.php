@@ -54,7 +54,7 @@ class Incidents extends Controller
             $results = $results->where('domain_id', $domain->id)->whereIn('id', explode(',', $checked));
         }
 
-        $result = $this->createCsv($results->get());
+        $result = $this->createCsv($results->where('domain_id', $domain->id)->get());
 
         return new Response($result, 200, array(
             'Content-type' => 'text/csv',
