@@ -51,10 +51,18 @@ class Incidents extends Controller
 
 
         if (!empty($checked)) {
-            $results = $results->where('domain_id', $domain->id)->whereIn('id', explode(',', $checked));
+            if ($domain->host != '*') {
+                $results = $results->where('domain_id', $domain->id)->whereIn('id', explode(',', $checked));
+            } else {
+                $results = $results->whereIn('id', explode(',', $checked));
+            }
         }
 
-        $result = $this->createCsv($results->get());
+        if ($domain->host != '*') {
+            $result = $this->createCsv($results->where('domain_id', $domain->id)->get());
+        } else {
+            $result = $this->createCsv($results->get());
+        }
 
         return new Response($result, 200, array(
             'Content-type' => 'text/csv',
