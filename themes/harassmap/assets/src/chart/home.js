@@ -453,14 +453,7 @@ export class HomeChart {
 
         let first = _.first(data);
 
-        // add a super old date
         let lastDate = new Date(first.date.getTime());
-        lastDate.setFullYear(lastDate.getFullYear() - 10);
-        data = [{count: 0, date: lastDate}, ...data];
-
-        // add the day before the first item
-        lastDate = new Date(first.date.getTime());
-        lastDate.setDate(lastDate.getDate() - 1);
         data = [{count: 0, date: lastDate}, ...data];
 
         const addDays = (date) => {
