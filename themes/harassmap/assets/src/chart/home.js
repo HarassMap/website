@@ -99,6 +99,8 @@ export class HomeChart {
     parseData(data) {
         this.data = data;
 
+        console.log('data', data);
+
         this.extent = d3.extent(_.map(_.concat(_.keys(this.data['incident']), _.keys(this.data['intervention']))), (date) => new Date(date));
         this.incidents = this.getIncidents();
         this.interventions = this.getInterventions();
@@ -107,6 +109,7 @@ export class HomeChart {
             incidents: d3.nest().key((data) => d3.timeYear.floor(data.date)).entries(this.incidents).map(this.meanValues),
             interventions: d3.nest().key((data) => d3.timeYear.floor(data.date)).entries(this.interventions).map(this.meanValues)
         };
+        console.log('yearly', this.yearly);
 
         this.monthly = {
             incidents: d3.nest().key((data) => d3.timeMonth.floor(data.date)).entries(this.incidents).map(this.meanValues),
