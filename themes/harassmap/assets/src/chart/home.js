@@ -149,6 +149,7 @@ export class HomeChart {
         this.left = PADDING_LEFT;
         this.right = this.width - PADDING_RIGHT;
 
+        console.log('extent', this.extent);
         this.x = d3.scaleTime()
             .domain(this.extent)
             .range([this.left, this.right]);
