@@ -12,7 +12,7 @@ const ZOOM_YEAR = 1;
 const ZOOM_MONTH = 2;
 const ZOOM_WEEK = 40;
 
-const INITIAL_YEAR = 1992;
+const INITIAL_YEAR = 2009;
 
 const PADDING_TOP = 90;
 const PADDING_BOTTOM = 40;
