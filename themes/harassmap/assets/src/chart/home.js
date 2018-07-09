@@ -12,7 +12,7 @@ const ZOOM_YEAR = 1;
 const ZOOM_MONTH = 2;
 const ZOOM_WEEK = 40;
 
-const INITIAL_YEAR = 2009;
+let initial_year = 2009;
 
 const PADDING_TOP = 90;
 const PADDING_BOTTOM = 40;
@@ -28,7 +28,7 @@ export class HomeChart {
         this.addListeners();
 
         if (data.domain_host === 'sendeanlat.harassmap.org') {
-            INITIAL_YEAR = 1992;
+            initial_year = 1992;
         }
 
         this.parseData(data);
@@ -58,7 +58,7 @@ export class HomeChart {
 
             if($target.hasClass('filter-year')) {
 
-                yearStart.setFullYear(INITIAL_YEAR);
+                yearStart.setFullYear(initial_year);
                 yearStart.setMonth(0);
                 yearStart.setDate(1);
 
@@ -380,7 +380,7 @@ export class HomeChart {
     animate() {
         let now = new Date();
 
-        let yearStart = new Date(INITIAL_YEAR, 0, 1);
+        let yearStart = new Date(initial_year, 0, 1);
         yearStart.setHours(0, 0, 0, 0);
 
         let yearEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
