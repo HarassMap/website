@@ -28,7 +28,7 @@ export class HomeChart {
         this.addListeners();
 
         if (data.domain_host === 'sendeanlat.harassmap.org') {
-            initial_year = 1992;
+            initial_year = 2002;
         }
 
         this.parseData(data);
