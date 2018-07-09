@@ -44,6 +44,8 @@ class ReportChart extends ComponentBase
             $reports['intervention'][$intervention->day] = $intervention->count;
         };
 
+        $reports['domain_host'] = $domain->host;
+
         return $reports;
     }
 
