@@ -6,7 +6,6 @@ import { HomeChart } from './home';
 import { LineChart } from './line';
 
 export const initHomeChart = (data) => {
-    console.log(data);
     new HomeChart('reportChartSvg', data);
 };
 
