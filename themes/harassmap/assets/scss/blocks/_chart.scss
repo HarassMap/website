@@ -55,7 +55,7 @@
   .circle {
     cursor: pointer;
     fill: $white;
-    transition: transform 0.5s, fill 0.5s;
+    transition: fill 0.5s;
     transform-origin: 50% 50%;
 
     &.circle--incident {
@@ -72,10 +72,6 @@
       &:hover {
         fill: $green;
       }
-    }
-
-    &:hover {
-      transform: scale(2);
     }
   }
 
