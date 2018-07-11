@@ -30,10 +30,6 @@
     {% endraw %}
     {{ ':total incident' | _({total: "{{ total }}"}) }}
     {% raw %}
-        {{else if plural}}
-    {% endraw %}
-    {{ ':total incidents' | _({total: "{{ total }}"}) }}
-    {% raw %}
         {{else}}
     {% endraw %}
     {{ ':total incidents' | _({total: "{{ total }}"}) }}
@@ -43,10 +39,6 @@
         {{#if single}}
     {% endraw %}
     {{ ':total intervention' | _({total: "{{ total }}"}) }}
-    {% raw %}
-        {{else if plural}}
-    {% endraw %}
-    {{ ':total interventions' | _({total: "{{ total }}"}) }}
     {% raw %}
         {{else}}
     {% endraw %}
