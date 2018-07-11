@@ -45,7 +45,7 @@
     {% raw %}
         {{else}}
     {% endraw %}
-
+    {{ ':category: :total incidents' | _({total: "{{ total }}", category: "{{ title }}"}) }}
     {% raw %}
         {{/if}}
     {% endraw %}
@@ -62,7 +62,7 @@
     {% raw %}
         {{else}}
     {% endraw %}
-
+    {{ ':total incidents' | _({total: "{{ total }}"}) }}
     {% raw %}
         {{/if}}
     {% endraw %}
