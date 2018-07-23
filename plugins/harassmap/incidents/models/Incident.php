@@ -13,6 +13,7 @@ use Model;
 use October\Rain\Database\Traits\Validation;
 use RainLab\User\Models\User;
 use Harassmap\Incidents\Models\Domain;
+use Log;
 
 /**
  * Harassmap\Incidents\Models\Incident
@@ -111,6 +112,7 @@ class Incident extends Model
         // get which attributes have changed
         $changed = $this->getDirty();
 
+        Log::info($changed);
         if (array_key_exists('support', $changed)) {
             Analytics::reportSupportAdded($this);
         } else {
