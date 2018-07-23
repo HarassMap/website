@@ -214,7 +214,7 @@ abstract class TranslatableBehavior extends ExtensionBase
     }
 
     /**
-     * Restores the default language values on the model and 
+     * Restores the default language values on the model and
      * stores the translated values in the attributes table.
      * @return void
      */
@@ -344,6 +344,9 @@ abstract class TranslatableBehavior extends ExtensionBase
      */
     public function getTranslateDirty($locale = null)
     {
+        Log::info('I am here');
+        Log::info($locale);
+        Log::info($this->translatableAttributes);
         if (!$locale) {
             $locale = $this->translatableContext;
         }
@@ -357,8 +360,6 @@ abstract class TranslatableBehavior extends ExtensionBase
         }
 
         $dirty = [];
-
-        Log::info('ta', $this->translatableAttributes);
 
         foreach ($this->translatableAttributes[$locale] as $key => $value) {
 
