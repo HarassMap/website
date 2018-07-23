@@ -3,7 +3,6 @@
 use RainLab\Translate\Classes\Translator;
 use October\Rain\Extension\ExtensionBase;
 use October\Rain\Html\Helper as HtmlHelper;
-use Log;
 
 /**
  * Base class for model behaviors.
@@ -344,10 +343,6 @@ abstract class TranslatableBehavior extends ExtensionBase
      */
     public function getTranslateDirty($locale = null)
     {
-        Log::info('I am here');
-        Log::info($locale);
-        Log::info($this->translatableAttributes);
-
         if (!$locale) {
             $locale = $this->translatableContext;
         }
@@ -362,7 +357,6 @@ abstract class TranslatableBehavior extends ExtensionBase
 
         $dirty = [];
 
-        /*
         foreach ($this->translatableAttributes[$locale] as $key => $value) {
 
             if (!array_key_exists($key, $this->translatableOriginals[$locale])) {
@@ -372,7 +366,6 @@ abstract class TranslatableBehavior extends ExtensionBase
                 $dirty[$key] = $value;
             }
         }
-        */
 
         return $dirty;
     }
