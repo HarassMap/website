@@ -3,6 +3,7 @@
 use RainLab\Translate\Classes\Translator;
 use October\Rain\Extension\ExtensionBase;
 use October\Rain\Html\Helper as HtmlHelper;
+use Log;
 
 /**
  * Base class for model behaviors.
@@ -356,6 +357,8 @@ abstract class TranslatableBehavior extends ExtensionBase
         }
 
         $dirty = [];
+
+        Log::info('ta', $this->translatableAttributes);
 
         foreach ($this->translatableAttributes[$locale] as $key => $value) {
 
