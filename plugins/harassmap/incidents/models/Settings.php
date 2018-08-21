@@ -3,7 +3,6 @@
 namespace Harassmap\Incidents\Models;
 
 use Model;
-use Log;
 
 /**
  * Harassmap\Incidents\Models\Settings
