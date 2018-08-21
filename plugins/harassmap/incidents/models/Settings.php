@@ -3,6 +3,7 @@
 namespace Harassmap\Incidents\Models;
 
 use Model;
+use Log;
 
 /**
  * Harassmap\Incidents\Models\Settings
@@ -26,5 +27,10 @@ class Settings extends Model
             'red_green' => 'Red and Green',
             'yellow_blue' => 'Yellow and Blue'
         ];
+    }
+
+    public function onRender() {
+        $maxItems = Settings::get('map');
+        Log::info($maxItems);
     }
 }
