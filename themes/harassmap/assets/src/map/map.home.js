@@ -48,21 +48,16 @@ export class HomePageMap {
 
         this.markers = [];
         this.filters = {};
-        // not working yet
-        this.markerColorScheme = {{ $maxItems | json_encode | raw }};
-        console.log('anyhow', '/themes/harassmap/assets/img/markers/' + this.markerColorScheme + '/m');
 
         this.markerCluster = new MarkerClusterer(
             this.map,
             [],
             {
-                imagePath: '/themes/harassmap/assets/img/markers/' + this.markerColorScheme + '/m',
+                imagePath: '/themes/harassmap/assets/img/markers/' + mapPins + '/m',
                 imageExtension: 'svg',
                 maxZoom: 22
             }
         );
-
-        console.log(this.markerCluster);
 
         this.markerCluster.styles_ = _.map(this.markerCluster.styles_, (style) => {
             return {

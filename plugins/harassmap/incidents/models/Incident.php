@@ -109,7 +109,6 @@ class Incident extends Model
 
     public function afterUpdate()
     {
-        Log::info('I got updated');
         // get which attributes have changed
         $changed = $this->getDirty();
 

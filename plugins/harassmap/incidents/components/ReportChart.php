@@ -6,6 +6,7 @@ use Cms\Classes\ComponentBase;
 use DB;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
+use Harassmap\Incidents\Models\Settings;
 
 class ReportChart extends ComponentBase
 {
@@ -20,6 +21,10 @@ class ReportChart extends ComponentBase
 
     public function onRender()
     {
+        // get map pin options to the javascript side
+        echo '<script>';
+        echo 'var mapPins = ' . json_encode(Settings::get('map_pins')) . ';';
+        echo '</script>';
         $this->page['chartReports'] = $this->onGetChartReports();
     }
 
