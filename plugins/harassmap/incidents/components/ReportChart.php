@@ -7,7 +7,7 @@ use DB;
 use Harassmap\Incidents\Models\Domain;
 use Harassmap\Incidents\Models\Incident;
 use Harassmap\Incidents\Models\Settings;
-// use October\Rain\Support\Collection as Collection;
+use October\Rain\Support\Collection as Collection;
 use Log;
 
 class ReportChart extends ComponentBase
@@ -25,14 +25,13 @@ class ReportChart extends ComponentBase
     {
         $pinColor = Settings::get('map_pins');
         $domain = Domain::getBestMatchingDomain();
-        // $setDomain = Settings::set('domain_name', $domain->host);
+        $setDomain = Settings::set('domain_name', $domain->host);
 
-        // $collection = new Collection([$setDomain => $pinColor]);
+        $collection = new Collection([$setDomain => $pinColor]);
 
         $domain->map_pin_color = $pinColor;
 
-        Log::info($domain);
-        Log::info($pinColor);
+        Log::info($collection);
 
         // get map pin options to the javascript side
         echo '<script>';
