@@ -59,6 +59,8 @@ export class HomePageMap {
             }
         );
 
+        console.log('pin color', mapPins);
+
         this.markerCluster.styles_ = _.map(this.markerCluster.styles_, (style) => {
             return {
                 ...style,
