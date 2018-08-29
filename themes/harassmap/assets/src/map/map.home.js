@@ -53,11 +53,13 @@ export class HomePageMap {
             this.map,
             [],
             {
-                imagePath: '/themes/harassmap/assets/img/markers/m',
+                imagePath: '/themes/harassmap/assets/img/markers/' + mapPins + '/m',
                 imageExtension: 'svg',
                 maxZoom: 22
             }
         );
+
+        console.log('pin color', mapPins);
 
         this.markerCluster.styles_ = _.map(this.markerCluster.styles_, (style) => {
             return {
