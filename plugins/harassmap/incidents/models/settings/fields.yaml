@@ -19,8 +19,3 @@ tabs:
             span: auto
             type: number
             tab: API
-        map_pins:
-            label: Map Pin Color
-            span: auto
-            type: dropdown
-            tab: Map Setting

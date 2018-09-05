@@ -80,6 +80,12 @@ tabs:
             span: auto
             type: text
             tab: 'harassmap.incidents::lang.form.tab.map'
+        map_pin_color:
+            label: 'harassmap.incidents::lang.form.map_pin_color'
+            span: auto
+            type: dropdown
+            commentAbove: The color of the incident and intervention pins
+            tab: 'harassmap.incidents::lang.form.tab.map'
         zoom:
             label: 'harassmap.incidents::lang.form.zoom'
             span: full

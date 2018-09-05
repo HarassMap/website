@@ -22,10 +22,7 @@ class ReportChart extends ComponentBase
 
     public function onRender()
     {
-        // store map pin on selected domain
         $domain = Domain::getBestMatchingDomain();
-        $domain->map_pin_color = Settings::get('map_pins');
-        $domain->save();
 
         Log::info($domain);
 

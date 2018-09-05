@@ -213,7 +213,7 @@ abstract class TranslatableBehavior extends ExtensionBase
     }
 
     /**
-     * Restores the default language values on the model and 
+     * Restores the default language values on the model and
      * stores the translated values in the attributes table.
      * @return void
      */

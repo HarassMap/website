@@ -112,6 +112,7 @@
         'country' => 'Country',
         'lat' => 'Latitude',
         'lng' => 'Longitude',
+        'map_pin_color' => 'Map Pin Color',
         'zoom' => 'Zoom',
         'iso' => 'ISO Code',
         'updated_at' => 'Updated',
