@@ -24,8 +24,6 @@ class ReportChart extends ComponentBase
     {
         $domain = Domain::getBestMatchingDomain();
 
-        Log::info($domain);
-
         // get map pin options to the javascript side
         echo '<script>';
         echo 'var mapPins = ' . json_encode($domain->map_pin_color) . ';';
