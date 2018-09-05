@@ -271,6 +271,13 @@ class Domain extends Model
         return self::$domains;
     }
 
+    public function getMapPinColorOptions() {
+        return [
+            'red_green' => 'Red and Green',
+            'yellow_blue' => 'Yellow and Blue'
+        ];
+    }
+
     /**
      * @return Domain
      */
