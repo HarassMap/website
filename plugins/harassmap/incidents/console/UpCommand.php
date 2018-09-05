@@ -47,7 +47,8 @@ class UpCommand extends Command
             'lat' => '30.044420',
             'lng' => '31.235712',
             'zoom' => '11',
-            'email' => 'no-reply@domain.com'
+            'email' => 'no-reply@domain.com',
+            'map_pin_color' => 'red_green'
         ]);
     }
 
