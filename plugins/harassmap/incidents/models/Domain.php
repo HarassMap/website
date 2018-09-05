@@ -272,6 +272,8 @@ class Domain extends Model
     }
 
     public function getMapPinColorOptions() {
+        // this keys are mapping to directory names where the images are stored
+        // the directories are in themes/harassmap/assets/img/markers
         return [
             'red_green' => 'Red and Green',
             'yellow_blue' => 'Yellow and Blue'
