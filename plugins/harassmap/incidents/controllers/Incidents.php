@@ -134,7 +134,7 @@ class Incidents extends Controller
         Log::info(BackendAuth::getUser()->groups->count());
 
         BackendAuth::getUser()->groups->each(function ($item, $key) {
-           Log::info($item->name);
+           Log::info($item);
         });
 
         // if (BackendAuth::getUser()->groups->count() == 1)
