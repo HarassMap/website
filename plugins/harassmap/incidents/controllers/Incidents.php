@@ -131,10 +131,13 @@ class Incidents extends Controller
      public function listExtendQuery($query)
      {
         $domain = Domain::getBestMatchingDomain();
-        Log::info(BackendAuth::getUser()->groups->count());
+        Log::info(BackendAuth::getUser());
 
         BackendAuth::getUser()->groups->each(function ($item, $key) {
-           Log::info($item);
+            if($item->name == "Regional Administrator") {
+
+            }
+           Log::info($item->name);
         });
 
         // if (BackendAuth::getUser()->groups->count() == 1)
