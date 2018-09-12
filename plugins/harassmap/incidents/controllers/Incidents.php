@@ -131,18 +131,18 @@ class Incidents extends Controller
      public function listExtendQuery($query)
      {
         $domain = Domain::getBestMatchingDomain();
-        Log::info(BackendAuth::getUser()->domains);
 
-        BackendAuth::getUser()->groups->each(function ($item, $key) {
-            if($item->name == "Regional Administrator") {
-
-            }
-           Log::info($item->name);
-        });
-
-        // if (BackendAuth::getUser()->groups->count() == 1)
-
-        if ($domain->host != '*') {
+        if (BackendAuth::getUser()->groups->count() == 1) {
+            BackendAuth::getUser()->groups->each(function ($item, $key) use($query) {
+                $mia = [];
+                if ($item->name == "Regional Administrator") {
+                    BackendAuth::getUser()->domains->each(function ($d, $k) use($query, &$mia) {
+                        $mia[] = $d->id;
+                    });
+                    $query->whereIn('domain_id', $mia);
+                }
+            });
+        } else if ($domain->host != '*') {
             $query->where('domain_id', $domain->id);
         }
      }
