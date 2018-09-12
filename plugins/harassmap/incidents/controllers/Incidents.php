@@ -7,6 +7,7 @@ use Harassmap\Incidents\Traits\FilterDomain;
 use Illuminate\Http\Response;
 use League\Csv\Writer;
 use Harassmap\Incidents\Models\Domain;
+use BackendAuth;
 use Log;
 
 class Incidents extends Controller
@@ -130,6 +131,13 @@ class Incidents extends Controller
      public function listExtendQuery($query)
      {
         $domain = Domain::getBestMatchingDomain();
+        Log::info(BackendAuth::getUser()->groups->count());
+
+        BackendAuth::getUser()->groups->each(function ($item, $key) {
+           Log::info($item);
+        });
+
+        // if (BackendAuth::getUser()->groups->count() == 1)
 
         if ($domain->host != '*') {
             $query->where('domain_id', $domain->id);
