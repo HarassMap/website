@@ -9,7 +9,7 @@ export class ReportsPageMap {
             lng = element.dataset.lng,
             type = element.dataset.type,
             centre = new google.maps.LatLng(lat, lng),
-            icon = '/themes/harassmap/assets/img/map/' + type + '.svg';
+            icon = '/themes/harassmap/assets/img/markers/' + mapPins + '/' + type + '.svg';
 
         this._element = element;
 
