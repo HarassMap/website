@@ -151,7 +151,7 @@ export class HomePageMap {
 
     addMarker(report) {
         let centre = new google.maps.LatLng(report.location.lat, report.location.lng);
-        let icon = '/themes/harassmap/assets/img/map/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
+        let icon = '/themes/harassmap/assets/img/markers/' + mapPins + '/' + (report.intervention ? 'intervention' : 'incident') + '.svg';
         let date = moment(report.date);
         let location = report.location;
         let address = location.address + ', ' + location.city;
