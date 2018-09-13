@@ -26,6 +26,11 @@ class ReportView extends ComponentBase
         $id = $this->param('id');
         $domain = Domain::getBestMatchingDomain();
 
+        // get map pin options to the javascript side
+        echo '<script>';
+        echo 'var mapPins = ' . json_encode($domain->map_pin_color) . ';';
+        echo '</script>';
+
         // find the incident with the public id
         $report = Incident
             ::where('public_id', '=', $id)
