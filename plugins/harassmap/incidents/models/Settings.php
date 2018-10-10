@@ -18,13 +18,5 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->api_day_limit = 200;
-        $this->map_pins = 'red_green';
-    }
-
-    public function getMapPinsOptions() {
-        return [
-            'red_green' => 'Red and Green',
-            'yellow_blue' => 'Yellow and Blue'
-        ];
     }
 }
