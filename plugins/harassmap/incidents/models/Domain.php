@@ -276,7 +276,7 @@ class Domain extends Model
         // the directories are in themes/harassmap/assets/img/markers
         return [
             'red_green' => 'Red and Green',
-            'yellow_blue' => 'Yellow and Blue'
+            'gray_neutrals' => 'Gray and Neutral'
         ];
     }
 
