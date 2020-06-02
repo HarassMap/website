@@ -50,19 +50,19 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key'    => env('DISKS_S3_KEY', 'your-key'),
+            'secret' => env('DISKS_S3_SECRET', 'your-secret'),
+            'region' => env('DISKS_S3_REGION', 'your-region'),
+            'bucket' => env('DISKS_S3_BUCKET', 'your-bucket'),
         ],
 
         'rackspace' => [
             'driver'    => 'rackspace',
-            'username'  => 'your-username',
-            'key'       => 'your-key',
-            'container' => 'your-container',
-            'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
-            'region'    => 'IAD',
+            'username'  => env('DISKS_RS_USERNAME', 'your-username'),
+            'key'       => env('DISKS_RS_KEY', 'your-key'),
+            'container' => env('DISKS_RS_CONTAINER', 'your-container'),
+            'endpoint'  => env('DISKS_RS_ENDPOINT', 'https://identity.api.rackspacecloud.com/v2.0/'),
+            'region'    => env('DISKS_RS_REGION', 'IAD'),
         ],
 
     ],

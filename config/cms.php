@@ -123,7 +123,7 @@ return [
     |
     */
 
-    'enableRoutesCache' => false,
+    'enableRoutesCache' => env('ROUTES_CACHE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ return [
     |
     */
 
-    'enableAssetCache' => false,
+    'enableAssetCache' => env('ASSET_CACHE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -239,15 +239,15 @@ return [
     'storage' => [
 
         'uploads' => [
-            'disk'   => 'local',
+            'disk'   => env('STORAGE_UPLOADS_DISK', 'local'),
             'folder' => 'uploads',
-            'path'   => '/storage/app/uploads',
+            'path'   => env('STORAGE_UPLOADS_PATH', '/storage/app/uploads'),
         ],
 
         'media' => [
-            'disk'   => 'local',
+            'disk'   => env('STORAGE_MEDIA_DISK', 'local'),
             'folder' => 'media',
-            'path'   => '/storage/app/media',
+            'path'   => env('STORAGE_MEDIA_PATH', '/storage/app/media'),
         ],
 
     ],
@@ -278,7 +278,7 @@ return [
     |
     */
 
-    'linkPolicy' => 'detect',
+    'linkPolicy' => env('LINK_POLICY', 'detect'),
 
     /*
     |--------------------------------------------------------------------------
@@ -302,7 +302,7 @@ return [
     |
     */
 
-    'enableSafeMode' => null,
+    'enableSafeMode' => env('ENABLE_SAFE_MODE', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -314,7 +314,7 @@ return [
     |
     */
 
-    'enableCsrfProtection' => true,
+    'enableCsrfProtection' => env('ENABLE_CSRF', true),
 
     /*
     |--------------------------------------------------------------------------

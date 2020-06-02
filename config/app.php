@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'debug' => true,
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost:8000',
+    'url' => env('APP_URL', 'http://localhost:8000'),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'key' => 'Wte5086BmyGfIoZujW9Vdp2AbXxfOE3T',
+    'key' => env('APP_KEY', 'notarealsecretxxxxxxxxxxxxxxxxxx'),
 
     'cipher' => 'AES-256-CBC',
 
