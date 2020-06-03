@@ -13,6 +13,10 @@ class ReportMap extends ComponentBase
 
     const cacheKey = 'harassmap.home.map';
 
+    public function googleMapsKey() {
+        return env('GOOGLE_MAPS_KEY');
+    }
+
     public function componentDetails()
     {
         return [

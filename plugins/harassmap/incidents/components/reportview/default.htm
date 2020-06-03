@@ -125,7 +125,7 @@
 
 {% put scripts %}
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy4v2GExjmuf9ssik127-Zp7h_4AZM_ck&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key={{ __SELF__.googleMapsKey }}&callback=initMap"></script>
 
 <script>
     $('.read-more').readmore({
@@ -139,7 +139,7 @@
 
 {% put meta %}
 <meta property="og:image"
-      content="https://maps.googleapis.com/maps/api/staticmap?center={{ report.location.lat }},{{ report.location.lng }}&zoom=13&size=600x315&scale=2&markers={{ report.location.lat }},{{ report.location.lng }}&key=AIzaSyBy4v2GExjmuf9ssik127-Zp7h_4AZM_ck"/>
+      content="https://maps.googleapis.com/maps/api/staticmap?center={{ report.location.lat }},{{ report.location.lng }}&zoom=13&size=600x315&scale=2&markers={{ report.location.lat }},{{ report.location.lng }}&key={{ __SELF__.googleMapsKey }}"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 

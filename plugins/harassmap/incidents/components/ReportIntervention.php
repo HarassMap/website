@@ -21,6 +21,9 @@ use Redirect;
 
 class ReportIntervention extends ComponentBase
 {
+    public function googleMapsKey() {
+        return env('GOOGLE_MAPS_KEY');
+    }
 
     public function componentDetails()
     {
